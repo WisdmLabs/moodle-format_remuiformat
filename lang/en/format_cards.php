@@ -22,4 +22,28 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// Plugin Name
 $string['pluginname'] = 'Card format';
+
+// Settings
+$string['defaultcoursedisplay'] = 'Course display default';
+$string['defaultcoursedisplay_desc'] = "Either show all the sections on a single page or section zero and the chosen section on page.";
+
+$string['defaultbuttoncolour'] = 'Default View topic button colour';
+$string['defaultbuttoncolour_desc'] = 'The View topic button colour.';
+
+$string['defaultoverlaycolour'] = 'Default overlay colour when user hover on activities';
+$string['defaultoverlaycolour_desc'] = 'The overlay colour when user hover on activities';
+
+$string['enablepagination'] = 'Enable pagination';
+$string['enablepagination_desc'] = 'This will enable multiple pages view when the number of section/activities are very large.';
+
+$string['defaultnumberoftopics'] = 'Default number of topics per page';
+$string['defaultnumberoftopics_desc'] = 'The number of topics to be displayed in one page';
+
+$string['defaultnumberofactivities'] = 'Default number of activities per page';
+$string['defaultnumberofactivities_desc'] = 'The number of activities to be displayed in one page';
+
+$string['six'] = 6;
+$string['eight'] = 8;
+$string['twelve'] = 12;
