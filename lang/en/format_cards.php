@@ -47,3 +47,6 @@ $string['defaultnumberofactivities_desc'] = 'The number of activities to be disp
 $string['six'] = 6;
 $string['eight'] = 8;
 $string['twelve'] = 12;
+
+$string['defaultshowsectiontitlesummary'] = 'Show the section title summary on hover option';
+$string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary when hovering over the grid box.';

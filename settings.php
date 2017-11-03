@@ -17,7 +17,8 @@
 /**
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
- * @package    format/cards
+ * @package    course/format
+ * @subpackage cards
  * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
