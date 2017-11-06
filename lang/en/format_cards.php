@@ -22,10 +22,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// Plugin Name
+// Plugin Name.
 $string['pluginname'] = 'Card format';
 
-// Settings
+// Settings.
 $string['defaultcoursedisplay'] = 'Course display default';
 $string['defaultcoursedisplay_desc'] = "Either show all the sections on a single page or section zero and the chosen section on page.";
 
@@ -50,3 +50,6 @@ $string['twelve'] = 12;
 
 $string['defaultshowsectiontitlesummary'] = 'Show the section title summary on hover option';
 $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary when hovering over the grid box.';
+
+// Section.
+$string['section_name'] = 'Section';

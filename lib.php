@@ -24,11 +24,9 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
 require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 
-class format_cards extends format_base
-{
+class format_cards extends format_base {
 
     /**
      * Definitions of the additional options that this course format uses for the course.
@@ -36,10 +34,8 @@ class format_cards extends format_base
      * @param bool $foreditform
      * @return array of options
      */
-    public function course_format_options($foreditform = false)
-    {
+    public function course_format_options($foreditform = false) {
         static $courseformatoptions = false;
-        
         if ($courseformatoptions === false) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
             this needs to be stripped off here if it's there for the format's specific colour picker. */
@@ -109,8 +105,7 @@ class format_cards extends format_base
      * @param bool $forsection 'true' if this is a section edit form, 'false' if this is course edit form.
      * @return array array of references to the added form elements.
      */
-    public function create_edit_form_elements(&$mform, $forsection = false)
-    {
+    public function create_edit_form_elements(&$mform, $forsection = false) {
         global $COURSE;
         $elements = parent::create_edit_form_elements($mform, $forsection);
 

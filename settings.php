@@ -28,22 +28,22 @@ defined('MOODLE_INTERNAL') || die;
 require_once($CFG->dirroot . '/course/format/cards/classes/settings_controller.php');
 
 if ($ADMIN->fulltree) {
-    // Get the setting controller
-    $setting_controller = \format_cards\SettingsController::getInstance();
+    // Get the setting controller.
+    $settingcontroller = \format_cards\SettingsController::getinstance();
 
     // Default course display.
     $name = 'format_cards/defaultcoursedisplay';
     $title = get_string('defaultcoursedisplay', 'format_cards');
     $description = get_string('defaultcoursedisplay_desc', 'format_cards');
-    $default = $setting_controller->getDefaultValue('defaultcoursedisplay');
-    $choices = $setting_controller->getCourseDisplayOptions();
+    $default = $settingcontroller->getdefaultvalue('defaultcoursedisplay');
+    $choices = $settingcontroller->getcoursedisplayoptions();
     $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
 
     // Default button colour in hexadecimal RGB with preceding '#'.
     $name = 'format_cards/defaultbuttoncolour';
     $title = get_string('defaultbuttoncolour', 'format_cards');
     $description = get_string('defaultbuttoncolour_desc', 'format_cards');
-    $default = $setting_controller->getDefaultValue('defaultbuttoncolour');
+    $default = $settingcontroller->getdefaultvalue('defaultbuttoncolour');
     $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
     $settings->add($setting);
 
@@ -51,7 +51,7 @@ if ($ADMIN->fulltree) {
     $name = 'format_cards/defaultoverlaycolour';
     $title = get_string('defaultoverlaycolour', 'format_cards');
     $description = get_string('defaultoverlaycolour_desc', 'format_cards');
-    $default = $setting_controller->getDefaultValue('defaultoverlaycolour');
+    $default = $settingcontroller->getdefaultvalue('defaultoverlaycolour');
     $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
     $settings->add($setting);
 
@@ -59,24 +59,24 @@ if ($ADMIN->fulltree) {
     $name = 'format_cards/enablepagination';
     $title = get_string('enablepagination', 'format_cards');
     $description = get_string('enablepagination_desc', 'format_cards');
-    $default = $setting_controller->getDefaultValue('defaultcoursedisplay');
-    $choices = $setting_controller->getPaginationChoices();
+    $default = $settingcontroller->getdefaultvalue('defaultcoursedisplay');
+    $choices = $settingcontroller->getpaginationchoices();
     $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
-    if ($setting_controller->getSetting('enablepagination') == 2) {
+    if ($settingcontroller->getsetting('enablepagination') == 2) {
         /* Number of Topic per page */
         $name = 'format_grid/defaultnumberoftopics';
         $title = get_string('defaultnumberoftopics', 'format_cards');
         $description = get_string('defaultnumberoftopics_desc', 'format_cards');
-        $default = $setting_controller->getDefaultValue('defaultnumberoftopics');
-        $choices = $setting_controller->getNumberOfSectionsOptions();
+        $default = $settingcontroller->getdefaultvalue('defaultnumberoftopics');
+        $choices = $settingcontroller->getnumberofsectionsoptions();
         $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
 
         /* Number of Activities per page */
         $name = 'format_grid/defaultnumberofactivities';
         $title = get_string('defaultnumberofactivities', 'format_cards');
         $description = get_string('defaultnumberofactivities_desc', 'format_cards');
-        $default = $setting_controller->getDefaultValue('defaultnumberofactivities');
-        $choices = $setting_controller->getNumberOfSectionsOptions();
+        $default = $settingcontroller->getdefaultvalue('defaultnumberofactivities');
+        $choices = $settingcontroller->getnumberofsectionsoptions();
         $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
     }
 }

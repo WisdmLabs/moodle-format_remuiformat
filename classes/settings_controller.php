@@ -25,20 +25,19 @@
 
 namespace format_cards;
 
+defined('MOODLE_INTERNAL') || die;
+
 class SettingsController
 {
     protected static $instance;
     private $_plugin_config;
-    
-    // Constructor
-    private function __construct()
-    {
+
+    // Constructor.
+    private function __construct() {
         $this->plugin_config = "format_cards";
     }
-    
-    // Singleton Implementation
-    public static function getInstance()
-    {
+    // Singleton Implementation.
+    public static function getinstance() {
         if (!is_object(self::$instance)) {
             self::$instance = new self();
         }
@@ -50,8 +49,7 @@ class SettingsController
      * @param string $setting Setting name.
      * @return any defaultvalue|value of setting.
      */
-    public function getSetting($setting)
-    {
+    public function getsetting($setting) {
         $config = get_config($this->plugin_config);
         if (property_exists($config, $setting)) {
             return $config->$setting;
@@ -65,42 +63,40 @@ class SettingsController
      * @param string $setting Setting name.
      * @return any false|defaultvalue value of setting.
      */
-    public function getDefaultValue($setting)
-    {
-        $defaultValue;
+    public function getdefaultvalue($setting) {
+        $defaultvalue;
         switch ($setting) {
             case 'defaultcoursedisplay':
-                $defaultValue = COURSE_DISPLAY_SINGLEPAGE;
+                $defaultvalue = COURSE_DISPLAY_SINGLEPAGE;
                 break;
             case 'defaultbuttoncolour':
-                $defaultValue = '#dddddd';
+                $defaultvalue = '#dddddd';
                 break;
             case 'defaultoverlaycolour':
-                $defaultValue = '#dddddd';
+                $defaultvalue = '#dddddd';
                 break;
             case 'enablepagination':
-                $defaultValue = 1;
+                $defaultvalue = 1;
                 break;
             case 'defaultnumberoftopics':
-                $defaultValue = 6;
+                $defaultvalue = 6;
                 break;
             case 'defaultnumberoftopics':
-                $defaultValue =  6;
+                $defaultvalue = 6;
                 break;
             default:
-                $defaultValue = '';
+                $defaultvalue = '';
                 break;
         }
-        return $defaultValue;
+        return $defaultvalue;
     }
 
     /**
      * Return the array of choices for Course display options.
      * @param none
      * @return arrray of choices
-    */
-    public function getCourseDisplayOptions()
-    {
+     */
+    public function getcoursedisplayoptions() {
         /*
          * COURSE_DISPLAY_SINGLEPAGE or - All sections on one page.
          * COURSE_DISPLAY_MULTIPAGE     - One section per page.
@@ -115,9 +111,8 @@ class SettingsController
      * Return the array of choices for number of sections/topics/activity
      * @param none
      * @return arrray of choices
-    */
-    public function getNumberOfSectionsOptions()
-    {
+     */
+    public function getnumberofsectionsoptions() {
         return array(
             6 => get_string('six', 'format_cards'),      // Six.
             8 => get_string('eight', 'format_cards'),    // Eight.
@@ -125,13 +120,12 @@ class SettingsController
         );
     }
 
-     /**
+    /**
      * Return the array of choices for enable pagination
      * @param none
      * @return arrray of choices
-    */
-    public function getPaginationChoices()
-    {
+     */
+    public function getpaginationchoices() {
         return array(
             1 => new \lang_string('off', 'format_grid'),   // Off.
             2 => new \lang_string('on', 'format_grid')   // On.
