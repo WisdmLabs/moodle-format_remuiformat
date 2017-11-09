@@ -28,6 +28,13 @@ require_once($CFG->libdir.'/filelib.php');
 require_once($CFG->libdir.'/completionlib.php');
 
 // Backward Compatibility.
+if ($topic = optional_param('topic', 0, PARAM_INT)) {
+    $url = $PAGE->url;
+    $url->param('section', $topic);
+    debugging('Outdated topic param passed to course/view.php', DEBUG_DEVELOPER);
+    redirect($url);
+}
+// End backwards-compatible aliasing..
 
 $coursecontext = context_course::instance($course->id);
 // Retrieve course format option fields and add them to the $course object.

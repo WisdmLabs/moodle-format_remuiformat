@@ -53,3 +53,4 @@ $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary
 
 // Section.
 $string['section_name'] = 'Section';
+$string['section0name'] = 'General';

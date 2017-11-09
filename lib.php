@@ -29,8 +29,110 @@ require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 class format_cards extends format_base {
 
     /**
-     * Definitions of the additional options that this course format uses for the course.
+     * Creates a new instance of class
+     * Please use {@link course_get_format($courseorid)} to get an instance of the format class
+     * @param string $format
+     * @param int $courseid
+     * @return format_grid
+     */
+    protected function __construct($format, $courseid) {
+        if ($courseid === 0) {
+            global $COURSE;
+            $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
+        }
+        parent::__construct($format, $courseid);
+    }
+
+    /**
+     * Indicates this format uses sections.
+     * @return bool Returns true
+     */
+    public function uses_sections() {
+        return true;
+    }
+
+    /**
+     * Returns the display name of the given section that the course prefers.
+     * Use section name is specified by user. Otherwise use default ("Topic #")
+     * @param int|stdClass $section Section object from database or just field section.section
+     * @return string Display name that the course format prefers, e.g. "Topic 2"
+     */
+    public function get_section_name($section) {
+        $section = $this->get_section($section);
+        if ((string)$section->name !== '') {
+            return format_string($section->name, true,
+                    array('context' => context_course::instance($this->courseid)));
+        } else {
+            return $this->get_default_section_name($section);
+        }
+    }
+
+    /**
+     * Returns the default section name for the topics course format.
+     * If the section number is 0, it will use the string with key = section0name from the course format's lang file.
+     * If the section number is not 0, the base implementation of format_base::get_default_section_name which uses
+     * the string with the key = 'sectionname' from the course format's lang file + the section number will be used.
      *
+     * @param stdClass $section Section object from database or just field course_sections section
+     * @return string The default value for the section name.
+     */
+    public function get_default_section_name($section) {
+        if ($section->section == 0) {
+            // Return the general section.
+            return get_string('section0name', 'format_cards');
+        } else {
+            // Use format_base::get_default_section_name implementation which
+            // will display the section name in "Topic n" format.
+            return get_string('section_name', 'format_cards').' '. $section->section;
+        }
+    }
+
+    /**
+     * The URL to use for the specified course (with section)
+     * @param int|stdClass $section Section object from database or just field course_sections.section
+     *     if omitted the course view page is returned
+     * @param array $options options for view URL. At the moment core uses:
+     *     'navigation' (bool) if true and section has no separate page, the function returns null
+     *     'sr' (int) used by multipage formats to specify to which section to return
+     * @return null|moodle_url
+     */
+    public function get_view_url($section, $options = array()) {
+        global $CFG;
+        $course = $this->get_course();
+        $url = new moodle_url('/course/view.php', array('id' => $course->id));
+
+        $sr = null;
+        if (array_key_exists('sr', $options)) {
+            $sr = $options['sr'];
+        }
+        if (is_object($section)) {
+            $sectionno = $section->section;
+        } else {
+            $sectionno = $section;
+        }
+        if ($sectionno !== null) {
+            if ($sr !== null) {
+                if ($sr) {
+                    $usercoursedisplay = COURSE_DISPLAY_MULTIPAGE;
+                    $sectionno = $sr;
+                } else {
+                    $usercoursedisplay = COURSE_DISPLAY_SINGLEPAGE;
+                }
+            } else {
+                $usercoursedisplay = $course->coursedisplay;
+            }
+            if ($sectionno != 0 && $usercoursedisplay == COURSE_DISPLAY_MULTIPAGE) {
+                $url->param('section', $sectionno);
+            } else {
+                $url->set_anchor('section-'.$sectionno);
+            }
+        }
+        return $url;
+    }
+
+
+    /**
+     * Definitions of the additional options that this course format uses for the course.
      * @param bool $foreditform
      * @return array of options
      */
@@ -98,9 +200,7 @@ class format_cards extends format_base {
 
     /**
      * Adds format options elements to the course/section edit form.
-     *
      * This function is called from {@link course_edit_form::definition_after_data()}.
-     *
      * @param MoodleQuickForm $mform form the elements are added to.
      * @param bool $forsection 'true' if this is a section edit form, 'false' if this is course edit form.
      * @return array array of references to the added form elements.
@@ -125,4 +225,6 @@ class format_cards extends format_base {
         }
         return $elements;
     }
+
+
 }

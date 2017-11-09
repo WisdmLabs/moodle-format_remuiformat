@@ -27,6 +27,8 @@ require_once($CFG->dirroot.'/course/format/renderer.php');
 
 class format_cards_renderer extends format_section_renderer_base {
 
+    protected $courseformat; // Our course format object as defined in lib.php.
+
     /**
      * Constructor method, calls the parent constructor
      * @param moodle_page $page
@@ -34,6 +36,7 @@ class format_cards_renderer extends format_section_renderer_base {
      */
     public function __construct(moodle_page $page, $target) {
         parent::__construct($page, $target);
+        $this->courseformat = course_get_format($page->course);
         // Since format_cards_renderer::section_edit_controls()
         // only displays the 'Set current section' control when editing mode is on
         // we need to be sure that the link 'Turn editing mode on' is available
@@ -86,4 +89,57 @@ class format_cards_renderer extends format_section_renderer_base {
     public function section_title_without_link($section, $course) {
         return $this->render(course_get_format($course)->inplace_editable_render_section_name($section, false));
     }
+
+    /**
+     * Output the html for a multiple section page
+     *
+     * @param stdClass $course The course entry from DB
+     * @param array $sections The course_sections entries from the DB
+     * @param array $mods
+     * @param array $modnames
+     * @param array $modnamesused
+     */
+    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
+        global $USER, $PAGE;
+        if (!empty($USER->profile['accessible'])) {
+            return parent::print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused);
+        }
+
+        $editing = $PAGE->user_is_editing();
+        $coursecontext = context_course::instance($course->id);
+        $modinfo = get_fast_modinfo($course);
+        $sections = $modinfo->get_section_info_all();
+
+        echo html_writer::start_tag('div', array('id' => 'card-container'));
+        $this->single_card($coursecontext->id, $modinfo, $course, $editing);
+        echo html_writer::end_tag('div');
+    }
+
+    /**
+     * Output html for sections
+     * @param
+     */
+    private function single_card($contextid, $modinfo, $course, $editing) {
+
+        $coursenumsections = $this->courseformat->get_last_section_number();
+        for ($section = 1; $section <= $coursenumsections; $section++) {
+            // Get current section info.
+            $currentsection = $modinfo->get_section_info($section);
+
+            // Get the title of the section.
+            $sectionname = $this->courseformat->get_section_name($currentsection);
+
+            $title = $sectionname;
+            $summary = strip_tags($currentsection->summary);
+            $summary = str_replace("&nbsp;", ' ', $summary);
+            echo '<div style="width:30%;height:200px;background-color:orangered;padding:20px;
+            margin: 10px;position:relative; display:inline-block">
+            <h2>'.$title.'</h2>
+            <p>'.$summary.'</p>
+            <a href="" style="display:flex;justify-content:center;text-decoration:none;
+            color: white;background-color: lightgreen;padding : 10px;position: absolute;bottom:0;left:0;right:0">View Topic</a>
+            </div>';
+        }
+    }
+
 }
