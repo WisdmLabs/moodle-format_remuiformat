@@ -65,7 +65,7 @@ class format_cards_renderer extends format_section_renderer_base {
      * @return string the page title
      */
     protected function page_title() {
-        return get_string('section_name', 'format_cards');
+        return get_string('sectionname', 'format_cards');
     }
 
     /**
@@ -110,8 +110,8 @@ class format_cards_renderer extends format_section_renderer_base {
         $modinfo = get_fast_modinfo($course);
         $sections = $modinfo->get_section_info_all();
 
-        echo html_writer::start_tag('div', array('id' => 'card-container'));
-        $this->single_card($coursecontext->id, $modinfo, $course, $editing);
+        echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
+        $this->display_cards($coursecontext->id, $modinfo, $course, $editing);
         echo html_writer::end_tag('div');
     }
 
@@ -119,7 +119,7 @@ class format_cards_renderer extends format_section_renderer_base {
      * Output html for sections
      * @param
      */
-    private function single_card($contextid, $modinfo, $course, $editing) {
+    private function display_cards($contextid, $modinfo, $course, $editing) {
 
         $coursenumsections = $this->courseformat->get_last_section_number();
         for ($section = 1; $section <= $coursenumsections; $section++) {
@@ -129,17 +129,44 @@ class format_cards_renderer extends format_section_renderer_base {
             // Get the title of the section.
             $sectionname = $this->courseformat->get_section_name($currentsection);
 
+            // Get the section view url.
+            if ($course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
+                $singlepageurl = $this->courseformat->get_view_url($section)->out(true);
+            }
+
             $title = $sectionname;
-            $summary = strip_tags($currentsection->summary);
-            $summary = str_replace("&nbsp;", ' ', $summary);
-            echo '<div style="width:30%;height:200px;background-color:orangered;padding:20px;
-            margin: 10px;position:relative; display:inline-block">
-            <h2>'.$title.'</h2>
-            <p>'.$summary.'</p>
-            <a href="" style="display:flex;justify-content:center;text-decoration:none;
-            color: white;background-color: lightgreen;padding : 10px;position: absolute;bottom:0;left:0;right:0">View Topic</a>
-            </div>';
+            $summary = $this->get_formatted_summary(strip_tags($currentsection->summary));
+            $this->single_card($section, $title, $summary, $singlepageurl);
         }
     }
 
+    /**
+     * Output Single Card
+     * @param
+     */
+    private function single_card($index, $title, $summary, $singlepageurl) {
+        echo '<div class="col-lg-4 col-md-4 col-sm-12 single-card-container">
+                <div class="single-card">
+                    <span class="sno">'.$index.'&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <div class="card-content">
+                        <h2 class="section-title">'.$title.'</h2>
+                        <p class="section-summary">'.$summary.'</p>
+                    </div>
+                    <a href="'.$singlepageurl.'" class = "view-topic-btn">View Topic</a>
+                </div>
+            </div>';
+    }
+
+    /**
+     * Returns the formatted summary of section
+     * @param $summary String
+     * @return $summary String
+     */
+    private function get_formatted_summary($summary) {
+
+        $summary = str_replace("&nbsp;", ' ', $summary);
+        $summary = substr($summary, 0, 120)." ...";
+
+        return $summary;
+    }
 }

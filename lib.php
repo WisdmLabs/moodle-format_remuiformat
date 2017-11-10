@@ -41,6 +41,10 @@ class format_cards extends format_base {
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
         }
         parent::__construct($format, $courseid);
+        // Include the CSS and JS Files Required.
+        global $PAGE, $CFG;
+        $PAGE->requires->css('/course/format/cards/styles/style.css');
+        $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/cards/javascript/format.js'));
     }
 
     /**
@@ -83,7 +87,7 @@ class format_cards extends format_base {
         } else {
             // Use format_base::get_default_section_name implementation which
             // will display the section name in "Topic n" format.
-            return get_string('section_name', 'format_cards').' '. $section->section;
+            return get_string('sectionname', 'format_cards').' '. $section->section;
         }
     }
 

@@ -1,0 +1,66 @@
+
+/* Start of Single card styling */
+.single-card {
+    position: relative;
+    padding: 0 15px;
+    height: 90%;
+    background: white;
+    margin-bottom:30px;
+    border: 2px solid white;
+    transition: all .4s ease;
+}
+
+.single-card:hover {
+    border: 2px solid #39c2a5;
+}
+
+.sno {
+    display: inline-block;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px 0;
+    color:rgba(0, 0, 0, 0.8);
+}
+
+.card-content {
+    padding-bottom: 35px;
+}
+
+.section-title {
+    margin:0;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 0;
+}
+  
+.section-summary {
+    margin:0;
+    border:none !important;
+    padding-bottom: 25px;
+}
+  
+.view-topic-btn {
+    position:absolute;
+    display: flex;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    justify-content:center;
+    background-color: #39c2a5;
+    color: white;
+    text-decoration:none;
+    letter-spacing: .2rem;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 0;
+}
+
+.view-topic-btn:hover {
+    border:none;
+    color:white;
+    text-decoration:none;
+}
+
+/* End of Single card styling */

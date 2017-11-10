@@ -52,5 +52,5 @@ $string['defaultshowsectiontitlesummary'] = 'Show the section title summary on h
 $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary when hovering over the grid box.';
 
 // Section.
-$string['section_name'] = 'Section';
+$string['sectionname'] = 'Section';
 $string['section0name'] = 'General';
