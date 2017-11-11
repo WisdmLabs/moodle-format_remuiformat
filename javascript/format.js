@@ -17,5 +17,5 @@ require(['jquery'], function ($) {
 
     // Set Equal height of cards on load
     setEqualHeight($('.single-card'));
-
+    setEqualHeight($('.card-section-list'))
 });

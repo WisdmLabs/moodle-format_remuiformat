@@ -64,3 +64,24 @@
 }
 
 /* End of Single card styling */
+
+/* Edit Section */
+.card-section-list {
+    list-style: none;
+    background: white;
+    padding: 20px;
+    margin-bottom : 15px;
+}
+
+.card-right-side {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-summary {
+    display: flex;
+}
+
+.card-edit {
+    padding: 0 10px;
+}

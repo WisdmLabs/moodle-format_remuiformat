@@ -24,11 +24,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
+require_once($CFG->dirroot.'/course/format/cards/classes/course_module_renderer.php');
 
 class format_cards_renderer extends format_section_renderer_base {
 
     protected $courseformat; // Our course format object as defined in lib.php.
-
+    protected $coursemodulerenderer; // Our custom course module renderer.
     /**
      * Constructor method, calls the parent constructor
      * @param moodle_page $page
@@ -37,6 +38,7 @@ class format_cards_renderer extends format_section_renderer_base {
     public function __construct(moodle_page $page, $target) {
         parent::__construct($page, $target);
         $this->courseformat = course_get_format($page->course);
+        $this->coursemodulerenderer = new \format_cards\course_module_renderer($page, $target);
         // Since format_cards_renderer::section_edit_controls()
         // only displays the 'Set current section' control when editing mode is on
         // we need to be sure that the link 'Turn editing mode on' is available
@@ -105,14 +107,31 @@ class format_cards_renderer extends format_section_renderer_base {
             return parent::print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused);
         }
 
+        // Get necessary values required to display the UI.
         $editing = $PAGE->user_is_editing();
         $coursecontext = context_course::instance($course->id);
         $modinfo = get_fast_modinfo($course);
         $sections = $modinfo->get_section_info_all();
 
-        echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
-        $this->display_cards($coursecontext->id, $modinfo, $course, $editing);
-        echo html_writer::end_tag('div');
+        if ($editing) {
+            $streditsummary = get_string('editsummary');
+            $urlpicedit = $this->output->image_url('t/edit');
+        } else {
+            $urlpicedit = false;
+            $streditsummary = '';
+        }
+
+        // Display the section when editing is in.
+        if ($editing) {
+            echo html_writer::start_tag('div', array('id' => 'card-editing-container', 'class' => 'row'));
+            $this->display_editing_cards($course, $sections, $modinfo, $editing, false, $urlpicedit, $streditsummary);
+            echo html_writer::end_tag('div');
+        } else {
+            // Display the section in card layout.
+            echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
+            $this->display_cards($coursecontext->id, $modinfo, $course, $editing);
+            echo html_writer::end_tag('div');
+        }
     }
 
     /**
@@ -168,5 +187,87 @@ class format_cards_renderer extends format_section_renderer_base {
         $summary = substr($summary, 0, 120)." ...";
 
         return $summary;
+    }
+
+    private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary) {
+        $coursecontext = context_course::instance($course->id);
+        $coursenumsections = $this->courseformat->get_last_section_number();
+        for ($section = 1; $section <= $coursenumsections; $section++) {
+            $currentsection = $modinfo->get_section_info($section);
+
+            $sectionname = $this->courseformat->get_section_name($currentsection);
+            if ($editing) {
+                $title = $this->section_title($currentsection, $course);
+            } else {
+                $title = $sectionname;
+            }
+            echo html_writer::start_tag('div', array('class' => 'col-lg-4 col-md-4 col-sm-12'));
+            echo html_writer::start_tag('div', array(
+                'id' => 'section-' . $section,
+                'class' => 'card-section-list',
+                'role' => 'region',
+                'aria-label' => 'test')
+            );
+
+            if ($editing) {
+                // Note, 'left side' is BEFORE content.
+                $leftcontent = $this->section_left_content($currentsection, $course, $onsectionpage);
+                echo html_writer::tag('div', $leftcontent, array('class' => 'card-left-side'));
+                // Note, 'right side' is BEFORE content.
+                $rightcontent = $this->section_right_content($currentsection, $course, $onsectionpage);
+                echo html_writer::tag('div', $rightcontent, array('class' => 'card-right-side'));
+            }
+
+            echo html_writer::start_tag('div', array('class' => 'card-content'));
+            echo $this->output->heading($title, 3, 'sectionname');
+
+            echo html_writer::start_tag('div', array('class' => 'card-summary'));
+            echo $this->get_formatted_summary(strip_tags($currentsection->summary));
+
+            if ($editing) {
+                echo html_writer::link(
+                        new moodle_url('editsection.php', array('id' => $currentsection->id)),
+                        html_writer::empty_tag('img', array('src' => $urlpicedit, 'alt' => $streditsummary,
+                            'class' => 'card-edit')), array('title' => $streditsummary));
+            }
+            echo html_writer::end_tag('div');
+
+            echo $this->section_availability_message($currentsection, has_capability('moodle/course:viewhiddensections',
+                    $coursecontext));
+            //echo $this->courserenderer->course_section_cm_list($course, $currentsection, 0);
+            //echo $this->courserenderer->course_section_add_cm_control($course, $currentsection->section, 0);
+            echo html_writer::end_tag('div');
+            echo html_writer::end_tag('div');
+            echo html_writer::end_tag('div');
+        }
+    }
+
+    /**
+     * Output the html for a single section page .
+     *
+     * @param stdClass $course The course entry from DB
+     * @param array $sections (argument not used)
+     * @param array $mods (argument not used)
+     * @param array $modnames (argument not used)
+     * @param array $modnamesused (argument not used)
+     * @param int $displaysection The section number in the course which is being displayed
+     */
+    public function print_single_section_page($course, $sections, $mods, $modnames, $modnamesused, $displaysection) {
+
+        $modinfo = get_fast_modinfo($course);
+        $course = course_get_format($course)->get_course();
+
+        echo html_writer::start_tag('div', array('class' => 'single-section'));
+        // The requested section page.
+        $currentsection = $modinfo->get_section_info($displaysection);
+
+        echo $this->start_section_list();
+
+        echo $this->coursemodulerenderer->course_section_cm_list($course, $currentsection, $displaysection);
+        echo $this->courserenderer->course_section_add_cm_control($course, $displaysection, $displaysection);
+        echo $this->section_footer();
+        echo $this->end_section_list();
+
+        echo html_writer::end_tag('div');
     }
 }

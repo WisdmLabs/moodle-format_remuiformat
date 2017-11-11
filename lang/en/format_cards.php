@@ -54,3 +54,5 @@ $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary
 // Section.
 $string['sectionname'] = 'Section';
 $string['section0name'] = 'General';
+$string['hidefromothers'] = 'Hide topic';
+$string['showfromothers'] = 'Show topic';
