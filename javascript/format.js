@@ -32,4 +32,9 @@ require(['jquery'], function ($) {
             section_class : 'section'
         };
     }
+
+    function changeBorderColor(el,value) {
+        console.log(el);
+        console.log(value);
+    }
 });

@@ -107,7 +107,7 @@ class format_cards_renderer extends format_section_renderer_base {
      * @param array $modnamesused
      */
     public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
-        global $USER, $PAGE;
+        global $USER, $PAGE, $OUTPUT;
         if (!empty($USER->profile['accessible'])) {
             return parent::print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused);
         }
@@ -137,6 +137,18 @@ class format_cards_renderer extends format_section_renderer_base {
             $this->display_cards($coursecontext->id, $modinfo, $course, $editing);
             echo html_writer::end_tag('div');
         }
+        // Display the pagination.
+        // 1 = OFF.
+        // 2 = ON.
+        $pagination = $this->settingcontroller->getsetting('enablepagination');
+        if ($pagination == 2) {
+            $sectionpagelimit = $this->settingcontroller->getsetting('defaultnumberoftopics');
+            $totalsections = count($sections);
+            $page = optional_param('page', 0, PARAM_INT);
+            $pageurl = new moodle_url('/course/view.php?id='.$course->id);
+            $pagingbar  = new paging_bar($totalsections, $page, $sectionpagelimit, $pageurl, 'page');
+            echo $OUTPUT->render($pagingbar);
+        }
     }
 
     /**
@@ -146,6 +158,10 @@ class format_cards_renderer extends format_section_renderer_base {
     private function display_cards($contextid, $modinfo, $course, $editing) {
 
         $coursenumsections = $this->courseformat->get_last_section_number();
+        $buttoncolor = $this->settingcontroller->getsetting('defaultbuttoncolour');
+        echo "<style>.single-card:hover {
+                border: 2px solid ".$buttoncolor.";
+            }</style>";
         for ($section = 1; $section <= $coursenumsections; $section++) {
             // Get current section info.
             $currentsection = $modinfo->get_section_info($section);
@@ -161,7 +177,7 @@ class format_cards_renderer extends format_section_renderer_base {
 
             $title = $sectionname;
             $summary = $this->get_formatted_summary(strip_tags($currentsection->summary));
-            $this->single_card($section, $title, $summary, $singlepageurl);
+            $this->single_card($section, $title, $summary, $singlepageurl, $buttoncolor);
         }
     }
 
@@ -169,15 +185,15 @@ class format_cards_renderer extends format_section_renderer_base {
      * Output Single Card
      * @param
      */
-    private function single_card($index, $title, $summary, $singlepageurl) {
+    private function single_card($index, $title, $summary, $singlepageurl, $buttoncolor) {
         echo '<div class="col-lg-4 col-md-4 col-sm-12 single-card-container">
                 <div class="single-card">
-                    <span class="sno">'.$index.'&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="sno" style="border-color:'.$buttoncolor.'">'.$index.'&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     <div class="card-content">
                         <h2 class="section-title">'.$title.'</h2>
                         <p class="section-summary">'.$summary.'</p>
                     </div>
-                    <a href="'.$singlepageurl.'" class = "view-topic-btn">View Topic</a>
+                    <a href="'.$singlepageurl.'" class = "view-topic-btn" style="background-color:'.$buttoncolor.';">View Topic</a>
                 </div>
             </div>';
     }

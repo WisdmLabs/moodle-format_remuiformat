@@ -71,7 +71,7 @@ if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
     if ($settingcontroller->getsetting('enablepagination') == 2) {
         /* Number of Topic per page */
-        $name = 'format_grid/defaultnumberoftopics';
+        $name = 'format_cards/defaultnumberoftopics';
         $title = get_string('defaultnumberoftopics', 'format_cards');
         $description = get_string('defaultnumberoftopics_desc', 'format_cards');
         $default = $settingcontroller->getdefaultvalue('defaultnumberoftopics');
@@ -79,7 +79,7 @@ if ($ADMIN->fulltree) {
         $settings->add(new admin_setting_configselect($name, $title, $description, $default, $choices));
 
         /* Number of Activities per page */
-        $name = 'format_grid/defaultnumberofactivities';
+        $name = 'format_cards/defaultnumberofactivities';
         $title = get_string('defaultnumberofactivities', 'format_cards');
         $description = get_string('defaultnumberofactivities_desc', 'format_cards');
         $default = $settingcontroller->getdefaultvalue('defaultnumberofactivities');

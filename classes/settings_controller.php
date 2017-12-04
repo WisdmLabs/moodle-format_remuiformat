@@ -70,7 +70,7 @@ class SettingsController
                 $defaultvalue = COURSE_DISPLAY_SINGLEPAGE;
                 break;
             case 'defaultbuttoncolour':
-                $defaultvalue = '#dddddd';
+                $defaultvalue = '#39c2a5';
                 break;
             case 'defaultoverlaycolour':
                 $defaultvalue = '#dddddd';

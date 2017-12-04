@@ -9,9 +9,9 @@
     transition: all .4s ease;
 }
 
-.single-card:hover {
+/* .single-card:hover {
     border: 2px solid #39c2a5;
-}
+} */
 
 .sno {
     display: inline-block;
