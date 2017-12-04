@@ -55,3 +55,6 @@ if (!empty($displaysection)) {
 } else {
     $renderer->print_multiple_section_page($course, null, null, null, null);
 }
+
+// Include the CSS and JS Files Required.
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/cards/javascript/format.js'));

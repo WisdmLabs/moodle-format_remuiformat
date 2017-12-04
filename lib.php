@@ -41,10 +41,21 @@ class format_cards extends format_base {
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
         }
         parent::__construct($format, $courseid);
-        // Include the CSS and JS Files Required.
-        global $PAGE, $CFG;
-        $PAGE->requires->css('/course/format/cards/styles/style.css');
-        $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/cards/javascript/format.js'));
+    }
+
+    /**
+     * Returns the information about the ajax support in the given source format
+     *
+     * The returned object's property (boolean)capable indicates that
+     * the course format supports Moodle course ajax features.
+     * The property (array)testedbrowsers can be used as a parameter for {@link ajaxenabled()}.
+     *
+     * @return stdClass
+     */
+    public function supports_ajax() {
+        $ajaxsupport = new stdClass();
+        $ajaxsupport->capable = true;
+        return $ajaxsupport;
     }
 
     /**

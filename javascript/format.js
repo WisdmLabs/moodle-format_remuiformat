@@ -18,4 +18,18 @@ require(['jquery'], function ($) {
     // Set Equal height of cards on load
     setEqualHeight($('.single-card'));
     setEqualHeight($('.card-section-list'))
+    setEqualHeight($('.mod-indent-outer'));
+
+    M.course = M.course || {};
+    
+    M.course.format = M.course.format || {};
+    
+    M.course.format.get_config = function() {
+        return {
+            container_node : 'ul',
+            container_class : 'cards',
+            section_node : 'li',
+            section_class : 'section'
+        };
+    }
 });

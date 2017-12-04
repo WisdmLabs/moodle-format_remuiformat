@@ -1,0 +1,186 @@
+/* Start of Single card styling */
+.single-card {
+    position: relative;
+    padding: 0 15px;
+    height: 90%;
+    background: white;
+    margin-bottom:30px;
+    border: 2px solid white;
+    transition: all .4s ease;
+}
+
+.single-card:hover {
+    border: 2px solid #39c2a5;
+}
+
+.sno {
+    display: inline-block;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px 0;
+    color:rgba(0, 0, 0, 0.8);
+}
+
+.card-content {
+    padding-bottom: 35px;
+}
+
+.section-title {
+    margin:0;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 0;
+}
+  
+.section-summary {
+    margin:0;
+    border:none !important;
+    padding-bottom: 25px;
+}
+  
+.view-topic-btn {
+    position:absolute;
+    display: flex;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    justify-content:center;
+    background-color: #39c2a5;
+    color: white;
+    text-decoration:none;
+    letter-spacing: .2rem;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 0;
+}
+
+.view-topic-btn:hover {
+    border:none;
+    color:white;
+    text-decoration:none;
+}
+
+/* End of Single card styling */
+
+/* Edit Section */
+.card-section-list {
+    list-style: none;
+    background: white;
+    padding: 20px;
+    margin-bottom : 15px;
+}
+
+.card-right-side {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-summary {
+    display: flex;
+}
+
+.card-edit {
+    padding: 0 10px;
+}
+/* End of Edit Section*/
+
+/* Activity Section */
+.cards {
+    list-style: none;
+    padding-left: .5em;
+}
+
+.cards .mod-indent-outer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+    background: white;
+}
+
+.cards .mod-indent-outer .activityinstance {
+    display: flex;
+    width: 100%;
+}
+
+.cards .mod-indent-outer .activityinstance > a {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+}
+
+.instancename {
+    margin-left: -10px;
+    font-size: 20px;
+}
+
+.cards .activity-info {
+    padding: 25px;
+    display: flex;
+    font-weight: 600;
+    width: 100%;
+    background: white;
+    border-top : 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cards .activity-tag {
+    display: inline-table;
+    background: #39c2a5;
+    color: white;
+    padding: 0 10px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    position: absolute;
+    right: 25px;
+    top: 30px;
+}
+
+.contentafterlink {
+    margin: 0 !important;
+}
+
+.mod-indent-outer .actions {
+    display: flex;
+    padding: 15px;
+    margin-right: -20px;
+}
+
+.editing .activityinstance {
+    padding: 0 !important;
+    margin-top: 50px;
+}
+
+.editing .activityinstance a {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.editing .cards .activity-tag {
+    top: 80px;
+    right: 35px;
+}
+
+.single-section .section-navigation .sectionname {
+    text-align: left;
+    margin-top: 50px;
+}
+
+.single-section .section-navigation.mdl-bottom .mdl-right, .single-section .section-navigation.mdl-bottom .mdl-left {
+    margin-top: 9px;
+}
+
+.single-section .section-navigation .mdl-right a, .single-section .section-navigation .mdl-left a {
+    padding: 10px 15px;
+    background: #3ac2a5;
+    color: white;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.ignoredirty.form-control{
+    width: 100px;
+}
+/* End of Activity Section */

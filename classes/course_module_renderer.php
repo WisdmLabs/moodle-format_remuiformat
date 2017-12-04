@@ -26,7 +26,7 @@
 namespace format_cards;
 defined('MOODLE_INTERNAL') || die;
 use html_writer;
-
+use core_text;
 require_once($CFG->dirroot.'/course/renderer.php');
 
 class course_module_renderer extends \core_course_renderer {
@@ -109,10 +109,10 @@ class course_module_renderer extends \core_course_renderer {
                 );
             }
         }
+
         // Always output the section module list.
         if (!empty($sectionoutput)) {
-            $output .= html_writer::tag('ul', $sectionoutput, array('class' => 'section img-text p-0 list-group
-            list-group-dividered list-group-full'));
+            $output .= html_writer::tag('ul', $sectionoutput, array('class' => 'section img-text row'));
         }
         return $output;
     }
@@ -134,9 +134,9 @@ class course_module_renderer extends \core_course_renderer {
     $displayoptions = array()) {
         $output = '';
         if ($modulehtml = $this->course_section_cm($course, $completioninfo, $mod, $sectionreturn, $displayoptions)) {
-            $modclasses = 'activity ' . $mod->modname . ' modtype_' . $mod->modname . ' px-30 py-10 list-group-item'
+            $modclasses = 'activity ' . $mod->modname . ' modtype_' . $mod->modname . ' col-lg-4 col-sm-12 py-10'
             . $mod->extraclasses;
-            $output .= html_writer::tag('li', $modulehtml, array('class' => $modclasses, 'id' => 'module-' . $mod->id));
+            $output .= html_writer::tag('div', $modulehtml, array('class' => $modclasses, 'id' => 'module-' . $mod->id));
         }
         return $output;
     }
@@ -186,7 +186,6 @@ class course_module_renderer extends \core_course_renderer {
         $completionicon = html_writer::tag('div',
         $this->course_section_cm_completion($course, $completioninfo, $mod, $displayoptions),
         array('class' => 'ml-15 mr-15 float-left', 'style' => 'width:30px; height: 30px; line-height: 25px;'));
-        $output .= html_writer::start_tag('div');
 
         if ($this->page->user_is_editing()) {
             $output .= course_get_cm_move($mod, $sectionreturn);
@@ -196,12 +195,6 @@ class course_module_renderer extends \core_course_renderer {
 
         // This div is used to indent the content.
         $output .= html_writer::div('', $indentclasses);
-
-        // Completion icon for activities with cmname.
-        // $output .= $completionicon.
-
-        // Start a wrapper for the actual content to keep the indentation consistent.
-        $output .= html_writer::start_tag('div');
 
         // Display the link to the module (or do nothing if module has no url).
         $cmname = $this->course_section_cm_name($mod, $displayoptions);
@@ -244,7 +237,6 @@ class course_module_renderer extends \core_course_renderer {
         }
 
         $modicons = '';
-        $modicons .= $this->course_section_cm_completion($course, $completioninfo, $mod, $displayoptions);
         if ($this->page->user_is_editing()) {
             $editactions = course_get_cm_edit_actions($mod, $mod->indent, $sectionreturn);
             $modicons .= ' '. $this->course_section_cm_edit_actions($editactions, $mod, $displayoptions);
@@ -264,12 +256,14 @@ class course_module_renderer extends \core_course_renderer {
             $output .= $contentpart;
         }
 
-        $output .= html_writer::end_tag('div');
-
         // End of indentation div.
+        $output .= html_writer::start_tag('span', array('class' => "activity-tag"));
+        $output .= $mod->modname;
+        $output .= html_writer::end_tag('span');
+        $output .= html_writer::end_tag('div');
+        $output .= html_writer::start_tag('div', array('class' => "activity-info"));
         $output .= html_writer::end_tag('div');
 
-        $output .= html_writer::end_tag('div');
         return $output;
     }
 }
