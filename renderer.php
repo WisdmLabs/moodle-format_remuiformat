@@ -126,17 +126,6 @@ class format_cards_renderer extends format_section_renderer_base {
             $streditsummary = '';
         }
 
-        // Display the section when editing is in.
-        if ($editing) {
-            echo html_writer::start_tag('div', array('id' => 'card-editing-container', 'class' => 'row'));
-            $this->display_editing_cards($course, $sections, $modinfo, $editing, false, $urlpicedit, $streditsummary);
-            echo html_writer::end_tag('div');
-        } else {
-            // Display the section in card layout.
-            echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
-            $this->display_cards($coursecontext->id, $modinfo, $course, $editing);
-            echo html_writer::end_tag('div');
-        }
         // Display the pagination.
         // 1 = OFF.
         // 2 = ON.
@@ -145,6 +134,29 @@ class format_cards_renderer extends format_section_renderer_base {
             $sectionpagelimit = $this->settingcontroller->getsetting('defaultnumberoftopics');
             $totalsections = count($sections);
             $page = optional_param('page', 0, PARAM_INT);
+            $startfrom = $sectionpagelimit * $page + 1;
+            $end = $sectionpagelimit * $page + $sectionpagelimit;
+        } else {
+            $startfrom = 1;
+        }
+        if ($end > $this->courseformat->get_last_section_number()) {
+            $end = $this->courseformat->get_last_section_number();
+        }
+        // Display the section when editing is in.
+        if ($editing) {
+            echo html_writer::start_tag('div', array('id' => 'card-editing-container', 'class' => 'row'));
+            $this->display_editing_cards($course, $sections, $modinfo, $editing, false, $urlpicedit, $streditsummary,
+            $startfrom, $end);
+            echo html_writer::end_tag('div');
+            $pageurl = new moodle_url('/course/view.php?id='.$course->id);
+            $pagingbar  = new paging_bar($totalsections, $page, $sectionpagelimit, $pageurl, 'page');
+            echo $OUTPUT->render($pagingbar);
+            echo $this->change_number_sections($course, 0);
+        } else {
+            // Display the section in card layout.
+            echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
+            $this->display_cards($coursecontext->id, $modinfo, $course, $editing, $startfrom, $end);
+            echo html_writer::end_tag('div');
             $pageurl = new moodle_url('/course/view.php?id='.$course->id);
             $pagingbar  = new paging_bar($totalsections, $page, $sectionpagelimit, $pageurl, 'page');
             echo $OUTPUT->render($pagingbar);
@@ -155,14 +167,13 @@ class format_cards_renderer extends format_section_renderer_base {
      * Output html for sections
      * @param
      */
-    private function display_cards($contextid, $modinfo, $course, $editing) {
+    private function display_cards($contextid, $modinfo, $course, $editing, $startfrom, $end) {
 
-        $coursenumsections = $this->courseformat->get_last_section_number();
         $buttoncolor = $this->settingcontroller->getsetting('defaultbuttoncolour');
         echo "<style>.single-card:hover {
                 border: 2px solid ".$buttoncolor.";
             }</style>";
-        for ($section = 1; $section <= $coursenumsections; $section++) {
+        for ($section = $startfrom; $section <= $end; $section++) {
             // Get current section info.
             $currentsection = $modinfo->get_section_info($section);
 
@@ -218,10 +229,10 @@ class format_cards_renderer extends format_section_renderer_base {
         return $summary;
     }
 
-    private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary) {
+    private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary,
+    $startfrom, $end) {
         $coursecontext = context_course::instance($course->id);
-        $coursenumsections = $this->courseformat->get_last_section_number();
-        for ($section = 1; $section <= $coursenumsections; $section++) {
+        for ($section = $startfrom; $section <= $end; $section++) {
             $currentsection = $modinfo->get_section_info($section);
 
             $sectionname = $this->courseformat->get_section_name($currentsection);
