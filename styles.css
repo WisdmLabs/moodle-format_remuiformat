@@ -184,3 +184,18 @@
     width: 100px;
 }
 /* End of Activity Section */
+
+/* General Section */
+.general-single-card > div.card-content {
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+}
+
+.general-single-card > div.card-content .section-title,
+.general-single-card > div.card-content .section-summary,
+#card-editing-container #section-0 .card-content .card-summary
+{
+    color:white;
+}
+/* End General Section */

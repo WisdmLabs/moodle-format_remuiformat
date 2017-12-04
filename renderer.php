@@ -170,6 +170,13 @@ class format_cards_renderer extends format_section_renderer_base {
     private function display_cards($contextid, $modinfo, $course, $editing, $startfrom, $end) {
 
         $buttoncolor = $this->settingcontroller->getsetting('defaultbuttoncolour');
+        // Display general section at top.
+        $currentsection = $modinfo->get_section_info(0);
+        $sectionname = $this->courseformat->get_section_name($currentsection);
+        $summary = strip_tags($currentsection->summary);
+        $coverimage = $this->get_course_image($course);
+        $this->display_general_section($sectionname, $summary, $coverimage);
+
         echo "<style>.single-card:hover {
                 border: 2px solid ".$buttoncolor.";
             }</style>";
@@ -232,54 +239,83 @@ class format_cards_renderer extends format_section_renderer_base {
     private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary,
     $startfrom, $end) {
         $coursecontext = context_course::instance($course->id);
+        $this->single_editing_card($coursecontext, 0, $course, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary);
         for ($section = $startfrom; $section <= $end; $section++) {
-            $currentsection = $modinfo->get_section_info($section);
+            $this->single_editing_card($coursecontext, $section, $course, $modinfo, $editing,
+            $onsectionpage, $urlpicedit, $streditsummary);
+        }
+    }
 
-            $sectionname = $this->courseformat->get_section_name($currentsection);
-            if ($editing) {
-                $title = $this->section_title($currentsection, $course);
-            } else {
-                $title = $sectionname;
-            }
-            echo html_writer::start_tag('div', array('class' => 'col-lg-4 col-md-4 col-sm-12'));
+    private function single_editing_card($coursecontext, $section, $course, $modinfo, $editing, $onsectionpage,
+    $urlpicedit, $streditsummary) {
+        $currentsection = $modinfo->get_section_info($section);
+        $coverimage = $this->get_course_image($course);
+        $sectionname = $this->courseformat->get_section_name($currentsection);
+        if ($editing) {
+            $title = $this->section_title($currentsection, $course);
+        } else {
+            $title = $sectionname;
+        }
+        if ($section == 0) {
+            $classes = 'col-lg-12 col-md-12 col-sm-12';
+        } else {
+            $classes = 'col-lg-4 col-md-4 col-sm-12';
+        }
+        echo html_writer::start_tag('div', array('class' => $classes));
+
+        if ($section == 0) {
+            echo html_writer::start_tag('div', array(
+                'id' => 'section-' . $section,
+                'class' => 'card-section-list',
+                'style' => 'background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68),
+                rgba(14, 35, 53, 0.68)), url('.$coverimage.');',
+                'role' => 'region',
+                'aria-label' => 'test')
+            );
+        } else {
             echo html_writer::start_tag('div', array(
                 'id' => 'section-' . $section,
                 'class' => 'card-section-list',
                 'role' => 'region',
                 'aria-label' => 'test')
             );
-
-            if ($editing) {
-                // Note, 'left side' is BEFORE content.
-                $leftcontent = $this->section_left_content($currentsection, $course, $onsectionpage);
-                echo html_writer::tag('div', $leftcontent, array('class' => 'card-left-side'));
-                // Note, 'right side' is BEFORE content.
-                $rightcontent = $this->section_right_content($currentsection, $course, $onsectionpage);
-                echo html_writer::tag('div', $rightcontent, array('class' => 'card-right-side'));
-            }
-
-            echo html_writer::start_tag('div', array('class' => 'card-content'));
-            echo $this->output->heading($title, 3, 'sectionname');
-
-            echo html_writer::start_tag('div', array('class' => 'card-summary'));
-            echo $this->get_formatted_summary(strip_tags($currentsection->summary));
-
-            if ($editing) {
-                echo html_writer::link(
-                        new moodle_url('editsection.php', array('id' => $currentsection->id)),
-                        html_writer::empty_tag('img', array('src' => $urlpicedit, 'alt' => $streditsummary,
-                            'class' => 'card-edit')), array('title' => $streditsummary));
-            }
-            echo html_writer::end_tag('div');
-
-            echo $this->section_availability_message($currentsection, has_capability('moodle/course:viewhiddensections',
-                    $coursecontext));
-            // Display the course modules if needed.
-            echo html_writer::end_tag('div');
-            echo html_writer::end_tag('div');
-            echo html_writer::end_tag('div');
         }
+
+        if ($editing) {
+            // Note, 'left side' is BEFORE content.
+            $leftcontent = $this->section_left_content($currentsection, $course, $onsectionpage);
+            echo html_writer::tag('div', $leftcontent, array('class' => 'card-left-side'));
+            // Note, 'right side' is BEFORE content.
+            $rightcontent = $this->section_right_content($currentsection, $course, $onsectionpage);
+            echo html_writer::tag('div', $rightcontent, array('class' => 'card-right-side'));
+        }
+
+        echo html_writer::start_tag('div', array('class' => 'card-content'));
+        echo $this->output->heading($title, 3, 'sectionname');
+
+        echo html_writer::start_tag('div', array('class' => 'card-summary'));
+        if ($section == 0) {
+            echo strip_tags($currentsection->summary);
+        } else {
+            echo $this->get_formatted_summary(strip_tags($currentsection->summary));
+        }
+
+        if ($editing) {
+            echo html_writer::link(
+                    new moodle_url('editsection.php', array('id' => $currentsection->id)),
+                    html_writer::empty_tag('img', array('src' => $urlpicedit, 'alt' => $streditsummary,
+                        'class' => 'card-edit')), array('title' => $streditsummary));
+        }
+        echo html_writer::end_tag('div');
+
+        echo $this->section_availability_message($currentsection, has_capability('moodle/course:viewhiddensections',
+                $coursecontext));
+        // Display the course modules if needed.
+        echo html_writer::end_tag('div');
+        echo html_writer::end_tag('div');
+        echo html_writer::end_tag('div');
     }
+
 
     /**
      * Output the html for a single section page.
@@ -338,7 +374,7 @@ class format_cards_renderer extends format_section_renderer_base {
         echo $sectiontitle;
 
         echo $this->start_section_list();
-        echo $this->section_header_onsectionpage_topic0notattop($currentsection, $course);
+        echo $this->section_header_onsectionpage($currentsection, $course);
         echo $this->coursemodulerenderer->course_section_cm_list($course, $currentsection, $displaysection);
         echo $this->coursemodulerenderer->course_section_add_cm_control($course, $displaysection, $displaysection);
         echo $this->section_footer();
@@ -366,7 +402,7 @@ class format_cards_renderer extends format_section_renderer_base {
      * @param stdClass $course The course entry from DB
      * @return string HTML to output.
      */
-    protected function section_header_onsectionpage_topic0notattop($section, $course) {
+    protected function section_header_onsectionpage($section, $course) {
         $o = '';
         $sectionstyle = '';
 
@@ -403,5 +439,40 @@ class format_cards_renderer extends format_section_renderer_base {
         $o .= $this->section_availability($section);
 
         return $o;
+    }
+
+    protected function display_general_section($title, $summary, $coverimage) {
+        echo '<div class="col-lg-12 col-sm-12 general-single-card-container">
+            <div class="general-single-card">
+                <div class="card-content" style="background-image: linear-gradient(to right,
+                rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url('.$coverimage.')";>
+                    <h2 class="section-title">'.$title.'</h2>
+                    <p class="section-summary">'.$summary.'</p>
+                </div>
+            </div>
+        </div>';
+    }
+
+    private function get_course_image($courseinlist, $islist = false) {
+
+        global $CFG, $OUTPUT;
+        if (!$islist) {
+            $courseinlist = new \course_in_list($courseinlist);
+        }
+
+        foreach ($courseinlist->get_course_overviewfiles() as $file) {
+            $isimage = $file->is_valid_image();
+            $courseimage = file_encode_url("$CFG->wwwroot/pluginfile.php",
+                                        '/'. $file->get_contextid(). '/'. $file->get_component(). '/'.
+                                        $file->get_filearea(). $file->get_filepath(). $file->get_filename(), !$isimage);
+            if ($isimage) {
+                break;
+            }
+        }
+        if (!empty($courseimage)) {
+            return $courseimage;
+        } else {
+            return $OUTPUT->image_url('placeholder', 'theme');
+        }
     }
 }
