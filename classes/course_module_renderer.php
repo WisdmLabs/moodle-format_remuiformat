@@ -27,7 +27,9 @@ namespace format_cards;
 defined('MOODLE_INTERNAL') || die;
 use html_writer;
 use core_text;
+
 require_once($CFG->dirroot.'/course/renderer.php');
+require_once("settings_controller.php");
 
 class course_module_renderer extends \core_course_renderer {
 

@@ -50,6 +50,10 @@ $string['twelve'] = 12;
 
 $string['defaultshowsectiontitlesummary'] = 'Show the section title summary on hover option';
 $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary when hovering over the grid box.';
+$string['sectiontitlesummarymaxlength'] = 'Set the section/activities summary maximum length.';
+$string['sectiontitlesummarymaxlength_help'] = 'Set the the section/activities title summary maxium length displayed on the card.';
+$string['defaultsectionsummarymaxlength'] = 'Set the section/activities summary maximum length.';
+$string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities summary maxium length displayed on the card.';
 
 // Section.
 $string['sectionname'] = 'Section';

@@ -59,6 +59,17 @@ class format_cards extends format_base {
     }
 
     /**
+     * Returns the format's settings and gets them if they do not exist.
+     * @return array The settings as an array.
+     */
+    public function get_settings() {
+        if (empty($this->settings) == true) {
+            $this->settings = $this->get_format_options();
+        }
+        return $this->settings;
+    }
+
+    /**
      * Indicates this format uses sections.
      * @return bool Returns true
      */
@@ -167,7 +178,7 @@ class format_cards extends format_base {
                     'type' => PARAM_INT
                 ),
                 'sectiontitlesummarymaxlength' => array(
-                    'default' => get_config('format_grid', 'defaultsectiontitlesummarymaxlength'),
+                    'default' => get_config('format_cards', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
             );
@@ -201,11 +212,11 @@ class format_cards extends format_base {
                     'help_component' => 'moodle',
                 ),
                 'sectiontitlesummarymaxlength' => array(
-                    'label' => new lang_string('sectiontitlesummarymaxlength', 'format_grid'),
+                    'label' => new lang_string('sectiontitlesummarymaxlength', 'format_cards'),
                     'element_type' => 'text',
                     'element_attributes' => array('size' => 3),
                     'help' => 'sectiontitlesummarymaxlength',
-                    'help_component' => 'format_grid'
+                    'help_component' => 'format_cards'
                 )
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
@@ -240,6 +251,4 @@ class format_cards extends format_base {
         }
         return $elements;
     }
-
-
 }

@@ -55,6 +55,13 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
     $settings->add($setting);
 
+    // Default length of sumary of the section/activities.
+    $name = 'format_cards/defaultsectionsummarymaxlength';
+    $title = get_string('defaultsectionsummarymaxlength', 'format_cards');
+    $description = get_string('defaultsectionsummarymaxlength_desc', 'format_cards');
+    $default = $settingcontroller->getdefaultvalue('defaultsectionsummarymaxlength');
+    $settings->add(new admin_setting_configtext($name, $title, $description, $default, PARAM_INT));
+
     /* Enable Pagination */
     $name = 'format_cards/enablepagination';
     $title = get_string('enablepagination', 'format_cards');

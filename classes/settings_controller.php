@@ -84,6 +84,9 @@ class SettingsController
             case 'defaultnumberoftopics':
                 $defaultvalue = 6;
                 break;
+            case 'defaultsectionsummarymaxlength' :
+                $defaultvalue = 100;
+                break;
             default:
                 $defaultvalue = '';
                 break;

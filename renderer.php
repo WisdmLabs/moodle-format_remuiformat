@@ -24,12 +24,15 @@
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
+require_once($CFG->dirroot.'/course/format/cards/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/cards/classes/course_module_renderer.php');
 
 class format_cards_renderer extends format_section_renderer_base {
 
     protected $courseformat; // Our course format object as defined in lib.php.
     protected $coursemodulerenderer; // Our custom course module renderer.
+    protected $settingcontroller;  // Our setting controller.
+    private $settings;
     /**
      * Constructor method, calls the parent constructor
      * @param moodle_page $page
@@ -38,7 +41,9 @@ class format_cards_renderer extends format_section_renderer_base {
     public function __construct(moodle_page $page, $target) {
         parent::__construct($page, $target);
         $this->courseformat = course_get_format($page->course);
+        $this->settings = $this->courseformat->get_settings();
         $this->coursemodulerenderer = new \format_cards\course_module_renderer($page, $target);
+        $this->settingcontroller = \format_cards\SettingsController::getinstance();
         // Since format_cards_renderer::section_edit_controls()
         // only displays the 'Set current section' control when editing mode is on
         // we need to be sure that the link 'Turn editing mode on' is available
@@ -184,8 +189,15 @@ class format_cards_renderer extends format_section_renderer_base {
      */
     private function get_formatted_summary($summary) {
 
+        $summarylength = $this->settings['sectiontitlesummarymaxlength'];
         $summary = str_replace("&nbsp;", ' ', $summary);
-        $summary = substr($summary, 0, 120)." ...";
+        if ($summary) {
+            $end = "";
+            if (strlen($summary) > $summarylength) {
+                $end = " ...";
+            }
+            $summary = substr($summary, 0, $summarylength).$end;
+        }
 
         return $summary;
     }
