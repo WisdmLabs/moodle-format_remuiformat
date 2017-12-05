@@ -15,6 +15,15 @@ require(['jquery'], function ($) {
         }
     }
 
+    
+    $('.mod-card-container').mouseover(function() {
+        $(this).children('.mod-card-overlay').removeClass("hidden");
+        $(this).children('.card-hover-content').removeClass("hidden");
+    }).mouseout(function() {
+        $(this).children('.mod-card-overlay').addClass("hidden");
+        $(this).children('.card-hover-content').addClass("hidden");
+    });
+
     // Set Equal height of cards on load
     setEqualHeight($('.single-card'));
     setEqualHeight($('.card-section-list'))
@@ -33,8 +42,10 @@ require(['jquery'], function ($) {
         };
     }
 
-    function changeBorderColor(el,value) {
-        console.log(el);
-        console.log(value);
-    }
+    // Display the hover on activity page.
+    // $('.mod-card-container').mouseover(function() {
+    //     console.log("In");
+    // }).mouseout(function() {
+    //     console.log("Out");
+    // });
 });

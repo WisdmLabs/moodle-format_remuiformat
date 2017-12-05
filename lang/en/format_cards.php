@@ -60,3 +60,8 @@ $string['sectionname'] = 'Section';
 $string['section0name'] = 'General';
 $string['hidefromothers'] = 'Hide topic';
 $string['showfromothers'] = 'Show topic';
+$string['viewtopic'] = 'View Topic';
+
+// Activity.
+$string['viewactivity'] = 'View Activity';
+$string['markcomplete'] = 'Mark as Complete';

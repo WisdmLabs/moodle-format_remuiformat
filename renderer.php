@@ -211,7 +211,7 @@ class format_cards_renderer extends format_section_renderer_base {
                         <h2 class="section-title">'.$title.'</h2>
                         <p class="section-summary">'.$summary.'</p>
                     </div>
-                    <a href="'.$singlepageurl.'" class = "view-topic-btn" style="background-color:'.$buttoncolor.';">View Topic</a>
+                    <a href="'.$singlepageurl.'" class = "view-topic-btn" style="background-color:'.$buttoncolor.';">'.get_string("viewtopic", "format_cards").'</a>
                 </div>
             </div>';
     }

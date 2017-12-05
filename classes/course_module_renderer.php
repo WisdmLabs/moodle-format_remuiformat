@@ -193,8 +193,21 @@ class course_module_renderer extends \core_course_renderer {
             $output .= course_get_cm_move($mod, $sectionreturn);
         }
 
-        $output .= html_writer::start_tag('div', array('class' => 'mod-indent-outer'));
+        $output .= html_writer::start_tag('div', array('class' => 'mod-card-container'));
+        if (!$this->page->user_is_editing()) {
+             // Overlay Div.
+            $output .= html_writer::start_tag('div', array('class' => 'mod-card-overlay hidden'));
+            $output .= html_writer::end_tag('div');
 
+            // Buttons on Hover.
+            $output .= html_writer::start_tag('div', array('class' => 'card-hover-content hidden'));
+            $output .= "<a href=".$mod->url." class = 'card-activity-btn '>"
+            .get_string("viewactivity", "format_cards")."</a>";
+            $output .= "<a href='#' class='card-activity-btn'>".get_string("markcomplete", "format_cards")."</a>";
+            $output .= html_writer::end_tag('div');
+        }
+
+        $output .= html_writer::start_tag('div', array('class' => 'mod-indent-outer'));
         // This div is used to indent the content.
         $output .= html_writer::div('', $indentclasses);
 
@@ -265,7 +278,7 @@ class course_module_renderer extends \core_course_renderer {
         $output .= html_writer::end_tag('div');
         $output .= html_writer::start_tag('div', array('class' => "activity-info"));
         $output .= html_writer::end_tag('div');
-
+        $output .= html_writer::end_tag('div');
         return $output;
     }
 }
