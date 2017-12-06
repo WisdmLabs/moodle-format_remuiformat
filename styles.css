@@ -222,6 +222,27 @@
     border: 2px solid white;
 }
 
+.card-completion {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.card-completion img.icon {
+    max-height: 18px;
+    margin-top: 4px !important;
+}
+
+.card-completion > p.card-stats {
+    margin : 0 !important;
+    padding: 0 5px;
+} 
+
+.card-hover-content .btn-link:hover {
+    text-decoration: none !important;
+}
+
 .card-activity-btn:hover {
     border:none;
     background: white;

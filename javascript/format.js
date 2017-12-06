@@ -15,13 +15,25 @@ require(['jquery'], function ($) {
         }
     }
 
-    
+    // Display the overlay
     $('.mod-card-container').mouseover(function() {
         $(this).children('.mod-card-overlay').removeClass("hidden");
         $(this).children('.card-hover-content').removeClass("hidden");
     }).mouseout(function() {
         $(this).children('.mod-card-overlay').addClass("hidden");
         $(this).children('.card-hover-content').addClass("hidden");
+    });
+
+    // Mark Completion
+    $('.card-complete-btn').click(function() {
+        console.log("clicked");
+        var val = $(this).parent().children('.card-completion-state').val();
+        console.log($(this).children('.card-stats'));
+        if (val == 0) {
+            $(this).find('.card-stats').html(M.util.get_string('markcomplete', 'format_cards'));
+        } else {
+            $(this).find('.card-stats').html(M.util.get_string('completed', 'format_cards'));
+        }
     });
 
     // Set Equal height of cards on load

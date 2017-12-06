@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/cards/classes/settings_controller.php');
+require_once($CFG->dirroot.'/course/format/cards/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/cards/classes/course_module_renderer.php');
 
 class format_cards_renderer extends format_section_renderer_base {
@@ -32,6 +33,7 @@ class format_cards_renderer extends format_section_renderer_base {
     protected $courseformat; // Our course format object as defined in lib.php.
     protected $coursemodulerenderer; // Our custom course module renderer.
     protected $settingcontroller;  // Our setting controller.
+    protected $modstats;           // Our mod stats controller.
     private $settings;
     /**
      * Constructor method, calls the parent constructor
@@ -44,6 +46,7 @@ class format_cards_renderer extends format_section_renderer_base {
         $this->settings = $this->courseformat->get_settings();
         $this->coursemodulerenderer = new \format_cards\course_module_renderer($page, $target);
         $this->settingcontroller = \format_cards\SettingsController::getinstance();
+        $this->modstats = \format_cards\ModStats::getinstance();
         // Since format_cards_renderer::section_edit_controls()
         // only displays the 'Set current section' control when editing mode is on
         // we need to be sure that the link 'Turn editing mode on' is available
@@ -175,7 +178,8 @@ class format_cards_renderer extends format_section_renderer_base {
         $sectionname = $this->courseformat->get_section_name($currentsection);
         $summary = strip_tags($currentsection->summary);
         $coverimage = $this->get_course_image($course);
-        $this->display_general_section($sectionname, $summary, $coverimage);
+        $url = $this->courseformat->get_view_url(0)->out(true);
+        $this->display_general_section($sectionname, $summary, $coverimage, $url);
 
         echo "<style>.single-card:hover {
                 border: 2px solid ".$buttoncolor.";
@@ -194,7 +198,7 @@ class format_cards_renderer extends format_section_renderer_base {
             }
 
             $title = $sectionname;
-            $summary = $this->get_formatted_summary(strip_tags($currentsection->summary));
+            $summary = $this->modstats->get_formatted_summary(strip_tags($currentsection->summary), $this->settings);
             $this->single_card($section, $title, $summary, $singlepageurl, $buttoncolor);
         }
     }
@@ -216,25 +220,25 @@ class format_cards_renderer extends format_section_renderer_base {
             </div>';
     }
 
-    /**
-     * Returns the formatted summary of section
-     * @param $summary String
-     * @return $summary String
-     */
-    private function get_formatted_summary($summary) {
+    // /**
+    //  * Returns the formatted summary of section
+    //  * @param $summary String
+    //  * @return $summary String
+    //  */
+    // private function get_formatted_summary($summary) {
 
-        $summarylength = $this->settings['sectiontitlesummarymaxlength'];
-        $summary = str_replace("&nbsp;", ' ', $summary);
-        if ($summary) {
-            $end = "";
-            if (strlen($summary) > $summarylength) {
-                $end = " ...";
-            }
-            $summary = substr($summary, 0, $summarylength).$end;
-        }
+    //     $summarylength = $this->settings['sectiontitlesummarymaxlength'];
+    //     $summary = str_replace("&nbsp;", ' ', $summary);
+    //     if ($summary) {
+    //         $end = "";
+    //         if (strlen($summary) > $summarylength) {
+    //             $end = " ...";
+    //         }
+    //         $summary = substr($summary, 0, $summarylength).$end;
+    //     }
 
-        return $summary;
-    }
+    //     return $summary;
+    // }
 
     private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary,
     $startfrom, $end) {
@@ -297,7 +301,7 @@ class format_cards_renderer extends format_section_renderer_base {
         if ($section == 0) {
             echo strip_tags($currentsection->summary);
         } else {
-            echo $this->get_formatted_summary(strip_tags($currentsection->summary));
+            echo $this->modstats->get_formatted_summary(strip_tags($currentsection->summary), $this->settings);
         }
 
         if ($editing) {
@@ -441,12 +445,12 @@ class format_cards_renderer extends format_section_renderer_base {
         return $o;
     }
 
-    protected function display_general_section($title, $summary, $coverimage) {
+    protected function display_general_section($title, $summary, $coverimage, $url) {
         echo '<div class="col-lg-12 col-sm-12 general-single-card-container">
             <div class="general-single-card">
                 <div class="card-content" style="background-image: linear-gradient(to right,
                 rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url('.$coverimage.')";>
-                    <h2 class="section-title">'.$title.'</h2>
+                    <a href= '.$url.' class="section-title">'.$title.'</a>
                     <p class="section-summary">'.$summary.'</p>
                 </div>
             </div>
@@ -474,5 +478,54 @@ class format_cards_renderer extends format_section_renderer_base {
         } else {
             return $OUTPUT->image_url('placeholder', 'theme');
         }
+    }
+
+    /**
+     * Generate next/previous section links for naviation
+     *
+     * @param stdClass $course The course entry from DB
+     * @param array $sections The course_sections entries from the DB
+     * @param int $sectionno The section number in the coruse which is being dsiplayed
+     * @return array associative array with previous and next section link
+     */
+    protected function get_nav_links($course, $sections, $sectionno) {
+
+        $defaultcolor = $this->settingcontroller->getsetting('defaultbuttoncolour');
+        // FIXME: This is really evil and should by using the navigation API.
+        $course = course_get_format($course)->get_course();
+        $canviewhidden = has_capability('moodle/course:viewhiddensections', context_course::instance($course->id))
+            or !$course->hiddensections;
+
+        $links = array('previous' => '', 'next' => '');
+        $back = $sectionno - 1;
+        while ($back > 0 and empty($links['previous'])) {
+            if ($canviewhidden || $sections[$back]->uservisible) {
+                $params = array("style" => "background-color:".$defaultcolor.";");
+                if (!$sections[$back]->visible) {
+                    $params = array('class' => 'dimmed_text');
+                }
+                $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
+                $previouslink .= get_section_name($course, $sections[$back]);
+                $links['previous'] = html_writer::link(course_get_url($course, $back), $previouslink, $params);
+            }
+            $back--;
+        }
+
+        $forward = $sectionno + 1;
+        $numsections = course_get_format($course)->get_last_section_number();
+        while ($forward <= $numsections and empty($links['next'])) {
+            if ($canviewhidden || $sections[$forward]->uservisible) {
+                $params = array("style" => "background-color:".$defaultcolor.";");
+                if (!$sections[$forward]->visible) {
+                    $params = array('class' => 'dimmed_text');
+                }
+                $nextlink = get_section_name($course, $sections[$forward]);
+                $nextlink .= html_writer::tag('span', $this->output->rarrow(), array('class' => 'rarrow'));
+                $links['next'] = html_writer::link(course_get_url($course, $forward), $nextlink, $params);
+            }
+            $forward++;
+        }
+
+        return $links;
     }
 }

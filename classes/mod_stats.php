@@ -65,11 +65,14 @@ class ModStats
         $quiz = $DB->get_record('quiz', array('id' => $quizid));
         try {
             $attempt = $DB->get_record('quiz_attempts', array('quiz' => $quizid, 'userid' => $USER->id));
-
-            $totalgrade = $quiz->sumgrades;
-            $currentgrade = $attempt->sumgrades;
-            $marks = ($currentgrade / $totalgrade) * $quiz->grade;
-            $output = get_string('grade', 'format_cards')." : ".$marks ." / ". intval($quiz->grade);
+            if ($attempt && !empty($attempt)) {
+                $totalgrade = $quiz->sumgrades;
+                $currentgrade = $attempt->sumgrades;
+                $marks = ($currentgrade / $totalgrade) * $quiz->grade;
+                $output = get_string('grade', 'format_cards')." : ".$marks ." / ". intval($quiz->grade);
+            } else {
+                $output = get_string('grade', 'format_cards')." : ". get_string('notattempted', 'format_cards');
+            }
         } catch (Exception $e) {
             $output = get_string('grade', 'format_cards')." : ". get_string('notattempted', 'format_cards');
         }
@@ -97,5 +100,28 @@ class ModStats
         } else {
             return get_string("notcompleted", "format_cards");
         }
+    }
+
+    /**
+     * Returns the formatted summary of section
+     * @param $summary String
+     * @return $summary String
+     */
+    public static function get_formatted_summary($summary, $settings) {
+
+        $summarylength = $settings['sectiontitlesummarymaxlength'];
+        $summary = str_replace("&nbsp;", ' ', $summary);
+        if ($summary) {
+            $end = "";
+            if (strlen($summary) > $summarylength) {
+                $end = " ...";
+            }
+            $summary = substr($summary, 0, $summarylength).$end;
+        }
+        return $summary;
+    }
+
+    public static function get_completed_modules() {
+
     }
 }

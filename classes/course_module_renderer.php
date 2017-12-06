@@ -30,6 +30,7 @@ use core_text;
 
 require_once($CFG->dirroot.'/course/renderer.php');
 require_once("mod_stats.php");
+require_once("settings_controller.php");
 
 class course_module_renderer extends \core_course_renderer {
 
@@ -114,7 +115,7 @@ class course_module_renderer extends \core_course_renderer {
 
         // Always output the section module list.
         if (!empty($sectionoutput)) {
-            $output .= html_writer::tag('ul', $sectionoutput, array('class' => 'section img-text row'));
+            $output .= html_writer::tag('ul', $sectionoutput, array('class' => 'section img-text row', 'style' => 'padding:0;'));
         }
         return $output;
     }
@@ -184,10 +185,14 @@ class course_module_renderer extends \core_course_renderer {
             }
         }
 
+        $settingcontroller = \format_cards\SettingsController::getinstance();
+        $defaultcolor = $settingcontroller->getsetting('defaultbuttoncolour');
+        $defaultoverlaycolor = $settingcontroller->getsetting('defaultoverlaycolour');
+
         // Compeltion icon.
         $completionicon = html_writer::tag('div',
         $this->course_section_cm_completion($course, $completioninfo, $mod, $displayoptions),
-        array('class' => 'ml-15 mr-15 float-left', 'style' => 'width:30px; height: 30px; line-height: 25px;'));
+        array('style' => 'width:70%;'));
 
         if ($this->page->user_is_editing()) {
             $output .= course_get_cm_move($mod, $sectionreturn);
@@ -196,14 +201,15 @@ class course_module_renderer extends \core_course_renderer {
         $output .= html_writer::start_tag('div', array('class' => 'mod-card-container'));
         if (!$this->page->user_is_editing()) {
              // Overlay Div.
-            $output .= html_writer::start_tag('div', array('class' => 'mod-card-overlay hidden'));
+            $output .= html_writer::start_tag('div', array('class' => 'mod-card-overlay hidden',
+            'style' => 'background-color: '.$defaultoverlaycolor.';'));
             $output .= html_writer::end_tag('div');
 
             // Buttons on Hover.
             $output .= html_writer::start_tag('div', array('class' => 'card-hover-content hidden'));
             $output .= "<a href=".$mod->url." class = 'card-activity-btn '>"
             .get_string("viewactivity", "format_cards")."</a>";
-            $output .= "<a href='#' class='card-activity-btn'>".get_string("markcomplete", "format_cards")."</a>";
+            $output .= $completionicon;
             $output .= html_writer::end_tag('div');
         }
 
@@ -272,7 +278,7 @@ class course_module_renderer extends \core_course_renderer {
         }
 
         // End of indentation div.
-        $output .= html_writer::start_tag('span', array('class' => "activity-tag"));
+        $output .= html_writer::start_tag('span', array('class' => "activity-tag", 'style' => 'background-color: '.$defaultcolor.';'));
         $output .= $mod->modname;
         $output .= html_writer::end_tag('span');
         $output .= html_writer::end_tag('div');
@@ -289,6 +295,155 @@ class course_module_renderer extends \core_course_renderer {
         }
 
         $output .= html_writer::end_tag('div');
+        return $output;
+    }
+
+    /**
+     * Renders html for completion box on course page
+     *
+     * If completion is disabled, returns empty string
+     * If completion is automatic, returns an icon of the current completion state
+     * If completion is manual, returns a form (with an icon inside) that allows user to
+     * toggle completion
+     *
+     * change span tag to div for completion icon in editing mode
+     *
+     * @param stdClass $course course object
+     * @param completion_info $completioninfo completion info for the course, it is recommended
+     *     to fetch once for all modules in course/section for performance
+     * @param cm_info $mod module to show completion for
+     * @param array $displayoptions display options, not used in core
+     * @return string
+     */
+    public function course_section_cm_completion($course, &$completioninfo, \cm_info $mod, $displayoptions = array()) {
+        global $CFG;
+        $output = '';
+        if (!$mod->is_visible_on_course_page()) {
+            return $output;
+        }
+        if ($completioninfo === null) {
+            $completioninfo = new completion_info($course);
+        }
+        $completion = $completioninfo->is_enabled($mod);
+        if ($completion == COMPLETION_TRACKING_NONE) {
+            if ($this->page->user_is_editing()) {
+                $output .= html_writer::span('&nbsp;', 'filler');
+            }
+            return $output;
+        }
+
+        $completiondata = $completioninfo->get_data($mod, true);
+        $completionicon = '';
+
+        if ($this->page->user_is_editing()) {
+            switch ($completion) {
+                case COMPLETION_TRACKING_MANUAL:
+                    $completionicon = 'manual-enabled';
+                    break;
+                case COMPLETION_TRACKING_AUTOMATIC:
+                    $completionicon = 'auto-enabled';
+                    break;
+            }
+        } else if ($completion == COMPLETION_TRACKING_MANUAL) {
+            switch ($completiondata->completionstate) {
+                case COMPLETION_INCOMPLETE:
+                    $completionicon = 'manual-n';
+                    break;
+                case COMPLETION_COMPLETE:
+                    $completionicon = 'manual-y';
+                    break;
+            }
+        } else { // Automatic.
+            switch ($completiondata->completionstate) {
+                case COMPLETION_INCOMPLETE:
+                    $completionicon = 'auto-n';
+                    break;
+                case COMPLETION_COMPLETE:
+                    $completionicon = 'auto-y';
+                    break;
+                case COMPLETION_COMPLETE_PASS:
+                    $completionicon = 'auto-pass';
+                    break;
+                case COMPLETION_COMPLETE_FAIL:
+                    $completionicon = 'auto-fail';
+                    break;
+            }
+        }
+        if ($completionicon) {
+            $formattedname = $mod->get_formatted_name();
+            $imgalt = get_string('completion-alt-' . $completionicon, 'completion', $formattedname);
+
+            if ($this->page->user_is_editing()) {
+                // When editing, the icon is just an image.
+                $completionpixicon = new \pix_icon(
+                    'i/completion-'.$completionicon,
+                    $imgalt,
+                    '',
+                    array('title' => $imgalt, 'class' => 'iconsmall')
+                );
+                $output .= html_writer::tag(
+                    'div',
+                    $this->output->render($completionpixicon),
+                    array('class' => 'autocompletion')
+                );
+            } else if ($completion == COMPLETION_TRACKING_MANUAL) {
+                $imgtitle = get_string('completion-title-' . $completionicon, 'completion', $formattedname);
+                $newstate = $completiondata->completionstate == COMPLETION_COMPLETE ? COMPLETION_INCOMPLETE : COMPLETION_COMPLETE;
+                // In manual mode the icon is a toggle form...
+
+                // If this completion state is used by the
+                // conditional activities system, we need to turn
+                // off the JS.
+                $extraclass = '';
+                if (!empty($CFG->enableavailability) &&
+                        \core_availability\info::completion_value_used($course, $mod->id)) {
+                    $extraclass = ' preventjs';
+                }
+                $output .= html_writer::start_tag('form', array('method' => 'post',
+                    'action' => new \moodle_url('/course/togglecompletion.php'),
+                    'class' => 'togglecompletion'. $extraclass));
+                $output .= html_writer::start_tag('div');
+                $output .= html_writer::empty_tag('input', array(
+                    'type' => 'hidden', 'name' => 'id', 'value' => $mod->id));
+                $output .= html_writer::empty_tag('input', array(
+                    'type' => 'hidden', 'name' => 'sesskey', 'value' => sesskey()));
+                $output .= html_writer::empty_tag('input', array(
+                    'type' => 'hidden', 'name' => 'modulename', 'value' => $mod->name));
+                $output .= html_writer::empty_tag('input', array(
+                    'type' => 'hidden', 'name' => 'completionstate', 'class' => 'card-completion-state', 'value' => $newstate));
+
+                $completebutton = html_writer::start_tag('div', array('class' => 'card-activity-btn card-completion'));
+                $completebutton .= $this->output->pix_icon('i/completion-' . $completionicon, $imgalt);
+                if ($newstate == 0) {
+                    $state = get_string("completed", "format_cards");
+                } else {
+                    $state = get_string("markcomplete", "format_cards");
+                }
+                $completebutton .= html_writer::start_tag('p', array('class' => 'card-stats'));
+                $completebutton .= $state;
+                $completebutton .= html_writer::end_tag('p');
+                $completebutton .= html_writer::end_tag('div');
+                $output .= html_writer::tag(
+                    'button', $completebutton,
+                    array('class' => 'btn btn-link card-complete-btn', 'style' => 'width:100%; padding:0;')
+                );
+                $output .= html_writer::end_tag('div');
+                $output .= html_writer::end_tag('form');
+            } else {
+                // In auto mode, the icon is just an image.
+                $completionpixicon = new pix_icon(
+                    'i/completion-'.$completionicon,
+                    $imgalt,
+                    '',
+                    array('title' => $imgalt)
+                );
+                $output .= html_writer::tag(
+                    'span',
+                    $this->output->render($completionpixicon),
+                    array('class' => 'autocompletion')
+                );
+            }
+        }
         return $output;
     }
 }
