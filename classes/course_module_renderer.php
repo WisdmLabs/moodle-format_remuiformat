@@ -29,7 +29,7 @@ use html_writer;
 use core_text;
 
 require_once($CFG->dirroot.'/course/renderer.php');
-require_once("settings_controller.php");
+require_once("mod_stats.php");
 
 class course_module_renderer extends \core_course_renderer {
 
@@ -276,8 +276,18 @@ class course_module_renderer extends \core_course_renderer {
         $output .= $mod->modname;
         $output .= html_writer::end_tag('span');
         $output .= html_writer::end_tag('div');
-        $output .= html_writer::start_tag('div', array('class' => "activity-info"));
-        $output .= html_writer::end_tag('div');
+
+        // Activity Info.
+        if ($course->enablecompletion == 1) {
+            $modstats = \format_cards\ModStats::getinstance();
+            $stats = $modstats->get_mod_stats($course, $mod);
+            $output .= html_writer::start_tag('div', array('class' => "activity-info"));
+            $output .= html_writer::start_tag('p', array('class' => "activity-info-stats"));
+            $output .= $stats;
+            $output .= html_writer::end_tag('p');
+            $output .= html_writer::end_tag('div');
+        }
+
         $output .= html_writer::end_tag('div');
         return $output;
     }

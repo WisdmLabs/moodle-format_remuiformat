@@ -43,4 +43,59 @@ class ModStats
         }
         return self::$instance;
     }
+
+    // Function to return the stats of the mod.
+    public function get_mod_stats($course, \cm_info $mod) {
+        $stats = "";
+        $modtype = $mod->modname;
+        switch ($modtype) {
+            case "quiz": $stats = $this->calculate_quizmarks($mod->instance);
+                break;
+            case "forum":$stats = $this->check_subscription($mod->instance);
+                break;
+            default : $stats = $this->check_completionstats($mod, $course);
+                break;
+        }
+        return $stats;
+    }
+
+    private function calculate_quizmarks($quizid) {
+        global $DB, $USER;
+        $output = "";
+        $quiz = $DB->get_record('quiz', array('id' => $quizid));
+        try {
+            $attempt = $DB->get_record('quiz_attempts', array('quiz' => $quizid, 'userid' => $USER->id));
+
+            $totalgrade = $quiz->sumgrades;
+            $currentgrade = $attempt->sumgrades;
+            $marks = ($currentgrade / $totalgrade) * $quiz->grade;
+            $output = get_string('grade', 'format_cards')." : ".$marks ." / ". intval($quiz->grade);
+        } catch (Exception $e) {
+            $output = get_string('grade', 'format_cards')." : ". get_string('notattempted', 'format_cards');
+        }
+
+        return $output;
+    }
+
+    private function check_subscription($forumid) {
+        global $DB, $USER;
+        $forum   = $DB->get_record('forum', array('id' => $forumid), '*', MUST_EXIST);
+        $issubscribed = \mod_forum\subscriptions::is_subscribed($USER->id, $forum);
+        if ($issubscribed) {
+            return get_string("subscribed", "format_cards");
+        } else {
+            return get_string("notsubscribed", "format_cards");
+        }
+    }
+
+    private function check_completionstats($mod, $course) {
+        global $DB, $USER;
+        $info = new \completion_info($course);
+        $data = $info->get_data($mod, false, $USER->id);
+        if (!empty($data) && $data->completionstate == 1) {
+            return get_string("completed", "format_cards");
+        } else {
+            return get_string("notcompleted", "format_cards");
+        }
+    }
 }

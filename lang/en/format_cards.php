@@ -45,7 +45,7 @@ $string['defaultnumberofactivities'] = 'Default number of activities per page';
 $string['defaultnumberofactivities_desc'] = 'The number of activities to be displayed in one page';
 
 $string['six'] = 6;
-$string['eight'] = 8;
+$string['nine'] = 9;
 $string['twelve'] = 12;
 
 $string['defaultshowsectiontitlesummary'] = 'Show the section title summary on hover option';
@@ -65,3 +65,9 @@ $string['viewtopic'] = 'View Topic';
 // Activity.
 $string['viewactivity'] = 'View Activity';
 $string['markcomplete'] = 'Mark as Complete';
+$string['grade'] = 'Grade';
+$string['notattempted'] = 'Not Attempted';
+$string['subscribed'] = "Subscribed";
+$string['notsubscribed'] = "Not Subscribed";
+$string['completed'] = "Completed";
+$string['notcompleted'] = 'Not Completed';

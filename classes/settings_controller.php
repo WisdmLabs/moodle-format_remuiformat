@@ -118,7 +118,7 @@ class SettingsController
     public function getnumberofsectionsoptions() {
         return array(
             6 => get_string('six', 'format_cards'),      // Six.
-            8 => get_string('eight', 'format_cards'),    // Eight.
+            9 => get_string('nine', 'format_cards'),    // Eight.
             12 => get_string('twelve', 'format_cards')   // Twelve.
         );
     }

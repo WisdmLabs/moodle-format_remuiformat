@@ -107,19 +107,23 @@
     width: 100%;
 }
 
-.instancename {
+.cards .mod-indent-outer .activityinstance  .instancename {
     margin-left: -10px;
     font-size: 20px;
 }
 
 .cards .activity-info {
-    padding: 25px;
+    padding: 15px 15px;
     display: flex;
     font-weight: 600;
     width: 100%;
     background: white;
     border-top : 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cards .activity-info-stats {
+    margin: 0 !important;
 }
 
 .cards .activity-tag {
@@ -131,7 +135,7 @@
     text-transform: capitalize;
     position: absolute;
     right: 25px;
-    top: 30px;
+    top: 20px;
 }
 
 .contentafterlink {
@@ -210,7 +214,7 @@
     font-weight: bold;
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px 20px;
     margin-bottom: 10px;
     background: transparent;
