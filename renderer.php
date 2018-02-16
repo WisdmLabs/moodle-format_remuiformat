@@ -111,6 +111,7 @@ class format_cards_renderer extends format_section_renderer_base {
      */
     public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
         global $USER, $PAGE, $OUTPUT;
+        $paginationenabled = false;
         if (!empty($USER->profile['accessible'])) {
             return parent::print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused);
         }
@@ -132,15 +133,17 @@ class format_cards_renderer extends format_section_renderer_base {
         // Display the pagination.
         // 1 = OFF.
         // 2 = ON.
+        $totalsections = count($sections);
         $pagination = $this->settingcontroller->getsetting('enablepagination');
+        $page = optional_param('page', 0, PARAM_INT);
+        $sectionpagelimit = $this->settingcontroller->getsetting('defaultnumberoftopics');
         if ($pagination == 2) {
-            $sectionpagelimit = $this->settingcontroller->getsetting('defaultnumberoftopics');
-            $totalsections = count($sections);
-            $page = optional_param('page', 0, PARAM_INT);
             $startfrom = $sectionpagelimit * $page + 1;
             $end = $sectionpagelimit * $page + $sectionpagelimit;
+            $paginationenabled = true;
         } else {
             $startfrom = 1;
+            $end = $this->courseformat->get_last_section_number();
         }
         if ($end > $this->courseformat->get_last_section_number()) {
             $end = $this->courseformat->get_last_section_number();
@@ -151,15 +154,15 @@ class format_cards_renderer extends format_section_renderer_base {
             $this->display_editing_cards($course, $sections, $modinfo, $editing, false, $urlpicedit, $streditsummary,
             $startfrom, $end);
             echo html_writer::end_tag('div');
-            $pageurl = new moodle_url('/course/view.php?id='.$course->id);
-            $pagingbar  = new paging_bar($totalsections, $page, $sectionpagelimit, $pageurl, 'page');
-            echo $OUTPUT->render($pagingbar);
+            // Move Up and Down Sections
             echo $this->change_number_sections($course, 0);
         } else {
             // Display the section in card layout.
             echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
             $this->display_cards($coursecontext->id, $modinfo, $course, $editing, $startfrom, $end);
             echo html_writer::end_tag('div');
+        }
+        if ($paginationenabled) {
             $pageurl = new moodle_url('/course/view.php?id='.$course->id);
             $pagingbar  = new paging_bar($totalsections, $page, $sectionpagelimit, $pageurl, 'page');
             echo $OUTPUT->render($pagingbar);
@@ -219,26 +222,6 @@ class format_cards_renderer extends format_section_renderer_base {
                 </div>
             </div>';
     }
-
-    // /**
-    //  * Returns the formatted summary of section
-    //  * @param $summary String
-    //  * @return $summary String
-    //  */
-    // private function get_formatted_summary($summary) {
-
-    //     $summarylength = $this->settings['sectiontitlesummarymaxlength'];
-    //     $summary = str_replace("&nbsp;", ' ', $summary);
-    //     if ($summary) {
-    //         $end = "";
-    //         if (strlen($summary) > $summarylength) {
-    //             $end = " ...";
-    //         }
-    //         $summary = substr($summary, 0, $summarylength).$end;
-    //     }
-
-    //     return $summary;
-    // }
 
     private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary,
     $startfrom, $end) {

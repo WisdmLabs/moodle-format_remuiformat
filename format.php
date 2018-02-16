@@ -56,7 +56,7 @@ if (!empty($displaysection)) {
     $renderer->print_multiple_section_page($course, null, null, null, null);
 }
 
-// Include the CSS and JS Files Required.
+// Include JS Files Required.
 $stringman = get_string_manager();
 $strings = $stringman->load_component_strings('format_cards', 'en');
 $PAGE->requires->strings_for_js(array_keys($strings), 'format_cards');

@@ -34,6 +34,7 @@ require_once("settings_controller.php");
 
 class course_module_renderer extends \core_course_renderer {
 
+    private $course;
     /**
      * Renders HTML to display a list of course modules in a course section
      * Also displays "move here" controls in Javascript-disabled mode
@@ -137,7 +138,7 @@ class course_module_renderer extends \core_course_renderer {
     $displayoptions = array()) {
         $output = '';
         if ($modulehtml = $this->course_section_cm($course, $completioninfo, $mod, $sectionreturn, $displayoptions)) {
-            $modclasses = 'activity ' . $mod->modname . ' modtype_' . $mod->modname . ' col-lg-4 col-sm-12 py-10'
+            $modclasses = 'activity ' . $mod->modname . ' modtype_' . $mod->modname . ' col-lg-4 col-md-4 col-sm-12 py-10'
             . $mod->extraclasses;
             $output .= html_writer::tag('div', $modulehtml, array('class' => $modclasses, 'id' => 'module-' . $mod->id));
         }
@@ -224,7 +225,7 @@ class course_module_renderer extends \core_course_renderer {
             // Start the div for the activity title, excluding the edit icons.
             // Completion icon for activities with cmname.
             // $output .= $completionicon.
-            $activityclass = 'activityinstance';
+            $activityclass = 'activityinstance single-activity-card';
             if (!empty($mod->indent) && $mod->indent > 1) {
                 $activityclass .= ' hideicon';
             }
@@ -250,6 +251,7 @@ class course_module_renderer extends \core_course_renderer {
         if (empty($cmname)) {
             $contentpart = $completionicon;
         }
+        $this->course = $course;
         $contentpart .= $this->course_section_cm_text($mod, $displayoptions);
 
         $url = $mod->url;
@@ -276,9 +278,9 @@ class course_module_renderer extends \core_course_renderer {
         if (!empty($url)) {
             $output .= $contentpart;
         }
-
+        $output .= html_writer::end_tag('div');
         // End of indentation div.
-        $output .= html_writer::start_tag('span', array('class' => "activity-tag", 'style' => 'background-color: '.$defaultcolor.';'));
+        $output .= html_writer::start_tag('span', array('class' => "activity-tag", 'style' => 'border-bottom-color: '.$defaultcolor.'; color: '.$defaultcolor.';'));
         $output .= $mod->modname;
         $output .= html_writer::end_tag('span');
         $output .= html_writer::end_tag('div');
@@ -431,7 +433,7 @@ class course_module_renderer extends \core_course_renderer {
                 $output .= html_writer::end_tag('form');
             } else {
                 // In auto mode, the icon is just an image.
-                $completionpixicon = new pix_icon(
+                $completionpixicon = new \pix_icon(
                     'i/completion-'.$completionicon,
                     $imgalt,
                     '',
@@ -443,6 +445,39 @@ class course_module_renderer extends \core_course_renderer {
                     array('class' => 'autocompletion')
                 );
             }
+        }
+        return $output;
+    }
+
+    /**
+     * Renders html to display the module content on the course page (i.e. text of the labels)
+     *
+     * @param cm_info $mod
+     * @param array $displayoptions
+     * @return string
+     */
+    public function course_section_cm_text(\cm_info $mod, $displayoptions = array()) {
+        $output = '';
+        if (!$mod->is_visible_on_course_page()) {
+            // nothing to be displayed to the user
+            return $output;
+        }
+        $format = course_get_format($this->course);
+        $settings = $format->get_settings();
+        $content = $mod->get_formatted_content();
+        $content = \format_cards\ModStats::get_formatted_summary($content, $settings);
+        list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
+        if ($mod->url && $mod->uservisible) {
+            if ($content) {
+                // If specified, display extra content after link.
+                $output = html_writer::tag('div', $content, array('class' => trim('contentafterlink ' . $textclasses)));
+            }
+        } else {
+            $groupinglabel = $mod->get_grouping_label($textclasses);
+
+            // No link, so display only content.
+            $output = html_writer::tag('div', $content . $groupinglabel,
+                    array('class' => 'contentwithoutlink ' . $textclasses));
         }
         return $output;
     }

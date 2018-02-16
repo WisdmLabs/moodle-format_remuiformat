@@ -130,8 +130,8 @@ class SettingsController
      */
     public function getpaginationchoices() {
         return array(
-            1 => new \lang_string('off', 'format_grid'),   // Off.
-            2 => new \lang_string('on', 'format_grid')   // On.
+            1 => new \lang_string('off', 'format_cards'),   // Off.
+            2 => new \lang_string('on', 'format_cards')   // On.
         );
     }
 }

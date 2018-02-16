@@ -33,9 +33,10 @@ class format_cards extends format_base {
      * Please use {@link course_get_format($courseorid)} to get an instance of the format class
      * @param string $format
      * @param int $courseid
-     * @return format_grid
+     * @return format_cards
      */
     protected function __construct($format, $courseid) {
+        global $PAGE;
         if ($courseid === 0) {
             global $COURSE;
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
@@ -250,5 +251,51 @@ class format_cards extends format_base {
             array_unshift($elements, $element);
         }
         return $elements;
+    }
+
+    /**
+     * Prepares the templateable object to display section name
+     *
+     * @param \section_info|\stdClass $section
+     * @param bool $linkifneeded
+     * @param bool $editable
+     * @param null|lang_string|string $edithint
+     * @param null|lang_string|string $editlabel
+     * @return \core\output\inplace_editable
+     */
+    public function inplace_editable_render_section_name(
+        $section,
+        $linkifneeded = true,
+        $editable = null,
+        $edithint = null,
+        $editlabel = null
+    ) {
+        if (empty($edithint)) {
+            $edithint = new lang_string('editsectionname', 'format_cards');
+        }
+        if (empty($editlabel)) {
+            $title = get_section_name($section->course, $section);
+            $editlabel = new lang_string('newsectionname', 'format_cards', $title);
+        }
+        return parent::inplace_editable_render_section_name($section, $linkifneeded, $editable, $edithint, $editlabel);
+    }
+}
+
+/**
+ * Implements callback inplace_editable() allowing to edit values in-place
+ *
+ * @param string $itemtype
+ * @param int $itemid
+ * @param mixed $newvalue
+ * @return \core\output\inplace_editable
+ */
+function format_cards_inplace_editable($itemtype, $itemid, $newvalue) {
+    global $DB, $CFG;
+    require_once($CFG->dirroot . '/course/lib.php');
+    if ($itemtype === 'sectionname' || $itemtype === 'sectionnamenl') {
+        $section = $DB->get_record_sql(
+            'SELECT s.* FROM {course_sections} s JOIN {course} c ON s.course = c.id WHERE s.id = ? AND c.format = ?',
+            array($itemid, 'cards'), MUST_EXIST);
+        return course_get_format($section->course)->inplace_editable_update_section_name($section, $itemtype, $newvalue);
     }
 }

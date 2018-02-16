@@ -28,13 +28,13 @@
     font-weight: 500;
     padding: 10px 0;
 }
-  
+
 .section-summary {
     margin:0;
     border:none !important;
     padding-bottom: 25px;
 }
-  
+
 .view-topic-btn {
     position:absolute;
     display: flex;
@@ -80,6 +80,7 @@
 .card-edit {
     padding: 0 10px;
 }
+
 /* End of Edit Section*/
 
 /* Activity Section */
@@ -94,6 +95,7 @@
     width: 100%;
     padding: 15px;
     background: white;
+    min-height: 150px !important;
 }
 
 .cards .mod-indent-outer .activityinstance {
@@ -128,13 +130,10 @@
 
 .cards .activity-tag {
     display: inline-table;
-    background: #39c2a5;
     color: white;
-    padding: 0 10px;
-    border-radius: 10px;
+    border-bottom: 2px solid #39c2a5;
     text-transform: capitalize;
     position: absolute;
-    right: 25px;
     top: 20px;
 }
 
@@ -160,7 +159,7 @@
 
 .editing .cards .activity-tag {
     top: 80px;
-    right: 35px;
+    margin-bottom: 10px;
 }
 
 .single-section .section-navigation .sectionname {
@@ -180,8 +179,8 @@
     border-radius: 2px;
 }
 
-.ignoredirty.form-control{
-    width: 100px;
+input.ignoredirty.form-control{
+    width: 100% !important;
 }
 
 .mod-card-container {
@@ -204,7 +203,8 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    top: 33%;
+    justify-content: center;
+    height: 100%;
 }
 
 .card-activity-btn {
@@ -237,7 +237,9 @@
 .card-completion > p.card-stats {
     margin : 0 !important;
     padding: 0 5px;
-} 
+    width: 100%;
+    white-space: pre-line;
+}
 
 .card-hover-content .btn-link:hover {
     text-decoration: none !important;
@@ -255,6 +257,20 @@
     display: none;
 }
 
+#page-course-view-cards .custom-select {
+    width: auto !important;
+}
+
+#page-course-view-cards #page-header {
+    padding-bottom: 0;
+}
+
+.single-activity-card  a > img.activityicon {
+    display: none;
+}
+.single-activity-card  a > span.instancename {
+    margin-top: 30px;
+}
 /* End of Activity Section */
 
 /* General Section */
@@ -262,6 +278,7 @@
     background-color: white;
     margin-bottom: 30px;
     padding: 10px 20px;
+    min-height: 150px;
 }
 
 .general-single-card > div.card-content .section-title,

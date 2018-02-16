@@ -116,7 +116,8 @@ class ModStats
             if (strlen($summary) > $summarylength) {
                 $end = " ...";
             }
-            $summary = substr($summary, 0, $summarylength).$end;
+            $summary = substr($summary, 0, $summarylength);
+            $summary .= $end;
         }
         return $summary;
     }

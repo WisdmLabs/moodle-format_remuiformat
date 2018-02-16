@@ -25,6 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+global $CFG;
 require_once($CFG->dirroot . '/course/format/cards/classes/settings_controller.php');
 
 if ($ADMIN->fulltree) {

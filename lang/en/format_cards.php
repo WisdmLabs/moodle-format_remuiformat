@@ -44,6 +44,8 @@ $string['defaultnumberoftopics_desc'] = 'The number of topics to be displayed in
 $string['defaultnumberofactivities'] = 'Default number of activities per page';
 $string['defaultnumberofactivities_desc'] = 'The number of activities to be displayed in one page';
 
+$string['off'] = 'Off';
+$string['on'] = 'On';
 $string['six'] = 6;
 $string['nine'] = 9;
 $string['twelve'] = 12;
@@ -61,7 +63,9 @@ $string['section0name'] = 'General';
 $string['hidefromothers'] = 'Hide topic';
 $string['showfromothers'] = 'Show topic';
 $string['viewtopic'] = 'View Topic';
-
+$string['editsection'] = 'Edit topic';
+$string['editsectionname'] = 'Edit topic name';
+$string['newsectionname'] = 'New name for topic {$a}';
 // Activity.
 $string['viewactivity'] = 'View Activity';
 $string['markcomplete'] = 'Mark as Complete';
