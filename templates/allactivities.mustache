@@ -1,0 +1,66 @@
+{{#hiddensection}}
+    {{{ hiddensection }}}
+{{/hiddensection}}
+{{^hiddensection}}
+    <div class="col-md-12 p-0 wdm-card-section">
+        <div class="card-section-leftnav {{#leftnav}}btn btn-primary{{/leftnav}}">
+            {{{ leftnav }}}
+        </div>
+        <div class="card-section-rightnav {{#rightnav}}btn btn-primary{{/rightnav}}">
+            {{{ rightnav }}}
+        </div>
+    </div>
+    <div class="col-md-12 p-0 general-single-card p-20 my-20">
+        <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
+        <p>{{{ summary}}}</p>
+    </div>
+    <div>
+        <ul class="cards p-0 m-0">
+            <li class="section row wdm-card-single-section">
+                {{#activities}}
+                <div class="col-md-4 col-sm-12">
+                    <div class="single-card p-20 mb-20">
+                        <div class="wdm-activity-actions d-flex">
+                            <span class="sno py-5 pr-15 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
+                            <div class="wdm-activity-actions d-flex">
+                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
+                                {{{ modicons }}}
+                            </div>
+                        </div>
+                        <h4 class="wdm-single-activity-title">{{{ title }}}</h4>
+                        <div class="text-center text-muted">
+                            {{{ availstatus }}}
+                        </div>
+                        {{{ summary }}}
+                        <div class="d-flex pt-15 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
+                            <div class="w-p50 d-flex">
+                                <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">Start Now</a>
+                            </div>
+                            <div class="wdm-completion-container d-flex align-items-center">
+                                <p class="m-0 mx-10 text-right wdm-completion-title wdm-completion-status-{{id}}">
+                                    {{#completed}}
+                                        {{#str}} completed, format_cards{{/str}}
+                                    {{/completed}}
+                                    {{^completed}}
+                                        {{#str}} markcomplete, format_cards{{/str}}
+                                    {{/completed}}
+                                </p>
+                                <a class="btn bg-white p-0 wdm-toggle-completion" data-id="{{ id }}">
+                                    <!--<span><i class="fa fa-check-circle" aria-hidden="true"></i></span>-->
+                                    <div class="pchart wdm-chart-{{id}}" data-percent="{{#completed}}100{{/completed}}">
+                                        <span class="activity-check-{{id}} activity-check {{#completed}}completed{{/completed}}"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                    </div>
+                                </a>
+                                <div class="hidden wdm-completion-check-{{id}}" >
+                                    {{{ completion }}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/activities}}
+                {{{ addnewactivity }}}
+            <li>
+        <ul>
+    </div>
+{{/hiddensection}}

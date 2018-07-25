@@ -17,13 +17,13 @@
 /**
  * Strings for component 'format_singleactivity'
  *
- * @package    format_cards
+ * @package    format_remui_format
  * @copyright  2017 Wisdmlabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 // Plugin Name.
-$string['pluginname'] = 'Card format';
+$string['pluginname'] = 'Remui format';
 
 // Settings.
 $string['defaultcoursedisplay'] = 'Course display default';
@@ -62,7 +62,7 @@ $string['sectionname'] = 'Section';
 $string['section0name'] = 'General';
 $string['hidefromothers'] = 'Hide topic';
 $string['showfromothers'] = 'Show topic';
-$string['viewtopic'] = 'View Topic';
+$string['viewtopic'] = 'Start Now';
 $string['editsection'] = 'Edit topic';
 $string['editsectionname'] = 'Edit topic name';
 $string['newsectionname'] = 'New name for topic {$a}';
@@ -75,3 +75,20 @@ $string['subscribed'] = "Subscribed";
 $string['notsubscribed'] = "Not Subscribed";
 $string['completed'] = "Completed";
 $string['notcompleted'] = 'Not Completed';
+$string['progress'] = 'Progress';
+
+
+// For list
+
+$string['remuicourseformat'] = 'Choose Course Format';
+$string['remuicourseformat_card'] = 'Card Format';
+$string['remuicourseformat_list'] = 'List Format';
+$string['remuicourseformat_help'] = 'Choose a course format';
+$string['remuicourseimage'] = 'Choose a course image';
+$string['remuicourseimage_help'] = 'Choose a course image';
+
+// $string['defaultcourseformat'] = 'Select a course format ot choose';
+
+
+// GDPR
+$string['privacy:metadata'] = 'The RemUI format plugin does not store any personal data.';

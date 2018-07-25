@@ -13,17 +13,27 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Version details
+ * Privacy Subsystem implementation for format_topics.
  *
  * @package    format_remui_format
- * @copyright  2017 Wisdmlabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
+namespace format_remui_format\privacy;
 defined('MOODLE_INTERNAL') || die();
-
-$plugin->version   = 2018071700;              // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2017050500;              // Requires this Moodle version.
-$plugin->component = 'format_remui_format';          // Full name of the plugin (used for diagnostics).
+/**
+ * Privacy Subsystem for format_remui_format implementing null_provider.
+ *
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}

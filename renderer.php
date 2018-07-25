@@ -18,23 +18,24 @@
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
  * @package course/format
- * @subpackage cards
+ * @subpackage remui_format
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
-require_once($CFG->dirroot.'/course/format/cards/classes/settings_controller.php');
-require_once($CFG->dirroot.'/course/format/cards/classes/mod_stats.php');
-require_once($CFG->dirroot.'/course/format/cards/classes/course_module_renderer.php');
+require_once($CFG->dirroot.'/course/format/remui_format/classes/settings_controller.php');
+require_once($CFG->dirroot.'/course/format/remui_format/classes/mod_stats.php');
+// require_once($CFG->dirroot.'/course/format/remui_format/classes/course_module_renderer.php');
 
-class format_cards_renderer extends format_section_renderer_base {
+class format_remui_format_renderer extends format_section_renderer_base {
 
     protected $courseformat; // Our course format object as defined in lib.php.
     protected $coursemodulerenderer; // Our custom course module renderer.
     protected $settingcontroller;  // Our setting controller.
     protected $modstats;           // Our mod stats controller.
     private $settings;
+
     /**
      * Constructor method, calls the parent constructor
      * @param moodle_page $page
@@ -44,10 +45,10 @@ class format_cards_renderer extends format_section_renderer_base {
         parent::__construct($page, $target);
         $this->courseformat = course_get_format($page->course);
         $this->settings = $this->courseformat->get_settings();
-        $this->coursemodulerenderer = new \format_cards\course_module_renderer($page, $target);
-        $this->settingcontroller = \format_cards\SettingsController::getinstance();
-        $this->modstats = \format_cards\ModStats::getinstance();
-        // Since format_cards_renderer::section_edit_controls()
+        // $this->coursemodulerenderer = new \format_remui_format\course_module_renderer($page, $target);
+        $this->settingcontroller = \format_remui_format\SettingsController::getinstance();
+        $this->modstats = \format_remui_format\ModStats::getinstance();
+        // Since format_remui_format_renderer::section_edit_controls()
         // only displays the 'Set current section' control when editing mode is on
         // we need to be sure that the link 'Turn editing mode on' is available
         // for a user who does not have any other managing capability.
@@ -75,7 +76,7 @@ class format_cards_renderer extends format_section_renderer_base {
      * @return string the page title
      */
     protected function page_title() {
-        return get_string('sectionname', 'format_cards');
+        return get_string('sectionname', 'format_remui_format');
     }
 
     /**
@@ -101,369 +102,6 @@ class format_cards_renderer extends format_section_renderer_base {
     }
 
     /**
-     * Output the html for a multiple section page
-     *
-     * @param stdClass $course The course entry from DB
-     * @param array $sections The course_sections entries from the DB
-     * @param array $mods
-     * @param array $modnames
-     * @param array $modnamesused
-     */
-    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused) {
-        global $USER, $PAGE, $OUTPUT;
-        $paginationenabled = false;
-        if (!empty($USER->profile['accessible'])) {
-            return parent::print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesused);
-        }
-
-        // Get necessary values required to display the UI.
-        $editing = $PAGE->user_is_editing();
-        $coursecontext = context_course::instance($course->id);
-        $modinfo = get_fast_modinfo($course);
-        $sections = $modinfo->get_section_info_all();
-
-        if ($editing) {
-            $streditsummary = get_string('editsummary');
-            $urlpicedit = $this->output->image_url('t/edit');
-        } else {
-            $urlpicedit = false;
-            $streditsummary = '';
-        }
-
-        // Display the pagination.
-        // 1 = OFF.
-        // 2 = ON.
-        $totalsections = count($sections);
-        $pagination = $this->settingcontroller->getsetting('enablepagination');
-        $page = optional_param('page', 0, PARAM_INT);
-        $sectionpagelimit = $this->settingcontroller->getsetting('defaultnumberoftopics');
-        if ($pagination == 2) {
-            $startfrom = $sectionpagelimit * $page + 1;
-            $end = $sectionpagelimit * $page + $sectionpagelimit;
-            $paginationenabled = true;
-        } else {
-            $startfrom = 1;
-            $end = $this->courseformat->get_last_section_number();
-        }
-        if ($end > $this->courseformat->get_last_section_number()) {
-            $end = $this->courseformat->get_last_section_number();
-        }
-        // Display the section when editing is in.
-        if ($editing) {
-            echo html_writer::start_tag('div', array('id' => 'card-editing-container', 'class' => 'row'));
-            $this->display_editing_cards($course, $sections, $modinfo, $editing, false, $urlpicedit, $streditsummary,
-            $startfrom, $end);
-            echo html_writer::end_tag('div');
-            // Move Up and Down Sections
-            echo $this->change_number_sections($course, 0);
-        } else {
-            // Display the section in card layout.
-            echo html_writer::start_tag('div', array('id' => 'card-container', 'class' => 'row'));
-            $this->display_cards($coursecontext->id, $modinfo, $course, $editing, $startfrom, $end);
-            echo html_writer::end_tag('div');
-        }
-        if ($paginationenabled) {
-            $pageurl = new moodle_url('/course/view.php?id='.$course->id);
-            $pagingbar  = new paging_bar($totalsections, $page, $sectionpagelimit, $pageurl, 'page');
-            echo $OUTPUT->render($pagingbar);
-        }
-    }
-
-    /**
-     * Output html for sections
-     * @param
-     */
-    private function display_cards($contextid, $modinfo, $course, $editing, $startfrom, $end) {
-
-        $buttoncolor = $this->settingcontroller->getsetting('defaultbuttoncolour');
-        // Display general section at top.
-        $currentsection = $modinfo->get_section_info(0);
-        $sectionname = $this->courseformat->get_section_name($currentsection);
-        $summary = strip_tags($currentsection->summary);
-        $coverimage = $this->get_course_image($course);
-        $url = $this->courseformat->get_view_url(0)->out(true);
-        $this->display_general_section($sectionname, $summary, $coverimage, $url);
-
-        echo "<style>.single-card:hover {
-                border: 2px solid ".$buttoncolor.";
-            }</style>";
-        for ($section = $startfrom; $section <= $end; $section++) {
-            // Get current section info.
-            $currentsection = $modinfo->get_section_info($section);
-
-            // Get the title of the section.
-            $sectionname = $this->courseformat->get_section_name($currentsection);
-
-            // Get the section view url.
-            $singlepageurl = '';
-            if ($course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
-                $singlepageurl = $this->courseformat->get_view_url($section)->out(true);
-            }
-
-            $title = $sectionname;
-            $summary = $this->modstats->get_formatted_summary(strip_tags($currentsection->summary), $this->settings);
-            $this->single_card($section, $title, $summary, $singlepageurl, $buttoncolor);
-        }
-    }
-
-    /**
-     * Output Single Card
-     * @param
-     */
-    private function single_card($index, $title, $summary, $singlepageurl, $buttoncolor) {
-        echo '<div class="col-lg-4 col-md-4 col-sm-12 single-card-container">
-                <div class="single-card">
-                    <span class="sno" style="border-color:'.$buttoncolor.'">'.$index.'&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <div class="card-content">
-                        <h2 class="section-title">'.$title.'</h2>
-                        <p class="section-summary">'.$summary.'</p>
-                    </div>
-                    <a href="'.$singlepageurl.'" class = "view-topic-btn" style="background-color:'.$buttoncolor.';">'.get_string("viewtopic", "format_cards").'</a>
-                </div>
-            </div>';
-    }
-
-    private function display_editing_cards($course, $sections, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary,
-    $startfrom, $end) {
-        $coursecontext = context_course::instance($course->id);
-        $this->single_editing_card($coursecontext, 0, $course, $modinfo, $editing, $onsectionpage, $urlpicedit, $streditsummary);
-        for ($section = $startfrom; $section <= $end; $section++) {
-            $this->single_editing_card($coursecontext, $section, $course, $modinfo, $editing,
-            $onsectionpage, $urlpicedit, $streditsummary);
-        }
-    }
-
-    private function single_editing_card($coursecontext, $section, $course, $modinfo, $editing, $onsectionpage,
-    $urlpicedit, $streditsummary) {
-        $currentsection = $modinfo->get_section_info($section);
-        $coverimage = $this->get_course_image($course);
-        $sectionname = $this->courseformat->get_section_name($currentsection);
-        if ($editing) {
-            $title = $this->section_title($currentsection, $course);
-        } else {
-            $title = $sectionname;
-        }
-        if ($section == 0) {
-            $classes = 'col-lg-12 col-md-12 col-sm-12';
-        } else {
-            $classes = 'col-lg-4 col-md-4 col-sm-12';
-        }
-        echo html_writer::start_tag('div', array('class' => $classes));
-
-        if ($section == 0) {
-            echo html_writer::start_tag('div', array(
-                'id' => 'section-' . $section,
-                'class' => 'card-section-list',
-                'style' => 'background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68),
-                rgba(14, 35, 53, 0.68)), url('.$coverimage.');',
-                'role' => 'region',
-                'aria-label' => 'test')
-            );
-        } else {
-            echo html_writer::start_tag('div', array(
-                'id' => 'section-' . $section,
-                'class' => 'card-section-list',
-                'role' => 'region',
-                'aria-label' => 'test')
-            );
-        }
-
-        if ($editing) {
-            // Note, 'left side' is BEFORE content.
-            $leftcontent = $this->section_left_content($currentsection, $course, $onsectionpage);
-            echo html_writer::tag('div', $leftcontent, array('class' => 'card-left-side'));
-            // Note, 'right side' is BEFORE content.
-            $rightcontent = $this->section_right_content($currentsection, $course, $onsectionpage);
-            echo html_writer::tag('div', $rightcontent, array('class' => 'card-right-side'));
-        }
-
-        echo html_writer::start_tag('div', array('class' => 'card-content'));
-        echo $this->output->heading($title, 3, 'sectionname');
-
-        echo html_writer::start_tag('div', array('class' => 'card-summary'));
-        if ($section == 0) {
-            echo strip_tags($currentsection->summary);
-        } else {
-            echo $this->modstats->get_formatted_summary(strip_tags($currentsection->summary), $this->settings);
-        }
-
-        if ($editing) {
-            echo html_writer::link(
-                    new moodle_url('editsection.php', array('id' => $currentsection->id)),
-                    html_writer::empty_tag('img', array('src' => $urlpicedit, 'alt' => $streditsummary,
-                        'class' => 'card-edit')), array('title' => $streditsummary));
-        }
-        echo html_writer::end_tag('div');
-
-        echo $this->section_availability_message($currentsection, has_capability('moodle/course:viewhiddensections',
-                $coursecontext));
-        // Display the course modules if needed.
-        echo html_writer::end_tag('div');
-        echo html_writer::end_tag('div');
-        echo html_writer::end_tag('div');
-    }
-
-
-    /**
-     * Output the html for a single section page.
-     *
-     * @param stdClass $course The course entry from DB
-     * @param array $sections (argument not used)
-     * @param array $mods (argument not used)
-     * @param array $modnames (argument not used)
-     * @param array $modnamesused (argument not used)
-     * @param int $displaysection The section number in the course which is being displayed
-     */
-    public function print_single_section_page($course, $sections, $mods, $modnames, $modnamesused, $displaysection) {
-
-        $modinfo = get_fast_modinfo($course);
-        $course = course_get_format($course)->get_course();
-
-        // Can we view the section in question?.
-        if (!($sectioninfo = $modinfo->get_section_info($displaysection))) {
-            // This section doesn't exist.
-            print_error('unknowncoursesection', 'error', null, $course->fullname);
-            return;
-        }
-
-        if (!$sectioninfo->uservisible) {
-            if (!$course->hiddensections) {
-                echo $this->start_section_list();
-                echo $this->section_hidden($displaysection, $course->id);
-                echo $this->end_section_list();
-            }
-            // Can't view this section.
-            return;
-        }
-
-        echo $this->course_activity_clipboard($course, $displaysection);
-        echo html_writer::start_tag('div', array('class' => 'single-section'));
-        // Display the general section if needed.
-
-        // The requested section page.
-        $currentsection = $modinfo->get_section_info($displaysection);
-        // Title with section navigation links.
-        $sectionnavlinks = $this->get_nav_links($course, $modinfo->get_section_info_all(), $displaysection);
-        $sectiontitle = '';
-        $sectiontitle .= html_writer::start_tag('div', array('class' => 'section-navigation navigationtitle'));
-        $sectiontitle .= html_writer::tag('span', $sectionnavlinks['previous'], array('class' => 'mdl-left'));
-        $sectiontitle .= html_writer::tag('span', $sectionnavlinks['next'], array('class' => 'mdl-right'));
-
-        // Title attributes.
-        $classes = 'sectionname';
-        if (!$currentsection->visible) {
-            $classes .= ' dimmed_text';
-        }
-        $sectionname = html_writer::tag('span', $this->section_title_without_link($currentsection, $course));
-        $sectiontitle .= $this->output->heading($sectionname, 3, $classes);
-
-        $sectiontitle .= html_writer::end_tag('div');
-        echo $sectiontitle;
-
-        echo $this->start_section_list();
-        echo $this->section_header_onsectionpage($currentsection, $course);
-        echo $this->coursemodulerenderer->course_section_cm_list($course, $currentsection, $displaysection);
-        echo $this->coursemodulerenderer->course_section_add_cm_control($course, $displaysection, $displaysection);
-        echo $this->section_footer();
-        echo $this->end_section_list();
-
-        // Display section bottom navigation.
-        $sectionbottomnav = '';
-        $sectionbottomnav .= html_writer::start_tag('div', array('class' => 'section-navigation mdl-bottom'));
-        $sectionbottomnav .= html_writer::tag('span', $sectionnavlinks['previous'], array('class' => 'mdl-left'));
-        $sectionbottomnav .= html_writer::tag('span', $sectionnavlinks['next'], array('class' => 'mdl-right'));
-        $sectionbottomnav .= html_writer::tag('div', $this->section_nav_selection($course, $sections, $displaysection),
-            array('class' => 'mdl-align'));
-        $sectionbottomnav .= html_writer::end_tag('div');
-        echo $sectionbottomnav;
-
-        echo html_writer::end_tag('div');
-    }
-
-    /**
-     * Generate the display of the header part of a section before
-     * course modules are included for when section 0 is in the grid
-     * and a single section page.
-     *
-     * @param stdClass $section The course_section entry from DB
-     * @param stdClass $course The course entry from DB
-     * @return string HTML to output.
-     */
-    protected function section_header_onsectionpage($section, $course) {
-        $o = '';
-        $sectionstyle = '';
-
-        if ($section->section != 0) {
-            // Only in the non-general sections.
-            if (!$section->visible) {
-                $sectionstyle = ' hidden';
-            } else if (course_get_format($course)->is_section_current($section)) {
-                $sectionstyle = ' current';
-            }
-        }
-
-        $o .= html_writer::start_tag('li', array('id' => 'section-'.$section->section,
-            'class' => 'section main clearfix'.$sectionstyle, 'role' => 'region',
-            'aria-label' => get_section_name($course, $section)));
-
-        // Create a span that contains the section title to be used to create the keyboard section move menu.
-        $o .= html_writer::tag('span', get_section_name($course, $section), array('class' => 'hidden sectionname'));
-
-        $leftcontent = $this->section_left_content($section, $course, true);
-        $o .= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
-
-        $rightcontent = $this->section_right_content($section, $course, true);
-        $o .= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
-        $o .= html_writer::start_tag('div', array('class' => 'content'));
-
-        $sectionname = html_writer::tag('span', $this->section_title($section, $course));
-        $o .= $this->output->heading($sectionname, 3, 'sectionname accesshide');
-
-        $o .= html_writer::start_tag('div', array('class' => 'summary'));
-        $o .= $this->format_summary_text($section);
-        $o .= html_writer::end_tag('div');
-
-        $o .= $this->section_availability($section);
-
-        return $o;
-    }
-
-    protected function display_general_section($title, $summary, $coverimage, $url) {
-        echo '<div class="col-lg-12 col-sm-12 general-single-card-container">
-            <div class="general-single-card">
-                <div class="card-content" style="background-image: linear-gradient(to right,
-                rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url('.$coverimage.')";>
-                    <a href= '.$url.' class="section-title">'.$title.'</a>
-                    <p class="section-summary">'.$summary.'</p>
-                </div>
-            </div>
-        </div>';
-    }
-
-    private function get_course_image($courseinlist, $islist = false) {
-
-        global $CFG, $OUTPUT;
-        if (!$islist) {
-            $courseinlist = new \course_in_list($courseinlist);
-        }
-
-        foreach ($courseinlist->get_course_overviewfiles() as $file) {
-            $isimage = $file->is_valid_image();
-            $courseimage = file_encode_url("$CFG->wwwroot/pluginfile.php",
-                                        '/'. $file->get_contextid(). '/'. $file->get_component(). '/'.
-                                        $file->get_filearea(). $file->get_filepath(). $file->get_filename(), !$isimage);
-            if ($isimage) {
-                break;
-            }
-        }
-        if (!empty($courseimage)) {
-            return $courseimage;
-        } else {
-            return $OUTPUT->image_url('placeholder', 'theme');
-        }
-    }
-
-    /**
      * Generate next/previous section links for naviation
      *
      * @param stdClass $course The course entry from DB
@@ -471,9 +109,7 @@ class format_cards_renderer extends format_section_renderer_base {
      * @param int $sectionno The section number in the coruse which is being dsiplayed
      * @return array associative array with previous and next section link
      */
-    protected function get_nav_links($course, $sections, $sectionno) {
-
-        $defaultcolor = $this->settingcontroller->getsetting('defaultbuttoncolour');
+    public function get_nav_links($course, $sections, $sectionno) {
         // FIXME: This is really evil and should by using the navigation API.
         $course = course_get_format($course)->get_course();
         $canviewhidden = has_capability('moodle/course:viewhiddensections', context_course::instance($course->id))
@@ -483,12 +119,13 @@ class format_cards_renderer extends format_section_renderer_base {
         $back = $sectionno - 1;
         while ($back > 0 and empty($links['previous'])) {
             if ($canviewhidden || $sections[$back]->uservisible) {
-                $params = array("style" => "background-color:".$defaultcolor.";");
+                $params = array('class' => 'bg-primary');
+                $prevsectionname = get_section_name($course, $sections[$back]);
                 if (!$sections[$back]->visible) {
                     $params = array('class' => 'dimmed_text');
                 }
                 $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
-                $previouslink .= get_section_name($course, $sections[$back]);
+                $previouslink .= (strlen($prevsectionname) > 15) ? substr($prevsectionname, 0, 15)."..." : $prevsectionname;
                 $links['previous'] = html_writer::link(course_get_url($course, $back), $previouslink, $params);
             }
             $back--;
@@ -498,11 +135,12 @@ class format_cards_renderer extends format_section_renderer_base {
         $numsections = course_get_format($course)->get_last_section_number();
         while ($forward <= $numsections and empty($links['next'])) {
             if ($canviewhidden || $sections[$forward]->uservisible) {
-                $params = array("style" => "background-color:".$defaultcolor.";");
+                $params = array('class' => 'bg-primary');
                 if (!$sections[$forward]->visible) {
                     $params = array('class' => 'dimmed_text');
                 }
-                $nextlink = get_section_name($course, $sections[$forward]);
+                $nextsectionname = get_section_name($course, $sections[$forward]);
+                $nextlink = (strlen($nextsectionname) > 15) ? substr($nextsectionname, 0, 15)."..." : $nextsectionname;
                 $nextlink .= html_writer::tag('span', $this->output->rarrow(), array('class' => 'rarrow'));
                 $links['next'] = html_writer::link(course_get_url($course, $forward), $nextlink, $params);
             }
@@ -510,5 +148,261 @@ class format_cards_renderer extends format_section_renderer_base {
         }
 
         return $links;
+    }
+
+    /**
+     * Generate a summary of the activites in a section
+     *
+     * @param stdClass $section The course_section entry from DB
+     * @param stdClass $course the course record from DB
+     * @param array    $mods (argument not used)
+     * @return string HTML to output.
+     */
+    public function section_activity_summary($section, $course, $mods) {
+        $modinfo = get_fast_modinfo($course);
+        $output = array(
+            "activityinfo" => "",
+            "progressinfo" => ""
+        );
+        if (empty($modinfo->sections[$section->section])) {
+            return $output;
+        }
+
+        // Generate array with count of activities in this section:
+        $sectionmods = array();
+        $total = 0;
+        $complete = 0;
+        $cancomplete = isloggedin() && !isguestuser();
+        $completioninfo = new completion_info($course);
+        foreach ($modinfo->sections[$section->section] as $cmid) {
+            $thismod = $modinfo->cms[$cmid];
+
+            if ($thismod->modname == 'label') {
+                // Labels are special (not interesting for students)!
+                continue;
+            }
+
+            if ($thismod->uservisible) {
+                if (isset($sectionmods[$thismod->modname])) {
+                    $sectionmods[$thismod->modname]['name'] = $thismod->modplural;
+                    $sectionmods[$thismod->modname]['count']++;
+                } else {
+                    $sectionmods[$thismod->modname]['name'] = $thismod->modfullname;
+                    $sectionmods[$thismod->modname]['count'] = 1;
+                }
+                if ($cancomplete && $completioninfo->is_enabled($thismod) != COMPLETION_TRACKING_NONE) {
+                    $total++;
+                    $completiondata = $completioninfo->get_data($thismod, true);
+                    if ($completiondata->completionstate == COMPLETION_COMPLETE ||
+                            $completiondata->completionstate == COMPLETION_COMPLETE_PASS) {
+                        $complete++;
+                    }
+                }
+            }
+        }
+
+        if (empty($sectionmods)) {
+            // No sections
+            return $output;
+        }
+
+        // Output section activities summary:
+        $o = '';
+        $o .= html_writer::start_tag('div', array('class' => 'section-summary-activities pb-10'));
+        foreach ($sectionmods as $mod) {
+            $o .= html_writer::start_tag('p', array('class' => 'section-mod-details'));
+            $o .= $mod['name'].': '.$mod['count'];
+            $o .= html_writer::end_tag('p');
+        }
+        $o .= html_writer::end_tag('div');
+        $output['activityinfo'] = $o;
+        $o = '';
+        // Output section completion data
+        if ($total > 0) {
+            $a = new stdClass;
+            $a->complete = $complete;
+            $a->total = $total;
+            $completed = "";
+            $percentage = round(($a->complete / $a->total) * 100 , 0);
+            if ($a->complete == $a->total) {
+                $completed = 'completed';
+            }
+            $o .= html_writer::start_tag('div', array('class' => 'd-flex'));
+            $o .= html_writer::start_tag('div', array('class' => 'section-summary-percentage px-10'));
+            $o .= html_writer::tag('p', get_string('progress', 'format_remui_format'), array('class' => 'progress-title m-0 text-muted'));
+            $o .= html_writer::tag('p', $a->complete.' / '.$a->total, array('class' => 'activity-count m-0 text-right'));
+            $o .= html_writer::end_tag('div');
+            $o .= html_writer::start_tag('div', array('class' => 'pchart', 'data-percent' => $percentage));
+            $o .= html_writer::tag('span', ' <i class="fa fa-check" aria-hidden="true"></i>', array('class' => 'activity-check '.$completed));
+            $o .= html_writer::end_tag('div');
+            $o .= html_writer::end_tag('div');
+        }
+        $output['progressinfo'] = $o;
+        return $output;
+    }
+
+    /**
+     * Generate the html for a hidden section
+     *
+     * @param int $sectionno The section number in the course which is being displayed
+     * @param int|stdClass $courseorid The course to get the section name for (object or just course id)
+     * @return string HTML to output.
+     */
+    public function section_hidden($sectionno, $courseorid = null) {
+        if ($courseorid) {
+            $sectionname = get_section_name($courseorid, $sectionno);
+            $strnotavailable = get_string('notavailablecourse', '', $sectionname);
+        } else {
+            $strnotavailable = get_string('notavailable');
+        }
+
+        $o = '';
+        $o .= html_writer::start_tag('li', array('id' => 'section-'.$sectionno, 'class' => 'section main clearfix hidden'));
+        $o .= html_writer::tag('div', '', array('class' => 'left side'));
+        $o .= html_writer::tag('div', '', array('class' => 'right side'));
+        $o .= html_writer::start_tag('div', array('class' => 'content'));
+        $o .= html_writer::tag('div', $strnotavailable);
+        $o .= html_writer::end_tag('div');
+        $o .= html_writer::end_tag('li');
+        return $o;
+    }
+
+    /**
+     * Generate html for a section summary text
+     *
+     * @param stdClass $section The course_section entry from DB
+     * @return string HTML to output.
+     */
+    public function format_summary_text($section) {
+        $context = context_course::instance($section->course);
+        $summarytext = file_rewrite_pluginfile_urls($section->summary, 'pluginfile.php',
+            $context->id, 'course', 'section', $section->id);
+
+        $options = new stdClass();
+        $options->noclean = true;
+        $options->overflowdiv = true;
+        return format_text($summarytext, $section->summaryformat, $options);
+    }
+
+    /**
+     * Generate the content to displayed on the right part of a section
+     * before course modules are included
+     *
+     * @param stdClass $section The course_section entry from DB
+     * @param stdClass $course The course entry from DB
+     * @param bool $onsectionpage true if being printed on a section page
+     * @return string HTML to output.
+     */
+    public function section_right_content($section, $course, $onsectionpage) {
+        $o = $this->output->spacer();
+
+        $controls = $this->section_edit_control_items($course, $section, $onsectionpage);
+        $o .= $this->section_edit_control_menu($controls, $course, $section);
+
+        return $o;
+    }
+
+    /**
+     * If section is not visible, display the message about that ('Not available
+     * until...', that sort of thing). Otherwise, returns blank.
+     *
+     * For users with the ability to view hidden sections, it shows the
+     * information even though you can view the section and also may include
+     * slightly fuller information (so that teachers can tell when sections
+     * are going to be unavailable etc). This logic is the same as for
+     * activities.
+     *
+     * @param section_info $section The course_section entry from DB
+     * @param bool $canviewhidden True if user can view hidden sections
+     * @return string HTML to output
+     */
+    public function section_availability_message($section, $canviewhidden) {
+        global $CFG;
+        $o = '';
+        if (!$section->visible) {
+            if ($canviewhidden) {
+                $o .= $this->courserenderer->availability_info(get_string('hiddenfromstudents'), 'ishidden');
+            } else {
+                // We are here because of the setting "Hidden sections are shown in collapsed form".
+                // Student can not see the section contents but can see its name.
+                $o .= $this->courserenderer->availability_info(get_string('notavailable'), 'ishidden');
+            }
+        } else if (!$section->uservisible) {
+            if ($section->availableinfo) {
+                // Note: We only get to this function if availableinfo is non-empty,
+                // so there is definitely something to print.
+                $formattedinfo = \core_availability\info::format_info(
+                        $section->availableinfo, $section->course);
+                $o .= $this->courserenderer->availability_info($formattedinfo, 'isrestricted');
+            }
+        } else if ($canviewhidden && !empty($CFG->enableavailability)) {
+            // Check if there is an availability restriction.
+            $ci = new \core_availability\info_section($section);
+            $fullinfo = $ci->get_full_information();
+            if ($fullinfo) {
+                $formattedinfo = \core_availability\info::format_info(
+                        $fullinfo, $section->course);
+                $o .= $this->courserenderer->availability_info($formattedinfo, 'isrestricted isfullinfo');
+            }
+        }
+        return $o;
+    }
+
+    /**
+     * Renders the mutiple section page.
+     * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
+     * @return
+     */
+    public function render_all_sections(\format_remui_format\output\format_remui_format_section $section) {
+        $templatecontext = $section->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if(empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            switch ($rformat) {
+                case REMUI_CARD_FORMAT:
+                    echo $this->render_from_template('format_remui_format/allsections', $templatecontext);
+                    break;
+                case REMUI_LIST_FORMAT:
+                    echo $this->render_from_template('format_remui_format/list_allsections', $templatecontext);
+                    break;
+                // default:
+                //     echo $this->render_from_template('format_remui_format/allsections', $templatecontext);
+                //     break;
+            }
+        }
+    }
+
+    /**
+     * Renders the single section page.
+     * @param  \format_cards\output\format_cards_activity $activity Object of Activity renderable
+     * @return
+     */
+    public function render_single_section(\format_remui_format\output\format_remui_format_activity $activity) {
+        $templatecontext = $activity->export_for_template($this);
+        // echo $this->render_from_template('format_remui_format/allactivities', $templatecontext);
+        $rformat = $this->settings['remuicourseformat'];
+        // var_dump($rformat);
+        // var_dump(REMUI_LIST_FORMAT);
+        
+        if(empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        // var_dump($rformat);
+        // exit;
+        switch ($rformat) {
+            case REMUI_CARD_FORMAT:
+                echo $this->render_from_template('format_remui_format/allactivities', $templatecontext);
+                break;
+            case REMUI_LIST_FORMAT:
+                echo $this->render_from_template('format_remui_format/list_allactivities', $templatecontext);
+                break;
+            // default:
+            //     echo $this->render_from_template('format_remui_format/allactivities', $templatecontext);
+            //     break;
+        }
     }
 }

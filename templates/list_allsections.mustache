@@ -1,0 +1,43 @@
+{{#editing}}
+    <ul class="remui-format-list">
+        {{! Display General Section }}
+        {{#generalsection}}
+            {{> format_remui_format/list_generalsectionedit }}
+        {{/generalsection}}
+        {{! Display Remaining Section }}
+        <div class="row">
+        {{#sections}}
+            {{> format_remui_format/list_singlesection }}
+        {{/sections}}
+        </div>
+    </ul>
+{{/editing}}
+{{^editing}}
+    <ul class="remui-format-list">
+        {{! Display General Section }}
+        {{#generalsection}}
+            {{> format_remui_format/list_generalsection }}
+        {{/generalsection}}
+        {{! Display Remaining Section }}
+        {{#sections}}
+            {{> format_remui_format/list_singlesection }}
+        {{/sections}}
+    </ul>
+{{/editing}}
+
+
+{{#js}}
+   jQuery('body#page-course-view-remui_format ul.remui-format-list a.panel-title').click(function(){
+      jQuery(this).find('i').toggleClass('fa-angle-down');
+      jQuery(this).find('i').toggleClass('fa-angle-up');
+      if(jQuery(this).parent().parent().find('.summary').is(":visible")){
+        jQuery(this).parent().parent().find('.summary').hide(500);
+        jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+        
+      }else{
+        jQuery(this).parent().parent().find('.summary').show(500);
+        jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+      }
+      
+   });
+{{/js}}

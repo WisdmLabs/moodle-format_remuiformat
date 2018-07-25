@@ -1,0 +1,35 @@
+<div class="col-lg-4 col-md-4 col-sm-12 single-card-container">
+    <div class="single-card my-30 p-20">
+        <span class="sno py-5 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        {{{ optionmenu }}}
+        {{{ hiddenmessage }}}
+        <div class="card-content">
+            <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
+            <p class="section-summary border-0">{{ summary }}</p>
+            {{#editsectionurl}}
+                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
+            {{/editsectionurl}}
+            <div class="section-summary-activities pb-10">
+                {{#activityinfo}}
+                    <p class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</p>
+                {{/activityinfo}}
+            </div>
+        </div>
+        <div class="section-action-container d-flex pt-10 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+            <div class="d-flex align-items-end">
+                <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remui_format {{/str}}</a>
+            </div>
+            {{#progressinfo}}
+            <div class="d-flex">
+                <div class="section-summary-percentage px-10">
+                    <p class="progress-title m-0 text-muted">{{#str}} progress, format_remui_format {{/str}}</p>
+                    <p class="progress-title m-0 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ progress }}</p>
+                </div>
+                <div class="pchart" data-percent="{{ percentage }}">
+                    <span class="activity-check {{ completed }}"><i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            {{/progressinfo}}
+        </div>
+    </div>
+</div>

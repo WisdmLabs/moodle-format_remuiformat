@@ -18,15 +18,14 @@
  * This is built using the bootstrapbase template to allow for new theme's using
  * Moodle's new Bootstrap theme engine
  *
- * @package   format_cards
+ * @package   format_remui_format
  * @copyright Copyright (c) 2016 WisdmLabs. (http://www.wisdmlabs.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace format_cards;
-
+namespace format_remui_format;
 defined('MOODLE_INTERNAL') || die;
-
+use html_writer;
 class ModStats
 {
     protected static $instance;
@@ -34,7 +33,7 @@ class ModStats
 
     // Constructor.
     private function __construct() {
-        $this->plugin_config = "format_cards";
+        $this->plugin_config = "format_remui_format";
     }
     // Singleton Implementation.
     public static function getinstance() {
@@ -68,13 +67,13 @@ class ModStats
             if ($attempt && !empty($attempt)) {
                 $totalgrade = $quiz->sumgrades;
                 $currentgrade = $attempt->sumgrades;
-                $marks = ($currentgrade / $totalgrade) * $quiz->grade;
-                $output = get_string('grade', 'format_cards')." : ".$marks ." / ". intval($quiz->grade);
+                $marks = round(($currentgrade / $totalgrade) * $quiz->grade, 2);
+                $output = get_string('grade', 'format_remui_format')." : ".$marks ." / ". intval($quiz->grade);
             } else {
-                $output = get_string('grade', 'format_cards')." : ". get_string('notattempted', 'format_cards');
+                $output = get_string('grade', 'format_remui_format')." : ". get_string('notattempted', 'format_remui_format');
             }
         } catch (Exception $e) {
-            $output = get_string('grade', 'format_cards')." : ". get_string('notattempted', 'format_cards');
+            $output = get_string('grade', 'format_remui_format')." : ". get_string('notattempted', 'format_remui_format');
         }
 
         return $output;
@@ -85,9 +84,9 @@ class ModStats
         $forum   = $DB->get_record('forum', array('id' => $forumid), '*', MUST_EXIST);
         $issubscribed = \mod_forum\subscriptions::is_subscribed($USER->id, $forum);
         if ($issubscribed) {
-            return get_string("subscribed", "format_cards");
+            return get_string("subscribed", "format_remui_format");
         } else {
-            return get_string("notsubscribed", "format_cards");
+            return get_string("notsubscribed", "format_remui_format");
         }
     }
 
@@ -96,9 +95,9 @@ class ModStats
         $info = new \completion_info($course);
         $data = $info->get_data($mod, false, $USER->id);
         if (!empty($data) && $data->completionstate == 1) {
-            return get_string("completed", "format_cards");
+            return get_string("completed", "format_remui_format");
         } else {
-            return get_string("notcompleted", "format_cards");
+            return get_string("notcompleted", "format_remui_format");
         }
     }
 
@@ -108,9 +107,9 @@ class ModStats
      * @return $summary String
      */
     public static function get_formatted_summary($summary, $settings) {
-
+        $output = '';
         $summarylength = $settings['sectiontitlesummarymaxlength'];
-        $summary = str_replace("&nbsp;", ' ', $summary);
+        $summary = strip_tags($summary);
         if ($summary) {
             $end = "";
             if (strlen($summary) > $summarylength) {
@@ -119,10 +118,11 @@ class ModStats
             $summary = substr($summary, 0, $summarylength);
             $summary .= $end;
         }
+        $output .= html_writer::start_tag('div', array('class' => 'overflowdiv '));
+        $output .= html_writer::start_tag('div', array('class' => 'noclean '));
+        $output .= $summary;
+        $output .= html_writer::end_tag('div');
+        $output .= html_writer::end_tag('div');
         return $summary;
-    }
-
-    public static function get_completed_modules() {
-
     }
 }

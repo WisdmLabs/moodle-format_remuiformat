@@ -18,14 +18,19 @@
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
  * @package course/format
- * @subpackage cards
+ * @subpackage remui_format
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+// define ('REMUI_CARD_FORMAT', 0);
+// define ('REMUI_LIST_FORMAT', 1);
+
 require_once($CFG->libdir.'/filelib.php');
 require_once($CFG->libdir.'/completionlib.php');
+require_once($CFG->dirroot.'/course/format/remui_format/classes/output/section_renderable.php');
+require_once($CFG->dirroot.'/course/format/remui_format/classes/output/activity_renderable.php');
 
 // Backward Compatibility.
 if ($topic = optional_param('topic', 0, PARAM_INT)) {
@@ -48,16 +53,18 @@ if (($marker >= 0) && has_capability('moodle/course:setcurrentsection', $context
 // Make sure section 0 is created.
 course_create_sections_if_missing($course, 0);
 
-$renderer = $PAGE->get_renderer('format_cards');
-
-if (!empty($displaysection)) {
-    $renderer->print_single_section_page($course, null, null, null, null, $displaysection);
-} else {
-    $renderer->print_multiple_section_page($course, null, null, null, null);
-}
+$renderer = $PAGE->get_renderer('format_remui_format');
 
 // Include JS Files Required.
 $stringman = get_string_manager();
-$strings = $stringman->load_component_strings('format_cards', 'en');
-$PAGE->requires->strings_for_js(array_keys($strings), 'format_cards');
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/cards/javascript/format.js'));
+$strings = $stringman->load_component_strings('format_remui_format', 'en');
+$PAGE->requires->strings_for_js(array_keys($strings), 'format_remui_format');
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remui_format/javascript/format.js'));
+
+if (!empty($displaysection)) {
+    // $renderer->print_single_section_page($course, null, null, null, null, $displaysection);
+    $renderer->render_single_section(new \format_remui_format\output\format_remui_format_activity($course, $displaysection));
+} else {
+    // $renderer->print_multiple_section_page($course, null, null, null, null);
+    $renderer->render_all_sections(new \format_remui_format\output\format_remui_format_section($course));
+}

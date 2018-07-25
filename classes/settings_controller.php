@@ -18,12 +18,12 @@
  * This is built using the bootstrapbase template to allow for new theme's using
  * Moodle's new Bootstrap theme engine
  *
- * @package   format_cards
+ * @package   format_remui_format
  * @copyright Copyright (c) 2016 WisdmLabs. (http://www.wisdmlabs.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace format_cards;
+namespace format_remui_format;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -34,7 +34,7 @@ class SettingsController
 
     // Constructor.
     private function __construct() {
-        $this->plugin_config = "format_cards";
+        $this->plugin_config = "format_remui_format";
     }
     // Singleton Implementation.
     public static function getinstance() {
@@ -66,9 +66,6 @@ class SettingsController
     public function getdefaultvalue($setting) {
         $defaultvalue;
         switch ($setting) {
-            case 'defaultcoursedisplay':
-                $defaultvalue = COURSE_DISPLAY_SINGLEPAGE;
-                break;
             case 'defaultbuttoncolour':
                 $defaultvalue = '#39c2a5';
                 break;
@@ -95,31 +92,15 @@ class SettingsController
     }
 
     /**
-     * Return the array of choices for Course display options.
-     * @param none
-     * @return arrray of choices
-     */
-    public function getcoursedisplayoptions() {
-        /*
-         * COURSE_DISPLAY_SINGLEPAGE or - All sections on one page.
-         * COURSE_DISPLAY_MULTIPAGE     - One section per page.
-        */
-        return array(
-            COURSE_DISPLAY_SINGLEPAGE => new \lang_string('coursedisplay_single'),
-            COURSE_DISPLAY_MULTIPAGE => new \lang_string('coursedisplay_multi')
-        );
-    }
-
-    /**
      * Return the array of choices for number of sections/topics/activity
      * @param none
      * @return arrray of choices
      */
     public function getnumberofsectionsoptions() {
         return array(
-            6 => get_string('six', 'format_cards'),      // Six.
-            9 => get_string('nine', 'format_cards'),    // Eight.
-            12 => get_string('twelve', 'format_cards')   // Twelve.
+            6 => get_string('six', 'format_remui_format'),      // Six.
+            9 => get_string('nine', 'format_remui_format'),    // Eight.
+            12 => get_string('twelve', 'format_remui_format')   // Twelve.
         );
     }
 
@@ -130,8 +111,8 @@ class SettingsController
      */
     public function getpaginationchoices() {
         return array(
-            1 => new \lang_string('off', 'format_cards'),   // Off.
-            2 => new \lang_string('on', 'format_cards')   // On.
+            1 => new \lang_string('off', 'format_remui_format'),   // Off.
+            2 => new \lang_string('on', 'format_remui_format')   // On.
         );
     }
 }

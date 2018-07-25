@@ -18,7 +18,7 @@
  * Cards Format - A topics based format that uses card layout to display the activities/section/topics.
  *
  * @package    course/format
- * @subpackage cards
+ * @subpackage remui_format
  * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,14 +26,17 @@
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 
-class format_cards extends format_base {
+define ('REMUI_CARD_FORMAT', 0);
+define ('REMUI_LIST_FORMAT', 1);
+
+class format_remui_format extends format_base {
 
     /**
      * Creates a new instance of class
      * Please use {@link course_get_format($courseorid)} to get an instance of the format class
      * @param string $format
      * @param int $courseid
-     * @return format_cards
+     * @return format_remui_format
      */
     protected function __construct($format, $courseid) {
         global $PAGE;
@@ -106,11 +109,11 @@ class format_cards extends format_base {
     public function get_default_section_name($section) {
         if ($section->section == 0) {
             // Return the general section.
-            return get_string('section0name', 'format_cards');
+            return get_string('section0name', 'format_remui_format');
         } else {
             // Use format_base::get_default_section_name implementation which
             // will display the section name in "Topic n" format.
-            return get_string('sectionname', 'format_cards').' '. $section->section;
+            return get_string('sectionname', 'format_remui_format').' '. $section->section;
         }
     }
 
@@ -164,29 +167,45 @@ class format_cards extends format_base {
      * @return array of options
      */
     public function course_format_options($foreditform = false) {
+        // var_dump("here");
+        // exit;
         static $courseformatoptions = false;
         if ($courseformatoptions === false) {
+            // var_dump(get_config('format_remui_format', 'defaultsectionsummarymaxlength'));
+            // exit;
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
             this needs to be stripped off here if it's there for the format's specific colour picker. */
             $courseconfig = get_config('moodlecourse');
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
-                    'type' => PARAM_INT
+                    'type' => PARAM_INT,
                 ),
                 'coursedisplay' => array(
                     'default' => $courseconfig->coursedisplay,
                     'type' => PARAM_INT
                 ),
+                'remuicourseformat' => array(
+                    'default' => get_config('format_remui_format', 'remuicourseformat'),
+                    'type' => PARAM_INT
+                ),
+                'remuicourseimage' => array(
+                    'default' => get_config('format_remui_format', 'remuicourseimage'),
+                    'type' => PARAM_CLEANFILE
+                ),
                 'sectiontitlesummarymaxlength' => array(
-                    'default' => get_config('format_cards', 'defaultsectionsummarymaxlength'),
+                    'default' => get_config('format_remui_format', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
             );
         }
 
         if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
+            // var_dump("here");
+            // exit;
             $courseconfig = get_config('moodlecourse');
+            // var_dump(get_config('format_remui_format', 'defaultsectionsummarymaxlength'));
+            // exit;
             $courseformatoptionsedit = array(
                 'hiddensections' => array(
                     'label' => new lang_string('hiddensections'),
@@ -205,19 +224,40 @@ class format_cards extends format_base {
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
                             COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi')
                         )
                     ),
                     'help' => 'coursedisplay',
                     'help_component' => 'moodle',
                 ),
+                'remuicourseformat' => array(
+                    'label' => new lang_string('remuicourseformat', 'format_remui_format'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            REMUI_CARD_FORMAT => new lang_string('remuicourseformat_card', 'format_remui_format'),
+                            REMUI_LIST_FORMAT => new lang_string('remuicourseformat_list', 'format_remui_format'),
+                        )
+                    ),
+                    'help' => 'remuicourseformat',
+                    'help_component' => 'format_remui_format',
+                ),
+                'remuicourseimage' => array(
+                    'label' => new lang_string('remuicourseimage', 'format_remui_format'),
+                    'element_type' => 'filemanager',
+                    'element_attributes' => array(
+                        'maxfiles' => 1,
+                        'accepted_types' => array('image'),
+                    ),
+                    'help' => 'remuicourseimage',
+                    'help_component' => 'format_remui_format',
+                ),
                 'sectiontitlesummarymaxlength' => array(
-                    'label' => new lang_string('sectiontitlesummarymaxlength', 'format_cards'),
+                    'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remui_format'),
                     'element_type' => 'text',
                     'element_attributes' => array('size' => 3),
                     'help' => 'sectiontitlesummarymaxlength',
-                    'help_component' => 'format_cards'
+                    'help_component' => 'format_remui_format'
                 )
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
@@ -271,14 +311,110 @@ class format_cards extends format_base {
         $editlabel = null
     ) {
         if (empty($edithint)) {
-            $edithint = new lang_string('editsectionname', 'format_cards');
+            $edithint = new lang_string('editsectionname', 'format_remui_format');
         }
         if (empty($editlabel)) {
             $title = get_section_name($section->course, $section);
-            $editlabel = new lang_string('newsectionname', 'format_cards', $title);
+            $editlabel = new lang_string('newsectionname', 'format_remui_format', $title);
         }
         return parent::inplace_editable_render_section_name($section, $linkifneeded, $editable, $edithint, $editlabel);
     }
+    /**
+     * Loads all of the course sections into the navigation
+     *
+     * @param global_navigation $navigation
+     * @param navigation_node $node The course node within the navigation
+     */
+    public function extend_course_navigation($navigation, navigation_node $node) {
+        global $PAGE;
+        // if section is specified in course/view.php, make sure it is expanded in navigation
+        if ($navigation->includesectionnum === false) {
+            $selectedsection = optional_param('section', null, PARAM_INT);
+            if ($selectedsection !== null && (!defined('AJAX_SCRIPT') || AJAX_SCRIPT == '0') &&
+                    $PAGE->url->compare(new moodle_url('/course/view.php'), URL_MATCH_BASE)) {
+                $navigation->includesectionnum = $selectedsection;
+            }
+        }
+
+        // check if there are callbacks to extend course navigation
+        parent::extend_course_navigation($navigation, $node);
+
+        // We want to remove the general section if it is empty.
+        $modinfo = get_fast_modinfo($this->get_course());
+        $sections = $modinfo->get_sections();
+        if (!isset($sections[0])) {
+            // The general section is empty to find the navigation node for it we need to get its ID.
+            $section = $modinfo->get_section_info(0);
+            $generalsection = $node->get($section->id, navigation_node::TYPE_SECTION);
+            if ($generalsection) {
+                // We found the node - now remove it.
+                $generalsection->remove();
+            }
+        }
+    }
+    /**
+     * Indicates whether the course format supports the creation of a news forum.
+     *
+     * @return bool
+     */
+    public function supports_news() {
+        return true;
+    }
+
+    /**
+     * Returns the list of blocks to be automatically added for the newly created course
+     *
+     * @return array of default blocks, must contain two keys BLOCK_POS_LEFT and BLOCK_POS_RIGHT
+     *     each of values is an array of block names (for left and right side columns)
+     */
+    public function get_default_blocks() {
+        return array(
+            BLOCK_POS_LEFT => array(),
+            BLOCK_POS_RIGHT => array()
+        );
+    }
+    /**
+     * Returns whether this course format allows the activity to
+     * have "triple visibility state" - visible always, hidden on course page but available, hidden.
+     *
+     * @param stdClass|cm_info $cm course module (may be null if we are displaying a form for adding a module)
+     * @param stdClass|section_info $section section where this module is located or will be added to
+     * @return bool
+     */
+    public function allow_stealth_module_visibility($cm, $section) {
+        // Allow the third visibility state inside visible sections or in section 0.
+        return !$section->section || $section->visible;
+    }
+
+    public function section_action($section, $action, $sr) {
+        global $PAGE;
+
+        if ($section->section && ($action === 'setmarker' || $action === 'removemarker')) {
+            // Format 'topics' allows to set and remove markers in addition to common section actions.
+            require_capability('moodle/course:setcurrentsection', context_course::instance($this->courseid));
+            course_set_marker($this->courseid, ($action === 'setmarker') ? $section->section : 0);
+            return null;
+        }
+
+        // For show/hide actions call the parent method and return the new content for .section_availability element.
+        $rv = parent::section_action($section, $action, $sr);
+        $renderer = $PAGE->get_renderer('format_topics');
+        $rv['section_availability'] = $renderer->section_availability($this->get_section($section));
+        return $rv;
+    }
+
+    /**
+     * Return the plugin configs for external functions.
+     *
+     * @return array the list of configuration settings
+     * @since Moodle 3.5
+     */
+    public function get_config_for_external() {
+        // Return everything (nothing to hide).
+        return $this->get_format_options();
+    }
+
+
 }
 
 /**
@@ -289,7 +425,7 @@ class format_cards extends format_base {
  * @param mixed $newvalue
  * @return \core\output\inplace_editable
  */
-function format_cards_inplace_editable($itemtype, $itemid, $newvalue) {
+function format_remui_format_inplace_editable($itemtype, $itemid, $newvalue) {
     global $DB, $CFG;
     require_once($CFG->dirroot . '/course/lib.php');
     if ($itemtype === 'sectionname' || $itemtype === 'sectionnamenl') {
@@ -297,5 +433,35 @@ function format_cards_inplace_editable($itemtype, $itemid, $newvalue) {
             'SELECT s.* FROM {course_sections} s JOIN {course} c ON s.course = c.id WHERE s.id = ? AND c.format = ?',
             array($itemid, 'cards'), MUST_EXIST);
         return course_get_format($section->course)->inplace_editable_update_section_name($section, $itemtype, $newvalue);
+    }
+}
+/**
+ * Custom action after section has been moved in AJAX mode
+ *
+ * Used in course/rest.php
+ *
+ * @return array This will be passed in ajax respose
+ */
+// function ajax_section_move() {
+//     global $PAGE;
+//     $titles = array();
+//     $course = $this->get_course();
+//     $modinfo = get_fast_modinfo($course);
+//     $renderer = $this->get_renderer($PAGE);
+//     if ($renderer && ($sections = $modinfo->get_section_info_all())) {
+//         foreach ($sections as $number => $section) {
+//             $titles[$number] = $renderer->section_title($section, $course);
+//         }
+//     }
+//     return array('sectiontitles' => $titles, 'action' => 'move');
+// }
+
+function format_remui_format_pluginfile ($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+    // render the image
+    $courseconfig = get_config('moodlecourse');
+    if ($filearea === 'draft') {
+            return $courseconfig->setting_file_serve('draft', $args, $forcedownload, $options);
+    } else {
+        send_file_not_found();
     }
 }
