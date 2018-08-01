@@ -63,7 +63,7 @@ class format_remuiformat_activity implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE;
+        global $USER, $PAGE, $CFG;
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
         $renderer = $PAGE->get_renderer('format_remuiformat');
@@ -106,22 +106,20 @@ class format_remuiformat_activity implements renderable, templatable {
         // var_dump($export->activities);
         // exit;
         $export->addnewactivity = $this->courserenderer->course_section_add_cm_control($this->course, $this->displaysection, $this->displaysection);
-        // $rformat = $this->settings['remuicourseformat'];
+        $rformat = $this->settings['remuicourseformat'];
         // if(empty($rformat)) {
         //     $export->remuicourseformatcard = true;
         //     return  $export;
         // }
-        // switch ($rformat) {
-        //     case REMUI_CARD_FORMAT:
-        //         $export->remuicourseformatcard = true;
-        //         break;
-        //     case REMUI_LIST_FORMAT:
-        //         $export->remuicourseformatlist = true;
-        //         break;
-        //     default:
-        //         $export->remuicourseformatcard = true;
-        //         break;
-        // }
+        switch ($rformat) {
+            case REMUI_CARD_FORMAT:
+                // $export->remuicourseformatcard = true;
+                break;
+            case REMUI_LIST_FORMAT:
+                // $export->remuicourseformatlist = true;
+                $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
+                break;
+        }
         return $export;
     }
 

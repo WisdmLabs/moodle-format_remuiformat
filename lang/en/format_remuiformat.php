@@ -86,6 +86,7 @@ $string['remuicourseformat_list'] = 'List Format';
 $string['remuicourseformat_help'] = 'Choose a course format';
 $string['remuicourseimage'] = 'Choose a course image';
 $string['remuicourseimage_help'] = 'Choose a course image';
+$string['addsections'] = 'Add sections';
 
 // $string['defaultcourseformat'] = 'Select a course format ot choose';
 

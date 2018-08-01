@@ -59,8 +59,9 @@ $renderer = $PAGE->get_renderer('format_remuiformat');
 $stringman = get_string_manager();
 $strings = $stringman->load_component_strings('format_remuiformat', 'en');
 $PAGE->requires->strings_for_js(array_keys($strings), 'format_remuiformat');
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format.js'));
-
+// $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format.js'));
+// var_dump($rformat);
+// exit;
 if (!empty($displaysection)) {
     // $renderer->print_single_section_page($course, null, null, null, null, $displaysection);
     $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection));
@@ -68,4 +69,4 @@ if (!empty($displaysection)) {
     // $renderer->print_multiple_section_page($course, null, null, null, null);
     $renderer->render_all_sections(new \format_remuiformat\output\format_remuiformat_section($course));
 }
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/format.js'));
+// $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/format.js'));

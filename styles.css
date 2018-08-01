@@ -373,6 +373,9 @@ For list format
 /* For section title */
 ul.remui-format-list h4.sectionname {
   padding: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+
 } 
 
 /* For section activity completion icon */

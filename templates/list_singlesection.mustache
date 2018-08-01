@@ -1,14 +1,23 @@
 <li id="section-{{{index}}}" class="card section main clearfix" role="region" style="width: 90%; margin-left: auto; margin-right:auto;" aria-label="">
+   <span class="hidden sectionname">{{{ title }}}</span>
    <div class="content card-block p-25 remui-list-content-border" style="clear:both;">
       <div class="row d-block">
-         {{{leftside}}}
          <div class="right side float-right">
            {{{ optionmenu }}}
          </div>
+         {{{leftside}}}
       </div>
       <h4 class="sectionname card-title">
-      
-         <a class="panel-title p-0" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="true" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}<i class="fa-angle-up float-right"></i></a>
+         {{#editing}}
+            {{{ title }}}
+         {{/editing}}
+         {{^editing}}
+            <a class="panel-title p-0" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="true" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
+            <i class="fa-angle-up float-right"></i>
+            </a>
+         {{/editing}}
+
+
       
       </h4>
         {{{ hiddenmessage }}}

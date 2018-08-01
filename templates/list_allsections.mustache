@@ -11,7 +11,12 @@
         {{/sections}}
         </div>
     </ul>
-
+    <div id="changenumsections" class="mdl-right">
+      <a class="add-sections" data-add-sections="{{#str}} addsections, format_remuiformat {{/str}}" href="{{{addnewsectionoption}}}" id="yui_3_17_2_1_1533113500579_666">
+        <i class="icon fa fa-plus fa-fw " aria-hidden="true" title="{{#str}} addsections, format_remuiformat {{/str}}" aria-label="{{#str}} addsections, format_remuiformat {{/str}}"></i>
+        {{#str}} addsections, format_remuiformat {{/str}}
+      </a>
+    </div>
 {{/editing}}
 {{^editing}}
     <ul class="remui-format-list">
@@ -44,4 +49,3 @@
 {{/js}}
 
 {{/editing}}
-{{{addnewsectionoption}}}

@@ -61,9 +61,9 @@ M.course.format.process_sections = function(Y, sectionlist, response, sectionfro
     SELECTORS = {
         SECTIONLEFTSIDE : '.left .section-handle .icon'
     };
-
+    // alert(sectionlist);
     if (response.action == 'move') {
-        alert('Hi!');
+        // alert('Hi!');
         // If moving up swap around 'sectionfrom' and 'sectionto' so the that loop operates.
         if (sectionfrom > sectionto) {
             var temp = sectionto;
@@ -76,8 +76,9 @@ M.course.format.process_sections = function(Y, sectionlist, response, sectionfro
 
         for (var i = sectionfrom; i <= sectionto; i++) {
             // Update section title.
-            var content = Y.Node.create('<span>' + response.sectiontitles[i] + '</span>');
-            sectionlist.item(i).all('.'+CSS.SECTIONNAME).setHTML(content);
+            var content = Y.Node.create(response.sectiontitles[i]);
+            sectionlist.item(i).all('h4.'+CSS.SECTIONNAME).setHTML(content);
+            // alert(sectionlist.item(i));
             // Update move icon.
             ele = sectionlist.item(i).one(SELECTORS.SECTIONLEFTSIDE);
             str = ele.getAttribute('alt');

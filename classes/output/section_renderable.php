@@ -90,6 +90,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
         $export = new \stdClass();
         $renderer = $PAGE->get_renderer('format_remuiformat');
         // $courseformatrenderer = new \format_section_renderer_base($PAGE, 'format_remuiformat');
+        $rformat = $this->settings['remuicourseformat'];
 
         // Get necessary values required to display the UI.
         $editing = $PAGE->user_is_editing();
@@ -113,7 +114,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
         // exit;
         // Setting up data for General Section.
         $generalsection = $modinfo->get_section_info(0);
-        $rformat = $this->settings['remuicourseformat'];
+        
         if ($generalsection) {
             if (!$editing) {
                 $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
@@ -125,6 +126,8 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                 //     exit;
                 // }
                 $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
+                // var_dump($export->generalsection['title']);
+                // exit;
                 // $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
                 // echo ($export->generalsection['title']);
                 // exit;
@@ -137,10 +140,12 @@ class format_remuiformat_section extends \format_section_renderer_base implement
             // Course Modules.
             switch ($rformat) {
                 case REMUI_CARD_FORMAT:
+                    $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
                     $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
                     $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
                     break;
                 case REMUI_LIST_FORMAT:
+                    $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
                 // var_dump($this->settings['remuicourseimage_filemanager']);
                 // exit;
                     // $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
@@ -290,7 +295,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
             }
             $sectiondetails->singlepageurl = $singlepageurl;
             $sectiondetails->summary = $this->modstats->get_formatted_summary(strip_tags($currentsection->summary), $this->settings);
-
+            // $sectiondetails->summary = strlen($sectiondetails->summary) > 300 ? substr($sectiondetails->summary, 0, 300)."..." : $sectiondetails->summary;
             if ($editing) {
                 $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
                 $sectiondetails->leftside = '<div class="left side float-left">' . $renderer->section_left_content($currentsection, $this->course, false) . '</div>';
@@ -324,7 +329,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                     $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
                     $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
                     $sections[] = $sectiondetails;
-                    $sectiondetails->title = $this->courseformat->get_section_name($currentsection);
+                    // $sectiondetails->title = $this->courseformat->get_section_name($currentsection);
                     break;
             }
             // var_dump($sectiondetails->activityinfostring);
@@ -333,8 +338,12 @@ class format_remuiformat_section extends \format_section_renderer_base implement
             // exit;
         }
         $export->sections = $sections;
-        $export->addnewsectionoption = $renderer->change_number_sections($this->course,null);
-        // var_dump($export->sections);
+        $addsectionurl = new \moodle_url('/course/changenumsections.php',
+                ['courseid' => $this->course->id, 'insertsection' => 0, 'sesskey' => sesskey()]);
+        $export->addnewsectionoption = $addsectionurl;
+        // $export->addnewsectionoption = $renderer->change_number_sections($this->course,null);
+
+        // var_dump($export->addnewsectionoption);
         // exit;
         // $rformat = $this->settings['remuicourseformat'];
         // if(empty($rformat)) {
@@ -438,6 +447,9 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                 $activitydetails->modulename = $mod->modname;
                 // var_dump($mod->modname);
                 $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                
+                $activitydetails->summary = strlen($activitydetails->summary) > 300 ? substr($activitydetails->summary, 0, 300)."..." : $activitydetails->summary;
+                // var_dump($activitydetails->summary);
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
