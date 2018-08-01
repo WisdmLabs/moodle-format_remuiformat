@@ -26,7 +26,6 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
-// require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_module_renderer.php');
 
 class format_remuiformat_renderer extends format_section_renderer_base {
 
@@ -45,7 +44,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         parent::__construct($page, $target);
         $this->courseformat = course_get_format($page->course);
         $this->settings = $this->courseformat->get_settings();
-        // $this->coursemodulerenderer = new \format_remuiformat\course_module_renderer($page, $target);
         $this->settingcontroller = \format_remuiformat\SettingsController::getinstance();
         $this->modstats = \format_remuiformat\ModStats::getinstance();
         // Since format_remuiformat_renderer::section_edit_controls()
@@ -285,27 +283,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
     }
 
     /**
-     * Generate the content to displayed on the left part of a section
-     * before course modules are included
-     *
-     * @param stdClass $section The course_section entry from DB
-     * @param stdClass $course The course entry from DB
-     * @param bool $onsectionpage true if being printed on a section page
-     * @return string HTML to output.
-     */
-    // public function section_left_content($section, $course, $onsectionpage) {
-    //     $o = '';
-
-    //     if ($section->section != 0) {
-    //         // Only in the non-general sections.
-    //         if (course_get_format($course)->is_section_current($section)) {
-    //             $o = get_accesshide(get_string('currentsection', 'format_'.$course->format));
-    //         }
-    //     }
-
-    //     return $o;
-    // }
-    /**
      * Generate the content to displayed on the right part of a section
      * before course modules are included
      *
@@ -377,7 +354,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
     public function render_all_sections(\format_remuiformat\output\format_remuiformat_section $section) {
         $templatecontext = $section->export_for_template($this);
         $rformat = $this->settings['remuicourseformat'];
-        if(empty($rformat)) {
+        if (empty($rformat)) {
             $rformat = REMUI_CARD_FORMAT;
         }
         if (isset($templatecontext->error)) {
@@ -390,9 +367,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 case REMUI_LIST_FORMAT:
                     echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
                     break;
-                // default:
-                //     echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                //     break;
+                default:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
             }
         }
     }
@@ -404,16 +381,10 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      */
     public function render_single_section(\format_remuiformat\output\format_remuiformat_activity $activity) {
         $templatecontext = $activity->export_for_template($this);
-        // echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
         $rformat = $this->settings['remuicourseformat'];
-        // var_dump($rformat);
-        // var_dump(REMUI_LIST_FORMAT);
-        
-        if(empty($rformat)) {
+        if (empty($rformat)) {
             $rformat = REMUI_CARD_FORMAT;
         }
-        // var_dump($rformat);
-        // exit;
         switch ($rformat) {
             case REMUI_CARD_FORMAT:
                 echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
@@ -421,9 +392,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             case REMUI_LIST_FORMAT:
                 echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
                 break;
-            // default:
-            //     echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-            //     break;
+            default:
+                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
+                break;
         }
     }
 }

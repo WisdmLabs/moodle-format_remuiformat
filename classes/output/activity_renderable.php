@@ -67,10 +67,7 @@ class format_remuiformat_activity implements renderable, templatable {
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
         $renderer = $PAGE->get_renderer('format_remuiformat');
-        
-        // course_format_options($this->course, 'remuicourseformat');
-        // var_dump(course_format_options());
-        // exit;
+
         // Check if section exists.
         if (!($sectioninfo = $modinfo->get_section_info($this->displaysection))) {
             // This section doesn't exist.
@@ -103,20 +100,18 @@ class format_remuiformat_activity implements renderable, templatable {
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
-        // var_dump($export->activities);
-        // exit;
-        $export->addnewactivity = $this->courserenderer->course_section_add_cm_control($this->course, $this->displaysection, $this->displaysection);
+        $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
+            $this->course,
+            $this->displaysection,
+            $this->displaysection
+        );
         $rformat = $this->settings['remuicourseformat'];
-        // if(empty($rformat)) {
-        //     $export->remuicourseformatcard = true;
-        //     return  $export;
-        // }
         switch ($rformat) {
             case REMUI_CARD_FORMAT:
-                // $export->remuicourseformatcard = true;
+                $export->remuicourseformatcard = true;
                 break;
             case REMUI_LIST_FORMAT:
-                // $export->remuicourseformatlist = true;
+                $export->remuicourseformatlist = true;
                 $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
                 break;
         }
@@ -140,7 +135,12 @@ class format_remuiformat_activity implements renderable, templatable {
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                $activitydetails->completion = $this->courserenderer->course_section_cm_completion($this->course, $completioninfo, $mod, $displayoptions);
+                $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
+                    $this->course,
+                    $completioninfo,
+                    $mod,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
@@ -157,7 +157,11 @@ class format_remuiformat_activity implements renderable, templatable {
                 }
                 if ($PAGE->user_is_editing()) {
                     $editactions = course_get_cm_edit_actions($mod, $mod->indent, $this->displaysection);
-                    $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions($editactions, $mod, $this->displaysection);
+                    $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions(
+                        $editactions,
+                        $mod,
+                        $this->displaysection
+                    );
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }

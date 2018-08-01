@@ -66,21 +66,6 @@ class SettingsController
     public function getdefaultvalue($setting) {
         $defaultvalue;
         switch ($setting) {
-            case 'defaultbuttoncolour':
-                $defaultvalue = '#39c2a5';
-                break;
-            case 'defaultoverlaycolour':
-                $defaultvalue = '#dddddd';
-                break;
-            case 'enablepagination':
-                $defaultvalue = 1;
-                break;
-            case 'defaultnumberoftopics':
-                $defaultvalue = 6;
-                break;
-            case 'defaultnumberoftopics':
-                $defaultvalue = 6;
-                break;
             case 'defaultsectionsummarymaxlength' :
                 $defaultvalue = 100;
                 break;
@@ -89,30 +74,5 @@ class SettingsController
                 break;
         }
         return $defaultvalue;
-    }
-
-    /**
-     * Return the array of choices for number of sections/topics/activity
-     * @param none
-     * @return arrray of choices
-     */
-    public function getnumberofsectionsoptions() {
-        return array(
-            6 => get_string('six', 'format_remuiformat'),      // Six.
-            9 => get_string('nine', 'format_remuiformat'),    // Eight.
-            12 => get_string('twelve', 'format_remuiformat')   // Twelve.
-        );
-    }
-
-    /**
-     * Return the array of choices for enable pagination
-     * @param none
-     * @return arrray of choices
-     */
-    public function getpaginationchoices() {
-        return array(
-            1 => new \lang_string('off', 'format_remuiformat'),   // Off.
-            2 => new \lang_string('on', 'format_remuiformat')   // On.
-        );
     }
 }

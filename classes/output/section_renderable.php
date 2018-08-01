@@ -31,7 +31,7 @@ require_once($CFG->dirroot.'/course/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
-// require_once($CFG->dirroot.'/course/renderer.php');
+
 /**
  * This file contains the definition for the renderable classes for the sections page.
  *
@@ -51,8 +51,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
     /**
      * Constructor
      */
-    public function __construct($course)
-    {
+    public function __construct($course) {
         global $PAGE;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
@@ -60,19 +59,22 @@ class format_remuiformat_section extends \format_section_renderer_base implement
         $this->modstats = \format_remuiformat\ModStats::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
-    protected function start_section_list(){}
+    protected function start_section_list() {
+    }
 
     /**
      * Generate the closing container html for a list of sections
      * @return string HTML to output.
      */
-    protected function end_section_list(){}
+    protected function end_section_list() {
+    }
 
     /**
      * Generate the title for this section page
      * @return string the page title
      */
-    protected function page_title(){}
+    protected function page_title() {
+    }
 
     /**
      * Function to export the renderer data in a format that is suitable for a
@@ -81,8 +83,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
      * @param renderer_base $output Used to do a final render of any components that need to be rendered for export.
      * @return stdClass|array
      */
-    public function export_for_template(renderer_base $output)
-    {
+    public function export_for_template(renderer_base $output) {
         global $USER, $PAGE, $DB, $OUTPUT, $CFG;
         require_once($CFG->libdir. '/coursecatlib.php');
 
@@ -103,34 +104,16 @@ class format_remuiformat_section extends \format_section_renderer_base implement
         $modinfo = get_fast_modinfo($this->course);
         $sections = $modinfo->get_section_info_all();
         $export->editing = $editing;
-        // $courseconfig = get_config('moodlecourse');
-        // $course = $this->course;
-        // var_dump($course->has_summary());
-        // exit;
-        // var_dump(get_config('format_remuiformat', 'remuicourseformat'));
-        // exit;
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
-        // var_dump($export->courseformat);
-        // exit;
         // Setting up data for General Section.
         $generalsection = $modinfo->get_section_info(0);
-        
         if ($generalsection) {
             if (!$editing) {
                 $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
                 $export->generalsection['availability'] = $renderer->section_availability($generalsection);
                 $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
             } else {
-                // if($rformat == REMUI_LIST_FORMAT && $editing) {
-                //     var_dump($generalsection);
-                //     exit;
-                // }
                 $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
-                // var_dump($export->generalsection['title']);
-                // exit;
-                // $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
-                // echo ($export->generalsection['title']);
-                // exit;
                 $export->generalsection['availability'] = $renderer->section_availability($generalsection);
                 $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
                 $export->generalsection['editsetionurl'] = new \moodle_url('editsection.php', array('id' => $generalsection->id));
@@ -146,40 +129,16 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                     break;
                 case REMUI_LIST_FORMAT:
                     $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
-                // var_dump($this->settings['remuicourseimage_filemanager']);
-                // exit;
-                    // $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
                     $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
-                        // echo "<pre>";
-                        // print_r($imgurl);
-                        // echo "</pre>";
-                    // $file_record = $DB->get_record_sql('SELECT * FROM {files} WHERE filearea = ? AND itemid = ? AND filename NOT LIKE ?', array('remuicourseimage_filearea', $this->settings['remuicourseimage_filemanager'], '.'));
-                    // var_dump($file_record);
-                    // exit;
-                    // $imgurl = 
-                    // if($file_record) {
-                        
-                    //     var_dump($courseimage);
-                    //     exit;
-                    //     $export->generalsection['remuicourseimage'] = get;
-                    // }
-                    // exit;
                     $export->generalsection['remuicourseimage'] = $imgurl;
-                    // For Completion percentage
+                    // For Completion percentage.
                     $export->generalsection['activities'] = $this->get_activities_details($generalsection);
-                    // var_dump($this->courserenderer->course_section_add_cm_control($this->course, 0, 0));
-                    // exit;
-                    // $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
                     $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
-                    // $context = get_context_instance($coursecontext, $this->course->id);
                     $teachers = get_role_users($role->id, $coursecontext);
                     if (empty($teachers)) {
                         break;
                     }
                     $completion = new \completion_info($this->course);
-                    // if (has_capability('moodle/course:update', $coursecontext)) {
-                    //     continue;
-                    // }
                     // First, let's make sure completion is enabled.
                     if (!$completion->is_enabled()) {
                         continue;
@@ -190,31 +149,26 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                         $export->generalsection['percentage'] = $percentage;
                     }
 
-                    // For right side
-                    // var_dump(get_class_methods('core_course_renderer'));
-                    // exit;
+                    // For right side.
                     $rightside = $renderer->section_right_content($generalsection, $this->course, false);
                     $export->generalsection['rightside'] = $rightside;
-                    // $export->generalsection['leftcontent'] = '<div class="left side">' . $renderer->section_left_content($generalsection, $this->course, false) . '</div>';
-                    // For displaying teachers
+                    // For displaying teachers.
                     $count = 1;
                     $export->generalsection['teachers'] = $teachers;
-                    $export->generalsection['teachers']['teacherimg'] = '<div class="teacher-label"><span>Teachers</span></div><div class="carousel slide" data-ride="carousel" id="teachersCarousel">
-                        <div class="carousel-inner">';
+                    $export->generalsection['teachers']['teacherimg'] = '<div class="teacher-label"><span>Teachers</span></div>
+                    <div class="carousel slide" data-ride="carousel" id="teachersCarousel">
+                    <div class="carousel-inner">';
 
-
-                    // Add new activity
+                    // Add new activity.
                     $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
 
-                    // var_dump($teachers);
-                    // exit;
                     foreach ($teachers as $teacher) {
-                        if ($count % 2 == 0) { // skip even members
+                        if ($count % 2 == 0) {
+                            // Skip even members.
                             $count += 1;
                             next($teachers);
                             continue;
                         }
-                        // var_dump($teacher);
                         $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                         if ($count == 1) {
                             $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active">' . $OUTPUT->user_picture($teacher);
@@ -222,47 +176,26 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                         } else {
                             $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item">'. $OUTPUT->user_picture($teacher);
                         }
-                        // var_dump(current($teachers));
                         $nextteacher = next($teachers);
-                    // var_dump(next($teachers));
                         if (false != $nextteacher) {
-                            // var_dump($nextteacher);
-                        
-                            // var_dump($nextteacher);
-                            // exit;
                             $nextteacher->imagealt = $nextteacher->firstname . ' ' . $nextteacher->lastname;
                             $export->generalsection['teachers']['teacherimg'] .= $OUTPUT->user_picture($nextteacher);
                         }
                         $export->generalsection['teachers']['teacherimg'] .= '</div>';
-                         // $export->generalsection['teachers']['teacherimg'] .= $OUTPUT->user_picture($teacher);
-                        
                         $count += 1;
                     }
                     $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a></div>';
-                    // var_dump($export->generalsection['teachers']['teacherimg']);
-                    // exit;
-//                      $export->generalsection['teachers']['teacherimg'] .= '</div>
-//         <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-//         <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-//       </div>
-//     </div>
-//   </div>
-// </div>'; 
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a></div>';
                     break;
                 default:
-                    # code...
                     break;
             }
-            // var_dump($export->generalsection['activities']);
-            // exit;
-            
         }
 
         $startfrom = 1;
@@ -295,14 +228,9 @@ class format_remuiformat_section extends \format_section_renderer_base implement
             }
             $sectiondetails->singlepageurl = $singlepageurl;
             $sectiondetails->summary = $this->modstats->get_formatted_summary(strip_tags($currentsection->summary), $this->settings);
-            // $sectiondetails->summary = strlen($sectiondetails->summary) > 300 ? substr($sectiondetails->summary, 0, 300)."..." : $sectiondetails->summary;
             if ($editing) {
                 $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
                 $sectiondetails->leftside = '<div class="left side float-left">' . $renderer->section_left_content($currentsection, $this->course, false) . '</div>';
-                // var_dump($currentsection);
-                // var_dump($sectiondetails->leftside);
-                // exit;
-
                 $sectiondetails->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
 
             }
@@ -314,59 +242,28 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                 $sectiondetails->hidden = 1;
             }
             $extradetails = $this->get_section_module_info($currentsection, $this->course, null);
-            
             switch ($rformat) {
                 case REMUI_CARD_FORMAT:
-                    // var_dump($extradetails);
-                    // exit;
                     $sectiondetails->activityinfo = $extradetails['activityinfo'];
                     $sectiondetails->progressinfo = $extradetails['progressinfo'];
                     $sections[] = $sectiondetails;
                     break;
                 case REMUI_LIST_FORMAT:
                     $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
-                    // $sectiondetails->sectionactivities = $this->get_activities_details($currentsection);
                     $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
                     $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
                     $sections[] = $sectiondetails;
-                    // $sectiondetails->title = $this->courseformat->get_section_name($currentsection);
                     break;
             }
-            // var_dump($sectiondetails->activityinfostring);
-            // exit;
-            // var_dump($sections[0]->sectionactivities);
-            // exit;
         }
         $export->sections = $sections;
         $addsectionurl = new \moodle_url('/course/changenumsections.php',
                 ['courseid' => $this->course->id, 'insertsection' => 0, 'sesskey' => sesskey()]);
         $export->addnewsectionoption = $addsectionurl;
-        // $export->addnewsectionoption = $renderer->change_number_sections($this->course,null);
-
-        // var_dump($export->addnewsectionoption);
-        // exit;
-        // $rformat = $this->settings['remuicourseformat'];
-        // if(empty($rformat)) {
-        //     $export->remuicourseformatcard = true;
-        //     return  $export;
-        // }
-        // switch ($rformat) {
-        //     case REMUI_CARD_FORMAT:
-        //         $export->remuicourseformatcard = true;
-        //         break;
-        //     case REMUI_LIST_FORMAT:
-        //         $export->remuicourseformatlist = true;
-        //         break;
-        //     default:
-        //         $export->remuicourseformatcard = true;
-        //         break;
-        // }
-
         return  $export;
     }
 
-    private function get_section_module_info($section, $course, $mods)
-    {
+    private function get_section_module_info($section, $course, $mods) {
         $modinfo = get_fast_modinfo($course);
         $output = array(
             "activityinfo" => array(),
@@ -420,8 +317,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
         return $output;
     }
 
-    private function get_activities_details($section, $displayoptions = array())
-    {
+    private function get_activities_details($section, $displayoptions = array()) {
         global $PAGE;
         $modinfo = get_fast_modinfo($this->course);
         // var_dump($modinfo);
@@ -445,11 +341,8 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
-                // var_dump($mod->modname);
                 $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
-                
                 $activitydetails->summary = strlen($activitydetails->summary) > 300 ? substr($activitydetails->summary, 0, 300)."..." : $activitydetails->summary;
-                // var_dump($activitydetails->summary);
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
@@ -461,13 +354,8 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                 }
                 if ($PAGE->user_is_editing()) {
                     $editactions = course_get_cm_edit_actions($mod, $mod->indent, $section->section);
-                    // var_dump($editactions);
-                    // exit;
                     $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions($editactions, $mod, $section->section);
-                    // var_dump($modicons);
                     $modicons .= $mod->afterediticons;
-                    // var_dump($mod->afterediticons);
-                    // exit;
                     $activitydetails->modicons = $modicons;
                 }
                 $output[] = $activitydetails;
@@ -477,60 +365,30 @@ class format_remuiformat_section extends \format_section_renderer_base implement
         return $output;
     }
 
-    // public function wdm_get_file_url($itemid) {
-    //     $fs = get_file_storage();
-    //     // $file = $fs->get_file($file_record->contextid, $file_record->component, $file_record->filearea, $this->settings['remuicourseimage_filemanager'], $file_record->filepath, $file_record->filename);
-    //     $file = $fs->get_area_files($file_record->contextid,$file_record->component, $file_record->filearea, $this->settings['remuicourseimage_filemanager']);
-    //     // echo "<pre>";
-    //     // print_r($file);
-    //     // echo "</pre>";
-    //     $isimage = $file->is_valid_image();
-    //     $courseimage = file_encode_url(
-    //         "$CFG->wwwroot/pluginfile.php",
-    //         '/'. $file->get_contextid(). '/'. $file->get_component(). '/'.
-    //         $file->get_filearea(). $file->get_filepath(). $file->get_filename(),
-    //         !$isimage
-    //     );
-    //     return $courseimage;
-    // }
-
-
-    public function display_file($data)
-    {
-        global $DB,$CFG,$OUTPUT;
-        # code...
-
-        // echo "data<pre>";print_R($data);echo "</pre>";
+    public function display_file($data) {
+        global $DB, $CFG, $OUTPUT;
         $itemid = $data;
-        $file_data = $DB->get_records('files', array('itemid' => $itemid));
-        $temp_data = array();
-        // echo "<pre>";
-        // print_r($file_data);
-        // print_r($temp_data);
-        // echo "</pre>";
-        foreach ($file_data as $key => $value) {
+        $filedata = $DB->get_records('files', array('itemid' => $itemid));
+        $tempdata = array();
+        foreach ($filedata as $key => $value) {
             if ($value->filesize > 0 && $value->filearea == 'remuicourseimage_filearea') {
-                $temp_data = $value;
+                $tempdata = $value;
             }
         }
-
-         // echo "<pre>";print_R($temp_data);echo "</pre>";
         $fs = get_file_storage();
-        // echo "<pre>";print_R($fs);echo "</pre>";
-        if(!empty($temp_data)) {
-            $files = $fs->get_area_files($temp_data->contextid,
-                                         'format_remuiformat',
-                                         'remuicourseimage_filearea',
-                                         $itemid
-                                         );
+        if (!empty($tempdata)) {
+            $files = $fs->get_area_files(
+                $tempdata->contextid,
+                'format_remuiformat',
+                'remuicourseimage_filearea',
+                $itemid
+            );
             $url = '';
             foreach ($files as $key => $file) {
-                # code...
-                # 
                 $file->portfoliobutton = '';
 
                 $path = '/'.
-                        $temp_data->contextid.
+                        $tempdata->contextid.
                         '/'.
                         'format_remuiformat'.
                         '/'.
@@ -539,13 +397,7 @@ class format_remuiformat_section extends \format_section_renderer_base implement
                         $file->get_itemid().
                         $file->get_filepath().
                         $file->get_filename();
-            //     echo "<pre>";
-            // print_r($path);
-            
-            // echo "</pre>";
                 $url = file_encode_url("$CFG->wwwroot/pluginfile.php", $path, true);
-
-
             }
             return $url;
         }
