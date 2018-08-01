@@ -2,7 +2,7 @@
 <li id="section-0" class="first-section-li section main clearfix mb-25" role="region" aria-label="{{{coursefullname}}}">
    <div class="p-10 course-cover-image pb-30" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});" alt="" '="">
       <div class="text-white">
-         <div class="page-title my-15">{{{coursefullname}}}</div>
+         <div class="page-title mb-15">{{{coursefullname}}}</div>
          <div class="font-size-14 summary" style="max-width: 800px;">{{{ coursesummary }}}</div>
          
          <div class="mr-0 w-25 ml-auto">
@@ -19,7 +19,7 @@
    {{#percentage}}
       <div class="progress progress-square">
          <div class="progress-bar" style="width: {{{percentage}}}%;" role="progressbar">
-            <span class="sr-only">80% Complete</span>
+            <span class="sr-only">{{{percentage}}}% Complete</span>
          </div>
       </div>
    {{/percentage}}
@@ -28,6 +28,9 @@
          {{#activities}}
                <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-2 justify-content-center p-0 pt-10" id="module-1">
                   <div>
+                    {{#editing}}
+                       {{{leftside}}}
+                    {{/editing}}
                      <div>
                         <div class="activityinstance p-0 d-inline-block">
                            {{{title}}}
@@ -40,8 +43,8 @@
                </li>
          {{/activities}}
                </ul>
-            <div class="text-center showactivitywrapper">
-            <button class="showactivity btn btn-primary px-25 show" style="visibility:     hidden;">Show More</button>
+            <div class="text-center showactivitywrapper" style="display: none;">
+            <button class="showactivity btn btn-primary px-25 show" style="display: none;">Show More</button>
             </div>
    </div>
 </li>
@@ -68,20 +71,32 @@
         var count = jQuery(".first-section-activity").length;
 
         if(wwidth > 991) {
-            if(count > 6)
-                jQuery('.showactivity').css('visibility', 'visible');
-            else
-                jQuery('.showactivity').css('visibility', 'hidden');
+            if(count > 6) {
+                jQuery('.showactivity').removeAttr( 'style' );;
+                jQuery('.showactivitywrapper').removeAttr( 'style' );;
+                }
+            else {
+                jQuery('.showactivity').css('display', 'none');
+                jQuery('.showactivitywrapper').css('display', 'none');
+                }
         } else if(wwidth > 767 && wwidth < 992) {
-            if(count > 3)
-                jQuery('.showactivity').css('visibility', 'visible');
-            else
-                jQuery('.showactivity').css('visibility', 'hidden');
+            if(count > 3) {
+                jQuery('.showactivity').removeAttr( 'style' );;
+                jQuery('.showactivitywrapper').removeAttr( 'style' );;
+                }
+            else {
+                jQuery('.showactivity').css('display', 'none');
+                jQuery('.showactivitywrapper').css('display', 'none');
+                }
         } else {
-            if(count > 2)
-                jQuery('.showactivity').css('visibility', 'visible');
-            else
-                jQuery('.showactivity').css('visibility', 'hidden');
+            if(count > 2) {
+                jQuery('.showactivity').removeAttr( 'style' );;
+                jQuery('.showactivitywrapper').removeAttr( 'style' );;
+                }
+            else {
+                jQuery('.showactivity').css('display', 'none');
+                jQuery('.showactivitywrapper').css('display', 'none');
+                }
         }
     });
 

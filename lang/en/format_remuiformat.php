@@ -17,13 +17,13 @@
 /**
  * Strings for component 'format_singleactivity'
  *
- * @package    format_remui_format
+ * @package    format_remuiformat
  * @copyright  2017 Wisdmlabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 // Plugin Name.
-$string['pluginname'] = 'Remui format';
+$string['pluginname'] = 'Edwiser RemUI Course Formats';
 
 // Settings.
 $string['defaultcoursedisplay'] = 'Course display default';
@@ -80,7 +80,7 @@ $string['progress'] = 'Progress';
 
 // For list
 
-$string['remuicourseformat'] = 'Choose Course Format';
+$string['remuicourseformat'] = 'Choose Format';
 $string['remuicourseformat_card'] = 'Card Format';
 $string['remuicourseformat_list'] = 'List Format';
 $string['remuicourseformat_help'] = 'Choose a course format';

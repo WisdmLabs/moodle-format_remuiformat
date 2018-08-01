@@ -17,7 +17,7 @@
 /**
  * Version details
  *
- * @package    format_remui_format
+ * @package    format_remuiformat
  * @copyright  2017 Wisdmlabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,4 +26,4 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2018071700;              // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2017050500;              // Requires this Moodle version.
-$plugin->component = 'format_remui_format';          // Full name of the plugin (used for diagnostics).
+$plugin->component = 'format_remuiformat';          // Full name of the plugin (used for diagnostics).

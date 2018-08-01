@@ -18,7 +18,7 @@
  * Cards Format - A topics based format that uses card layout to display the activities/section/topics.
  *
  * @package    course/format
- * @subpackage remui_format
+ * @subpackage remuiformat
  * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,14 +29,14 @@ require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 define ('REMUI_CARD_FORMAT', 0);
 define ('REMUI_LIST_FORMAT', 1);
 
-class format_remui_format extends format_base {
+class format_remuiformat extends format_base {
 
     /**
      * Creates a new instance of class
      * Please use {@link course_get_format($courseorid)} to get an instance of the format class
      * @param string $format
      * @param int $courseid
-     * @return format_remui_format
+     * @return format_remuiformat
      */
     protected function __construct($format, $courseid) {
         global $PAGE;
@@ -109,11 +109,11 @@ class format_remui_format extends format_base {
     public function get_default_section_name($section) {
         if ($section->section == 0) {
             // Return the general section.
-            return get_string('section0name', 'format_remui_format');
+            return get_string('section0name', 'format_remuiformat');
         } else {
             // Use format_base::get_default_section_name implementation which
             // will display the section name in "Topic n" format.
-            return get_string('sectionname', 'format_remui_format').' '. $section->section;
+            return get_string('sectionname', 'format_remuiformat').' '. $section->section;
         }
     }
 
@@ -171,11 +171,33 @@ class format_remui_format extends format_base {
         // exit;
         static $courseformatoptions = false;
         if ($courseformatoptions === false) {
-            // var_dump(get_config('format_remui_format', 'defaultsectionsummarymaxlength'));
+            // var_dump(get_config('format_remuiformat', 'defaultsectionsummarymaxlength'));
             // exit;
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
             this needs to be stripped off here if it's there for the format's specific colour picker. */
             $courseconfig = get_config('moodlecourse');
+            // if(!empty(get_config('format_remuiformat', 'remuicourseimage'))){
+            //     var_dump($courseconfig);
+            //     exit;
+            // }
+            // prepare
+            $contextid = context_course::instance($this->courseid);
+            // var_dump(get_config('format_remuiformat', 'remuicourseformat'));
+            // exit;   
+            $data = new stdClass;
+            // $data->id = null;
+            
+             
+            $draftitemid = file_get_submitted_draft_itemid('remuicourseimage');
+            // $data = file_prepare_standard_filemanager(null, $contextid->id, 'format_remuiformat', 'remuicourseimage', ,
+                        // array('subdirs' => 0, 'maxfiles' => 1));
+            $data = file_prepare_standard_filemanager($data,
+                                                  'remuicourseimage',
+                                                   array( 'accepted_types' => 'images','maxfiles'=>1),
+                                                  $contextid,
+                                                  'format_remuiformat',
+                                                  'remuicourseimage_filearea'
+                                                  );
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
@@ -186,15 +208,16 @@ class format_remui_format extends format_base {
                     'type' => PARAM_INT
                 ),
                 'remuicourseformat' => array(
-                    'default' => get_config('format_remui_format', 'remuicourseformat'),
+                    'default' => get_config('format_remuiformat', 'remuicourseformat'),
                     'type' => PARAM_INT
                 ),
-                'remuicourseimage' => array(
-                    'default' => get_config('format_remui_format', 'remuicourseimage'),
-                    'type' => PARAM_CLEANFILE
+                'remuicourseimage_filemanager' => array(
+                    'default' => get_config('format_remuiformat', 'remuicourseimage_filemanager'),
+                    'type' => PARAM_CLEANFILE,
+                    // 'filearea' => 'remui_course_format'
                 ),
                 'sectiontitlesummarymaxlength' => array(
-                    'default' => get_config('format_remui_format', 'defaultsectionsummarymaxlength'),
+                    'default' => get_config('format_remuiformat', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
             );
@@ -204,7 +227,7 @@ class format_remui_format extends format_base {
             // var_dump("here");
             // exit;
             $courseconfig = get_config('moodlecourse');
-            // var_dump(get_config('format_remui_format', 'defaultsectionsummarymaxlength'));
+            // var_dump(get_config('format_remuiformat', 'defaultsectionsummarymaxlength'));
             // exit;
             $courseformatoptionsedit = array(
                 'hiddensections' => array(
@@ -231,33 +254,36 @@ class format_remui_format extends format_base {
                     'help_component' => 'moodle',
                 ),
                 'remuicourseformat' => array(
-                    'label' => new lang_string('remuicourseformat', 'format_remui_format'),
+                    'label' => new lang_string('remuicourseformat', 'format_remuiformat'),
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            REMUI_CARD_FORMAT => new lang_string('remuicourseformat_card', 'format_remui_format'),
-                            REMUI_LIST_FORMAT => new lang_string('remuicourseformat_list', 'format_remui_format'),
+                            REMUI_CARD_FORMAT => new lang_string('remuicourseformat_card', 'format_remuiformat'),
+                            REMUI_LIST_FORMAT => new lang_string('remuicourseformat_list', 'format_remuiformat'),
                         )
                     ),
                     'help' => 'remuicourseformat',
-                    'help_component' => 'format_remui_format',
+                    'help_component' => 'format_remuiformat',
                 ),
-                'remuicourseimage' => array(
-                    'label' => new lang_string('remuicourseimage', 'format_remui_format'),
+                'remuicourseimage_filemanager' => array(
+                    'label' => new lang_string('remuicourseimage', 'format_remuiformat'),
                     'element_type' => 'filemanager',
                     'element_attributes' => array(
+                        null,
+                        array(
                         'maxfiles' => 1,
                         'accepted_types' => array('image'),
+                        )
                     ),
                     'help' => 'remuicourseimage',
-                    'help_component' => 'format_remui_format',
+                    'help_component' => 'format_remuiformat',
                 ),
                 'sectiontitlesummarymaxlength' => array(
-                    'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remui_format'),
+                    'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remuiformat'),
                     'element_type' => 'text',
                     'element_attributes' => array('size' => 3),
                     'help' => 'sectiontitlesummarymaxlength',
-                    'help_component' => 'format_remui_format'
+                    'help_component' => 'format_remuiformat'
                 )
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
@@ -275,7 +301,8 @@ class format_remui_format extends format_base {
     public function create_edit_form_elements(&$mform, $forsection = false) {
         global $COURSE;
         $elements = parent::create_edit_form_elements($mform, $forsection);
-
+        // var_dump($mform->_elements);
+        // exit;
         if (!$forsection && (empty($COURSE->id) || $COURSE->id == SITEID)) {
             // Add "numsections" element to the create course form - it will force new course to be prepopulated
             // with empty sections.
@@ -311,11 +338,11 @@ class format_remui_format extends format_base {
         $editlabel = null
     ) {
         if (empty($edithint)) {
-            $edithint = new lang_string('editsectionname', 'format_remui_format');
+            $edithint = new lang_string('editsectionname', 'format_remuiformat');
         }
         if (empty($editlabel)) {
             $title = get_section_name($section->course, $section);
-            $editlabel = new lang_string('newsectionname', 'format_remui_format', $title);
+            $editlabel = new lang_string('newsectionname', 'format_remuiformat', $title);
         }
         return parent::inplace_editable_render_section_name($section, $linkifneeded, $editable, $edithint, $editlabel);
     }
@@ -414,6 +441,61 @@ class format_remui_format extends format_base {
         return $this->get_format_options();
     }
 
+    public function update_course_format_options($data, $sectionid = null) {
+        // var_dump($data);
+        // exit;
+        global $DB;
+        // if (!$sectionid) {
+        //     $allformatoptions = $this->course_format_options();
+        //     $sectionid = 0;
+        // } else {
+        //     $allformatoptions = $this->section_format_options();
+        // }
+        // if (empty($allformatoptions)) {
+        //     // nothing to update anyway
+        //     return false;
+        // }
+        if(!empty($data)) {
+            $contextid = context_course::instance($this->courseid);
+            // file_save_draft_area_files($data->remuicourseimage_filemanager, $contextid->id, 'format_remuiformat', 'remuicourseimage_filemanager', 0
+                   // , array('subdirs' => 0, 'maxfiles' => 1));
+            // echo "<pre>";
+
+
+            // print_r($data);
+            // echo "</pre>";
+            // exit;
+            file_postupdate_standard_filemanager($data,
+                                                     'remuicourseimage',
+                                                     array( 'accepted_types' => 'images','maxfiles'=>1),
+                                                     $contextid,
+                                                     'format_remuiformat',
+                                                     'remuicourseimage_filearea',
+                                                     $data->remuicourseimage_filemanager);
+        }
+        return $this->update_format_options($data);
+    }
+
+    /**
+     * Custom action after section has been moved in AJAX mode
+     *
+     * Used in course/rest.php
+     *
+     * @return array This will be passed in ajax respose
+     */
+    function ajax_section_move() {
+        global $PAGE;
+        $titles = array();
+        $course = $this->get_course();
+        $modinfo = get_fast_modinfo($course);
+        $renderer = $this->get_renderer($PAGE);
+        if ($renderer && ($sections = $modinfo->get_section_info_all())) {
+            foreach ($sections as $number => $section) {
+                $titles[$number] = $renderer->section_title($section, $course);
+            }
+        }
+        return array('sectiontitles' => $titles, 'action' => 'move');
+    }
 
 }
 
@@ -425,7 +507,7 @@ class format_remui_format extends format_base {
  * @param mixed $newvalue
  * @return \core\output\inplace_editable
  */
-function format_remui_format_inplace_editable($itemtype, $itemid, $newvalue) {
+function format_remuiformat_inplace_editable($itemtype, $itemid, $newvalue) {
     global $DB, $CFG;
     require_once($CFG->dirroot . '/course/lib.php');
     if ($itemtype === 'sectionname' || $itemtype === 'sectionnamenl') {
@@ -435,33 +517,51 @@ function format_remui_format_inplace_editable($itemtype, $itemid, $newvalue) {
         return course_get_format($section->course)->inplace_editable_update_section_name($section, $itemtype, $newvalue);
     }
 }
-/**
- * Custom action after section has been moved in AJAX mode
- *
- * Used in course/rest.php
- *
- * @return array This will be passed in ajax respose
- */
-// function ajax_section_move() {
-//     global $PAGE;
-//     $titles = array();
-//     $course = $this->get_course();
-//     $modinfo = get_fast_modinfo($course);
-//     $renderer = $this->get_renderer($PAGE);
-//     if ($renderer && ($sections = $modinfo->get_section_info_all())) {
-//         foreach ($sections as $number => $section) {
-//             $titles[$number] = $renderer->section_title($section, $course);
-//         }
-//     }
-//     return array('sectiontitles' => $titles, 'action' => 'move');
-// }
 
-function format_remui_format_pluginfile ($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+
+function format_remuiformat_pluginfile ($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     // render the image
-    $courseconfig = get_config('moodlecourse');
-    if ($filearea === 'draft') {
-            return $courseconfig->setting_file_serve('draft', $args, $forcedownload, $options);
-    } else {
-        send_file_not_found();
+    // $courseconfig = get_config('moodlecourse');
+    // if ($filearea === 'remuicourseimage_filearea') {
+    //         return $courseconfig->setting_file_serve('remuicourseimage_filearea', $args, $forcedownload, $options);
+    // } else {
+    //     send_file_not_found();
+    // }
+    // var_dump('Here');
+    // exit;
+    global $DB;
+       
+    if ($context->contextlevel != CONTEXT_COURSE) {
+        return false;
     }
+    
+    require_login();
+    if ($filearea != 'remuicourseimage_filearea') {
+        return false;
+    }
+    
+    $itemid = (int)array_shift($args);
+    // var_dump($args);
+    // exit;
+    // if ($itemid != 0) {
+    //     return false;
+    // }
+    
+    $fs = get_file_storage();
+    $filename = array_pop($args);
+    
+    if (empty($args)) {
+        $filepath = '/';
+    } else {
+        $filepath = '/'.implode('/', $args).'/';
+    }
+    // var_dump($filename);
+    // exit;
+    $file = $fs->get_file($context->id, 'format_remuiformat', $filearea, $itemid, $filepath, $filename);
+    if (!$file) {
+        return false;
+    }
+    // var_dump($options);
+    // exit;
+    send_stored_file($file, 0, 0, 0, $options);
 }

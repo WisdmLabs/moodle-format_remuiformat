@@ -18,12 +18,12 @@
  * This is built using the bootstrapbase template to allow for new theme's using
  * Moodle's new Bootstrap theme engine
  *
- * @package   format_remui_format
+ * @package   format_remuiformat
  * @copyright Copyright (c) 2016 WisdmLabs. (http://www.wisdmlabs.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace format_remui_format;
+namespace format_remuiformat;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -34,7 +34,7 @@ class SettingsController
 
     // Constructor.
     private function __construct() {
-        $this->plugin_config = "format_remui_format";
+        $this->plugin_config = "format_remuiformat";
     }
     // Singleton Implementation.
     public static function getinstance() {
@@ -98,9 +98,9 @@ class SettingsController
      */
     public function getnumberofsectionsoptions() {
         return array(
-            6 => get_string('six', 'format_remui_format'),      // Six.
-            9 => get_string('nine', 'format_remui_format'),    // Eight.
-            12 => get_string('twelve', 'format_remui_format')   // Twelve.
+            6 => get_string('six', 'format_remuiformat'),      // Six.
+            9 => get_string('nine', 'format_remuiformat'),    // Eight.
+            12 => get_string('twelve', 'format_remuiformat')   // Twelve.
         );
     }
 
@@ -111,8 +111,8 @@ class SettingsController
      */
     public function getpaginationchoices() {
         return array(
-            1 => new \lang_string('off', 'format_remui_format'),   // Off.
-            2 => new \lang_string('on', 'format_remui_format')   // On.
+            1 => new \lang_string('off', 'format_remuiformat'),   // Off.
+            2 => new \lang_string('on', 'format_remuiformat')   // On.
         );
     }
 }

@@ -16,13 +16,13 @@
 /**
  * Privacy Subsystem implementation for format_topics.
  *
- * @package    format_remui_format
+ * @package    format_remuiformat
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace format_remui_format\privacy;
+namespace format_remuiformat\privacy;
 defined('MOODLE_INTERNAL') || die();
 /**
- * Privacy Subsystem for format_remui_format implementing null_provider.
+ * Privacy Subsystem for format_remuiformat implementing null_provider.
  *
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

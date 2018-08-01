@@ -8,7 +8,7 @@
     </div>
     {{/rightside}}
       <div class="text-white">
-         <div class="page-title my-15">{{{coursefullname}}}</div>
+         <div class="page-title mb-15">{{{coursefullname}}}</div>
          <div class="font-size-14 summary" style="max-width: 800px;">{{{ coursesummary }}}</div>
          
          <div class="mr-0 w-25 ml-auto">
@@ -25,7 +25,7 @@
    {{#percentage}}
       <div class="progress progress-square">
          <div class="progress-bar" style="width: {{{percentage}}}%;" role="progressbar">
-            <span class="sr-only">80% Complete</span>
+            <span class="sr-only">{{{percentage}}}% Complete</span>
          </div>
       </div>
    {{/percentage}}
@@ -40,6 +40,7 @@
                         </div>
                         <div class="actions">
                            {{{completion}}}
+                           {{{modicons}}}
                         </div>
                      </div>
                   </div>

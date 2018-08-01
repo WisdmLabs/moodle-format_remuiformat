@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace format_remui_format\output;
+namespace format_remuiformat\output;
 defined('MOODLE_INTERNAL') || die();
 
 use renderable;
@@ -24,18 +24,18 @@ use stdClass;
 use context_course;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
-require_once($CFG->dirroot.'/course/format/remui_format/classes/mod_stats.php');
-require_once($CFG->dirroot.'/course/format/remui_format/classes/settings_controller.php');
-require_once($CFG->dirroot.'/course/format/remui_format/lib.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 
 /**
  * This file contains the definition for the renderable classes for the activity page.
  *
- * @package   format_remui_format
+ * @package   format_remuiformat
  * @copyright  2018 Wisdmlabs
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class format_remui_format_activity implements renderable, templatable {
+class format_remuiformat_activity implements renderable, templatable {
     private $course;
     private $courseformat;
     private $courserenderer;
@@ -50,8 +50,8 @@ class format_remui_format_activity implements renderable, templatable {
         $this->displaysection = $displaysection;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
-        $this->courserenderer = new \core_course_renderer($PAGE, 'format_remui_format');
-        $this->modstats = \format_remui_format\ModStats::getinstance();
+        $this->courserenderer = new \core_course_renderer($PAGE, 'format_remuiformat');
+        $this->modstats = \format_remuiformat\ModStats::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
 
@@ -66,7 +66,7 @@ class format_remui_format_activity implements renderable, templatable {
         global $USER, $PAGE;
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
-        $renderer = $PAGE->get_renderer('format_remui_format');
+        $renderer = $PAGE->get_renderer('format_remuiformat');
         
         // course_format_options($this->course, 'remuicourseformat');
         // var_dump(course_format_options());

@@ -1,4 +1,4 @@
-require(['jquery', 'format_remui_format/jquery.easypiechart'], function ($) {
+require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
     var cardminHeight = 200;
 
     //Function to set Equal Height of all cards
@@ -31,9 +31,9 @@ require(['jquery', 'format_remui_format/jquery.easypiechart'], function ($) {
     $('.card-complete-btn').click(function () {
         var val = $(this).parent().children('.card-completion-state').val();
         if (val == 0) {
-            $(this).find('.card-stats').html(M.util.get_string('markcomplete', 'format_remui_format'));
+            $(this).find('.card-stats').html(M.util.get_string('markcomplete', 'format_remuiformat'));
         } else {
-            $(this).find('.card-stats').html(M.util.get_string('completed', 'format_remui_format'));
+            $(this).find('.card-stats').html(M.util.get_string('completed', 'format_remuiformat'));
         }
     });
 

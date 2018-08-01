@@ -18,12 +18,12 @@
  * This is built using the bootstrapbase template to allow for new theme's using
  * Moodle's new Bootstrap theme engine
  *
- * @package   format_remui_format
+ * @package   format_remuiformat
  * @copyright Copyright (c) 2016 WisdmLabs. (http://www.wisdmlabs.com)
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace format_remui_format;
+namespace format_remuiformat;
 defined('MOODLE_INTERNAL') || die;
 use html_writer;
 class ModStats
@@ -33,7 +33,7 @@ class ModStats
 
     // Constructor.
     private function __construct() {
-        $this->plugin_config = "format_remui_format";
+        $this->plugin_config = "format_remuiformat";
     }
     // Singleton Implementation.
     public static function getinstance() {
@@ -68,12 +68,12 @@ class ModStats
                 $totalgrade = $quiz->sumgrades;
                 $currentgrade = $attempt->sumgrades;
                 $marks = round(($currentgrade / $totalgrade) * $quiz->grade, 2);
-                $output = get_string('grade', 'format_remui_format')." : ".$marks ." / ". intval($quiz->grade);
+                $output = get_string('grade', 'format_remuiformat')." : ".$marks ." / ". intval($quiz->grade);
             } else {
-                $output = get_string('grade', 'format_remui_format')." : ". get_string('notattempted', 'format_remui_format');
+                $output = get_string('grade', 'format_remuiformat')." : ". get_string('notattempted', 'format_remuiformat');
             }
         } catch (Exception $e) {
-            $output = get_string('grade', 'format_remui_format')." : ". get_string('notattempted', 'format_remui_format');
+            $output = get_string('grade', 'format_remuiformat')." : ". get_string('notattempted', 'format_remuiformat');
         }
 
         return $output;
@@ -84,9 +84,9 @@ class ModStats
         $forum   = $DB->get_record('forum', array('id' => $forumid), '*', MUST_EXIST);
         $issubscribed = \mod_forum\subscriptions::is_subscribed($USER->id, $forum);
         if ($issubscribed) {
-            return get_string("subscribed", "format_remui_format");
+            return get_string("subscribed", "format_remuiformat");
         } else {
-            return get_string("notsubscribed", "format_remui_format");
+            return get_string("notsubscribed", "format_remuiformat");
         }
     }
 
@@ -95,9 +95,9 @@ class ModStats
         $info = new \completion_info($course);
         $data = $info->get_data($mod, false, $USER->id);
         if (!empty($data) && $data->completionstate == 1) {
-            return get_string("completed", "format_remui_format");
+            return get_string("completed", "format_remuiformat");
         } else {
-            return get_string("notcompleted", "format_remui_format");
+            return get_string("notcompleted", "format_remuiformat");
         }
     }
 

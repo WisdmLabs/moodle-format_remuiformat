@@ -1,9 +1,17 @@
-<li id="section-{{{index}}}" class="card section main clearfix" role="region" style="width: 90%; margin-left: auto; margin-right:auto;" aria-label="{{{ title }}}">
-   <div class="content card-block p-30 remui-list-content-border" style="clear:both;">
-      {{#editing}}
-      <a class="editing_move" data-action="move" data-sectionreturn="0" href="http://moodle_v35.dev/course/mod.php?sesskey=DXxlEoV1MD&amp;sr=0&amp;copy=306" id="yui_3_17_2_1_1532510673095_379"><i class="icon fa fa-arrows fa-fw iconsmall" aria-hidden="true" title="Move" aria-label="Move" id="yui_3_17_2_1_1532510673095_378"></i></a>
-      {{/editing}}
-      <h4 class="sectionname card-title"><a class="panel-title p-0" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="true" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}<i class="fa-angle-up float-right"></i></a></h4>
+<li id="section-{{{index}}}" class="card section main clearfix" role="region" style="width: 90%; margin-left: auto; margin-right:auto;" aria-label="">
+   <div class="content card-block p-25 remui-list-content-border" style="clear:both;">
+      <div class="row d-block">
+         {{{leftside}}}
+         <div class="right side float-right">
+           {{{ optionmenu }}}
+         </div>
+      </div>
+      <h4 class="sectionname card-title">
+      
+         <a class="panel-title p-0" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="true" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}<i class="fa-angle-up float-right"></i></a>
+      
+      </h4>
+        {{{ hiddenmessage }}}
       <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>
       <div class="summary card-text hide">{{{summary}}}</div>
       <div class="section-summary-activities mdl-right hide">{{{activityinfostring}}}</div>
@@ -13,24 +21,9 @@
       <div class="panel activity-list">
          <div class="panel-collapse collapse show" id="sectionwrapper-{{{index}}}" aria-labelledby="sectionwrapper-{{{index}}}" role="tabpanel" aria-expanded="true">
             <div class="panel-body p-0">
-               <ul class="section img-text m-0 p-0 list-group">
-               {{#sectionactivities}}
-                  <li class="activity {{{modulename}}} modtype_{{{modulename}}} px-30 py-10 list-group-item" id="module-{{{id}}}">
-                     <div>
-                        <div class="mod-indent-outer">
-                           <div class="mod-indent"></div>
-                           <div>
-                              <div class="activityinstance">{{{title}}}</div>
-                              <div class="actions">
-                                 {{{completion}}}
-                                 {{{modicons}}}
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </li>
-               {{/sectionactivities}}
-               </ul>
+               
+               {{{sectionactivities}}}
+               
             </div>
          </div>
       </div>
