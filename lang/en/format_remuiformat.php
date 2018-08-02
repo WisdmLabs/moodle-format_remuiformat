@@ -78,7 +78,7 @@ $string['notcompleted'] = 'Not Completed';
 $string['progress'] = 'Progress';
 
 
-// For list
+// For list.
 
 $string['remuicourseformat'] = 'Choose Format';
 $string['remuicourseformat_card'] = 'Card Format';
@@ -88,8 +88,8 @@ $string['remuicourseimage'] = 'Choose a course image';
 $string['remuicourseimage_help'] = 'Choose a course image';
 $string['addsections'] = 'Add sections';
 
-// $string['defaultcourseformat'] = 'Select a course format ot choose';
-
-
-// GDPR
+// GDPR.
 $string['privacy:metadata'] = 'The RemUI format plugin does not store any personal data.';
+
+// License.
+$string['licenseerror'] = 'You are using non-licensed version of <strong>RemUI.</strong> Please activate your license <a href="{$a}">here</a> to use <strong>RemUI Course Format.</strong>';
