@@ -1,6 +1,6 @@
 
 <li id="section-0" class="first-section-li section main clearfix mb-25" role="region" aria-label="{{{coursefullname}}}">
-   <div class="p-10 course-cover-image pb-30" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});" alt="" '="">
+   <div class="p-10 course-cover-image pb-30" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});">
     {{#rightside}}
     <div class="right side">
         {{{rightside}}}
@@ -9,7 +9,7 @@
       <div class="text-white">
          <div class="page-title mb-15">{{{coursefullname}}}</div>
          <div class="font-size-14 summary" style="max-width: 800px;">{{{ coursesummary }}}</div>
-         
+
          <div class="mr-0 w-25 ml-auto">
          {{#teachers}}
             {{{teacherimg}}}
@@ -31,7 +31,7 @@
             <div class="section_availability badge badge-pill badge-info mb-10"></div>
                <ul class="section first-section img-text row p-0 pb-20 d-flex justify-content-center text-center showhideactivity">
          {{#activities}}
-               <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-2 justify-content-center p-0 pt-10" id="module-1">
+               <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-2 justify-content-center p-0 pt-10" id="module-{{id}}">
                   <div>
                      <div>
                         <div class="activityinstance p-0 d-inline-block">
@@ -93,8 +93,7 @@
         }
     });
 
-    
+
 
 {{/js}}
-            
-            
+

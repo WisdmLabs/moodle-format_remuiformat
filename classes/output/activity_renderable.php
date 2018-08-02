@@ -68,6 +68,7 @@ class format_remuiformat_activity implements renderable, templatable {
         $modinfo = get_fast_modinfo($this->course);
         $renderer = $PAGE->get_renderer('format_remuiformat');
 
+        $export->section = $this->displaysection;
         // Check if section exists.
         if (!($sectioninfo = $modinfo->get_section_info($this->displaysection))) {
             // This section doesn't exist.
@@ -162,6 +163,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 if ($availstatus != "") {
                     $activitydetails->availstatus = $availstatus;
                 }
+
                 if ($PAGE->user_is_editing()) {
                     $editactions = course_get_cm_edit_actions($mod, $mod->indent, $this->displaysection);
                     $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions(

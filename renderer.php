@@ -416,6 +416,28 @@ class format_remuiformat_renderer extends format_section_renderer_base {
     }
 
     /**
+     * Generate the content to displayed on the left part of a section
+     * before course modules are included
+     *
+     * @param stdClass $section The course_section entry from DB
+     * @param stdClass $course The course entry from DB
+     * @param bool $onsectionpage true if being printed on a section page
+     * @return string HTML to output.
+     */
+    public function section_left_content($section, $course, $onsectionpage) {
+        $o = '';
+
+        if ($section->section != 0) {
+            // Only in the non-general sections.
+            if (course_get_format($course)->is_section_current($section)) {
+                $o = get_accesshide(get_string('currentsection', 'format_'.$course->format));
+            }
+        }
+
+        return $o;
+    }
+
+    /**
      * Renders the mutiple section page.
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return

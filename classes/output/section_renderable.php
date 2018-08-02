@@ -231,6 +231,7 @@ class format_remuiformat_section implements renderable, templatable
             } else {
                 $sectiondetails->title = $renderer->section_title($currentsection, $this->course);
                 $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
+                $sectiondetails->leftside = $renderer->section_left_content($currentsection, $this->course, false);
                 $sectiondetails->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
             }
 
@@ -343,7 +344,10 @@ class format_remuiformat_section implements renderable, templatable
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
-                $activitydetails->summary = strlen($activitydetails->summary) > 300 ? substr($activitydetails->summary, 0, 300)."..." : $activitydetails->summary;
+                $activitydetails->summary = $this->modstats->get_formatted_summary(
+                    $activitydetails->summary,
+                    $this->settings
+                );
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
@@ -355,7 +359,7 @@ class format_remuiformat_section implements renderable, templatable
                 }
                 if ($PAGE->user_is_editing()) {
                     $editactions = course_get_cm_edit_actions($mod, $mod->indent, $section->section);
-                    $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions($editactions, $mod, $section->section);
+                    $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions($editactions, $mod, 0);
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
