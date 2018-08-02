@@ -81,6 +81,15 @@ require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
     $('.card-section-leftnav a').removeClass('bg-primary');
     $('.card-section-rightnav a').removeClass('bg-primary');
 
+    $(document).on('click', '.page-aside-switch-lg', function() {
+        console.log("clicked");
+        $('.section-action-container').removeClass('card-bottom');
+        $('.wdm-bottom-container').removeClass('card-bottom');
+        setEqualHeight($('.single-card'));
+        $('.section-action-container').addClass('card-bottom');
+        $('.wdm-bottom-container').addClass('card-bottom');
+    });
+
     M.course = M.course || {};
 
     M.course.format = M.course.format || {};

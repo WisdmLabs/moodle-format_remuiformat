@@ -18,7 +18,7 @@
         <ul class="cards p-0 m-0">
             <li id="section-{{section}}" class="section row wdm-card-single-section">
                 {{#activities}}
-                <div class="col-md-4 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="single-card p-20 mb-20">
                         <div class="wdm-activity-actions d-flex">
                             <span class="sno py-5 pr-15 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
@@ -28,10 +28,10 @@
                             </div>
                         </div>
                         <h4 class="wdm-single-activity-title">{{{ title }}}</h4>
-                        <div class="text-center text-muted py-10">
+                        <div class="text-center text-muted">
                             {{{ availstatus }}}
                         </div>
-                        <div class="py-10">
+                        <div class="pt-10">
                             {{{ summary }}}
                         </div>
                         <div class="d-flex pt-15 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">

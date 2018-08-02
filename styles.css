@@ -236,8 +236,16 @@ input.ignoredirty.form-control{
     right: 20px;
 }
 
-#page-course-view-remuiformat div#card-editing-container li.activity .editing_move {
+/* #page-course-view-remuiformat div#card-editing-container li.activity .editing_move {
     display: none;
+} */
+
+#page-course-view-remuiformat.site-menubar-unfold .section-action-container {
+  display: block !important;
+}
+
+#page-course-view-remuiformat.site-menubar-unfold.overrideaside .section-action-container {
+  display: flex !important;
 }
 
 #page-course-view-remuiformat #changenumsections {
