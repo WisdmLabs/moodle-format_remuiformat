@@ -281,8 +281,6 @@ class format_remuiformat extends format_base {
     public function create_edit_form_elements(&$mform, $forsection = false) {
         global $COURSE;
         $elements = parent::create_edit_form_elements($mform, $forsection);
-        // var_dump($mform->_elements);
-        // exit;
         if (!$forsection && (empty($COURSE->id) || $COURSE->id == SITEID)) {
             // Add "numsections" element to the create course form - it will force new course to be prepopulated
             // with empty sections.

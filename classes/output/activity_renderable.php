@@ -96,7 +96,10 @@ class format_remuiformat_activity implements renderable, templatable {
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
         $export->title = $sectionname;
-        $export->summary = $renderer->format_summary_text($currentsection);
+        $export->summary = $this->modstats->get_formatted_summary(
+            $renderer->format_summary_text($currentsection),
+            $this->settings
+        );
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
@@ -146,7 +149,10 @@ class format_remuiformat_activity implements renderable, templatable {
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
-                $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                $activitydetails->summary = $this->modstats->get_formatted_summary(
+                    $this->courserenderer->course_section_cm_text($mod, $displayoptions),
+                    $this->settings
+                );
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
