@@ -62,4 +62,3 @@ if (!empty($displaysection)) {
 } else {
     $renderer->render_all_sections(new \format_remuiformat\output\format_remuiformat_section($course));
 }
-// $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/format.js'));
