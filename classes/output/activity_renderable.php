@@ -109,10 +109,11 @@ class format_remuiformat_activity implements renderable, templatable {
         switch ($rformat) {
             case REMUI_CARD_FORMAT:
                 $export->remuicourseformatcard = true;
+                $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
                 break;
             case REMUI_LIST_FORMAT:
                 $export->remuicourseformatlist = true;
-                $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
+                $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
                 break;
         }
         return $export;

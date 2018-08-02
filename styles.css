@@ -12,15 +12,15 @@
 }
 
 .single-card {
-    box-shadow: 0 20px 50px rgba(0, 0, 0, .1);
-    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0 , 0, .08);
+    border-radius: 5px;
     background-color: white;
     visibility: hidden;
     position: relative;
 }
 
 .card-bottom {
-    border-top: 1px solid;
+    border-top: 1px solid #e2e2e2;
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -76,14 +76,15 @@
     font-weight: 900;
     color:rgba(0, 0, 0, 0.8);
 }
-#page-course-view-remuiformat div.card-editing-container .section-title {
+#page-course-view-remuiformat div#card-editing-container .section-title,
+#page-course-view-remuiformat div#card-container .section-title {
     margin:0;
     font-size: 18px;
     font-weight: 500;
     padding: 10px 0;
 }
 
-#page-course-view-remuiformat div.card-editing-container .single-section-title {
+#page-course-view-remuiformat .single-section-title {
     margin:0;
     font-size: 22px;
     font-weight: 500;
@@ -95,31 +96,33 @@ input.ignoredirty.form-control{
 }
 
 .general-single-card{
-    box-shadow: 0 0px 50px rgba(0, 0, 0, .1);
-    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0 , 0, .08);
+    border-radius: 5px;
     background-color: white;
     position: relative;
     visibility: hidden;
     min-height: 50px;
     list-style: none;
 }
-#page-course-view-remuiformat div.card-editing-container .general-single-card ul.section {
+#page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
+#page-course-view-remuiformat div#card-container .general-single-card ul.section {
     margin: 0;
     padding: 0;
 }
-#page-course-view-remuiformat div.card-editing-container .general-single-card ul.section li.activity {
+#page-course-view-remuiformat div#card-editing-container .general-single-card ul.section li.activity,
+#page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
     margin: 10px 0px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 15px !important;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+    box-shadow: 0 0px 3px rgba(0, 0 , 0, .08);
 }
-#page-course-view-remuiformat div.card-editing-container .general-single-card li.activity img.activityicon {
+#page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
     height: 28px;
     width:28px;
 }
-#page-course-view-remuiformat div.card-editing-container .general-single-card .section_action_menu,
-#page-course-view-remuiformat div.card-editing-container .single-card .section_action_menu {
+#page-course-view-remuiformat div#card-editing-container .general-single-card .section_action_menu,
+#page-course-view-remuiformat div#card-editing-container .single-card .section_action_menu {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -134,17 +137,25 @@ input.ignoredirty.form-control{
     top: -5px;
     right: 32px;
 }
-#page-course-view-remuiformat div.card-editing-container span.section-modchooser-link .fa.fa-plus{
+#page-course-view-remuiformat  span.section-modchooser-link .fa.fa-plus{
     color: white;
 }
-#page-course-view-remuiformat div.card-editing-container span.section-modchooser-link a,
-#page-course-view-remuiformat div.card-editing-container span.section-modchooser-link a:hover {
+#page-course-view-remuiformat  span.section-modchooser-link a,
+#page-course-view-remuiformat  span.section-modchooser-link a:hover {
     color: white;
 }
 
-#page-course-view-remuiformat div.card-editing-container div.availabilityinfo.ishidden {
+#page-course-view-remuiformat div#card-editing-container div.availabilityinfo.ishidden,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden,
+#page-course-view-remuiformat li.wdm-card-single-section div.availabilityinfo{
     padding: 10px 0px;
     font-weight: bold;
+}
+
+#page-course-view-remuiformat div#card-editing-container div.availabilityinfo,
+#page-course-view-remuiformat div#card-container div.availabilityinfo,
+#page-course-view-remuiformat li.wdm-card-single-section div.availabilityinfo ul {
+    list-style: none;
 }
 
 .wdm-card-section {
@@ -225,8 +236,15 @@ input.ignoredirty.form-control{
     right: 20px;
 }
 
-#page-course-view-remuiformat div.card-editing-container li.activity .editing_move {
+#page-course-view-remuiformat div#card-editing-container li.activity .editing_move {
     display: none;
+}
+
+#page-course-view-remuiformat #changenumsections {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 

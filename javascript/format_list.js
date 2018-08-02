@@ -1,5 +1,10 @@
-
-// alert('hey!');
+require(['jquery'], function ($) {
+    console.log("Loaded");
+    $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
+    $('#page-course-view-remuiformat #changenumsections').css({visibility: "visible"});
+    $('#page-course-view-remuiformat #changenumsections a').addClass("btn btn-primary");
+    $('#page-course-view-remuiformat #changenumsections').addClass("row d-flex justify-content-end");
+});
 
 M.course = M.course || {};
 

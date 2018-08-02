@@ -347,6 +347,75 @@ class format_remuiformat_renderer extends format_section_renderer_base {
     }
 
     /**
+     * Returns controls in the bottom of the page to increase/decrease number of sections
+     *
+     * @param stdClass $course
+     * @param int|null $sectionreturn
+     * @return string
+     */
+    public function change_number_sections($course, $sectionreturn = null) {
+        $coursecontext = context_course::instance($course->id);
+        if (!has_capability('moodle/course:update', $coursecontext)) {
+            return '';
+        }
+
+        $options = course_get_format($course)->get_format_options();
+        $supportsnumsections = array_key_exists('numsections', $options);
+
+        if ($supportsnumsections) {
+            // Current course format has 'numsections' option, which is very confusing and we suggest course format
+            // developers to get rid of it (see MDL-57769 on how to do it).
+            // Display "Increase section" / "Decrease section" links.
+
+            echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
+
+            // Increase number of sections.
+            $straddsection = get_string('increasesections', 'moodle');
+            $url = new moodle_url('/course/changenumsections.php',
+                array('courseid' => $course->id,
+                      'increase' => true,
+                      'sesskey' => sesskey()));
+            $icon = $this->output->pix_icon('t/switch_plus', $straddsection);
+            echo html_writer::link($url, $icon.get_accesshide($straddsection), array('class' => 'increase-sections'));
+
+            if ($course->numsections > 0) {
+                // Reduce number of sections sections.
+                $strremovesection = get_string('reducesections', 'moodle');
+                $url = new moodle_url('/course/changenumsections.php',
+                    array('courseid' => $course->id,
+                          'increase' => false,
+                          'sesskey' => sesskey()));
+                $icon = $this->output->pix_icon('t/switch_minus', $strremovesection);
+                echo html_writer::link($url, $icon.get_accesshide($strremovesection), array('class' => 'reduce-sections'));
+            }
+
+            echo html_writer::end_tag('div');
+
+        } else if (course_get_format($course)->uses_sections()) {
+            // Current course format does not have 'numsections' option but it has multiple sections suppport.
+            // Display the "Add section" link that will insert a section in the end.
+            // Note to course format developers: inserting sections in the other positions should check both
+            // capabilities 'moodle/course:update' and 'moodle/course:movesections'.
+
+            echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
+            if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
+                $straddsections = get_string('addsections', 'format_'.$course->format);
+            } else {
+                $straddsections = get_string('addsections');
+            }
+            $url = new moodle_url('/course/changenumsections.php',
+                ['courseid' => $course->id, 'insertsection' => 0, 'sesskey' => sesskey()]);
+            if ($sectionreturn !== null) {
+                $url->param('sectionreturn', $sectionreturn);
+            }
+            $icon = $this->output->pix_icon('t/add', $straddsections);
+            echo html_writer::link($url, $icon . $straddsections,
+                array('class' => 'add-sections', 'data-add-sections' => $straddsections));
+            echo html_writer::end_tag('div');
+        }
+    }
+
+    /**
      * Renders the mutiple section page.
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return
