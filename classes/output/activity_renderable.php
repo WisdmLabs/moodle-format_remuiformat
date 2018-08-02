@@ -93,6 +93,7 @@ class format_remuiformat_activity implements renderable, templatable {
         $sectionnavlinks = $renderer->get_nav_links($this->course, $modinfo->get_section_info_all(), $this->displaysection);
         $export->leftnav = $sectionnavlinks['previous'];
         $export->rightnav = $sectionnavlinks['next'];
+        $export->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
 
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
@@ -117,6 +118,8 @@ class format_remuiformat_activity implements renderable, templatable {
                 break;
             case REMUI_LIST_FORMAT:
                 $export->remuicourseformatlist = true;
+                $export->activities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, $this->displaysection);
+                $export->activities .= $this->courserenderer->course_section_add_cm_control($this->course, $this->displaysection, $this->displaysection);
                 $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
                 break;
         }
@@ -140,12 +143,14 @@ class format_remuiformat_activity implements renderable, templatable {
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                    $this->course,
-                    $completioninfo,
-                    $mod,
-                    $displayoptions
-                );
+                if ($completioninfo->is_enabled()) {
+                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
+                        $this->course,
+                        $completioninfo,
+                        $mod,
+                        $displayoptions
+                    );
+                }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;

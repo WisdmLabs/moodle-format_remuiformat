@@ -38,6 +38,7 @@
                             <div class="w-p50 d-flex">
                                 <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">Start Now</a>
                             </div>
+                            {{#completion}}
                             <div class="wdm-completion-container d-flex align-items-center">
                                 <p class="m-0 mx-10 text-right wdm-completion-title wdm-completion-status-{{id}}">
                                     {{#completed}}
@@ -57,6 +58,7 @@
                                     {{{ completion }}}
                                 </div>
                             </div>
+                            {{/completion}}
                         </div>
                     </div>
                 </div>

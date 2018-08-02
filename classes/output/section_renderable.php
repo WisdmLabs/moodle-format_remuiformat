@@ -338,7 +338,9 @@ class format_remuiformat_section implements renderable, templatable
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                $activitydetails->completion = $this->courserenderer->course_section_cm_completion($this->course, $completioninfo, $mod, $displayoptions);
+                if ($completioninfo->is_enabled()) {
+                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion($this->course,   $completioninfo, $mod, $displayoptions);
+                }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
