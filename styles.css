@@ -124,8 +124,8 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat div#card-editing-container .general-single-card .section_action_menu,
 #page-course-view-remuiformat div#card-editing-container .single-card .section_action_menu {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
 }
 #page-course-view-remuiformat ul.section.first-section div.moodle-actionmenu.section-cm-edit-actions {
     position: inherit;

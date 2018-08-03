@@ -141,9 +141,9 @@ require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
 
     M.course.format.get_config = function () {
         return {
-            container_node: 'div',
+            container_node: 'ul',
             container_class: 'cards',
-            section_node: 'div',
+            section_node: 'li',
             section_class: 'section'
         };
     }
@@ -204,51 +204,6 @@ require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
                 str = ele.getAttribute('alt');
                 stridx = str.lastIndexOf(' ');
                 newstr = str.substr(0, stridx + 1) + i;
-                ele.setAttribute('alt', newstr);
-                ele.setAttribute('title', newstr); // For FireFox as 'alt' is not refreshed.
-            }
-        }
-    }
-
-    /**
-     * Process sections after ajax response
-     *
-     * @param {YUI} Y YUI3 instance
-     * @param {array} response ajax response
-     * @param {string} sectionfrom first affected section
-     * @param {string} sectionto last affected section
-     * @return void
-     */
-    M.course.format.process_sections = function(Y, sectionlist, response, sectionfrom, sectionto) {
-        var CSS = {
-            SECTIONNAME : 'sectionname'
-        },
-        SELECTORS = {
-            SECTIONLEFTSIDE : '.left .section-handle .icon'
-        };
-        // alert(sectionlist);
-        if (response.action == 'move') {
-            // alert('Hi!');
-            // If moving up swap around 'sectionfrom' and 'sectionto' so the that loop operates.
-            if (sectionfrom > sectionto) {
-                var temp = sectionto;
-                sectionto = sectionfrom;
-                sectionfrom = temp;
-            }
-
-            // Update titles and move icons in all affected sections.
-            var ele, str, stridx, newstr;
-
-            for (var i = sectionfrom; i <= sectionto; i++) {
-                // Update section title.
-                var content = Y.Node.create(response.sectiontitles[i]);
-                sectionlist.item(i).all('h4.'+CSS.SECTIONNAME).setHTML(content);
-                // alert(sectionlist.item(i));
-                // Update move icon.
-                ele = sectionlist.item(i).one(SELECTORS.SECTIONLEFTSIDE);
-                str = ele.getAttribute('alt');
-                stridx = str.lastIndexOf(' ');
-                newstr = str.substr(0, stridx +1) + i;
                 ele.setAttribute('alt', newstr);
                 ele.setAttribute('title', newstr); // For FireFox as 'alt' is not refreshed.
             }

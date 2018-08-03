@@ -1,12 +1,19 @@
 <ul class="cards col-lg-12 col-sm-12 general-single-card-container p-0 mb-15">
     <li id="section-0" class="section general-single-card p-20">
         <div class="">
-            {{{ optionmenu }}}
-            <h2 class="section-title">{{{ title }}}</h2>
-            {{{ availability }}}
-            {{{ summary }}}
-            <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
-            {{{ activities }}}
+            <div class="left side">
+                {{{ leftsection }}}
+            </div>
+            <div class="right side">
+                {{{ optionmenu }}}
+            </div>
+            <div class="content">
+                <h2 class="section-title">{{{ title }}}</h2>
+                {{{ availability }}}
+                {{{ summary }}}
+                <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
+                {{{ activities }}}
+            </div>
         </div>
     </li>
 </ul>

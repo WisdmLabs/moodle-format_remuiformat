@@ -116,10 +116,12 @@ class format_remuiformat_section implements renderable, templatable
             if ($editing) {
                 $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
                 $export->generalsection['editsetionurl'] = new \moodle_url('editsection.php', array('id' => $generalsection->id));
+                $export->generalsection['leftsection'] = $renderer->section_left_content($generalsection, $this->course, false);
                 $export->generalsection['optionmenu'] = $renderer->section_right_content($generalsection, $this->course, false);
             } else {
                 $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
             }
+
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
             $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
