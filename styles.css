@@ -240,14 +240,6 @@ input.ignoredirty.form-control{
     display: none;
 } */
 
-#page-course-view-remuiformat.site-menubar-unfold .section-action-container {
-  display: block !important;
-}
-
-#page-course-view-remuiformat.site-menubar-unfold.overrideaside .section-action-container {
-  display: flex !important;
-}
-
 #page-course-view-remuiformat #changenumsections {
     visibility: hidden;
     position: absolute;

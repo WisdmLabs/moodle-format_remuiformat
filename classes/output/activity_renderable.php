@@ -152,6 +152,7 @@ class format_remuiformat_activity implements renderable, templatable {
                     );
                 }
                 $activitydetails->viewurl = $mod->url;
+                $activitydetails->move = course_get_cm_move($mod, $section->section);
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
