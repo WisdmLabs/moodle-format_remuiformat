@@ -125,42 +125,56 @@
 
         var containerwidth = jQuery('.teacher-img').width();
       
-      if(containerwidth > 791) {
+      if(containerwidth > 760) {
           var ele = jQuery('.space-div');
           ele.removeAttr('class');
           ele.attr('class', 'space-div col-8');
 
           var car = jQuery('.teacher-label');
           car.removeAttr('class');
-          car.attr('class', 'carousel slide col-2');
+          car.attr('class', 'teacher-label col-2');
 
           var car = jQuery('#teachersCarousel');          
           car.removeAttr('class');
           car.attr('class', 'carousel slide col-2');
-      } else if(containerwidth > 567 && containerwidth < 792) {
+      } else if(containerwidth > 367 && containerwidth < 761) {
           var ele = jQuery('.space-div');
           ele.removeAttr('class');
-          ele.attr('class', 'space-div col-7');
+          ele.attr('class', 'space-div col-6');
 
           var car = jQuery('.teacher-label');
           car.removeAttr('class');
-          car.attr('class', 'carousel slide col-2');
+          car.attr('class', 'teacher-label col-2');
 
           var car = jQuery('#teachersCarousel');
           car.removeAttr('class');
-          car.attr('class', 'carousel slide col-3');
-      } else {
+          car.attr('class', 'carousel slide col-4');
+      } else if(containerwidth > 200 && containerwidth < 367) {
           var ele = jQuery('.space-div');
           ele.removeAttr('class');
-          ele.attr('class', 'space-div col-4');
+          ele.attr('class', 'space-div col-2');
 
           var car = jQuery('.teacher-label');
           car.removeAttr('class');
-          car.attr('class', 'carousel slide col-3');
+          car.attr('class', 'teacher-label col-3');
 
           var car = jQuery('#teachersCarousel');
           car.removeAttr('class');
-          car.attr('class', 'carousel slide col-5');
+          car.attr('class', 'carousel slide col-7');
+      }
+      else if(containerwidth < 200) {
+          
+          var ele = jQuery('.space-div');
+          ele.removeAttr('class');
+          ele.attr('class', 'space-div col-1');
+
+          var car = jQuery('.teacher-label');
+          car.removeAttr('class');
+          car.attr('class', 'teacher-label col-2');
+
+          var car = jQuery('#teachersCarousel');
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-8');
       }
     });
 {{/js}}

@@ -446,12 +446,10 @@ ul.remui-format-list img.activityicon {
 
 
 .teacher-label {
-  display: inline-block;
-  text-align: end;
-  /*width: 29%;*/
-  /*text-align: center;
-  display:table-cell;
-  vertical-align:middle;*/
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
 }
 
 #teachersCarousel {
@@ -460,7 +458,7 @@ ul.remui-format-list img.activityicon {
 }
 
 li.first-section-li .summary {
-  min-height: 6rem;
+  min-height: 6.5rem;
 }
 
 
@@ -492,11 +490,31 @@ ul.remui-format-list li.section ul.section li.activity:last-child {
   padding: 10px;
 }
 
+#page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo,
+#page-course-view-remuiformat ul.remui-format-list .section .activity .contentafterlink {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 ul.remui-format-list .mod-indent-outer .actions {
   padding: 0px;
   margin-right: 0px;
 }
 
+.teacher-img-container {
+    width: auto;
+    margin: 0 auto;
+}
+
+.teacher-img-container img.userpicture {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.carousel-control.left,.carousel-control.right, .carousel-control-prev,.carousel-control-next {
+    opacity:1!important;
+    min-width: 25px!important;
+}
 /*#page-course-view-remuiformat ul.section.first-section .action-menu {
 
 }*/

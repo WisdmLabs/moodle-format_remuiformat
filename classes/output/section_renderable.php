@@ -169,7 +169,7 @@ class format_remuiformat_section implements renderable, templatable
         if (!empty($teachers)) {
             $count = 1;
             $export->generalsection['teachers'] = $teachers;
-            $export->generalsection['teachers']['teacherimg'] = '<div class="space-div col-7"></div><div class="teacher-label col-2"><span>Teachers</span></div>
+            $export->generalsection['teachers']['teacherimg'] = '<div class="space-div col-8"></div><div class="teacher-label col-1"><span>'.get_string('teachers', 'format_remuiformat').'</span></div>
             <div class="carousel slide col-3" data-ride="carousel" id="teachersCarousel">
             <div class="carousel-inner">';
 
@@ -182,25 +182,25 @@ class format_remuiformat_section implements renderable, templatable
                 }
                 $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                 if ($count == 1) {
-                    $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active">' . $OUTPUT->user_picture($teacher);
+                    $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
 
                 } else {
-                    $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item">'. $OUTPUT->user_picture($teacher);
+                    $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                 }
                 $nextteacher = next($teachers);
                 if (false != $nextteacher) {
                     $nextteacher->imagealt = $nextteacher->firstname . ' ' . $nextteacher->lastname;
                     $export->generalsection['teachers']['teacherimg'] .= $OUTPUT->user_picture($nextteacher);
                 }
-                $export->generalsection['teachers']['teacherimg'] .= '</div>';
+                $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
                 $count += 1;
             }
             $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <i class="fas fa-chevron-left"></i>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <i class="fas fa-chevron-right"></i>
                     <span class="sr-only">Next</span>
                 </a></div>';
         }
