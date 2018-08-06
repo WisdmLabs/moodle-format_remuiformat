@@ -86,13 +86,16 @@ class format_remuiformat_activity implements renderable, templatable {
             // Can't view this section.
             return $export;
         }
-
+        if ($PAGE->user_is_editing()) {
+            $export->editing = 1;
+        }
         // The requested section page.
         $currentsection = $modinfo->get_section_info($this->displaysection);
         // Title with section navigation links.
         $sectionnavlinks = $renderer->get_nav_links($this->course, $modinfo->get_section_info_all(), $this->displaysection);
         $export->leftnav = $sectionnavlinks['previous'];
         $export->rightnav = $sectionnavlinks['next'];
+        $export->leftside = $renderer->section_left_content($currentsection, $this->course, false);
         $export->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
 
         // Title.
@@ -171,6 +174,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 }
 
                 if ($PAGE->user_is_editing()) {
+                    $activitydetails->editing = 1;
                     $editactions = course_get_cm_edit_actions($mod, $mod->indent, $this->displaysection);
                     $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions(
                         $editactions,

@@ -15,15 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Provides {@link format_remuiformat\external\api} class.
  *
- * @package    format_remuiformat
- * @copyright  2017 Wisdmlabs
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     format_remuiformat
+ * @category    external
+ * @copyright   2018 Wisdmlabs
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace format_remuiformat\external;
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018071703;                    // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2017050500;                    // Requires this Moodle version.
-$plugin->component = 'format_remuiformat';          // Full name of the plugin (used for diagnostics).
+require_once($CFG->libdir.'/externallib.php');
+
+use external_api;
+/**
+ * Provides an external API of the block.
+ *
+ * Each external function is implemented in its own trait. This class
+ * aggregates them all.
+ */
+class api extends external_api {
+    use move_activities;
+}

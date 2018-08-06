@@ -1,4 +1,4 @@
-require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
+require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format_remuiformat/jquery.dragsort'], function ($, Ajax) {
     var cardminHeight = 200;
     $(window).resize(function() {
         resizeContainer();
@@ -131,9 +131,45 @@ require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
         }, 10);
     });
 
-    $(document).on('resize', '#card-container', function() {
-        console.log("Triggered");
-    });
+    function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+        
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+        
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    }
+
+    $('.wdm-section-wrapper').dragsort({
+        dragSelector: "a.wdm-drag-drop",
+        dragBetween: true,
+        dragEnd: saveOrder,
+        placeHolderTemplate: "<li class='placeHolder' style='border:1px solid gray;'></li>" 
+    })
+
+    function saveOrder() {
+        var section = $(this).data('section');
+        var courseid = getUrlParameter('id');
+        var data = $(".wdm-section-wrapper li").map(function() {
+            return $(this).data("id");
+        }).get();
+        var sequence = data.toString();
+        var sectionsave = Ajax.call([
+            {
+                methodname: "format_remuiformat_move_activities",
+                args: { courseid : courseid, sectionid: section, sequence : sequence }
+            }
+        ]);
+        sectionsave[0].done(function (response) {
+            console.log(response);
+        });
+    }
 
     M.course = M.course || {};
 
@@ -176,7 +212,7 @@ require(['jquery', 'format_remuiformat/jquery.easypiechart'], function ($) {
      * @param {string} sectionto last affected section
      * @return void
      */
-     M.course.format.process_sections = function (Y, sectionlist, response, sectionfrom, sectionto) {
+    M.course.format.process_sections = function (Y, sectionlist, response, sectionfrom, sectionto) {
         var CSS = {
             SECTIONNAME: 'sectionname'
         },

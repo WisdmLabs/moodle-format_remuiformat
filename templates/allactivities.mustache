@@ -10,62 +10,73 @@
             {{{ rightnav }}}
         </div>
     </div>
-    <div class="col-md-12 p-0 general-single-card p-20 my-20">
+    <div class="col-md-12 p-0 general-single-card p-20 mt-20 mb-30">
         <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary}}}</p>
     </div>
     <div>
-        <ul class="cards p-0 m-0">
-            <li id="section-{{section}}" class="section row wdm-card-single-section">
-                {{#activities}}
-                <div class="col-lg-4 col-md-6 col-sm-12 single-card-container">
-                    <div class="single-card p-15 mb-20">
-                        <!-- {{{ move }}} -->
-                        <div class="wdm-activity-actions d-flex">
-                            <span class="sno py-5 pr-15 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
+        <div class="cards p-0 m-0">
+            <div id="section-{{section}}" class="section row wdm-card-single-section">
+                {{#editing}}
+                <div class="right side">
+                    {{{ optionmenu }}}
+                </div>
+                {{/editing}}
+                <div class="content w-full">
+                    <ul class="row p-0 m-0 wdm-section-wrapper">
+                    {{#activities}}
+                        <li class="col-lg-4 col-md-6 col-sm-12 single-card-container px-15 {{{modulename}}} modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
+                        <div class="single-card p-20 mb-20">
+                            {{#editing}}
+                                <a class="wdm-drag-drop"><span><i class="fa fa-arrows" aria-hidden="true"></i></span></a>
+                            {{/editing}}
                             <div class="wdm-activity-actions d-flex">
-                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
-                                {{{ modicons }}}
-                            </div>
-                        </div>
-                        <h4 class="wdm-single-activity-title">{{{ title }}}</h4>
-                        <div class="text-center text-muted">
-                            {{{ availstatus }}}
-                        </div>
-                        <div class="pt-10">
-                            {{{ summary }}}
-                        </div>
-                        <div class="d-flex pt-15 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
-                            <div class="w-p50 d-flex">
-                                <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
-                            </div>
-                            {{#completion}}
-                            <div class="wdm-completion-container d-flex align-items-center">
-                                <p class="m-0 mx-10 text-right wdm-completion-title wdm-completion-status-{{id}}">
-                                    {{#completed}}
-                                        {{#str}} completed, format_remuiformat{{/str}}
-                                    {{/completed}}
-                                    {{^completed}}
-                                        {{#str}} markcomplete, format_remuiformat{{/str}}
-                                    {{/completed}}
-                                </p>
-                                <a class="btn bg-white p-0 wdm-toggle-completion" data-id="{{ id }}">
-                                    <!--<span><i class="fa fa-check-circle" aria-hidden="true"></i></span>-->
-                                    <div class="pchart wdm-chart-{{id}}" data-percent="{{#completed}}100{{/completed}}">
-                                        <span class="activity-check-{{id}} activity-check {{#completed}}completed{{/completed}}"><i class="fa fa-check" aria-hidden="true"></i></span>
-                                    </div>
-                                </a>
-                                <div class="hidden wdm-completion-check-{{id}}" >
-                                    {{{ completion }}}
+                                <span class="sno py-5 pr-15 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
+                                <div class="wdm-activity-actions d-flex">
+                                    <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
+                                    {{{ modicons }}}
                                 </div>
                             </div>
-                            {{/completion}}
+                            <h4 class="wdm-single-activity-title">{{{ title }}}</h4>
+                            <div class="text-center text-muted">
+                                {{{ availstatus }}}
+                            </div>
+                            <div class="pt-10 mb-10">
+                                {{{ summary }}}
+                            </div>
+                            <div class="d-flex pt-15 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
+                                <div class="w-p50 d-flex">
+                                    <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
+                                </div>
+                                {{#completion}}
+                                <div class="wdm-completion-container d-flex align-items-center">
+                                    <p class="m-0 mx-10 text-right wdm-completion-title wdm-completion-status-{{id}}">
+                                        {{#completed}}
+                                            {{#str}} completed, format_remuiformat{{/str}}
+                                        {{/completed}}
+                                        {{^completed}}
+                                            {{#str}} markcomplete, format_remuiformat{{/str}}
+                                        {{/completed}}
+                                    </p>
+                                    <a class="btn bg-white p-0 wdm-toggle-completion" data-id="{{ id }}">
+                                        <!--<span><i class="fa fa-check-circle" aria-hidden="true"></i></span>-->
+                                        <div class="pchart wdm-chart-{{id}}" data-percent="{{#completed}}100{{/completed}}">
+                                            <span class="activity-check-{{id}} activity-check {{#completed}}completed{{/completed}}"><i class="fa fa-check" aria-hidden="true"></i></span>
+                                        </div>
+                                    </a>
+                                    <div class="hidden wdm-completion-check-{{id}}" >
+                                        {{{ completion }}}
+                                    </div>
+                                </div>
+                                {{/completion}}
+                            </div>
                         </div>
-                    </div>
+                        </li>
+                    {{/activities}}
+                    </ul>
                 </div>
-                {{/activities}}
                 {{{ addnewactivity }}}
-            <li>
-        <ul>
+            </li>
+        </ul>
     </div>
 {{/hiddensection}}

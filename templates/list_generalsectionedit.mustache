@@ -1,5 +1,5 @@
 <li id="section-0" class="first-section-li section main clearfix mb-25" role="region" aria-label="{{{coursefullname}}}">
-   <div class="p-10 course-cover-image pb-30" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});">
+   <div class="p-10 course-cover-image" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});">
     {{#rightside}}
     <div class="right side">
         {{{rightside}}}
@@ -7,13 +7,16 @@
     {{/rightside}}
       <div class="text-white">
          <div class="page-title mb-15">{{{coursefullname}}}</div>
-         <div class="font-size-14 summary" style="max-width: 800px;">{{{ coursesummary }}}</div>
+         <div class="font-size-14 summary">{{{ coursesummary }}}</div>
 
-         <div class="mr-0 w-25 ml-auto">
-         {{#teachers}}
-            {{{teacherimg}}}
-         {{/teachers}}
-         </div>
+        
+      </div>
+      <div class="container teacher-img">
+        <div class="row text-white">
+        {{#teachers}}
+          {{{teacherimg}}}
+        {{/teachers}}
+        </div>
       </div>
    </div>
 
@@ -40,6 +43,7 @@
                         <div class="actions">
                            {{{completion}}}
                            {{{modicons}}}
+                           {{{availstatus}}}
                         </div>
                      </div>
                   </div>
@@ -56,6 +60,20 @@
 
 {{#js}}
 
+     // change css for li after drag and drop
+    
+     // select the target node
+      var target = document.querySelector('ul.remui-format-list ul.first-section')
+      // create an observer instance
+      var observer = new MutationObserver(function(mutations) {
+        $('ul.remui-format-list ul.first-section').find('li.activity').attr('class', 'activity first-section-activity forum modtype_forum col-6 col-sm-6 col-md-4 col-lg-2 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable');
+        $('ul.remui-format-list ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
+        $('ul.remui-format-list ul.first-section').find('.mod-indent-outer').removeAttr('class');
+        });
+      // configuration of the observer:
+      var config = { attributes: true, childList: true, characterData: true };
+      // pass in the target node, as well as the observer options
+      observer.observe(target, config);
 
     // show hide extra activities in general/first section
     jQuery('.showactivity').on('click', function() {
@@ -70,26 +88,80 @@
     });
 
     // show load more button conditionally
+    
     jQuery(window).resize(function(){
         var wwidth = jQuery(window).width();
         var count = jQuery(".first-section-activity").length;
 
         if(wwidth > 991) {
-            if(count > 6)
-                jQuery('.showactivity').css('visibility', 'visible');
-            else
-                jQuery('.showactivity').css('visibility', 'hidden');
+            if(count > 6) {
+                jQuery('.showactivity').removeAttr( 'style' );
+                jQuery('.showactivitywrapper').removeAttr( 'style' );
+                }
+            else {
+                jQuery('.showactivity').css('display', 'none');
+                jQuery('.showactivitywrapper').css('display', 'none');
+                }
+
         } else if(wwidth > 767 && wwidth < 992) {
-            if(count > 3)
-                jQuery('.showactivity').css('visibility', 'visible');
-            else
-                jQuery('.showactivity').css('visibility', 'hidden');
+            if(count > 3) {
+                jQuery('.showactivity').removeAttr( 'style' );
+                jQuery('.showactivitywrapper').removeAttr( 'style' );
+                }
+            else {
+                jQuery('.showactivity').css('display', 'none');
+                jQuery('.showactivitywrapper').css('display', 'none');
+                }
         } else {
-            if(count > 2)
-                jQuery('.showactivity').css('visibility', 'visible');
-            else
-                jQuery('.showactivity').css('visibility', 'hidden');
+            if(count > 2) {
+                jQuery('.showactivity').removeAttr( 'style' );
+                jQuery('.showactivitywrapper').removeAttr( 'style' );
+                }
+            else {
+                jQuery('.showactivity').css('display', 'none');
+                jQuery('.showactivitywrapper').css('display', 'none');
+                }
         }
+
+        var containerwidth = jQuery('.teacher-img').width();
+      
+      if(containerwidth > 791) {
+          var ele = jQuery('.space-div');
+          ele.removeAttr('class');
+          ele.attr('class', 'space-div col-8');
+
+          var car = jQuery('.teacher-label');
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-2');
+
+          var car = jQuery('#teachersCarousel');          
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-2');
+      } else if(containerwidth > 567 && containerwidth < 792) {
+          var ele = jQuery('.space-div');
+          ele.removeAttr('class');
+          ele.attr('class', 'space-div col-7');
+
+          var car = jQuery('.teacher-label');
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-2');
+
+          var car = jQuery('#teachersCarousel');
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-3');
+      } else {
+          var ele = jQuery('.space-div');
+          ele.removeAttr('class');
+          ele.attr('class', 'space-div col-4');
+
+          var car = jQuery('.teacher-label');
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-3');
+
+          var car = jQuery('#teachersCarousel');
+          car.removeAttr('class');
+          car.attr('class', 'carousel slide col-5');
+      }
     });
 {{/js}}
 

@@ -13,17 +13,23 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Version details
+ * Plugin external functions and services are defined here.
  *
- * @package    format_remuiformat
- * @copyright  2017 Wisdmlabs
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     format_remuiformat
+ * @category    external
+ * @copyright   2018 Wisdmlabs
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018071703;                    // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2017050500;                    // Requires this Moodle version.
-$plugin->component = 'format_remuiformat';          // Full name of the plugin (used for diagnostics).
+$functions = [
+    'format_remuiformat_move_activities' => [
+        'classname' => 'format_remuiformat\external\api',
+        'methodname' => 'move_activities',
+        'classpath' => '',
+        'description' => 'Adds/Update the sequence of activity in Section.',
+        'type' => 'write',
+        'ajax' => true,
+    ],
+];

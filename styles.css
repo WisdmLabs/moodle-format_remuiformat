@@ -76,6 +76,20 @@
     font-weight: 900;
     color:rgba(0, 0, 0, 0.8);
 }
+
+#page-course-view-remuiformat .single-card:hover {
+  background-color: white;
+} 
+
+body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-container {
+  padding: 15px !important;
+}
+
+#page-course-view-remuiformat ul.wdm-section-wrapper li.single-card-container div.moodle-actionmenu div.dropdown-menu-right a.editing_moveright,
+#page-course-view-remuiformat ul.wdm-section-wrapper li.single-card-container div.moodle-actionmenu div.dropdown-menu-right a.editing_moveleft {
+  display: none;
+}
+
 #page-course-view-remuiformat div#card-editing-container .section-title,
 #page-course-view-remuiformat div#card-container .section-title {
     margin:0;
@@ -228,6 +242,16 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat .wdm-activity-actions div.moodle-actionmenu.section-cm-edit-actions {
     position: unset;
     margin-left: 10px;
+}
+
+#page-course-view-remuiformat .wdm-card-single-section .section_action_menu {
+    position: absolute;
+    top: 100px;
+    right: 40px;
+}
+
+#page-course-view-remuiformat .wdm-section-wrapper {
+    list-style-type: none;
 }
 
 #page-course-view-remuiformat .wdm-card-single-section .addresourcemodchooser {
@@ -415,15 +439,16 @@ ul.remui-format-list img.activityicon {
 }
 
 #teachersCarousel .carousel-inner {
-  width:50%;
-  margin: 0 auto;
+  /*width:50%;
+  margin: 0 auto;*/
 }
 
 
 
 .teacher-label {
   display: inline-block;
-  width: 29%;
+  text-align: end;
+  /*width: 29%;*/
   /*text-align: center;
   display:table-cell;
   vertical-align:middle;*/
@@ -431,7 +456,11 @@ ul.remui-format-list img.activityicon {
 
 #teachersCarousel {
   display: inline-block;
-  width: 70%;
+  /*width: 70%;*/
+}
+
+li.first-section-li .summary {
+  min-height: 6rem;
 }
 
 

@@ -14,10 +14,17 @@
         <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary}}}</p>
     </div>
-    <div class="bg-white py-20">
-        <div class="px-30 d-flex justify-content-end">
-            {{{ optionmenu }}}
-        </div>
-        {{{ activities }}}
-    </div>
+    <ul class="remui-format-list bg-white py-20">
+        <li id="section-{{section}}" class="section">
+            <div class="left side">
+                {{{ leftside }}}
+            </div>
+            <div class="right side">
+                {{{ optionmenu }}}
+            </div>
+            <div class="content">
+                {{{ activities }}}
+            </div>
+        </li>
+    </ul>
 {{/hiddensection}}

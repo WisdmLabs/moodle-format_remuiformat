@@ -141,7 +141,9 @@ class format_remuiformat_section implements renderable, templatable
         // Course Information.
         $export->coursefullname = $this->course->fullname;
         $coursesummary = $this->course->summary;
-        $coursesummary = strlen($coursesummary) > 300 ? substr($coursesummary, 0, 300)."..." : $coursesummary;
+        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+
+        $coursesummary = strlen($coursesummary) > $sectiontitlesummarymaxlength ? substr($coursesummary, 0, $sectiontitlesummarymaxlength)."..." : $coursesummary;
         $export->coursesummary = $coursesummary;
         $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
 
@@ -164,43 +166,44 @@ class format_remuiformat_section implements renderable, templatable
         $export->generalsection['rightside'] = $rightside;
 
         // For displaying teachers.
-        $count = 1;
-        $export->generalsection['teachers'] = $teachers;
-        $export->generalsection['teachers']['teacherimg'] = '<div class="teacher-label"><span>Teachers</span></div>
-        <div class="carousel slide" data-ride="carousel" id="teachersCarousel">
-        <div class="carousel-inner">';
+        if (!empty($teachers)) {
+            $count = 1;
+            $export->generalsection['teachers'] = $teachers;
+            $export->generalsection['teachers']['teacherimg'] = '<div class="space-div col-7"></div><div class="teacher-label col-2"><span>Teachers</span></div>
+            <div class="carousel slide col-3" data-ride="carousel" id="teachersCarousel">
+            <div class="carousel-inner">';
 
-        foreach ($teachers as $teacher) {
-            if ($count % 2 == 0) {
-                // Skip even members.
+            foreach ($teachers as $teacher) {
+                if ($count % 2 == 0) {
+                    // Skip even members.
+                    $count += 1;
+                    next($teachers);
+                    continue;
+                }
+                $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
+                if ($count == 1) {
+                    $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active">' . $OUTPUT->user_picture($teacher);
+
+                } else {
+                    $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item">'. $OUTPUT->user_picture($teacher);
+                }
+                $nextteacher = next($teachers);
+                if (false != $nextteacher) {
+                    $nextteacher->imagealt = $nextteacher->firstname . ' ' . $nextteacher->lastname;
+                    $export->generalsection['teachers']['teacherimg'] .= $OUTPUT->user_picture($nextteacher);
+                }
+                $export->generalsection['teachers']['teacherimg'] .= '</div>';
                 $count += 1;
-                next($teachers);
-                continue;
             }
-            $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
-            if ($count == 1) {
-                $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active">' . $OUTPUT->user_picture($teacher);
-
-            } else {
-                $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item">'. $OUTPUT->user_picture($teacher);
-            }
-            $nextteacher = next($teachers);
-            if (false != $nextteacher) {
-                $nextteacher->imagealt = $nextteacher->firstname . ' ' . $nextteacher->lastname;
-                $export->generalsection['teachers']['teacherimg'] .= $OUTPUT->user_picture($nextteacher);
-            }
-            $export->generalsection['teachers']['teacherimg'] .= '</div>';
-            $count += 1;
+            $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a></div>';
         }
-        $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a></div>';
-
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         $export->sections = $this->get_all_section_data($renderer, $editing, $rformat);
