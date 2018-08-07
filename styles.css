@@ -515,6 +515,10 @@ ul.remui-format-list .mod-indent-outer .actions {
     opacity:1!important;
     min-width: 25px!important;
 }
+
+.text-white * {
+  color: #fff!important;
+}
 /*#page-course-view-remuiformat ul.section.first-section .action-menu {
 
 }*/
