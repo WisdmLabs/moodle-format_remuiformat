@@ -80,10 +80,10 @@ $string['progress'] = 'Progress';
 
 // For list.
 
-$string['remuicourseformat'] = 'Choose Format';
-$string['remuicourseformat_card'] = 'Card Format';
-$string['remuicourseformat_list'] = 'List Format';
-$string['remuicourseformat_help'] = 'Choose a course format';
+$string['remuicourseformat'] = 'Choose layout';
+$string['remuicourseformat_card'] = 'Card Layout';
+$string['remuicourseformat_list'] = 'List Layout';
+$string['remuicourseformat_help'] = 'Choose a course layout';
 $string['remuicourseimage'] = 'Choose a course image';
 $string['remuicourseimage_help'] = 'Choose a course image';
 $string['addsections'] = 'Add sections';
