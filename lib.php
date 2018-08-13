@@ -299,6 +299,18 @@ class format_remuiformat extends format_base {
     }
 
     /**
+     * Whether this format allows to delete sections
+     *
+     * Do not call this function directly, instead use {@link course_can_delete_section()}
+     *
+     * @param int|stdClass|section_info $section
+     * @return bool
+     */
+    public function can_delete_section($section) {
+        return true;
+    }
+
+    /**
      * Prepares the templateable object to display section name
      *
      * @param \section_info|\stdClass $section
