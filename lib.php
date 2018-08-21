@@ -204,6 +204,10 @@ class format_remuiformat extends format_base {
                     'default' => get_config('format_remuiformat', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
+                'remuiteacherdisplay' => array(
+                    'default' => 1,
+                    'type' => PARAM_INT
+                ),
             );
         }
 
@@ -263,6 +267,18 @@ class format_remuiformat extends format_base {
                     'element_type' => 'text',
                     'element_attributes' => array('size' => 3),
                     'help' => 'sectiontitlesummarymaxlength',
+                    'help_component' => 'format_remuiformat'
+                ),
+                'remuiteacherdisplay' => array(
+                    'label' => new lang_string('remuiteacherdisplay', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('yes'),
+                            0 => new lang_string('no')
+                        )
+                    ),
+                    'help' => 'remuiteacherdisplay',
                     'help_component' => 'format_remuiformat'
                 )
             );

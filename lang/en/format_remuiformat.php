@@ -88,6 +88,10 @@ $string['remuicourseimage'] = 'Choose a course image';
 $string['remuicourseimage_help'] = 'Choose a course image';
 $string['addsections'] = 'Add sections';
 $string['teachers'] = 'Teachers';
+$string['remuiteacherdisplay'] = 'Show Teacher image';
+$string['remuiteacherdisplay_help'] = 'Show Teacher image in the Course header.';
+$string['defaultremuiteacherdisplay'] = 'Show Teacher image';
+$string['defaultremuiteacherdisplay_desc'] = 'Show Teacher image in the Course header.';
 
 // GDPR.
 $string['privacy:metadata'] = 'The RemUI format plugin does not store any personal data.';

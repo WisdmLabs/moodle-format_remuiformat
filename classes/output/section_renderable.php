@@ -153,7 +153,10 @@ class format_remuiformat_section implements renderable, templatable
         // For Completion percentage.
         $export->generalsection['activities'] = $this->get_activities_details($generalsection);
         $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
-        $teachers = get_role_users($role->id, $coursecontext);
+	$teachers = null;
+        if(!empty($role)){
+            $teachers = get_role_users($role->id, $coursecontext);
+        }
         $completion = new \completion_info($this->course);
         $percentage = progress::get_course_progress_percentage($this->course);
         if (!is_null($percentage)) {
