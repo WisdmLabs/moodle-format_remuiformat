@@ -519,6 +519,12 @@ ul.remui-format-list .mod-indent-outer .actions {
 .text-white * {
   color: #fff!important;
 }
+
+/* For in place editing of the general section */
+ul.remui-format-list span.inplaceeditable label,
+ul.remui-format-list span.inplaceeditable input {
+  color: #76838f!important;
+}
 /*#page-course-view-remuiformat ul.section.first-section .action-menu {
 
 }*/

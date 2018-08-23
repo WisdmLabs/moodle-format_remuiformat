@@ -143,17 +143,30 @@ class format_remuiformat_section implements renderable, templatable
         $modinfo = get_fast_modinfo($this->course);
 
         // Course Information.
-        $export->coursefullname = $this->course->fullname;
-        $coursesummary = $this->course->summary;
-        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-        if(!empty($coursesummary)) {
-            $coursesummary = $renderer->abstractHTMLContents($coursesummary, $sectiontitlesummarymaxlength);
-        }
-        $export->coursesummary = $coursesummary;
+        // $export->coursefullname = $this->course->fullname;
+        // $coursesummary = $this->course->summary;
+        // $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+        // if(!empty($coursesummary)) {
+        //     $coursesummary = $renderer->abstractHTMLContents($coursesummary, $sectiontitlesummarymaxlength);
+        // }
+        // $export->coursesummary = $coursesummary;
         $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
 
         // General Section Details.
         $generalsection = $modinfo->get_section_info(0);
+        if($editing){
+            $export->generalsection['generalsectiontitlename'] = $this->courseformat->get_section_name($generalsection);
+            $export->generalsection['generalsectiontitle'] = $renderer->section_title($generalsection, $this->course);
+        }
+        else {
+            $export->generalsection['generalsectiontitle'] = $this->courseformat->get_section_name($generalsection);
+        }
+        $generalsectionsummary = $generalsection->summary;
+        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+        if(!empty($generalsectionsummary)) {
+            $generalsectionsummary = $renderer->abstractHTMLContents($generalsectionsummary, $sectiontitlesummarymaxlength);
+        }
+        $export->generalsectionsummary = $generalsectionsummary;
         $export->generalsection['remuicourseimage'] = $imgurl;
         // For Completion percentage.
         $export->generalsection['activities'] = $this->get_activities_details($generalsection);
