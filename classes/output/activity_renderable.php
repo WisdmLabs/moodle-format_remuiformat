@@ -101,10 +101,14 @@ class format_remuiformat_activity implements renderable, templatable {
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
         $export->title = $sectionname;
-        $export->summary = $this->modstats->get_formatted_summary(
-            $renderer->format_summary_text($currentsection),
-            $this->settings
-        );
+        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+        if(!empty($currentsection->summary)) {
+            // $export->summary = $this->modstats->get_formatted_summary(
+            //     $renderer->format_summary_text($currentsection),
+            //     $this->settings
+            // );
+            $export->summary = $renderer->abstractHTMLContents($currentsection->summary, $sectiontitlesummarymaxlength);
+        }
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);

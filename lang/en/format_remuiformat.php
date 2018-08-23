@@ -66,6 +66,7 @@ $string['viewtopic'] = 'View';
 $string['editsection'] = 'Edit topic';
 $string['editsectionname'] = 'Edit topic name';
 $string['newsectionname'] = 'New name for topic {$a}';
+$string['currentsection'] = 'This topic';
 // Activity.
 $string['viewactivity'] = 'View Activity';
 $string['markcomplete'] = 'Mark as Complete';

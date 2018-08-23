@@ -123,7 +123,11 @@ class format_remuiformat_section implements renderable, templatable
             }
 
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
-            $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
+            // $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
+            $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+            if(!empty($generalsection->summary)){
+                $export->generalsection['summary'] = $renderer->abstractHTMLContents($generalsection->summary, $sectiontitlesummarymaxlength);
+            }
             $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
             $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         }
@@ -143,7 +147,7 @@ class format_remuiformat_section implements renderable, templatable
         $coursesummary = $this->course->summary;
         $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
         if(!empty($coursesummary)) {
-            $coursesummary = $this->abstractHTMLContents($coursesummary, $sectiontitlesummarymaxlength) . "<span> ...<span>";
+            $coursesummary = $renderer->abstractHTMLContents($coursesummary, $sectiontitlesummarymaxlength);
         }
         $export->coursesummary = $coursesummary;
         $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
@@ -153,7 +157,6 @@ class format_remuiformat_section implements renderable, templatable
         $export->generalsection['remuicourseimage'] = $imgurl;
         // For Completion percentage.
         $export->generalsection['activities'] = $this->get_activities_details($generalsection);
-        
         $completion = new \completion_info($this->course);
         $percentage = progress::get_course_progress_percentage($this->course);
         if (!is_null($percentage)) {
@@ -164,7 +167,6 @@ class format_remuiformat_section implements renderable, templatable
         // For right side.
         $rightside = $renderer->section_right_content($generalsection, $this->course, false);
         $export->generalsection['rightside'] = $rightside;
-
         $displayTeacher = $this->settings['remuiteacherdisplay'];
         if($displayTeacher == 1){
             $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
@@ -254,10 +256,19 @@ class format_remuiformat_section implements renderable, templatable
                 $singlepageurl = $this->courseformat->get_view_url($section)->out(true);
             }
             $sectiondetails->singlepageurl = $singlepageurl;
-            $sectiondetails->summary = $this->modstats->get_formatted_summary(
-                strip_tags($currentsection->summary),
-                $this->settings
-            );
+            // var_dump($currentsection->summary);
+            // exit;
+            // $sectiondetails->summary = $this->modstats->get_formatted_summary(
+            //     ($currentsection->summary),
+            //     $this->settings
+            // );
+            $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+            if(!empty($currentsection->summary)) {
+                $sectiondetails->summary = $renderer->abstractHTMLContents($currentsection->summary,$sectiontitlesummarymaxlength);
+                // var_dump($sectiondetails->summary);
+                // exit;
+            }
+
             $sectiondetails->hiddenmessage = $renderer->section_availability_message($currentsection, has_capability(
                 'moodle/course:viewhiddensections',
                 $coursecontext
@@ -339,7 +350,6 @@ class format_remuiformat_section implements renderable, templatable
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
-
         if (!empty($modinfo->sections[$section->section])) {
             $count = 1;
             foreach ($modinfo->sections[$section->section] as $modnumber) {
@@ -363,6 +373,8 @@ class format_remuiformat_section implements renderable, templatable
                     $activitydetails->summary,
                     $this->settings
                 );
+                // var_dump($activitydetails->summary);
+                // exit;
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
@@ -424,69 +436,4 @@ class format_remuiformat_section implements renderable, templatable
         return '';
     }
 
-    public function abstractHTMLContents($html, $maxLength=100){
-        mb_internal_encoding("UTF-8");
-        $printedLength = 0;
-        $position = 0;
-        $tags = array();
-        $newContent = '';
-
-        // $html = $content = preg_replace("/<img[^>]+\>/i", "", $html);
-
-        while ($printedLength < $maxLength && preg_match('{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position))
-        {
-            list($tag, $tagPosition) = $match[0];
-            // Print text leading up to the tag.
-            $str = mb_strcut($html, $position, $tagPosition - $position);
-            if ($printedLength + mb_strlen($str) > $maxLength){
-                $newstr = mb_strcut($str, 0, $maxLength - $printedLength);
-                $newstr = preg_replace('~\s+\S+$~', '', $newstr);  
-                $newContent .= $newstr;
-                $printedLength = $maxLength;
-                break;
-            }
-            $newContent .= $str;
-            $printedLength += mb_strlen($str);
-            if ($tag[0] == '&') {
-                // Handle the entity.
-                $newContent .= $tag;
-                $printedLength++;
-            } else {
-                // Handle the tag.
-                $tagName = $match[1][0];
-                if ($tag[1] == '/') {
-                  // This is a closing tag.
-                  $openingTag = array_pop($tags);
-                  assert($openingTag == $tagName); // check that tags are properly nested.
-                  $newContent .= $tag;
-                } else if ($tag[mb_strlen($tag) - 2] == '/'){
-              // Self-closing tag.
-                $newContent .= $tag;
-            } else {
-              // Opening tag.
-              $newContent .= $tag;
-              $tags[] = $tagName;
-            }
-          }
-
-          // Continue after the tag.
-          $position = $tagPosition + mb_strlen($tag);
-        }
-
-        // Print any remaining text.
-        if ($printedLength < $maxLength && $position < mb_strlen($html))
-          {
-            $newstr = mb_strcut($html, $position, $maxLength - $printedLength);
-            $newstr = preg_replace('~\s+\S+$~', '', $newstr);
-            $newContent .= $newstr;
-          }
-
-        // Close any open tags.
-        while (!empty($tags))
-          {
-            $newContent .= sprintf('</%s>', array_pop($tags));
-          }
-
-        return $newContent;
-    }
 }
