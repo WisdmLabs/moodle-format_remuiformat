@@ -94,6 +94,11 @@ $string['remuiteacherdisplay_help'] = 'Show Teacher image in the Course header.'
 $string['defaultremuiteacherdisplay'] = 'Show Teacher image';
 $string['defaultremuiteacherdisplay_desc'] = 'Show Teacher image in the Course header.';
 
+$string['remuidefaultsectionview'] = 'Choose default sections view';
+$string['remuidefaultsectionview_help'] = 'Choose a default view for the sections of the course.';
+$string['expanded'] = 'Expand All';
+$string['collapsed'] = 'Collapse All';
+
 // GDPR.
 $string['privacy:metadata'] = 'The RemUI format plugin does not store any personal data.';
 

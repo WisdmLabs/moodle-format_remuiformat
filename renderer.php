@@ -565,7 +565,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
           }
 
         // append ...
-        $newContent .= '...';
+        if(strlen(strip_tags(format_text($html))) > $maxLength){
+            $newContent .= '...';
+        }
         // Close any open tags.
         while (!empty($tags))
           {

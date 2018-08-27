@@ -137,12 +137,27 @@ class format_remuiformat_section implements renderable, templatable
     }
 
     private function get_list_format_context(&$export, $renderer, $editing, $rformat) {
-        global $DB, $OUTPUT;
+        global $DB, $OUTPUT, $USER;
         $chelper = new \coursecat_helper();
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
 
+        // Default view for all sections
+        $defaultview = $this->settings['remuidefaultsectionview'];
+        // var_dump($defaultview);
+
+        // if($defaultview == 1) {
+        //     $export->expanded = 'true';
+        // }
+        // else {
+            // $export->expanded = 'false';
+        // }
+        // var_dump($export->expanded);
+        // exit;
+        // User id for toggle
+        $export->user_id = $USER->id;
         // Course Information.
+        $export->course_id = $this->course->id;
         // $export->coursefullname = $this->course->fullname;
         // $coursesummary = $this->course->summary;
         // $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
@@ -157,10 +172,13 @@ class format_remuiformat_section implements renderable, templatable
         if($editing){
             $export->generalsection['generalsectiontitlename'] = $this->courseformat->get_section_name($generalsection);
             $export->generalsection['generalsectiontitle'] = $renderer->section_title($generalsection, $this->course);
+            // var_dump($export->generalsection['generalsectiontitle']);
         }
         else {
             $export->generalsection['generalsectiontitle'] = $this->courseformat->get_section_name($generalsection);
         }
+        // var_dump($export->generalsection['generalsectiontitle']);
+        // exit;
         $generalsectionsummary = $generalsection->summary;
         $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
         if(!empty($generalsectionsummary)) {

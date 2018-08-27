@@ -207,7 +207,7 @@ class format_remuiformat extends format_base {
                 'remuiteacherdisplay' => array(
                     'default' => 1,
                     'type' => PARAM_INT
-                ),
+                )
             );
         }
 
@@ -451,15 +451,17 @@ class format_remuiformat extends format_base {
         global $DB;
         if (!empty($data)) {
             $contextid = context_course::instance($this->courseid);
-            file_postupdate_standard_filemanager(
-                $data,
-                'remuicourseimage',
-                array ('accepted_types' => 'images', 'maxfiles' => 1),
-                $contextid,
-                'format_remuiformat',
-                'remuicourseimage_filearea',
-                $data->remuicourseimage_filemanager
-            );
+            if(!empty($data->remuicourseimage_filemanager)) {
+                file_postupdate_standard_filemanager(
+                    $data,
+                    'remuicourseimage',
+                    array ('accepted_types' => 'images', 'maxfiles' => 1),
+                    $contextid,
+                    'format_remuiformat',
+                    'remuicourseimage_filearea',
+                    $data->remuicourseimage_filemanager
+                );
+            }
         }
         return $this->update_format_options($data);
     }
@@ -484,6 +486,7 @@ class format_remuiformat extends format_base {
         }
         return array('sectiontitles' => $titles, 'action' => 'move');
     }
+
 }
 
 /**

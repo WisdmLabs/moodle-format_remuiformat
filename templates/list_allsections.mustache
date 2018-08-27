@@ -28,14 +28,42 @@
 
 
 {{#js}}
-   jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
+    jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
+      var section_id = jQuery(this).parent().parent().parent().attr('id');
+      var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+      // alert(localStorage.getItem(namelocal));
+      if(localStorage.getItem(namelocal) == 'false'){
+        // change arrow
+        jQuery(this).find('i').toggleClass('fa-angle-down');
+        jQuery(this).find('i').toggleClass('fa-angle-up');
+        // add appropriate classes
+        jQuery(this).addClass('collapsed');
+        jQuery(this).attr('aria-expanded', 'false');
+        var attr_to_search = jQuery(this).attr('href');
+        // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
+        
+        jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
+
+        jQuery(this).parent().parent().find('.summary').show(500);
+        jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+      }
+    });
+    jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
       jQuery(this).find('i').toggleClass('fa-angle-down');
       jQuery(this).find('i').toggleClass('fa-angle-up');
       if(jQuery(this).parent().parent().find('.summary').is(":visible")){
+        
+        var section_id = jQuery(this).parent().parent().parent().attr('id');
+        var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+        localStorage.setItem(namelocal, 'true');
         jQuery(this).parent().parent().find('.summary').hide(500);
         jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
         
       }else{
+
+        var section_id = jQuery(this).parent().parent().parent().attr('id');
+        var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+        localStorage.setItem(namelocal, 'false');
         jQuery(this).parent().parent().find('.summary').show(500);
         jQuery(this).parent().parent().find('.section-summary-activities').show(500);
       }

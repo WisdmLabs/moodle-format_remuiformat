@@ -84,7 +84,6 @@ M.course.format.process_sections = function(Y, sectionlist, response, sectionfro
             // Update section title.
             var content = Y.Node.create(response.sectiontitles[i]);
             sectionlist.item(i).all('h4.'+CSS.SECTIONNAME).setHTML(content);
-            // alert(sectionlist.item(i));
             // Update move icon.
             ele = sectionlist.item(i).one(SELECTORS.SECTIONLEFTSIDE);
             str = ele.getAttribute('alt');
