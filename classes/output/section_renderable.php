@@ -143,7 +143,7 @@ class format_remuiformat_section implements renderable, templatable
         $modinfo = get_fast_modinfo($this->course);
 
         // Default view for all sections
-        $defaultview = $this->settings['remuidefaultsectionview'];
+        // $defaultview = $this->settings['remuidefaultsectionview'];
         // var_dump($defaultview);
 
         // if($defaultview == 1) {
