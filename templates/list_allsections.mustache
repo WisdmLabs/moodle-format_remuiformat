@@ -28,26 +28,66 @@
 
 
 {{#js}}
-    jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
-      var section_id = jQuery(this).parent().parent().parent().attr('id');
-      var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-      // alert(localStorage.getItem(namelocal));
-      if(localStorage.getItem(namelocal) == 'false'){
-        // change arrow
-        jQuery(this).find('i').toggleClass('fa-angle-down');
-        jQuery(this).find('i').toggleClass('fa-angle-up');
-        // add appropriate classes
-        jQuery(this).addClass('collapsed');
-        jQuery(this).attr('aria-expanded', 'false');
-        var attr_to_search = jQuery(this).attr('href');
-        // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
-        
-        jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
 
-        jQuery(this).parent().parent().find('.summary').show(500);
-        jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+    // save the current choice by admin - expanded or collapsed
+    var formatlabel = {{{ course_id }}} + '_' + {{{ user_id }}} + '_defaultview';
+    var userformat = localStorage.getItem(formatlabel);
+    // alert(userformat);
+    if(userformat == null) {
+      localStorage.setItem(formatlabel, {{{ defaultview }}});
+    }
+    else {
+      // the user's last format and the current format do not match, reset user data
+      if(userformat != {{{ defaultview }}}) {
+      {{#sections}}
+        var namelocal  = 'section-'+ {{{ index }}} + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+        localStorage.removeItem(namelocal);
+      {{/sections}}
+      localStorage.setItem(formatlabel, {{{ defaultview }}});
       }
-    });
+      else {
+        // current format and the user's format are the same
+        jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
+          var section_id = jQuery(this).parent().parent().parent().attr('id');
+          var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+          // alert(localStorage.getItem(namelocal));
+          {{#expanded}}
+          if(localStorage.getItem(namelocal) == 'false'){
+            // change arrow
+            jQuery(this).find('i').toggleClass('fa-angle-down');
+            jQuery(this).find('i').toggleClass('fa-angle-up');
+            // add appropriate classes
+            jQuery(this).addClass('collapsed');
+            jQuery(this).attr('aria-expanded', 'false');
+            var attr_to_search = jQuery(this).attr('href');
+            // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
+            
+            jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
+
+            jQuery(this).parent().parent().find('.summary').show(500);
+            jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+          }
+          {{/expanded}}
+          {{#collapsed}}
+          if(localStorage.getItem(namelocal) == 'true'){
+            // change arrow
+            jQuery(this).find('i').toggleClass('fa-angle-down');
+            jQuery(this).find('i').toggleClass('fa-angle-up');
+            // add appropriate classes
+            jQuery(this).removeClass('collapsed');
+            jQuery(this).attr('aria-expanded', 'true');
+            var attr_to_search = jQuery(this).attr('href');
+            // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
+            
+            jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
+
+            jQuery(this).parent().parent().find('.summary').hide(500);
+            jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+          }
+          {{/collapsed}}
+        });
+      }
+    }
     jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
       jQuery(this).find('i').toggleClass('fa-angle-down');
       jQuery(this).find('i').toggleClass('fa-angle-up');

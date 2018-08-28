@@ -207,7 +207,11 @@ class format_remuiformat extends format_base {
                 'remuiteacherdisplay' => array(
                     'default' => 1,
                     'type' => PARAM_INT
-                )
+                ),
+                'remuidefaultsectionview' => array(
+                    'default' => 1,
+                    'type' => PARAM_INT
+                ),
             );
         }
 
@@ -279,6 +283,18 @@ class format_remuiformat extends format_base {
                         )
                     ),
                     'help' => 'remuiteacherdisplay',
+                    'help_component' => 'format_remuiformat'
+                ),
+                'remuidefaultsectionview' => array(
+                    'label' => new lang_string('remuidefaultsectionview', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('expanded', 'format_remuiformat'),
+                            0 => new lang_string('collapsed', 'format_remuiformat')
+                        )
+                    ),
+                    'help' => 'remuidefaultsectionview',
                     'help_component' => 'format_remuiformat'
                 )
             );

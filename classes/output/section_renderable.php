@@ -138,20 +138,23 @@ class format_remuiformat_section implements renderable, templatable
 
     private function get_list_format_context(&$export, $renderer, $editing, $rformat) {
         global $DB, $OUTPUT, $USER;
-        $chelper = new \coursecat_helper();
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
 
         // Default view for all sections
-        // $defaultview = $this->settings['remuidefaultsectionview'];
+        $defaultview = $this->settings['remuidefaultsectionview'];
+        $export->defaultview = $defaultview;
         // var_dump($defaultview);
 
-        // if($defaultview == 1) {
-        //     $export->expanded = 'true';
-        // }
-        // else {
+        if($defaultview == 1) {
+            $export->expanded = true;
+            // $export->collapsed = 'false';
+            // var_dump($export->expanded);
+        }
+        else {
+            $export->collapsed = true;
             // $export->expanded = 'false';
-        // }
+        }
         // var_dump($export->expanded);
         // exit;
         // User id for toggle
