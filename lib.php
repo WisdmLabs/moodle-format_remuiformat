@@ -44,6 +44,25 @@ class format_remuiformat extends format_base {
             global $COURSE;
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
         }
+        $availablelayouts = array(
+            'REMUI_CARD_FORMAT' => array(
+                'format' => REMUI_CARD_FORMAT,
+                'optionlabel' => 'remuicourseformat_card',
+                'supports' => COURSE_DISPLAY_MULTIPAGE,
+            ),
+            'REMUI_LIST_FORMAT' => array(
+                'format' => REMUI_LIST_FORMAT,
+                'optionlabel' => 'remuicourseformat_list',
+                'supports' => COURSE_DISPLAY_SINGLEPAGE,
+            ),
+            
+        );
+        // // Include course format js module
+
+        $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
+        // pass constants defined for the formats
+        
+        $PAGE->requires->js_init_call('init', array($availablelayouts));
         parent::__construct($format, $courseid);
     }
 
@@ -193,7 +212,7 @@ class format_remuiformat extends format_base {
                     'type' => PARAM_INT
                 ),
                 'remuicourseformat' => array(
-                    'default' => get_config('format_remuiformat', 'remuicourseformat'),
+                    'default' => 1,
                     'type' => PARAM_INT
                 ),
                 'remuicourseimage_filemanager' => array(
@@ -211,7 +230,7 @@ class format_remuiformat extends format_base {
                 'remuidefaultsectionview' => array(
                     'default' => 1,
                     'type' => PARAM_INT
-                ),
+                )
             );
         }
 
@@ -235,7 +254,8 @@ class format_remuiformat extends format_base {
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi')
+                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi'),
+                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
                         )
                     ),
                     'help' => 'coursedisplay',
@@ -466,6 +486,12 @@ class format_remuiformat extends format_base {
     public function update_course_format_options($data, $sectionid = null) {
         global $DB;
         if (!empty($data)) {
+            if(isset($_POST['remuicourseformat'])) {
+                $data->remuicourseformat = filter_input(INPUT_POST, 'remuicourseformat');
+            }
+            else if(isset($_GET['remuicourseformat'])){
+                $data->remuicourseformat =  filter_input(INPUT_GET, 'remuicourseformat');
+            }
             $contextid = context_course::instance($this->courseid);
             if(!empty($data->remuicourseimage_filemanager)) {
                 file_postupdate_standard_filemanager(
