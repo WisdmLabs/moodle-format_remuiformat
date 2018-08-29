@@ -104,3 +104,7 @@ $string['privacy:metadata'] = 'The RemUI format plugin does not store any person
 
 // License.
 $string['licenseerror'] = 'You are using non-licensed version of <strong>RemUI.</strong> Please activate your license <a href="{$a}">here</a> to use <strong>RemUI Course Format.</strong>';
+
+// Validation
+
+$string['coursedisplay_error'] = 'Please choose correct combination of layout.';

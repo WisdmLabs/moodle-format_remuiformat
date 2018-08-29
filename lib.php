@@ -44,7 +44,7 @@ class format_remuiformat extends format_base {
             global $COURSE;
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
         }
-        $availablelayouts = array(
+        $this->availablelayouts = array(
             'REMUI_CARD_FORMAT' => array(
                 'format' => REMUI_CARD_FORMAT,
                 'optionlabel' => 'remuicourseformat_card',
@@ -62,7 +62,7 @@ class format_remuiformat extends format_base {
         $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
         // pass constants defined for the formats
         
-        $PAGE->requires->js_init_call('init', array($availablelayouts));
+        $PAGE->requires->js_init_call('init', array($this->availablelayouts));
         parent::__construct($format, $courseid);
     }
 
@@ -527,6 +527,22 @@ class format_remuiformat extends format_base {
             }
         }
         return array('sectiontitles' => $titles, 'action' => 'move');
+    }
+
+    public function edit_form_validation($data, $files, $errors) {
+        if(isset($data)) {
+            $rformat = $data['remuicourseformat'];
+            if(isset($rformat)){
+                foreach($this->availablelayouts as $key => $value) {
+                    if($rformat == $value['format']){
+                        if($data['coursedisplay'] != $value['supports']) {
+                            $errors['coursedisplay'] = get_string('coursedisplay_error', 'format_remuiformat');
+                        }
+                    }
+                }
+            }
+        }
+        return $errors;
     }
 
 }
