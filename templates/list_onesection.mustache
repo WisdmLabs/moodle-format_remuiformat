@@ -1,0 +1,27 @@
+{{#editing}}
+    <ul class="remui-format-list">
+        {{! Display General Section }}
+        {{#generalsection}}
+            {{> format_remuiformat/list_generalsectionedit }}
+        {{/generalsection}}
+        {{! Display Remaining Section }}
+        <div class="row">
+        {{#sections}}
+            {{> format_remuiformat/list_singleonesection }}
+        {{/sections}}
+        {{{ addsection }}}
+        </div>
+    </ul>
+{{/editing}}
+{{^editing}}
+    <ul class="remui-format-list">
+        {{! Display General Section }}
+        {{#generalsection}}
+            {{> format_remuiformat/list_generalsection }}
+        {{/generalsection}}
+        {{! Display Remaining Section }}
+        {{#sections}}
+            {{> format_remuiformat/list_singleonesection }}
+        {{/sections}}
+    </ul>
+{{/editing}}

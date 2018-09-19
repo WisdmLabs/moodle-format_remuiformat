@@ -529,13 +529,28 @@ class format_remuiformat extends format_base {
         return array('sectiontitles' => $titles, 'action' => 'move');
     }
 
+    // public function edit_form_validation($data, $files, $errors) {
+    //     if(isset($data)) {
+    //         $rformat = $data['remuicourseformat'];
+    //         if(isset($rformat)){
+    //             foreach($this->availablelayouts as $key => $value) {
+    //                 if($rformat == $value['format']){
+    //                     if($rformat == 0 && $data['coursedisplay'] == $value['supports']) {
+    //                         $errors['coursedisplay'] = get_string('coursedisplay_error', 'format_remuiformat');
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return $errors;
+    // }
     public function edit_form_validation($data, $files, $errors) {
         if(isset($data)) {
             $rformat = $data['remuicourseformat'];
             if(isset($rformat)){
                 foreach($this->availablelayouts as $key => $value) {
                     if($rformat == $value['format']){
-                        if($data['coursedisplay'] != $value['supports']) {
+                        if($rformat == 0 && $data['coursedisplay'] != $value['supports']) {
                             $errors['coursedisplay'] = get_string('coursedisplay_error', 'format_remuiformat');
                         }
                     }

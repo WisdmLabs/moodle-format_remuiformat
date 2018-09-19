@@ -40,7 +40,7 @@ require_once($CFG->libdir. '/coursecatlib.php');
  * @copyright  2018 Wisdmlabs
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class format_remuiformat_section implements renderable, templatable
+class format_remuiformat_single_section implements renderable, templatable
 {
 
     private $course;
@@ -145,10 +145,6 @@ class format_remuiformat_section implements renderable, templatable
         $defaultview = $this->settings['remuidefaultsectionview'];
         $export->defaultview = $defaultview;
         // var_dump($defaultview);
-        // echo "<pre>";
-        // print_r($defaultview);
-        // echo "</pre>";
-        // die();
         if($defaultview == 1) {
             $export->expanded = false;
             $export->collapsed = true;
@@ -158,8 +154,6 @@ class format_remuiformat_section implements renderable, templatable
             $export->collapsed = true;
             // $export->expanded = 'false';
         }
-        // var_dump($export->expanded);
-        // exit;
         // User id for toggle
         $export->user_id = $USER->id;
         // Course Information.
@@ -251,6 +245,7 @@ class format_remuiformat_section implements renderable, templatable
                     </a></div>';
             }
         }
+
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         $export->sections = $this->get_all_section_data($renderer, $editing, $rformat);
@@ -301,9 +296,7 @@ class format_remuiformat_section implements renderable, templatable
             // );
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
             if(!empty($currentsection->summary)) {
-                $sectiondetails->summary = $renderer->abstractHTMLContents($currentsection->summary,$sectiontitlesummarymaxlength);
-                // var_dump($sectiondetails->summary);
-                // exit;
+                $sectiondetails->summary = $currentsection->summary;
             }
 
             $sectiondetails->hiddenmessage = $renderer->section_availability_message($currentsection, has_capability(
