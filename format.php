@@ -45,12 +45,7 @@ $coursecontext = context_course::instance($course->id);
 // Retrieve course format option fields and add them to the $course object.
 $course = course_get_format($course)->get_course();
 
-if ($section = optional_param('section', 0, PARAM_INT)) {
-	if ($course->remuicourseformat && $course->coursedisplay) {
-		$renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection));
-		exit;
-	}
-}
+
 if (($marker >= 0) && has_capability('moodle/course:setcurrentsection', $context) && confirm_sesskey()) {
     $course->marker = $marker;
     course_set_marker($course->id, $marker);
@@ -65,12 +60,16 @@ course_create_sections_if_missing($course, 0);
 $stringman = get_string_manager();
 $strings = $stringman->load_component_strings('format_remuiformat', 'en');
 $PAGE->requires->strings_for_js(array_keys($strings), 'format_remuiformat');
-
-
-if ($course->remuicourseformat && $course->coursedisplay) {
+$section = optional_param('section', 0, PARAM_INT);
+if ($section) {
+    if ($course->remuicourseformat && $course->coursedisplay) {
+        $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection));
+    }
+}
+if ($course->remuicourseformat && $course->coursedisplay && !$section) {
 	$renderer->render_single_list_section(new \format_remuiformat\output\format_remuiformat_single_section($course));
-} else if (!empty($displaysection)) {
+} else if ($displaysection && !$course->remuicourseformat) {
     $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection));
-} else {
+} else if (!$displaysection){
     $renderer->render_all_sections(new \format_remuiformat\output\format_remuiformat_section($course));
 }
