@@ -103,23 +103,20 @@ class format_remuiformat_activity implements renderable, templatable {
         $export->title = $sectionname;
         $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
         if(!empty($currentsection->summary)) {
-            // $export->summary = $this->modstats->get_formatted_summary(
-            //     $renderer->format_summary_text($currentsection),
-            //     $this->settings
-            // );
-            $export->summary = $renderer->abstractHTMLContents($currentsection->summary, $sectiontitlesummarymaxlength);
+            $export->summary = $renderer->format_summary_text($currentsection);
+            // $export->summary = $renderer->abstractHTMLContents($currentsection->summary, $sectiontitlesummarymaxlength);
         }
 
         // Get the details of the activities.
-        $export->activities = $this->get_activities_details($currentsection);
-        $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
-            $this->course,
-            $this->displaysection,
-            $this->displaysection
-        );
         $rformat = $this->settings['remuicourseformat'];
         switch ($rformat) {
             case REMUI_CARD_FORMAT:
+                $export->activities = $this->get_activities_details($currentsection);
+                $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
+                    $this->course,
+                    $this->displaysection,
+                    $this->displaysection
+                );
                 $export->remuicourseformatcard = true;
                 $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
                 break;

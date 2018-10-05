@@ -125,9 +125,10 @@ class format_remuiformat_section implements renderable, templatable
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             // $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            if(!empty($generalsection->summary)){
-                $export->generalsection['summary'] = $renderer->abstractHTMLContents($generalsection->summary, $sectiontitlesummarymaxlength);
-            }
+            // if(!empty($generalsection->summary)){
+            //     $export->generalsection['summary'] = $renderer->abstractHTMLContents($generalsection->summary, $sectiontitlesummarymaxlength);
+            // }
+            $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
             $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
             $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         }
@@ -144,19 +145,15 @@ class format_remuiformat_section implements renderable, templatable
         // Default view for all sections
         $defaultview = $this->settings['remuidefaultsectionview'];
         $export->defaultview = $defaultview;
-        // var_dump($defaultview);
         // echo "<pre>";
         // print_r($defaultview);
-        // echo "</pre>";
         // die();
         if($defaultview == 1) {
             $export->expanded = false;
-            $export->collapsed = true;
             // var_dump($export->expanded);
-        }
-        else {
-            $export->collapsed = true;
-            // $export->expanded = 'false';
+        } else {
+            // $export->collapsed = true;
+            $export->expanded = true;
         }
         // var_dump($export->expanded);
         // exit;
@@ -185,11 +182,12 @@ class format_remuiformat_section implements renderable, templatable
         }
         // var_dump($export->generalsection['generalsectiontitle']);
         // exit;
-        $generalsectionsummary = $generalsection->summary;
-        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-        if(!empty($generalsectionsummary)) {
-            $generalsectionsummary = $renderer->abstractHTMLContents($generalsectionsummary, $sectiontitlesummarymaxlength);
-        }
+        // $generalsectionsummary = $generalsection->summary;
+        $generalsectionsummary = $renderer->format_summary_text($generalsection);
+        // $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+        // if(!empty($generalsectionsummary)) {
+        //     $generalsectionsummary = $renderer->abstractHTMLContents($generalsectionsummary, $sectiontitlesummarymaxlength);
+        // }
         $export->generalsectionsummary = $generalsectionsummary;
         $export->generalsection['remuicourseimage'] = $imgurl;
         // For Completion percentage.
@@ -300,11 +298,6 @@ class format_remuiformat_section implements renderable, templatable
             //     $this->settings
             // );
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            if(!empty($currentsection->summary)) {
-                $sectiondetails->summary = $renderer->abstractHTMLContents($currentsection->summary,$sectiontitlesummarymaxlength);
-                // var_dump($sectiondetails->summary);
-                // exit;
-            }
 
             $sectiondetails->hiddenmessage = $renderer->section_availability_message($currentsection, has_capability(
                 'moodle/course:viewhiddensections',
@@ -316,10 +309,16 @@ class format_remuiformat_section implements renderable, templatable
             $extradetails = $this->get_section_module_info($currentsection, $this->course, null);
 
             if ($rformat == REMUI_CARD_FORMAT) {
+                if(!empty($currentsection->summary)) {
+                    $sectiondetails->summary = $renderer->abstractHTMLContents($currentsection->summary,$sectiontitlesummarymaxlength);
+                }
                 $sectiondetails->activityinfo = $extradetails['activityinfo'];
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
                 $sections[] = $sectiondetails;
             } else if ($rformat == REMUI_LIST_FORMAT) {
+                if(!empty($currentsection->summary)) {
+                    $sectiondetails->summary = $renderer->format_summary_text($currentsection);
+                }
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
                 $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
                 $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);

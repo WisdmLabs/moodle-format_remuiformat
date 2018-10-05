@@ -20,19 +20,14 @@
          {{/editing}}
       </h4>
         {{{ hiddenmessage }}}
-      <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>
+      {{#availability}}
+      <div class="section_availability badge badge-pill badge-info mb-10">
+        {{{availability}}}
+      </div>
+      {{/availability}}
       <div class="summary card-text {{#expanded}}hide{{/expanded}}">{{{summary}}}</div>
       <div class="section-summary-activities mdl-right {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div>
    </div>
    <span class="hidden sectionname">{{{ title }}}</span>
-   <div class="card-footer p-0 card-footer-transparent text-muted">
-      <div class="panel activity-list">
-         <div class="panel-collapse" id="sectionwrapper-{{{index}}}" aria-labelledby="sectionwrapper-{{{index}}}" role="tabpanel" aria-expanded="{{#collapsed}} false {{/collapsed}} {{#expanded}} true {{/expanded}}">
-            <div class="panel-body p-0">
-               {{{sectionactivities}}}
-            </div>
-         </div>
-      </div>
-   </div>
 </li>
 

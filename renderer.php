@@ -544,7 +544,8 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $tags = array();
         $newContent = '';
 
-        // $html = $content = preg_replace("/<img[^>]+\>/i", "", $html);
+
+        $html = $content = preg_replace("/<img[^>]+\>/i", "", $html);
 
         while ($printedLength < $maxLength && preg_match('{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position))
         {
