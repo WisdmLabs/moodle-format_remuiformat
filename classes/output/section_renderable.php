@@ -149,12 +149,16 @@ class format_remuiformat_section implements renderable, templatable
         // print_r($defaultview);
         // die();
         if($defaultview == 1) {
-            $export->expanded = false;
+            $export->expanded = true;
+            $export->collapsed = false;
             // var_dump($export->expanded);
         } else {
-            // $export->collapsed = true;
-            $export->expanded = true;
+            $export->collapsed = true;
+            $export->expanded = false;
         }
+        // echo "<pre>";
+        // print_r($export);
+        // die();
         // var_dump($export->expanded);
         // exit;
         // User id for toggle
@@ -332,7 +336,7 @@ class format_remuiformat_section implements renderable, templatable
         $modinfo = get_fast_modinfo($course);
         $output = array(
             "activityinfo" => array(),
-            "progressinfo" => array()
+            "progressinfo" => array(),
         );
         if (empty($modinfo->sections[$section->section])) {
             return $output;

@@ -194,14 +194,18 @@ class format_remuiformat extends format_base {
             $contextid = context_course::instance($this->courseid);
             $data = new stdClass;
             $draftitemid = file_get_submitted_draft_itemid('remuicourseimage');
-            $data = file_prepare_standard_filemanager(
-                $data,
-                'remuicourseimage',
-                array('accepted_types' => 'images', 'maxfiles' => 1),
-                $contextid,
-                'format_remuiformat',
-                'remuicourseimage_filearea'
-            );
+            try {
+                $data = file_prepare_standard_filemanager(
+                    $data,
+                    'remuicourseimage',
+                    array('accepted_types' => 'images', 'maxfiles' => 1),
+                    $contextid,
+                    'format_remuiformat',
+                    'remuicourseimage_filearea'
+                );
+            } catch(Exception $e) {
+                //Do Nothing
+            }
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,

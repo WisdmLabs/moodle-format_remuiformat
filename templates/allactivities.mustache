@@ -44,6 +44,7 @@
                             <div class="pt-10 mb-10">
                                 {{{ summary }}}
                             </div>
+                            {{^availstatus}}
                             <div class="d-flex pt-15 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
                                 <div class="w-p50 d-flex">
                                     <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
@@ -70,6 +71,7 @@
                                 </div>
                                 {{/completion}}
                             </div>
+                            {{/availstatus}}
                         </div>
                         </li>
                     {{/activities}}
