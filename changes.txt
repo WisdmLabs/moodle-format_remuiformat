@@ -1,0 +1,13 @@
+Version 1.0.1
+Feature -  In List Layout - Status of the section will be saved (Collapsed/Expanded)
+Tweak - One section per page support (In List Layout)
+Tweak - Enable/Disable Displaying Teachers in List Layout
+Tweak - In List Layout Delete Activity added.
+Tweak - In Card Layout Delete Activity added.
+Tweak - Section description is cut off in between after certain characters in Show one section per page format is fixed.
+Tweak - Text is concatenated beyond certain limit in the general section of List and card format. Set the default limit to 100 Characters.
+Bug - The label activity doesn't appear below the course banner image in List course format.
+Bug - When Guest access is enabled for a course which is using Edwiser RemUI course format, there is an error message which says No guests here!. This issue is fixed.
+
+Version 1.0.0
+Intial version released.
