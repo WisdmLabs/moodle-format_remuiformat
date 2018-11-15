@@ -156,8 +156,8 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         dragSelector: "a.wdm-drag-drop",
         dragBetween: true,
         dragEnd: saveOrder,
-        placeHolderTemplate: "<li class='placeHolder' style='border:1px solid gray;'></li>" 
-    })
+        placeHolderTemplate: "<li class='placeHolder' style='border:1px solid gray;'></li>"
+    });
 
     function saveOrder() {
         var section = $(this).data('section');

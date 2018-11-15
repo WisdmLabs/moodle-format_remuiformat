@@ -102,7 +102,7 @@ class format_remuiformat_activity implements renderable, templatable {
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
         $export->title = $sectionname;
         $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-        if(!empty($currentsection->summary)) {
+        if (!empty($currentsection->summary)) {
             $export->summary = $renderer->format_summary_text($currentsection);
             // $export->summary = $renderer->abstractHTMLContents($currentsection->summary, $sectiontitlesummarymaxlength);
         }
@@ -131,7 +131,7 @@ class format_remuiformat_activity implements renderable, templatable {
     }
 
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE;
+        global $PAGE, $USER;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -170,8 +170,11 @@ class format_remuiformat_activity implements renderable, templatable {
                     $activitydetails->hidden = 1;
                 }
                 $availstatus = $this->courserenderer->course_section_cm_availability($mod, $modnumber);
-                if ($availstatus != "") {
-                    $activitydetails->availstatus = $availstatus;
+                $context = \context_course::instance($this->course->id);
+                if (!is_siteadmin()) {
+                    if ($availstatus != "") {
+                        $activitydetails->availstatus = $availstatus;
+                    }
                 }
 
                 if ($PAGE->user_is_editing()) {
