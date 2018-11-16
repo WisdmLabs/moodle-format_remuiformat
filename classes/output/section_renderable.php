@@ -52,11 +52,11 @@ class format_remuiformat_section implements renderable, templatable
     /**
      * Constructor
      */
-    public function __construct($course) {
+    public function __construct($course, $renderer) {
         global $PAGE;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
-        $this->courserenderer = new \core_course_renderer($PAGE, 'format_remuiformat');
+        $this->courserenderer = $renderer;
         $this->modstats = \format_remuiformat\ModStats::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
@@ -70,7 +70,6 @@ class format_remuiformat_section implements renderable, templatable
      */
     public function export_for_template(renderer_base $output) {
         global $USER, $PAGE, $DB, $OUTPUT, $CFG;
-
         $export = new \stdClass();
         $renderer = $PAGE->get_renderer('format_remuiformat');
         $rformat = $this->settings['remuicourseformat'];
@@ -260,6 +259,10 @@ class format_remuiformat_section implements renderable, templatable
 
     private function get_all_section_data($renderer, $editing, $rformat) {
         $modinfo = get_fast_modinfo($this->course);
+        $highlightsection = 0;
+        if (isset($this->course->marker)) {
+            $highlightsection = $this->course->marker;
+        }
         $coursecontext = context_course::instance($this->course->id);
         $startfrom = 1;
         $end = $this->courseformat->get_last_section_number();
@@ -326,6 +329,9 @@ class format_remuiformat_section implements renderable, templatable
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
                 $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
                 $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
+                if ($highlightsection == $section) {
+                    $sectiondetails->highlighted = true;
+                }
                 $sections[] = $sectiondetails;
             }
         }

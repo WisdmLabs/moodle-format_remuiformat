@@ -52,11 +52,11 @@ class format_remuiformat_single_section implements renderable, templatable
     /**
      * Constructor
      */
-    public function __construct($course) {
+    public function __construct($course, $renderer) {
         global $PAGE;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
-        $this->courserenderer = new \core_course_renderer($PAGE, 'format_remuiformat');
+        $this->courserenderer = $renderer;
         $this->modstats = \format_remuiformat\ModStats::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }

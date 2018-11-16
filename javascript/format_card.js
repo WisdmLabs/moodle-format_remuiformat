@@ -3,6 +3,34 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
     $(window).resize(function() {
         resizeContainer();
     });
+    $(document).ready(function(){
+        init();
+    });
+    function touchHandler(event) {
+        var touch = event.changedTouches[0];
+
+        var simulatedEvent = document.createEvent("MouseEvent");
+            simulatedEvent.initMouseEvent({
+            touchstart: "mousedown",
+            touchmove: "mousemove",
+            touchend: "mouseup"
+        }[event.type], true, true, window, 1,
+            touch.screenX, touch.screenY,
+            touch.clientX, touch.clientY, false,
+            false, false, false, 0, null);
+        touch.target.dispatchEvent(simulatedEvent);
+        event.preventDefault();
+    }
+
+    function init() {
+        var sectionwrapper = document.querySelector('a.wdm-drag-drop');
+        sectionwrapper.addEventListener("touchstart", touchHandler, true);
+        sectionwrapper.addEventListener("touchmove", touchHandler, true);
+        sectionwrapper.addEventListener("touchend", touchHandler, true);
+        sectionwrapper.addEventListener("touchcancel", touchHandler, true);
+        // document.addEventListener("click", touchHandler, true);
+    }
+
     //Function to set Equal Height of all cards
     var setEqualHeight = function (selector) {
 

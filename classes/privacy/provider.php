@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Privacy Subsystem implementation for format_topics.
+ * Privacy Subsystem implementation for format_remuiformat.
  *
  * @package    format_remuiformat
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

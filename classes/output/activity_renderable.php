@@ -45,12 +45,12 @@ class format_remuiformat_activity implements renderable, templatable {
     /**
      * Constructor
      */
-    public function __construct($course, $displaysection) {
+    public function __construct($course, $displaysection, $renderer) {
         global $PAGE;
         $this->displaysection = $displaysection;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
-        $this->courserenderer = new \core_course_renderer($PAGE, 'format_remuiformat');
+        $this->courserenderer = $renderer;
         $this->modstats = \format_remuiformat\ModStats::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
