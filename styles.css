@@ -528,14 +528,14 @@ ul.remui-format-list span.inplaceeditable input {
 
 
 /* Aligning the up and down icon with edit button */
-#page-course-view-remuiformat ul.remui-format-list .card-title .fa-angle-up,
-#page-course-view-remuiformat ul.remui-format-list .card-title .fa-angle-down {
+.pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
+.pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
   margin-top: 1%;
   margin-right: 2%;
 }
 
-#page-course-view-remuiformat ul.remui-format-list .card-title .fa-angle-up:hover,
-#page-course-view-remuiformat ul.remui-format-list .card-title .fa-angle-down:hover {
+.pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up:hover,
+.pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down:hover {
   cursor: pointer;
 }
 /*#page-course-view-remuiformat ul.section.first-section .action-menu {

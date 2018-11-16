@@ -1,3 +1,11 @@
+Version 1.0.2
+
+Tweak - Aligned the Up and Down icon in section title.
+Bug - Section information displayed when section is collapsed.
+Bug - Activity restriction for admin is removed in card layout.
+Bug- Activities will moved in iPad.
+
+
 Version 1.0.1
 Feature -  In List Layout - Status of the section will be saved (Collapsed/Expanded)
 Tweak - One section per page support (In List Layout)
