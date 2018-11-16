@@ -259,10 +259,6 @@ class format_remuiformat_section implements renderable, templatable
 
     private function get_all_section_data($renderer, $editing, $rformat) {
         $modinfo = get_fast_modinfo($this->course);
-        $highlightsection = 0;
-        if (isset($this->course->marker)) {
-            $highlightsection = $this->course->marker;
-        }
         $coursecontext = context_course::instance($this->course->id);
         $startfrom = 1;
         $end = $this->courseformat->get_last_section_number();
@@ -329,9 +325,6 @@ class format_remuiformat_section implements renderable, templatable
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
                 $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
                 $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
-                if ($highlightsection == $section) {
-                    $sectiondetails->highlighted = true;
-                }
                 $sections[] = $sectiondetails;
             }
         }

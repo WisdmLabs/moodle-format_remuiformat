@@ -8,7 +8,6 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
     });
     function touchHandler(event) {
         var touch = event.changedTouches[0];
-
         var simulatedEvent = document.createEvent("MouseEvent");
             simulatedEvent.initMouseEvent({
             touchstart: "mousedown",
@@ -23,11 +22,15 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
     }
 
     function init() {
-        var sectionwrapper = document.querySelector('a.wdm-drag-drop');
-        sectionwrapper.addEventListener("touchstart", touchHandler, true);
-        sectionwrapper.addEventListener("touchmove", touchHandler, true);
-        sectionwrapper.addEventListener("touchend", touchHandler, true);
-        sectionwrapper.addEventListener("touchcancel", touchHandler, true);
+        $('a.wdm-drag-drop').each(
+            (index, element) => {
+                var sectionwrapper = element;
+                sectionwrapper.addEventListener("touchstart", touchHandler, true);
+                sectionwrapper.addEventListener("touchmove", touchHandler, true);
+                sectionwrapper.addEventListener("touchend", touchHandler, true);
+                sectionwrapper.addEventListener("touchcancel", touchHandler, true);
+            }
+        );
         // document.addEventListener("click", touchHandler, true);
     }
 
