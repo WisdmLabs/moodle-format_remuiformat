@@ -187,8 +187,8 @@ input.ignoredirty.form-control{
     justify-content: center;
     align-items: center;
     color: #37474f;
-    pointer-events: none;
-    cursor: default;
+    /*pointer-events: none;
+    cursor: default;*/
     text-decoration: none;
     text-align: center;
 }
