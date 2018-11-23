@@ -1,5 +1,9 @@
-Version 1.0.2
+Version 1.0.3
+Bug - In card format, the activity dependency was applied to the site admin and course teachers. So removed that dependency
+Bug- In card format the activity edit button not working. Fixed the issue.
 
+
+Version 1.0.2
 Tweak - Aligned the Up and Down icon in section title.
 Bug - Section information displayed when section is collapsed.
 Bug - Activity restriction for admin is removed in card layout.
