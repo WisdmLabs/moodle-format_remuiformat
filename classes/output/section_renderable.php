@@ -228,10 +228,10 @@ class format_remuiformat_section implements renderable, templatable
                     }
                     $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                     if ($count == 1) {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
 
                     } else {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                     }
                     $nextteacher = next($teachers);
                     if (false != $nextteacher) {

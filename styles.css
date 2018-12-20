@@ -269,6 +269,7 @@ input.ignoredirty.form-control{
     position: absolute;
     bottom: 0;
     right: 0;
+    margin: 0;
 }
 
 
