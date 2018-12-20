@@ -5,16 +5,14 @@
             {{> format_remuiformat/card_generalsectionedit }}
         {{/generalsection}}
         {{! Display Remaining Section }}
-        <div class="row container-fluid p-0 m-0">
         {{#sections}}
             {{> format_remuiformat/card_singlesection }}
         {{/sections}}
         {{{ addsection }}}
-        </div>
     </div>
 {{/editing}}
 {{^editing}}
-    <div id="card-container" class="row mt20">
+    <div id="card-container" class="row mt-20">
         {{! Display General Section }}
         {{#generalsection}}
             {{> format_remuiformat/card_generalsection }}
