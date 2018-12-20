@@ -379,12 +379,31 @@ For list format
 .section.first-section div.actions {
   position: inherit;
   padding: 5px 0;
+  display: flex;
+  justify-content: center;
 }
 .section.first-section div.actions .filler {
   display: none;
 }
 .section.first-section .instancename {
   display: block;
+}
+
+.card-section-rightnav a.bg-primary,
+.card-section-rightnav a.bg-primary:hover,
+.card-section-rightnav a.bg-primary:focus,
+.card-section-rightnav a.bg-primary:active,
+.card-section-leftnav a.bg-primary,
+.card-section-leftnav a.bg-primary:hover,
+.card-section-leftnav a.bg-primary:focus,
+.card-section-leftnav a.bg-primary:active {
+  background: inherit !important;
+}
+@media (max-width:1200px) {
+  body.path-course.editing.site-menubar-unfold ul.section.first-section li,
+  body.path-course.pinaside.site-menubar-unfold ul.section.first-section li{
+    min-width: 50% !important; 
+  }
 }
 @media (min-width: 992px) {
   .showhideactivity .first-section-activity:nth-child(n+7) {
