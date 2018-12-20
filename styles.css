@@ -28,6 +28,7 @@
 
 @media (max-width:1200px) {
   body.path-course.editing .single-card-container,
+  body.path-course.site-menubar-unfold .single-card-container,
   body.path-course.pinaside .single-card-container{
     min-width: 50% !important;
   }
