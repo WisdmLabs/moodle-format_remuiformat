@@ -3,6 +3,11 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
     $(document).ready(function(){
         init();
     });
+
+    $(window).resize(function(){
+        setEqualHeight($('.single-card'));
+	    setEqualHeight($('.card-section-list'))
+    });
     function touchHandler(event) {
         var touch = event.changedTouches[0];
         var simulatedEvent = document.createEvent("MouseEvent");
@@ -43,7 +48,7 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
                 selector_height = (selector_height > cardminHeight) ? selector_height : cardminHeight;
                 arr.push(selector_height);
             });
-            selector_height = Math.max.apply(null, arr);
+            selector_height = Math.max.apply(null, arr) + 55;
             selector.css("min-height", selector_height);
         }
     }
