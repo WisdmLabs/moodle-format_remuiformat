@@ -108,23 +108,24 @@
 {{#editing}}
 
 {{#js}}
-jQuery('body#page-course-view-remuiformat ul.remui-format-list h4.card-title').click(function(){
-        jQuery(this).find('.float-right').toggleClass('fa-angle-down');
-        jQuery(this).find('.float-right').toggleClass('fa-angle-up');
-        var section_id = jQuery(this).parent().parent().parent().attr('id');
+jQuery('.remui-format-list .card-title .float-right').click(function(){
+        var iconparent = jQuery(this).parent();
+        jQuery(iconparent).find('.float-right').toggleClass('fa-angle-down');
+        jQuery(iconparent).find('.float-right').toggleClass('fa-angle-up');
+        var section_id = jQuery(iconparent).parent().parent().parent().attr('id');
         var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
         localStorage.setItem(namelocal, 'true');
-        jQuery(this).parent().find('.summary').show(500);
-        if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
-            jQuery(this).parent().next().next().removeClass("show");
-            jQuery(this).parent().next().next().addClass("collapse");
-            jQuery(this).parent().find('.summary').show(500);
-            jQuery(this).parent().find('.section-summary-activities').show(500);
+        jQuery(iconparent).parent().find('.summary').show(500);
+        if(jQuery(iconparent).find('.float-right').hasClass('fa-angle-down')) {
+            jQuery(iconparent).parent().next().next().removeClass("show");
+            jQuery(iconparent).parent().next().next().addClass("collapse");
+            jQuery(iconparent).parent().find('.summary').show(500);
+            jQuery(iconparent).parent().find('.section-summary-activities').show(500);
         } else {
-            jQuery(this).parent().next().next().removeClass('collapse');
-            jQuery(this).parent().next().next().addClass("show");
-            jQuery(this).parent().find('.summary').show(500);
-            jQuery(this).parent().find('.section-summary-activities').hide(500);
+            jQuery(iconparent).parent().next().next().removeClass('collapse');
+            jQuery(iconparent).parent().next().next().addClass("show");
+            jQuery(iconparent).parent().find('.summary').show(500);
+            jQuery(iconparent).parent().find('.section-summary-activities').hide(500);
         }
 });
 

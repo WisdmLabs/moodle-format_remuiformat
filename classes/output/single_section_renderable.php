@@ -31,7 +31,6 @@ require_once($CFG->dirroot.'/course/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
-require_once($CFG->libdir. '/coursecatlib.php');
 
 /**
  * This file contains the definition for the renderable classes for the sections page.
@@ -222,10 +221,10 @@ class format_remuiformat_single_section implements renderable, templatable
                     }
                     $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                     if ($count == 1) {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
 
                     } else {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                     }
                     $nextteacher = next($teachers);
                     if (false != $nextteacher) {
