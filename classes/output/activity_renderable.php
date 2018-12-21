@@ -104,7 +104,6 @@ class format_remuiformat_activity implements renderable, templatable {
         $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
         if (!empty($currentsection->summary)) {
             $export->summary = $renderer->format_summary_text($currentsection);
-            // $export->summary = $renderer->abstractHTMLContents($currentsection->summary, $sectiontitlesummarymaxlength);
         }
 
         // Get the details of the activities.

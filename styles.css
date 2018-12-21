@@ -19,6 +19,10 @@
     position: relative;
 }
 
+.format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
+  font-size: 15px;
+}
+
 @media (max-width:1400px) {
   body.path-course.editing.site-menubar-unfold .single-card-container,
   body.path-course.pinaside.site-menubar-unfold .single-card-container{

@@ -1,3 +1,7 @@
+version 1.0.4
+Bug- In list format, quick edit section is working when all sections on one page setting is applied.
+
+
 Version 1.0.3
 Bug - In card format, the activity dependency was applied to the site admin and course teachers. So removed that dependency
 Bug- In card format the activity edit button not working. Fixed the issue.

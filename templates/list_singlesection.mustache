@@ -11,7 +11,12 @@
          {{{leftside}}}
       </div>
       <h4 class="sectionname card-title">
+        {{#editing}}
+            {{{ title }}}
+         {{/editing}}
+         {{^editing}}
             <a class="panel-title p-0 {{#collapsed}}collapse{{/collapsed}} {{#expanded}}true{{/expanded}}" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
+         {{/editing}}
             {{#collapsed}}
             <i class="fa-angle-down float-right"></i>
             {{/collapsed}}
