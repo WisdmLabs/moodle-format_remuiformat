@@ -201,10 +201,10 @@ class format_remuiformat_section implements renderable, templatable
                     }
                     $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                     if ($count == 1) {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
 
                     } else {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                     }
                     $nextteacher = next($teachers);
                     if (false != $nextteacher) {
@@ -276,7 +276,7 @@ class format_remuiformat_section implements renderable, templatable
                 $sectiondetails->hidden = 1;
             }
             $extradetails = $this->get_section_module_info($currentsection, $this->course, null);
-
+            
             if ($rformat == REMUI_CARD_FORMAT) {
                 if(!empty($currentsection->summary)) {
                     $sectiondetails->summary = $renderer->abstractHTMLContents($currentsection->summary,$sectiontitlesummarymaxlength);
@@ -291,6 +291,11 @@ class format_remuiformat_section implements renderable, templatable
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
                 $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
                 $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
+
+                // Set Marker
+                if ($this->course->marker == $section) {
+                    $sectiondetails->highlighted = 1;
+                }
                 $sections[] = $sectiondetails;
             }
         }
