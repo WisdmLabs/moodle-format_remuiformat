@@ -22,7 +22,14 @@
 .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
   font-size: 15px;
 }
-
+/* Remui List Format Highlight */
+.remui-format-list .current::before {
+  left: 0 !important;
+}
+.remui-format-list .current .panel {
+  position: inherit !important;
+}
+/**/
 @media (max-width:1400px) {
   body.path-course.editing.site-menubar-unfold .single-card-container,
   body.path-course.pinaside.site-menubar-unfold .single-card-container{

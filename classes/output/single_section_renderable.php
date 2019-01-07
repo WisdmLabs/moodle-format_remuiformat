@@ -123,10 +123,6 @@ class format_remuiformat_single_section implements renderable, templatable
 
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
-            // $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            // if(!empty($generalsection->summary)){
-            //     $export->generalsection['summary'] = $renderer->abstractHTMLContents($generalsection->summary, $sectiontitlesummarymaxlength);
-            // }
             $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
             $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         }
@@ -143,27 +139,17 @@ class format_remuiformat_single_section implements renderable, templatable
         // Default view for all sections
         $defaultview = $this->settings['remuidefaultsectionview'];
         $export->defaultview = $defaultview;
-        // var_dump($defaultview);
         if($defaultview == 1) {
             $export->expanded = false;
             $export->collapsed = true;
-            // var_dump($export->expanded);
         }
         else {
             $export->collapsed = true;
-            // $export->expanded = 'false';
         }
         // User id for toggle
         $export->user_id = $USER->id;
         // Course Information.
         $export->course_id = $this->course->id;
-        // $export->coursefullname = $this->course->fullname;
-        // $coursesummary = $this->course->summary;
-        // $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-        // if(!empty($coursesummary)) {
-        //     $coursesummary = $renderer->abstractHTMLContents($coursesummary, $sectiontitlesummarymaxlength);
-        // }
-        // $export->coursesummary = $coursesummary;
         $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
 
         // General Section Details.
@@ -171,18 +157,11 @@ class format_remuiformat_single_section implements renderable, templatable
         if($editing){
             $export->generalsection['generalsectiontitlename'] = $this->courseformat->get_section_name($generalsection);
             $export->generalsection['generalsectiontitle'] = $renderer->section_title($generalsection, $this->course);
-            // var_dump($export->generalsection['generalsectiontitle']);
         }
         else {
             $export->generalsection['generalsectiontitle'] = $this->courseformat->get_section_name($generalsection);
         }
-        // var_dump($export->generalsection['generalsectiontitle']);
-        // exit;
         $generalsectionsummary = $renderer->format_summary_text($generalsection);
-        // $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-        // if(!empty($generalsectionsummary)) {
-        //     $generalsectionsummary = $renderer->abstractHTMLContents($generalsectionsummary, $sectiontitlesummarymaxlength);
-        // }
         $export->generalsectionsummary = $generalsectionsummary;
         $export->generalsection['remuicourseimage'] = $imgurl;
         // For Completion percentage.
@@ -221,10 +200,10 @@ class format_remuiformat_single_section implements renderable, templatable
                     }
                     $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                     if ($count == 1) {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
 
                     } else {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item d-flex"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                     }
                     $nextteacher = next($teachers);
                     if (false != $nextteacher) {
@@ -234,14 +213,18 @@ class format_remuiformat_single_section implements renderable, templatable
                     $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
                     $count += 1;
                 }
-                $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-                        <i class="fas fa-chevron-left"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-                        <i class="fas fa-chevron-right"></i>
-                        <span class="sr-only">Next</span>
-                    </a></div>';
+                if (count($teachers) > 1) {
+                    $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
+                            <i class="fas fa-chevron-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a></div>';
+                } else {
+                    $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
+                }
             }
         }
 
@@ -288,12 +271,6 @@ class format_remuiformat_single_section implements renderable, templatable
                 $singlepageurl = $this->courseformat->get_view_url($section)->out(true);
             }
             $sectiondetails->singlepageurl = $singlepageurl;
-            // var_dump($currentsection->summary);
-            // exit;
-            // $sectiondetails->summary = $this->modstats->get_formatted_summary(
-            //     ($currentsection->summary),
-            //     $this->settings
-            // );
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
             if(!empty($currentsection->summary)) {
                 $sectiondetails->summary = $renderer->format_summary_text($currentsection);
@@ -406,8 +383,6 @@ class format_remuiformat_single_section implements renderable, templatable
                     $activitydetails->summary,
                     $this->settings
                 );
-                // var_dump($activitydetails->summary);
-                // exit;
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
