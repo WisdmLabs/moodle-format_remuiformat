@@ -1,3 +1,8 @@
+version 1.0.5
+Feature - Added a highlight section functionality for the list format
+Tweak- If there is only one teacher for a course then removed the carousal from general section of the course.
+
+
 version 1.0.4
 Tweak - Made Card format compatible with new RemUI version 3.6
 Bug- In list format, quick edit section is working when all sections on one page setting is applied.

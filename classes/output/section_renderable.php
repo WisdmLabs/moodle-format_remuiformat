@@ -214,14 +214,18 @@ class format_remuiformat_section implements renderable, templatable
                     $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
                     $count += 1;
                 }
-                $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-                        <i class="fas fa-chevron-left"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-                        <i class="fas fa-chevron-right"></i>
-                        <span class="sr-only">Next</span>
-                    </a></div>';
+                if (count($teachers) > 1) {
+                    $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
+                            <i class="fas fa-chevron-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a></div>';
+                } else {
+                    $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
+                }
             }
         }
         // Add new activity.
