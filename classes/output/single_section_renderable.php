@@ -123,6 +123,7 @@ class format_remuiformat_single_section implements renderable, templatable
 
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
+            
             $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
             $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         }

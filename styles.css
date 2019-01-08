@@ -606,3 +606,19 @@ carousel style
 .carousel-control        { width:  4%; }
 .carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
 .carousel-inner .active.right { left: 25%; }*/
+
+/* Boost compatible CSS */
+
+.wdm-generalsectiontitle{
+  font-size: 24px;
+}
+
+.wdm-card{
+  border: none !important;
+  box-shadow: 0px 0px 10px #ddd !important;
+}
+
+ul.remui-format-list h4.sectionname a {
+  color: #37474f !important;
+  font-size: 18px !important;
+}
