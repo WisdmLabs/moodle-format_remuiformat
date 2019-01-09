@@ -622,3 +622,7 @@ ul.remui-format-list h4.sectionname a {
   color: #37474f !important;
   font-size: 18px !important;
 }
+#page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo .tag,
+#page-course-view-remuiformat ul.remui-format-list .isrestricted .tag{
+  background-color: #37474f; 
+}
