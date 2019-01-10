@@ -59,7 +59,8 @@ class format_remuiformat extends format_base {
         );
         // // Include course format js module
 
-        $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
+        // $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
+        $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format.js'));
 
         // pass constants defined for the formats
         
@@ -146,7 +147,8 @@ class format_remuiformat extends format_base {
      *     'sr' (int) used by multipage formats to specify to which section to return
      * @return null|moodle_url
      */
-    public function get_view_url($section, $options = array()) {
+    public function get_view_url($section, $options = array())
+    {
         global $CFG;
         $course = $this->get_course();
         $url = new moodle_url('/course/view.php', array('id' => $course->id));
