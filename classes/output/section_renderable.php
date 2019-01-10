@@ -52,7 +52,6 @@ class format_remuiformat_section implements renderable, templatable
      * Constructor
      */
     public function __construct($course, $renderer) {
-        global $PAGE;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
         $this->courserenderer = $renderer;

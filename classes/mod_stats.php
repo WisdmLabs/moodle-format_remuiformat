@@ -91,7 +91,7 @@ class ModStats
     }
 
     private function check_completionstats($mod, $course) {
-        global $DB, $USER;
+        global $USER;
         $info = new \completion_info($course);
         $data = $info->get_data($mod, false, $USER->id);
         if (!empty($data) && $data->completionstate == 1) {

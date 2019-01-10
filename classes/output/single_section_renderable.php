@@ -52,7 +52,6 @@ class format_remuiformat_single_section implements renderable, templatable
      * Constructor
      */
     public function __construct($course, $renderer) {
-        global $PAGE;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
         $this->courserenderer = $renderer;
@@ -68,7 +67,7 @@ class format_remuiformat_single_section implements renderable, templatable
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE, $DB, $OUTPUT, $CFG;
+        global $PAGE, $DB, $OUTPUT, $CFG;
 
         $export = new \stdClass();
         $renderer = $PAGE->get_renderer('format_remuiformat');

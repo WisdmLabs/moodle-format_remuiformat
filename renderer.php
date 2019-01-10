@@ -165,6 +165,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     public function section_activity_summary($section, $course, $mods) {
+        unset($mods);
         $modinfo = get_fast_modinfo($course);
         $output = array(
             "activityinfo" => "",
@@ -502,7 +503,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      */
     public function section_left_content($section, $course, $onsectionpage) {
         $o = '';
-
+        unset($onsectionpage);
         if ($section->section != 0) {
             // Only in the non-general sections.
             if (course_get_format($course)->is_section_current($section)) {

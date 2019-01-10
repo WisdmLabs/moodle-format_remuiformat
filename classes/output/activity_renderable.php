@@ -46,7 +46,6 @@ class format_remuiformat_activity implements renderable, templatable {
      * Constructor
      */
     public function __construct($course, $displaysection, $renderer) {
-        global $PAGE;
         $this->displaysection = $displaysection;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
@@ -63,7 +62,8 @@ class format_remuiformat_activity implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE, $CFG;
+        global $PAGE, $CFG;
+        unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
         $renderer = $PAGE->get_renderer('format_remuiformat');
