@@ -55,7 +55,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
     /**
      * Get curserenderer object
-     * @return object courserenderer 
+     * @return object courserenderer
      */
     public function get_base_renderer() {
         return $this->courserenderer;
@@ -174,7 +174,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             return $output;
         }
 
-        // Generate array with count of activities in this section:
+        // Generate array with count of activities in this section.
         $sectionmods = array();
         $total = 0;
         $complete = 0;
@@ -208,11 +208,11 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         }
 
         if (empty($sectionmods)) {
-            // No sections
+            // No sections.
             return $output;
         }
 
-        // Output section activities summary:
+        // Output section activities summary.
         $o = '';
         $o .= html_writer::start_tag('div', array('class' => 'section-summary-activities pb-10'));
         foreach ($sectionmods as $mod) {
@@ -223,7 +223,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $o .= html_writer::end_tag('div');
         $output['activityinfo'] = $o;
         $o = '';
-        // Output section completion data
+        // Output section completion data.
         if ($total > 0) {
             $a = new stdClass;
             $a->complete = $complete;
@@ -235,11 +235,15 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
             $o .= html_writer::start_tag('div', array('class' => 'd-flex'));
             $o .= html_writer::start_tag('div', array('class' => 'section-summary-percentage px-10'));
-            $o .= html_writer::tag('p', get_string('progress', 'format_remuiformat'), array('class' => 'progress-title m-0 text-muted'));
+            $o .= html_writer::tag(
+                'p', get_string('progress', 'format_remuiformat'), array('class' => 'progress-title m-0 text-muted')
+            );
             $o .= html_writer::tag('p', $a->complete.' / '.$a->total, array('class' => 'activity-count m-0 text-right'));
             $o .= html_writer::end_tag('div');
             $o .= html_writer::start_tag('div', array('class' => 'pchart', 'data-percent' => $percentage));
-            $o .= html_writer::tag('span', ' <i class="fa fa-check" aria-hidden="true"></i>', array('class' => 'activity-check '.$completed));
+            $o .= html_writer::tag(
+                'span', ' <i class="fa fa-check" aria-hidden="true"></i>', array('class' => 'activity-check '.$completed)
+            );
             $o .= html_writer::end_tag('div');
             $o .= html_writer::end_tag('div');
         }
@@ -599,7 +603,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
     private function check_license() {
         global $DB, $CFG;
         $pluginslug = 'remui';
-        $status = $DB->get_field_select('config_plugins', 'value', 'name = :name', array('name' => 'edd_' . $pluginslug . '_license_status'), IGNORE_MISSING);
+        $status = $DB->get_field_select('config_plugins', 'value', 'name = :name', array(
+            'name' => 'edd_' . $pluginslug . '_license_status'
+        ), IGNORE_MISSING);
         $templatecontext = new \stdClass();
         $templatecontext->licenseurl = $CFG->wwwroot.'/admin/settings.php?section=themesettingremui';
         if ($status != "valid") {
@@ -609,74 +615,72 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         return true;
     }
 
-    public function abstractHTMLContents($html, $maxLength=100){
+    public function abstract_html_contents($html, $maxlength = 100) {
         mb_internal_encoding("UTF-8");
-        $printedLength = 0;
+        $printedlength = 0;
         $position = 0;
         $tags = array();
-        $newContent = '';
-
+        $newcontent = '';
 
         $html = $content = preg_replace("/<img[^>]+\>/i", "", $html);
 
-        while ($printedLength < $maxLength && preg_match('{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position))
-        {
-            list($tag, $tagPosition) = $match[0];
+        while ($printedlength < $maxlength && preg_match(
+            '{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position)
+            ) {
+            list($tag, $tagposition) = $match[0];
             // Print text leading up to the tag.
-            $str = mb_strcut($html, $position, $tagPosition - $position);
-            if ($printedLength + mb_strlen($str) > $maxLength){
-                $newstr = mb_strcut($str, 0, $maxLength - $printedLength);
-                $newstr = preg_replace('~\s+\S+$~', '', $newstr);  
-                $newContent .= $newstr;
-                $printedLength = $maxLength;
+            $str = mb_strcut($html, $position, $tagposition - $position);
+            if ($printedlength + mb_strlen($str) > $maxlength) {
+                $newstr = mb_strcut($str, 0, $maxlength - $printedlength);
+                $newstr = preg_replace('~\s+\S+$~', '', $newstr);
+                $newcontent .= $newstr;
+                $printedlength = $maxlength;
                 break;
             }
-            $newContent .= $str;
-            $printedLength += mb_strlen($str);
+            $newcontent .= $str;
+            $printedlength += mb_strlen($str);
             if ($tag[0] == '&') {
                 // Handle the entity.
-                $newContent .= $tag;
-                $printedLength++;
+                $newcontent .= $tag;
+                $printedlength++;
             } else {
                 // Handle the tag.
-                $tagName = $match[1][0];
+                $tagname = $match[1][0];
                 if ($tag[1] == '/') {
-                  // This is a closing tag.
-                  $openingTag = array_pop($tags);
-                  assert($openingTag == $tagName); // check that tags are properly nested.
-                  $newContent .= $tag;
-                } else if ($tag[mb_strlen($tag) - 2] == '/'){
-              // Self-closing tag.
-                $newContent .= $tag;
-            } else {
-              // Opening tag.
-              $newContent .= $tag;
-              $tags[] = $tagName;
+                    // This is a closing tag.
+                    $openingtag = array_pop($tags);
+                    assert($openingtag == $tagname); // Check that tags are properly nested.
+                    $newcontent .= $tag;
+                } else if ($tag[mb_strlen($tag) - 2] == '/') {
+                    // Self-closing tag.
+                    $newcontent .= $tag;
+                } else {
+                      // Opening tag.
+                      $newcontent .= $tag;
+                      $tags[] = $tagname;
+                }
             }
-          }
 
-          // Continue after the tag.
-          $position = $tagPosition + mb_strlen($tag);
+            // Continue after the tag.
+            $position = $tagposition + mb_strlen($tag);
         }
 
         // Print any remaining text.
-        if ($printedLength < $maxLength && $position < mb_strlen($html))
-          {
-            $newstr = mb_strcut($html, $position, $maxLength - $printedLength);
+        if ($printedlength < $maxlength && $position < mb_strlen($html)) {
+            $newstr = mb_strcut($html, $position, $maxlength - $printedlength);
             $newstr = preg_replace('~\s+\S+$~', '', $newstr);
-            $newContent .= $newstr;
-          }
+            $newcontent .= $newstr;
+        }
 
-        // append ...
-        if(strlen(strip_tags(format_text($html))) > $maxLength){
-            $newContent .= '...';
+        // Append.
+        if (strlen(strip_tags(format_text($html))) > $maxlength) {
+            $newcontent .= '...';
         }
         // Close any open tags.
-        while (!empty($tags))
-          {
-            $newContent .= sprintf('</%s>', array_pop($tags));
-          }
+        while (!empty($tags)) {
+            $newcontent .= sprintf('</%s>', array_pop($tags));
+        }
 
-        return $newContent;
+        return $newcontent;
     }
 }

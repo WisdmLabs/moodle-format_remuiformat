@@ -63,13 +63,17 @@ $section = optional_param('section', 0, PARAM_INT);
 $baserenderer = $renderer->get_base_renderer();
 if ($section) {
     if ($course->remuicourseformat && $course->coursedisplay) {
-        $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer));
+        $renderer->render_single_section(
+            new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+        );
     }
 }
 if ($course->remuicourseformat && $course->coursedisplay && !$section) {
-	$renderer->render_single_list_section(new \format_remuiformat\output\format_remuiformat_single_section($course, $baserenderer));
+    $renderer->render_single_list_section(new \format_remuiformat\output\format_remuiformat_single_section($course, $baserenderer));
 } else if ($displaysection && !$course->remuicourseformat) {
-    $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer));
-} else if (!$displaysection){
+    $renderer->render_single_section(
+        new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+    );
+} else if (!$displaysection) {
     $renderer->render_all_sections(new \format_remuiformat\output\format_remuiformat_section($course, $baserenderer));
 }

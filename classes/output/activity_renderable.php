@@ -121,8 +121,12 @@ class format_remuiformat_activity implements renderable, templatable {
                 break;
             case REMUI_LIST_FORMAT:
                 $export->remuicourseformatlist = true;
-                $export->activities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, $this->displaysection);
-                $export->activities .= $this->courserenderer->course_section_add_cm_control($this->course, $this->displaysection, $this->displaysection);
+                $export->activities = $this->courserenderer->course_section_cm_list(
+                    $this->course, $currentsection, $this->displaysection
+                );
+                $export->activities .= $this->courserenderer->course_section_add_cm_control(
+                    $this->course, $this->displaysection, $this->displaysection
+                );
                 $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
                 break;
         }

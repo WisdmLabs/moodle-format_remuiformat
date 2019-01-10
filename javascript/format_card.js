@@ -4,18 +4,14 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         init();
     });
 
-    $(window).resize(function(){
-        setEqualHeight($('.single-card'));
-	    setEqualHeight($('.card-section-list'))
-    });
     function touchHandler(event) {
         var touch = event.changedTouches[0];
         var simulatedEvent = document.createEvent("MouseEvent");
             simulatedEvent.initMouseEvent({
-            touchstart: "mousedown",
-            touchmove: "mousemove",
-            touchend: "mouseup"
-        }[event.type], true, true, window, 1,
+                touchstart: "mousedown",
+                touchmove: "mousemove",
+                touchend: "mouseup"
+            }[event.type], true, true, window, 1,
             touch.screenX, touch.screenY,
             touch.clientX, touch.clientY, false,
             false, false, false, 0, null);
@@ -36,7 +32,7 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         // document.addEventListener("click", touchHandler, true);
     }
 
-    //Function to set Equal Height of all cards
+    // Function to set Equal Height of all cards
     var setEqualHeight = function (selector) {
 
         if (selector.length > 0) {
@@ -52,6 +48,11 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
             selector.css("min-height", selector_height);
         }
     }
+
+    $(window).resize(function(){
+        setEqualHeight($('.single-card'));
+        setEqualHeight($('.card-section-list'))
+    });
 
     // Display the overlay
     $('.mod-card-container').mouseover(function () {
@@ -74,18 +75,18 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
 
     $('.wdm-toggle-completion').click(function() {
         var id = $(this).data('id');
-        $('.wdm-completion-check-'+id+' button').trigger('click');
-        var completion = $('.wdm-completion-status-'+id).text().trim();
+        $('.wdm-completion-check-' + id + ' button').trigger('click');
+        var completion = $('.wdm-completion-status-' + id).text().trim();
         if (completion == "Completed") {
-            $('.wdm-completion-status-'+id).html("Mark as Complete");
-            $('.wdm-chart-'+id).data('easyPieChart').update(0);
-            $('.activity-check-'+id).removeClass("completed");
-            $('.activity-check-'+id).addClass("text-muted");
+            $('.wdm-completion-status-' + id).html("Mark as Complete");
+            $('.wdm-chart-' + id).data('easyPieChart').update(0);
+            $('.activity-check-' + id).removeClass("completed");
+            $('.activity-check-' + id).addClass("text-muted");
         } else {
-            $('.wdm-completion-status-'+id).html("Completed");
-            $('.wdm-chart-'+id).data('easyPieChart').update(100);
-            $('.activity-check-'+id).removeClass("text-muted");
-            $('.activity-check-'+id).addClass("completed");
+            $('.wdm-completion-status-' + id).html("Completed");
+            $('.wdm-chart-' + id).data('easyPieChart').update(100);
+            $('.activity-check-' + id).removeClass("text-muted");
+            $('.activity-check-' + id).addClass("completed");
         }
         return false;
     });
@@ -120,10 +121,10 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         sURLVariables = sPageURL.split('&'),
         sParameterName,
         i;
-        
+
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
-        
+
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : sParameterName[1];
             }
@@ -180,12 +181,12 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         var CSS = {
             COURSECONTENT: 'course-content',
             SECTIONADDMENUS: 'section_add_menus'
-        };
+            };
 
-        var sectionlist = Y.Node.all('.' + CSS.COURSECONTENT + ' ' + M.course.format.get_section_selector(Y));
-        // Swap menus.
-        sectionlist.item(node1).one('.' + CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.' + CSS.SECTIONADDMENUS));
-    }
+            var sectionlist = Y.Node.all('.' + CSS.COURSECONTENT + ' ' + M.course.format.get_section_selector(Y));
+            // Swap menus.
+            sectionlist.item(node1).one('.' + CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.' + CSS.SECTIONADDMENUS));
+     }
 
     /**
      * Process sections after ajax response

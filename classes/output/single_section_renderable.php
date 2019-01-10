@@ -123,8 +123,10 @@ class format_remuiformat_single_section implements renderable, templatable
 
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
-            
-            $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
+
+            $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list(
+                $this->course, $generalsection, 0
+            );
             $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         }
 
@@ -137,17 +139,16 @@ class format_remuiformat_single_section implements renderable, templatable
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
 
-        // Default view for all sections
+        // Default view for all sections.
         $defaultview = $this->settings['remuidefaultsectionview'];
         $export->defaultview = $defaultview;
-        if($defaultview == 1) {
+        if ($defaultview == 1) {
             $export->expanded = false;
             $export->collapsed = true;
-        }
-        else {
+        } else {
             $export->collapsed = true;
         }
-        // User id for toggle
+        // User id for toggle.
         $export->user_id = $USER->id;
         // Course Information.
         $export->course_id = $this->course->id;
@@ -155,11 +156,10 @@ class format_remuiformat_single_section implements renderable, templatable
 
         // General Section Details.
         $generalsection = $modinfo->get_section_info(0);
-        if($editing){
+        if ($editing) {
             $export->generalsection['generalsectiontitlename'] = $this->courseformat->get_section_name($generalsection);
             $export->generalsection['generalsectiontitle'] = $renderer->section_title($generalsection, $this->course);
-        }
-        else {
+        } else {
             $export->generalsection['generalsectiontitle'] = $this->courseformat->get_section_name($generalsection);
         }
         $generalsectionsummary = $renderer->format_summary_text($generalsection);
@@ -177,18 +177,21 @@ class format_remuiformat_single_section implements renderable, templatable
         // For right side.
         $rightside = $renderer->section_right_content($generalsection, $this->course, false);
         $export->generalsection['rightside'] = $rightside;
-        $displayTeacher = $this->settings['remuiteacherdisplay'];
-        if($displayTeacher == 1){
+        $displayteacher = $this->settings['remuiteacherdisplay'];
+        if ($displayteacher == 1) {
             $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
             $teachers = null;
-            if(!empty($role)){
+            if (!empty($role)) {
                 $teachers = get_role_users($role->id, $coursecontext);
             }
             // For displaying teachers.
             if (!empty($teachers)) {
                 $count = 1;
                 $export->generalsection['teachers'] = $teachers;
-                $export->generalsection['teachers']['teacherimg'] = '<div class="space-div col-8"></div><div class="teacher-label col-1"><span>'.get_string('teachers', 'format_remuiformat').'</span></div>
+                $export->generalsection['teachers']['teacherimg'] =
+                '<div class="space-div col-8"></div><div class="teacher-label col-1"><span>'
+                .get_string('teachers', 'format_remuiformat').
+                '</span></div>
                 <div class="carousel slide col-3" data-ride="carousel" id="teachersCarousel">
                 <div class="carousel-inner">';
 
@@ -201,10 +204,13 @@ class format_remuiformat_single_section implements renderable, templatable
                     }
                     $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                     if ($count == 1) {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .=
+                        '<div class="carousel-item active"><div class="teacher-img-container">'
+                        . $OUTPUT->user_picture($teacher);
 
                     } else {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .=
+                        '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                     }
                     $nextteacher = next($teachers);
                     if (false != $nextteacher) {
@@ -215,7 +221,8 @@ class format_remuiformat_single_section implements renderable, templatable
                     $count += 1;
                 }
                 if (count($teachers) > 1) {
-                    $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
+                    $export->generalsection['teachers']['teacherimg'] .=
+                    '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
                             <i class="fas fa-chevron-left"></i>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -247,7 +254,6 @@ class format_remuiformat_single_section implements renderable, templatable
             // Get current section info.
             $currentsection = $modinfo->get_section_info($section);
 
-
             // Check if the user has permission to view this section or not.
             $showsection = $currentsection->uservisible ||
                     ($currentsection->visible && !$currentsection->available && !empty($currentsection->availableinfo)) ||
@@ -273,7 +279,7 @@ class format_remuiformat_single_section implements renderable, templatable
             }
             $sectiondetails->singlepageurl = $singlepageurl;
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            if(!empty($currentsection->summary)) {
+            if (!empty($currentsection->summary)) {
                 $sectiondetails->summary = $renderer->format_summary_text($currentsection);
             }
 
@@ -292,8 +298,12 @@ class format_remuiformat_single_section implements renderable, templatable
                 $sections[] = $sectiondetails;
             } else if ($rformat == REMUI_LIST_FORMAT) {
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
-                $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
-                $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
+                $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list(
+                    $this->course, $currentsection, 0
+                );
+                $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control(
+                    $this->course, $currentsection->section, 0
+                );
                 $sections[] = $sectiondetails;
             }
         }
@@ -370,7 +380,9 @@ class format_remuiformat_single_section implements renderable, templatable
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion($this->course,   $completioninfo, $mod, $displayoptions);
+                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
+                        $this->course,   $completioninfo, $mod, $displayoptions
+                    );
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
