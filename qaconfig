@@ -12,7 +12,7 @@ PHPCPD_IGNORE_FILES=""
 
 #Provide Relative Paths of files and folders to be ignored for PHPMD. Accepts Comma Separated List
 #For Moodle we need to enter all dir and file names here.
-PHPMD_IGNORE_FILES=""
+PHPMD_IGNORE_FILES="classes, renderer.php, lib.php"
 
 #Provide Relative Paths of files and folders to be ignored for PHPCS, Aceepts Comma separated list
 PHPCS_IGNORE_FILES=""
