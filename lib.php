@@ -39,7 +39,7 @@ class format_remuiformat extends format_base {
      * @return format_remuiformat
      */
     protected function __construct($format, $courseid) {
-        global $PAGE;
+        global $PAGE, $CFG;
         if ($courseid === 0) {
             global $COURSE;
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
@@ -59,7 +59,9 @@ class format_remuiformat extends format_base {
         );
         // // Include course format js module
 
-        $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
+        // $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
+        $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format.js'));
+
         // pass constants defined for the formats
         
         $PAGE->requires->js_init_call('init', array($this->availablelayouts));

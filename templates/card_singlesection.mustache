@@ -1,6 +1,6 @@
 <div class="col-lg-4 col-md-6 col-sm-12 single-card-container">
-    <div class="single-card my-15 p-20">
-        <span class="sno py-5 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <div class="single-card my-15 my-3 p-20 p-4">
+        <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
         {{{ hiddenmessage }}}
         <div class="card-content">
@@ -9,19 +9,19 @@
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
-            <div class="section-summary-activities pb-20">
+            <div class="section-summary-activities pb-20 pb-3">
                 {{#activityinfo}}
                     <p class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</p>
                 {{/activityinfo}}
             </div>
         </div>
-        <div class="section-action-container d-flex pt-10 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+        <div class="section-action-container d-flex pt-10 pt-2 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
             <div class="d-flex align-items-center">
                 <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remuiformat {{/str}}</a>
             </div>
             {{#progressinfo}}
             <div class="d-flex">
-                <div class="section-summary-percentage px-10">
+                <div class="section-summary-percentage px-10 px-2">
                     <p class="progress-title m-0 text-muted">{{#str}} progress, format_remuiformat {{/str}}</p>
                     <p class="progress-title m-0 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ progress }}</p>
                 </div>

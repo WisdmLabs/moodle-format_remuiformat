@@ -10,7 +10,7 @@
             {{{ rightnav }}}
         </div>
     </div>
-    <div class="col-md-12 p-0 general-single-card p-20 mt-20 mb-30">
+    <div class="col-md-12 p-0 general-single-card p-10 p-2 mt-20 mb-30 mt-3 mb-4">
         <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary}}}</p>
     </div>
@@ -26,12 +26,12 @@
                     <ul class="row p-0 m-0 wdm-section-wrapper">
                     {{#activities}}
                         <li class="col-lg-4 col-md-6 col-sm-12 single-card-container px-15 modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
-                        <div class="single-card p-20 mb-20">
+                        <div class="single-card p-20 p-4 mb-20 mb-4">
                             {{#editing}}
                                 <a class="wdm-drag-drop"><span><i class="fa fa-arrows" aria-hidden="true"></i></span></a>
                             {{/editing}}
                             <div class="wdm-activity-actions d-flex">
-                                <span class="sno py-5 pr-15 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
+                                <span class="sno pr-15 pr-3 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
                                 <div class="wdm-activity-actions d-flex">
                                     <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
                                     {{{ modicons }}}
@@ -45,13 +45,13 @@
                                 {{{ summary }}}
                             </div>
                             {{^availstatus}}
-                            <div class="d-flex pt-15 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
-                                <div class="w-p50 d-flex">
+                            <div class="d-flex pt-10 pt-2 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
+                                <div class="w-p50 w-50 d-flex">
                                     <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
                                 </div>
                                 {{#completion}}
                                 <div class="wdm-completion-container d-flex align-items-center">
-                                    <p class="m-0 mx-10 text-right wdm-completion-title wdm-completion-status-{{id}}">
+                                    <p class="m-0 mx-10 mx-2 text-right wdm-completion-title wdm-completion-status-{{id}}">
                                         {{#completed}}
                                             {{#str}} completed, format_remuiformat{{/str}}
                                         {{/completed}}
