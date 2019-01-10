@@ -59,8 +59,7 @@ class format_remuiformat extends format_base {
         );
         // // Include course format js module
 
-        // $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
-        $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format.js'));
+        $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
 
         // pass constants defined for the formats
         
