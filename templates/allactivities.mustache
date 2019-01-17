@@ -2,7 +2,7 @@
     {{{ hiddensection }}}
 {{/hiddensection}}
 {{^hiddensection}}
-    <div class="col-md-12 p-0 wdm-card-section">
+    <div class="col-md-12 p-0 wdm-card-section mb-20 mb-3">
         <div class="card-section-leftnav {{#leftnav}}btn btn-primary{{/leftnav}}">
             {{{ leftnav }}}
         </div>
@@ -10,8 +10,8 @@
             {{{ rightnav }}}
         </div>
     </div>
-    <div class="col-md-12 p-0 general-single-card p-10 p-2 mt-20 mb-30 mt-3 mb-4">
-        <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
+    <div class="col-md-12 p-0 general-single-card p-15 p-3 mb-30 mb-4">
+        <h2 class="single-section-title m-0 pt-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary}}}</p>
     </div>
     <div>
@@ -26,7 +26,7 @@
                     <ul class="row p-0 m-0 wdm-section-wrapper">
                     {{#activities}}
                         <li class="col-lg-4 col-md-6 col-sm-12 single-card-container px-15 modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
-                        <div class="single-card p-20 p-4 mb-20 mb-4">
+                        <div class="single-card p-15 p-3 mb-20 mb-4">
                             {{#editing}}
                                 <a class="wdm-drag-drop"><span><i class="fa fa-arrows" aria-hidden="true"></i></span></a>
                             {{/editing}}

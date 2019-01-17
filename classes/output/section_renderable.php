@@ -67,7 +67,8 @@ class format_remuiformat_section implements renderable, templatable
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE, $DB, $OUTPUT, $CFG;
+        global $PAGE, $CFG;
+        unset($output);
         $export = new \stdClass();
         $renderer = $PAGE->get_renderer('format_remuiformat');
         $rformat = $this->settings['remuicourseformat'];
