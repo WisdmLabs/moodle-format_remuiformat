@@ -21,7 +21,7 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
 
     function init() {
         $('a.wdm-drag-drop').each(
-            (index, element) => {
+            function(index, element) {
                 var sectionwrapper = element;
                 sectionwrapper.addEventListener("touchstart", touchHandler, true);
                 sectionwrapper.addEventListener("touchmove", touchHandler, true);
@@ -131,13 +131,6 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         }
     }
 
-    $('.wdm-section-wrapper').dragsort({
-        dragSelector: "a.wdm-drag-drop",
-        dragBetween: true,
-        dragEnd: saveOrder,
-        placeHolderTemplate: "<li class='placeHolder' style='border:1px solid gray;'></li>"
-    });
-
     function saveOrder() {
         var section = $(this).data('section');
         var courseid = getUrlParameter('id');
@@ -155,6 +148,13 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
             // console.log(response);
         });
     }
+    
+    $('.wdm-section-wrapper').dragsort({
+        dragSelector: "a.wdm-drag-drop",
+        dragBetween: true,
+        dragEnd: saveOrder,
+        placeHolderTemplate: "<li class='placeHolder' style='border:1px solid gray;'></li>"
+    });
 
     M.course = M.course || {};
 

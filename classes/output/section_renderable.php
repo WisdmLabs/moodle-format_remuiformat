@@ -153,7 +153,6 @@ class format_remuiformat_section implements renderable, templatable
         // Course Information.
         $export->course_id = $this->course->id;
         $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
-
         // General Section Details.
         $generalsection = $modinfo->get_section_info(0);
         if ($editing) {

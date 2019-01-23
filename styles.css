@@ -454,7 +454,7 @@ For list format
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .showhideactivity .first-section-activity:nth-child(n+4) {
+  .showhideactivity .first-section-activity:nth-child(n+5) {
     display: none;
   }
 }
@@ -663,4 +663,11 @@ ul.remui-format-list h4.sectionname a {
     max-width: 1210px;
     margin: auto;
   }
+}
+/* Boost compatible CSS End*/
+
+
+/* Fordson Compatible CSS*/
+#page-course-view-remuiformat li#section-0 .content {
+  border-bottom: none;
 }
