@@ -1,9 +1,4 @@
 /* Global */
-/*#page-course-view-cards #region-main div.card.card-block {
-    background-color: #f2f4f5;
-    padding-bottom: 30px;
-    overflow: visible;
-}*/
 
 #page-course-view-remuiformat #region-main div.card.card-block {
     background-color: #f2f4f5;
@@ -149,7 +144,6 @@ input.ignoredirty.form-control{
 }
 
 .general-single-card{
-    /* box-shadow: 0 1px 5px rgba(0, 0 , 0, .05); */
     box-shadow: 0px 0px 10px #ddd !important;
     border-radius: 2px;
     background-color: white;
@@ -465,12 +459,6 @@ For list format
 }
 
 /* For course summary */
-/*.ellipsis {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}*/
-
 .remui-list-content-border {
   border-bottom: 1px solid #e4eaec;
 }
@@ -500,23 +488,14 @@ ul.remui-format-list img.activityicon {
     vertical-align: middle;
 }
 
-#teachersCarousel .carousel-inner {
-  /*width:50%;
-  margin: 0 auto;*/
-}
-
-
-
 .teacher-label {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
 }
 
 #teachersCarousel {
   display: inline-block;
-  /*width: 70%;*/
 }
 
 li.first-section-li .summary {

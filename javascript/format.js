@@ -2,16 +2,13 @@ var def_constants;
 function init(Y, arr){
     def_constants = arr;
 }
-// var both_layout = {};
-// var single_section_layout = {};
-// var multiple_section_layout = {};
+
 require(['$', 'core/str'], function ($) {
-    // console.log(def_constants);
 
     $(document).ready(function(){
 
         var sectionlayout_val;
-        // Hide and show the course settings on course format selection
+        // Hide and show the course settings on course format selection.
         var format_value = $("#id_format").val();
         if (format_value == 'remuiformat') {
             var coursedisplay       = $("#id_coursedisplay").parent().parent();
@@ -58,7 +55,7 @@ require(['$', 'core/str'], function ($) {
             }
         });
     });
-    // Function to excahnge the element position
+    // Function to excahnge the element position.
     $.fn.exchangePositionWith = function(selector) {
         var other = $(selector);
         this.after(other.clone());

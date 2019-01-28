@@ -29,10 +29,10 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
                 sectionwrapper.addEventListener("touchcancel", touchHandler, true);
             }
         );
-        // document.addEventListener("click", touchHandler, true);
+        // ...document.addEventListener("click", touchHandler, true);.
     }
 
-    // Function to set Equal Height of all cards
+    // Function to set Equal Height of all cards.
     var setEqualHeight = function (selector) {
 
         if (selector.length > 0) {
@@ -54,7 +54,7 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         setEqualHeight($('.card-section-list'))
     });
 
-    // Display the overlay
+    // Display the overlay.
     $('.mod-card-container').mouseover(function () {
         $(this).children('.mod-card-overlay').removeClass("hidden");
         $(this).children('.card-hover-content').removeClass("hidden");
@@ -63,7 +63,7 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         $(this).children('.card-hover-content').addClass("hidden");
     });
 
-    // Mark Completion
+    // Mark Completion.
     $('.card-complete-btn').click(function () {
         var val = $(this).parent().children('.card-completion-state').val();
         if (val == 0) {
@@ -95,7 +95,7 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
         e.preventDefault();
     });
 
-    // Set Equal height of cards on load
+    // Set Equal height of cards on load.
     setEqualHeight($('.single-card'));
     $('.section-action-container').addClass('card-bottom');
     $('.wdm-bottom-container').addClass('card-bottom');
@@ -145,10 +145,9 @@ require(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'forma
             }
         ]);
         sectionsave[0].done(function (response) {
-            // console.log(response);
+            // ...console.log(response);.
         });
     }
-    
     $('.wdm-section-wrapper').dragsort({
         dragSelector: "a.wdm-drag-drop",
         dragBetween: true,

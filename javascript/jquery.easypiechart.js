@@ -9,7 +9,7 @@
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module unless amdModuleId is set
+        // AMD. Register as an anonymous module unless amdModuleId is set.
         define(["jquery"], function (a0) {
             return (factory(a0));
         });
@@ -42,7 +42,7 @@
 
          canvas.width = canvas.height = options.size;
 
-         // canvas on retina devices
+         // Canvas on retina devices.
          var scaleBy = 1;
         if (window.devicePixelRatio > 1) {
             scaleBy = window.devicePixelRatio;
@@ -51,18 +51,18 @@
             ctx.scale(scaleBy, scaleBy);
         }
 
-         // move 0,0 coordinates to the center
+         // Move 0,0 coordinates to the center.
          ctx.translate(options.size / 2, options.size / 2);
 
-         // rotate canvas -90deg
+         // Rotate canvas -90deg.
          ctx.rotate((-1 / 2 + options.rotate / 180) * Math.PI);
 
          var radius = (options.size - options.lineWidth) / 2;
         if (options.scaleColor && options.scaleLength) {
-            radius -= options.scaleLength + 2; // 2 is the distance between scale and bar
+            radius -= options.scaleLength + 2; // 2 is the distance between scale and bar.
         }
 
-         // IE polyfill for Date
+         // IE polyfill for Date.
          Date.now = Date.now || function() {
              return +(new Date());
          };
@@ -110,11 +110,8 @@
             }
             ctx.restore();
         };
-
-        /**
-         * Request animation frame wrapper with polyfill
-         * @return {function} Request animation frame method or timeout fallback
-         */
+        // Request animation frame wrapper with polyfill.
+        // @return {function} Request animation frame method or timeout fallback.
         var reqAnimationFrame = (function() {
             return  window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -124,9 +121,9 @@
             };
         }());
 
-         /**
-          * Draw the background of the plugin including the scale and the track
-          */
+        /**
+         * Draw the background of the plugin including the scale and the track
+         */
          var drawBackground = function() {
             if(options.scaleColor) { drawScale();
             }
@@ -135,34 +132,34 @@
          };
 
         /**
-    * Canvas accessor
-   */
+         * Canvas accessor
+        */
         this.getCanvas = function() {
             return canvas;
         };
 
         /**
-    * Canvas 2D context 'ctx' accessor
-   */
+         * Canvas 2D context 'ctx' accessor
+        */
         this.getCtx = function() {
             return ctx;
         };
 
         /**
-     * Clear the complete canvas
-     */
+         * Clear the complete canvas
+        */
         this.clear = function() {
             ctx.clearRect(options.size / -2, options.size / -2, options.size, options.size);
         };
 
         /**
-     * Draw the complete chart
-     * @param {number} percent Percent shown by the chart between -100 and 100
-     */
+         * Draw the complete chart
+         * @param {number} percent Percent shown by the chart between -100 and 100
+         */
         this.draw = function(percent) {
-            // do we need to render a background
+            // Do we need to render a background.
             if (!!options.scaleColor || !!options.trackColor) {
-                // getImageData and putImageData are supported
+                // Variables getImageData and putImageData are supported.
                 if (ctx.getImageData && ctx.putImageData) {
                     if (!cachedBackground) {
                         drawBackground();
@@ -180,7 +177,7 @@
 
             ctx.lineCap = options.lineCap;
 
-            // if barcolor is a function execute it and pass the percent as a value
+            // If barcolor is a function execute it and pass the percent as a value.
             var color;
             if (typeof(options.barColor) === 'function') {
                 color = options.barColor(percent);
@@ -188,15 +185,15 @@
                 color = options.barColor;
             }
 
-            // draw bar
+            // Draw bar.
             drawCircle(color, options.lineWidth, percent / 100);
         }.bind(this);
 
         /**
-     * Animate from some percent to some other percentage
-     * @param {number} from Starting percentage
-     * @param {number} to   Final percentage
-     */
+         * Animate from some percent to some other percentage
+         * @param {number} from Starting percentage
+         * @param {number} to   Final percentage
+        */
         this.animate = function(from, to) {
             var startTime = Date.now();
             options.onStart(from, to);
@@ -231,7 +228,7 @@
                     duration: 1000,
                     enabled: true
                 },
-                easing: function (x, t, b, c, d) { // more can be found here: http://gsgd.co.uk/sandbox/jquery/easing/
+                easing: function (x, t, b, c, d) { // More can be found here: http://gsgd.co.uk/sandbox/jquery/easing/.
                     t = t / (d / 2);
                     if (t < 1) {
                         return c / 2 * t * t + b;
@@ -249,7 +246,7 @@
                 }
         };
 
-         // detect present renderer
+         // Detect present renderer.
         if (typeof(CanvasRenderer) !== 'undefined') {
             defaultOptions.renderer = CanvasRenderer;
         } else if (typeof(SVGRenderer) !== 'undefined') {
@@ -268,7 +265,7 @@
              this.el = el;
              this.options = options;
 
-             // merge user options into default options
+            // Merge user options into default options.
             for (var i in defaultOptions) {
                 if (defaultOptions.hasOwnProperty(i)) {
                     options[i] = opts && typeof(opts[i]) !== 'undefined' ? opts[i] : defaultOptions[i];
@@ -278,14 +275,14 @@
                 }
             }
 
-             // check for jQuery easing
+             // Check for jQuery easing.
             if (typeof(options.easing) === 'string' && typeof(jQuery) !== 'undefined' && jQuery.isFunction(jQuery.easing[options.easing])) {
                 options.easing = jQuery.easing[options.easing];
             } else {
                 options.easing = defaultOptions.easing;
             }
 
-             // process earlier animate option to avoid bc breaks
+             // Process earlier animate option to avoid bc breaks.
             if (typeof(options.animate) === 'number') {
                 options.animate = {
                     duration: options.animate,
@@ -300,13 +297,13 @@
                 };
             }
 
-             // create renderer
+             // Create renderer.
              this.renderer = new options.renderer(el, options);
 
-             // initial draw
+             // Initial draw.
              this.renderer.draw(currentValue);
 
-             // initial update
+             // Initial update.
             if (el.dataset && el.dataset.percent) {
                 this.update(parseFloat(el.dataset.percent));
             } else if (el.getAttribute && el.getAttribute('data-percent')) {

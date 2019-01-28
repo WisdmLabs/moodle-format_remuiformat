@@ -5,8 +5,6 @@ require(['jquery'], function ($) {
     $('#page-course-view-remuiformat #changenumsections').addClass("row d-flex justify-content-end");
     $('.general-single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 200, "swing");
     $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 400, "swing");
-    // let primaryColor = $('.site-navbar').css('background-color');
-    // $('#page-course-view-remuiformat ul.remui-format-list li.card.section.highlighted').css('border-left', '2px solid '+ primaryColor);
 });
 
 M.course = M.course || {};
@@ -69,9 +67,7 @@ M.course.format.process_sections = function(Y, sectionlist, response, sectionfro
     SELECTORS = {
         SECTIONLEFTSIDE : '.left .section-handle .icon'
     };
-    // alert(sectionlist);
     if (response.action == 'move') {
-        // alert('Hi!');
         // If moving up swap around 'sectionfrom' and 'sectionto' so the that loop operates.
         if (sectionfrom > sectionto) {
             var temp = sectionto;
