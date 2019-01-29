@@ -6,7 +6,7 @@
     overflow: visible;
 }
 
-#page-course-view-remuiformat .container-fluid #region-main {
+#page-course-view-remuiformat .container-fluid #region-main, #page-course-view-remuiformat .container-fluid #region-main .card-body {
   border: none;
   background-color: #f1f1f1;
 }
