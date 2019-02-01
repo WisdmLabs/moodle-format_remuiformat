@@ -1,5 +1,5 @@
 <div class="col-lg-4 col-md-6 col-sm-12 single-card-container">
-    <div class="single-card mb-15 mb-3 p-15 p-3">
+    <div class="single-card m-b-1 mb-15 mb-3 p-15 p-3">
         <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
         {{{ hiddenmessage }}}
@@ -15,15 +15,15 @@
                 {{/activityinfo}}
             </div>
         </div>
-        <div class="section-action-container d-flex pt-10 pt-2 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+        <div class="section-action-container d-flex pt-10 pt-2 p-t-1 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
             <div class="d-flex align-items-center">
                 <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remuiformat {{/str}}</a>
             </div>
             {{#progressinfo}}
             <div class="d-flex">
-                <div class="section-summary-percentage px-10 px-2">
-                    <p class="progress-title m-0 text-muted">{{#str}} progress, format_remuiformat {{/str}}</p>
-                    <p class="progress-title m-0 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ progress }}</p>
+                <div class="section-summary-percentage px-10 px-2 p-x-1">
+                    <p class="progress-title m-0 m-a-0 text-muted">{{#str}} progress, format_remuiformat {{/str}}</p>
+                    <p class="progress-title m-0 m-a-0 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ progress }}</p>
                 </div>
                 <div class="pchart" data-percent="{{ percentage }}">
                     <span class="activity-check {{ completed }}"><i class="fa fa-check" aria-hidden="true"></i></span>

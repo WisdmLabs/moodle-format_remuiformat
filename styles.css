@@ -6,9 +6,9 @@
     overflow: visible;
 }
 
-#page-course-view-remuiformat .container-fluid #region-main, #page-course-view-remuiformat .container-fluid #region-main .card-body {
+#page-course-view-remuiformat .container-fluid #region-main, #page-course-view-remuiformat .container-fluid #region-main .card-body, #page-course-view-remuiformat .container-fluid #region-main div.card.card-block {
   border: none;
-  background-color: #f1f1f1;
+  background-color: #f1f1f1 !important;
 }
 
 .single-card {
@@ -17,6 +17,7 @@
     background-color: white;
     visibility: hidden;
     position: relative;
+    padding: 1rem 1rem!important;
 }
 
 .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
@@ -256,6 +257,7 @@ input.ignoredirty.form-control{
     display: flex;
     justify-content: flex-end;
     width: 70% !important;
+    align-items: center!important;
 }
 
 .wdm-completion-title {
@@ -318,6 +320,7 @@ For list format
   padding: 0;
   margin: 0;
   list-style: none;
+  /* background-color: #fff!important; */
 }
 .course-content ul.remui-format-list li.section .content {
   margin: 0;
@@ -460,7 +463,8 @@ For list format
 
 /* For course summary */
 .remui-list-content-border {
-  border-bottom: 1px solid #e4eaec;
+  border-bottom: 1px solid #e4eaec !important;
+  padding: 10px 15px 10px 15px !important;
 }
 
 /* For section title */
@@ -513,11 +517,13 @@ li.first-section-li .summary {
 ul.remui-format-list li.section ul.section {
   padding: 0;
   margin: 0;
+  justify-content: center!important;
 }
 
 ul.remui-format-list li.section ul.section li.activity {
     clear: both;
     padding: 10px 25px !important;
+    border-bottom: none !important;
 }
 
 ul.remui-format-list li.section ul.section li.activity:first-child {
@@ -601,6 +607,7 @@ carousel style
 .wdm-card, .wdm-allactivities{
   border: none !important;
   box-shadow: 0px 0px 10px #ddd !important;
+  background-color: #fff !important;
 }
 
 ul.remui-format-list h4.sectionname a {
@@ -646,7 +653,44 @@ ul.remui-format-list h4.sectionname a {
 /* Boost compatible CSS End*/
 
 
-/* Fordson Compatible CSS*/
+/* Fordson Compatible CSS - Moodle 34*/
 #page-course-view-remuiformat li#section-0 .content {
   border-bottom: none;
 }
+
+.d-flex {
+  display: flex !important; 
+}
+
+.wdm-bottom-container{
+  align-items: center!important;
+}
+
+.wdm-bottom-container > div:first-child{
+  width: 50%;
+}
+
+.mdl-right {
+  text-align: right !important;
+}
+
+@media (min-width: 768px) {
+  .col-md-12 {
+    float: none !important;
+  }
+}
+
+.float-right {
+  float: right!important;
+}
+
+.section-summary-activities{
+  width: 100% !important;
+  border-top: none !important;
+  padding: 0px !important;
+}
+
+.card-footer{
+  background-color: #fff !important;
+}
+/* Fordson Compatible CSS End*/
