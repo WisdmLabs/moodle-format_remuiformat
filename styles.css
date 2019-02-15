@@ -152,6 +152,7 @@ input.ignoredirty.form-control{
     visibility: hidden;
     min-height: 50px;
     list-style: none;
+    padding: 15px !important;
 }
 
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
@@ -407,6 +408,7 @@ For list format
 .section.first-section .activityinstance {
   min-width: auto;
   min-height: auto;
+  padding: 0px !important;
 }
 .section.first-section .activityinstance > a {
   text-indent: 0px;
@@ -518,6 +520,7 @@ ul.remui-format-list li.section ul.section {
   padding: 0;
   margin: 0;
   justify-content: center!important;
+  text-align: center!important;
 }
 
 ul.remui-format-list li.section ul.section li.activity {
@@ -619,7 +622,7 @@ ul.remui-format-list h4.sectionname a {
   background-color: #37474f;
 }
 
-#page-course-view-remuiformat #region-main{
+#page-course-view-remuiformat .container-fluid #region-main{
   border: none;
   background-color: #f2f4f5;
 }
@@ -693,4 +696,17 @@ ul.remui-format-list h4.sectionname a {
 .card-footer{
   background-color: #fff !important;
 }
+
+.align-items-center {
+  align-items: center!important;
+}
+#page-course-view-remuiformat .container-fluid .single-section-title {
+  padding-top: 0px !important;
+  padding-bottom: 10px !important;
+}
+
+.remui-list-content-border .d-block.row:after {
+  content: none !important;
+}
+
 /* Fordson Compatible CSS End*/
