@@ -24,110 +24,112 @@
             {{> format_remuiformat/list_singlesection }}
         {{/sections}}
     </ul>
-
-
-
-{{#js}}
-    // save the current choice by admin - expanded or collapsed
-    var formatlabel = {{{ course_id }}} + '_' + {{{ user_id }}} + '_defaultview';
-    var userformat = localStorage.getItem(formatlabel);
-    // alert(userformat);
-    if(userformat == null) {
-      localStorage.setItem(formatlabel, {{{ defaultview }}});
-    }
-    else {
-      // the user's last format and the current format do not match, reset user data
-      if(userformat != {{{ defaultview }}}) {
-      {{#sections}}
-        var namelocal  = 'section-'+ {{{ index }}} + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-        localStorage.removeItem(namelocal);
-      {{/sections}}
-      localStorage.setItem(formatlabel, {{{ defaultview }}});
-      }
-      else {
-        // current format and the user's format are the same
-        jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
-          var section_id = jQuery(this).parent().parent().parent().attr('id');
-          var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-          // alert(localStorage.getItem(namelocal));
-          {{#expanded}}
-          if(localStorage.getItem(namelocal) == 'false'){
-            // change arrow
-            //  jQuery(this).find('i').toggleClass('fa-angle-down');
-            //  jQuery(this).find('i').toggleClass('fa-angle-up');
-            // add appropriate classes
-           // jQuery(this).addClass('collapsed');
-           // jQuery(this).attr('aria-expanded', 'false');
-            var attr_to_search = jQuery(this).attr('href');
-            // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
-            // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
-            jQuery(this).parent().parent().find('.summary').show(500);
-            jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+    {{#js}}
+      require(['jquery'], function(jQuery) {
+          // save the current choice by admin - expanded or collapsed
+          var formatlabel = {{{ course_id }}} + '_' + {{{ user_id }}} + '_defaultview';
+          var userformat = localStorage.getItem(formatlabel);
+          // alert(userformat);
+          if(userformat == null) {
+            localStorage.setItem(formatlabel, {{{ defaultview }}});
           }
-          {{/expanded}}
-          {{#collapsed}}
-          if(localStorage.getItem(namelocal) == 'true'){
-            // change arrow
-           // jQuery(this).find('i').toggleClass('fa-angle-down');
-           // jQuery(this).find('i').toggleClass('fa-angle-up');
-            // add appropriate classes
-           //  jQuery(this).removeClass('collapsed');
-           //  jQuery(this).attr('aria-expanded', 'true');
-            var attr_to_search = jQuery(this).attr('href');
-            // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
-            // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
-            jQuery(this).parent().parent().find('.summary').show(500);
-            jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+          else {
+            // the user's last format and the current format do not match, reset user data
+            if(userformat != {{{ defaultview }}}) {
+            {{#sections}}
+              var namelocal  = 'section-'+ {{{ index }}} + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              localStorage.removeItem(namelocal);
+            {{/sections}}
+            localStorage.setItem(formatlabel, {{{ defaultview }}});
+            }
+            else {
+              // current format and the user's format are the same
+              jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
+                var section_id = jQuery(this).parent().parent().parent().attr('id');
+                var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+                // alert(localStorage.getItem(namelocal));
+                {{#expanded}}
+                if(localStorage.getItem(namelocal) == 'false'){
+                  // change arrow
+                  //  jQuery(this).find('i').toggleClass('fa-angle-down');
+                  //  jQuery(this).find('i').toggleClass('fa-angle-up');
+                  // add appropriate classes
+                // jQuery(this).addClass('collapsed');
+                // jQuery(this).attr('aria-expanded', 'false');
+                  var attr_to_search = jQuery(this).attr('href');
+                  // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
+                  // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
+                  jQuery(this).parent().parent().find('.summary').show(500);
+                  jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+                }
+                {{/expanded}}
+                {{#collapsed}}
+                if(localStorage.getItem(namelocal) == 'true'){
+                  // change arrow
+                // jQuery(this).find('i').toggleClass('fa-angle-down');
+                // jQuery(this).find('i').toggleClass('fa-angle-up');
+                  // add appropriate classes
+                //  jQuery(this).removeClass('collapsed');
+                //  jQuery(this).attr('aria-expanded', 'true');
+                  var attr_to_search = jQuery(this).attr('href');
+                  // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
+                  // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
+                  jQuery(this).parent().parent().find('.summary').show(500);
+                  jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+                }
+                {{/collapsed}}
+              });
+            }
           }
-          {{/collapsed}}
-        });
-      }
-    }
-    jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
-        jQuery(this).find('i').toggleClass('fa-angle-down');
-        jQuery(this).find('i').toggleClass('fa-angle-up');
-        var section_id = jQuery(this).parent().parent().parent().attr('id');
-        var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-        localStorage.setItem(namelocal, 'true');
-        jQuery(this).parent().parent().find('.summary').show(500);
-        if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
-            jQuery(this).parent().parent().next().next().removeClass('show');
-            jQuery(this).parent().parent().next().next().addClass('collapse');
-            jQuery(this).parent().parent().find('.summary').show(500);
-            jQuery(this).parent().parent().find('.section-summary-activities').show(500);
-        } else {
-            jQuery(this).parent().parent().next().next().removeClass('collapse');
-            jQuery(this).parent().parent().next().next().addClass('show');
-            jQuery(this).parent().parent().find('.summary').show(500);
-            jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
-        }
-    });
-{{/js}}
+          jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
+              jQuery(this).find('i').toggleClass('fa-angle-down');
+              jQuery(this).find('i').toggleClass('fa-angle-up');
+              var section_id = jQuery(this).parent().parent().parent().attr('id');
+              var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              localStorage.setItem(namelocal, 'true');
+              jQuery(this).parent().parent().find('.summary').show(500);
+              if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
+                  jQuery(this).parent().parent().next().next().removeClass('show');
+                  jQuery(this).parent().parent().next().next().addClass('collapse');
+                  jQuery(this).parent().parent().find('.summary').show(500);
+                  jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+              } else {
+                  jQuery(this).parent().parent().next().next().removeClass('collapse');
+                  jQuery(this).parent().parent().next().next().addClass('show');
+                  jQuery(this).parent().parent().find('.summary').show(500);
+                  jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+              }
+          });
+      });
+    {{/js}}
 
 {{/editing}}
+
 {{#editing}}
 
-{{#js}}
-jQuery('.remui-format-list .card-title .float-right').click(function(){
-        var iconparent = jQuery(this).parent();
-        jQuery(iconparent).find('.float-right').toggleClass('fa-angle-down');
-        jQuery(iconparent).find('.float-right').toggleClass('fa-angle-up');
-        var section_id = jQuery(iconparent).parent().parent().parent().attr('id');
-        var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-        localStorage.setItem(namelocal, 'true');
-        jQuery(iconparent).parent().find('.summary').show(500);
-        if(jQuery(iconparent).find('.float-right').hasClass('fa-angle-down')) {
-            jQuery(iconparent).parent().next().next().removeClass("show");
-            jQuery(iconparent).parent().next().next().addClass("collapse");
-            jQuery(iconparent).parent().find('.summary').show(500);
-            jQuery(iconparent).parent().find('.section-summary-activities').show(500);
-        } else {
-            jQuery(iconparent).parent().next().next().removeClass('collapse');
-            jQuery(iconparent).parent().next().next().addClass("show");
-            jQuery(iconparent).parent().find('.summary').show(500);
-            jQuery(iconparent).parent().find('.section-summary-activities').hide(500);
-        }
-});
+    {{#js}}
+      require(['jquery'], function(jQuery) {
+          jQuery('.remui-format-list .card-title .float-right').click(function(){
+              var iconparent = jQuery(this).parent();
+              jQuery(iconparent).find('.float-right').toggleClass('fa-angle-down');
+              jQuery(iconparent).find('.float-right').toggleClass('fa-angle-up');
+              var section_id = jQuery(iconparent).parent().parent().parent().attr('id');
+              var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              localStorage.setItem(namelocal, 'true');
+              jQuery(iconparent).parent().find('.summary').show(500);
+              if(jQuery(iconparent).find('.float-right').hasClass('fa-angle-down')) {
+                  jQuery(iconparent).parent().next().next().removeClass("show");
+                  jQuery(iconparent).parent().next().next().addClass("collapse");
+                  jQuery(iconparent).parent().find('.summary').show(500);
+                  jQuery(iconparent).parent().find('.section-summary-activities').show(500);
+              } else {
+                  jQuery(iconparent).parent().next().next().removeClass('collapse');
+                  jQuery(iconparent).parent().next().next().addClass("show");
+                  jQuery(iconparent).parent().find('.summary').show(500);
+                  jQuery(iconparent).parent().find('.section-summary-activities').hide(500);
+              }
+          });
+      });
 
-{{/js}}
+    {{/js}}
 {{/editing}}
