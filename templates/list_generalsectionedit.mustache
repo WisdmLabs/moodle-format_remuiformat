@@ -88,9 +88,70 @@ require(['jquery'], function(jQuery) {
         }
     });
 
-    // show load more button conditionally
-    
+    showmorebuttonedit();
+
+
+    // Show load more button conditionally.
     jQuery(window).resize(function(){
+        
+        showmorebuttonedit();
+
+        var containerwidth = jQuery('.teacher-img').width();
+      
+        if(containerwidth > 760) {
+            var ele = jQuery('.space-div');
+            ele.removeAttr('class');
+            ele.attr('class', 'space-div col-8');
+
+            var car = jQuery('.teacher-label');
+            car.removeAttr('class');
+            car.attr('class', 'teacher-label col-2');
+
+            var car = jQuery('#teachersCarousel');          
+            car.removeAttr('class');
+            car.attr('class', 'carousel slide col-2');
+        } else if(containerwidth > 367 && containerwidth < 761) {
+            var ele = jQuery('.space-div');
+            ele.removeAttr('class');
+            ele.attr('class', 'space-div col-6');
+
+            var car = jQuery('.teacher-label');
+            car.removeAttr('class');
+            car.attr('class', 'teacher-label col-2');
+
+            var car = jQuery('#teachersCarousel');
+            car.removeAttr('class');
+            car.attr('class', 'carousel slide col-4');
+        } else if(containerwidth > 200 && containerwidth < 367) {
+            var ele = jQuery('.space-div');
+            ele.removeAttr('class');
+            ele.attr('class', 'space-div col-2');
+
+            var car = jQuery('.teacher-label');
+            car.removeAttr('class');
+            car.attr('class', 'teacher-label col-3');
+
+            var car = jQuery('#teachersCarousel');
+            car.removeAttr('class');
+            car.attr('class', 'carousel slide col-7');
+        }
+        else if(containerwidth < 200) {
+            
+            var ele = jQuery('.space-div');
+            ele.removeAttr('class');
+            ele.attr('class', 'space-div col-1');
+
+            var car = jQuery('.teacher-label');
+            car.removeAttr('class');
+            car.attr('class', 'teacher-label col-2');
+
+            var car = jQuery('#teachersCarousel');
+            car.removeAttr('class');
+            car.attr('class', 'carousel slide col-8');
+        }
+    });
+
+    function showmorebuttonedit() {
         var wwidth = jQuery(window).width();
         var count = jQuery(".first-section-activity").length;
 
@@ -123,61 +184,7 @@ require(['jquery'], function(jQuery) {
                 jQuery('.showactivitywrapper').css('display', 'none');
                 }
         }
-
-        var containerwidth = jQuery('.teacher-img').width();
-      
-      if(containerwidth > 760) {
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-8');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-2');
-
-          var car = jQuery('#teachersCarousel');          
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-2');
-      } else if(containerwidth > 367 && containerwidth < 761) {
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-6');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-2');
-
-          var car = jQuery('#teachersCarousel');
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-4');
-      } else if(containerwidth > 200 && containerwidth < 367) {
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-2');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-3');
-
-          var car = jQuery('#teachersCarousel');
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-7');
-      }
-      else if(containerwidth < 200) {
-          
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-1');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-2');
-
-          var car = jQuery('#teachersCarousel');
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-8');
-      }
-    });
+    }
 });
 
 {{/js}}

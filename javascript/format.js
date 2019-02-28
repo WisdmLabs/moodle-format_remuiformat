@@ -3,7 +3,7 @@ function init(Y, arr){
     def_constants = arr;
 }
 
-require(['$', 'core/str'], function ($) {
+require(['jquery', 'core/str'], function ($) {
 
     $(document).ready(function(){
 
