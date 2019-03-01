@@ -541,7 +541,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
         }
     }
-    
     /**
      * Renders the mutiple section page.
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
