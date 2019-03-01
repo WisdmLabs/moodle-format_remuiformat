@@ -78,6 +78,8 @@ $string['completed'] = "Completed";
 $string['notcompleted'] = 'Not Completed';
 $string['progress'] = 'Progress';
 
+$string['showless'] = 'Show Less';
+$string['showmore'] = 'Show More';
 
 // For list.
 

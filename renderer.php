@@ -520,56 +520,53 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return
      */
     public function render_all_sections(\format_remuiformat\output\format_remuiformat_section $section) {
-        if ($this->check_license()) {
-            $templatecontext = $section->export_for_template($this);
-            $rformat = $this->settings['remuicourseformat'];
-            if (empty($rformat)) {
-                $rformat = REMUI_CARD_FORMAT;
-            }
-            if (isset($templatecontext->error)) {
-                print_error($templatecontext->error);
-            } else {
-                switch ($rformat) {
-                    case REMUI_CARD_FORMAT:
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                    case REMUI_LIST_FORMAT:
-                        echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
-                        break;
-                    default:
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                }
+        $templatecontext = $section->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if (empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            switch ($rformat) {
+                case REMUI_CARD_FORMAT:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
+                case REMUI_LIST_FORMAT:
+                    echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
+                    break;
+                default:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
             }
         }
     }
+    
     /**
      * Renders the mutiple section page.
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return
      */
     public function render_single_list_section(\format_remuiformat\output\format_remuiformat_single_section $section) {
-        if ($this->check_license()) {
-            $templatecontext = $section->export_for_template($this);
-            $rformat = $this->settings['remuicourseformat'];
-            if (empty($rformat)) {
-                $rformat = REMUI_CARD_FORMAT;
-            }
-            if (isset($templatecontext->error)) {
-                print_error($templatecontext->error);
-            } else {
-                switch ($rformat) {
-                    case REMUI_CARD_FORMAT:
-                            echo "REMUI_CARD_FORMAT";
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                    case REMUI_LIST_FORMAT:
-                        echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
-                        break;
-                    default:
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                }
+        $templatecontext = $section->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if (empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            switch ($rformat) {
+                case REMUI_CARD_FORMAT:
+                        echo "REMUI_CARD_FORMAT";
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
+                case REMUI_LIST_FORMAT:
+                    echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
+                    break;
+                default:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
             }
         }
     }
@@ -580,40 +577,23 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return
      */
     public function render_single_section(\format_remuiformat\output\format_remuiformat_activity $activity) {
-        if ($this->check_license()) {
-            $templatecontext = $activity->export_for_template($this);
-            $rformat = $this->settings['remuicourseformat'];
-            if (empty($rformat)) {
-                $rformat = REMUI_CARD_FORMAT;
-            }
-            switch ($rformat) {
-                case REMUI_CARD_FORMAT:
-                    purge_all_caches();
-                    echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-                    break;
-                case REMUI_LIST_FORMAT:
-                    echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
-                    break;
-                default:
-                    echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-                    break;
-            }
+        $templatecontext = $activity->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if (empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
         }
-    }
-
-    private function check_license() {
-        global $DB, $CFG;
-        $pluginslug = 'remui';
-        $status = $DB->get_field_select('config_plugins', 'value', 'name = :name', array(
-            'name' => 'edd_' . $pluginslug . '_license_status'
-        ), IGNORE_MISSING);
-        $templatecontext = new \stdClass();
-        $templatecontext->licenseurl = $CFG->wwwroot.'/admin/settings.php?section=themesettingremui';
-        if ($status != "valid") {
-            echo $this->render_from_template('format_remuiformat/license_error', $templatecontext);
-            return false;
+        switch ($rformat) {
+            case REMUI_CARD_FORMAT:
+                purge_all_caches();
+                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
+                break;
+            case REMUI_LIST_FORMAT:
+                echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
+                break;
+            default:
+                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
+                break;
         }
-        return true;
     }
 
     public function abstract_html_contents($html, $maxlength = 100) {

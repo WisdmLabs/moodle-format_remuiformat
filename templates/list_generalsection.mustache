@@ -61,10 +61,10 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
         jQuery('.section.first-section').toggleClass('showhideactivity');
         if(jQuery(this).hasClass('show')) {
-            jQuery(this).text('{{# str }} showless, theme_remui {{/ str }}');
+            jQuery(this).text('{{# str }} showless, format_remuiformat {{/ str }}');
             jQuery(this).toggleClass('show');
         } else {
-            jQuery(this).text('{{# str }} showmore, theme_remui {{/ str }}');
+            jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
             jQuery(this).toggleClass('show');
         }
     });
