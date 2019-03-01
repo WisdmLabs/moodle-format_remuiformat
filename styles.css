@@ -709,8 +709,12 @@ ul.remui-format-list h4.sectionname a {
   content: none !important;
 }
 
-.showactivitywrapper{
+/* Show More / Show Less Button */
+.showactivitywrapper {
   text-align: center!important;
 }
 
+#page-course-view-remuiformat ul.section.first-section.row{
+  flex-wrap: wrap;
+}
 /* Fordson Compatible CSS End*/
