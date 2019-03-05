@@ -18,7 +18,7 @@ Edwiser Course Format comes packed with the following features
 
 Plugin Version
 ==============
-v1.0.5 - Plugin Released
+v1.0.0 - Plugin Released
 
 Required version of Moodle
 ==========================
@@ -33,7 +33,7 @@ The Edwiser Course Format is 'free' software under the terms of the GNU GPLv3 Li
 
 The primary source is on add-git-downloadable-link
 
-If you download from the development area - https://github.com/gjb2048/moodle-courseformat_grid/ - consider that
+If you download from the development area - https://github.com/WisdmLabs/moodle-courseformat_remuiformat - consider that
 the code is unstable and not for use in production environments.  This is because I develop the next version in stages
 and use GitHub as a means of backup.  Therefore the code is not finished, subject to alteration and requires testing.
 
@@ -88,7 +88,7 @@ The file remuiformat/styles.css contains the CSS styles for the format.
 
 Roadmap
 =============
-1. Add new section and activities without turn on editing mode.
+1. Will give option tp add new section and activities without turn on editing mode.
 
 History
 =======
