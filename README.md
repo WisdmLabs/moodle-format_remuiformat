@@ -92,7 +92,7 @@ Roadmap
 
 History
 =======
-See Changes.md
+See changes.txt
 
 Author
 ------
