@@ -45,7 +45,7 @@ If you reuse any of the code then I kindly ask that you make reference to the fo
 Support
 =======
 The Edwiser Course Format comes with NO support.  If you would like support from me (WisdmLabs) then I'm happy to provide it
-for a fee (please see my contact details below).  Otherwise, the 'Courses and course formats' forum:add-edwiser-forum-course-format-link is an excellent place to ask questions.
+for a fee (please see my contact details below). Please contact me via forum https://forums.edwiser.org/category/40/edwiser-course-format for support. Otherwise, the 'Courses and course formats' forum: moodle.org/mod/forum/view.php?id=47 is an excellent place to ask questions.
 
 Installation
 ============
