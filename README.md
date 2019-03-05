@@ -101,4 +101,4 @@ Wisdmlabs
 Provided by
 -----------
 
-[![Branch Up](https://git.wisdmlabs.net/edwiser/remuiformat/tree/master/images/readme-img.png)](https://edwiser.org)
+[![alt text](https://git.wisdmlabs.net/edwiser/remuiformat/tree/dev/images/images/readme-img.png)](https://edwiser.org)
