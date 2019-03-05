@@ -1,10 +1,10 @@
-Edwiser RemUI Course Format - Description
+Edwiser Course Format - Description
 ===========================
-Edwiser RemUI Course Format plugin comes with two layouts, List and Cards.
+Edwiser Course Format plugin comes with two layouts, List and Cards.
 List layout is one of the simplest looking yet power-packed Course Formats out there. You can display all your course topics in the form of Lists!
 Card layout lets your learners view all the topics in the form of Cards. With this Card Format, you can display the activities of each section, listed down on the Cards itself.
 
-Edwiser RemUI Course Format comes packed with the following features
+Edwiser Course Format comes packed with the following features
 ====================================================================
 * List Layout
 * List Layout give option to show all sections on single the page.
@@ -29,7 +29,7 @@ Please ensure that your hardware and software complies with 'Requirements' in 'I
 
 Free Software
 =============
-The Edwiser RemUI Course Format is 'free' software under the terms of the GNU GPLv3 License, please see 'COPYING.txt'.
+The Edwiser Course Format is 'free' software under the terms of the GNU GPLv3 License, please see 'COPYING.txt'.
 
 The primary source is on add-git-downloadable-link
 
@@ -44,7 +44,7 @@ If you reuse any of the code then I kindly ask that you make reference to the fo
 
 Support
 =======
-The Edwiser RemUI Course Format comes with NO support.  If you would like support from me (WisdmLabs) then I'm happy to provide it
+The Edwiser Course Format comes with NO support.  If you would like support from me (WisdmLabs) then I'm happy to provide it
 for a fee (please see my contact details below).  Otherwise, the 'Courses and course formats' forum:add-edwiser-forum-course-format-link is an excellent place to ask questions.
 
 Installation
