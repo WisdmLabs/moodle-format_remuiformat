@@ -22,7 +22,7 @@ gulp.task('sass', function (){
             "last 1 version", "> 1%", "ie 8", "ie 7"
             ))
         .pipe(minifycss())
-        .pipe(concat('styles.min.css'))
+        .pipe(concat('styles.css'))
         .pipe(gulp.dest('.'));
 });
 

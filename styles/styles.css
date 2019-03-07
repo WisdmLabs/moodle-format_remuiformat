@@ -23,6 +23,7 @@
 .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
   font-size: 15px;
 }
+
 /* Remui List Format Highlight */
 .remui-format-list .current::before {
   left: 0 !important;
@@ -717,4 +718,4 @@ ul.remui-format-list h4.sectionname a {
 #page-course-view-remuiformat ul.section.first-section.row{
   flex-wrap: wrap;
 }
-/* Fordson Compatible CSS End ranjit*/
+/* Fordson Compatible CSS End*/
