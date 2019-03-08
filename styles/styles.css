@@ -1,14 +1,14 @@
 /* Global */
 
 #page-course-view-remuiformat #region-main div.card.card-block {
-    background-color: #f2f4f5;
+    background-color: #f4f4f4;
     padding-bottom: 30px;
     overflow: visible;
 }
 
 #page-course-view-remuiformat .container-fluid #region-main, #page-course-view-remuiformat .container-fluid #region-main .card-body, #page-course-view-remuiformat .container-fluid #region-main div.card.card-block {
   border: none;
-  background-color: #f1f1f1 !important;
+  background-color: #f4f4f4 !important;
 }
 
 .single-card {
@@ -269,10 +269,9 @@ input.ignoredirty.form-control{
 }
 .card-section-leftnav a, .card-section-rightnav a {
     text-decoration: none;
-    color: white;
+    color: #333;
 }
 .card-section-leftnav a:hover, .card-section-rightnav a:hover {
-    color: white !important;
     text-decoration: none;
     background-color: transparent !important;
 }
@@ -431,7 +430,7 @@ For list format
 .section.first-section .instancename {
   display: block;
 }
-
+/* fix for auto added bg-primary class on next/prev navigation */
 .card-section-rightnav a.bg-primary,
 .card-section-rightnav a.bg-primary:hover,
 .card-section-rightnav a.bg-primary:focus,
@@ -646,16 +645,11 @@ ul.remui-format-list h4.sectionname a {
   background-color: #37474f;
 }
 
-/* We are limiting max width for better visibility */
-@media (min-width: 1600px)
-{
-  #page-course-view-remuiformat .course-content {
-    max-width: 1210px;
-    margin: auto;
-  }
-}
 /* Boost compatible CSS End*/
-
+.btn-inverse {
+  background-color: #fff;
+  border-color: #e4eaec;
+}
 
 /* Fordson Compatible CSS - Moodle 34*/
 #page-course-view-remuiformat li#section-0 .content {

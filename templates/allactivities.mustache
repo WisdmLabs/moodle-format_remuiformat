@@ -2,14 +2,7 @@
     {{{ hiddensection }}}
 {{/hiddensection}}
 {{^hiddensection}}
-    <div class="col-md-12 p-0 wdm-card-section mb-20 mb-3 m-b-1">
-        <div class="card-section-leftnav {{#leftnav}}btn btn-primary{{/leftnav}}">
-            {{{ leftnav }}}
-        </div>
-        <div class="card-section-rightnav {{#rightnav}}btn btn-primary{{/rightnav}}">
-            {{{ rightnav }}}
-        </div>
-    </div>
+
     <div class="col-md-12 p-0 general-single-card p-15 p-3 mb-30 mb-4 m-b-2">
         <h2 class="single-section-title m-0 pt-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary}}}</p>
@@ -40,9 +33,6 @@
                             <h4 class="wdm-single-activity-title">{{{ title }}}</h4>
                             <div class="text-center text-muted">
                                 {{{ availstatus }}}
-                            </div>
-                            <div class="pt-10 mb-10">
-                                {{{ summary }}}
                             </div>
                             {{^availstatus}}
                             <div class="d-flex pt-10 pt-2 p-t-1 align-items-center wdm-bottom-container {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
@@ -80,5 +70,15 @@
                 {{{ addnewactivity }}}
             </li>
         </ul>
+    </div>
+
+    <!-- next/prev sections -->
+    <div class="col-md-12 p-0 wdm-card-section m-t-2">
+        <div class="card-section-leftnav {{#leftnav}}btn btn-inverse btn-sm{{/leftnav}}">
+            {{{ leftnav }}}
+        </div>
+        <div class="card-section-rightnav {{#rightnav}}btn btn-inverse btn-sm{{/rightnav}}">
+            {{{ rightnav }}}
+        </div>
     </div>
 {{/hiddensection}}
