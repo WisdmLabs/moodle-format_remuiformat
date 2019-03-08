@@ -177,7 +177,6 @@ class format_remuiformat extends format_base {
         return $url;
     }
 
-
     /**
      * Definitions of the additional options that this course format uses for the course.
      * @param bool $foreditform
@@ -192,6 +191,7 @@ class format_remuiformat extends format_base {
             $contextid = context_course::instance($this->courseid);
             $data = new stdClass;
             $draftitemid = file_get_submitted_draft_itemid('remuicourseimage');
+
             try {
                 $data = file_prepare_standard_filemanager(
                     $data,
@@ -201,20 +201,20 @@ class format_remuiformat extends format_base {
                     'format_remuiformat',
                     'remuicourseimage_filearea'
                 );
-            } catch (Exception $e) {
-                echo 'error';
+            } catch (\Exception $e) {
+                echo $e->getMessage();
             }
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT,
                 ),
-                'coursedisplay' => array(
-                    'default' => $courseconfig->coursedisplay,
-                    'type' => PARAM_INT
-                ),
                 'remuicourseformat' => array(
                     'default' => 1,
+                    'type' => PARAM_INT
+                ),
+                'coursedisplay' => array(
+                    'default' => $courseconfig->coursedisplay,
                     'type' => PARAM_INT
                 ),
                 'remuicourseimage_filemanager' => array(
@@ -251,18 +251,6 @@ class format_remuiformat extends format_base {
                         )
                     ),
                 ),
-                'coursedisplay' => array(
-                    'label' => new lang_string('coursedisplay'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi'),
-                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
-                        )
-                    ),
-                    'help' => 'coursedisplay',
-                    'help_component' => 'moodle',
-                ),
                 'remuicourseformat' => array(
                     'label' => new lang_string('remuicourseformat', 'format_remuiformat'),
                     'element_type' => 'select',
@@ -274,6 +262,18 @@ class format_remuiformat extends format_base {
                     ),
                     'help' => 'remuicourseformat',
                     'help_component' => 'format_remuiformat',
+                ),
+                'coursedisplay' => array(
+                    'label' => new lang_string('coursedisplay'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi'),
+                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
+                        )
+                    ),
+                    'help' => 'coursedisplay',
+                    'help_component' => 'moodle',
                 ),
                 'remuicourseimage_filemanager' => array(
                     'label' => new lang_string('remuicourseimage', 'format_remuiformat'),

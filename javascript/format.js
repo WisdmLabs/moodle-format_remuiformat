@@ -9,12 +9,6 @@ require(['jquery', 'core/str'], function ($) {
 
         var sectionlayout_val;
         // Hide and show the course settings on course format selection.
-        var format_value = $("#id_format").val();
-        if (format_value == 'remuiformat') {
-            var coursedisplay       = $("#id_coursedisplay").parent().parent();
-            var remuicourseformat   = $("#id_remuicourseformat").parent().parent();
-            $(coursedisplay).exchangePositionWith(remuicourseformat);
-        }
         $("#id_remuicourseformat").change(function(){
             var layout_value = $("#id_remuicourseformat").val();
             if (layout_value == 0) {
@@ -55,10 +49,4 @@ require(['jquery', 'core/str'], function ($) {
             }
         });
     });
-    // Function to excahnge the element position.
-    $.fn.exchangePositionWith = function(selector) {
-        var other = $(selector);
-        this.after(other.clone());
-        other.after(this).remove();
-    };
 });

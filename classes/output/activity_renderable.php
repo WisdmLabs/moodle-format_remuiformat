@@ -175,6 +175,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 $availstatus = $this->courserenderer->course_section_cm_availability($mod, $modnumber);
                 $context = \context_course::instance($this->course->id);
                 $roles = get_user_roles($context, $USER->id);
+                $rolestr = [];
                 foreach ($roles as $role) {
                     $rolestr[] = role_get_name($role, $context);
                 }
