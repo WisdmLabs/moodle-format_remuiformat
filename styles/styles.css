@@ -271,10 +271,6 @@ input.ignoredirty.form-control{
     text-decoration: none;
     color: #333;
 }
-.card-section-leftnav a:hover, .card-section-rightnav a:hover {
-    text-decoration: none;
-    background-color: transparent !important;
-}
 
 #page-course-view-remuiformat .wdm-activity-actions div.moodle-actionmenu.section-cm-edit-actions {
     position: unset;
@@ -430,17 +426,7 @@ For list format
 .section.first-section .instancename {
   display: block;
 }
-/* fix for auto added bg-primary class on next/prev navigation */
-.card-section-rightnav a.bg-primary,
-.card-section-rightnav a.bg-primary:hover,
-.card-section-rightnav a.bg-primary:focus,
-.card-section-rightnav a.bg-primary:active,
-.card-section-leftnav a.bg-primary,
-.card-section-leftnav a.bg-primary:hover,
-.card-section-leftnav a.bg-primary:focus,
-.card-section-leftnav a.bg-primary:active {
-  background: inherit !important;
-}
+
 @media (max-width:1200px) {
   body.path-course.editing.site-menubar-unfold ul.section.first-section li,
   body.path-course.pinaside.site-menubar-unfold ul.section.first-section li{
