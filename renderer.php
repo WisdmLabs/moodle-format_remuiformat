@@ -583,7 +583,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         }
         switch ($rformat) {
             case REMUI_CARD_FORMAT:
-                purge_all_caches();
                 echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
                 break;
             case REMUI_LIST_FORMAT:
