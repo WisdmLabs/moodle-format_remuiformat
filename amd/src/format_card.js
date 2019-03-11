@@ -99,14 +99,13 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format
 
         // Set Equal height of cards on load.
         setEqualHeight($('.single-card'));
-        $('.section-action-container').addClass('card-bottom');
-        $('.wdm-bottom-container').addClass('card-bottom');
+        // $('.section-action-container').addClass('card-bottom');
+        // $('.wdm-bottom-container').addClass('card-bottom');
         $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
-        $('#page-course-view-remuiformat #changenumsections').css({visibility: "visible"});
+        //$('#page-course-view-remuiformat #changenumsections').css({visibility: "visible"});
         $('#page-course-view-remuiformat #changenumsections a').addClass("btn btn-primary");
         $('#page-course-view-remuiformat #changenumsections').addClass("row d-flex justify-content-end");
-        $('.general-single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 200, "swing");
-        $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 400, "swing");
+        $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 600, "swing");
         $('.pchart').easyPieChart({
             'barColor': '#15C941',
             'trackColor': false,
@@ -114,7 +113,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format
             'lineWidth': 3,
             'size':40
         });
-        
+
         function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),

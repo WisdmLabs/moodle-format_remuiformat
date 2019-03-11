@@ -1,7 +1,7 @@
 /* Global */
 
 #page-course-view-remuiformat #region-main div.card.card-block {
-    background-color: #f4f4f4;
+    background-color: #f2f4f5;
     padding-bottom: 30px;
     overflow: visible;
 }
@@ -12,7 +12,7 @@
 }
 
 .single-card {
-    box-shadow: 0px 0px 10px #ddd !important;
+    box-shadow: 0px 0px 8px #ddd !important;
     border-radius: 2px;
     background-color: white;
     visibility: hidden;
@@ -64,12 +64,14 @@
 
 .section-mod-details {
     display: inline-block;
-    margin-right: 15px;
-    padding: 5px 20px;
+    margin-right: 5px;
+    padding: 3px 12px;
     border-radius: 50px;
     background-color: #e8f5e9;
     color: #51b156;
+    font-size: 1rem;
 }
+
 .pchart {
     text-align: center;
     width: 40px;
@@ -146,11 +148,10 @@ input.ignoredirty.form-control{
 }
 
 .general-single-card{
-    box-shadow: 0px 0px 10px #ddd !important;
+    box-shadow: 0px 0px 8px #ddd !important;
     border-radius: 2px;
     background-color: white;
     position: relative;
-    visibility: hidden;
     min-height: 50px;
     list-style: none;
     padding: 15px !important;
@@ -163,9 +164,9 @@ input.ignoredirty.form-control{
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section li.activity,
 #page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
-    margin: 15px 0px;
-    padding: 10px !important;
-    box-shadow: 0 0px 10px #ddd!important;
+    margin: 15px 0 0 0;
+    padding: 8px !important;
+    box-shadow: 0 0px 4px #ddd!important;
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
@@ -224,8 +225,6 @@ input.ignoredirty.form-control{
     justify-content: center;
     align-items: center;
     color: #37474f;
-    /*pointer-events: none;
-    cursor: default;*/
     text-decoration: none;
     text-align: center;
 }
@@ -296,10 +295,6 @@ input.ignoredirty.form-control{
     right: 20px;
 }
 
-/* #page-course-view-remuiformat div#card-editing-container li.activity .editing_move {
-    display: none;
-} */
-
 #page-course-view-remuiformat #changenumsections {
     visibility: hidden;
     position: absolute;
@@ -312,12 +307,10 @@ input.ignoredirty.form-control{
 /*
 For list format
 */
-
 .course-content ul.remui-format-list {
   padding: 0;
   margin: 0;
   list-style: none;
-  /* background-color: #fff!important; */
 }
 .course-content ul.remui-format-list li.section .content {
   margin: 0;
@@ -325,9 +318,6 @@ For list format
 .course-content ul.remui-format-list li.section .panel.activity-list {
   box-shadow: none;
   margin-bottom: 0;
-}
-.course-content ul.remui-format-list li.section ul.section {
-  /* Creates a series of .mod-indent-# rule declarations based on indent size and number of indent levels.  specifically for course activity list in RemUI */
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-1 {
   width: 35px;
@@ -595,7 +585,7 @@ carousel style
 
 .wdm-card, .wdm-allactivities{
   border: none !important;
-  box-shadow: 0px 0px 10px #ddd !important;
+  box-shadow: 0px 0px 8px #ddd !important;
   background-color: #fff !important;
 }
 
