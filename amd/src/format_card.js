@@ -1,7 +1,7 @@
-define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format_remuiformat/jquery.dragsort'], function ($, Ajax) {
-        
+define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function ($, Ajax) {
+
     function init() {
-    
+
         var cardminHeight = 200;
         $(document).ready(function(){
             inittest();
@@ -47,7 +47,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format
                     selector_height = (selector_height > cardminHeight) ? selector_height : cardminHeight;
                     arr.push(selector_height);
                 });
-                selector_height = Math.max.apply(null, arr) + 55;
+                selector_height = Math.max.apply(null, arr) + 65;
                 selector.css("min-height", selector_height);
             }
         }
@@ -81,12 +81,10 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format
             var completion = $('.wdm-completion-status-' + id).text().trim();
             if (completion == "Completed") {
                 $('.wdm-completion-status-' + id).html("Mark as Complete");
-                $('.wdm-chart-' + id).data('easyPieChart').update(0);
                 $('.activity-check-' + id).removeClass("completed");
                 $('.activity-check-' + id).addClass("text-muted");
             } else {
                 $('.wdm-completion-status-' + id).html("Completed");
-                $('.wdm-chart-' + id).data('easyPieChart').update(100);
                 $('.activity-check-' + id).removeClass("text-muted");
                 $('.activity-check-' + id).addClass("completed");
             }
@@ -106,13 +104,6 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format
         $('#page-course-view-remuiformat #changenumsections a').addClass("btn btn-primary");
         $('#page-course-view-remuiformat #changenumsections').addClass("row d-flex justify-content-end");
         $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 600, "swing");
-        $('.pchart').easyPieChart({
-            'barColor': '#15C941',
-            'trackColor': false,
-            'scaleColor': false,
-            'lineWidth': 3,
-            'size':40
-        });
 
         function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -146,6 +137,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.easypiechart', 'format
                 // ...console.log(response);.
             });
         }
+
         $('.wdm-section-wrapper').dragsort({
             dragSelector: "a.wdm-drag-drop",
             dragBetween: true,

@@ -55,55 +55,71 @@
 }
 
 .card-bottom {
-    border-top: 1px solid #e2e2e2;
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
 }
 
 .section-mod-details {
-    display: inline-block;
-    margin-right: 5px;
-    padding: 3px 12px;
-    border-radius: 50px;
-    background-color: #e8f5e9;
-    color: #51b156;
-    font-size: 1rem;
+  display: inline-block;
+  padding: 3px 4px;
+  color: #888;
+  margin-bottom: 3px;
+  font-size: 0.90rem;
+  line-height: 1rem;
+}
+.section-summary-activities>.section-mod-details:first-child {
+  padding-left: 0px;
 }
 
-.pchart {
-    text-align: center;
-    width: 40px;
-    height: 40px;
-    margin: 0;
-    line-height: 40px;
-    position: relative;
-    border-radius: 50px;
-    border:0;
-    box-shadow: 0px 0px 5px;
-}
-
-.pchart canvas {
-    position: absolute;
-    left: 0;
-}
-
-.pchart span.activity-check .fa-check {
-    color: lightgrey;
-}
-
-.pchart span.activity-check.completed .fa-check {
-    color: #15C941 !important;
-}
-
-.section-action-container {
+.section-action-container, .wdm-bottom-container {
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 -15px;
 }
 
-.section-summary-percentage  p.progress-title{
-    font-weight: 900;
-    letter-spacing: .05rem;
+.section-action-container .progress-text {
+  align-self: center;
+  display: none;
+  font-size: 0.9rem;
+}
+
+.single-card:hover .progress-text {
+  display: block;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.w-p100 {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.progress-xs, .progress-xs .progress-bar {
+  height: 4px !important;
+  border-radius: 0px;
+}
+
+.progress-xs .progress-bar {
+  line-height: 4px !important;
+}
+
+.bg-green-600 {
+  background-color: #11c26d!important;
+}
+
+.bg-grey-300 {
+  background-color: #e0e0e0!important;
 }
 
 .single-card .sno {
@@ -133,13 +149,13 @@ body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-
     margin:0;
     font-size: 18px;
     font-weight: 500;
-    padding: 10px 0;
+    padding: 7px 0;
 }
 
 #page-course-view-remuiformat .single-section-title {
     margin:0;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 10px 0;
 }
 
@@ -228,10 +244,15 @@ input.ignoredirty.form-control{
     text-decoration: none;
     text-align: center;
 }
+
 .wdm-single-activity-title a img{
     height: 74px;
     width: 74px;
     margin: 20px 0px;
+}
+
+.wdm-single-activity-title span.instancename {
+  line-height: 24px;
 }
 
 .wdm-card-completion button.btn-link {
@@ -246,11 +267,8 @@ input.ignoredirty.form-control{
     align-items: center;
 }
 .wdm-mod-name {
-    padding: 5px 20px;
-    border-radius: 50px;
-    background-color: #e8f5e9;
-    color: #51b156;
-    font-weight: 900;
+    color: #888;
+    font-weight: 600;
     text-transform: capitalize;
 }
 
@@ -636,14 +654,6 @@ ul.remui-format-list h4.sectionname a {
   display: flex !important; 
 }
 
-.wdm-bottom-container{
-  align-items: center!important;
-}
-
-.wdm-bottom-container > div:first-child{
-  width: 50%;
-}
-
 .mdl-right {
   text-align: right !important;
 }
@@ -659,9 +669,7 @@ ul.remui-format-list h4.sectionname a {
 }
 
 .section-summary-activities{
-  width: 100% !important;
-  border-top: none !important;
-  padding: 0px !important;
+  padding: 2px 0 8px 0;
 }
 
 .card-footer{
@@ -689,3 +697,9 @@ ul.remui-format-list h4.sectionname a {
   flex-wrap: wrap;
 }
 /* Fordson Compatible CSS End*/
+
+
+/* For editing on mode */
+.editinstructions {
+  background-color: aliceblue !important;
+}

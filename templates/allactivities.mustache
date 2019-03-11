@@ -35,12 +35,16 @@
                                 {{{ availstatus }}}
                             </div>
                             {{^availstatus}}
-                            <div class="d-flex pt-10 pt-2 p-t-1 align-items-center wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
-                                <div class="w-p50 w-50 d-flex">
+                            <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
+                                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-1 p-l-1">
                                     <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
                                 </div>
                                 {{#completion}}
-                                <div class="wdm-completion-container d-flex align-items-center">
+                                <div class="wdm-completion-container align-items-center pr-1 p-r-1">
                                     <p class="m-0 m-a-0 mx-10 mx-2 m-x-1 text-right wdm-completion-title wdm-completion-status-{{id}}">
                                         {{#completed}}
                                             {{#str}} completed, format_remuiformat{{/str}}

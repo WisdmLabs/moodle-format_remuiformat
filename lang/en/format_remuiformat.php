@@ -110,3 +110,7 @@ $string['licenseerror'] = 'You are using non-licensed version of <strong>RemUI.<
 // Validation.
 
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
+
+// activities completed text
+$string['outof'] = 'out of';
+$string['activitiescompleted'] = 'activities completed';

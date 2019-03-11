@@ -360,13 +360,13 @@ class format_remuiformat_section implements renderable, templatable
             }
         }
         foreach ($sectionmods as $mod) {
-            $output['activityinfo'][] = $mod['name'].': '.$mod['count'];
+            $output['activityinfo'][] = $mod['count'].' '.$mod['name'];
         }
         if ($total > 0) {
             $pinfo = new \stdClass();
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
-            $pinfo->progress = $complete." / ".$total;
+            $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.get_string('activitiescompleted', 'format_remuiformat');
             $output['progressinfo'][] = $pinfo;
         }
         return $output;

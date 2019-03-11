@@ -3,32 +3,39 @@
         <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
         {{{ hiddenmessage }}}
-        <div class="card-content">
+        <div class="card-content pb-10 pb-2">
             <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
-            {{{ summary }}}
-            {{#editsectionurl}}
-                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
-            {{/editsectionurl}}
-            <div class="section-summary-activities pb-20 pb-3">
+            <div class="section-summary-activities">
                 {{#activityinfo}}
                     <p class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</p>
                 {{/activityinfo}}
             </div>
+            {{{ summary }}}
+            {{#editsectionurl}}
+                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
+            {{/editsectionurl}}
         </div>
-        <div class="section-action-container card-bottom d-flex pt-10 pt-2 p-t-1 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-            <div class="d-flex align-items-center">
+        <div class="section-action-container card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+            {{#progressinfo}}
+                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+            {{^progressinfo}}
+                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                    <div class="progress-bar bg-green-600" style="width: 0%;" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+
+            <div class="pl-1 p-l-1 flex-1">
                 <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remuiformat {{/str}}</a>
             </div>
             {{#progressinfo}}
-            <div class="d-flex">
-                <div class="section-summary-percentage px-10 px-2 p-x-1">
-                    <p class="progress-title m-0 m-a-0 text-muted">{{#str}} progress, format_remuiformat {{/str}}</p>
-                    <p class="progress-title m-0 m-a-0 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ progress }}</p>
+                <div class="text-right pr-1 p-r-1 progress-text">
+                    {{ progress }}
                 </div>
-                <div class="pchart" data-percent="{{ percentage }}">
-                    <span class="activity-check {{ completed }}"><i class="fa fa-check" aria-hidden="true"></i></span>
-                </div>
-            </div>
             {{/progressinfo}}
         </div>
     </div>
