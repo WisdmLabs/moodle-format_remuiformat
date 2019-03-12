@@ -4,7 +4,8 @@
 {{^hiddensection}}
 
     <div class="col-md-12 p-0 general-single-card p-15 p-3 mb-30 mb-4 m-b-2">
-        <h2 class="single-section-title m-0 pt-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
+        <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ section }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <h2 class="single-section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary }}}</p>
     </div>
     <div>
@@ -19,18 +20,18 @@
                     <ul class="row p-0 m-0 wdm-section-wrapper">
                     {{#activities}}
                         <li class="col-lg-4 col-md-6 col-sm-12 single-card-container px-15 modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
-                        <div class="single-card p-15 p-3 p-x-1 p-y-1 mb-20 mb-4 m-b-1">
+                        <div class="single-card p-15 p-3 p-x-1 p-y-1 m-b-2 mb-25 mb-4">
                             {{#editing}}
                                 <a class="wdm-drag-drop"><span><i class="fa fa-arrows" aria-hidden="true"></i></span></a>
                             {{/editing}}
                             <div class="wdm-activity-actions d-flex">
-                                <span class="sno pr-15 pr-3 {{^hidden}}text-primary{{/hidden}} {{#hidden}}text-muted{{/hidden}} mr-15">{{ index }}.</span>
+                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
+
                                 <div class="wdm-activity-actions d-flex">
-                                    <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
                                     {{{ modicons }}}
                                 </div>
                             </div>
-                            <h4 class="wdm-single-activity-title">{{{ title }}}</h4>
+                            <h4 class="wdm-single-activity-title {{^summary}}nosummary{{/summary}}">{{{ title }}}</h4>
                             <div class="text-center text-muted">
                                 {{{ availstatus }}}
                             </div>
@@ -41,10 +42,6 @@
                             {{/summary}}
                             {{^availstatus}}
                             <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
-                                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
-                                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
-                                    </div>
-                                </div>
                                 <div class="flex-1 pl-1 p-l-1">
                                     <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
                                 </div>

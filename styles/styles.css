@@ -61,7 +61,7 @@
     right: 15px;
 }
 
-.section-mod-details {
+.section-mod-details,  .wdm-mod-name {
   display: inline-block;
   padding: 3px 4px;
   color: #888;
@@ -69,8 +69,13 @@
   font-size: 0.90rem;
   line-height: 1rem;
 }
-.section-summary-activities>.section-mod-details:first-child {
+
+.section-summary-activities>.section-mod-details:first-child, .wdm-mod-name {
   padding-left: 0px;
+}
+
+.wdm-mod-name {
+  font-weight: 600;
 }
 
 .section-action-container, .wdm-bottom-container {
@@ -122,7 +127,7 @@
   background-color: #e0e0e0!important;
 }
 
-.single-card .sno {
+.single-card .sno, .general-single-card .sno {
     display: inline-block;
     border-bottom: 2px solid;
     font-size: 18px;
@@ -145,18 +150,38 @@ body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
-#page-course-view-remuiformat div#card-container .section-title {
+#page-course-view-remuiformat div#card-container .section-title,
+#page-course-view-remuiformat .single-section-title,
+#page-course-view-remuiformat .wdm-single-activity-title {
     margin:0;
     font-size: 18px;
     font-weight: 500;
     padding: 7px 0;
 }
 
-#page-course-view-remuiformat .single-section-title {
-    margin:0;
-    font-size: 22px;
-    font-weight: 600;
-    padding: 10px 0;
+.wdm-single-activity-title a {
+  color: #37474f;
+}
+
+.wdm-single-activity-title img {
+  margin-right: 10px;
+  margin-top: -3px;
+}
+
+.wdm-single-activity-title.nosummary a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #37474f;
+  text-decoration: none;
+  text-align: center;
+}
+
+.wdm-single-activity-title.nosummary img {
+  height: 75px;
+  width: 75px;
+  margin: 20px 0;
 }
 
 input.ignoredirty.form-control{
@@ -235,26 +260,6 @@ input.ignoredirty.form-control{
     list-style: none !important;
 }
 
-.wdm-single-activity-title a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #37474f;
-    text-decoration: none;
-    text-align: center;
-}
-
-.wdm-single-activity-title a img{
-    height: 74px;
-    width: 74px;
-    margin: 20px 0px;
-}
-
-.wdm-single-activity-title span.instancename {
-  line-height: 24px;
-}
-
 .wdm-card-completion button.btn-link {
     padding: 0;
 }
@@ -265,11 +270,6 @@ input.ignoredirty.form-control{
 .wdm-activity-actions {
     justify-content: space-between;
     align-items: center;
-}
-.wdm-mod-name {
-    color: #888;
-    font-weight: 600;
-    text-transform: capitalize;
 }
 
 .wdm-completion-container {
@@ -314,13 +314,12 @@ input.ignoredirty.form-control{
 }
 
 #page-course-view-remuiformat #changenumsections {
-    visibility: hidden;
+    /* visibility: hidden; */
     position: absolute;
     bottom: 0;
     right: 0;
     margin: 0;
 }
-
 
 /*
 For list format
@@ -470,13 +469,6 @@ ul.remui-format-list h4.sectionname {
   margin-bottom: 0;
 }
 
-/* For section activity completion icon */
-/*ul.remui-format-list .section .activity div.actions img.icon {
-    width: 20px;
-    height: 20px;
-    margin: 0;
-}*/
-
 ul.remui-format-list li.section.main {
     border-bottom: none!important;
 }
@@ -582,18 +574,6 @@ ul.remui-format-list span.inplaceeditable input {
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down:hover {
   cursor: pointer;
 }
-/*#page-course-view-remuiformat ul.section.first-section .action-menu {
-
-}*/
-/*
-carousel style
-*/
-/*.carousel-inner .active.left { left: -25%; }
-.carousel-inner .next        { left:  25%; }
-.carousel-inner .prev    { left: -25%; }
-.carousel-control        { width:  4%; }
-.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
-.carousel-inner .active.right { left: 25%; }*/
 
 /* Boost compatible CSS */
 
@@ -651,7 +631,7 @@ ul.remui-format-list h4.sectionname a {
 }
 
 .d-flex {
-  display: flex !important; 
+  display: flex !important;
 }
 
 .mdl-right {
@@ -678,10 +658,6 @@ ul.remui-format-list h4.sectionname a {
 
 .align-items-center {
   align-items: center!important;
-}
-#page-course-view-remuiformat .container-fluid .single-section-title {
-  padding-top: 0px !important;
-  padding-bottom: 10px !important;
 }
 
 .remui-list-content-border .d-block.row:after {
