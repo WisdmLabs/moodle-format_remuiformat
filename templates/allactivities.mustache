@@ -34,6 +34,11 @@
                             <div class="text-center text-muted">
                                 {{{ availstatus }}}
                             </div>
+                            {{#summary}}
+                                <div class="pt-10 mb-10">
+                                    {{{ summary }}}
+                                </div>
+                            {{/summary}}
                             {{^availstatus}}
                             <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
                                 <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
