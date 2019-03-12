@@ -117,7 +117,6 @@ class format_remuiformat_activity implements renderable, templatable {
                     $this->displaysection
                 );
                 $export->remuicourseformatcard = true;
-                // $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
                 $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
 
                 break;
@@ -129,7 +128,6 @@ class format_remuiformat_activity implements renderable, templatable {
                 $export->activities .= $this->courserenderer->course_section_add_cm_control(
                     $this->course, $this->displaysection, $this->displaysection
                 );
-                // $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
                 $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
                 break;
         }
@@ -176,19 +174,8 @@ class format_remuiformat_activity implements renderable, templatable {
                     $activitydetails->hidden = 1;
                 }
                 $availstatus = $this->courserenderer->course_section_cm_availability($mod, $modnumber);
-                $context = \context_course::instance($this->course->id);
-                $roles = get_user_roles($context, $USER->id);
-                $rolestr = [];
-                foreach ($roles as $role) {
-                    $rolestr[] = role_get_name($role, $context);
-                }
-                $currentrole = implode(', ', $rolestr);
-                if (is_siteadmin() || $currentrole == 'Teacher' || $currentrole == 'Non-editing teacher') {
-                    $activitydetails->availstatus = "";
-                } else {
-                    if ($availstatus != "") {
-                        $activitydetails->availstatus = $availstatus;
-                    }
+                if ($availstatus != "") {
+                    $activitydetails->availstatus = $availstatus;
                 }
                 if ($PAGE->user_is_editing()) {
                     $activitydetails->editing = 1;
