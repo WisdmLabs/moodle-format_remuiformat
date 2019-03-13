@@ -1,14 +1,33 @@
 /* Global */
 
-#page-course-view-remuiformat #region-main div.card.card-block {
-    background-color: #f2f4f5;
-    padding-bottom: 30px;
-    overflow: visible;
+/* hide borders from region main */
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card,
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
+  border: none;
 }
 
-#page-course-view-remuiformat .container-fluid #region-main, #page-course-view-remuiformat .container-fluid #region-main .card-body, #page-course-view-remuiformat .container-fluid #region-main div.card.card-block {
-  border: none;
-  background-color: #f4f4f4 !important;
+/* Boost 3.4 */
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card.card-block:first-of-type {
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+/* Boost 3.5 */
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card>.card-body:first-of-type {
+  background: #f2f2f2;
+  overflow: visible;
+}
+/* Boost 3.6 */
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
+  background: #f2f2f2;
+  overflow: visible;
+}
+
+/* RemUI 3.4, 3.5, 3.6 */
+#page-course-view-remuiformat.pagelayout-course .container #region-main .card.card-block:first-of-type {
+  background: transparent;
+  padding: 0;
+  overflow: visible;
 }
 
 .single-card {
@@ -18,6 +37,10 @@
     visibility: hidden;
     position: relative;
     padding: 1rem 1rem!important;
+}
+
+.wdm-card-section {
+  margin-top: 30px;
 }
 
 .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
@@ -220,6 +243,7 @@ input.ignoredirty.form-control{
     top: 15px;
     right: 15px;
 }
+
 #page-course-view-remuiformat ul.section.first-section div.moodle-actionmenu.section-cm-edit-actions {
     position: inherit;
     top: none;
@@ -284,9 +308,10 @@ input.ignoredirty.form-control{
     font-weight: 700;
     line-height: 18px;
 }
+
 .card-section-leftnav a, .card-section-rightnav a {
-    text-decoration: none;
     color: #333;
+    border: 1px solid #ddd
 }
 
 #page-course-view-remuiformat .wdm-activity-actions div.moodle-actionmenu.section-cm-edit-actions {
@@ -307,14 +332,17 @@ input.ignoredirty.form-control{
     list-style-type: none;
 }
 
-#page-course-view-remuiformat .wdm-card-single-section .addresourcemodchooser {
+#page-course-view-remuiformat .wdm-card-single-section .section-modchooser {
     position: absolute;
-    bottom: -20px;
-    right: 20px;
+    bottom: -10px;
+    right: 15px;
+}
+
+#page-course-view-remuiformat div.section-modchooser {
+  padding: 10px 0 0 0;
 }
 
 #page-course-view-remuiformat #changenumsections {
-    /* visibility: hidden; */
     position: absolute;
     bottom: 0;
     right: 0;
@@ -522,10 +550,6 @@ ul.remui-format-list li.section ul.section li.activity:last-child {
   padding-bottom: 20px;
 }
 
-#page-course-view-remuiformat ul.remui-format-list  div.section-modchooser {
-  padding: 10px;
-}
-
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo,
 #page-course-view-remuiformat ul.remui-format-list .section .activity .contentafterlink {
   margin-left: 5px;
@@ -596,12 +620,7 @@ ul.remui-format-list h4.sectionname a {
   background-color: #37474f;
 }
 
-#page-course-view-remuiformat .container-fluid #region-main{
-  border: none;
-  background-color: #f2f4f5;
-}
-
-#page-course-view-remuiformat .w-full {
+.w-full {
   width: 100%!important;
 }
 
