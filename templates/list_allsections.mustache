@@ -65,15 +65,7 @@
                 {{/expanded}}
                 {{#collapsed}}
                 if(localStorage.getItem(namelocal) == 'true'){
-                  // change arrow
-                // jQuery(this).find('i').toggleClass('fa-angle-down');
-                // jQuery(this).find('i').toggleClass('fa-angle-up');
-                  // add appropriate classes
-                //  jQuery(this).removeClass('collapsed');
-                //  jQuery(this).attr('aria-expanded', 'true');
                   var attr_to_search = jQuery(this).attr('href');
-                  // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
-                  // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
                   jQuery(this).parent().parent().find('.summary').show(500);
                   jQuery(this).parent().parent().find('.section-summary-activities').show(500);
                 }

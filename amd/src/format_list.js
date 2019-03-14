@@ -3,12 +3,8 @@ define(['jquery'], function ($) {
     function init() {
 
         $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
-        $('#page-course-view-remuiformat #changenumsections').css({visibility: "visible"});
-        $('#page-course-view-remuiformat #changenumsections a').addClass("btn btn-primary");
-        $('#page-course-view-remuiformat #changenumsections').addClass("row d-flex justify-content-end");
         $('.general-single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 200, "swing");
         $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 400, "swing");
-
 
         M.course = M.course || {};
 

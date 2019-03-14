@@ -492,6 +492,104 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         }
     }
 
+
+     /**
+     * Returns controls in the bottom of the page to increase/decrease number of sections
+     *
+     * @param stdClass $course
+     * @param int|null $sectionreturn
+     * @return string
+     */
+    public function change_number_sections_context($course, $sectionreturn = null) {
+        $coursecontext = context_course::instance($course->id);
+        if (!has_capability('moodle/course:update', $coursecontext)) {
+            return '';
+        }
+
+        $options = course_get_format($course)->get_format_options();
+        $supportsnumsections = array_key_exists('numsections', $options);
+
+        $addnewsection = new stdClass;
+        $addnewsection->addsection = 1;
+        $addnewsection->divid = 'changenumsections';
+
+        if ($supportsnumsections) {
+
+            $addnewsection->numsections = 1;
+            // Current course format has 'numsections' option, which is very confusing and we suggest course format
+            // developers to get rid of it (see MDL-57769 on how to do it).
+            // Display "Increase section" / "Decrease section" links.
+
+            $straddsection = get_string('increasesections', 'moodle');
+
+            //echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
+            // Increase number of sections.
+            $url = new moodle_url('/course/changenumsections.php',
+                array('courseid' => $course->id,
+                      'increase' => true,
+                      'sesskey' => sesskey()));
+
+            $icon = $this->output->pix_icon('t/switch_plus', $straddsection);
+
+            $addnewsection->straddsection = $straddsection;
+            $addnewsection->addurl = $url;
+            $addnewsection->addicon = str_replace('icon', 'fa-4x d-block', $icon);
+            $addnewsection->addurlclass = 'increase-sections';
+
+            //echo html_writer::link($url, $icon.get_accesshide($straddsection), array('class' => 'increase-sections'));
+
+            if ($course->numsections > 0) {
+                // Reduce number of sections sections.
+                $strremovesection = get_string('reducesections', 'moodle');
+                $url = new moodle_url('/course/changenumsections.php',
+                    array('courseid' => $course->id,
+                          'increase' => false,
+                          'sesskey' => sesskey()));
+                $icon = $this->output->pix_icon('t/switch_minus', $strremovesection);
+
+                $addnewsection->strremovesection = $strremovesection;
+                $addnewsection->removeurl = $url;
+                $addnewsection->removeicon = str_replace('icon', 'fa-4x d-block', $icon);
+                $addnewsection->removeurlclass = 'reduce-sections';
+
+                //echo html_writer::link($url, $icon.get_accesshide($strremovesection), array('class' => 'reduce-sections'));
+            }
+
+            //echo html_writer::end_tag('div');
+
+        } else if (course_get_format($course)->uses_sections()) {
+            // Current course format does not have 'numsections' option but it has multiple sections suppport.
+            // Display the "Add section" link that will insert a section in the end.
+            // Note to course format developers: inserting sections in the other positions should check both
+            // capabilities 'moodle/course:update' and 'moodle/course:movesections'.
+
+            $addnewsection->numsections = 0;
+
+            //echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
+            if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
+                $straddsections = get_string('addsections', 'format_'.$course->format);
+            } else {
+                $straddsections = get_string('addsections');
+            }
+            $url = new moodle_url('/course/changenumsections.php',
+                ['courseid' => $course->id, 'insertsection' => 0, 'sesskey' => sesskey()]);
+            if ($sectionreturn !== null) {
+                $url->param('sectionreturn', $sectionreturn);
+            }
+            $icon = $this->output->pix_icon('t/add', $straddsections);
+            //echo html_writer::link($url, $icon . $straddsections,
+            //    array('class' => 'add-sections', 'data-add-sections' => $straddsections));
+
+            $addnewsection->straddsections = $straddsections;
+            $addnewsection->url = $url;
+            $addnewsection->icon = str_replace('icon', 'fa-4x d-block', $icon);
+
+            //echo html_writer::end_tag('div');
+        }
+
+        return $addnewsection;
+    }
+
     /**
      * Generate the content to displayed on the left part of a section
      * before course modules are included

@@ -90,10 +90,10 @@ class format_remuiformat_section implements renderable, templatable
             $this->get_list_format_context($export, $renderer, $editing, $rformat);
         }
 
-        // Add Section Url.
-        if ($editing) {
-            $export->addsection = $renderer->change_number_sections($this->course, 0);
-        }
+        // // Add Section Url.
+        // if ($editing) {
+        //     $export->addsection = $renderer->change_number_sections($this->course, 0);
+        // }
         return  $export;
     }
 
@@ -314,6 +314,14 @@ class format_remuiformat_section implements renderable, templatable
                     $sectiondetails->highlighted = 1;
                 }
                 $sections[] = $sectiondetails;
+            }
+        }
+
+        // Add new sections button
+        if ($editing) {
+            $temp = $renderer->change_number_sections_context($this->course, 0);
+            if(!empty($temp)) {
+               $sections[] = $temp;
             }
         }
         return $sections;

@@ -91,9 +91,9 @@ class format_remuiformat_single_section implements renderable, templatable
         }
 
         // Add Section Url.
-        if ($editing) {
-            $export->addsection = $renderer->change_number_sections($this->course, 0);
-        }
+        // if ($editing) {
+        //     $export->addsection = $renderer->change_number_sections($this->course, 0);
+        // }
         return  $export;
     }
 
@@ -308,6 +308,15 @@ class format_remuiformat_single_section implements renderable, templatable
                 $sections[] = $sectiondetails;
             }
         }
+
+        // Add new sections button
+        if ($editing) {
+            $temp = $renderer->change_number_sections_context($this->course, 0);
+            if(!empty($temp)) {
+               $sections[] = $temp;
+            }
+        }
+
         return $sections;
     }
 

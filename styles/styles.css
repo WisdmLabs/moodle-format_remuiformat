@@ -30,15 +30,6 @@
   overflow: visible;
 }
 
-.single-card {
-    box-shadow: 0px 0px 8px #ddd !important;
-    border-radius: 2px;
-    background-color: white;
-    visibility: hidden;
-    position: relative;
-    padding: 1rem 1rem!important;
-}
-
 .wdm-card-section {
   margin-top: 30px;
 }
@@ -54,28 +45,62 @@
 .remui-format-list .current .panel {
   position: inherit !important;
 }
-/**/
-@media (max-width:1400px) {
-  body.path-course.editing.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside.site-menubar-unfold .single-card-container{
+
+
+/* Show two cards per row, when both sidebars open in RemUI
+ * when left sidebar and right blocks section open in Boost
+*/
+@media (max-width:1200px) {
+  body.path-course.editing.site-menubar-unfold ul.section.first-section li,
+  body.path-course.pinaside.site-menubar-unfold ul.section.first-section li {
     min-width: 50% !important;
   }
-}
 
-@media (max-width:1200px) {
   body.path-course.editing .single-card-container,
   body.path-course.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside .single-card-container{
+  body.path-course.pinaside .single-card-container {
     min-width: 50% !important;
   }
 }
 
-@media (max-width:1100px) {
+@media (max-width:1400px) {
   body.path-course.editing.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside.site-menubar-unfold .single-card-container{
+  body.path-course.pinaside.site-menubar-unfold .single-card-container {
+    min-width: 50% !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px)  {
+  body#page-course-view-remuiformat.drawer-open-left .single-card-container {
     min-width: 100% !important;
   }
 }
+@media only screen and (min-width: 992px) and (max-width: 1199px)  {
+  body#page-course-view-remuiformat.drawer-open-left ul.section.first-section li {
+    min-width: 50% !important;
+  }
+
+  body#page-course-view-remuiformat.drawer-open-left .single-card-container {
+    min-width: 50% !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px)  {
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
+    min-width: 50% !important;
+  }
+
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
+    min-width: 50% !important;
+  }
+}
+
+/* @media (max-width:1100px) {
+  body.path-course.editing.site-menubar-unfold .single-card-container,
+  body.path-course.pinaside.site-menubar-unfold .single-card-container {
+    min-width: 100% !important;
+  }
+} */
 
 .card-bottom {
     position: absolute;
@@ -212,13 +237,22 @@ input.ignoredirty.form-control{
 }
 
 .general-single-card{
-    box-shadow: 0px 0px 8px #ddd !important;
+    box-shadow: 0px 0px 8px #ddd;
     border-radius: 2px;
     background-color: white;
     position: relative;
     min-height: 50px;
     list-style: none;
     padding: 15px !important;
+}
+
+.single-card {
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 2px;
+  background-color: white;
+  visibility: hidden;
+  position: relative;
+  padding: 1rem !important;
 }
 
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
@@ -230,7 +264,7 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
     margin: 15px 0 0 0;
     padding: 8px !important;
-    box-shadow: 0 0px 4px #ddd!important;
+    box-shadow: 0 0px 4px #ddd;
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
@@ -342,11 +376,18 @@ input.ignoredirty.form-control{
   padding: 10px 0 0 0;
 }
 
-#page-course-view-remuiformat #changenumsections {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
+#page-course-view-remuiformat #changenumsections .single-card,
+#page-course-view-remuiformat #changenumsections .card-block {
+  justify-content: center;
+  box-shadow: none;
+  background: #e5e5e5;
+}
+#page-course-view-remuiformat #changenumsections a {
+  color: #526069 !important;
+}
+
+#page-course-view-remuiformat #changenumsections i.fa {
+  margin: 0 auto;
 }
 
 /*
@@ -462,12 +503,6 @@ For list format
   display: block;
 }
 
-@media (max-width:1200px) {
-  body.path-course.editing.site-menubar-unfold ul.section.first-section li,
-  body.path-course.pinaside.site-menubar-unfold ul.section.first-section li{
-    min-width: 50% !important;
-  }
-}
 @media (min-width: 992px) {
   .showhideactivity .first-section-activity:nth-child(n+7) {
     display: none;
@@ -521,7 +556,6 @@ ul.remui-format-list img.activityicon {
 li.first-section-li .summary {
   min-height: 6.5rem;
 }
-
 
 /* Editing menu */
 .course-content ul.remui-format-list li.section div.left,
@@ -601,13 +635,13 @@ ul.remui-format-list span.inplaceeditable input {
 
 /* Boost compatible CSS */
 
-.wdm-generalsectiontitle{
+.wdm-generalsectiontitle {
   font-size: 24px;
 }
 
 .wdm-card, .wdm-allactivities{
   border: none !important;
-  box-shadow: 0px 0px 8px #ddd !important;
+  box-shadow: 0px 0px 8px #ddd;
   background-color: #fff !important;
 }
 
@@ -653,6 +687,10 @@ ul.remui-format-list h4.sectionname a {
   display: flex !important;
 }
 
+.d-block {
+  display: block !important;
+}
+
 .mdl-right {
   text-align: right !important;
 }
@@ -688,7 +726,7 @@ ul.remui-format-list h4.sectionname a {
   text-align: center!important;
 }
 
-#page-course-view-remuiformat ul.section.first-section.row{
+#page-course-view-remuiformat ul.section.first-section.row {
   flex-wrap: wrap;
 }
 /* Fordson Compatible CSS End*/
@@ -697,4 +735,10 @@ ul.remui-format-list h4.sectionname a {
 /* For editing on mode */
 .editinstructions {
   background-color: aliceblue !important;
+}
+
+.fa-4x {
+  font-size: 4em;
+  width: 1.2857142857em;
+  text-align: center;
 }

@@ -37,7 +37,6 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
 
         // Function to set Equal Height of all cards.
         var setEqualHeight = function (selector) {
-
             if (selector.length > 0) {
                 var arr = [];
                 var selector_height;
@@ -47,7 +46,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                     selector_height = (selector_height > cardminHeight) ? selector_height : cardminHeight;
                     arr.push(selector_height);
                 });
-                selector_height = Math.max.apply(null, arr) + 65;
+                selector_height = Math.max.apply(null, arr) + 55;
                 selector.css("min-height", selector_height);
             }
         }
@@ -97,12 +96,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
 
         // Set Equal height of cards on load.
         setEqualHeight($('.single-card'));
-        // $('.section-action-container').addClass('card-bottom');
-        // $('.wdm-bottom-container').addClass('card-bottom');
         $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
-        //$('#page-course-view-remuiformat #changenumsections').css({visibility: "visible"});
-        $('#page-course-view-remuiformat #changenumsections a').addClass("btn btn-primary");
-        $('#page-course-view-remuiformat #changenumsections').addClass("row d-flex justify-content-end");
         $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 600, "swing");
 
         function getUrlParameter(sParam) {

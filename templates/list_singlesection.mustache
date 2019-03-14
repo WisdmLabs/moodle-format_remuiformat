@@ -1,3 +1,22 @@
+{{#addsection}}
+<li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="width: 97%; margin-left: auto; margin-right:auto;">
+   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border d-flex align-items-center " style="clear:both;">
+      {{#numsections}}
+         <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
+
+         {{#strremovesection}}
+         <a href="{{{removeurl}}}" class="{{removeurlclass}}">{{{removeicon}}} {{{strremovesection}}}</a>
+         {{/strremovesection}}
+      {{/numsections}}
+
+      {{^numsections}}
+         <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
+      {{/numsections}}
+   </div>
+</li>
+{{/addsection}}
+
+{{^addsection}}
 <li id="section-{{{index}}}" class="card section main clearfix {{#highlighted}}current{{/highlighted}} mb-4 m-b-2 wdm-card" role="region" style="width: 97%; margin-left: auto; margin-right:auto;" aria-label="">
    <span class="hidden sectionname">{{{ title }}}</span>
    <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border" style="clear:both;">
@@ -39,4 +58,4 @@
       </div>
     </div>
 </li>
-
+{{/addsection}}
