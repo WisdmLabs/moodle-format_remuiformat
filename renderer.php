@@ -493,7 +493,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
     }
 
 
-     /**
+    /**
      * Returns controls in the bottom of the page to increase/decrease number of sections
      *
      * @param stdClass $course
@@ -516,13 +516,13 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         if ($supportsnumsections) {
 
             $addnewsection->numsections = 1;
-            // Current course format has 'numsections' option, which is very confusing and we suggest course format
+            // Current course format has 'numsections' option, which is very confusing and we suggest course format.
             // developers to get rid of it (see MDL-57769 on how to do it).
             // Display "Increase section" / "Decrease section" links.
 
             $straddsection = get_string('increasesections', 'moodle');
 
-            //echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
+            // Echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));.
             // Increase number of sections.
             $url = new moodle_url('/course/changenumsections.php',
                 array('courseid' => $course->id,
@@ -536,7 +536,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             $addnewsection->addicon = str_replace('icon', 'fa-4x d-block', $icon);
             $addnewsection->addurlclass = 'increase-sections';
 
-            //echo html_writer::link($url, $icon.get_accesshide($straddsection), array('class' => 'increase-sections'));
+            // Echo html_writer::link($url, $icon.get_accesshide($straddsection), array('class' => 'increase-sections'));.
 
             if ($course->numsections > 0) {
                 // Reduce number of sections sections.
@@ -552,10 +552,10 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 $addnewsection->removeicon = str_replace('icon', 'fa-4x d-block', $icon);
                 $addnewsection->removeurlclass = 'reduce-sections';
 
-                //echo html_writer::link($url, $icon.get_accesshide($strremovesection), array('class' => 'reduce-sections'));
+                // Echo html_writer::link($url, $icon.get_accesshide($strremovesection), array('class' => 'reduce-sections'));.
             }
 
-            //echo html_writer::end_tag('div');
+            // Echo html_writer::end_tag('div');.
 
         } else if (course_get_format($course)->uses_sections()) {
             // Current course format does not have 'numsections' option but it has multiple sections suppport.
@@ -565,7 +565,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
             $addnewsection->numsections = 0;
 
-            //echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
+            // Echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));.
             if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
                 $straddsections = get_string('addsections', 'format_'.$course->format);
             } else {
@@ -577,14 +577,14 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 $url->param('sectionreturn', $sectionreturn);
             }
             $icon = $this->output->pix_icon('t/add', $straddsections);
-            //echo html_writer::link($url, $icon . $straddsections,
-            //    array('class' => 'add-sections', 'data-add-sections' => $straddsections));
+            // Echo html_writer::link($url, $icon . $straddsections,
+            // array('class' => 'add-sections', 'data-add-sections' => $straddsections));.
 
             $addnewsection->straddsections = $straddsections;
             $addnewsection->url = $url;
             $addnewsection->icon = str_replace('icon', 'fa-4x d-block', $icon);
 
-            //echo html_writer::end_tag('div');
+            // Echo html_writer::end_tag('div');.
         }
 
         return $addnewsection;
