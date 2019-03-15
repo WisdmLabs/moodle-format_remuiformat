@@ -190,11 +190,11 @@ class format_remuiformat_section implements renderable, templatable
                 $count = 1;
                 $export->generalsection['teachers'] = $teachers;
                 $export->generalsection['teachers']['teacherimg'] = '
-                <div class="space-div col-8"></div><div class="teacher-label col-1"><span>'.get_string(
-                    'teachers', 'format_remuiformat'
-                    ).'</span></div>
-                <div class="carousel slide col-3" data-ride="carousel" id="teachersCarousel">
-                <div class="carousel-inner">';
+                <div class="teacher-label"><span>'
+                .get_string('teachers', 'format_remuiformat').
+                '</span></div>
+                <div class="carousel slide" data-ride="carousel" id="teachersCarousel">
+                <div class="carousel-inner text-center">';
 
                 foreach ($teachers as $teacher) {
                     if ($count % 2 == 0) {
@@ -223,11 +223,11 @@ class format_remuiformat_section implements renderable, templatable
                 if (count($teachers) > 1) {
                     $export->generalsection['teachers']['teacherimg'] .=
                     '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-                            <i class="fas fa-chevron-left"></i>
+                            <i class="fa fa-chevron-left"></i>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-                            <i class="fas fa-chevron-right"></i>
+                            <i class="fa fa-chevron-right"></i>
                             <span class="sr-only">Next</span>
                         </a></div>';
                 } else {
@@ -296,6 +296,11 @@ class format_remuiformat_section implements renderable, templatable
                 }
                 $sectiondetails->activityinfo = $extradetails['activityinfo'];
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
+
+                // Set Marker.
+                if ($this->course->marker == $section) {
+                    $sectiondetails->highlighted = 1;
+                }
                 $sections[] = $sectiondetails;
             } else if ($rformat == REMUI_LIST_FORMAT) {
                 if (!empty($currentsection->summary)) {

@@ -1,5 +1,5 @@
 {{#addsection}}
-<li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="width: 97%; margin-left: auto; margin-right:auto;">
+<li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="">
    <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border d-flex align-items-center " style="clear:both;">
       {{#numsections}}
          <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
@@ -17,7 +17,7 @@
 {{/addsection}}
 
 {{^addsection}}
-<li id="section-{{{index}}}" class="card section main clearfix {{#highlighted}}current{{/highlighted}} mb-4 m-b-2 wdm-card" role="region" style="width: 97%; margin-left: auto; margin-right:auto;" aria-label="">
+<li id="section-{{{index}}}" class="card section main clearfix {{#highlighted}}current{{/highlighted}} mb-4 m-b-2 wdm-card" role="region" style="" aria-label="">
    <span class="hidden sectionname">{{{ title }}}</span>
    <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border" style="clear:both;">
       <div class="row d-block">
@@ -44,18 +44,16 @@
             {{/expanded}}
             </a>
       </h4>
-        {{{ hiddenmessage }}}
-      <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>
       <div class="summary card-text">{{{summary}}}</div>
+      {{{ hiddenmessage }}}
+      <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>
       <div class="section-summary-activities mdl-right {{#expanded}} hide {{/expanded}}">{{{activityinfostring}}}</div>
    </div>
+
    <span class="hidden sectionname">{{{ title }}}</span>
-   <div class="card-footer p-0 p-a-0 card-footer-transparent text-muted {{#collapsed}}collapse{{/collapsed}}{{#expanded}}show{{/expanded}} border-top-0">
-      <div class="panel activity-list">
-            <div class="panel-body p-0">
-               {{{sectionactivities}}}
-            </div>
-      </div>
-    </div>
+
+   <div class="px-15 px-3 py-10 py-2 card-footer card-footer-transparent text-muted {{#collapsed}}collapse{{/collapsed}}{{#expanded}}show{{/expanded}} border-top-0">
+      {{{sectionactivities}}}
+   </div>
 </li>
 {{/addsection}}

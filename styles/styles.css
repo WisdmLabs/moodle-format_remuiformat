@@ -109,8 +109,12 @@
     right: 15px;
 }
 
-.section-mod-details,  .wdm-mod-name {
-  display: inline-block;
+.section-summary-activities {
+  padding: 2px 0 8px 0;
+}
+
+.section-mod-details,  .wdm-mod-name,
+ul.remui-format-list .section-summary-activities {
   padding: 3px 4px;
   color: #888;
   margin-bottom: 3px;
@@ -135,7 +139,7 @@
 .section-action-container .progress-text {
   align-self: center;
   display: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .single-card:hover .progress-text {
@@ -188,6 +192,10 @@
   background-color: white;
 }
 
+.single-card-container .current::before {
+  left: -.1rem !important;
+}
+
 body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-container {
   padding: 15px !important;
 }
@@ -200,7 +208,8 @@ body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-
 #page-course-view-remuiformat div#card-editing-container .section-title,
 #page-course-view-remuiformat div#card-container .section-title,
 #page-course-view-remuiformat .single-section-title,
-#page-course-view-remuiformat .wdm-single-activity-title {
+#page-course-view-remuiformat .wdm-single-activity-title,
+ul.remui-format-list h4.sectionname {
     margin:0;
     font-size: 18px;
     font-weight: 500;
@@ -526,12 +535,6 @@ For list format
 }
 
 /* For section title */
-ul.remui-format-list h4.sectionname {
-  padding: 0;
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-}
-
 ul.remui-format-list li.section.main {
     border-bottom: none!important;
 }
@@ -541,16 +544,6 @@ ul.remui-format-list img.activityicon {
     width: 32px;
     height: 32px;
     vertical-align: middle;
-}
-
-.teacher-label {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-#teachersCarousel {
-  display: inline-block;
 }
 
 li.first-section-li .summary {
@@ -567,21 +560,18 @@ li.first-section-li .summary {
 ul.remui-format-list li.section ul.section {
   padding: 0;
   margin: 0;
-  justify-content: center!important;
-  text-align: center!important;
+  /* justify-content: center!important; */
+  /* text-align: center!important; */
 }
 
 ul.remui-format-list li.section ul.section li.activity {
     clear: both;
-    padding: 10px 25px !important;
-    border-bottom: none !important;
+    padding: 8px 0px !important;
+    border-bottom: 1px solid #f3f3f3;
 }
 
-ul.remui-format-list li.section ul.section li.activity:first-child {
-  padding-top: 20px;
-}
-ul.remui-format-list li.section ul.section li.activity:last-child {
-  padding-bottom: 20px;
+ul.remui-format-list li.section ul.section li.activity:last-of-type {
+  border-bottom: none;
 }
 
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo,
@@ -595,19 +585,47 @@ ul.remui-format-list .mod-indent-outer .actions {
   margin-right: 0px;
 }
 
+#teachersCarousel .carousel-item {
+    justify-content: space-evenly;
+}
 .teacher-img-container {
-    width: auto;
-    margin: 0 auto;
+  margin: 0 10px;
+}
+.teacher-img-container img.userpicture {
+  margin: 0 1rem;
 }
 
-.teacher-img-container img.userpicture {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+.mb-25 {
+  margin-bottom: 25px!important;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  line-height: 35px;
+  color: #fff;
+  text-align: center;
+}
+
+.carousel-control-next {
+  right: 0;
 }
 
 .carousel-control.left,.carousel-control.right, .carousel-control-prev,.carousel-control-next {
-    opacity:1!important;
-    min-width: 25px!important;
+    opacity: 1 !important;
+    min-width: 25px !important;
+}
+
+.teacher-label {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#teachersCarousel {
+  max-width: 175px;
+  height: 35px;
 }
 
 .text-white * {
@@ -639,19 +657,18 @@ ul.remui-format-list span.inplaceeditable input {
   font-size: 24px;
 }
 
-.wdm-card, .wdm-allactivities{
+.wdm-card, .wdm-allactivities {
   border: none !important;
-  box-shadow: 0px 0px 8px #ddd;
+  box-shadow: 0px 0px 8px #ddd !important;
   background-color: #fff !important;
 }
 
-ul.remui-format-list h4.sectionname a {
-  color: #37474f !important;
-  font-size: 18px !important;
-}
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo .tag,
-#page-course-view-remuiformat ul.remui-format-list .isrestricted .tag{
-  background-color: #37474f;
+#page-course-view-remuiformat ul.remui-format-list .isrestricted .tag {
+  background-color: #666;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .w-full {
@@ -705,10 +722,6 @@ ul.remui-format-list h4.sectionname a {
   float: right!important;
 }
 
-.section-summary-activities{
-  padding: 2px 0 8px 0;
-}
-
 .card-footer{
   background-color: #fff !important;
 }
@@ -728,6 +741,7 @@ ul.remui-format-list h4.sectionname a {
 
 #page-course-view-remuiformat ul.section.first-section.row {
   flex-wrap: wrap;
+  justify-content: center;
 }
 /* Fordson Compatible CSS End*/
 

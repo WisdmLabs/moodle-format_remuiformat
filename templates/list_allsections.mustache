@@ -5,12 +5,10 @@
             {{> format_remuiformat/list_generalsectionedit }}
         {{/generalsection}}
         {{! Display Remaining Section }}
-        <div class="row">
         {{#sections}}
             {{> format_remuiformat/list_singlesection }}
         {{/sections}}
         {{{ addsection }}}
-        </div>
     </ul>
 {{/editing}}
 {{^editing}}

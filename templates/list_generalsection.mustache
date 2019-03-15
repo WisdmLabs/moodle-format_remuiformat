@@ -9,12 +9,11 @@
             <div class="font-size-24 mb-15 mb-3 wdm-generalsectiontitle">{{{generalsectiontitle}}}</div>
             <div class="font-size-14 summary">{{{ generalsectionsummary }}}</div>
         </div>
-        <div class="container teacher-img">
-            <div class="row text-white mt-10">
-                {{#teachers}}
-                    {{{teacherimg}}}
-                {{/teachers}}
-            </div>
+
+        <div class="text-white mt-10 d-flex" style="justify-content: flex-end;">
+            {{#teachers}}
+                {{{teacherimg}}}
+            {{/teachers}}
         </div>
     </div>
 
@@ -29,7 +28,7 @@
         </div>
     {{/percentage}}
         <div class="section_availability badge badge-pill badge-info mb-10"></div>
-            <ul class="section first-section img-text row p-0 pb-20 pb-4 p-b-2 d-flex justify-content-center text-center showhideactivity">
+            <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-center text-center showhideactivity">
                 {{#activities}}
                     <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-3 col-lg-2 justify-content-center p-0 pt-10 pt-3" id="module-1">
                         <div>
@@ -70,66 +69,6 @@ require(['jquery'], function(jQuery) {
     });
 
     showmorebutton();
-
-    // Show load more button conditionally on window resize.
-    jQuery(window).resize(function(){
-
-        showmorebutton();
-
-          var containerwidth = jQuery('.teacher-img').width();
-
-        if(containerwidth > 760) {
-            var ele = jQuery('.space-div');
-            ele.removeAttr('class');
-            ele.attr('class', 'space-div col-8');
-
-            var car = jQuery('.teacher-label');
-            car.removeAttr('class');
-            car.attr('class', 'teacher-label col-2');
-
-            var car = jQuery('#teachersCarousel');          
-            car.removeAttr('class');
-            car.attr('class', 'carousel slide col-2');
-        } else if(containerwidth > 367 && containerwidth < 761) {
-            var ele = jQuery('.space-div');
-            ele.removeAttr('class');
-            ele.attr('class', 'space-div col-6');
-
-            var car = jQuery('.teacher-label');
-            car.removeAttr('class');
-            car.attr('class', 'teacher-label col-2');
-
-            var car = jQuery('#teachersCarousel');
-            car.removeAttr('class');
-            car.attr('class', 'carousel slide col-4');
-        } else if(containerwidth > 200 && containerwidth < 367) {
-            var ele = jQuery('.space-div');
-            ele.removeAttr('class');
-            ele.attr('class', 'space-div col-2');
-
-            var car = jQuery('.teacher-label');
-            car.removeAttr('class');
-            car.attr('class', 'teacher-label col-3');
-
-            var car = jQuery('#teachersCarousel');
-            car.removeAttr('class');
-            car.attr('class', 'carousel slide col-7');
-        }
-        else if(containerwidth < 200) {
-            
-            var ele = jQuery('.space-div');
-            ele.removeAttr('class');
-            ele.attr('class', 'space-div col-1');
-
-            var car = jQuery('.teacher-label');
-            car.removeAttr('class');
-            car.attr('class', 'teacher-label col-2');
-
-            var car = jQuery('#teachersCarousel');
-            car.removeAttr('class');
-            car.attr('class', 'carousel slide col-8');
-        }
-    });
 
     // Show load more button conditionally on window resize and load.
     function showmorebutton() {

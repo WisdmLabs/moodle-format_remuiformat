@@ -18,7 +18,7 @@
 
 {{^addsection}}
 <div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
-    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3">
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 {{#highlighted}}current{{/highlighted}}">
         <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
         {{{ hiddenmessage }}}
@@ -26,7 +26,7 @@
             <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
             <div class="section-summary-activities">
                 {{#activityinfo}}
-                    <p class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</p>
+                    <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
             {{{ summary }}}
