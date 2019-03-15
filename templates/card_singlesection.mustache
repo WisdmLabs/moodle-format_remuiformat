@@ -21,9 +21,9 @@
     <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 {{#highlighted}}current{{/highlighted}}">
         <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
-        {{{ hiddenmessage }}}
         <div class="card-content pb-10 pb-2">
             <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
+            {{{ hiddenmessage }}}
             <div class="section-summary-activities">
                 {{#activityinfo}}
                     <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>

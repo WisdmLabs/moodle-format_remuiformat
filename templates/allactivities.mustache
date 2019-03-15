@@ -32,9 +32,9 @@
                                 </div>
                             </div>
                             <h4 class="wdm-single-activity-title {{^summary}}nosummary{{/summary}}">{{{ title }}}</h4>
-                            <div class="text-center text-muted">
-                                {{{ availstatus }}}
-                            </div>
+
+                            <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
+
                             {{#summary}}
                                 <div class="pt-10 mb-10">
                                     {{{ summary }}}
