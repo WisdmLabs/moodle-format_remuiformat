@@ -9,15 +9,15 @@
         <p>{{{ summary }}}</p>
     </div>
     <div>
-        <div class="cards p-0 m-0">
-            <div id="section-{{section}}" class="section row wdm-card-single-section">
+        <div class="cards">
+            <div id="section-{{section}}" class="section wdm-card-single-section">
                 {{#editing}}
                 <div class="right side">
                     {{{ optionmenu }}}
                 </div>
                 {{/editing}}
                 <div class="content w-full">
-                    <ul class="row p-0 m-0 wdm-section-wrapper">
+                    <ul class="row wdm-section-wrapper">
                     {{#activities}}
                         <li class="col-lg-4 col-md-6 col-sm-12 single-card-container px-15 modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
                         <div class="single-card p-15 p-3 p-x-1 p-y-1 m-b-2 mb-25 mb-4">
