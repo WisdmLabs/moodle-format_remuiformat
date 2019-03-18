@@ -18,7 +18,8 @@
 
 {{^addsection}}
 <div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
-    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 {{#highlighted}}current{{/highlighted}}">
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3">
+        {{#highlighted}}<div class="card-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
         <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
         <div class="card-content pb-10 pb-2">

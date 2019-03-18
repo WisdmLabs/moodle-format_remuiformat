@@ -46,7 +46,6 @@
   position: inherit !important;
 }
 
-
 /* Show two cards per row, when both sidebars open in RemUI
  * when left sidebar and right blocks section open in Boost
 */
@@ -161,6 +160,10 @@ ul.remui-format-list .section-summary-activities {
 
 .text-center {
   text-align: center !important;
+}
+
+.format-remuiformat.pagelayout-course .progress-xs {
+  border-bottom: 0 !important;
 }
 
 .progress-xs, .progress-xs .progress-bar {
@@ -756,4 +759,17 @@ ul.remui-format-list span.inplaceeditable input {
   font-size: 4em;
   width: 1.2857142857em;
   text-align: center;
+}
+
+.card-current, .list-current {
+  height: 7px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+}
+.list-current {
+  width: 7px;
+  height: 100%;
 }

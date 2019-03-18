@@ -17,7 +17,8 @@
 {{/addsection}}
 
 {{^addsection}}
-<li id="section-{{{index}}}" class="card section main clearfix {{#highlighted}}current{{/highlighted}} mb-4 m-b-2 wdm-card" role="region" style="" aria-label="">
+<li id="section-{{{index}}}" class="card section main clearfix mb-4 m-b-2 wdm-card" role="region" style="" aria-label="">
+   {{#highlighted}}<div class="list-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
    <span class="hidden sectionname">{{{ title }}}</span>
    <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border" style="clear:both;">
       <div class="row d-block">
