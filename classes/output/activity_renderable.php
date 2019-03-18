@@ -148,6 +148,7 @@ class format_remuiformat_activity implements renderable, templatable {
                     continue;
                 }
                 $completiondata = $completioninfo->get_data($mod, true);
+
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
@@ -158,6 +159,11 @@ class format_remuiformat_activity implements renderable, templatable {
                         $mod,
                         $displayoptions
                     );
+                    // Activities which are completed conditionally.
+                    $activitydetails->autocompletion = 0;
+                    if (strpos($activitydetails->completion, 'autocompletion') !== false) {
+                        $activitydetails->autocompletion = 1;
+                    }
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->move = course_get_cm_move($mod, $section->section);

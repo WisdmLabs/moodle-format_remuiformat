@@ -55,39 +55,20 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
             setEqualHeight($('.single-card'));
         });
 
-        // Display the overlay.
-        $('.mod-card-container').mouseover(function () {
-            $(this).children('.mod-card-overlay').removeClass("hidden");
-            $(this).children('.card-hover-content').removeClass("hidden");
-        }).mouseout(function () {
-            $(this).children('.mod-card-overlay').addClass("hidden");
-            $(this).children('.card-hover-content').addClass("hidden");
-        });
-
         // Mark Completion.
-        $('.card-complete-btn').click(function () {
-            var val = $(this).parent().children('.card-completion-state').val();
-            if (val == 0) {
-                $(this).find('.card-stats').html(M.util.get_string('markcomplete', 'format_remuiformat'));
-            } else {
-                $(this).find('.card-stats').html(M.util.get_string('completed', 'format_remuiformat'));
+        $('form.togglecompletion button').on('click', function() {
+            var id = $(this).closest("form").find('input[name="id"]').val();
+            if(id) {
+                var completion = $('.wdm-completion-status-' + id).text().trim();
+                if (completion == "Completed") {
+                    $('.wdm-completion-status-' + id).html(M.util.get_string('markcomplete', 'format_remuiformat'));
+                    $('.activity-check-' + id).removeClass("completed");
+                } else {
+                    $('.wdm-completion-status-' + id).html(M.util.get_string('completed', 'format_remuiformat'));
+                    $('.activity-check-' + id).addClass("completed");
+                }
+                $(this).closest(".wdm-completion-container").toggleClass("text-muted");
             }
-        });
-
-        $('.wdm-toggle-completion').click(function() {
-            var id = $(this).data('id');
-            $('.wdm-completion-check-' + id + ' button').trigger('click');
-            var completion = $('.wdm-completion-status-' + id).text().trim();
-            if (completion == "Completed") {
-                $('.wdm-completion-status-' + id).html("Mark as Complete");
-                $('.activity-check-' + id).removeClass("completed");
-                $('.activity-check-' + id).addClass("text-muted");
-            } else {
-                $('.wdm-completion-status-' + id).html("Completed");
-                $('.activity-check-' + id).removeClass("text-muted");
-                $('.activity-check-' + id).addClass("completed");
-            }
-            return false;
         });
 
         $('.form.togglecompletion').submit(function(e) {

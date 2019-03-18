@@ -43,25 +43,23 @@
                             {{^availstatus}}
                             <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
                                 <div class="flex-1 pl-15 p-l-1">
+                                {{#viewurl}}
                                     <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
+                                {{/viewurl}}
                                 </div>
                                 {{#completion}}
-                                <div class="wdm-completion-container align-items-center pr-15 p-r-1">
-                                    <p class="m-0 m-a-0 mx-10 mx-2 m-x-1 text-right wdm-completion-title wdm-completion-status-{{id}}">
-                                        {{#completed}}
-                                            {{#str}} completed, format_remuiformat{{/str}}
-                                        {{/completed}}
-                                        {{^completed}}
-                                            {{#str}} markcomplete, format_remuiformat{{/str}}
-                                        {{/completed}}
-                                    </p>
-                                    <a class="btn bg-white p-0 p-a-0 wdm-toggle-completion" data-id="{{ id }}">
-                                        <!--<span><i class="fa fa-check-circle" aria-hidden="true"></i></span>-->
-                                        <div class="pchart wdm-chart-{{id}}" data-percent="{{#completed}}100{{/completed}}">
-                                            <span class="activity-check-{{id}} activity-check {{#completed}}completed{{/completed}}"><i class="fa fa-check" aria-hidden="true"></i></span>
-                                        </div>
-                                    </a>
-                                    <div class="hidden wdm-completion-check-{{id}}" >
+                                <div class="wdm-completion-container align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
+                                    <div class="wdm-completion-check-{{id}}">
+                                        <span class="m-0 text-right wdm-completion-title wdm-completion-status-{{id}}" style="display: inline;">
+                                            {{^autocompletion}}
+                                                {{#completed}}
+                                                    {{#str}} completed, format_remuiformat{{/str}}
+                                                {{/completed}}
+                                                {{^completed}}
+                                                    {{#str}} markcomplete, format_remuiformat{{/str}}
+                                                {{/completed}}
+                                            {{/autocompletion}}
+                                        </span>
                                         {{{ completion }}}
                                     </div>
                                 </div>
