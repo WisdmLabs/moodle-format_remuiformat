@@ -19,6 +19,7 @@
  *
  * @package    course/format
  * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
  * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -39,7 +40,7 @@ class format_remuiformat extends format_base {
      * @return format_remuiformat
      */
     protected function __construct($format, $courseid) {
-        global $PAGE, $CFG;
+        global $PAGE;
         if ($courseid === 0) {
             global $COURSE;
             $courseid = $COURSE->id;  // Save lots of global $COURSE as we will never be the site course.
@@ -58,11 +59,9 @@ class format_remuiformat extends format_base {
 
         );
         // Include course format js module.
-        // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format.js'));
         $PAGE->requires->js_call_amd('format_remuiformat/format', 'init', array($this->availablelayouts));
 
         // Pass constants defined for the formats.
-        // $PAGE->requires->js_init_call('init', array($this->availablelayouts));
         parent::__construct($format, $courseid);
     }
 

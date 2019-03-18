@@ -19,6 +19,7 @@
  *
  * @package course/format
  * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

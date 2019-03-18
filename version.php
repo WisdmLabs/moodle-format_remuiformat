@@ -18,7 +18,7 @@
  * Version details
  *
  * @package    format_remuiformat
- * @copyright  2017 Wisdmlabs
+ * @copyright  2019 Wisdmlabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
