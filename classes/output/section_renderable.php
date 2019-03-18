@@ -14,7 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace format_remuiformat\output;
+/**
+ * Section Renderable - A topics based format that uses card layout to diaply the content.
+ *
+ * @package course/format
+ * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+ namespace format_remuiformat\output;
 defined('MOODLE_INTERNAL') || die();
 
 use renderable;
