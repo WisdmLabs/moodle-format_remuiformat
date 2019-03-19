@@ -525,12 +525,12 @@ For list format
 }
 
 @media (min-width: 992px) {
-  .showhideactivity .first-section-activity:nth-child(n+7) {
+  .showhideactivity .first-section-activity:nth-child(n+5) {
     display: none;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .showhideactivity .first-section-activity:nth-child(n+5) {
+  .showhideactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
 }
