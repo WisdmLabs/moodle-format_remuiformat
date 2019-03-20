@@ -35,14 +35,11 @@ Card Format is another standout course format in the offering. Edwiser Card Form
 
 * With List Format, you can choose between showing all sections on a single page and showing one section per page. 
 * Card Format also renders all the activities from the section in the card format.
-* Compatible with Fordson Theme.
 * Compatible with Boost Theme.
-* Compatible with Boost Magnific Theme.
-* Compatible with Boost Training Theme.
-* Compatible with Boost Learning Theme.
+* Compatible with Fordson Theme.
+* Compatible with Moove Theme.
 * Compatible with Handlebar Theme.
-* Compatible with Boost Campus Theme.
-* Responsive
+* Responsive.
 
 
 [(Back to top)](#table-of-contents)
@@ -81,8 +78,7 @@ If you reuse any of the code then I kindly ask that you make reference to the fo
 
 # Support
 
-The Edwiser Course Format comes with NO support.  If you would like support from me (WisdmLabs) then I'm happy to provide it
-for a fee (please see my contact details below). Please contact me via forum https://forums.edwiser.org/category/42/request-a-feature for support. Otherwise, the 'Courses and course formats' forum: moodle.org/mod/forum/view.php?id=47 is an excellent place to ask questions.
+Please contact us via forum https://forums.edwiser.org/category/42/request-a-feature for support. Otherwise, the 'Courses and course formats' forum: moodle.org/mod/forum/view.php?id=47 is an excellent place to ask questions.
 
 [(Back to top)](#table-of-contents)
 
