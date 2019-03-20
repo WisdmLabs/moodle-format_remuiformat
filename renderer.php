@@ -129,7 +129,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 $params = array('class' => 'btn btn-inverse btn-sm');
                 $prevsectionname = get_section_name($course, $sections[$back]);
                 if (!$sections[$back]->visible) {
-                    $params = array('class' => 'dimmed_text');
+                    $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
                 $previouslink .= (strlen($prevsectionname) > 15) ? substr($prevsectionname, 0, 15)."..." : $prevsectionname;
@@ -144,7 +144,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             if ($canviewhidden || $sections[$forward]->uservisible) {
                 $params = array('class' => 'btn btn-inverse btn-sm');
                 if (!$sections[$forward]->visible) {
-                    $params = array('class' => 'dimmed_text');
+                    $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $nextsectionname = get_section_name($course, $sections[$forward]);
                 $nextlink = (strlen($nextsectionname) > 15) ? substr($nextsectionname, 0, 15)."..." : $nextsectionname;
