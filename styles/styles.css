@@ -675,6 +675,7 @@ ul.remui-format-list span.inplaceeditable input {
 
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo .tag,
 #page-course-view-remuiformat ul.remui-format-list .isrestricted .tag,
+#page-course-view-remuiformat ul.remui-format-list .ishidden .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag {
   background-color: #666;
