@@ -45,6 +45,7 @@
                                 <div class="flex-1 pl-15 p-l-1">
                                 <!-- show open modal button in case of label activity -->
                                 {{#fullcontent}}
+                                {{#summary}}
                                     <a href="{{viewurl}}" data-toggle="modal" data-target="#{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
                                     <!-- The Modal -->
                                     <div class="modal" id="{{viewurl}}">
@@ -61,6 +62,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                {{/summary}}
                                 {{/fullcontent}}
 
                                 {{^fullcontent}}
