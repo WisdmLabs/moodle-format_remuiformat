@@ -156,6 +156,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
+
                 $completiondata = $completioninfo->get_data($mod, true);
 
                 $activitydetails = new \stdClass();
@@ -183,6 +184,13 @@ class format_remuiformat_activity implements renderable, templatable {
                     $this->courserenderer->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
+
+                // In case of label activity send full text of cm to open in modal.
+                if ($mod->modname == 'label') {
+                    $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
+                    $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                }
+
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {

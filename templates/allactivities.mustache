@@ -41,11 +41,31 @@
                                 </div>
                             {{/summary}}
                             {{^availstatus}}
-                            <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^hidden}}text-primary{{/hidden}}">
+                            <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^fullcontent}}{{^hidden}}text-primary{{/hidden}}{{/fullcontent}}">
                                 <div class="flex-1 pl-15 p-l-1">
-                                {{#viewurl}}
+                                <!-- show open modal button in case of label activity -->
+                                {{#fullcontent}}
+                                    <a href="{{viewurl}}" data-toggle="modal" data-target="#{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="{{viewurl}}">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title"></h4>
+                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                {{{fullcontent}}}
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/fullcontent}}
+
+                                {{^fullcontent}}
                                     <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
-                                {{/viewurl}}
+                                {{/fullcontent}}
                                 </div>
                                 {{#completion}}
                                 <div class="wdm-completion-container align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
