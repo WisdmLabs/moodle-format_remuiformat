@@ -66,6 +66,9 @@ trait move_activities {
             $output['success'] = false;
             $output['message'] = "Error in updation";
         }
+        // Need to call after database update.
+        rebuild_course_cache($courseid, true);
+
         return $output;
     }
 

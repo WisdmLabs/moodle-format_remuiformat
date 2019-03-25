@@ -19,6 +19,7 @@
  *
  * @package    course/format
  * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
  * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -55,14 +56,12 @@ class format_remuiformat extends format_base {
                 'optionlabel' => 'remuicourseformat_list',
                 'supports' => COURSE_DISPLAY_SINGLEPAGE,
             ),
-            
-        );
-        // // Include course format js module
 
-        $PAGE->requires->js('/course/format/remuiformat/javascript/format.js');
-        // pass constants defined for the formats
-        
-        $PAGE->requires->js_init_call('init', array($this->availablelayouts));
+        );
+        // Include course format js module.
+        $PAGE->requires->js_call_amd('format_remuiformat/format', 'init', array($this->availablelayouts));
+
+        // Pass constants defined for the formats.
         parent::__construct($format, $courseid);
     }
 
@@ -146,7 +145,6 @@ class format_remuiformat extends format_base {
      * @return null|moodle_url
      */
     public function get_view_url($section, $options = array()) {
-        global $CFG;
         $course = $this->get_course();
         $url = new moodle_url('/course/view.php', array('id' => $course->id));
 
@@ -179,7 +177,6 @@ class format_remuiformat extends format_base {
         return $url;
     }
 
-
     /**
      * Definitions of the additional options that this course format uses for the course.
      * @param bool $foreditform
@@ -194,6 +191,7 @@ class format_remuiformat extends format_base {
             $contextid = context_course::instance($this->courseid);
             $data = new stdClass;
             $draftitemid = file_get_submitted_draft_itemid('remuicourseimage');
+
             try {
                 $data = file_prepare_standard_filemanager(
                     $data,
@@ -203,20 +201,20 @@ class format_remuiformat extends format_base {
                     'format_remuiformat',
                     'remuicourseimage_filearea'
                 );
-            } catch(Exception $e) {
-                //Do Nothing
+            } catch (\Exception $e) {
+                echo $e->getMessage();
             }
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT,
                 ),
-                'coursedisplay' => array(
-                    'default' => $courseconfig->coursedisplay,
-                    'type' => PARAM_INT
-                ),
                 'remuicourseformat' => array(
                     'default' => 1,
+                    'type' => PARAM_INT
+                ),
+                'coursedisplay' => array(
+                    'default' => $courseconfig->coursedisplay,
                     'type' => PARAM_INT
                 ),
                 'remuicourseimage_filemanager' => array(
@@ -253,18 +251,6 @@ class format_remuiformat extends format_base {
                         )
                     ),
                 ),
-                'coursedisplay' => array(
-                    'label' => new lang_string('coursedisplay'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi'),
-                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
-                        )
-                    ),
-                    'help' => 'coursedisplay',
-                    'help_component' => 'moodle',
-                ),
                 'remuicourseformat' => array(
                     'label' => new lang_string('remuicourseformat', 'format_remuiformat'),
                     'element_type' => 'select',
@@ -276,6 +262,18 @@ class format_remuiformat extends format_base {
                     ),
                     'help' => 'remuicourseformat',
                     'help_component' => 'format_remuiformat',
+                ),
+                'coursedisplay' => array(
+                    'label' => new lang_string('coursedisplay'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi'),
+                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
+                        )
+                    ),
+                    'help' => 'coursedisplay',
+                    'help_component' => 'moodle',
                 ),
                 'remuicourseimage_filemanager' => array(
                     'label' => new lang_string('remuicourseimage', 'format_remuiformat'),
@@ -400,7 +398,7 @@ class format_remuiformat extends format_base {
      */
     public function extend_course_navigation($navigation, navigation_node $node) {
         global $PAGE;
-        // if section is specified in course/view.php, make sure it is expanded in navigation
+        // If section is specified in course/view.php, make sure it is expanded in navigation.
         if ($navigation->includesectionnum === false) {
             $selectedsection = optional_param('section', null, PARAM_INT);
             if ($selectedsection !== null && (!defined('AJAX_SCRIPT') || AJAX_SCRIPT == '0') &&
@@ -409,7 +407,7 @@ class format_remuiformat extends format_base {
             }
         }
 
-        // check if there are callbacks to extend course navigation
+        // Check if there are callbacks to extend course navigation.
         parent::extend_course_navigation($navigation, $node);
 
         // We want to remove the general section if it is empty.
@@ -490,14 +488,13 @@ class format_remuiformat extends format_base {
     public function update_course_format_options($data, $sectionid = null) {
         global $DB;
         if (!empty($data)) {
-            if(isset($_POST['remuicourseformat'])) {
+            if (isset($_POST['remuicourseformat'])) {
                 $data->remuicourseformat = filter_input(INPUT_POST, 'remuicourseformat');
-            }
-            else if(isset($_GET['remuicourseformat'])){
-                $data->remuicourseformat =  filter_input(INPUT_GET, 'remuicourseformat');
+            } else if (isset($_GET['remuicourseformat'])) {
+                $data->remuicourseformat = filter_input(INPUT_GET, 'remuicourseformat');
             }
             $contextid = context_course::instance($this->courseid);
-            if(!empty($data->remuicourseimage_filemanager)) {
+            if (!empty($data->remuicourseimage_filemanager)) {
                 file_postupdate_standard_filemanager(
                     $data,
                     'remuicourseimage',
@@ -533,28 +530,13 @@ class format_remuiformat extends format_base {
         return array('sectiontitles' => $titles, 'action' => 'move');
     }
 
-    // public function edit_form_validation($data, $files, $errors) {
-    //     if(isset($data)) {
-    //         $rformat = $data['remuicourseformat'];
-    //         if(isset($rformat)){
-    //             foreach($this->availablelayouts as $key => $value) {
-    //                 if($rformat == $value['format']){
-    //                     if($rformat == 0 && $data['coursedisplay'] == $value['supports']) {
-    //                         $errors['coursedisplay'] = get_string('coursedisplay_error', 'format_remuiformat');
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return $errors;
-    // }
     public function edit_form_validation($data, $files, $errors) {
-        if(isset($data)) {
+        if (isset($data)) {
             $rformat = $data['remuicourseformat'];
-            if(isset($rformat)){
-                foreach($this->availablelayouts as $key => $value) {
-                    if($rformat == $value['format']){
-                        if($rformat == 0 && $data['coursedisplay'] != $value['supports']) {
+            if (isset($rformat)) {
+                foreach ($this->availablelayouts as $key => $value) {
+                    if ($rformat == $value['format']) {
+                        if ($rformat == 0 && $data['coursedisplay'] != $value['supports']) {
                             $errors['coursedisplay'] = get_string('coursedisplay_error', 'format_remuiformat');
                         }
                     }

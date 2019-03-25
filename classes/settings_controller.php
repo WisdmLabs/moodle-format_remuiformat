@@ -30,7 +30,6 @@ defined('MOODLE_INTERNAL') || die;
 class SettingsController
 {
     protected static $instance;
-    private $_plugin_config;
 
     // Constructor.
     private function __construct() {

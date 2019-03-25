@@ -2,19 +2,11 @@
     {{{ hiddensection }}}
 {{/hiddensection}}
 {{^hiddensection}}
-    <div class="col-md-12 p-0 wdm-card-section">
-        <div class="card-section-leftnav {{#leftnav}}btn btn-primary{{/leftnav}}">
-            {{{ leftnav }}}
-        </div>
-        <div class="card-section-rightnav {{#rightnav}}btn btn-primary{{/rightnav}}">
-            {{{ rightnav }}}
-        </div>
-    </div>
-    <div class="col-md-12 px-0 my-20">
+    <div class="col-md-12 px-0 p-x-0 my-20">
         <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
         <p>{{{ summary}}}</p>
     </div>
-    <ul class="remui-format-list bg-white py-20">
+    <ul class="remui-format-list p-15 py-2 px-2 p-y-1 p-x-1 wdm-allactivities">
         <li id="section-{{section}}" class="section">
             <div class="left side">
                 {{{ leftside }}}
@@ -28,4 +20,14 @@
             {{{ addnewactivity }}}
         </li>
     </ul>
+
+    <!-- next/prev sections -->
+    <div class="col-md-12 p-0 wdm-card-section m-t-2">
+        <div class="card-section-leftnav">
+            {{{ leftnav }}}
+        </div>
+        <div class="card-section-rightnav">
+            {{{ rightnav }}}
+        </div>
+    </div>
 {{/hiddensection}}

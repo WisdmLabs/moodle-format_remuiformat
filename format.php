@@ -19,6 +19,7 @@
  *
  * @package course/format
  * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -59,17 +60,22 @@ course_create_sections_if_missing($course, 0);
 $stringman = get_string_manager();
 $strings = $stringman->load_component_strings('format_remuiformat', 'en');
 $PAGE->requires->strings_for_js(array_keys($strings), 'format_remuiformat');
+
 $section = optional_param('section', 0, PARAM_INT);
 $baserenderer = $renderer->get_base_renderer();
 if ($section) {
     if ($course->remuicourseformat && $course->coursedisplay) {
-        $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer));
+        $renderer->render_single_section(
+            new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+        );
     }
 }
 if ($course->remuicourseformat && $course->coursedisplay && !$section) {
-	$renderer->render_single_list_section(new \format_remuiformat\output\format_remuiformat_single_section($course, $baserenderer));
+    $renderer->render_single_list_section(new \format_remuiformat\output\format_remuiformat_single_section($course, $baserenderer));
 } else if ($displaysection && !$course->remuicourseformat) {
-    $renderer->render_single_section(new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer));
-} else if (!$displaysection){
+    $renderer->render_single_section(
+        new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+    );
+} else if (!$displaysection) {
     $renderer->render_all_sections(new \format_remuiformat\output\format_remuiformat_section($course, $baserenderer));
 }

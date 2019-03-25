@@ -1,6 +1,26 @@
-<li id="section-{{{index}}}" class="card section main clearfix" role="region" style="width: 90%; margin-left: auto; margin-right:auto;" aria-label="">
+{{#addsection}}
+<li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="">
+   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border d-flex align-items-center " style="clear:both;">
+      {{#numsections}}
+         <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
+
+         {{#strremovesection}}
+         <a href="{{{removeurl}}}" class="{{removeurlclass}}">{{{removeicon}}} {{{strremovesection}}}</a>
+         {{/strremovesection}}
+      {{/numsections}}
+
+      {{^numsections}}
+         <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
+      {{/numsections}}
+   </div>
+</li>
+{{/addsection}}
+
+{{^addsection}}
+<li id="section-{{{index}}}" class="card section main clearfix mb-4 wdm-card" role="region" style="" aria-label="">
+   {{#highlighted}}<div class="list-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
    <span class="hidden sectionname">{{{ title }}}</span>
-   <div class="content card-block p-25 remui-list-content-border" style="clear:both;">
+   <div class="content card-block px-15 py-15 py-3 px-3 remui-list-content-border" style="clear:both;">
       <div class="row d-block">
         <div class="left side float-left">
           {{{ leftside }}}
@@ -19,15 +39,15 @@
             </a>
          {{/editing}}
       </h4>
-        {{{ hiddenmessage }}}
+      {{{ hiddenmessage }}}
+      <div class="summary card-text {{#expanded}}hide{{/expanded}}">{{{summary}}}</div>
       {{#availability}}
       <div class="section_availability badge badge-pill badge-info mb-10">
         {{{availability}}}
       </div>
       {{/availability}}
-      <div class="summary card-text {{#expanded}}hide{{/expanded}}">{{{summary}}}</div>
       <div class="section-summary-activities mdl-right {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div>
    </div>
    <span class="hidden sectionname">{{{ title }}}</span>
 </li>
-
+{{/addsection}}

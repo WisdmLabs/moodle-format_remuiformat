@@ -15,15 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'format_singleactivity'
+ * Strings for component 'format_remuiformat'
  *
  * @package    format_remuiformat
- * @copyright  2017 Wisdmlabs
+ * @copyright  2019 Wisdmlabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 // Plugin Name.
-$string['pluginname'] = 'Edwiser RemUI Course Formats';
+$string['pluginname'] = 'Edwiser Course Formats';
 
 // Settings.
 $string['defaultcoursedisplay'] = 'Course display default';
@@ -69,7 +69,7 @@ $string['newsectionname'] = 'New name for topic {$a}';
 $string['currentsection'] = 'This topic';
 // Activity.
 $string['viewactivity'] = 'View Activity';
-$string['markcomplete'] = 'Mark as Complete';
+$string['markcomplete'] = 'Mark Complete';
 $string['grade'] = 'Grade';
 $string['notattempted'] = 'Not Attempted';
 $string['subscribed'] = "Subscribed";
@@ -78,6 +78,8 @@ $string['completed'] = "Completed";
 $string['notcompleted'] = 'Not Completed';
 $string['progress'] = 'Progress';
 
+$string['showless'] = 'Show Less';
+$string['showmore'] = 'Show More';
 
 // For list.
 
@@ -100,11 +102,11 @@ $string['expanded'] = 'Expand All';
 $string['collapsed'] = 'Collapse All';
 
 // GDPR.
-$string['privacy:metadata'] = 'The RemUI format plugin does not store any personal data.';
+$string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store any personal data.';
 
-// License.
-$string['licenseerror'] = 'You are using non-licensed version of <strong>RemUI.</strong> Please activate your license <a href="{$a}">here</a> to use <strong>RemUI Course Format.</strong>';
-
-// Validation
-
+// Validation.
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
+
+// activities completed text
+$string['outof'] = 'out of';
+$string['activitiescompleted'] = 'activities completed';

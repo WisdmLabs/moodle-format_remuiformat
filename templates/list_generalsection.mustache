@@ -3,80 +3,81 @@
         --remuicourseimage: url({{{remuicourseimage}}});
     }
 </style>
-<li id="section-0" class="first-section-li section main clearfix mb-25" role="region" aria-label="{{{generalsectiontitle}}}">
-  <div class="p-25 course-cover-image" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});">
-      <div class="text-white">
-        <div class="page-title mb-15">{{{generalsectiontitle}}}</div>
-        <div class="font-size-14 summary">{{{ generalsectionsummary }}}</div>
-      </div>
-      <div class="container teacher-img">
-        <div class="row text-white mt-10">
-        {{#teachers}}
-          {{{teacherimg}}}
-        {{/teachers}}
+<li id="section-0" class="first-section-li section main clearfix mb-25 mb-4 m-b-2" role="region" aria-label="{{{generalsectiontitle}}}">
+    <div class="px-15 py-10 px-3 py-2 p-x-1 p-y-1 course-cover-image" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});">
+        <div class="text-white">
+            <div class="font-size-24 mb-15 mb-3 wdm-generalsectiontitle">{{{generalsectiontitle}}}</div>
+            <div class="font-size-14 summary">{{{ generalsectionsummary }}}</div>
         </div>
-      </div>
-  </div>
 
-   <span class="hidden sectionname">{{{generalsectiontitle}}}</span>
+        <div class="text-white mt-10 d-flex" style="justify-content: flex-end;">
+            {{#teachers}}
+                {{{teacherimg}}}
+            {{/teachers}}
+        </div>
+    </div>
 
-   <div class="content">
-   {{#percentage}}
+    <span class="hidden sectionname">{{{generalsectiontitle}}}</span>
+
+    <div class="content">
+    {{#percentage}}
       <div class="progress progress-square">
-         <div class="progress-bar" style="width: {{{percentage}}}%;" role="progressbar">
-            <span class="sr-only">{{{percentage}}}% Complete</span>
-         </div>
-      </div>
-   {{/percentage}}
-            <div class="section_availability badge badge-pill badge-info mb-10"></div>
-               <ul class="section first-section img-text row p-0 pb-20 d-flex justify-content-between text-center showhideactivity">
-         {{#activities}}
-               <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10" id="module-1">
-                  <div>
-                    {{#editing}}
-                       {{{leftside}}}
-                    {{/editing}}
-                     <div>
-                        <div class="activityinstance p-0 d-inline-block">
-                           {{{title}}}
+            <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%;" role="progressbar">
+                <span class="sr-only">{{{percentage}}}% Complete</span>
+           </div>
+        </div>
+    {{/percentage}}
+        <div class="section_availability badge badge-pill badge-info mb-10"></div>
+            <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-center text-center showhideactivity">
+                {{#activities}}
+                    <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 pt-3" id="module-1">
+                        <div>
+                            {{#editing}}
+                                {{{leftside}}}
+                            {{/editing}}
+                            <div>
+                                <div class="activityinstance p-0 d-inline-block">
+                                    {{{title}}}
+                                </div>
+                                <div class="actions">
+                                    {{{completion}}}
+                                </div>
+                                {{{availstatus}}}
+                            </div>
                         </div>
-                        <div class="actions">
-                           {{{completion}}}
-                        </div>
-                        {{{availstatus}}}
-
-                     </div>
-                  </div>
-               </li>
-         {{/activities}}
-               </ul>
+                    </li>
+                {{/activities}}
+            </ul>
             <div class="text-center showactivitywrapper" style="display: none;">
-            <button class="showactivity btn btn-primary px-25 show" style="display: none;">Show More</button>
+                <button class="showactivity btn btn-primary px-25 show" style="display: none;">Show More</button>
             </div>
-   </div>
+        </div>
 </li>
-
-
 {{#js}}
+require(['jquery'], function(jQuery) {
+
     // show hide extra activities in general/first section
     jQuery('.showactivity').on('click', function() {
         jQuery('.section.first-section').toggleClass('showhideactivity');
         if(jQuery(this).hasClass('show')) {
-            jQuery(this).text('{{# str }} showless, theme_remui {{/ str }}');
+            jQuery(this).text('{{# str }} showless, format_remuiformat {{/ str }}');
             jQuery(this).toggleClass('show');
         } else {
-            jQuery(this).text('{{# str }} showmore, theme_remui {{/ str }}');
+            jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
             jQuery(this).toggleClass('show');
         }
     });
 
-    // show load more button conditionally
-    jQuery(window).resize(function(){
+    showmorebutton();
+
+    // Show load more button conditionally on window resize and load.
+    function showmorebutton() {
         var wwidth = jQuery(window).width();
         var count = jQuery(".first-section-activity").length;
 
+        // Show load more button conditionally on window load.
         if(wwidth > 991) {
-            if(count > 6) {
+            if(count > 4) {
                 jQuery('.showactivity').removeAttr( 'style' );
                 jQuery('.showactivitywrapper').removeAttr( 'style' );
                 }
@@ -103,59 +104,6 @@
                 jQuery('.showactivitywrapper').css('display', 'none');
                 }
         }
-
-      var containerwidth = jQuery('.teacher-img').width();
-      
-      if(containerwidth > 760) {
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-8');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-2');
-
-          var car = jQuery('#teachersCarousel');          
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-2');
-      } else if(containerwidth > 367 && containerwidth < 761) {
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-6');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-2');
-
-          var car = jQuery('#teachersCarousel');
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-4');
-      } else if(containerwidth > 200 && containerwidth < 367) {
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-2');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-3');
-
-          var car = jQuery('#teachersCarousel');
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-7');
-      }
-      else if(containerwidth < 200) {
-          
-          var ele = jQuery('.space-div');
-          ele.removeAttr('class');
-          ele.attr('class', 'space-div col-1');
-
-          var car = jQuery('.teacher-label');
-          car.removeAttr('class');
-          car.attr('class', 'teacher-label col-2');
-
-          var car = jQuery('#teachersCarousel');
-          car.removeAttr('class');
-          car.attr('class', 'carousel slide col-8');
-      }
-    });
+    }
+});
 {{/js}}

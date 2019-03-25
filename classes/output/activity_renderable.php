@@ -14,6 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Activity Renderable - A topics based format that uses card layout to diaply the content.
+ *
+ * @package course/format
+ * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace format_remuiformat\output;
 defined('MOODLE_INTERNAL') || die();
 
@@ -46,7 +55,6 @@ class format_remuiformat_activity implements renderable, templatable {
      * Constructor
      */
     public function __construct($course, $displaysection, $renderer) {
-        global $PAGE;
         $this->displaysection = $displaysection;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
@@ -63,7 +71,8 @@ class format_remuiformat_activity implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE, $CFG;
+        global $PAGE, $CFG;
+        unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
         $renderer = $PAGE->get_renderer('format_remuiformat');
@@ -117,13 +126,18 @@ class format_remuiformat_activity implements renderable, templatable {
                     $this->displaysection
                 );
                 $export->remuicourseformatcard = true;
-                $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
+                $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
+
                 break;
             case REMUI_LIST_FORMAT:
                 $export->remuicourseformatlist = true;
-                $export->activities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, $this->displaysection);
-                $export->activities .= $this->courserenderer->course_section_add_cm_control($this->course, $this->displaysection, $this->displaysection);
-                $PAGE->requires->js(new \moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
+                $export->activities = $this->courserenderer->course_section_cm_list(
+                    $this->course, $currentsection, $this->displaysection
+                );
+                $export->activities .= $this->courserenderer->course_section_add_cm_control(
+                    $this->course, $this->displaysection, $this->displaysection
+                );
+                $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
                 break;
         }
         return $export;
@@ -142,7 +156,9 @@ class format_remuiformat_activity implements renderable, templatable {
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
+
                 $completiondata = $completioninfo->get_data($mod, true);
+
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
@@ -153,6 +169,11 @@ class format_remuiformat_activity implements renderable, templatable {
                         $mod,
                         $displayoptions
                     );
+                    // Activities which are completed conditionally.
+                    $activitydetails->autocompletion = 0;
+                    if (strpos($activitydetails->completion, 'autocompletion') !== false) {
+                        $activitydetails->autocompletion = 1;
+                    }
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->move = course_get_cm_move($mod, $section->section);
@@ -163,24 +184,21 @@ class format_remuiformat_activity implements renderable, templatable {
                     $this->courserenderer->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
+
+                // In case of label activity send full text of cm to open in modal.
+                if ($mod->modname == 'label') {
+                    $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
+                    $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                }
+
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
                     $activitydetails->hidden = 1;
                 }
                 $availstatus = $this->courserenderer->course_section_cm_availability($mod, $modnumber);
-                $context = \context_course::instance($this->course->id);
-                $roles = get_user_roles($context, $USER->id);
-                foreach ($roles as $role) {
-                    $rolestr[] = role_get_name($role, $context);
-                }
-                $currentrole = implode(', ', $rolestr);
-                if (is_siteadmin() || $currentrole == 'Teacher' || $currentrole == 'Non-editing teacher') {
-                    $activitydetails->availstatus = "";
-                } else {
-                    if ($availstatus != "") {
-                        $activitydetails->availstatus = $availstatus;
-                    }
+                if ($availstatus != "") {
+                    $activitydetails->availstatus = $availstatus;
                 }
                 if ($PAGE->user_is_editing()) {
                     $activitydetails->editing = 1;

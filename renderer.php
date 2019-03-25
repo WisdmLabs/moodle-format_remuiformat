@@ -19,6 +19,7 @@
  *
  * @package course/format
  * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -55,7 +56,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
     /**
      * Get curserenderer object
-     * @return object courserenderer 
+     * @return object courserenderer
      */
     public function get_base_renderer() {
         return $this->courserenderer;
@@ -125,10 +126,10 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $back = $sectionno - 1;
         while ($back > 0 and empty($links['previous'])) {
             if ($canviewhidden || $sections[$back]->uservisible) {
-                $params = array('class' => 'bg-primary');
+                $params = array('class' => 'btn btn-inverse btn-sm');
                 $prevsectionname = get_section_name($course, $sections[$back]);
                 if (!$sections[$back]->visible) {
-                    $params = array('class' => 'dimmed_text');
+                    $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
                 $previouslink .= (strlen($prevsectionname) > 15) ? substr($prevsectionname, 0, 15)."..." : $prevsectionname;
@@ -141,9 +142,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $numsections = course_get_format($course)->get_last_section_number();
         while ($forward <= $numsections and empty($links['next'])) {
             if ($canviewhidden || $sections[$forward]->uservisible) {
-                $params = array('class' => 'bg-primary');
+                $params = array('class' => 'btn btn-inverse btn-sm');
                 if (!$sections[$forward]->visible) {
-                    $params = array('class' => 'dimmed_text');
+                    $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $nextsectionname = get_section_name($course, $sections[$forward]);
                 $nextlink = (strlen($nextsectionname) > 15) ? substr($nextsectionname, 0, 15)."..." : $nextsectionname;
@@ -165,6 +166,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return string HTML to output.
      */
     public function section_activity_summary($section, $course, $mods) {
+        unset($mods);
         $modinfo = get_fast_modinfo($course);
         $output = array(
             "activityinfo" => "",
@@ -174,7 +176,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             return $output;
         }
 
-        // Generate array with count of activities in this section:
+        // Generate array with count of activities in this section.
         $sectionmods = array();
         $total = 0;
         $complete = 0;
@@ -208,11 +210,11 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         }
 
         if (empty($sectionmods)) {
-            // No sections
+            // No sections.
             return $output;
         }
 
-        // Output section activities summary:
+        // Output section activities summary.
         $o = '';
         $o .= html_writer::start_tag('div', array('class' => 'section-summary-activities pb-10'));
         foreach ($sectionmods as $mod) {
@@ -223,7 +225,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $o .= html_writer::end_tag('div');
         $output['activityinfo'] = $o;
         $o = '';
-        // Output section completion data
+        // Output section completion data.
         if ($total > 0) {
             $a = new stdClass;
             $a->complete = $complete;
@@ -235,11 +237,15 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
             $o .= html_writer::start_tag('div', array('class' => 'd-flex'));
             $o .= html_writer::start_tag('div', array('class' => 'section-summary-percentage px-10'));
-            $o .= html_writer::tag('p', get_string('progress', 'format_remuiformat'), array('class' => 'progress-title m-0 text-muted'));
+            $o .= html_writer::tag(
+                'p', get_string('progress', 'format_remuiformat'), array('class' => 'progress-title m-0 text-muted')
+            );
             $o .= html_writer::tag('p', $a->complete.' / '.$a->total, array('class' => 'activity-count m-0 text-right'));
             $o .= html_writer::end_tag('div');
             $o .= html_writer::start_tag('div', array('class' => 'pchart', 'data-percent' => $percentage));
-            $o .= html_writer::tag('span', ' <i class="fa fa-check" aria-hidden="true"></i>', array('class' => 'activity-check '.$completed));
+            $o .= html_writer::tag(
+                'span', ' <i class="fa fa-check" aria-hidden="true"></i>', array('class' => 'activity-check '.$completed)
+            );
             $o .= html_writer::end_tag('div');
             $o .= html_writer::end_tag('div');
         }
@@ -487,6 +493,104 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         }
     }
 
+
+    /**
+     * Returns controls in the bottom of the page to increase/decrease number of sections
+     *
+     * @param stdClass $course
+     * @param int|null $sectionreturn
+     * @return string
+     */
+    public function change_number_sections_context($course, $sectionreturn = null) {
+        $coursecontext = context_course::instance($course->id);
+        if (!has_capability('moodle/course:update', $coursecontext)) {
+            return '';
+        }
+
+        $options = course_get_format($course)->get_format_options();
+        $supportsnumsections = array_key_exists('numsections', $options);
+
+        $addnewsection = new stdClass;
+        $addnewsection->addsection = 1;
+        $addnewsection->divid = 'changenumsections';
+
+        if ($supportsnumsections) {
+
+            $addnewsection->numsections = 1;
+            // Current course format has 'numsections' option, which is very confusing and we suggest course format.
+            // developers to get rid of it (see MDL-57769 on how to do it).
+            // Display "Increase section" / "Decrease section" links.
+
+            $straddsection = get_string('increasesections', 'moodle');
+
+            // Echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));.
+            // Increase number of sections.
+            $url = new moodle_url('/course/changenumsections.php',
+                array('courseid' => $course->id,
+                      'increase' => true,
+                      'sesskey' => sesskey()));
+
+            $icon = $this->output->pix_icon('t/switch_plus', $straddsection);
+
+            $addnewsection->straddsection = $straddsection;
+            $addnewsection->addurl = $url;
+            $addnewsection->addicon = str_replace('icon', 'fa-4x d-block', $icon);
+            $addnewsection->addurlclass = 'increase-sections';
+
+            // Echo html_writer::link($url, $icon.get_accesshide($straddsection), array('class' => 'increase-sections'));.
+
+            if ($course->numsections > 0) {
+                // Reduce number of sections sections.
+                $strremovesection = get_string('reducesections', 'moodle');
+                $url = new moodle_url('/course/changenumsections.php',
+                    array('courseid' => $course->id,
+                          'increase' => false,
+                          'sesskey' => sesskey()));
+                $icon = $this->output->pix_icon('t/switch_minus', $strremovesection);
+
+                $addnewsection->strremovesection = $strremovesection;
+                $addnewsection->removeurl = $url;
+                $addnewsection->removeicon = str_replace('icon', 'fa-4x d-block', $icon);
+                $addnewsection->removeurlclass = 'reduce-sections';
+
+                // Echo html_writer::link($url, $icon.get_accesshide($strremovesection), array('class' => 'reduce-sections'));.
+            }
+
+            // Echo html_writer::end_tag('div');.
+
+        } else if (course_get_format($course)->uses_sections()) {
+            // Current course format does not have 'numsections' option but it has multiple sections suppport.
+            // Display the "Add section" link that will insert a section in the end.
+            // Note to course format developers: inserting sections in the other positions should check both
+            // capabilities 'moodle/course:update' and 'moodle/course:movesections'.
+
+            $addnewsection->numsections = 0;
+
+            // Echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));.
+            if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
+                $straddsections = get_string('addsections', 'format_'.$course->format);
+            } else {
+                $straddsections = get_string('addsections');
+            }
+            $url = new moodle_url('/course/changenumsections.php',
+                ['courseid' => $course->id, 'insertsection' => 0, 'sesskey' => sesskey()]);
+            if ($sectionreturn !== null) {
+                $url->param('sectionreturn', $sectionreturn);
+            }
+            $icon = $this->output->pix_icon('t/add', $straddsections);
+            // Echo html_writer::link($url, $icon . $straddsections,
+            // array('class' => 'add-sections', 'data-add-sections' => $straddsections));.
+
+            $addnewsection->straddsections = $straddsections;
+            $addnewsection->url = $url;
+            $addnewsection->icon = str_replace('icon', 'fa-4x d-block', $icon);
+
+            // Echo html_writer::end_tag('div');.
+        }
+
+        return $addnewsection;
+    }
+
     /**
      * Generate the content to displayed on the left part of a section
      * before course modules are included
@@ -498,7 +602,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      */
     public function section_left_content($section, $course, $onsectionpage) {
         $o = '';
-
+        unset($onsectionpage);
         if ($section->section != 0) {
             // Only in the non-general sections.
             if (course_get_format($course)->is_section_current($section)) {
@@ -515,26 +619,24 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return
      */
     public function render_all_sections(\format_remuiformat\output\format_remuiformat_section $section) {
-        if ($this->check_license()) {
-            $templatecontext = $section->export_for_template($this);
-            $rformat = $this->settings['remuicourseformat'];
-            if (empty($rformat)) {
-                $rformat = REMUI_CARD_FORMAT;
-            }
-            if (isset($templatecontext->error)) {
-                print_error($templatecontext->error);
-            } else {
-                switch ($rformat) {
-                    case REMUI_CARD_FORMAT:
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                    case REMUI_LIST_FORMAT:
-                        echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
-                        break;
-                    default:
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                }
+        $templatecontext = $section->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if (empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            switch ($rformat) {
+                case REMUI_CARD_FORMAT:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
+                case REMUI_LIST_FORMAT:
+                    echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
+                    break;
+                default:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
             }
         }
     }
@@ -544,27 +646,25 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return
      */
     public function render_single_list_section(\format_remuiformat\output\format_remuiformat_single_section $section) {
-        if ($this->check_license()) {
-            $templatecontext = $section->export_for_template($this);
-            $rformat = $this->settings['remuicourseformat'];
-            if (empty($rformat)) {
-                $rformat = REMUI_CARD_FORMAT;
-            }
-            if (isset($templatecontext->error)) {
-                print_error($templatecontext->error);
-            } else {
-                switch ($rformat) {
-                    case REMUI_CARD_FORMAT:
-                            echo "REMUI_CARD_FORMAT";
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                    case REMUI_LIST_FORMAT:
-                        echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
-                        break;
-                    default:
-                        echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                        break;
-                }
+        $templatecontext = $section->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if (empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            switch ($rformat) {
+                case REMUI_CARD_FORMAT:
+                        echo "REMUI_CARD_FORMAT";
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
+                case REMUI_LIST_FORMAT:
+                    echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
+                    break;
+                default:
+                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+                    break;
             }
         }
     }
@@ -575,108 +675,90 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @return
      */
     public function render_single_section(\format_remuiformat\output\format_remuiformat_activity $activity) {
-        if ($this->check_license()) {
-            $templatecontext = $activity->export_for_template($this);
-            $rformat = $this->settings['remuicourseformat'];
-            if (empty($rformat)) {
-                $rformat = REMUI_CARD_FORMAT;
-            }
-            switch ($rformat) {
-                case REMUI_CARD_FORMAT:
-                    purge_all_caches();
-                    echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-                    break;
-                case REMUI_LIST_FORMAT:
-                    echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
-                    break;
-                default:
-                    echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-                    break;
-            }
+        $templatecontext = $activity->export_for_template($this);
+        $rformat = $this->settings['remuicourseformat'];
+        if (empty($rformat)) {
+            $rformat = REMUI_CARD_FORMAT;
+        }
+        switch ($rformat) {
+            case REMUI_CARD_FORMAT:
+                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
+                break;
+            case REMUI_LIST_FORMAT:
+                echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
+                break;
+            default:
+                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
+                break;
         }
     }
 
-    private function check_license() {
-        global $DB, $CFG;
-        $pluginslug = 'remui';
-        $status = $DB->get_field_select('config_plugins', 'value', 'name = :name', array('name' => 'edd_' . $pluginslug . '_license_status'), IGNORE_MISSING);
-        $templatecontext = new \stdClass();
-        $templatecontext->licenseurl = $CFG->wwwroot.'/admin/settings.php?section=themesettingremui';
-        if ($status != "valid") {
-            echo $this->render_from_template('format_remuiformat/license_error', $templatecontext);
-            return false;
-        }
-        return true;
-    }
-
-    public function abstractHTMLContents($html, $maxLength=100){
+    public function abstract_html_contents($html, $maxlength = 100) {
         mb_internal_encoding("UTF-8");
-        $printedLength = 0;
+        $printedlength = 0;
         $position = 0;
         $tags = array();
-        $newContent = '';
-
+        $newcontent = '';
 
         $html = $content = preg_replace("/<img[^>]+\>/i", "", $html);
 
-        while ($printedLength < $maxLength && preg_match('{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position))
-        {
-            list($tag, $tagPosition) = $match[0];
+        while ($printedlength < $maxlength && preg_match(
+            '{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position)
+            ) {
+            list($tag, $tagposition) = $match[0];
             // Print text leading up to the tag.
-            $str = mb_strcut($html, $position, $tagPosition - $position);
-            if ($printedLength + mb_strlen($str) > $maxLength){
-                $newstr = mb_strcut($str, 0, $maxLength - $printedLength);
-                $newstr = preg_replace('~\s+\S+$~', '', $newstr);  
-                $newContent .= $newstr;
-                $printedLength = $maxLength;
+            $str = mb_strcut($html, $position, $tagposition - $position);
+            if ($printedlength + mb_strlen($str) > $maxlength) {
+                $newstr = mb_strcut($str, 0, $maxlength - $printedlength);
+                $newstr = preg_replace('~\s+\S+$~', '', $newstr);
+                $newcontent .= $newstr;
+                $printedlength = $maxlength;
                 break;
             }
-            $newContent .= $str;
-            $printedLength += mb_strlen($str);
+            $newcontent .= $str;
+            $printedlength += mb_strlen($str);
             if ($tag[0] == '&') {
                 // Handle the entity.
-                $newContent .= $tag;
-                $printedLength++;
+                $newcontent .= $tag;
+                $printedlength++;
             } else {
                 // Handle the tag.
-                $tagName = $match[1][0];
+                $tagname = $match[1][0];
                 if ($tag[1] == '/') {
-                  // This is a closing tag.
-                  $openingTag = array_pop($tags);
-                  assert($openingTag == $tagName); // check that tags are properly nested.
-                  $newContent .= $tag;
-                } else if ($tag[mb_strlen($tag) - 2] == '/'){
-              // Self-closing tag.
-                $newContent .= $tag;
-            } else {
-              // Opening tag.
-              $newContent .= $tag;
-              $tags[] = $tagName;
+                    // This is a closing tag.
+                    $openingtag = array_pop($tags);
+                    assert($openingtag == $tagname); // Check that tags are properly nested.
+                    $newcontent .= $tag;
+                } else if ($tag[mb_strlen($tag) - 2] == '/') {
+                    // Self-closing tag.
+                    $newcontent .= $tag;
+                } else {
+                      // Opening tag.
+                      $newcontent .= $tag;
+                      $tags[] = $tagname;
+                }
             }
-          }
 
-          // Continue after the tag.
-          $position = $tagPosition + mb_strlen($tag);
+            // Continue after the tag.
+            $position = $tagposition + mb_strlen($tag);
         }
 
         // Print any remaining text.
-        if ($printedLength < $maxLength && $position < mb_strlen($html))
-          {
-            $newstr = mb_strcut($html, $position, $maxLength - $printedLength);
+        if ($printedlength < $maxlength && $position < mb_strlen($html)) {
+            $newstr = mb_strcut($html, $position, $maxlength - $printedlength);
             $newstr = preg_replace('~\s+\S+$~', '', $newstr);
-            $newContent .= $newstr;
-          }
+            $newcontent .= $newstr;
+        }
 
-        // append ...
-        if(strlen(strip_tags(format_text($html))) > $maxLength){
-            $newContent .= '...';
+        // Append.
+        if (strlen(strip_tags(format_text($html))) > $maxlength) {
+            $newcontent .= '...';
         }
         // Close any open tags.
-        while (!empty($tags))
-          {
-            $newContent .= sprintf('</%s>', array_pop($tags));
-          }
+        while (!empty($tags)) {
+            $newcontent .= sprintf('</%s>', array_pop($tags));
+        }
 
-        return $newContent;
+        return $newcontent;
     }
 }

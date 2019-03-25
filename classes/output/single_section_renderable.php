@@ -14,6 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Sinigle Section Renderable - A topics based format that uses card layout to diaply the content.
+ *
+ * @package course/format
+ * @subpackage remuiformat
+ * @copyright  2019 Wisdmlabs
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace format_remuiformat\output;
 defined('MOODLE_INTERNAL') || die();
 
@@ -52,7 +61,6 @@ class format_remuiformat_single_section implements renderable, templatable
      * Constructor
      */
     public function __construct($course, $renderer) {
-        global $PAGE;
         $this->courseformat = course_get_format($course);
         $this->course = $this->courseformat->get_course();
         $this->courserenderer = $renderer;
@@ -68,7 +76,7 @@ class format_remuiformat_single_section implements renderable, templatable
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $USER, $PAGE, $DB, $OUTPUT, $CFG;
+        global $PAGE, $DB, $OUTPUT, $CFG;
 
         $export = new \stdClass();
         $renderer = $PAGE->get_renderer('format_remuiformat');
@@ -80,19 +88,21 @@ class format_remuiformat_single_section implements renderable, templatable
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
 
         if ($rformat == REMUI_CARD_FORMAT) {
-            $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
+            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
+            $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
             $this->get_card_format_context($export, $renderer, $editing, $rformat);
         }
 
         if ($rformat == REMUI_LIST_FORMAT) {
-            $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
+            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
+            $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
             $this->get_list_format_context($export, $renderer, $editing, $rformat);
         }
 
         // Add Section Url.
-        if ($editing) {
-            $export->addsection = $renderer->change_number_sections($this->course, 0);
-        }
+        // if ($editing) {
+        // $export->addsection = $renderer->change_number_sections($this->course, 0);
+        // }
         return  $export;
     }
 
@@ -123,7 +133,10 @@ class format_remuiformat_single_section implements renderable, templatable
 
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
-            $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list($this->course, $generalsection, 0);
+
+            $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list(
+                $this->course, $generalsection, 0
+            );
             $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         }
 
@@ -136,17 +149,16 @@ class format_remuiformat_single_section implements renderable, templatable
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
 
-        // Default view for all sections
+        // Default view for all sections.
         $defaultview = $this->settings['remuidefaultsectionview'];
         $export->defaultview = $defaultview;
-        if($defaultview == 1) {
+        if ($defaultview == 1) {
             $export->expanded = false;
             $export->collapsed = true;
-        }
-        else {
+        } else {
             $export->collapsed = true;
         }
-        // User id for toggle
+        // User id for toggle.
         $export->user_id = $USER->id;
         // Course Information.
         $export->course_id = $this->course->id;
@@ -154,11 +166,10 @@ class format_remuiformat_single_section implements renderable, templatable
 
         // General Section Details.
         $generalsection = $modinfo->get_section_info(0);
-        if($editing){
+        if ($editing) {
             $export->generalsection['generalsectiontitlename'] = $this->courseformat->get_section_name($generalsection);
             $export->generalsection['generalsectiontitle'] = $renderer->section_title($generalsection, $this->course);
-        }
-        else {
+        } else {
             $export->generalsection['generalsectiontitle'] = $this->courseformat->get_section_name($generalsection);
         }
         $generalsectionsummary = $renderer->format_summary_text($generalsection);
@@ -176,20 +187,23 @@ class format_remuiformat_single_section implements renderable, templatable
         // For right side.
         $rightside = $renderer->section_right_content($generalsection, $this->course, false);
         $export->generalsection['rightside'] = $rightside;
-        $displayTeacher = $this->settings['remuiteacherdisplay'];
-        if($displayTeacher == 1){
+        $displayteacher = $this->settings['remuiteacherdisplay'];
+        if ($displayteacher == 1) {
             $role = $DB->get_record('role', array('shortname' => 'editingteacher'));
             $teachers = null;
-            if(!empty($role)){
+            if (!empty($role)) {
                 $teachers = get_role_users($role->id, $coursecontext);
             }
             // For displaying teachers.
             if (!empty($teachers)) {
                 $count = 1;
                 $export->generalsection['teachers'] = $teachers;
-                $export->generalsection['teachers']['teacherimg'] = '<div class="space-div col-8"></div><div class="teacher-label col-1"><span>'.get_string('teachers', 'format_remuiformat').'</span></div>
-                <div class="carousel slide col-3" data-ride="carousel" id="teachersCarousel">
-                <div class="carousel-inner">';
+                $export->generalsection['teachers']['teacherimg'] =
+                '<div class="teacher-label"><span>'
+                .get_string('teachers', 'format_remuiformat').
+                '</span></div>
+                <div class="carousel slide" data-ride="carousel" id="teachersCarousel">
+                <div class="carousel-inner text-center">';
 
                 foreach ($teachers as $teacher) {
                     if ($count % 2 == 0) {
@@ -200,10 +214,13 @@ class format_remuiformat_single_section implements renderable, templatable
                     }
                     $teacher->imagealt = $teacher->firstname . ' ' . $teacher->lastname;
                     if ($count == 1) {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item active"><div class="teacher-img-container">' . $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .=
+                        '<div class="carousel-item active"><div class="teacher-img-container">'
+                        . $OUTPUT->user_picture($teacher);
 
                     } else {
-                        $export->generalsection['teachers']['teacherimg'] .= '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
+                        $export->generalsection['teachers']['teacherimg'] .=
+                        '<div class="carousel-item"><div class="teacher-img-container">'. $OUTPUT->user_picture($teacher);
                     }
                     $nextteacher = next($teachers);
                     if (false != $nextteacher) {
@@ -214,12 +231,13 @@ class format_remuiformat_single_section implements renderable, templatable
                     $count += 1;
                 }
                 if (count($teachers) > 1) {
-                    $export->generalsection['teachers']['teacherimg'] .= '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
-                            <i class="fas fa-chevron-left"></i>
+                    $export->generalsection['teachers']['teacherimg'] .=
+                    '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
+                            <i class="fa fa-chevron-left"></i>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
-                            <i class="fas fa-chevron-right"></i>
+                            <i class="fa fa-chevron-right"></i>
                             <span class="sr-only">Next</span>
                         </a></div>';
                 } else {
@@ -246,7 +264,6 @@ class format_remuiformat_single_section implements renderable, templatable
             // Get current section info.
             $currentsection = $modinfo->get_section_info($section);
 
-
             // Check if the user has permission to view this section or not.
             $showsection = $currentsection->uservisible ||
                     ($currentsection->visible && !$currentsection->available && !empty($currentsection->availableinfo)) ||
@@ -272,7 +289,7 @@ class format_remuiformat_single_section implements renderable, templatable
             }
             $sectiondetails->singlepageurl = $singlepageurl;
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            if(!empty($currentsection->summary)) {
+            if (!empty($currentsection->summary)) {
                 $sectiondetails->summary = $renderer->format_summary_text($currentsection);
             }
 
@@ -288,14 +305,38 @@ class format_remuiformat_single_section implements renderable, templatable
             if ($rformat == REMUI_CARD_FORMAT) {
                 $sectiondetails->activityinfo = $extradetails['activityinfo'];
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
+                // Set Marker.
+                if ($this->course->marker == $section) {
+                    $sectiondetails->highlighted = 1;
+                }
                 $sections[] = $sectiondetails;
+
             } else if ($rformat == REMUI_LIST_FORMAT) {
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
-                $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list($this->course, $currentsection, 0);
-                $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control($this->course, $currentsection->section, 0);
+                $sectiondetails->sectionactivities = $this->courserenderer->course_section_cm_list(
+                    $this->course, $currentsection, 0
+                );
+                $sectiondetails->sectionactivities .= $this->courserenderer->course_section_add_cm_control(
+                    $this->course, $currentsection->section, 0
+                );
+
+                // Set Marker.
+                if ($this->course->marker == $section) {
+                    $sectiondetails->highlighted = 1;
+                }
+
                 $sections[] = $sectiondetails;
             }
         }
+
+        // Add new sections button.
+        if ($editing) {
+            $temp = $renderer->change_number_sections_context($this->course, 0);
+            if (!empty($temp)) {
+                $sections[] = $temp;
+            }
+        }
+
         return $sections;
     }
 
@@ -369,7 +410,9 @@ class format_remuiformat_single_section implements renderable, templatable
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion($this->course,   $completioninfo, $mod, $displayoptions);
+                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
+                        $this->course,   $completioninfo, $mod, $displayoptions
+                    );
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);

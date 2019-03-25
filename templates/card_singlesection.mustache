@@ -1,35 +1,63 @@
-<div class="col-lg-4 col-md-6 col-sm-12 single-card-container">
-    <div class="single-card my-15 p-20">
-        <span class="sno py-5 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+{{#addsection}}
+<div id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 single-card-container">
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 w-p100 d-flex align-items-center">
+        {{#numsections}}
+            <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
+
+            {{#strremovesection}}
+            <a href="{{{removeurl}}}" class="{{removeurlclass}}">{{{removeicon}}} {{{strremovesection}}}</a>
+            {{/strremovesection}}
+        {{/numsections}}
+
+        {{^numsections}}
+            <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
+        {{/numsections}}
+    </div>
+</div>
+{{/addsection}}
+
+{{^addsection}}
+<div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3">
+        {{#highlighted}}<div class="card-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
+        <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{{ optionmenu }}}
-        {{{ hiddenmessage }}}
-        <div class="card-content">
+        <div class="card-content pb-10 pb-2">
             <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
-            <p class="section-summary border-0">{{{ summary }}}</p>
+            {{{ hiddenmessage }}}
+            <div class="section-summary-activities">
+                {{#activityinfo}}
+                    <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
+                {{/activityinfo}}
+            </div>
+            {{{ summary }}}
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
-            <div class="section-summary-activities pb-20">
-                {{#activityinfo}}
-                    <p class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</p>
-                {{/activityinfo}}
-            </div>
         </div>
-        <div class="section-action-container d-flex pt-10 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-            <div class="d-flex align-items-center">
+        <div class="section-action-container card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+            {{#progressinfo}}
+                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+            {{^progressinfo}}
+                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                    <div class="progress-bar bg-green-600" style="width: 0%;" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+
+            <div class="pl-15 p-l-1 flex-1">
                 <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remuiformat {{/str}}</a>
             </div>
             {{#progressinfo}}
-            <div class="d-flex">
-                <div class="section-summary-percentage px-10">
-                    <p class="progress-title m-0 text-muted">{{#str}} progress, format_remuiformat {{/str}}</p>
-                    <p class="progress-title m-0 {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ progress }}</p>
+                <div class="text-right pr-15 p-r-1 progress-text">
+                    {{ progress }}
                 </div>
-                <div class="pchart" data-percent="{{ percentage }}">
-                    <span class="activity-check {{ completed }}"><i class="fa fa-check" aria-hidden="true"></i></span>
-                </div>
-            </div>
             {{/progressinfo}}
         </div>
     </div>
 </div>
+{{/addsection}}
