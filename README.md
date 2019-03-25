@@ -63,22 +63,23 @@ Please ensure that your hardware and software complies with 'Requirements' in 'I
 
 The Edwiser Course Format is 'free' software under the terms of the GNU GPLv3 License, please see 'LICENSE.md'.
 
-The primary source is on add-git-downloadable-link
-
-If you download from the development area - https://github.com/WisdmLabs/moodle-courseformat_remuiformat - consider that
-the code is unstable and not for use in production environments.  This is because I develop the next version in stages
-and use GitHub as a means of backup.  Therefore the code is not finished, subject to alteration and requires testing.
+The primary source is on https://github.com/WisdmLabs/moodle-courseformat_remuiformat
 
 You have all the rights granted to you by the GPLv3 license.  If you are unsure about anything, then the
 FAQ - http://www.gnu.org/licenses/gpl-faq.html - is a good place to look.
 
-If you reuse any of the code then I kindly ask that you make reference to the format.
+If you reuse any of the code then we kindly ask that you make reference to the format.
 
 [(Back to top)](#table-of-contents)
 
 # Support
 
-Please contact us via forum https://forums.edwiser.org/category/42/request-a-feature for support. Otherwise, the 'Courses and course formats' forum: moodle.org/mod/forum/view.php?id=47 is an excellent place to ask questions.
+For all support queries related to Edwiser Site Monitor plugin you could email us at edwiser@wisdmlabs.com
+Apart from that you could raise your support queries in this forum too - https://forums.edwiser.org/category/41/edwiser-course-formats
+
+And if you wish to see any new features as part of the product then you could share your feature requests here
+forum https://forums.edwiser.org/category/42/request-a-feature for support.
+Together we could make this solution better for your Moodle.
 
 [(Back to top)](#table-of-contents)
 
