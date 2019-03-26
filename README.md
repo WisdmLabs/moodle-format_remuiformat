@@ -1,5 +1,3 @@
-<img src="https://git.wisdmlabs.net/edwiser/remuiformat/raw/dev/images/readme-img.png" align="right" />
-
 Edwiser Course Formats block plugin for Moodle
 ==============================================
 
@@ -46,7 +44,7 @@ Card Format is another standout course format in the offering. Edwiser Card Form
 
 # Plugin Version
 
-v0.9.0 - Plugin Released
+v1.0.0 - Plugin Released
 
 [(Back to top)](#table-of-contents)
 
@@ -85,6 +83,15 @@ Together we could make this solution better for your Moodle.
 
 # Installation
 
+1. Download remuiformat.zip file from the purchase receipt. 
+2. Open your Moodle website and go to Site administration > Plugins > Install plugins.
+3. Choose the remuiformat.zip’ file. Then click on Install plugin from zip file.
+4. Refresh your Moodle site or go to Site administration > Plugins > Plugin overview and click on Check for available updates.   
+5. In the list of plugins appearing, scroll down and click Upgrade Moodle database.
+6. The Plugins will get updated and installed in your Moodle database.
+
+Instructions to install using FTP-
+----------------------------------
 1. Ensure you have the version of Moodle as stated above in 'Required version of Moodle'.  This is essential as the
    format relies on underlying core code that is out of my control.
 2. Put Moodle in 'Maintenance Mode' (docs.moodle.org/en/admin/setting/maintenancemode) so that there are no
@@ -103,8 +110,9 @@ Together we could make this solution better for your Moodle.
 2. It is recommended but not essential to change all of the courses that use the format to another.  If this is
    not done Moodle will pick the last format in your list of formats to use but display in 'Edit settings' of the
    course the first format in the list.  You can then set the desired format.
-3. In '/course/format/' remove the folder 'remuiformat'.
-4. Put Moodle out of Maintenance Mode.
+3. Go to Site administration > Plugins > Plugin overview and go to Course Formats section, click on uninstall link for 'Edwiser Course Formats'.
+4. In '/course/format/' remove the folder 'remuiformat'.
+5. Put Moodle out of Maintenance Mode.
 
 [(Back to top)](#table-of-contents)
 
