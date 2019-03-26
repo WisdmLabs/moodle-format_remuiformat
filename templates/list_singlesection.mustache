@@ -1,0 +1,60 @@
+{{#addsection}}
+<li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="">
+   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border d-flex align-items-center " style="clear:both;">
+      {{#numsections}}
+         <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
+
+         {{#strremovesection}}
+         <a href="{{{removeurl}}}" class="{{removeurlclass}}">{{{removeicon}}} {{{strremovesection}}}</a>
+         {{/strremovesection}}
+      {{/numsections}}
+
+      {{^numsections}}
+         <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
+      {{/numsections}}
+   </div>
+</li>
+{{/addsection}}
+
+{{^addsection}}
+<li id="section-{{{index}}}" class="card section main clearfix mb-4 m-b-2 wdm-card" role="region" style="" aria-label="">
+   {{#highlighted}}<div class="list-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
+   <span class="hidden sectionname">{{{ title }}}</span>
+   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border" style="clear:both;">
+      <div class="row d-block">
+        <div class="left side float-left">
+          {{{ leftside }}}
+        </div>
+         <div class="right side float-right">
+           {{{ optionmenu }}}
+         </div>
+         {{{leftside}}}
+      </div>
+      <h4 class="sectionname card-title">
+        {{#editing}}
+            {{{ title }}}
+         {{/editing}}
+         {{^editing}}
+            <a class="panel-title p-0 {{#collapsed}}collapse{{/collapsed}} {{#expanded}}true{{/expanded}}" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
+         {{/editing}}
+            {{#collapsed}}
+            <i class="fa fa-angle-down float-right"></i>
+            {{/collapsed}}
+            {{#expanded}}
+            <i class="fa fa-angle-up float-right"></i>
+            {{/expanded}}
+            </a>
+      </h4>
+      {{{ hiddenmessage }}}
+      <div class="summary card-text">{{{summary}}}</div>
+      <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>
+      <div class="section-summary-activities mdl-right {{#expanded}} hide {{/expanded}}">{{{activityinfostring}}}</div>
+   </div>
+
+   <span class="hidden sectionname">{{{ title }}}</span>
+
+   <div class="px-15 px-3 py-10 py-2 card-footer card-footer-transparent text-muted {{#collapsed}}collapse{{/collapsed}}{{#expanded}}show{{/expanded}} border-top-0">
+      {{{sectionactivities}}}
+   </div>
+</li>
+{{/addsection}}

@@ -1,0 +1,63 @@
+{{#addsection}}
+<div id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 single-card-container">
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 w-p100 d-flex align-items-center">
+        {{#numsections}}
+            <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
+
+            {{#strremovesection}}
+            <a href="{{{removeurl}}}" class="{{removeurlclass}}">{{{removeicon}}} {{{strremovesection}}}</a>
+            {{/strremovesection}}
+        {{/numsections}}
+
+        {{^numsections}}
+            <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
+        {{/numsections}}
+    </div>
+</div>
+{{/addsection}}
+
+{{^addsection}}
+<div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3">
+        {{#highlighted}}<div class="card-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
+        <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        {{{ optionmenu }}}
+        <div class="card-content pb-10 pb-2">
+            <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
+            {{{ hiddenmessage }}}
+            <div class="section-summary-activities">
+                {{#activityinfo}}
+                    <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
+                {{/activityinfo}}
+            </div>
+            {{{ summary }}}
+            {{#editsectionurl}}
+                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
+            {{/editsectionurl}}
+        </div>
+        <div class="section-action-container card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+            {{#progressinfo}}
+                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+            {{^progressinfo}}
+                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                    <div class="progress-bar bg-green-600" style="width: 0%;" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+
+            <div class="pl-15 p-l-1 flex-1">
+                <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remuiformat {{/str}}</a>
+            </div>
+            {{#progressinfo}}
+                <div class="text-right pr-15 p-r-1 progress-text">
+                    {{ progress }}
+                </div>
+            {{/progressinfo}}
+        </div>
+    </div>
+</div>
+{{/addsection}}
