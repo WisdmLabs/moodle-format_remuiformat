@@ -12,7 +12,7 @@ var shell  = require('gulp-shell');
 const minify = require('gulp-minify');
 
 // Compile all your Sass.
-gulp.task('sass', function (){
+gulp.task('sass', function (done){
     gulp.src(['./styles/*.css'])
         .pipe(sass({
             includePaths: ['./sass'],
@@ -24,9 +24,11 @@ gulp.task('sass', function (){
         .pipe(minifycss())
         .pipe(concat('styles.css'))
         .pipe(gulp.dest('.'));
+    // Task code here.
+    done();
 });
 
-gulp.task('compress', function() {
+gulp.task('compress', function(done) {
     gulp.src('./amd/src/*.js')
     .pipe(minify({
         ext:{
@@ -35,15 +37,16 @@ gulp.task('compress', function() {
         noSource: true,
         ignoreFiles: []
     }))
-    .pipe(gulp.dest('./amd/build'))
+    .pipe(gulp.dest('./amd/build'));
+    // Task code here.
+    done();
 });
 
 gulp.task('purge', shell.task('php '+__dirname+'/../../admin/cli/purge_caches.php'));
 
-
-gulp.task('watch', function() {
-    gulp.watch('./amd/src/*.js', ['compress', 'purge']);
-    gulp.watch('./styles/*.css', ['sass']);
+gulp.task('watch', function(done) {
+    gulp.watch('./amd/src/*.js', gulp.series('compress'));
+    gulp.watch('./styles/*.css', gulp.series('sass'));
 });
 
-gulp.task('default', ['watch', 'compress', 'sass', 'purge']);
+gulp.task('default', gulp.series('watch', 'compress', 'sass', 'purge'));

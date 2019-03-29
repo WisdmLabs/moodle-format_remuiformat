@@ -1,5 +1,3 @@
-<img src="https://git.wisdmlabs.net/edwiser/remuiformat/raw/dev/images/readme-img.png" align="right" />
-
 Edwiser Course Formats block plugin for Moodle
 ==============================================
 
@@ -46,7 +44,7 @@ Card Format is another standout course format in the offering. Edwiser Card Form
 
 # Plugin Version
 
-v0.9.0 - Plugin Released
+v1.0.0 - Plugin Released
 
 [(Back to top)](#table-of-contents)
 
@@ -63,26 +61,36 @@ Please ensure that your hardware and software complies with 'Requirements' in 'I
 
 The Edwiser Course Format is 'free' software under the terms of the GNU GPLv3 License, please see 'LICENSE.md'.
 
-The primary source is on add-git-downloadable-link
-
-If you download from the development area - https://github.com/WisdmLabs/moodle-courseformat_remuiformat - consider that
-the code is unstable and not for use in production environments.  This is because I develop the next version in stages
-and use GitHub as a means of backup.  Therefore the code is not finished, subject to alteration and requires testing.
+The primary source is on https://github.com/WisdmLabs/moodle-courseformat_remuiformat
 
 You have all the rights granted to you by the GPLv3 license.  If you are unsure about anything, then the
 FAQ - http://www.gnu.org/licenses/gpl-faq.html - is a good place to look.
 
-If you reuse any of the code then I kindly ask that you make reference to the format.
+If you reuse any of the code then we kindly ask that you make reference to the format.
 
 [(Back to top)](#table-of-contents)
 
 # Support
 
-Please contact us via forum https://forums.edwiser.org/category/42/request-a-feature for support. Otherwise, the 'Courses and course formats' forum: moodle.org/mod/forum/view.php?id=47 is an excellent place to ask questions.
+For all support queries related to Edwiser Site Monitor plugin you could email us at edwiser@wisdmlabs.com
+Apart from that you could raise your support queries in this forum too - https://forums.edwiser.org/category/41/edwiser-course-formats
+
+And if you wish to see any new features as part of the product then you could share your feature requests here
+forum https://forums.edwiser.org/category/42/request-a-feature for support.
+Together we could make this solution better for your Moodle.
 
 [(Back to top)](#table-of-contents)
 
 # Installation
+
+1. Download remuiformat.zip file from the purchase receipt. 
+2. Open your Moodle website and go to Site administration > Plugins > Install plugins.
+3. Choose the remuiformat.zip’ file. Then click on Install plugin from zip file.
+4. Refresh your Moodle site or go to Site administration > Plugins > Plugin overview and click on Check for available updates.   
+5. In the list of plugins appearing, scroll down and click Upgrade Moodle database.
+6. The Plugins will get updated and installed in your Moodle database.
+
+* Instructions to install using FTP-
 
 1. Ensure you have the version of Moodle as stated above in 'Required version of Moodle'.  This is essential as the
    format relies on underlying core code that is out of my control.
@@ -102,8 +110,9 @@ Please contact us via forum https://forums.edwiser.org/category/42/request-a-fea
 2. It is recommended but not essential to change all of the courses that use the format to another.  If this is
    not done Moodle will pick the last format in your list of formats to use but display in 'Edit settings' of the
    course the first format in the list.  You can then set the desired format.
-3. In '/course/format/' remove the folder 'remuiformat'.
-4. Put Moodle out of Maintenance Mode.
+3. Go to Site administration > Plugins > Plugin overview and go to Course Formats section, click on uninstall link for 'Edwiser Course Formats'.
+4. In '/course/format/' remove the folder 'remuiformat'.
+5. Put Moodle out of Maintenance Mode.
 
 [(Back to top)](#table-of-contents)
 
