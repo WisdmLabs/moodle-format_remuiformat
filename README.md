@@ -153,6 +153,6 @@ Wisdmlabs
 
 # Provided by
 
-[![alt text](https://github.com/wisdmlabs/moodle-edwiser_format_remuiformat/blob/master/images/readme-img.png)](https://edwiser.org/course-formats/)
+[![alt text](https://github.com/WisdmLabs/moodle-format_remuiformat/blob/master/images/readme-img.png)](https://edwiser.org/course-formats/)
 
 [(Back to top)](#table-of-contents)
