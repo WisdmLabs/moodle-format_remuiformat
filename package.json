@@ -11,7 +11,8 @@
     "dependencies": {
         "gulp-cli": "^2.0.1",
         "gulp-shell": "^0.6.5",
-        "gulp-util": "^3.0.8"
+        "gulp-util": "^3.0.8",
+        "package.json": "^2.0.1"
     },
     "devDependencies": {
         "gulp": "^4.0.0",

@@ -90,8 +90,8 @@ Together we could make this solution better for your Moodle.
 5. In the list of plugins appearing, scroll down and click Upgrade Moodle database.
 6. The Plugins will get updated and installed in your Moodle database.
 
-Instructions to install using FTP-
-----------------------------------
+* Instructions to install using FTP-
+
 1. Ensure you have the version of Moodle as stated above in 'Required version of Moodle'.  This is essential as the
    format relies on underlying core code that is out of my control.
 2. Put Moodle in 'Maintenance Mode' (docs.moodle.org/en/admin/setting/maintenancemode) so that there are no
@@ -153,6 +153,6 @@ Wisdmlabs
 
 # Provided by
 
-[![alt text](https://git.wisdmlabs.net/edwiser/remuiformat/raw/dev/images/readme-img.png)](https://edwiser.org)
+[![alt text](https://github.com/wisdmlabs/moodle-edwiser_format_remuiformat/blob/master/images/readme-img.png)](https://edwiser.org/course-formats/)
 
 [(Back to top)](#table-of-contents)
