@@ -230,7 +230,7 @@ class format_remuiformat_single_section implements renderable, templatable
                     $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
                     $count += 1;
                 }
-                if (count($teachers) > 1) {
+                if (count($teachers) > 2) {
                     $export->generalsection['teachers']['teacherimg'] .=
                     '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
                             <i class="fa fa-chevron-left"></i>
