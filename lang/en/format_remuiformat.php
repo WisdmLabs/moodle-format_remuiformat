@@ -110,3 +110,6 @@ $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
 // activities completed text
 $string['outof'] = 'out of';
 $string['activitiescompleted'] = 'activities completed';
+
+// Used in format.js on change course layout.
+$string['showallsectionperpage'] = 'Show all sections per page';
