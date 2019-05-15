@@ -23,7 +23,10 @@
         {{/sections}}
     </ul>
     {{#js}}
-      require(['jquery'], function(jQuery) {
+      require(['jquery', 'core/storagewrapper'], function(jQuery, StorageWrapper) {
+          // Moodle localstorage wrapper.
+          var edstorage = new StorageWrapper(window.localStorage);
+
           // save the current choice by admin - expanded or collapsed
           var formatlabel = {{{ course_id }}} + '_' + {{{ user_id }}} + '_defaultview';
           var userformat = localStorage.getItem(formatlabel);
@@ -44,51 +47,92 @@
               // current format and the user's format are the same
               jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
                 var section_id = jQuery(this).parent().parent().parent().attr('id');
+                {{! console.log(edsectionstate[section_id]); }}
                 var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-                // alert(localStorage.getItem(namelocal));
+                var ed_sectionstate  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+
                 {{#expanded}}
-                if(localStorage.getItem(namelocal) == 'false'){
-                  // change arrow
-                  //  jQuery(this).find('i').toggleClass('fa-angle-down');
-                  //  jQuery(this).find('i').toggleClass('fa-angle-up');
-                  // add appropriate classes
-                // jQuery(this).addClass('collapsed');
-                // jQuery(this).attr('aria-expanded', 'false');
-                  var attr_to_search = jQuery(this).attr('href');
-                  // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
-                  // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
-                  jQuery(this).parent().parent().find('.summary').show(500);
-                  jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
-                }
+                  if(localStorage.getItem(namelocal) == 'false'){
+                    // change arrow
+                    //  jQuery(this).find('i').toggleClass('fa-angle-down');
+                    //  jQuery(this).find('i').toggleClass('fa-angle-up');
+                    // add appropriate classes
+                    // jQuery(this).addClass('collapsed');
+                    // jQuery(this).attr('aria-expanded', 'false');
+                    var attr_to_search = jQuery(this).attr('href');
+                    // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
+                    // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
+
+                    if (edstorage.get(ed_sectionstate) == 'collapsed' ) {
+                      console.log('expanded if');
+                      jQuery(this).find('i').toggleClass('fa-angle-up');
+                      jQuery(this).find('i').toggleClass('fa-angle-down');
+                      jQuery(this).parent().parent().next().next().removeClass('show');
+                      jQuery(this).parent().parent().next().next().addClass('collapse');
+                      jQuery(this).parent().parent().find('.summary').show(500);
+                      jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+                    } else {
+                      console.log('expanded else');
+                      jQuery(this).parent().parent().next().next().removeClass('collapse');
+                      jQuery(this).parent().parent().next().next().addClass('show');
+                      jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+                      jQuery(this).parent().parent().find('.summary').show(500);
+                    }
+                  }
                 {{/expanded}}
                 {{#collapsed}}
-                if(localStorage.getItem(namelocal) == 'true'){
-                  var attr_to_search = jQuery(this).attr('href');
-                  jQuery(this).parent().parent().find('.summary').show(500);
-                  jQuery(this).parent().parent().find('.section-summary-activities').show(500);
-                }
+                  if(localStorage.getItem(namelocal) == 'true'){
+                    var attr_to_search = jQuery(this).attr('href');
+                    if (edstorage.get(ed_sectionstate) == 'expanded' ) {
+                      console.log('collapsed if');
+                      jQuery(this).find('i').toggleClass('fa-angle-down');
+                      jQuery(this).find('i').toggleClass('fa-angle-up');
+                      jQuery(this).parent().parent().next().next().removeClass('collapse');
+                      jQuery(this).parent().parent().next().next().addClass('show');
+                      jQuery(this).parent().parent().find('.summary').show(500);
+                      jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+                    } else {
+                      console.log('collapsed else');
+                      jQuery(this).parent().parent().next().next().removeClass('show');
+                      jQuery(this).parent().parent().next().next().addClass('collapse');
+                      jQuery(this).parent().parent().find('.summary').show(500);
+                      jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+                    }
+                  }
                 {{/collapsed}}
               });
             }
           }
+          
+          var section_state = {};
           jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
               jQuery(this).find('i').toggleClass('fa-angle-down');
               jQuery(this).find('i').toggleClass('fa-angle-up');
               var section_id = jQuery(this).parent().parent().parent().attr('id');
+              
               var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-              localStorage.setItem(namelocal, 'true');
+              var ed_sectionstate  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              
               jQuery(this).parent().parent().find('.summary').show(500);
               if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
+                  console.log('if');               
+                  sectionstate = 'collapsed';
+                  localStorage.setItem(namelocal, 'false');
                   jQuery(this).parent().parent().next().next().removeClass('show');
                   jQuery(this).parent().parent().next().next().addClass('collapse');
                   jQuery(this).parent().parent().find('.summary').show(500);
                   jQuery(this).parent().parent().find('.section-summary-activities').show(500);
               } else {
+                  console.log('else');
+                  sectionstate = 'expanded';
+                  localStorage.setItem(namelocal, 'true');
                   jQuery(this).parent().parent().next().next().removeClass('collapse');
                   jQuery(this).parent().parent().next().next().addClass('show');
                   jQuery(this).parent().parent().find('.summary').show(500);
                   jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
               }
+              edstorage.set(ed_sectionstate, sectionstate);
+
           });
       });
     {{/js}}
