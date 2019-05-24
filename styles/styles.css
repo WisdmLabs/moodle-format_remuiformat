@@ -18,8 +18,14 @@
   overflow: visible;
 }
 /* Boost 3.6 */
-#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main,  {
   background: #f2f2f2;
+  overflow: visible;
+}
+
+/* Fordson 3.7 */
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main  {
+  background: #f2f2f2 !important;
   overflow: visible;
 }
 
@@ -220,6 +226,7 @@ ul.remui-format-list h4.sectionname {
     font-size: 18px;
     font-weight: 500;
     padding: 7px 0;
+    clear: both; /* Fordson */
 }
 
 .wdm-single-activity-title a {
@@ -425,6 +432,9 @@ For list format
 .course-content ul.remui-format-list li.section .panel.activity-list {
   box-shadow: none;
   margin-bottom: 0;
+}
+.course-content li.section li.activity ul {
+  padding-left: 2rem !important;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-1 {
   width: 35px;
@@ -675,9 +685,14 @@ ul.remui-format-list span.inplaceeditable input {
 
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo .tag,
 #page-course-view-remuiformat ul.remui-format-list .isrestricted .tag,
+#page-course-view-remuiformat ul.remui-format-list .isrestricted .badge,
 #page-course-view-remuiformat ul.remui-format-list .ishidden .tag,
+#page-course-view-remuiformat ul.remui-format-list .ishidden .badge,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .tag {
+#page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
+#page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge
+ {
   background-color: #666;
   text-align: left;
   color: white;
@@ -686,6 +701,7 @@ ul.remui-format-list span.inplaceeditable input {
   font-size: 0.9rem;
   font-weight: 400;
   margin-top: 5px;
+  margin-bottom: 5px;
   line-height: 1.3;
   border-radius: .215rem;
   white-space: normal;
@@ -752,6 +768,10 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat ul.section.first-section.row {
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#page #learningcontent #page-content #region-main-box {
+  padding-top: 16px !important;
 }
 /* Fordson Compatible CSS End*/
 
