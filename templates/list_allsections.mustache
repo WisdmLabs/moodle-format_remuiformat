@@ -64,7 +64,6 @@
                     // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
 
                     if (edstorage.get(ed_sectionstate) == 'collapsed' ) {
-                      console.log('expanded if');
                       jQuery(this).find('i').toggleClass('fa-angle-up');
                       jQuery(this).find('i').toggleClass('fa-angle-down');
                       jQuery(this).parent().parent().next().next().removeClass('show');
@@ -72,7 +71,6 @@
                       jQuery(this).parent().parent().find('.summary').show(500);
                       jQuery(this).parent().parent().find('.section-summary-activities').show(500);
                     } else {
-                      console.log('expanded else');
                       jQuery(this).parent().parent().next().next().removeClass('collapse');
                       jQuery(this).parent().parent().next().next().addClass('show');
                       jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
@@ -84,7 +82,6 @@
                   if(localStorage.getItem(namelocal) == 'true'){
                     var attr_to_search = jQuery(this).attr('href');
                     if (edstorage.get(ed_sectionstate) == 'expanded' ) {
-                      console.log('collapsed if');
                       jQuery(this).find('i').toggleClass('fa-angle-down');
                       jQuery(this).find('i').toggleClass('fa-angle-up');
                       jQuery(this).parent().parent().next().next().removeClass('collapse');
@@ -92,7 +89,6 @@
                       jQuery(this).parent().parent().find('.summary').show(500);
                       jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
                     } else {
-                      console.log('collapsed else');
                       jQuery(this).parent().parent().next().next().removeClass('show');
                       jQuery(this).parent().parent().next().next().addClass('collapse');
                       jQuery(this).parent().parent().find('.summary').show(500);
@@ -115,7 +111,6 @@
               
               jQuery(this).parent().parent().find('.summary').show(500);
               if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
-                  console.log('if');               
                   sectionstate = 'collapsed';
                   localStorage.setItem(namelocal, 'false');
                   jQuery(this).parent().parent().next().next().removeClass('show');
@@ -123,7 +118,6 @@
                   jQuery(this).parent().parent().find('.summary').show(500);
                   jQuery(this).parent().parent().find('.section-summary-activities').show(500);
               } else {
-                  console.log('else');
                   sectionstate = 'expanded';
                   localStorage.setItem(namelocal, 'true');
                   jQuery(this).parent().parent().next().next().removeClass('collapse');

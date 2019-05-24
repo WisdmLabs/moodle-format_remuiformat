@@ -20,7 +20,6 @@ function ($, str) {
                         $("#id_remuiteacherdisplay").parent().parent().hide();
                         $("#id_remuidefaultsectionview").parent().parent().hide();
                     } else {
-                        console.log(ss[0]);
                         $('#id_coursedisplay').append('<option value="0">' + ss[0] + '</option>');
                         var oldcoursedisplay = window.localStorage.getItem('coursedisplay');
                         $('#id_coursedisplay').val(oldcoursedisplay).trigger('change');
