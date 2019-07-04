@@ -716,8 +716,10 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 if ($tag[1] == '/') {
                     // This is a closing tag.
                     $openingtag = array_pop($tags);
-                    assert($openingtag == $tagname); // Check that tags are properly nested.
-                    $newcontent .= $tag;
+                    // Check that tags are properly nested.
+                    if ($openingtag == $tagname) {
+                        $newcontent .= $tag;
+                    }
                 } else if ($tag[strlen($tag) - 2] == '/') {
                     // Self-closing tag.
                     $newcontent .= $tag;
