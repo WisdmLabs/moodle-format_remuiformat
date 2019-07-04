@@ -100,6 +100,8 @@ $string['remuidefaultsectionview'] = 'Choose default sections view';
 $string['remuidefaultsectionview_help'] = 'Choose a default view for the sections of the course.';
 $string['expanded'] = 'Expand All';
 $string['collapsed'] = 'Collapse All';
+$string['next'] = 'Next';
+$string['previous'] = 'Previous';
 
 // GDPR.
 $string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store any personal data.';

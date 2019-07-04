@@ -234,11 +234,15 @@ class format_remuiformat_single_section implements renderable, templatable
                     $export->generalsection['teachers']['teacherimg'] .=
                     '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
                             <i class="fa fa-chevron-left"></i>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">'
+                            .get_string('previous', 'format_remuiformat').
+                            '</span>
                         </a>
                         <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
                             <i class="fa fa-chevron-right"></i>
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only">'
+                            .get_string('next', 'format_remuiformat').
+                            '</span>
                         </a></div>';
                 } else {
                     $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
