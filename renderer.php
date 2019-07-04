@@ -707,16 +707,16 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             ) {
             list($tag, $tagposition) = $match[0];
             // Print text leading up to the tag.
-            $str = mb_strcut($html, $position, $tagposition - $position);
-            if ($printedlength + mb_strlen($str) > $maxlength) {
-                $newstr = mb_strcut($str, 0, $maxlength - $printedlength);
+            $str = substr($html, $position, $tagposition - $position);
+            if ($printedlength + strlen($str) > $maxlength) {
+                $newstr = substr($str, 0, $maxlength - $printedlength);
                 $newstr = preg_replace('~\s+\S+$~', '', $newstr);
                 $newcontent .= $newstr;
                 $printedlength = $maxlength;
                 break;
             }
             $newcontent .= $str;
-            $printedlength += mb_strlen($str);
+            $printedlength += strlen($str);
             if ($tag[0] == '&') {
                 // Handle the entity.
                 $newcontent .= $tag;
@@ -729,7 +729,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                     $openingtag = array_pop($tags);
                     assert($openingtag == $tagname); // Check that tags are properly nested.
                     $newcontent .= $tag;
-                } else if ($tag[mb_strlen($tag) - 2] == '/') {
+                } else if ($tag[strlen($tag) - 2] == '/') {
                     // Self-closing tag.
                     $newcontent .= $tag;
                 } else {
@@ -740,12 +740,12 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
 
             // Continue after the tag.
-            $position = $tagposition + mb_strlen($tag);
+            $position = $tagposition + strlen($tag);
         }
 
         // Print any remaining text.
-        if ($printedlength < $maxlength && $position < mb_strlen($html)) {
-            $newstr = mb_strcut($html, $position, $maxlength - $printedlength);
+        if ($printedlength < $maxlength && $position < strlen($html)) {
+            $newstr = substr($html, $position, $maxlength - $printedlength);
             $newstr = preg_replace('~\s+\S+$~', '', $newstr);
             $newcontent .= $newstr;
         }
