@@ -88,21 +88,15 @@ class format_remuiformat_section implements renderable, templatable
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
 
         if ($rformat == REMUI_CARD_FORMAT) {
-            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
             $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
             $this->get_card_format_context($export, $renderer, $editing, $rformat);
         }
 
         if ($rformat == REMUI_LIST_FORMAT) {
-            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
             $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
             $this->get_list_format_context($export, $renderer, $editing, $rformat);
         }
 
-        // // Add Section Url.
-        // if ($editing) {
-        // $export->addsection = $renderer->change_number_sections($this->course, 0);
-        // }
         return  $export;
     }
 
@@ -392,7 +386,9 @@ class format_remuiformat_section implements renderable, templatable
             $pinfo = new \stdClass();
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
-            $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.get_string('activitiescompleted', 'format_remuiformat');
+            $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.get_string(
+                'activitiescompleted', 'format_remuiformat'
+            );
             $output['progressinfo'][] = $pinfo;
         }
         return $output;

@@ -168,11 +168,11 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
             var CSS = {
                 COURSECONTENT: 'course-content',
                 SECTIONADDMENUS: 'section_add_menus'
-                };
+            };
 
-                var sectionlist = Y.Node.all('.' + CSS.COURSECONTENT + ' ' + M.course.format.get_section_selector(Y));
-                // Swap menus.
-                sectionlist.item(node1).one('.' + CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.' + CSS.SECTIONADDMENUS));
+            var sectionlist = Y.Node.all('.' + CSS.COURSECONTENT + ' ' + M.course.format.get_section_selector(Y));
+            // Swap menus.
+            sectionlist.item(node1).one('.' + CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.' + CSS.SECTIONADDMENUS));
         }
 
         /**

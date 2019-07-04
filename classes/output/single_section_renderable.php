@@ -88,21 +88,15 @@ class format_remuiformat_single_section implements renderable, templatable
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
 
         if ($rformat == REMUI_CARD_FORMAT) {
-            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
             $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
             $this->get_card_format_context($export, $renderer, $editing, $rformat);
         }
 
         if ($rformat == REMUI_LIST_FORMAT) {
-            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
             $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
             $this->get_list_format_context($export, $renderer, $editing, $rformat);
         }
 
-        // Add Section Url.
-        // if ($editing) {
-        // $export->addsection = $renderer->change_number_sections($this->course, 0);
-        // }
         return  $export;
     }
 

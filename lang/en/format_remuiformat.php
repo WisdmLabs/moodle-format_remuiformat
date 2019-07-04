@@ -109,7 +109,7 @@ $string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store 
 // Validation.
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
 
-// activities completed text
+// Activities completed text.
 $string['outof'] = 'out of';
 $string['activitiescompleted'] = 'activities completed';
 

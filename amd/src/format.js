@@ -23,14 +23,10 @@
 
  define(['jquery', 'core/str'],
 function ($, str) {
-    
-    // var def_constants;
-    
     function init(arr) {
         str.get_strings([
             {'key' : 'showallsectionperpage', 'component':'format_remuiformat'},
         ]).done(function(ss) {
-            // def_constants = arr;
             $(document).ready(function(){
                 var sectionlayout_val;
                 // Hide and show the course settings on course format selection.
@@ -88,7 +84,6 @@ function ($, str) {
     }
 
     // Must return the init function.
-    
     return {
         init: init
     }

@@ -1,14 +1,14 @@
-// Gulp
+// Gulp.
 var gulp = require('gulp');
 
-// Sass/CSS stuff
+// Sass/CSS stuff.
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var prefix = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
 var shell  = require('gulp-shell');
 
-// JS stuff
+// JS stuff.
 const minify = require('gulp-minify');
 
 // Compile all your Sass.
@@ -32,7 +32,7 @@ gulp.task('compress', function(done) {
     gulp.src('./amd/src/*.js')
     .pipe(minify({
         ext:{
-           min:'.js'
+            min:'.js'
         },
         noSource: true,
         ignoreFiles: []
@@ -42,7 +42,7 @@ gulp.task('compress', function(done) {
     done();
 });
 
-gulp.task('purge', shell.task('php '+__dirname+'/../../admin/cli/purge_caches.php'));
+gulp.task('purge', shell.task('php ' + __dirname + '/../../admin/cli/purge_caches.php'));
 
 gulp.task('watch', function(done) {
     gulp.watch('./amd/src/*.js', gulp.series('compress'));
