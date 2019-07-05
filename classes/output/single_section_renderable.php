@@ -196,7 +196,7 @@ class format_remuiformat_single_section implements renderable, templatable
                 '<div class="teacher-label"><span>'
                 .get_string('teachers', 'format_remuiformat').
                 '</span></div>
-                <div class="carousel slide" data-ride="carousel" id="teachersCarousel">
+                <div class="carousel slide" data-ride="carousel" id="teachers-carousel">
                 <div class="carousel-inner text-center">';
 
                 foreach ($teachers as $teacher) {
@@ -226,13 +226,13 @@ class format_remuiformat_single_section implements renderable, templatable
                 }
                 if (count($teachers) > 1) {
                     $export->generalsection['teachers']['teacherimg'] .=
-                    '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
+                    '</div><a class="carousel-control-prev" href="#teachers-carousel" role="button" data-slide="prev">
                             <i class="fa fa-chevron-left"></i>
                             <span class="sr-only">'
                             .get_string('previous', 'format_remuiformat').
                             '</span>
                         </a>
-                        <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#teachers-carousel" role="button" data-slide="next">
                             <i class="fa fa-chevron-right"></i>
                             <span class="sr-only">'
                             .get_string('next', 'format_remuiformat').
