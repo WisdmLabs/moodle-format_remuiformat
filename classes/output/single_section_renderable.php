@@ -88,21 +88,15 @@ class format_remuiformat_single_section implements renderable, templatable
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
 
         if ($rformat == REMUI_CARD_FORMAT) {
-            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_card.js'));
             $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
             $this->get_card_format_context($export, $renderer, $editing, $rformat);
         }
 
         if ($rformat == REMUI_LIST_FORMAT) {
-            // $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/course/format/remuiformat/javascript/format_list.js'));
             $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
             $this->get_list_format_context($export, $renderer, $editing, $rformat);
         }
 
-        // Add Section Url.
-        // if ($editing) {
-        // $export->addsection = $renderer->change_number_sections($this->course, 0);
-        // }
         return  $export;
     }
 
@@ -234,11 +228,15 @@ class format_remuiformat_single_section implements renderable, templatable
                     $export->generalsection['teachers']['teacherimg'] .=
                     '</div><a class="carousel-control-prev" href="#teachersCarousel" role="button" data-slide="prev">
                             <i class="fa fa-chevron-left"></i>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">'
+                            .get_string('previous', 'format_remuiformat').
+                            '</span>
                         </a>
                         <a class="carousel-control-next" href="#teachersCarousel" role="button" data-slide="next">
                             <i class="fa fa-chevron-right"></i>
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only">'
+                            .get_string('next', 'format_remuiformat').
+                            '</span>
                         </a></div>';
                 } else {
                     $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
