@@ -1,2 +1,9 @@
 Version 1.0.1
-Initial version released.
+* Initial version released.
+
+Version 1.0.2
+Bug fixes
+* Switch list to card does not correctly update course layout field.
+
+Features
+* Save the sections collapsed/uncollapsed state in List format in local storage.

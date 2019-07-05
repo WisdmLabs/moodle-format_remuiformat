@@ -100,6 +100,8 @@ $string['remuidefaultsectionview'] = 'Choose default sections view';
 $string['remuidefaultsectionview_help'] = 'Choose a default view for the sections of the course.';
 $string['expanded'] = 'Expand All';
 $string['collapsed'] = 'Collapse All';
+$string['next'] = 'Next';
+$string['previous'] = 'Previous';
 
 // GDPR.
 $string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store any personal data.';
@@ -107,6 +109,9 @@ $string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store 
 // Validation.
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
 
-// activities completed text
+// Activities completed text.
 $string['outof'] = 'out of';
 $string['activitiescompleted'] = 'activities completed';
+
+// Used in format.js on change course layout.
+$string['showallsectionperpage'] = 'Show all sections per page';
