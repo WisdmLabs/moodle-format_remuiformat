@@ -223,7 +223,7 @@ class format_remuiformat_section implements renderable, templatable
                     $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
                     $count += 1;
                 }
-                if (count($teachers) > 1) {
+                if (count($teachers) > 2) {
                     $export->generalsection['teachers']['teacherimg'] .=
                     '</div><a class="carousel-control-prev" href="#teachers-carousel" role="button" data-slide="prev">
                             <i class="fa fa-chevron-left"></i>
@@ -386,7 +386,9 @@ class format_remuiformat_section implements renderable, templatable
             $pinfo = new \stdClass();
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
-            $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.get_string('activitiescompleted', 'format_remuiformat');
+            $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.get_string(
+                'activitiescompleted', 'format_remuiformat'
+            );
             $output['progressinfo'][] = $pinfo;
         }
         return $output;
