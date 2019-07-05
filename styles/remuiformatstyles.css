@@ -605,7 +605,7 @@ ul.remui-format-list .mod-indent-outer .actions {
   margin-right: 0px;
 }
 
-#teachersCarousel .carousel-item {
+#teachers-carousel .carousel-item {
     justify-content: space-evenly;
 }
 .teacher-img-container {
@@ -643,7 +643,7 @@ ul.remui-format-list .mod-indent-outer .actions {
   align-items: center;
 }
 
-#teachersCarousel {
+#teachers-carousel {
   max-width: 175px;
   height: 35px;
 }
