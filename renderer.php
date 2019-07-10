@@ -523,7 +523,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
             $straddsection = get_string('increasesections', 'moodle');
 
-            // Echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));.
             // Increase number of sections.
             $url = new moodle_url('/course/changenumsections.php',
                 array('courseid' => $course->id,
@@ -536,8 +535,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             $addnewsection->addurl = $url;
             $addnewsection->addicon = str_replace('icon', 'fa-4x d-block', $icon);
             $addnewsection->addurlclass = 'increase-sections';
-
-            // Echo html_writer::link($url, $icon.get_accesshide($straddsection), array('class' => 'increase-sections'));.
 
             if ($course->numsections > 0) {
                 // Reduce number of sections sections.
@@ -553,10 +550,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 $addnewsection->removeicon = str_replace('icon', 'fa-4x d-block', $icon);
                 $addnewsection->removeurlclass = 'reduce-sections';
 
-                // Echo html_writer::link($url, $icon.get_accesshide($strremovesection), array('class' => 'reduce-sections'));.
             }
-
-            // Echo html_writer::end_tag('div');.
 
         } else if (course_get_format($course)->uses_sections()) {
             // Current course format does not have 'numsections' option but it has multiple sections suppport.
@@ -566,7 +560,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
             $addnewsection->numsections = 0;
 
-            // Echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));.
             if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
                 $straddsections = get_string('addsections', 'format_'.$course->format);
             } else {
@@ -578,14 +571,10 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 $url->param('sectionreturn', $sectionreturn);
             }
             $icon = $this->output->pix_icon('t/add', $straddsections);
-            // Echo html_writer::link($url, $icon . $straddsections,
-            // array('class' => 'add-sections', 'data-add-sections' => $straddsections));.
 
             $addnewsection->straddsections = $straddsections;
             $addnewsection->url = $url;
             $addnewsection->icon = str_replace('icon', 'fa-4x d-block', $icon);
-
-            // Echo html_writer::end_tag('div');.
         }
 
         return $addnewsection;
@@ -707,16 +696,16 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             ) {
             list($tag, $tagposition) = $match[0];
             // Print text leading up to the tag.
-            $str = mb_strcut($html, $position, $tagposition - $position);
-            if ($printedlength + mb_strlen($str) > $maxlength) {
-                $newstr = mb_strcut($str, 0, $maxlength - $printedlength);
+            $str = substr($html, $position, $tagposition - $position);
+            if ($printedlength + strlen($str) > $maxlength) {
+                $newstr = substr($str, 0, $maxlength - $printedlength);
                 $newstr = preg_replace('~\s+\S+$~', '', $newstr);
                 $newcontent .= $newstr;
                 $printedlength = $maxlength;
                 break;
             }
             $newcontent .= $str;
-            $printedlength += mb_strlen($str);
+            $printedlength += strlen($str);
             if ($tag[0] == '&') {
                 // Handle the entity.
                 $newcontent .= $tag;
@@ -727,9 +716,11 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                 if ($tag[1] == '/') {
                     // This is a closing tag.
                     $openingtag = array_pop($tags);
-                    assert($openingtag == $tagname); // Check that tags are properly nested.
-                    $newcontent .= $tag;
-                } else if ($tag[mb_strlen($tag) - 2] == '/') {
+                    // Check that tags are properly nested.
+                    if ($openingtag == $tagname) {
+                        $newcontent .= $tag;
+                    }
+                } else if ($tag[strlen($tag) - 2] == '/') {
                     // Self-closing tag.
                     $newcontent .= $tag;
                 } else {
@@ -740,12 +731,12 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
 
             // Continue after the tag.
-            $position = $tagposition + mb_strlen($tag);
+            $position = $tagposition + strlen($tag);
         }
 
         // Print any remaining text.
-        if ($printedlength < $maxlength && $position < mb_strlen($html)) {
-            $newstr = mb_strcut($html, $position, $maxlength - $printedlength);
+        if ($printedlength < $maxlength && $position < strlen($html)) {
+            $newstr = substr($html, $position, $maxlength - $printedlength);
             $newstr = preg_replace('~\s+\S+$~', '', $newstr);
             $newcontent .= $newstr;
         }

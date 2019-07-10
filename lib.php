@@ -486,13 +486,9 @@ class format_remuiformat extends format_base {
     }
 
     public function update_course_format_options($data, $sectionid = null) {
-        global $DB;
         if (!empty($data)) {
-            if (isset($_POST['remuicourseformat'])) {
-                $data->remuicourseformat = filter_input(INPUT_POST, 'remuicourseformat');
-            } else if (isset($_GET['remuicourseformat'])) {
-                $data->remuicourseformat = filter_input(INPUT_GET, 'remuicourseformat');
-            }
+            // Used optional_param() instead of using $_POST and $_GET.
+            $data->remuicourseformat = optional_param('remuicourseformat', null, PARAM_INT);
             $contextid = context_course::instance($this->courseid);
             if (!empty($data->remuicourseimage_filemanager)) {
                 file_postupdate_standard_filemanager(
