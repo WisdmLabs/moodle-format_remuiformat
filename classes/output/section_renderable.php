@@ -256,18 +256,17 @@ class format_remuiformat_section implements renderable, templatable
         for ($section = $startfrom; $section <= $end; $section++) {
             $sectiondetails = new \stdClass();
             $sectiondetails->index = $section;
-
+            
             // Get current section info.
             $currentsection = $modinfo->get_section_info($section);
-
             // Check if the user has permission to view this section or not.
             $showsection = $currentsection->uservisible ||
-                    ($currentsection->visible && !$currentsection->available && !empty($currentsection->availableinfo)) ||
-                    (!$currentsection->visible && !$this->course->hiddensections);
+            ($currentsection->visible && !$currentsection->available && !empty($currentsection->availableinfo)) ||
+            (!$currentsection->visible && !$this->course->hiddensections);
             if (!$showsection) {
                 continue;
             }
-
+            
             // Get the title of the section.
             if (!$editing) {
                 $sectiondetails->title = $this->courseformat->get_section_name($currentsection);
@@ -276,8 +275,11 @@ class format_remuiformat_section implements renderable, templatable
                 $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
                 $sectiondetails->leftside = $renderer->section_left_content($currentsection, $this->course, false);
                 $sectiondetails->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
-            }
-
+                $actionsectionurl = new \moodle_url('/course/changenumsections.php', array('courseid' => $this->course->id, 'insertsection' => $currentsection->id, 'sesskey' => sesskey()));
+                $label = html_writer::tag('span', 'Add New');
+                $sectiondetails->addnewsection = html_writer::link($actionsectionurl, $label, array('class' => 'wdm-add-new-section'));
+                // echo '<pre>' . print_r($sectiondetails,1) . '</pre>'; die();
+            }   
             // Get the section view url.
             $singlepageurl = '';
             if ($this->course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {

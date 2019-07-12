@@ -74,6 +74,10 @@
     <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3">
         {{#highlighted}}<div class="card-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
         <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        {{{ addnewsection }}}
+        {{#optionmenu}}
+            <span class="wdm-show-in-row" data-wdmsectionid={{index}}>Show in row</span>
+        {{/optionmenu}}
         {{{ optionmenu }}}
         <div class="card-content pb-10 pb-2">
             <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>

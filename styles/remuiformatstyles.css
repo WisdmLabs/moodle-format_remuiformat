@@ -799,3 +799,27 @@ ul.remui-format-list span.inplaceeditable input {
   width: 7px;
   height: 100%;
 }
+
+.wdm-show-in-row {
+  position: absolute;
+  right: 120px;
+  padding: 6px;
+  border: 1px solid #e4eaec;
+  border-radius: 5px;
+  /* background-color: rgb(255, 255, 255); */
+  font-weight: 400;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.wdm-add-new-section {
+  position: absolute;
+  right: 225px;
+  padding: 6px;
+  border: 1px solid #e4eaec;
+  border-radius: 5px;
+  /* background-color: rgb(255, 255, 255); */
+  font-weight: 400;
+  font-size: 1rem;
+  cursor: pointer;
+}
