@@ -37,4 +37,5 @@ use external_api;
  */
 class api extends external_api {
     use move_activities;
+    use show_activity_in_row;
 }

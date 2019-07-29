@@ -63,22 +63,30 @@
         <div class="cards">
             <div id="section-{{section}}" class="section wdm-card-single-section">
                 {{#editing}}
-                <div class="right side">
+                <div class="right">
                     {{{ optionmenu }}}
                 </div>
                 {{/editing}}
                 <div class="content w-full">
                     <ul class="row wdm-section-wrapper">
                     {{#activities}}
-                        <li class="col-lg-4 col-md-6 col-sm-12 single-card-container px-15 modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
+
+                        <li class="{{#layouttypecol}}col-lg-4 col-md-6 col-sm-12{{/layouttypecol}} {{#layouttyperow}}col-12{{/layouttyperow}} single-card-container px-15 modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}">
                         <div class="single-card p-15 p-3 p-x-1 p-y-1 m-b-2 mb-25 mb-4">
                             {{#editing}}
                                 <a class="wdm-drag-drop"><span><i class="fa fa-arrows" aria-hidden="true"></i></span></a>
                             {{/editing}}
                             <div class="wdm-activity-actions d-flex">
                                 <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
-
                                 <div class="wdm-activity-actions d-flex">
+                                    {{#editing}}
+                                        {{#layouttyperow}}
+                                            <span id="wdmshowinrow" class="wdm-show-in-row" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showincard, format_remuiformat{{/str}}</span>
+                                        {{/layouttyperow}}
+                                        {{#layouttypecol}}
+                                            <span id="wdmshowinrow" class="wdm-show-in-row" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showinrow, format_remuiformat{{/str}}</span>
+                                        {{/layouttypecol}}
+                                    {{/editing}}
                                     {{{ modicons }}}
                                 </div>
                             </div>
@@ -145,6 +153,9 @@
                     </ul>
                 </div>
                 {{{ addnewactivity }}}
+                {{#editing}}
+                    <span class='wdm-change-layout-notify bg-primary'>{{#str}} changelayoutnotify, format_remuiformat{{/str}}</span>
+                {{/editing}}
             </li>
         </ul>
     </div>
