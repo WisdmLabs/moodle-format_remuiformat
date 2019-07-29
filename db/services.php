@@ -32,4 +32,12 @@ $functions = [
         'type' => 'write',
         'ajax' => true,
     ],
+    'format_remuiformat_show_activity_in_row' => [
+        'classname' => 'format_remuiformat\external\api',
+        'methodname' => 'show_activity_in_row',
+        'classpath' => '',
+        'description' => 'Show activity in row.',
+        'type' => 'write',
+        'ajax' => true,
+    ],
 ];
