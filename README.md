@@ -136,7 +136,8 @@ The file remuiformat/styles/remuiformatstyles.css contains the CSS styles for th
 
 # Roadmap
 
-1. Will give option to add new section and activities without turn on editing mode.
+1. Will give option to set image as background to the card in card layout.
+2. Will give option to adjust image brightness of the card in card layout.
 
 [(Back to top)](#table-of-contents)
 
