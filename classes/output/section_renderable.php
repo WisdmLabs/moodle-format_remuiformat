@@ -38,7 +38,6 @@ use core_completion\progress;
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 
 /**
@@ -275,10 +274,9 @@ class format_remuiformat_section implements renderable, templatable
                 $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
                 $sectiondetails->leftside = $renderer->section_left_content($currentsection, $this->course, false);
                 $sectiondetails->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
-                $actionsectionurl = new \moodle_url('/course/changenumsections.php', array('courseid' => $this->course->id, 'insertsection' => $currentsection->id, 'sesskey' => sesskey()));
-                $label = html_writer::tag('span', 'Add New');
-                $sectiondetails->addnewsection = html_writer::link($actionsectionurl, $label, array('class' => 'wdm-add-new-section'));
-                // echo '<pre>' . print_r($sectiondetails,1) . '</pre>'; die();
+                $actionsectionurl = new \moodle_url('/course/changenumsections.php', array('courseid' => $this->course->id, 'insertsection' => $currentsection->section+1, 'sesskey' => sesskey()));
+                $label = html_writer::tag('span', get_string('addnewsection', 'format_remuiformat'));
+                $sectiondetails->addnewsection = html_writer::link($actionsectionurl, $label, array('class' => 'wdm-add-new-section btn btn-light'));
             }   
             // Get the section view url.
             $singlepageurl = '';

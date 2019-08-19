@@ -43,7 +43,7 @@ defined('MOODLE_INTERNAL') || die();
 function xmldb_format_remuiformat_upgrade($oldversion) {
     global $DB;
     $dbman = $DB->get_manager();
-    if ($oldversion < 2019071104) {
+    if ($oldversion < 2019081400) {
         // Define table format_remuiformat to be created.
         $table = new xmldb_table('format_remuiformat');
 
@@ -53,7 +53,6 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         $table->add_field('sectionid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
         $table->add_field('activityid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
         $table->add_field('layouttype', XMLDB_TYPE_CHAR, '100', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('value', XMLDB_TYPE_TEXT, null, null, null, null, null);
 
         // Adding keys to table format_remuiformat.
         $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
@@ -68,6 +67,6 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         }
 
         // Remuiformat savepoint reached.
-        upgrade_plugin_savepoint(true, 2019071104, 'format', 'remuiformat');
+        upgrade_plugin_savepoint(true, 2019081400, 'format', 'remuiformat');
     }
 }

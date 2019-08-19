@@ -34,7 +34,6 @@ use context_course;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 
 /**
@@ -144,7 +143,7 @@ class format_remuiformat_activity implements renderable, templatable {
     }
 
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER;
+        global $PAGE, $USER, $DB;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -188,6 +187,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 // In case of label activity send full text of cm to open in modal.
                 if ($mod->modname == 'label') {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
+                    $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
 
@@ -211,6 +211,20 @@ class format_remuiformat_activity implements renderable, templatable {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
+
+                // Set the section layout using the databases value.
+                $table = 'format_remuiformat';
+                $record = $DB->get_record($table, array('courseid' => $this->course->id, 'activityid' => $modnumber), '*');
+                if ( !empty($record) ) {
+                    if ($record->layouttype == 'row') {
+                        $activitydetails->layouttyperow = 'row';
+                    } else {
+                        $activitydetails->layouttypecol = 'col';
+                    }
+                } else {
+                    $activitydetails->layouttypecol = 'col';
+                }
+
                 $output[] = $activitydetails;
                 $count++;
             }
