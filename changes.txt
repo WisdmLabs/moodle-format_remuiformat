@@ -10,3 +10,5 @@ Bug fixes
 
 Features
 * Save the sections collapsed/uncollapsed state in List format in local storage.
+* Show activity as a row or column in card format.
+* Add new section after specific section.
