@@ -217,9 +217,9 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 }
             }
         }
-	// Call AJAX to set activity layout (Row or Card)
+        // Call AJAX to set activity layout (Row or Card).
         $('.wdm-section-wrapper .single-card-container .wdm-activity-actions .wdm-show-in-row').on('click', function() {
-            var courseid = getUrlParameter('id');  
+            var courseid = getUrlParameter('id');
             var section = $(this).data('wdmsectionid');
             var activity = $(this).data('wdmactivityid');
             var selector = $(this);
@@ -230,7 +230,6 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 }
             ]);
             activitysave[0].done(function (response) {
-                // $(selector).css('background-color', '#76ffbd');
                 $(selector).addClass('bg-primary');
                 $('.wdm-change-layout-notify').show();
                 $('.wdm-change-layout-notify').delay(2000).fadeOut('slow');
