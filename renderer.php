@@ -25,7 +25,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/settings_controller.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 
 class format_remuiformat_renderer extends format_section_renderer_base {
@@ -45,7 +44,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         parent::__construct($page, $target);
         $this->courseformat = course_get_format($page->course);
         $this->settings = $this->courseformat->get_settings();
-        $this->settingcontroller = \format_remuiformat\SettingsController::getinstance();
         $this->modstats = \format_remuiformat\ModStats::getinstance();
         // Since format_remuiformat_renderer::section_edit_controls()
         // only displays the 'Set current section' control when editing mode is on
@@ -132,7 +130,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
-                $previouslink .= (strlen($prevsectionname) > 15) ? substr($prevsectionname, 0, 15)."..." : $prevsectionname;
+                $previouslink .= (core_text::strlen($prevsectionname) > 15) ? core_text::substr($prevsectionname, 0, 15)."..." : $prevsectionname;
                 $links['previous'] = html_writer::link(course_get_url($course, $back), $previouslink, $params);
             }
             $back--;
@@ -147,7 +145,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $nextsectionname = get_section_name($course, $sections[$forward]);
-                $nextlink = (strlen($nextsectionname) > 15) ? substr($nextsectionname, 0, 15)."..." : $nextsectionname;
+                $nextlink = (core_text::strlen($nextsectionname) > 15) ? core_text::substr($nextsectionname, 0, 15)."..." : $nextsectionname;
                 $nextlink .= html_writer::tag('span', $this->output->rarrow(), array('class' => 'rarrow'));
                 $links['next'] = html_writer::link(course_get_url($course, $forward), $nextlink, $params);
             }
@@ -696,16 +694,16 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             ) {
             list($tag, $tagposition) = $match[0];
             // Print text leading up to the tag.
-            $str = substr($html, $position, $tagposition - $position);
-            if ($printedlength + strlen($str) > $maxlength) {
-                $newstr = substr($str, 0, $maxlength - $printedlength);
+            $str = core_text::substr($html, $position, $tagposition - $position);
+            if ($printedlength + core_text::strlen($str) > $maxlength) {
+                $newstr = core_text::substr($str, 0, $maxlength - $printedlength);
                 $newstr = preg_replace('~\s+\S+$~', '', $newstr);
                 $newcontent .= $newstr;
                 $printedlength = $maxlength;
                 break;
             }
             $newcontent .= $str;
-            $printedlength += strlen($str);
+            $printedlength += core_text::strlen($str);
             if ($tag[0] == '&') {
                 // Handle the entity.
                 $newcontent .= $tag;
@@ -720,7 +718,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                     if ($openingtag == $tagname) {
                         $newcontent .= $tag;
                     }
-                } else if ($tag[strlen($tag) - 2] == '/') {
+                } else if ($tag[core_text::strlen($tag) - 2] == '/') {
                     // Self-closing tag.
                     $newcontent .= $tag;
                 } else {
@@ -731,18 +729,18 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
 
             // Continue after the tag.
-            $position = $tagposition + strlen($tag);
+            $position = $tagposition + core_text::strlen($tag);
         }
 
         // Print any remaining text.
-        if ($printedlength < $maxlength && $position < strlen($html)) {
-            $newstr = substr($html, $position, $maxlength - $printedlength);
+        if ($printedlength < $maxlength && $position < core_text::strlen($html)) {
+            $newstr = core_text::substr($html, $position, $maxlength - $printedlength);
             $newstr = preg_replace('~\s+\S+$~', '', $newstr);
             $newcontent .= $newstr;
         }
 
         // Append.
-        if (strlen(strip_tags(format_text($html))) > $maxlength) {
+        if (core_text::strlen(strip_tags(format_text($html))) > $maxlength) {
             $newcontent .= '...';
         }
         // Close any open tags.

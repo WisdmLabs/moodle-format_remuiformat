@@ -27,16 +27,13 @@
 defined('MOODLE_INTERNAL') || die;
 
 global $CFG;
-require_once($CFG->dirroot . '/course/format/remuiformat/classes/settings_controller.php');
 
 if ($ADMIN->fulltree) {
-    // Get the setting controller.
-    $settingcontroller = \format_remuiformat\SettingsController::getinstance();
 
     // Default length of sumary of the section/activities.
     $name = 'format_remuiformat/defaultsectionsummarymaxlength';
     $title = get_string('defaultsectionsummarymaxlength', 'format_remuiformat');
     $description = get_string('defaultsectionsummarymaxlength_desc', 'format_remuiformat');
-    $default = $settingcontroller->getdefaultvalue('defaultsectionsummarymaxlength');
+    $default = 100;
     $settings->add(new admin_setting_configtext($name, $title, $description, $default, PARAM_INT));
 }

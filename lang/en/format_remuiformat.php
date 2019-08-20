@@ -23,7 +23,7 @@
  */
 
 // Plugin Name.
-$string['pluginname'] = 'Edwiser Course Formats';
+$string['pluginname'] = 'Edwiser course formats';
 
 // Settings.
 $string['defaultcoursedisplay'] = 'Course display default';
@@ -46,9 +46,6 @@ $string['defaultnumberofactivities_desc'] = 'The number of activities to be disp
 
 $string['off'] = 'Off';
 $string['on'] = 'On';
-$string['six'] = 6;
-$string['nine'] = 9;
-$string['twelve'] = 12;
 
 $string['defaultshowsectiontitlesummary'] = 'Show the section title summary on hover option';
 $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary when hovering over the grid box.';
@@ -67,6 +64,8 @@ $string['editsection'] = 'Edit topic';
 $string['editsectionname'] = 'Edit topic name';
 $string['newsectionname'] = 'New name for topic {$a}';
 $string['currentsection'] = 'This topic';
+$string['addnewsection'] = 'Add Section';
+
 // Activity.
 $string['viewactivity'] = 'View Activity';
 $string['markcomplete'] = 'Mark Complete';
@@ -77,6 +76,9 @@ $string['notsubscribed'] = "Not Subscribed";
 $string['completed'] = "Completed";
 $string['notcompleted'] = 'Not Completed';
 $string['progress'] = 'Progress';
+$string['showinrow'] = 'Show as Row';
+$string['showincard'] = 'Show as Card';
+$string['changelayoutnotify'] = 'Refresh page to see changes.';
 
 $string['showless'] = 'Show Less';
 $string['showmore'] = 'Show More';
