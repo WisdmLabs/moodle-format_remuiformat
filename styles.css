@@ -18,13 +18,13 @@
   overflow: visible;
 }
 /* Boost 3.6 */
-#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main,  {
-  background: #f2f2f2;
-  overflow: visible;
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
+  background : #f2f2f2;
+  overflow : visible;
 }
 
 /* Fordson 3.7 */
-#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main  {
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
   background: #f2f2f2 !important;
   overflow: visible;
 }
@@ -142,16 +142,23 @@ ul.remui-format-list .section-summary-activities {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 -15px;
+    z-index: 12;
 }
 
 .section-action-container .progress-text {
+  width: 92%;
+  min-height: 18px;
+  margin: 0 auto;
   align-self: center;
-  display: none;
-  font-size: 0.85rem;
+  /* display: block; */
+  font-size: 14px;
+  font-weight: 600;
+  visibility: hidden;
 }
 
 .single-card:hover .progress-text {
-  display: block;
+  /* display: block; */
+  visibility: visible
 }
 
 .flex-1 {
@@ -171,12 +178,15 @@ ul.remui-format-list .section-summary-activities {
 }
 
 .format-remuiformat.pagelayout-course .progress-xs {
+  width: 92%;
+  margin: 0 auto;
   border-bottom: 0 !important;
+  border-radius: 5px;
 }
 
 .progress-xs, .progress-xs .progress-bar {
-  height: 4px !important;
-  border-radius: 0px;
+  height: 6px !important;
+  border-radius: 5px;
 }
 
 .progress-xs .progress-bar {
@@ -187,22 +197,26 @@ ul.remui-format-list .section-summary-activities {
   background-color: #11c26d!important;
 }
 
-.bg-grey-300 {
+.format-remuiformat.pagelayout-course .progress-xs.dark {
   background-color: #e0e0e0!important;
+}
+
+.format-remuiformat.pagelayout-course .progress-xs.light {
+  background-color: #757575!important;
 }
 
 .single-card .sno, .general-single-card .sno {
     display: inline-block;
-    border-bottom: 2px solid;
+    /* border-bottom: 2px solid; */
     font-size: 18px;
     font-weight: 900;
     color:rgba(0, 0, 0, 0.8);
     padding: 5px 0;
 }
 
-#page-course-view-remuiformat .single-card:hover {
+/* #page-course-view-remuiformat .single-card:hover {
   background-color: white;
-}
+} */
 
 .single-card-container .current::before {
   left: -.1rem !important;
@@ -217,9 +231,6 @@ body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-
   display: none;
 }
 
-#page-course-view-remuiformat div#card-editing-container .section-title,
-#page-course-view-remuiformat div#card-container .section-title,
-#page-course-view-remuiformat .single-section-title,
 #page-course-view-remuiformat .wdm-single-activity-title,
 ul.remui-format-list h4.sectionname {
     margin:0;
@@ -227,6 +238,16 @@ ul.remui-format-list h4.sectionname {
     font-weight: 500;
     padding: 7px 0;
     clear: both; /* Fordson */
+}
+
+#page-course-view-remuiformat div#card-editing-container .section-title,
+#page-course-view-remuiformat div#card-container .section-title,
+#page-course-view-remuiformat .single-section-title {
+  margin:0;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 7px 0;
+  clear: both; /* Fordson */
 }
 
 .wdm-single-activity-title a {
@@ -295,6 +316,36 @@ input.ignoredirty.form-control{
   min-height: 80px !important;
 }
 
+/* .single-card.wdm-row .contentafterlink {
+  float:left;
+  width:100%;
+  overflow-y: auto;
+  height: 150px;
+} */
+
+/* .single-card.wdm-row .wdm-single-activity-title {
+  border-bottom: 1px solid #eee;
+} */
+
+/* .single-card.sectionfirstimage .card-content{
+  background: rgba(241, 241, 241, 0.37);
+  padding-left: 3px;
+  margin-top: 0.11rem;
+  border-radius: 5px;
+}
+
+.single-card.sectionfirstimage .card-content:hover {
+  box-shadow: 2px 1px 4px 1px #cccbcb;
+} */
+
+#page-course-view-remuiformat .single-card-container {
+  transition: all 0.5s ease;
+}
+
+#page-course-view-remuiformat .single-card-container a:hover {
+  text-decoration: none;
+}
+
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
 #page-course-view-remuiformat div#card-container .general-single-card ul.section {
     margin: 0;
@@ -316,6 +367,7 @@ input.ignoredirty.form-control{
     position: absolute;
     top: 15px;
     right: 15px;
+    z-index: 13;
 }
 
 #page-course-view-remuiformat ul.section.first-section div.moodle-actionmenu.section-cm-edit-actions {
@@ -349,6 +401,19 @@ input.ignoredirty.form-control{
     list-style: none;
 }
 
+.wdm-section-summary.summary-muted * {
+  color: #526069!important;
+  display: none;
+}
+
+.wdm-section-summary.dark * {
+  color: #e4e4e4!important;
+}
+
+.wdm-section-summary.light * {
+  color: #101010!important;
+}
+
 .wdm-card-section {
     display: flex;
     justify-content: space-between;
@@ -374,7 +439,7 @@ input.ignoredirty.form-control{
 .wdm-completion-container {
     display: flex;
     justify-content: flex-end;
-    width: 70% !important;
+    width: 100% !important;
     align-items: center!important;
 }
 
@@ -710,7 +775,7 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .badge
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions
  {
   background-color: #666;
   text-align: left;
@@ -724,6 +789,22 @@ ul.remui-format-list span.inplaceeditable input {
   line-height: 1.3;
   border-radius: .215rem;
   white-space: normal;
+}
+
+#page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag {
+  background-color: #4c4c4c;
+  text-align: left;
+  color: white;
+  display: inline-block;
+  padding: 1.25rem 1.4em;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  border-radius: .215rem;
+  white-space: normal;
+  opacity: 0.8;
+  /* position: absolute;
+  top: 86%; */
 }
 
 #page-course-view-remuiformat .availabilityinfo .tag ul li {
@@ -806,13 +887,27 @@ ul.remui-format-list span.inplaceeditable input {
   text-align: center;
 }
 
-.card-current, .list-current {
+.card-current {
+  position: absolute;
+  top: -1px;
+  right: 30px;
+  width: 0px;
+  height: 0px;
+  border-left: 18px solid;
+  border-right: 18px solid;
+  border-top: 22px solid;
+  border-bottom: 22px solid;
+  border-bottom-color: transparent;
+  z-index: 12;
+}
+
+.list-current {
   height: 7px;
   position: absolute;
   top: 0;
   width: 100%;
   left: 0;
-  z-index: 1;
+  z-index: 12;
 }
 .list-current {
   width: 7px;
@@ -838,4 +933,23 @@ ul.remui-format-list span.inplaceeditable input {
   z-index: 5;
   border-radius: 10px;
   padding: 10px;
+}
+
+.wdmoverlay {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 10;
+}
+
+.single-card .sno, .single-card .card-content {
+  position: relative;
+  z-index: 12;
+}
+
+/* Add this CSS to fixed modal issue in single section page for label activity. */
+.modal-backdrop {
+  z-index: 3 !important;
 }

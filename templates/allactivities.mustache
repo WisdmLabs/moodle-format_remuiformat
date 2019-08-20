@@ -131,10 +131,10 @@
                                                         <div class="modal" id="{{viewurl}}">
                                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                                                 <div class="modal-content">
-                                                                <div class="modal-header">
+                                                                {{! <div class="modal-header">
                                                                     <h4 class="modal-title"></h4>
                                                                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                                                </div>
+                                                                </div> }}
                                                                 <!-- Modal body -->
                                                                 <div class="modal-body">
                                                                     {{{fullcontent}}}
@@ -164,7 +164,7 @@
                                                             {{^completed}}
                                                                 {{#str}} markcomplete, format_remuiformat{{/str}}
                                                             {{/completed}}
-                                                        {{/label}}                                                           
+                                                        {{/label}} 
                                                     {{/autocompletion}}
                                                 </span>
                                                 {{{ completion }}}

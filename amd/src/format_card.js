@@ -75,7 +75,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
         }
 
         $(window).resize(function(){
-            setEqualHeight($('.single-card'));
+            setEqualHeight($('.single-card.wdm-col'));
         });
 
         // Mark Completion.
@@ -217,9 +217,9 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 }
             }
         }
-        // Call AJAX to set activity layout (Row or Card).
+        // Call AJAX to set activity layout (Row or Card)
         $('.wdm-section-wrapper .single-card-container .wdm-activity-actions .wdm-show-in-row').on('click', function() {
-            var courseid = getUrlParameter('id');
+            var courseid = getUrlParameter('id');  
             var section = $(this).data('wdmsectionid');
             var activity = $(this).data('wdmactivityid');
             var selector = $(this);

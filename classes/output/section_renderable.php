@@ -290,9 +290,28 @@ class format_remuiformat_section implements renderable, templatable
             if ($this->course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
                 $singlepageurl = $this->courseformat->get_view_url($section)->out(true);
             }
+
             $sectiondetails->singlepageurl = $singlepageurl;
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-
+            $remuienablecardbackgroundimg = $this->settings['remuienablecardbackgroundimg'];
+            $remuidefaultsectiontheme = $this->settings['remuidefaultsectiontheme'];
+            
+            // Check if background image to section card is enable, if yes then add section opacity to context.
+            if ($remuienablecardbackgroundimg == 1) {
+                $remuidefaultsectionoverlay = 'rgba(0,0,0,0.6)';
+                if( $remuidefaultsectiontheme == 0 ) {
+                    // Dark theme
+                    $remuidefaultsectionoverlay = 'rgba(0,0,0,0.6)';
+                    $remuinewfontcolor = '#e4e4e4';
+                    $remuinewthemecolor = 'dark';
+                } else {
+                    // Light theme.
+                    $remuidefaultsectionoverlay = 'rgba(255,255,255,0.8)';
+                    $remuinewfontcolor = '#101010';
+                    $remuinewthemecolor = 'light';
+                }
+            }
+                        
             $sectiondetails->hiddenmessage = $renderer->section_availability_message($currentsection, has_capability(
                 'moodle/course:viewhiddensections',
                 $coursecontext
@@ -304,10 +323,23 @@ class format_remuiformat_section implements renderable, templatable
 
             if ($rformat == REMUI_CARD_FORMAT) {
                 if (!empty($currentsection->summary)) {
+                    // Get the section summary.
                     $sectiondetails->summary = $renderer->abstract_html_contents(
                         $currentsection->summary, $sectiontitlesummarymaxlength
                     );
+                    // Check if background image to section card is enable, if yes then add background image to context.
+                    if ($remuienablecardbackgroundimg == 1) {
+                        // Get first image from section to set card card background image.
+                        $sectiondetails->sectionfirstimage = $renderer->get_section_first_image(
+                            $currentsection, $currentsection->summary
+                        );
+                        // $sectiondetails->remuidefaultsectionopacity = $remuidefaultsectionopacity;
+                        $sectiondetails->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
+                        $sectiondetails->remuinewfontcolor = $remuinewfontcolor;
+                        $sectiondetails->remuinewthemecolor = $remuinewthemecolor;
+                    }
                 }
+
                 $sectiondetails->activityinfo = $extradetails['activityinfo'];
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
 
@@ -389,13 +421,33 @@ class format_remuiformat_section implements renderable, templatable
         foreach ($sectionmods as $mod) {
             $output['activityinfo'][] = $mod['count'].' '.$mod['name'];
         }
+       
+        
         if ($total > 0) {
             $pinfo = new \stdClass();
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
-            $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.get_string(
-                'activitiescompleted', 'format_remuiformat'
-            );
+            if ($pinfo->percentage == 0) {
+                $pinfo->progress = get_string('activitystart', 'format_remuiformat');
+            } else if( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
+                if ($total == 1) {
+                    $status = get_string('activitycompleted', 'format_remuiformat');
+                } else {
+                    $status = get_string('activitiescompleted', 'format_remuiformat');
+                }
+                $pinfo->progress = $total . $status;
+                $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.$status;
+            } else if( $pinfo->percentage >= 50 && $pinfo->percentage < 100 ) {
+                $total = $total-$complete;
+                if ($total == 1) {
+                    $status = get_string('activityremaining', 'format_remuiformat');
+                } else {
+                    $status = get_string('activitiesremaining', 'format_remuiformat');
+                }
+                $pinfo->progress = $total.' '.$status;
+            } elseif ( $pinfo->percentage == 100 ) {
+                $pinfo->progress = get_string('allactivitiescompleted', 'format_remuiformat');
+            }
             $output['progressinfo'][] = $pinfo;
         }
         return $output;

@@ -750,4 +750,39 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
         return $newcontent;
     }
+
+    public function get_section_first_image($currentsection, $summaryhtml) {
+        $newcontent = '';
+        $context = context_course::instance($currentsection->course);
+        $summarytext = file_rewrite_pluginfile_urls($summaryhtml, 'pluginfile.php',
+           $context->id, 'course', 'section', $currentsection->id);
+        $image = $this->extract_first_image($summarytext);
+        if ($image) {
+            $imagesrc = $image['src'];
+            $newcontent .= $imagesrc;
+            return $newcontent;
+        }
+    }
+
+    /**
+     * Extract first image from html
+     *
+     * @param string $html (must be well formed)
+     * @return array | bool (false)
+     */
+    public static function extract_first_image($html) {
+        $doc = new \DOMDocument();
+        libxml_use_internal_errors(true); // Required for HTML5.
+        $doc->loadHTML($html);
+        libxml_clear_errors(); // Required for HTML5.
+        $imagetags = $doc->getElementsByTagName('img');
+        if ($imagetags->item(0)) {
+            $src = $imagetags->item(0)->getAttribute('src');
+            $alt = $imagetags->item(0)->getAttribute('alt');
+            return array('src' => $src, 'alt' => $alt);
+        } else {
+            return false;
+        }
+    }
+
 }

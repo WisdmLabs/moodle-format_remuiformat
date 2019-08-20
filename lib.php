@@ -232,6 +232,14 @@ class format_remuiformat extends format_base {
                 'remuidefaultsectionview' => array(
                     'default' => 1,
                     'type' => PARAM_INT
+                ),
+                'remuienablecardbackgroundimg' => array(
+                    'default' => 0,
+                    'type' => PARAM_INT
+                ),
+                'remuidefaultsectiontheme' => array(
+                    'default' => 0,
+                    'type' => PARAM_INT
                 )
             );
         }
@@ -318,6 +326,30 @@ class format_remuiformat extends format_base {
                     ),
                     'help' => 'remuidefaultsectionview',
                     'help_component' => 'format_remuiformat'
+                ),
+                'remuienablecardbackgroundimg' => array(
+                    'label' => new lang_string('remuienablecardbackgroundimg', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            0 => new lang_string('disablecardbackgroundimg', 'format_remuiformat'),
+                            1 => new lang_string('enablecardbackgroundimg', 'format_remuiformat')
+                        )
+                    ),
+                    'help' => 'remuienablecardbackgroundimg',
+                    'help_component' => 'format_remuiformat'
+                ),
+                'remuidefaultsectiontheme' => array(
+                    'label' => new lang_string('remuidefaultsectiontheme', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            0 => new lang_string( 'dark', 'format_remuiformat' ),
+                            1 => new lang_string( 'light', 'format_remuiformat' ),
+                        )
+                    ),
+                    'help' => 'remuidefaultsectiontheme',
+                    'help_component' => 'format_remuiformat'
                 )
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
@@ -333,7 +365,9 @@ class format_remuiformat extends format_base {
      * @return array array of references to the added form elements.
      */
     public function create_edit_form_elements(&$mform, $forsection = false) {
-        global $COURSE;
+        global $COURSE, $CFG;
+        MoodleQuickForm::registerElementType('rfcolourpopup', "$CFG->dirroot/course/format/remuiformat/js/rf_colourpopup.php",
+        'MoodleQuickForm_rfcolourpopup');
         $elements = parent::create_edit_form_elements($mform, $forsection);
         if (!$forsection && (empty($COURSE->id) || $COURSE->id == SITEID)) {
             // Add "numsections" element to the create course form - it will force new course to be prepopulated
