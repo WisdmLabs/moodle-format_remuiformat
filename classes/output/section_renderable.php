@@ -302,7 +302,7 @@ class format_remuiformat_section implements renderable, templatable
                 if( $remuidefaultsectiontheme == 0 ) {
                     // Dark theme
                     $remuidefaultsectionoverlay = 'rgba(0,0,0,0.6)';
-                    $remuinewfontcolor = '#e4e4e4';
+                    $remuinewfontcolor = '#eaeaea';
                     $remuinewthemecolor = 'dark';
                 } else {
                     // Light theme.
@@ -319,7 +319,7 @@ class format_remuiformat_section implements renderable, templatable
             if ($sectiondetails->hiddenmessage != "") {
                 $sectiondetails->hidden = 1;
             }
-            $extradetails = $this->get_section_module_info($currentsection, $this->course, null);
+            $extradetails = $this->get_section_module_info($currentsection, $this->course, null, $singlepageurl);
 
             if ($rformat == REMUI_CARD_FORMAT) {
                 if (!empty($currentsection->summary)) {
@@ -327,19 +327,19 @@ class format_remuiformat_section implements renderable, templatable
                     $sectiondetails->summary = $renderer->abstract_html_contents(
                         $currentsection->summary, $sectiontitlesummarymaxlength
                     );
-                    // Check if background image to section card is enable, if yes then add background image to context.
-                    if ($remuienablecardbackgroundimg == 1) {
+                    // Check if background image to section card setting is enable and image exists ing summary, if yes then add background image to context.
+                    if ($remuienablecardbackgroundimg == 1 && $renderer->get_section_first_image(
+                        $currentsection, $currentsection->summary
+                    )) {
                         // Get first image from section to set card card background image.
                         $sectiondetails->sectionfirstimage = $renderer->get_section_first_image(
                             $currentsection, $currentsection->summary
                         );
-                        // $sectiondetails->remuidefaultsectionopacity = $remuidefaultsectionopacity;
                         $sectiondetails->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
                         $sectiondetails->remuinewfontcolor = $remuinewfontcolor;
                         $sectiondetails->remuinewthemecolor = $remuinewthemecolor;
                     }
                 }
-
                 $sectiondetails->activityinfo = $extradetails['activityinfo'];
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
 
@@ -378,7 +378,7 @@ class format_remuiformat_section implements renderable, templatable
         return $sections;
     }
 
-    private function get_section_module_info($section, $course, $mods) {
+    private function get_section_module_info($section, $course, $mods, $singlepageurl) {
         $modinfo = get_fast_modinfo($course);
         $output = array(
             "activityinfo" => array(),
@@ -421,13 +421,12 @@ class format_remuiformat_section implements renderable, templatable
         foreach ($sectionmods as $mod) {
             $output['activityinfo'][] = $mod['count'].' '.$mod['name'];
         }
-       
-        
         if ($total > 0) {
             $pinfo = new \stdClass();
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
             if ($pinfo->percentage == 0) {
+                // $pinfo->progress = '<a href=' . $singlepageurl . ' class="btn btn-primary">' . get_string('activitystart', 'format_remuiformat') . '</a>';
                 $pinfo->progress = get_string('activitystart', 'format_remuiformat');
             } else if( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
                 if ($total == 1) {

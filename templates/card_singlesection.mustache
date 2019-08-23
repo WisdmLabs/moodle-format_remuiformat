@@ -93,7 +93,6 @@
                     </a>
                 {{/hidden}}
             {{/addnewsection}}
-            {{{ hiddenmessage }}}
             <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}} {{{remuinewthemecolor}}}">
                 {{{ summary }}}
             </div>
@@ -102,6 +101,7 @@
                     <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}" style="color: {{remuinewfontcolor}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
+            {{{ hiddenmessage }}}
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
@@ -113,15 +113,10 @@
                     </div>
                 </div>
             {{/progressinfo}}
-            {{^progressinfo}}
-                <div class="progress progress-xs bg-grey-300 {{{remuinewthemecolor}}} m-b-1">
-                    <div class="progress-bar bg-green-600" style="width: 0%;" role="progressbar">
-                    </div>
-                </div>
-            {{/progressinfo}}
+
             <div class="text-right progress-text">
                 {{#progressinfo}}
-                    {{ progress }}
+                    {{{ progress }}}
                 {{/progressinfo}}
             </div>
         </div>
