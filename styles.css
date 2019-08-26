@@ -281,6 +281,20 @@ input.ignoredirty.form-control{
   padding: 1rem !important;
 }
 
+.single-card.wdm-row{
+  background-color: unset !important;
+  /* box-shadow: 0 0 2px #b9b9b9 !important; */
+  box-shadow: none;
+}
+
+.single-card.wdm-row {
+  min-height: 80px !important;
+  padding: 0 !important;
+}
+.single-card.wdm-min-row {
+  min-height: 80px !important;
+}
+
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
 #page-course-view-remuiformat div#card-container .general-single-card ul.section {
     margin: 0;
@@ -549,6 +563,11 @@ For list format
     display: none;
   }
 }
+@media (min-width: 480px) and (max-width: 767px) {
+  .section-action-container .progress-text {
+    padding: 5px 0 0 13px !important;
+  }
+}
 
 /* For course summary */
 .remui-list-content-border {
@@ -803,25 +822,12 @@ ul.remui-format-list span.inplaceeditable input {
 .wdm-show-in-row {
   position: absolute;
   right: 145px;
-  padding: 6px;
-  border: 1px solid #e4eaec;
-  border-radius: 5px;
-  /* background-color: rgb(255, 255, 255); */
-  font-weight: 400;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
 .wdm-add-new-section {
   position: absolute;
   right: 120px;
-  padding: 6px;
-  border: 1px solid #e4eaec;
-  border-radius: 5px;
-  /* background-color: rgb(255, 255, 255); */
-  font-weight: 400;
-  font-size: 1rem;
-  cursor: pointer;
+  z-index: 13;
 }
 
 .wdm-change-layout-notify {

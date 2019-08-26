@@ -187,6 +187,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 // In case of label activity send full text of cm to open in modal.
                 if ($mod->modname == 'label') {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
+                    $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
 

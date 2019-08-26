@@ -54,7 +54,10 @@ trait show_activity_in_row {
     public static function show_activity_in_row($courseid, $sectionid, $activityid) {
         global $DB;
         $table = 'format_remuiformat';
-        $record = $DB->get_record($table, array('courseid' => $courseid, 'sectionid' => $sectionid, 'activityid' => $activityid), '*');
+        $record = $DB->get_record($table,
+            array('courseid' => $courseid, 'sectionid' => $sectionid, 'activityid' => $activityid),
+            '*'
+        );
         $output = array();
         if ( !empty($record) ) {
             if ($record->layouttype == 'row') {
@@ -73,9 +76,6 @@ trait show_activity_in_row {
             $output['message'] = 'Record Inserted';
         }
 
-        // // Need to call after database update.
-        // rebuild_course_cache($courseid, true);
-        
         return $output;
     }
 
