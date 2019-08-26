@@ -344,8 +344,8 @@ class format_remuiformat extends format_base {
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            0 => new lang_string( 'dark', 'format_remuiformat' ),
-                            1 => new lang_string( 'light', 'format_remuiformat' ),
+                            0 => new lang_string( 'light', 'format_remuiformat' ),
+                            1 => new lang_string( 'dark', 'format_remuiformat' ),
                         )
                     ),
                     'help' => 'remuidefaultsectiontheme',

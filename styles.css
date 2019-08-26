@@ -151,8 +151,8 @@ ul.remui-format-list .section-summary-activities {
   margin: 0 auto;
   align-self: center;
   /* display: block; */
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   visibility: hidden;
 }
 
@@ -182,6 +182,8 @@ ul.remui-format-list .section-summary-activities {
   margin: 0 auto;
   border-bottom: 0 !important;
   border-radius: 5px;
+  position: relative;
+  bottom: 0;
 }
 
 .progress-xs, .progress-xs .progress-bar {
@@ -918,7 +920,7 @@ ul.remui-format-list span.inplaceeditable input {
   position: fixed;
   bottom: 120px;
   right: 2%;
-  /* z-index: 5; */
+  z-index: 5;
   border-radius: 10px;
   padding: 10px;
 }

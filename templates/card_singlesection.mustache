@@ -82,13 +82,13 @@
         {{{ optionmenu }}}
         <div class="card-content pb-10 pb-2">
             {{#addnewsection}}
-                <h2 class="section-title {{#hidden}}text-muted{{/hidden}}" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
+                <h2 class="section-title" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
             {{/addnewsection}}
             {{^addnewsection}}
                 {{^hidden}}
                     <a href="{{{ singlepageurl }}}">
                 {{/hidden}}
-                    <h2 class="section-title {{#hidden}}text-muted{{/hidden}}" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
+                    <h2 class="section-title" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
                 {{^hidden}}
                     </a>
                 {{/hidden}}
@@ -113,7 +113,6 @@
                     </div>
                 </div>
             {{/progressinfo}}
-
             <div class="text-right progress-text">
                 {{#progressinfo}}
                     {{{ progress }}}

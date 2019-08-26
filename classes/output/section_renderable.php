@@ -298,8 +298,8 @@ class format_remuiformat_section implements renderable, templatable
             
             // Check if background image to section card is enable, if yes then add section opacity to context.
             if ($remuienablecardbackgroundimg == 1) {
-                $remuidefaultsectionoverlay = 'rgba(0,0,0,0.6)';
-                if( $remuidefaultsectiontheme == 0 ) {
+                $remuidefaultsectionoverlay = 'rgba(255,255,255,0.8)';
+                if( $remuidefaultsectiontheme == 1 ) {
                     // Dark theme
                     $remuidefaultsectionoverlay = 'rgba(0,0,0,0.6)';
                     $remuinewfontcolor = '#eaeaea';
@@ -426,8 +426,8 @@ class format_remuiformat_section implements renderable, templatable
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
             if ($pinfo->percentage == 0) {
-                // $pinfo->progress = '<a href=' . $singlepageurl . ' class="btn btn-primary">' . get_string('activitystart', 'format_remuiformat') . '</a>';
-                $pinfo->progress = get_string('activitystart', 'format_remuiformat');
+                $pinfo->progress = '<a href=' . $singlepageurl . '>' . get_string('activitystart', 'format_remuiformat') . '</a>';
+                // $pinfo->progress = get_string('activitystart', 'format_remuiformat');
             } else if( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
                 if ($total == 1) {
                     $status = get_string('activitycompleted', 'format_remuiformat');
