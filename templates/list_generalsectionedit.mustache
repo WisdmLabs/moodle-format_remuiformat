@@ -62,7 +62,7 @@
         </div>
         <div class="text-white mt-10 d-flex" style="justify-content: flex-end;">
             {{#teachers}}
-            {{{teacherimg}}}
+                {{{teacherimg}}}
             {{/teachers}}
         </div>
    </div>
@@ -79,26 +79,26 @@
    {{/percentage}}
             <div class="section_availability badge badge-pill badge-info mb-10"></div>
                <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-center text-center showhideactivity">
-         {{#activities}}
-               <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10" id="module-{{id}}">
-                  <div>
-                     <div>
-                        <div class="activityinstance p-0 d-inline-block">
-                           {{{title}}}
-                           <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
-                        </div>
-                        <div class="actions">
-                           {{{completion}}}
-                           {{{modicons}}}
-                           {{{availstatus}}}
-                        </div>
-                     </div>
-                  </div>
-               </li>
-         {{/activities}}
+                    {{#activities}}
+                        <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
+                            <div>
+                                <div>
+                                    <div class="activityinstance p-0 d-inline-block">
+                                    {{{title}}}
+                                    <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                                    </div>
+                                    <div class="actions">
+                                    {{{completion}}}
+                                    {{{modicons}}}
+                                    {{{availstatus}}}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {{/activities}}
                </ul>
             <div class="text-center showactivitywrapper">
-            <button class="showactivity btn btn-primary px-25 show" style="visibility:     hidden;">Show More</button>
+                <button class="showactivity btn btn-primary px-25 show" style="visibility: hidden;">Show More</button>
             </div>
             {{{addnewactivity}}}
    </div>
@@ -114,7 +114,7 @@ require(['jquery'], function(jQuery) {
       var target = document.querySelector('ul.remui-format-list ul.first-section')
       // create an observer instance
       var observer = new MutationObserver(function(mutations) {
-        jQuery('ul.remui-format-list ul.first-section').find('li.activity').attr('class', 'activity first-section-activity forum modtype_forum col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 pt-2 yui3-dd-drop yui3-dd-draggable');
+        {{! jQuery('ul.remui-format-list ul.first-section').find('li.activity').attr('class', 'activity first-section-activity forum modtype_forum col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 pt-2 yui3-dd-drop yui3-dd-draggable'); }}
         jQuery('ul.remui-format-list ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
         jQuery('ul.remui-format-list ul.first-section').find('.mod-indent-outer').removeAttr('class');
         });

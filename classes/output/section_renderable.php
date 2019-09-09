@@ -34,6 +34,7 @@ use context_course;
 use html_writer;
 use moodle_url;
 use core_completion\progress;
+use core_course\external\course_summary_exporter;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/renderer.php');
@@ -122,17 +123,47 @@ class format_remuiformat_section implements renderable, templatable
                 $export->generalsection['optionmenu'] = $renderer->section_right_content($generalsection, $this->course, false);
             } else {
                 $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
-            }
-
+            }            
+            
+            $export->generalsection['activities'] = $this->get_activities_details($generalsection);
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
-            $export->generalsection['activities'] = $this->courserenderer->course_section_cm_list(
-                $this->course, $generalsection, 0
-            );
-            $export->generalsection['activities'] .= $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
-        }
 
+            // Get course image if added.
+            $coursemainimage = course_summary_exporter::get_course_image($this->course);
+            $export->generalsection['coursemainimage'] = $coursemainimage;
+            
+            // $completion = new \completion_info($this->course);
+            $percentage = progress::get_course_progress_percentage($this->course);
+            
+            if (!is_null($percentage)) {
+                $percentage = floor($percentage);
+                $export->generalsection['percentage'] = $percentage;
+            }
+            
+            $courseallactivities = get_array_of_activities($this->course->id);
+            
+            $export->nooftotalactivities = sizeof($courseallactivities);
+
+            $allactivitiesarray = array();
+            foreach ($courseallactivities as $key => $value) {
+                if (array_key_exists($value->mod,$allactivitiesarray)) {
+                    $allactivitiesarray[$value->mod]++;
+                }
+                else
+                {
+                    $allactivitiesarray[$value->mod] = 1;
+                }
+            }
+            $output = array();
+            foreach ($allactivitiesarray as $key => $value) {
+                $output['activitylist'][] = $value.' '.$key;
+            }            
+            $export->activitylist = $output['activitylist'];
+        }
+        // Add new activity.
+        $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         // Setting up data for remianing sections.
         $export->sections = $this->get_all_section_data($renderer, $editing, $rformat);
     }

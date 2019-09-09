@@ -61,7 +61,7 @@ Please ensure that your hardware and software complies with 'Requirements' in 'I
 
 The Edwiser Course Format is 'free' software under the terms of the GNU GPLv3 License, please see 'LICENSE.md'.
 
-The primary source is on https://github.com/WisdmLabs/moodle-courseformat_remuiformat
+The primary source is on https://github.com/WisdmLabs/moodle-format_remuiformat
 
 You have all the rights granted to you by the GPLv3 license.  If you are unsure about anything, then the
 FAQ - http://www.gnu.org/licenses/gpl-faq.html - is a good place to look.
@@ -130,7 +130,7 @@ provide multiple languages.
 
 Styles
 ------
-The file remuiformat/styles/remuiformatstyles.css contains the CSS styles for the format.
+The file remuiformat/styles.css contains the CSS styles for the format.
 
 [(Back to top)](#table-of-contents)
 

@@ -286,13 +286,109 @@ input.ignoredirty.form-control{
 }
 
 .general-single-card{
-    box-shadow: 0px 0px 8px #ddd;
-    border-radius: 2px;
-    background-color: white;
-    position: relative;
-    min-height: 50px;
-    list-style: none;
-    padding: 15px !important;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 2px;
+  background-color: white;
+  position: relative;
+  min-height: 50px;
+  list-style: none;
+  padding: 15px !important;
+}
+  
+.general-section-card-details {
+  display: flex;   
+}
+
+.general-section-card-details .coursemainimagediv, .general-section-card-details .coursemainimage {
+  height: 140px;
+}
+
+.general-section-card-details .coursemainimage {
+  width: 100%;
+  /* height: 140px; */
+}
+
+.general-section-card-details .coursedetails .row{
+  background-color: #f1f4f5;
+  padding: 15px 0;
+}
+
+.general-section-card-details .generalsecactivities {
+  float: left;
+  margin: 15px 20px 10px 20px !important;
+  padding: 8px!important;
+  box-shadow: 0 0 4px #ddd;
+  list-style: none;
+}
+
+.general-section-card-details .generalsecactivitiesmain {
+  padding: 0px;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 1rem !important;
+}
+
+.general-section-card-details .generalsecactivitiesmain.onshowmore {
+  transition: all 0.5s ease-in-out;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 0px;
+  margin: 0px 10px 0px 0px;
+  height: 340px;
+  overflow-y: scroll;
+  z-index: 3;
+}
+
+#card-editing-container .general-section-card-details .generalsecactivitiesmain.onshowmore {
+  height: 455px;
+}
+
+.general-section-card-details .generalsecactivities .activityinstance img {
+  width: 50% !important;
+  height: auto !important;
+}
+
+.general-section-card-details .generalsecactivities .activityinstance .instancename {
+  display: block;
+}
+
+.general-section-card-details .generalsecactivities .generalsecactivitiescontent {
+  text-align: center;
+  padding: 0px;
+}
+.general-section-card-details .generalsecactivities .generalsecactivitiescontent .actions{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.general-section-card-details .generalsecactivities .generalsecactivitiescontent .availabilityinfo {
+  display: none;
+  position: absolute;
+  top: 0;
+}
+
+.general-section-card-details .generalsecactivities:hover .general-section-card-details .generalsecactivities .generalsecactivitiescontent .availabilityinfo{
+  display: block;
+}
+
+.general-section-card-details .progress {
+  margin-bottom: 5px;
+  border-radius: 15px;
+  background-color: #ddd;
+}
+
+.list-group1 {
+  list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.list-group-item1 {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
 }
 
 .single-card {
@@ -351,7 +447,7 @@ input.ignoredirty.form-control{
     position: absolute;
     top: 15px;
     right: 15px;
-    /* z-index: 13; */
+    z-index: 1;
 }
 
 #page-course-view-remuiformat ul.section.first-section div.moodle-actionmenu.section-cm-edit-actions {
@@ -359,11 +455,11 @@ input.ignoredirty.form-control{
     top: none;
     right: none;
 }
-#page-course-view-remuiformat div.moodle-actionmenu.section-cm-edit-actions {
-    position: absolute;
-    top: -5px;
-    right: 32px;
-}
+/* #page-course-view-remuiformat div.moodle-actionmenu.section-cm-edit-actions {
+  position: absolute;
+  top: -9px;
+  right: 28px;
+} */
 #page-course-view-remuiformat  span.section-modchooser-link .fa.fa-plus{
     color: white;
 }
@@ -584,8 +680,8 @@ For list format
   width: 75px;
   height: 75px;
 }
-.section.first-section div.actions {
-  position: inherit;
+.section.first-section div.actions, .section .activity .actions {
+  position: inherit !important;
   padding: 5px 0;
   display: flex;
   justify-content: center;
@@ -597,8 +693,18 @@ For list format
   display: block;
 }
 
+@media (min-width: 1200px) {
+  .showhidecardactivity .first-section-activity:nth-child(n+5) {
+      display: none;
+  }
+}
 @media (min-width: 992px) {
   .showhideactivity .first-section-activity:nth-child(n+5) {
+    display: none;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .showhidecardactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
 }
@@ -606,9 +712,15 @@ For list format
   .showhideactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
+  .showhidecardactivity .first-section-activity:nth-child(n+3) {
+    display: none;
+  }
 }
 @media (max-width: 767px) {
   .showhideactivity .first-section-activity:nth-child(n+3) {
+    display: none;
+  }
+  .showhidecardactivity .first-section-activity:nth-child(n+2) {
     display: none;
   }
 }
@@ -973,3 +1085,7 @@ ul.remui-format-list span.inplaceeditable input {
   top: 12%;
 }
 /* Compatible CSS for Moodle 35 END*/
+
+.path-course-view li.activity>div {
+  padding: 0px !important;
+}
