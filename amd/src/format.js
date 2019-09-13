@@ -37,7 +37,7 @@ function ($, str) {
                     if (layout_value == 0) {
                         $("#id_coursedisplay option[value='0']").remove();
                         $('#id_coursedisplay').val(1).trigger('change');
-                        $("#id_remuicourseimage_filemanager").parent().parent().hide();
+                        // $("#id_remuicourseimage_filemanager").parent().parent().hide();
                         $("#id_remuiteacherdisplay").parent().parent().hide();
                         $("#id_remuidefaultsectionview").parent().parent().hide();
                         $("#id_remuienablecardbackgroundimg").parent().parent().show();
@@ -52,7 +52,7 @@ function ($, str) {
                         $('#id_coursedisplay').append('<option value="0">' + ss[0] + '</option>');
                         var oldcoursedisplay = window.localStorage.getItem('coursedisplay');
                         $('#id_coursedisplay').val(oldcoursedisplay).trigger('change');
-                        $("#id_remuicourseimage_filemanager").parent().parent().show();
+                        // $("#id_remuicourseimage_filemanager").parent().parent().show();
                         $("#id_remuiteacherdisplay").parent().parent().show();
                         $("#id_remuienablecardbackgroundimg").parent().parent().hide();
                         $("#id_remuidefaultsectiontheme").parent().parent().hide();
@@ -70,7 +70,7 @@ function ($, str) {
                 // CARD
                 if (layout_value == 0) {
                     $("#id_coursedisplay").find("option").eq(1).hide();
-                    $("#id_remuicourseimage_filemanager").parent().parent().hide();
+                    // $("#id_remuicourseimage_filemanager").parent().parent().hide();
                     $("#id_remuiteacherdisplay").parent().parent().hide();
                     $("#id_remuidefaultsectionview").parent().parent().hide();
                     sectionbackground_val = $("#id_remuienablecardbackgroundimg").val();
@@ -81,7 +81,7 @@ function ($, str) {
                     }
                 // LIST
                 } else {
-                    $("#id_remuicourseimage_filemanager").parent().parent().show();
+                    // $("#id_remuicourseimage_filemanager").parent().parent().show();
                     $("#id_remuiteacherdisplay").parent().parent().show();
                     sectionlayout_val = $("#id_coursedisplay").val();
                     if (sectionlayout_val == 1) {

@@ -109,6 +109,7 @@ class format_remuiformat_section implements renderable, templatable
      * @return Object
      */
     private function get_card_format_context(&$export, $renderer, $editing, $rformat) {
+        global $OUTPUT;
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
         $sections = $modinfo->get_section_info_all();
@@ -131,9 +132,11 @@ class format_remuiformat_section implements renderable, templatable
             $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
 
             // Get course image if added.
-            $coursemainimage = course_summary_exporter::get_course_image($this->course);
-            $export->generalsection['coursemainimage'] = $coursemainimage;
-            
+            $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
+            if (empty($imgurl)) {
+                $imgurl = $this->get_dummy_image_for_id($this->course->id);
+            }
+            $export->generalsection['coursemainimage'] = $imgurl;
             // $completion = new \completion_info($this->course);
             $percentage = progress::get_course_progress_percentage($this->course);
             
@@ -161,6 +164,7 @@ class format_remuiformat_section implements renderable, templatable
                 $output['activitylist'][] = $value.' '.$key;
             }            
             $export->activitylist = $output['activitylist'];
+            $export->resumeactivityurl = $this->get_activity_to_resume($this->course->id);
         }
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
@@ -575,6 +579,86 @@ class format_remuiformat_section implements renderable, templatable
             return $url;
         }
         return '';
+    }
+
+    /**
+     * Get the course pattern datauri to show on a course card.
+     *
+     * The datauri is an encoded svg that can be passed as a url.
+     * @param int $id Id to use when generating the pattern
+     * @return string datauri
+     */
+    public static function get_dummy_image_for_id($id) {
+        $color = self::get_dummy_color_for_id($id);
+        $pattern = new \core_geopattern();
+        $pattern->setColor($color);
+        $pattern->patternbyid($id);
+        return $pattern->datauri();
+    }
+
+    /**
+     * Get the course color to show on a course card.
+     *
+     * @param int $id Id to use when generating the color.
+     * @return string hex color code.
+     */
+    public static function get_dummy_color_for_id($id) {
+        // The colour palette is hardcoded for now. It would make sense to combine it with theme settings.
+        $basecolors = ['#81ecec', '#74b9ff', '#a29bfe', '#dfe6e9', '#00b894',
+            '#0984e3', '#b2bec3', '#fdcb6e', '#fd79a8', '#6c5ce7'];
+
+        $color = $basecolors[$id % 10];
+        return $color;
+    }
+
+    /**
+     * Fetches the last viewed activity from the database table mdl_logstore_standard_log.
+     *
+     * @param $courseid Course ID.
+     * @return $resumeactivityurl Last viewed activity.
+     */
+    public function get_activity_to_resume($courseid) {
+        global $USER, $DB;
+        
+        $lastviewedactivitytmp = $DB->get_records('logstore_standard_log',
+                                array('action' => 'viewed',
+                                    'target' => 'course_module',
+                                    'crud' => 'r',
+                                    'userid' => $USER->id,
+                                    'courseid' => $courseid,
+                                    'origin' => 'web'
+                                ),
+                                'timecreated desc',
+                                '*',
+                                0,
+                                1
+                            );
+                           
+        foreach ($lastviewedactivitytmp as $key => $value) {
+            $lastviewedactivity = $value->contextinstanceid;
+        }
+        
+        if( !empty($lastviewedactivity) ) {
+            // Resume to activity logic goes here...
+            $modinfo = get_fast_modinfo($this->course);
+            $cminfo = $modinfo->get_cm($lastviewedactivity);
+            $section = $cminfo->sectionnum;
+            
+            foreach ($modinfo->sections[$section] as $modnumber) {
+                if ($modnumber == $lastviewedactivity) {
+                    $mod = $modinfo->cms[$lastviewedactivity];
+                    if (!$mod->is_visible_on_course_page()) {
+                        continue;
+                    }
+                    $resumeactivityurl = $mod->url;
+                    return $resumeactivityurl->out();
+                }
+            }            
+        } else {
+            // Resume to section logic from RemUI theme goes here...
+            $resumeactivityurl = '';
+            return $resumeactivityurl;
+        }
     }
 
 }

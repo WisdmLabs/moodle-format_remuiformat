@@ -81,8 +81,8 @@ $string['showincard'] = 'Show as Card';
 $string['changelayoutnotify'] = 'Refresh page to see changes.';
 
 $string['showless'] = 'Show Less';
-$string['showmore'] = 'Show More';
-
+$string['showmore'] = 'Show all activities';
+$string['resumetoactivity'] = 'Resume';
 // For list.
 
 $string['remuicourseformat'] = 'Choose layout';

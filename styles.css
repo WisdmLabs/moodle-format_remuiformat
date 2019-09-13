@@ -332,7 +332,7 @@ input.ignoredirty.form-control{
   background-color: rgb(255, 255, 255);
   position: absolute;
   top: 0px;
-  margin: 0px 10px 0px 0px;
+  margin: 0px 10px 0px 0px !important;
   height: 340px;
   overflow-y: scroll;
   z-index: 3;
@@ -367,7 +367,7 @@ input.ignoredirty.form-control{
   top: 0;
 }
 
-.general-section-card-details .generalsecactivities:hover .general-section-card-details .generalsecactivities .generalsecactivitiescontent .availabilityinfo{
+.general-section-card-details .generalsecactivities:hover > .generalsecactivitiescontent .availabilityinfo {
   display: block;
 }
 
@@ -377,13 +377,13 @@ input.ignoredirty.form-control{
   background-color: #ddd;
 }
 
-.list-group1 {
+.general-activities-list-group {
   list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-.list-group-item1 {
+.general-activities-list-group-item {
   float: left;
   display: block;
   text-align: center;

@@ -82,6 +82,7 @@
                     {{{ availability }}}
                     {{{ summary }}}
                 </div>
+                <h4>Activities</h4>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
                 <ul class="section first-section img-text d-flex generalsecactivitiesmain row justify-content-around text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
                     {{#activities}}
@@ -103,7 +104,7 @@
                     {{/activities}}
                 </ul>
                 <div class="text-center showactivitywrapper" style="display: none;">
-                    <button class="showactivity btn btn-primary px-25 show" style="display: none;">Show More</button>
+                    <button class="showactivity btn btn-primary px-25 show" style="display: none;">{{#str}} showmore, format_remuiformat{{/str}}</button>
                 </div>
                 {{{addnewactivity}}}
             </div>
@@ -114,20 +115,23 @@
                             <img src='{{coursemainimage}}' class='coursemainimage'>
                         </div>
                     {{/coursemainimage}}
-                    <div class="col-12">
+                    <div class="col-12 mb-4">
                         {{#percentage}}
                         <h4 class="courseprogress mt-0">Course Progress</h4>
-                        <div class="progress progress-rounded">
-                                <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
-                                    <span class="sr-only">{{{percentage}}}% Complete</span>
+                        <div class="progress progress-rounded mb-4">
+                            <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
+                                <span class="sr-only">{{{percentage}}}% Complete</span>
                             </div>
-                            </div>
+                        </div>
                         {{/percentage}}
-                        <ul class="list-group1">
+                        <ul class="general-activities-list-group">
                             {{#activitylist}}
-                                <li class="list-group-item1">{{ . }}</li>
+                                <li class="general-activities-list-group-item">{{ . }}</li>
                             {{/activitylist}}
                         </ul>
+                    </div>
+                    <div class="col-12 text-center">
+                        <a class="btn btn-primary" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
                     </div>
                 </div>
             </div>
@@ -160,8 +164,9 @@ require(['jquery'], function(jQuery) {
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');       
             jQuery('.general-section-card-details').css({'height': '490px'});
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "-8px"});
-            jQuery(this).text('{{# str }} showless, format_remuiformat {{/ str }}');
+            jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show'); //Remove show class
+            jQuery(".general-section-card-details .addresourcemodchooser .mdl-right").css({'margin-top': '149px'});
         } else {
             {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideDown(); }}
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
@@ -169,6 +174,7 @@ require(['jquery'], function(jQuery) {
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});
             jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
             jQuery(this).toggleClass('show'); //Add show class
+            jQuery('.general-section-card-details .addresourcemodchooser .mdl-right').css({'margin-top': '0px'});
         }
         jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');
     });
