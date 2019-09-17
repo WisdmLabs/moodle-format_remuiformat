@@ -54,17 +54,17 @@
 
 <div class="col-lg-12 col-sm-12 general-single-card-container m-b-2 mb-25 mb-4">
     <div class="general-single-card p-x-1 p-y-1 px-15 py-10 p-3">
-        <div class="general-section-card-details">
-            <div class="col-9">
+        <div class="general-section-card-details row">
+            <div class="generaldetails col-9 col-sm-12 col-lg-9 content pb-3 order-sm-12 order-lg-1">
                 <h2 class="section-title pt-0 p-t-0">{{ title }}</h2>
                 <div class='generalsectioninfo'>
                     {{{availability}}}
                     {{{ summary }}}
                 </div>
-                <h4>Activities</h4>
+                <h4>{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
                 <ul class="generalsecactivitiesmain row d-flex justify-content-around text-center showhidecardactivity">
                     {{#activities}}
-                        <li class="activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 justify-content-center" id="module-{{id}}">
+                        <li class="activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center" id="module-{{id}}">
                             <div class="generalsecactivitiescontent">
                                 {{#editing}}
                                     {{{leftside}}}
@@ -87,7 +87,7 @@
                 </div>
                 
             </div>
-            <div class="coursedetails col-3">
+            <div class="coursedetails col-3 col-sm-12 col-lg-3 order-sm-1 order-lg-12">
                 <div class="row">
                     {{#coursemainimage}}
                         <div class="col-12 coursemainimagediv text-right mb-4">
@@ -96,12 +96,12 @@
                     {{/coursemainimage}}
                     <div class="col-12 mb-4">
                         {{#percentage}}
-                        <h4 class="courseprogress mt-0">Course Progress</h4>
+                        <h4 class="courseprogress mt-0">{{#str}} coursecompletionprogress, format_remuiformat{{/str}}</h4>
                         <div class="progress progress-rounded mb-4">
-                                <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
-                                    <span class="sr-only">{{{percentage}}}% Complete</span>
+                            <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
+                                <span class="sr-only">{{{percentage}}}% Complete</span>
                             </div>
-                            </div>
+                        </div>
                         {{/percentage}}
                         <ul class="general-activities-list-group">
                             {{^coursemainimage}}
@@ -129,16 +129,18 @@ require(['jquery'], function(jQuery) {
         if(jQuery(this).hasClass('show')) {
             {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideUp(); }}
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
-            jQuery('.general-section-card-details').css({'height': '390px'});
+            {{! jQuery('.general-section-card-details').css({'height': '412px'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "0px"});
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
+            jQuery('.general-activities-list-group').css({'height': '90px', 'overflow-y': 'scroll'});
             jQuery(this).toggleClass('show'); //Remove show class
         } else {
             {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideDown(); }}
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
-            jQuery('.general-section-card-details').css({'height': 'initial'});
+            {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});
             jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
+            jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'});
             jQuery(this).toggleClass('show'); //Add show class
         }
         jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');
@@ -152,7 +154,7 @@ require(['jquery'], function(jQuery) {
         var count = jQuery(".first-section-activity").length;
         // Show load more button conditionally on window load.
             if(wwidth > 1200) {
-            if(count > 4) {
+            if(count > 3) {
                 jQuery('.showactivity').removeAttr( 'style' );
                 jQuery('.showactivitywrapper').removeAttr( 'style' );
                 }

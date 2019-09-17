@@ -614,8 +614,8 @@ class format_remuiformat_section implements renderable, templatable
     /**
      * Fetches the last viewed activity from the database table mdl_logstore_standard_log.
      *
-     * @param $courseid Course ID.
-     * @return $resumeactivityurl Last viewed activity.
+     * @param int $courseid Course ID.
+     * @return string $resumeactivityurl Last viewed activity.
      */
     public function get_activity_to_resume($courseid) {
         global $USER, $DB;

@@ -79,9 +79,10 @@ $string['progress'] = 'Progress';
 $string['showinrow'] = 'Show as Row';
 $string['showincard'] = 'Show as Card';
 $string['changelayoutnotify'] = 'Refresh page to see changes.';
-
+$string['generalactivities'] = 'Activities';
 $string['showless'] = 'Show Less';
 $string['showmore'] = 'Show all activities';
+$string['coursecompletionprogress'] = 'Course Progress';
 $string['resumetoactivity'] = 'Resume';
 // For list.
 

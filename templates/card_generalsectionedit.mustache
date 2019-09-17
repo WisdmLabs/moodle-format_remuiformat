@@ -69,8 +69,8 @@
 }}
 <ul class="cards col-lg-12 col-sm-12 general-single-card-container mb-25 mb-4">
     <li id="section-0" class="section general-single-card px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
-        <div class="general-section-card-details">
-            <div class="col-9 border-right content pb-10 pb-3">
+        <div class="general-section-card-details row">
+            <div class="generaldetails col-9 col-sm-12 col-lg-9 content pb-3 order-sm-12 order-lg-1 pb-10">
                 <div class="left side">
                     {{{ leftsection }}}
                 </div>
@@ -82,11 +82,11 @@
                     {{{ availability }}}
                     {{{ summary }}}
                 </div>
-                <h4>Activities</h4>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
+                <h4>{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
                 <ul class="section first-section img-text d-flex generalsecactivitiesmain row justify-content-around text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
                     {{#activities}}
-                        <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 justify-content-center yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
+                        <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
                             <div class="generalsecactivitiescontent">
                                 <div>
                                     <div class="activityinstance p-0 d-inline-block">
@@ -108,7 +108,7 @@
                 </div>
                 {{{addnewactivity}}}
             </div>
-            <div class="coursedetails col-3">
+            <div class="coursedetails col-3 col-sm-12 col-lg-3 order-sm-1 order-lg-12">
                 <div class="row">
                     {{#coursemainimage}}
                         <div class="col-12 coursemainimagediv text-right mb-4">
@@ -117,7 +117,7 @@
                     {{/coursemainimage}}
                     <div class="col-12 mb-4">
                         {{#percentage}}
-                        <h4 class="courseprogress mt-0">Course Progress</h4>
+                        <h4 class="courseprogress mt-0">{{#str}} coursecompletionprogress, format_remuiformat{{/str}}</h4>
                         <div class="progress progress-rounded mb-4">
                             <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
                                 <span class="sr-only">{{{percentage}}}% Complete</span>
@@ -162,19 +162,21 @@ require(['jquery'], function(jQuery) {
         if(jQuery(this).hasClass('show')) {
             {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideUp(); }}
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');       
-            jQuery('.general-section-card-details').css({'height': '490px'});
+            {{! jQuery('.general-section-card-details').css({'height': '490px'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "-8px"});
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
+            jQuery('.general-activities-list-group').css({'height': '100px', 'overflow-y': 'scroll'});
             jQuery(this).toggleClass('show'); //Remove show class
-            jQuery(".general-section-card-details .addresourcemodchooser .mdl-right").css({'margin-top': '149px'});
+            jQuery(".general-section-card-details .addresourcemodchooser").css({"position": "absolute", "bottom": "-8px", "right": "10px"});
         } else {
             {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideDown(); }}
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
-            jQuery('.general-section-card-details').css({'height': 'initial'});
+            {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});
             jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
+            jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'});
             jQuery(this).toggleClass('show'); //Add show class
-            jQuery('.general-section-card-details .addresourcemodchooser .mdl-right').css({'margin-top': '0px'});
+            jQuery('.general-section-card-details .addresourcemodchooser').css({"position": "initial"});
         }
         jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');
     });
@@ -187,7 +189,7 @@ require(['jquery'], function(jQuery) {
         var count = jQuery(".first-section-activity").length;
         // Show load more button conditionally on window load.
             if(wwidth > 1200) {
-            if(count > 4) {
+            if(count > 3) {
                 jQuery('.showactivity').removeAttr( 'style' );
                 jQuery('.showactivitywrapper').removeAttr( 'style' );
                 }
