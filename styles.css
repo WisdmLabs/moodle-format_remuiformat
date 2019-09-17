@@ -296,7 +296,7 @@ input.ignoredirty.form-control{
 }
   
 .general-section-card-details {
-  display: flex;   
+  /* display: flex;    */
 }
 
 .general-section-card-details .coursemainimagediv, .general-section-card-details .coursemainimage {
@@ -344,8 +344,8 @@ input.ignoredirty.form-control{
 }
 
 .general-section-card-details .generalsecactivities .activityinstance img {
-  width: 50% !important;
-  height: auto !important;
+  width: 65px !important;
+  height: 65px !important;
 }
 
 .general-section-card-details .generalsecactivities .activityinstance .instancename {

@@ -83,7 +83,7 @@
                     {{{ summary }}}
                 </div>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
-                <h4>{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
+                <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
                 <ul class="section first-section img-text d-flex generalsecactivitiesmain row justify-content-around text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
                     {{#activities}}
                         <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
@@ -131,7 +131,7 @@
                         </ul>
                     </div>
                     <div class="col-12 text-center">
-                        <a class="btn btn-primary" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
+                        <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
 
         if(jQuery(this).hasClass('show')) {
-            {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideUp(); }}
+            jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp();
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');       
             {{! jQuery('.general-section-card-details').css({'height': '490px'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "-8px"});
@@ -169,7 +169,7 @@ require(['jquery'], function(jQuery) {
             jQuery(this).toggleClass('show'); //Remove show class
             jQuery(".general-section-card-details .addresourcemodchooser").css({"position": "absolute", "bottom": "-8px", "right": "10px"});
         } else {
-            {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideDown(); }}
+            jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown();
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
             {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});

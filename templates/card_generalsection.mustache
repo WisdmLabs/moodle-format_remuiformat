@@ -61,7 +61,7 @@
                     {{{availability}}}
                     {{{ summary }}}
                 </div>
-                <h4>{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
+                <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
                 <ul class="generalsecactivitiesmain row d-flex justify-content-around text-center showhidecardactivity">
                     {{#activities}}
                         <li class="activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center" id="module-{{id}}">
@@ -95,26 +95,37 @@
                         </div>
                     {{/coursemainimage}}
                     <div class="col-12 mb-4">
-                        {{#percentage}}
                         <h4 class="courseprogress mt-0">{{#str}} coursecompletionprogress, format_remuiformat{{/str}}</h4>
-                        <div class="progress progress-rounded mb-4">
-                            <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
-                                <span class="sr-only">{{{percentage}}}% Complete</span>
+                        {{#percentage}}
+                            <div class="progress progress-rounded mb-4">
+                                <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
+                                    <span class="sr-only">{{{percentage}}}% Complete</span>
+                                </div>
                             </div>
-                        </div>
+                        {{/percentage}}
+                        {{^percentage}}
+                            <div class="progress progress-rounded mb-4">
+                                <div class="progress-bar bg-gray-600" style="width: 0%; height: 100%;" role="progressbar">
+                                    <span class="sr-only">{{{percentage}}}% Complete</span>
+                                </div>
+                            </div>
                         {{/percentage}}
                         <ul class="general-activities-list-group">
-                            {{^coursemainimage}}
-    
-                            {{/coursemainimage}}
                             {{#activitylist}}
                                 <li class="general-activities-list-group-item">{{ . }}</li>
                             {{/activitylist}}
                         </ul>
                     </div>
-                    <div class="col-12 text-center">
-                        <a class="btn btn-primary" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
-                    </div>
+                    {{#percentage}}
+                        <div class="col-12 text-center">
+                            <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
+                        </div>
+                    {{/percentage}}
+                    {{^percentage}}
+                        <div class="col-12 text-center">
+                            <a class="btn btn-primary btn-block bold" href="{{{ resumecourseurl }}}" role="button">{{#str}} resumetocourse, format_remuiformat{{/str}}</a>
+                        </div>
+                    {{/percentage}}
                 </div>
             </div>
         </div>
@@ -127,7 +138,7 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
 
         if(jQuery(this).hasClass('show')) {
-            {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideUp(); }}
+            jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp();
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
             {{! jQuery('.general-section-card-details').css({'height': '412px'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "0px"});
@@ -135,7 +146,7 @@ require(['jquery'], function(jQuery) {
             jQuery('.general-activities-list-group').css({'height': '90px', 'overflow-y': 'scroll'});
             jQuery(this).toggleClass('show'); //Remove show class
         } else {
-            {{! jQuery('.general-single-card .general-section-card-details .generalsectioninfo').slideDown(); }}
+            jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown();
             jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
             {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
             jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});

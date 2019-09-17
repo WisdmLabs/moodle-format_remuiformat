@@ -84,6 +84,8 @@ $string['showless'] = 'Show Less';
 $string['showmore'] = 'Show all activities';
 $string['coursecompletionprogress'] = 'Course Progress';
 $string['resumetoactivity'] = 'Resume';
+$string['resumetocourse'] = 'Start';
+
 // For list.
 
 $string['remuicourseformat'] = 'Choose layout';

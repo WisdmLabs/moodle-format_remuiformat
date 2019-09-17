@@ -165,6 +165,8 @@ class format_remuiformat_section implements renderable, templatable
             }            
             $export->activitylist = $output['activitylist'];
             $export->resumeactivityurl = $this->get_activity_to_resume($this->course->id);
+            $baseurl = course_get_url($this->course);
+            $export->resumecourseurl = $baseurl->out();
         }
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
