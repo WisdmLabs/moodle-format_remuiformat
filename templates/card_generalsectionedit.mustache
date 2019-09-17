@@ -130,9 +130,16 @@
                             {{/activitylist}}
                         </ul>
                     </div>
-                    <div class="col-12 text-center">
-                        <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
-                    </div>
+                    {{#resumeactivityurl}}
+                        <div class="col-12 text-center">
+                            <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
+                        </div>
+                    {{/resumeactivityurl}}
+                    {{^resumeactivityurl}}
+                        <div class="col-12 text-center">
+                            <a class="btn btn-primary btn-block bold" href="{{{ resumecourseurl }}}" role="button">{{#str}} resumetocourse, format_remuiformat{{/str}}</a>
+                        </div>
+                    {{/resumeactivityurl}}
                 </div>
             </div>
         </div>                

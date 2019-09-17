@@ -116,16 +116,16 @@
                             {{/activitylist}}
                         </ul>
                     </div>
-                    {{#percentage}}
+                    {{#resumeactivityurl}}
                         <div class="col-12 text-center">
                             <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
                         </div>
-                    {{/percentage}}
-                    {{^percentage}}
+                    {{/resumeactivityurl}}
+                    {{^resumeactivityurl}}
                         <div class="col-12 text-center">
                             <a class="btn btn-primary btn-block bold" href="{{{ resumecourseurl }}}" role="button">{{#str}} resumetocourse, format_remuiformat{{/str}}</a>
                         </div>
-                    {{/percentage}}
+                    {{/resumeactivityurl}}
                 </div>
             </div>
         </div>
