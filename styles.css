@@ -76,12 +76,33 @@
   body.path-course.pinaside .single-card-container {
     min-width: 50% !important;
   }
+
+  /* General Section */
+  body.path-course.site-menubar-unfold .generaldetails,
+  body.path-course.site-menubar-unfold .coursedetails,
+  body.path-course.pinaside .generaldetails,
+  body.path-course.pinaside .coursedetails {
+    max-width: 50%;
+    flex: auto;
+  }
 }
 
 @media (max-width:1400px) {
+  /* Sections */
   body.path-course.editing.site-menubar-unfold .single-card-container,
   body.path-course.pinaside.site-menubar-unfold .single-card-container {
     min-width: 50% !important;
+  }
+
+  /* General Section */
+  body.path-course.pinaside.site-menubar-unfold .generaldetails {
+    order: 12;
+    min-width: 100%;
+  }
+  
+  body.path-course.pinaside.site-menubar-unfold .coursedetails {
+    order: 1;
+    min-width: 100%;
   }
 }
 
@@ -328,7 +349,7 @@ input.ignoredirty.form-control{
   margin-bottom: 1rem !important;
 }
 
-.general-section-card-details .generalsecactivitiesmain.onshowmore {
+/* .general-section-card-details .generalsecactivitiesmain.onshowmore {
   transition: all 0.5s ease-in-out;
   background-color: rgb(255, 255, 255);
   position: absolute;
@@ -337,7 +358,7 @@ input.ignoredirty.form-control{
   height: 340px;
   overflow-y: scroll;
   z-index: 3;
-}
+} */
 
 #card-editing-container .general-section-card-details .generalsecactivitiesmain.onshowmore {
   height: 350px;
@@ -376,6 +397,7 @@ input.ignoredirty.form-control{
   margin-bottom: 5px;
   border-radius: 15px;
   background-color: #ddd;
+  height: 12px;
 }
 
 .general-activities-list-group {
@@ -388,8 +410,9 @@ input.ignoredirty.form-control{
   float: left;
   display: block;
   text-align: center;
-  padding: 5px;
+  padding: 3px 5px;
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .single-card {

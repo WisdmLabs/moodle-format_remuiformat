@@ -53,49 +53,24 @@
 }}
 
 <div class="col-lg-12 col-sm-12 general-single-card-container m-b-2 mb-25 mb-4">
-    <div class="general-single-card p-x-1 p-y-1 px-15 py-10 p-3">
-        <div class="general-section-card-details row">
-            <div class="generaldetails col-9 col-sm-12 col-lg-9 content pb-3 order-sm-12 order-lg-1">
+    <div class="general-single-card general-section-card-details p-x-1 p-y-1 px-15 py-10 p-3">
+        <div class="row">
+            <div class="generaldetails col-9 col-sm-12 col-md-6 col-lg-8 content pb-3 order-sm-12 order-md-1">
                 <h2 class="section-title pt-0 p-t-0">{{ title }}</h2>
                 <div class='generalsectioninfo'>
                     {{{availability}}}
                     {{{ summary }}}
                 </div>
-                <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
-                <ul class="generalsecactivitiesmain row d-flex justify-content-around text-center showhidecardactivity">
-                    {{#activities}}
-                        <li class="activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center" id="module-{{id}}">
-                            <div class="generalsecactivitiescontent">
-                                {{#editing}}
-                                    {{{leftside}}}
-                                {{/editing}}
-                                <div>
-                                    <div class="activityinstance p-0 d-inline-block">
-                                        {{{title}}}
-                                    </div>
-                                    <div class="actions">
-                                        {{{completion}}}
-                                    </div>
-                                    {{{availstatus}}}
-                                </div>
-                            </div>
-                        </li>
-                    {{/activities}}
-                </ul>
-                <div class="text-center showactivitywrapper" style="display: none;">
-                    <button class="showactivity btn btn-primary px-25 show" style="display: none;">{{#str}} showmore, format_remuiformat{{/str}}</button>
-                </div>
-                
             </div>
-            <div class="coursedetails col-3 col-sm-12 col-lg-3 order-sm-1 order-lg-12">
+            <div class="coursedetails col-3 col-sm-12 col-md-6 col-lg-4 order-sm-1 order-md-12">
                 <div class="row">
                     {{#coursemainimage}}
-                        <div class="col-12 coursemainimagediv text-right mb-4">
+                        <div class="col-12 coursemainimagediv text-right d-none d-md-block mb-4">
                             <img src='{{coursemainimage}}' class='coursemainimage'>
                         </div>
                     {{/coursemainimage}}
                     <div class="col-12 mb-4">
-                        <h4 class="courseprogress mt-0">{{#str}} coursecompletionprogress, format_remuiformat{{/str}}</h4>
+                        <h6 class="courseprogress mt-0 bold">{{#str}} coursecompletionprogress, format_remuiformat{{/str}}</h6>
                         {{#percentage}}
                             <div class="progress progress-rounded mb-4">
                                 <div class="progress-bar bg-green-600" style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
@@ -129,6 +104,30 @@
                 </div>
             </div>
         </div>
+        <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>              
+        <ul class="generalsecactivitiesmain row d-flex justify-content-around text-center showhidecardactivity">
+            {{#activities}}
+                <li class="activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center" id="module-{{id}}">
+                    <div class="generalsecactivitiescontent">
+                        {{#editing}}
+                            {{{leftside}}}
+                        {{/editing}}
+                        <div>
+                            <div class="activityinstance p-0 d-inline-block">
+                                {{{title}}}
+                            </div>
+                            <div class="actions">
+                                {{{completion}}}
+                            </div>
+                            {{{availstatus}}}
+                        </div>
+                    </div>
+                </li>
+            {{/activities}}
+        </ul>
+        <div class="text-center showactivitywrapper" style="display: none;">
+            <button class="showactivity btn btn-primary px-25 show" style="display: none;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
+        </div>  
     </div>
 </div>
 {{#js}}
@@ -138,21 +137,22 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
 
         if(jQuery(this).hasClass('show')) {
-            jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp();
-            jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
+            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp(); }}
+            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore'); }}
             {{! jQuery('.general-section-card-details').css({'height': '412px'}); }}
-            jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "0px"});
+            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "0px"}); }}
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
-            jQuery('.general-activities-list-group').css({'height': '90px', 'overflow-y': 'scroll'});
-            jQuery(this).toggleClass('show'); //Remove show class
+            {{! jQuery('.general-activities-list-group').css({'height': '90px', 'overflow-y': 'scroll'}); }}
+            jQuery(this).toggleClass('show'); //Remove show class.
         } else {
-            jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown();
-            jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
+            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown(); }}
+            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore'); }}
             {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
-            jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});
-            jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
-            jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'});
-            jQuery(this).toggleClass('show'); //Add show class
+            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"}); }}
+            jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
+            {{! jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'}); }}
+            jQuery(this).toggleClass('show'); //Add show class.
+            jQuery("html, body").animate({ scrollTop: 0 }, "slow");
         }
         jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');
     });
