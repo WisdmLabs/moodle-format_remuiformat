@@ -59,7 +59,14 @@
                 <h2 class="section-title pt-0 p-t-0">{{ title }}</h2>
                 <div class='generalsectioninfo'>
                     {{{availability}}}
-                    {{{ summary }}}
+                    <input type="checkbox" class="read-more-state" id="read-more-summary" />
+                    <div class="read-less-wrap">
+                        <span class="read-less-target">{{{ summary }}}</span>
+                    </div>
+                    <div class="read-more-wrap">
+                        <span class="read-more-target">{{{ fullsummary }}}</span>
+                    </div>
+                    <label for="read-more-summary" class="read-more-trigger"></label>
                 </div>
             </div>
             <div class="coursedetails col-3 col-sm-12 col-md-6 col-lg-4 order-1 order-md-12">

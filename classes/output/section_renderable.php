@@ -113,9 +113,10 @@ class format_remuiformat_section implements renderable, templatable
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
         $sections = $modinfo->get_section_info_all();
-
+        
         // Setting up data for General Section.
         $generalsection = $modinfo->get_section_info(0);
+        $generalsectionsummary = $renderer->format_summary_text($generalsection);
         if ($generalsection) {
             if ($editing) {
                 $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
@@ -129,8 +130,11 @@ class format_remuiformat_section implements renderable, templatable
             $export->generalsection['activities'] = $this->get_activities_details($generalsection);
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            $export->generalsection['summary'] = $renderer->format_summary_text($generalsection);
-
+            
+            $export->generalsection['summary'] = $renderer->abstract_html_contents(
+                $generalsectionsummary, 400
+            );
+            $export->generalsection['fullsummary'] = $renderer->format_summary_text($generalsection);
             // Get course image if added.
             $imgurl = $this->display_file($this->settings['remuicourseimage_filemanager']);
             if (empty($imgurl)) {
