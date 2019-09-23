@@ -61,8 +61,38 @@
   margin: 4px 0;
 }
 
+@media (max-width:1400px) {
+  /* Sections */
+  body.path-course.editing.site-menubar-unfold .single-card-container,
+  body.path-course.pinaside.site-menubar-unfold .single-card-container {
+    min-width: 50% !important;
+  }
+
+  /* General Section */
+  /* body.path-course.pinaside.site-menubar-unfold .generaldetails {
+    order: 12;
+    min-width: 100%;
+  }
+  
+  body.path-course.pinaside.site-menubar-unfold .coursedetails {
+    order: 1;
+    min-width: 100%;
+  } */
+}
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px)  {
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
+    min-width: 50% !important;
+  }
+
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
+    min-width: 50% !important;
+  }
+}
+
 /* Show two cards per row, when both sidebars open in RemUI
- * when left sidebar and right blocks section open in Boost
+* when left sidebar and right blocks section open in Boost
 */
 
 @media (max-width:1200px) {
@@ -70,7 +100,7 @@
   body.path-course.pinaside.site-menubar-unfold ul.section.first-section li {
     min-width: 50% !important;
   }
-
+  
   body.path-course.editing .single-card-container,
   body.path-course.site-menubar-unfold .single-card-container,
   body.path-course.pinaside .single-card-container {
@@ -87,25 +117,6 @@
   }
 }
 
-@media (max-width:1400px) {
-  /* Sections */
-  body.path-course.editing.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside.site-menubar-unfold .single-card-container {
-    min-width: 50% !important;
-  }
-
-  /* General Section */
-  body.path-course.pinaside.site-menubar-unfold .generaldetails {
-    order: 12;
-    min-width: 100%;
-  }
-  
-  body.path-course.pinaside.site-menubar-unfold .coursedetails {
-    order: 1;
-    min-width: 100%;
-  }
-}
-
 @media only screen and (min-width: 768px) and (max-width: 991px)  {
   body#page-course-view-remuiformat.drawer-open-left .single-card-container {
     min-width: 100% !important;
@@ -119,15 +130,21 @@
   body#page-course-view-remuiformat.drawer-open-left .single-card-container {
     min-width: 50% !important;
   }
+
+  body.path-course.pinaside.site-menubar-unfold .generaldetails {
+    order: 12;
+    min-width: 100%;
+  }
+  body.path-course.pinaside.site-menubar-unfold .coursedetails {
+    order: 1;
+    min-width: 100%;
+  }
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1400px)  {
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
-    min-width: 50% !important;
-  }
-
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
-    min-width: 50% !important;
+@media (max-width:768px) {
+  body.path-course.site-menubar-unfold .generaldetails,
+  body.path-course.site-menubar-unfold .coursedetails {
+    min-width: 100% !important;
   }
 }
 

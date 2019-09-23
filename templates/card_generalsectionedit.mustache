@@ -68,8 +68,8 @@
     }
 }}
 <ul class="cards col-lg-12 col-sm-12 general-single-card-container mb-25 mb-4">
-    <li id="section-0" class="section general-single-card px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
-        <div class="general-section-card-details row">
+    <li id="section-0" class="section general-single-card general-section-card-details px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
+        <div class="row">
             <div class="generaldetails col-9 col-sm-12 col-lg-9 content pb-3 order-sm-12 order-lg-1 pb-10">
                 <div class="left side">
                     {{{ leftsection }}}
@@ -83,30 +83,7 @@
                     {{{ summary }}}
                 </div>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
-                <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
-                <ul class="section first-section img-text d-flex generalsecactivitiesmain row justify-content-around text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
-                    {{#activities}}
-                        <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
-                            <div class="generalsecactivitiescontent">
-                                <div>
-                                    <div class="activityinstance p-0 d-inline-block">
-                                        {{{title}}}
-                                        <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
-                                    </div>
-                                    <div class="actions">
-                                        {{{completion}}}
-                                        {{{modicons}}}
-                                        {{{availstatus}}}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    {{/activities}}
-                </ul>
-                <div class="text-center showactivitywrapper" style="display: none;">
-                    <button class="showactivity btn btn-primary px-25 show" style="display: none;">{{#str}} showmore, format_remuiformat{{/str}}</button>
-                </div>
-                {{{addnewactivity}}}
+
             </div>
             <div class="coursedetails col-3 col-sm-12 col-lg-3 order-sm-1 order-lg-12">
                 <div class="row">
@@ -142,7 +119,31 @@
                     {{/resumeactivityurl}}
                 </div>
             </div>
-        </div>                
+        </div>
+        <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
+        <ul class="section first-section img-text d-flex generalsecactivitiesmain row justify-content-around text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
+            {{#activities}}
+                <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
+                    <div class="generalsecactivitiescontent">
+                        <div>
+                            <div class="activityinstance p-0 d-inline-block">
+                                {{{title}}}
+                                <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                            </div>
+                            <div class="actions">
+                                {{{completion}}}
+                                {{{modicons}}}
+                                {{{availstatus}}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {{/activities}}
+        </ul>
+        <div class="text-center showactivitywrapper" style="display: none;">
+            <button class="showactivity btn btn-primary px-25 show" style="display: none;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
+        </div>
+        {{{addnewactivity}}}
     </li>
 </ul>
 {{#js}}
@@ -167,23 +168,24 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
 
         if(jQuery(this).hasClass('show')) {
-            jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp();
-            jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');       
+            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp(); }}
+            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');        }}
             {{! jQuery('.general-section-card-details').css({'height': '490px'}); }}
-            jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "-8px"});
+            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "-8px"}); }}
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
-            jQuery('.general-activities-list-group').css({'height': '100px', 'overflow-y': 'scroll'});
+            {{! jQuery('.general-activities-list-group').css({'height': '100px', 'overflow-y': 'scroll'}); }}
             jQuery(this).toggleClass('show'); //Remove show class
-            jQuery(".general-section-card-details .addresourcemodchooser").css({"position": "absolute", "bottom": "-8px", "right": "10px"});
+            {{! jQuery(".general-section-card-details .addresourcemodchooser").css({"position": "absolute", "bottom": "-8px", "right": "10px"}); }}
         } else {
-            jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown();
-            jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');
+            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown(); }}
+            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore'); }}
             {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
-            jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"});
-            jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
-            jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'});
+            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"}); }}
+            jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
+            {{! jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'}); }}
             jQuery(this).toggleClass('show'); //Add show class
-            jQuery('.general-section-card-details .addresourcemodchooser').css({"position": "initial"});
+            {{! jQuery('.general-section-card-details .addresourcemodchooser').css({"position": "initial"}); }}
+            jQuery("html, body").animate({ scrollTop: 0 }, "slow");
         }
         jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');
     });
