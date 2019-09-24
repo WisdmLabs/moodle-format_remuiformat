@@ -311,6 +311,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
         return $o;
     }
+
     /**
      * Generate the edit control items of a section
      *
@@ -376,6 +377,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             return array_merge($controls, $parentcontrols);
         }
     }
+
     /**
      * If section is not visible, display the message about that ('Not available
      * until...', that sort of thing). Otherwise, returns blank.
@@ -627,6 +629,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             }
         }
     }
+    
     /**
      * Renders the mutiple section page.
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.

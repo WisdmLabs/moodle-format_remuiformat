@@ -67,8 +67,8 @@
         ]
     }
 }}
-<ul class="cards col-lg-12 col-sm-12 general-single-card-container mb-25 mb-4">
-    <li id="section-0" class="section general-single-card general-section-card-details px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
+<div class="cards col-lg-12 col-sm-12 general-single-card-container mb-25 mb-4">
+    <div class="section general-single-card general-section-card-details px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
         <div class="row">
             <div class="generaldetails col-9 col-sm-12 col-lg-9 content pb-3 order-12 order-md-1 pb-10">
                 <div class="left side">
@@ -83,12 +83,12 @@
                     <input type="checkbox" class="read-more-state" id="read-more-summary" />
                     <div class="read-less-wrap">
                         <span class="read-less-target">{{{ summary }}}</span>
-                        </div>
-                        <div class="read-more-wrap">
-                            <span class="read-more-target">{{{ fullsummary }}}</span>
-                        </div>
-                        <label for="read-more-summary" class="read-more-trigger"></label>
                     </div>
+                    <div class="read-more-wrap">
+                        <span class="read-more-target">{{{ fullsummary }}}</span>
+                    </div>
+                    <label for="read-more-summary" class="read-more-trigger"></label>
+                </div>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
             </div>
             <div class="coursedetails col-3 col-sm-12 col-lg-3 order-1 order-md-12">
@@ -127,43 +127,47 @@
             </div>
         </div>
         <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
-        <ul class="section first-section img-text d-flex generalsecactivitiesmain row justify-content-around text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
-            {{#activities}}
-                <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
-                    <div class="generalsecactivitiescontent">
-                        <div>
-                            <div class="activityinstance p-0 d-inline-block">
-                                {{{title}}}
-                                <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
-                            </div>
-                            <div class="actions">
-                                {{{completion}}}
-                                {{{modicons}}}
-                                {{{availstatus}}}
+        <div class="content">
+            <ul class="section first-section img-text d-flex row generalsecactivitiesmain justify-content-between text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
+                {{#activities}}
+                    <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-12 col-sm-6 col-md-4 col-lg-4 col-xlq-2 justify-content-center list-unstyled yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
+                        <div class="generalsecactivitiescontent">
+                            <div>
+                                <div class="activityinstance p-0 d-inline-block">
+                                    {{{title}}}
+                                    <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                                </div>
+                                <div class="actions">
+                                    {{{completion}}}
+                                    {{{modicons}}}
+                                    {{{availstatus}}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            {{/activities}}
-        </ul>
+                    </li>
+                {{/activities}}
+            </ul>
+        </div>
+
         <div class="text-center showactivitywrapper" style="display: none;">
             <button class="showactivity btn btn-primary px-25 show" style="display: none;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
         </div>
         {{{addnewactivity}}}
-    </li>
-</ul>
+    </div>
+</div>
 {{#js}}
 require(['jquery'], function(jQuery) {
 
         // change css for li after drag and drop
     
      // select the target node
-      var target = document.querySelector('ul.cards ul.first-section')
+      var target = document.querySelector('div.cards ul.first-section')
       // create an observer instance
       var observer = new MutationObserver(function(mutations) {
-        {{! jQuery('ul.cards ul.first-section').find('li.activity').attr('class', 'activity first-section-activity forum modtype_forum col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 pt-2 yui3-dd-drop yui3-dd-draggable'); }}
-        jQuery('ul.cards ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
-        jQuery('ul.cards ul.first-section').find('.mod-indent-outer').removeAttr('class');
+        {{! jQuery('div.cards ul.first-section').find('li.activity').attr('class', 'activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop'); }}
+        jQuery('div.cards ul.first-section').find('li.activity').addClass('generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 yui3-dd-drop');
+        jQuery('div.cards ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
+        jQuery('div.cards ul.first-section').find('.mod-indent-outer').removeAttr('class');
         });
       // configuration of the observer:
       var config = { attributes: true, childList: true, characterData: true };

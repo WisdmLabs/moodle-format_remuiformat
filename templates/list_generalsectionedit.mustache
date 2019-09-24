@@ -77,30 +77,30 @@
          </div>
       </div>
    {{/percentage}}
-            <div class="section_availability badge badge-pill badge-info mb-10"></div>
-               <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-center text-center showhideactivity">
-                    {{#activities}}
-                        <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
-                            <div>
-                                <div>
-                                    <div class="activityinstance p-0 d-inline-block">
-                                    {{{title}}}
-                                    <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
-                                    </div>
-                                    <div class="actions">
-                                    {{{completion}}}
-                                    {{{modicons}}}
-                                    {{{availstatus}}}
-                                    </div>
-                                </div>
+    <div class="section_availability badge badge-pill badge-info mb-10"></div>
+        <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-center text-center showhideactivity">
+            {{#activities}}
+                <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
+                    <div>
+                        <div>
+                            <div class="activityinstance p-0 d-inline-block">
+                            {{{title}}}
+                            <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
                             </div>
-                        </li>
-                    {{/activities}}
-               </ul>
-            <div class="text-center showactivitywrapper">
-                <button class="showactivity btn btn-primary px-25 show" style="visibility: hidden;">Show More</button>
-            </div>
-            {{{addnewactivity}}}
+                            <div class="actions">
+                            {{{completion}}}
+                            {{{modicons}}}
+                            {{{availstatus}}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {{/activities}}
+        </ul>
+    <div class="text-center showactivitywrapper">
+        <button class="showactivity btn btn-primary px-25 show" style="visibility: hidden;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
+    </div>
+    {{{addnewactivity}}}
    </div>
 </li>
 
@@ -130,7 +130,7 @@ require(['jquery'], function(jQuery) {
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show');
         } else {
-            jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
+            jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show');
         }
     });

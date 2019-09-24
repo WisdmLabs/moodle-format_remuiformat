@@ -149,9 +149,9 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
 
         M.course.format.get_config = function () {
             return {
-                container_node: 'ul',
+                container_node: 'div',
                 container_class: 'cards',
-                section_node: 'li',
+                section_node: 'div',
                 section_class: 'section'
             };
         }

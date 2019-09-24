@@ -139,6 +139,9 @@
     order: 1;
     min-width: 100%;
   }
+  body.path-course.pinaside.site-menubar-unfold .coursemainimagediv {
+    display: none !important;
+  }
 }
 @media (max-width:768px) {
   body.path-course.site-menubar-unfold .generaldetails,
@@ -353,15 +356,12 @@ input.ignoredirty.form-control{
 
 .general-section-card-details .generalsecactivities {
   float: left;
-  margin: 15px 20px 10px 20px !important;
-  padding: 8px!important;
-  box-shadow: 0 0 4px #ddd;
-  list-style: none;
+  margin: 0px 0px 15px 0px!important;
 }
 
 .general-section-card-details .generalsecactivitiesmain {
   padding: 0px;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   margin-bottom: 1rem !important;
 }
 
@@ -391,7 +391,8 @@ input.ignoredirty.form-control{
 
 .general-section-card-details .generalsecactivities .generalsecactivitiescontent {
   text-align: center;
-  padding: 0px;
+  padding: 12px!important;
+  box-shadow: 0 0 4px #ddd;
 }
 .general-section-card-details .generalsecactivities .generalsecactivitiescontent .actions{
   position: absolute;
@@ -475,7 +476,7 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
     margin: 15px 0 0 0;
     padding: 8px !important;
-    box-shadow: 0 0px 4px #ddd;
+    /* box-shadow: 0 0px 4px #ddd; */
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;

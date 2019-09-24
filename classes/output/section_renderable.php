@@ -150,9 +150,7 @@ class format_remuiformat_section implements renderable, templatable
             }
             
             $courseallactivities = get_array_of_activities($this->course->id);
-            
-            $export->nooftotalactivities = sizeof($courseallactivities);
-
+	    $export->nooftotalactivities = sizeof($courseallactivities);
             $allactivitiesarray = array();
             foreach ($courseallactivities as $key => $value) {
                 if (array_key_exists($value->mod,$allactivitiesarray)) {
@@ -165,6 +163,10 @@ class format_remuiformat_section implements renderable, templatable
             }
             $output = array();
             foreach ($allactivitiesarray as $key => $value) {
+                // Make activity type plural if count is more than 1.
+                if ($value > 1) {
+                    $key = $key.'s';
+                }
                 $output['activitylist'][] = $value.' '.$key;
             }            
             $export->activitylist = $output['activitylist'];

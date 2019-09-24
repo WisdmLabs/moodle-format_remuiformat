@@ -100,7 +100,7 @@
                 {{/activities}}
             </ul>
             <div class="text-center showactivitywrapper" style="display: none;">
-                <button class="showactivity btn btn-primary px-25 show" style="display: none;">Show More</button>
+                <button class="showactivity btn btn-primary px-25 show" style="display: none;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
             </div>
         </div>
 </li>
@@ -111,10 +111,10 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
         jQuery('.section.first-section').toggleClass('showhideactivity');
         if(jQuery(this).hasClass('show')) {
-            jQuery(this).text('{{# str }} showless, format_remuiformat {{/ str }}');
+            jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show');
         } else {
-            jQuery(this).text('{{# str }} showmore, format_remuiformat {{/ str }}');
+            jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show');
         }
     });
