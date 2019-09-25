@@ -361,20 +361,8 @@ input.ignoredirty.form-control{
 
 .general-section-card-details .generalsecactivitiesmain {
   padding: 0px;
-  /* background-color: rgb(255, 255, 255); */
   margin-bottom: 1rem !important;
 }
-
-/* .general-section-card-details .generalsecactivitiesmain.onshowmore {
-  transition: all 0.5s ease-in-out;
-  background-color: rgb(255, 255, 255);
-  position: absolute;
-  top: 0px;
-  margin: 0px 10px 0px 0px !important;
-  height: 340px;
-  overflow-y: scroll;
-  z-index: 3;
-} */
 
 #card-editing-container .general-section-card-details .generalsecactivitiesmain.onshowmore {
   height: 350px;
@@ -499,11 +487,6 @@ input.ignoredirty.form-control{
     top: none;
     right: none;
 }
-/* #page-course-view-remuiformat div.moodle-actionmenu.section-cm-edit-actions {
-  position: absolute;
-  top: -9px;
-  right: 28px;
-} */
 #page-course-view-remuiformat  span.section-modchooser-link .fa.fa-plus{
     color: white;
 }
@@ -756,7 +739,7 @@ For list format
   .showhideactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
-  .showhidecardactivity .first-section-activity:nth-child(n+3) {
+  .showhidecardactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
 }
@@ -764,7 +747,7 @@ For list format
   .showhideactivity .first-section-activity:nth-child(n+3) {
     display: none;
   }
-  .showhidecardactivity .first-section-activity:nth-child(n+2) {
+  .showhidecardactivity .first-section-activity:nth-child(n+3) {
     display: none;
   }
 }
@@ -928,9 +911,11 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions
  {
-  background-color: #4c4c4c;
+  background-color: #ececec;
+  color: #353535;
+  /* background-color: #4c4c4c;
+  color: white; */
   text-align: left;
-  color: white;
   display: inline-block;
   padding: 0.75rem 1.4em;
   font-size: 0.9rem;
@@ -944,9 +929,11 @@ ul.remui-format-list span.inplaceeditable input {
 
 #page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag,
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-  background-color: #4c4c4c;
+  background-color: #ececec;
+  color: #353535;
+  /* background-color: #4c4c4c;
+  color: white; */
   text-align: left;
-  color: white;
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
@@ -1146,34 +1133,46 @@ ul.remui-format-list span.inplaceeditable input {
 }
 
 /* General section summary show/hide. */
-.read-more-state, .read-more-target {
+.read-more-state {
   display: none;
 }
 
-.read-more-state:checked ~ .read-more-wrap .read-more-target {
-  display: block;
+.read-more-target {
+  height: 110px;
+  overflow: hidden;
 }
 
-.read-less-target {
+.read-more-target:after {
+  content: ".";
   display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
 
-.read-more-state:checked ~ .read-less-wrap .read-less-target {
+.fadeout-summary {
+  position: absolute;
+  margin-top: -50px;
+  width: 95%;
+  height: 50px;
+  background-image: linear-gradient(rgba(255,255,255,0.3) 0,rgba(255,255,255,1) 100%);
+}
+
+.read-more-state:checked ~ .read-more-target {
+  height: auto;
+  overflow: inherit;
+}
+
+.read-more-state:checked ~ .fadeout-summary {
   display: none;
 }
 
 .read-more-state ~ .read-more-trigger:before {
-  content: 'Show full summary';
+  content: ' + Show full summary';
 }
 
 .read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Show less summary';
-}
-
-.read-more-trigger {
-  cursor: pointer;
-  display: inline-block;
-  color: #65aaeb;
-  font-size: .9em;
+  content: 'Show less';
 }
 /* General section summary show/hide end. */
