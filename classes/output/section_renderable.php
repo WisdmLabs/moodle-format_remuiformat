@@ -322,7 +322,8 @@ class format_remuiformat_section implements renderable, templatable
                 $actionsectionurl = new \moodle_url('/course/changenumsections.php',
                     array('courseid' => $this->course->id,
                         'insertsection' => $currentsection->section + 1,
-                        'sesskey' => sesskey()
+                        'sesskey' => sesskey(),
+                        'returnurl' => course_get_url($this->course)
                     )
                 );
                 $label = html_writer::tag('span', get_string('addnewsection', 'format_remuiformat'));

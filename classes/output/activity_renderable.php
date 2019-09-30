@@ -30,6 +30,7 @@ use renderable;
 use renderer_base;
 use templatable;
 use stdClass;
+use html_writer;
 use context_course;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
@@ -147,7 +148,6 @@ class format_remuiformat_activity implements renderable, templatable {
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
-
         if (!empty($modinfo->sections[$section->section])) {
             $count = 1;
             foreach ($modinfo->sections[$section->section] as $modnumber) {
@@ -155,9 +155,9 @@ class format_remuiformat_activity implements renderable, templatable {
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
-
+                
                 $completiondata = $completioninfo->get_data($mod, true);
-
+                
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
@@ -183,14 +183,14 @@ class format_remuiformat_activity implements renderable, templatable {
                     $this->courserenderer->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
-
+                
                 // In case of label activity send full text of cm to open in modal.
                 if ($mod->modname == 'label') {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
-
+                
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
@@ -211,7 +211,7 @@ class format_remuiformat_activity implements renderable, templatable {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
-
+                
                 // Set the section layout using the databases value.
                 $table = 'format_remuiformat';
                 $record = $DB->get_record($table, array('courseid' => $this->course->id, 'activityid' => $modnumber), '*');
@@ -224,6 +224,22 @@ class format_remuiformat_activity implements renderable, templatable {
                 } else {
                     $activitydetails->layouttypecol = 'col';
                 }
+
+                // Get all sections from course
+                $sections = $DB->get_records('course_sections', array('course' => $this->course->id), 'section', 'id,section,name,sequence');
+                
+                // Create a section dropdown with section name, section ID and activity ID.
+                $sectionlist = '';
+                foreach ($sections as $value) {
+                    // Skip current section.
+                    if ($section->section != $value->section ) {
+                        if (empty($value->name)) {
+                            $value->name = 'Section '.$value->section;
+                        }
+                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item', array('data-sectionidtomove' => $value->section));
+                    }
+                }
+                $activitydetails->sectionlist = $sectionlist;
 
                 $output[] = $activitydetails;
                 $count++;

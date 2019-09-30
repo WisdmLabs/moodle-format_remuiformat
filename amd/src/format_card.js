@@ -235,6 +235,22 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 $('.wdm-change-layout-notify').delay(2000).fadeOut('slow');
             });
         });
+
+        // Call AJAX to move activity to specific section in cars format.
+        $('.wdm-section-wrapper .single-card-container .wdm-activity-actions .ecfsectionname').on('click', function() {
+            var courseid = getUrlParameter('id');  
+            var section = $(this).data('sectionidtomove');
+            var activitytomove = $(this).closest('.single-card-container').attr('data-id');
+            var activitysave = Ajax.call([
+                {
+                    methodname: "format_remuiformat_move_activity_to_section",
+                    args: { courseid : courseid, sectionid: section, activityidtomove : activitytomove }
+                }
+            ]);
+            activitysave[0].done(function (response) {
+                window.location.href = response['urltogo'];
+            });
+        });
     }
     // Must return the init function.
 

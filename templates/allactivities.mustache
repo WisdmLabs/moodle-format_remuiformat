@@ -81,11 +81,23 @@
                                     <div class="wdm-activity-actions d-flex">
                                         {{#editing}}
                                             {{#layouttyperow}}
-                                                <span id="wdmshowinrow" class="wdm-show-in-row btn btn-light" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showincard, format_remuiformat{{/str}}</span>
+                                                <span id="wdmshowinrow" class="wdm-show-in-row btn btn-inverse" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showincard, format_remuiformat{{/str}}</span>
                                             {{/layouttyperow}}
                                             {{#layouttypecol}}
-                                                <span id="wdmshowinrow" class="wdm-show-in-row btn btn-light" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showinrow, format_remuiformat{{/str}}</span>
+                                                <span id="wdmshowinrow" class="wdm-show-in-row btn btn-inverse" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showinrow, format_remuiformat{{/str}}</span>
                                             {{/layouttypecol}}
+                                            
+                                                <div class="container">                                       
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                                        Move to
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            {{{ sectionlist }}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
                                         {{/editing}}
                                         {{{ modicons }}}
                                     </div>

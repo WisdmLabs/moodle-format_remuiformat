@@ -17,7 +17,7 @@
 }}
 
 {{!
-    @template format_remuiformat/allactivities
+    @template format_remuiformat/card_generalsection
 
 
     Example context (json):
@@ -115,7 +115,7 @@
                         {{#editing}}
                             {{{leftside}}}
                         {{/editing}}
-                        <div>
+                        {{! <div> }}
                             <div class="activityinstance p-0 d-inline-block">
                                 {{{title}}}
                             </div>
@@ -123,7 +123,7 @@
                                 {{{completion}}}
                             </div>
                             {{{availstatus}}}
-                        </div>
+                        {{! </div> }}
                     </div>
                 </li>
             {{/activities}}

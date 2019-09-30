@@ -17,7 +17,7 @@
 }}
 
 {{!
-    @template format_remuiformat/allactivities
+    @template format_remuiformat/card_singlesection
 
 
     Example context (json):
@@ -77,9 +77,11 @@
                 background-size: cover;";>
         <div class='wdmoverlay' style="background-color: {{remuidefaultsectionoverlay}}"></div>
         {{#highlighted}}<div class="card-current moodle-has-zindex text-primary"></div>{{/highlighted}}
+        <div class='d-flex position-relative justify-content-end'>
+            {{{ addnewsection }}}
+            {{{ optionmenu }}}
+        </div>
         <span class="sno {{^hidden}}text-primary1{{/hidden}}{{#hidden}}text-muted1{{/hidden}}" style="color: {{remuinewfontcolor}}">SECTION {{ index }}</span>
-        {{{ addnewsection }}}
-        {{{ optionmenu }}}
         <div class="card-content pb-10 pb-2">
             {{#addnewsection}}
                 <h2 class="section-title" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
