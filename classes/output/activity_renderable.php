@@ -144,7 +144,7 @@ class format_remuiformat_activity implements renderable, templatable {
     }
 
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER, $DB;
+        global $PAGE, $USER, $DB, $OUTPUT;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -214,14 +214,20 @@ class format_remuiformat_activity implements renderable, templatable {
                 // Set the section layout using the databases value.
                 $table = 'format_remuiformat';
                 $record = $DB->get_record($table, array('courseid' => $this->course->id, 'activityid' => $modnumber), '*');
+                
+                
                 if ( !empty($record) ) {
                     if ($record->layouttype == 'row') {
                         $activitydetails->layouttyperow = 'row';
+                        // $activitydetails->layouttypecardimg = $OUTPUT->pix_icon('ecf-cols', get_string('showincard', 'format_remuiformat'), 'format_remuiformat');
+
                     } else {
                         $activitydetails->layouttypecol = 'col';
+                        // $activitydetails->layouttyperowimg = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
                     }
                 } else {
                     $activitydetails->layouttypecol = 'col';
+                    // $activitydetails->layouttyperowimg = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
                 }
 
                 // Get all sections from course
@@ -235,7 +241,7 @@ class format_remuiformat_activity implements renderable, templatable {
                         if (empty($value->name)) {
                             $value->name = 'Section '.$value->section;
                         }
-                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item', array('data-sectionidtomove' => $value->section, 'data-oldsectionid' => $section->section));
+                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item p-1', array('data-sectionidtomove' => $value->section, 'data-oldsectionid' => $section->section));
                     }
                 }
                 $activitydetails->sectionlist = $sectionlist;

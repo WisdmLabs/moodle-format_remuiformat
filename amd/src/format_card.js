@@ -233,13 +233,11 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 if (response['type'] == 'row') {
                     $(selector).closest('.single-card-container').removeClass('col-lg-4 col-md-6 col-sm-12').addClass('col-12');
                     $(selector).closest('.single-card-container .single-card').removeClass('wdm-col').addClass('wdm-min-row');
-                    // $(selector).closest('.single-card-container').addClass('col-12');
-                    $(selector).text('Make card');
+                    $(selector).find('.wdmactivitytype').toggle();
                 } else {
                     $(selector).closest('.single-card-container').removeClass('col-12').addClass('col-lg-4 col-md-6 col-sm-12');
-                    // $(selector).closest('.single-card-container').addClass('col-lg-4 col-md-6 col-sm-12');
                     $(selector).closest('.single-card-container .single-card').removeClass('wdm-min-row').addClass('wdm-col');
-                    $(selector).text('Make row');
+                    $(selector).find('.wdmactivitytype').toggle();
                 }
                 // setEqualHeight($('.single-card'));
             });

@@ -551,8 +551,17 @@ input.ignoredirty.form-control{
     justify-content: space-between;
     align-items: center;
 }
+
+.wdm-activity-actions .dropdown-menu {
+  width: 200px;
+  max-height: 240px;
+  overflow-y: scroll;
+}
+
 .wdm-activity-actions .ecfsectionname {
   cursor: pointer;
+  white-space: normal;
+  font-size: 13px;
 }
 
 .wdm-completion-container {

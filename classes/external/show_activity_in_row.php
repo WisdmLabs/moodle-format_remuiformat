@@ -52,7 +52,7 @@ trait show_activity_in_row {
     }
 
     public static function show_activity_in_row($courseid, $sectionid, $activityid) {
-        global $DB;
+        global $DB, $OUTPUT;
         $table = 'format_remuiformat';
         $record = $DB->get_record($table,
             array('courseid' => $courseid, 'sectionid' => $sectionid, 'activityid' => $activityid),
@@ -64,10 +64,12 @@ trait show_activity_in_row {
                 $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
                 'activityid' => $activityid, 'layouttype' => 'col']);
                 $output['type'] = 'col';
+                // $output['layouttypecardimg'] = $OUTPUT->pix_icon('ecf-cols', get_string('showincard', 'format_remuiformat'), 'format_remuiformat');
             } else {
                 $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
                 'activityid' => $activityid, 'layouttype' => 'row']);
                 $output['type'] = 'row';
+                // $output['layouttypecardimg'] = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
             }
             $output['success'] = true;
             $output['message'] = 'Record Updated';
@@ -75,6 +77,7 @@ trait show_activity_in_row {
             $DB->insert_record($table, ['courseid' => $courseid, 'sectionid' => $sectionid,
             'activityid' => $activityid, 'layouttype' => 'row']);
             $output['type'] = 'row';
+            // $output['layouttypecardimg'] = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
             $output['success'] = true;
             $output['message'] = 'Record Inserted';
         }
@@ -87,7 +90,8 @@ trait show_activity_in_row {
             array(
                 'success' => new external_value(PARAM_BOOL, 'If error occurs or not.'),
                 'message' => new external_value(PARAM_RAW, 'Error message.'),
-                'type' => new external_value(PARAM_RAW, 'Activity type.')
+                'type' => new external_value(PARAM_RAW, 'Activity type.'),
+                // 'layouttypecardimg' => new external_value(PARAM_RAW, 'Activity type image')
             )
         );
     }

@@ -78,6 +78,7 @@ $string['notcompleted'] = 'Not Completed';
 $string['progress'] = 'Progress';
 $string['showinrow'] = 'Make row';
 $string['showincard'] = 'Make card';
+$string['moveto'] = 'Move to';
 $string['changelayoutnotify'] = 'Refresh page to see changes.';
 $string['generalactivities'] = 'Activities';
 $string['coursecompletionprogress'] = 'Course Progress';

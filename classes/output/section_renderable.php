@@ -326,7 +326,10 @@ class format_remuiformat_section implements renderable, templatable
                         'returnurl' => course_get_url($this->course)
                     )
                 );
-                $label = html_writer::tag('span', get_string('addnewsection', 'format_remuiformat'));
+                // $label = html_writer::tag('span', get_string('addnewsection', 'format_remuiformat'));
+                $label = html_writer::span(get_string('addnewsection', 'format_remuiformat'), 'wdmaddsection d-none d-lg-block');
+                $label .= html_writer::span('<i class="fa fa-plus-circle" aria-hidden="true"></i>', 'wdmaddsection d-block d-lg-none');
+
                 $sectiondetails->addnewsection = html_writer::link($actionsectionurl, $label,
                     array('class' => 'wdm-add-new-section btn btn-light')
                 );
@@ -347,7 +350,7 @@ class format_remuiformat_section implements renderable, templatable
                 $remuidefaultsectionoverlay = 'rgba(255,255,255,0.8)';
                 if( $remuidefaultsectiontheme == 1 ) {
                     // Dark theme
-                    $remuidefaultsectionoverlay = 'rgba(0,0,0,0.6)';
+                    $remuidefaultsectionoverlay = 'rgba(0,0,0,0.45)';
                     $remuinewfontcolor = '#eaeaea';
                     $remuinewthemecolor = 'dark';
                 } else {
