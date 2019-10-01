@@ -78,7 +78,7 @@
                                 {{/editing}}
                                 <div class="wdm-activity-actions d-flex">
                                     <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{#layouttypecol}}{{ modulename }}{{/layouttypecol}}</div>
-                                    <div class="wdm-activity-actions d-flex">
+                                    <div class="wdm-activity-actions1 d-flex">
                                         {{#editing}}
                                             {{#layouttyperow}}
                                                 <span id="wdmshowinrow" class="wdm-show-in-row btn btn-inverse" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">{{#str}} showincard, format_remuiformat{{/str}}</span>
@@ -196,9 +196,6 @@
                     </ul>
                 </div>
                 {{{ addnewactivity }}}
-                {{#editing}}
-                    <span class='wdm-change-layout-notify bg-primary'>{{#str}} changelayoutnotify, format_remuiformat{{/str}}</span>
-                {{/editing}}
             </li>
         </ul>
     </div>

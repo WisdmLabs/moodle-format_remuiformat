@@ -230,9 +230,18 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 }
             ]);
             activitysave[0].done(function (response) {
-                $(selector).addClass('bg-primary');
-                $('.wdm-change-layout-notify').show();
-                $('.wdm-change-layout-notify').delay(2000).fadeOut('slow');
+                if (response['type'] == 'row') {
+                    $(selector).closest('.single-card-container').removeClass('col-lg-4 col-md-6 col-sm-12').addClass('col-12');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-col').addClass('wdm-min-row');
+                    // $(selector).closest('.single-card-container').addClass('col-12');
+                    $(selector).text('Make card');
+                } else {
+                    $(selector).closest('.single-card-container').removeClass('col-12').addClass('col-lg-4 col-md-6 col-sm-12');
+                    // $(selector).closest('.single-card-container').addClass('col-lg-4 col-md-6 col-sm-12');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-min-row').addClass('wdm-col');
+                    $(selector).text('Make row');
+                }
+                // setEqualHeight($('.single-card'));
             });
         });
 

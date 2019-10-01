@@ -1074,16 +1074,6 @@ ul.remui-format-list span.inplaceeditable input {
   height: 100%;
 }
 
-.wdm-change-layout-notify {
-  display: none;
-  position: fixed;
-  bottom: 120px;
-  right: 2%;
-  z-index: 5;
-  border-radius: 10px;
-  padding: 10px;
-}
-
 .wdmoverlay {
   position: absolute;
   top: 0%;
