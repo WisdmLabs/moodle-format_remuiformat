@@ -156,8 +156,7 @@ class format_remuiformat_activity implements renderable, templatable {
                     continue;
                 }
                 
-                $completiondata = $completioninfo->get_data($mod, true);
-                
+                $completiondata = $completioninfo->get_data($mod, true);               
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
@@ -236,7 +235,7 @@ class format_remuiformat_activity implements renderable, templatable {
                         if (empty($value->name)) {
                             $value->name = 'Section '.$value->section;
                         }
-                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item', array('data-sectionidtomove' => $value->section));
+                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item', array('data-sectionidtomove' => $value->section, 'data-oldsectionid' => $section->section));
                     }
                 }
                 $activitydetails->sectionlist = $sectionlist;
