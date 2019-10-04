@@ -70,7 +70,7 @@
 <div class="cards col-lg-12 col-sm-12 general-single-card-container mb-25 mb-4">
     <div class="section general-single-card general-section-card-details px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
         <div class="row">
-            <div class="generaldetails col-sm-12 col-lg-9 content pb-3 order-12 order-md-1 pb-10">
+            <div class="generaldetails col-sm-12 col-lg-8 content pb-3 order-12 order-md-1 pb-10">
                 <div class="left side">
                     {{{ leftsection }}}
                 </div>
@@ -80,14 +80,16 @@
                 <h2 class="section-title">{{{ title }}}</h2>
                 <div class='generalsectioninfo'>
                     {{{ availability }}}
-                    <input type="checkbox" class="read-more-state" id="read-more-summary" />
-                    <div class="read-more-target">{{{ fullsummary }}}</div>
-                    <div class="fadeout-summary"></div>
-                    <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
+                    {{#fullsummary}}
+                        <input type="checkbox" class="read-more-state" id="read-more-summary" />
+                        <div class="read-more-target">{{{ fullsummary }}}</div>
+                        <div class="fadeout-summary"></div>
+                        <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
+                    {{/fullsummary}}
                 </div>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
             </div>
-            <div class="coursedetails col-sm-12 col-lg-3 order-1 order-md-12">
+            <div class="coursedetails col-sm-12 col-lg-4 order-1 order-md-12">
                 <div class="row">
                     {{#coursemainimage}}
                         <div class="col-12 coursemainimagediv text-right d-none d-md-block mb-4">
@@ -161,7 +163,7 @@ require(['jquery'], function(jQuery) {
       // create an observer instance
       var observer = new MutationObserver(function(mutations) {
         {{! jQuery('div.cards ul.first-section').find('li.activity').attr('class', 'activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop'); }}
-        jQuery('div.cards ul.first-section').find('li.activity').addClass('activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center yui3-dd-drop');
+        jQuery('div.cards ul.first-section').find('li.activity').addClass('activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-4 justify-content-center yui3-dd-drop');
         jQuery('div.cards ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
         jQuery('div.cards ul.first-section').find('.mod-indent-outer').removeAttr('class');
         });
@@ -174,23 +176,11 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
 
         if(jQuery(this).hasClass('show')) {
-            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp(); }}
-            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore');        }}
-            {{! jQuery('.general-section-card-details').css({'height': '490px'}); }}
-            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "-8px"}); }}
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
-            {{! jQuery('.general-activities-list-group').css({'height': '100px', 'overflow-y': 'scroll'}); }}
             jQuery(this).toggleClass('show'); //Remove show class
-            {{! jQuery(".general-section-card-details .addresourcemodchooser").css({"position": "absolute", "bottom": "-8px", "right": "10px"}); }}
         } else {
-            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown(); }}
-            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore'); }}
-            {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
-            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"}); }}
             jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
-            {{! jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'}); }}
             jQuery(this).toggleClass('show'); //Add show class
-            {{! jQuery('.general-section-card-details .addresourcemodchooser').css({"position": "initial"}); }}
             jQuery("html, body").animate({ scrollTop: 0 }, "slow");
         }
         jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');

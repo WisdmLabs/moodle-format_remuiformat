@@ -392,21 +392,11 @@ input.ignoredirty.form-control{
   display: block;
 }
 
-.general-section-card-details .generalsecactivities .generalsecactivitiescontent {
+.general-section-card-details .generalsecactivities > div:first-child {
   text-align: center;
   padding: 12px!important;
-  box-shadow: 0 0 4px #ddd;
+  box-shadow: 0 0 8px #ddd;
 }
-
-/* .general-section-card-details .generalsecactivities .generalsecactivitiescontent .availabilityinfo {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-} */
 
 .general-section-card-details .generalsecactivities:hover > .generalsecactivitiescontent .availabilityinfo {
   display: block;

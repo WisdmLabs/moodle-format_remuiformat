@@ -59,10 +59,12 @@
                 <h2 class="section-title pt-0 p-t-0">{{ title }}</h2>
                 <div class='generalsectioninfo'>
                     {{{availability}}}
-                    <input type="checkbox" class="read-more-state" id="read-more-summary" />
-                    <div class="read-more-target">{{{ fullsummary }}}</div>
-                    <div class="fadeout-summary"></div>
-                    <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
+                    {{#fullsummary}}
+                        <input type="checkbox" class="read-more-state" id="read-more-summary" />
+                        <div class="read-more-target">{{{ fullsummary }}}</div>
+                        <div class="fadeout-summary"></div>
+                        <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
+                    {{/fullsummary}}
                 </div>
             </div>
             <div class="coursedetails col-sm-12 col-md-6 col-lg-4 order-1 order-md-12">
@@ -140,20 +142,10 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
 
         if(jQuery(this).hasClass('show')) {
-            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideUp(); }}
-            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore'); }}
-            {{! jQuery('.general-section-card-details').css({'height': '412px'}); }}
-            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "absolute", "left": "0", "right": "0", "margin-left": "auto", "margin-right": "auto", "bottom": "0px"}); }}
             jQuery(this).html('<i class="fa fa-times" aria-hidden="true"></i>');
-            {{! jQuery('.general-activities-list-group').css({'height': '90px', 'overflow-y': 'scroll'}); }}
             jQuery(this).toggleClass('show'); //Remove show class.
         } else {
-            {{! jQuery('.general-single-card .general-section-card-details .activitieshead').slideDown(); }}
-            {{! jQuery('.general-section-card-details .generalsecactivitiesmain').toggleClass('onshowmore'); }}
-            {{! jQuery('.general-section-card-details').css({'height': 'initial'}); }}
-            {{! jQuery(".general-section-card-details .showactivitywrapper").css({"position": "relative"}); }}
             jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
-            {{! jQuery('.general-activities-list-group').css({'height': 'initial', 'overflow-y': 'hidden'}); }}
             jQuery(this).toggleClass('show'); //Add show class.
             jQuery("html, body").animate({ scrollTop: 0 }, "slow");
         }

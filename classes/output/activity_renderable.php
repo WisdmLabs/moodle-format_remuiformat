@@ -219,18 +219,14 @@ class format_remuiformat_activity implements renderable, templatable {
                 if ( !empty($record) ) {
                     if ($record->layouttype == 'row') {
                         $activitydetails->layouttyperow = 'row';
-                        // $activitydetails->layouttypecardimg = $OUTPUT->pix_icon('ecf-cols', get_string('showincard', 'format_remuiformat'), 'format_remuiformat');
-
                     } else {
                         $activitydetails->layouttypecol = 'col';
-                        // $activitydetails->layouttyperowimg = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
                     }
                 } else {
                     $activitydetails->layouttypecol = 'col';
-                    // $activitydetails->layouttyperowimg = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
                 }
 
-                // Get all sections from course
+                // Get all sections from course.
                 $sections = $DB->get_records('course_sections', array('course' => $this->course->id), 'section', 'id,section,name,sequence');
                 
                 // Create a section dropdown with section name, section ID and activity ID.
