@@ -197,7 +197,6 @@ ul.remui-format-list .section-summary-activities {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 -15px;
-    /* z-index: 12; */
 }
 
 .section-action-container .progress-text {
@@ -1057,7 +1056,6 @@ ul.remui-format-list span.inplaceeditable input {
   border-top: 26px solid;
   border-bottom: 16px solid;
   border-bottom-color: transparent;
-  /* z-index: 12; */
 }
 
 .list-current {
@@ -1066,7 +1064,6 @@ ul.remui-format-list span.inplaceeditable input {
   top: 0;
   width: 100%;
   left: 0;
-  /* z-index: 12; */
 }
 .list-current {
   width: 7px;
@@ -1079,12 +1076,10 @@ ul.remui-format-list span.inplaceeditable input {
   left: 0%;
   right: 0%;
   bottom: 0%;
-  /* z-index: 10; */
 }
 
 .single-card .sno, .single-card .card-content {
   position: relative;
-  /* z-index: 12; */
 }
 
 /* Compatible CSS for Moodle 35 START*/

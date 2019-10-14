@@ -17,7 +17,7 @@
 }}
 
 {{!
-    @template format_remuiformat/list_allsections
+    @template format_remuiformat/list_all_sections
 
 
     Example context (json):
@@ -40,11 +40,11 @@
     <ul class="remui-format-list">
         {{! Display General Section }}
         {{#generalsection}}
-            {{> format_remuiformat/list_generalsectionedit }}
+            {{> format_remuiformat/list_general_section_edit }}
         {{/generalsection}}
         {{! Display Remaining Section }}
         {{#sections}}
-            {{> format_remuiformat/list_singlesection }}
+            {{> format_remuiformat/list_sections }}
         {{/sections}}
         {{{ addsection }}}
     </ul>
@@ -53,11 +53,11 @@
     <ul class="remui-format-list">
         {{! Display General Section }}
         {{#generalsection}}
-            {{> format_remuiformat/list_generalsection }}
+            {{> format_remuiformat/list_general_section }}
         {{/generalsection}}
         {{! Display Remaining Section }}
         {{#sections}}
-            {{> format_remuiformat/list_singlesection }}
+            {{> format_remuiformat/list_sections }}
         {{/sections}}
     </ul>
     {{#js}}

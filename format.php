@@ -27,9 +27,12 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir.'/filelib.php');
 require_once($CFG->libdir.'/completionlib.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/section_renderable.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/activity_renderable.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/single_section_renderable.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_all_sections_summary_renderable.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/card_all_sections_summary_renderable.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_all_sections_renderable.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_one_section_renderable.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/card_one_section_renderable.php');
+
 
 
 $renderer = $PAGE->get_renderer('format_remuiformat');
@@ -63,19 +66,41 @@ $PAGE->requires->strings_for_js(array_keys($strings), 'format_remuiformat');
 
 $section = optional_param('section', 0, PARAM_INT);
 $baserenderer = $renderer->get_base_renderer();
+
+// Get current course format.
+$courseformat = course_get_format($course);
+$settings = $courseformat->get_settings();
+$rformat = $settings['remuicourseformat'];
+
 if ($section) {
     if ($course->remuicourseformat && $course->coursedisplay) {
-        $renderer->render_single_section(
-            new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+        // List Format -> Single Section Page : render_single_section -> activity_renderable
+        $renderer->render_list_one_section(
+            new \format_remuiformat\output\format_remuiformat_list_one_section($course, $displaysection, $baserenderer)
         );
+        // $renderer->render_single_section(
+        //     new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+        // );
     }
 }
 if ($course->remuicourseformat && $course->coursedisplay && !$section) {
-    $renderer->render_single_list_section(new \format_remuiformat\output\format_remuiformat_single_section($course, $baserenderer));
+    // List Format -> All Section Summary Page : render_list_all_sections_summary -> list_all_sections_summary
+    $renderer->render_list_all_sections_summary(new \format_remuiformat\output\format_remuiformat_list_all_sections_summary($course, $baserenderer));
 } else if ($displaysection && !$course->remuicourseformat) {
-    $renderer->render_single_section(
-        new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+    // Card Format -> Single Section Page : render_single_section -> activity_renderable
+    $renderer->render_card_one_section(
+        new \format_remuiformat\output\format_remuiformat_card_one_section($course, $displaysection, $baserenderer)
     );
+    // $renderer->render_single_section(
+    //     new \format_remuiformat\output\format_remuiformat_activity($course, $displaysection, $baserenderer)
+    // );
 } else if (!$displaysection) {
-    $renderer->render_all_sections(new \format_remuiformat\output\format_remuiformat_section($course, $baserenderer));
+    if ($rformat == REMUI_CARD_FORMAT) {
+        // Card Format -> All Section Page : render_card_all_sections_summary -> card_all_sections_summary
+        $renderer->render_card_all_sections_summary(new \format_remuiformat\output\format_remuiformat_card_all_sections_summary($course, $baserenderer));
+    }
+    if ($rformat == REMUI_LIST_FORMAT) {
+        // List Format -> All Section Page : render_all_section -> section_renderable
+        $renderer->render_list_all_sections(new \format_remuiformat\output\format_remuiformat_list_all_sections($course, $baserenderer));       
+    }
 }

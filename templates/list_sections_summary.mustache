@@ -16,28 +16,28 @@
 }}
 
 {{!
-    @template format_remuiformat/list_singlesection
+    @template format_remuiformat/list_sections_summary
 
 
     Example context (json):
     {
-      "sections": [
-         {
-            "index": "1",
-            "title": "Section Title",
-            "singlepageurl": "Single Page URL",
-            "hiddenmessage": "Hidden message",
-            "hidden": "1/0",
-            "summary": "Summary",
-            "activityinfostring": "2 Files, 2 Quizzes"
-            "sectionactivities" [
-               {
-                     
-               }
-            ] 
-         }
-      ]
-   }
+        "sections": [
+            {
+                "index": "1",
+                "title": "Section Title",
+                "singlepageurl": "Single Page URL",
+                "hiddenmessage": "Hidden message",
+                "summary": "Summary",
+                "hidden": "1/0",
+                "activityinfostring": "2 Files, 2 Quizzes"
+                "sectionactivities" [
+                    {
+                        
+                    }
+                ] 
+            }
+        ]
+    }
 }}
 
 {{#addsection}}
@@ -59,44 +59,38 @@
 {{/addsection}}
 
 {{^addsection}}
-<li id="section-{{{index}}}" class="card section main clearfix mb-4 m-b-2 wdm-card" role="region" style="" aria-label="">
+<li id="section-{{{index}}}" class="card section main clearfix mb-4 wdm-card" role="region" style="" aria-label="">
    {{#highlighted}}<div class="list-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
    <span class="hidden sectionname">{{{ title }}}</span>
-   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border" style="clear:both;">
+   <div class="content card-block px-15 py-15 py-3 px-3 remui-list-content-border" style="clear:both;">
       <div class="row d-block">
         <div class="left side float-left">
           {{{ leftside }}}
         </div>
-         <div class="right side float-right">
+         <div class="right side float-right d-flex">
+           {{{ addnewsection }}}
            {{{ optionmenu }}}
          </div>
          {{{leftside}}}
       </div>
       <h4 class="sectionname card-title">
-        {{#editing}}
+         {{#editing}}
             {{{ title }}}
          {{/editing}}
          {{^editing}}
-            <a class="panel-title p-0 {{#expanded}}true{{/expanded}}" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
-         {{/editing}}
-            {{#collapsed}}
-            <i class="fa fa-angle-down float-right"></i>
-            {{/collapsed}}
-            {{#expanded}}
-            <i class="fa fa-angle-up float-right"></i>
-            {{/expanded}}
+            <a class="panel-title p-0" href="{{{ singlepageurl }}}" aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
             </a>
+         {{/editing}}
       </h4>
       {{{ hiddenmessage }}}
-      <div class="summary card-text">{{{summary}}}</div>
-      <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>
-      <div class="section-summary-activities mdl-right {{#expanded}} hide {{/expanded}}">{{{activityinfostring}}}</div>
+      <div class="summary card-text {{#expanded}}hide{{/expanded}}">{{{summary}}}</div>
+      {{#availability}}
+      <div class="section_availability badge badge-pill badge-info mb-10">
+        {{{availability}}}
+      </div>
+      {{/availability}}
+      <div class="section-summary-activities mdl-right {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div>
    </div>
-
    <span class="hidden sectionname">{{{ title }}}</span>
-
-   <div class="px-15 px-3 py-10 py-2 card-footer card-footer-transparent text-muted {{#collapsed}}collapse{{/collapsed}}{{#expanded}}show{{/expanded}} border-top-0">
-      {{{sectionactivities}}}
-   </div>
 </li>
 {{/addsection}}
