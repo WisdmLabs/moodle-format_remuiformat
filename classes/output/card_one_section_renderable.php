@@ -44,7 +44,7 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  * @copyright  2018 Wisdmlabs
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class format_remuiformat_activity implements renderable, templatable {
+class format_remuiformat_card_one_section implements renderable, templatable {
     private $course;
     private $courseformat;
     private $courserenderer;
@@ -116,30 +116,14 @@ class format_remuiformat_activity implements renderable, templatable {
         }
 
         // Get the details of the activities.
-        $rformat = $this->settings['remuicourseformat'];
-        switch ($rformat) {
-            case REMUI_CARD_FORMAT:
-                $export->activities = $this->get_activities_details($currentsection);
-                $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
-                    $this->course,
-                    $this->displaysection,
-                    $this->displaysection
-                );
-                $export->remuicourseformatcard = true;
-                $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
-
-                break;
-            case REMUI_LIST_FORMAT:
-                $export->remuicourseformatlist = true;
-                $export->activities = $this->courserenderer->course_section_cm_list(
-                    $this->course, $currentsection, $this->displaysection
-                );
-                $export->activities .= $this->courserenderer->course_section_add_cm_control(
-                    $this->course, $this->displaysection, $this->displaysection
-                );
-                $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
-                break;
-        }
+        $export->activities = $this->get_activities_details($currentsection);
+        $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
+            $this->course,
+            $this->displaysection,
+            $this->displaysection
+        );
+        $export->remuicourseformatcard = true;
+        $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }
 
@@ -162,10 +146,7 @@ class format_remuiformat_activity implements renderable, templatable {
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
                     $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                        $this->course,
-                        $completioninfo,
-                        $mod,
-                        $displayoptions
+                        $this->course, $completioninfo, $mod, $displayoptions
                     );
                     // Activities which are completed conditionally.
                     $activitydetails->autocompletion = 0;
