@@ -78,7 +78,7 @@
                                 {{/editing}}
                                 <div class="wdm-activity-actions d-flex">
                                     <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{#layouttypecol}}{{ modulename }}{{/layouttypecol}}</div>
-                                    <div class="wdm-activity-actions1 d-flex">
+                                    <div class="wdm-activity-settings d-flex">
                                         {{#editing}}
                                             {{#layouttyperow}}
                                                 <span id="wdmshowinrow" class="wdm-show-in-row btn btn-inverse" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">
@@ -93,17 +93,16 @@
                                                 </span>
                                             {{/layouttypecol}}
                                             
-                                                <div class="container">                                       
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
-                                                        {{# str }} moveto, format_remuiformat {{/ str }}
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            {{{ sectionlist }}}
-                                                        </div>
+                                            <div class="ecf-sections-settings">
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                                    {{# str }} moveto, format_remuiformat {{/ str }}
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        {{{ sectionlist }}}
                                                     </div>
                                                 </div>
-                                            
+                                            </div>                                            
                                         {{/editing}}
                                         {{{ modicons }}}
                                     </div>
@@ -156,7 +155,7 @@
                                                             <div class="modal-content">
                                                             {{! <div class="modal-header">
                                                                 <h4 class="modal-title"></h4>
-                                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
                                                             </div> }}
                                                             <!-- Modal body -->
                                                             <div class="modal-body">

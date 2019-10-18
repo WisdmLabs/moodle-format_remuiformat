@@ -575,7 +575,7 @@ input.ignoredirty.form-control{
     position: unset;
     margin-left: 10px;
 }
-#page-course-view-remuiformat .wdm-activity-actions .container {
+#page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings {
   padding: 0;
   margin-left: 10px;
 }
@@ -722,7 +722,9 @@ For list format
   width: 75px;
   height: 75px;
 }
-.section.first-section div.actions, .section .activity .actions {
+.section.first-section div.actions, .section.first-section span.actions
+/* .section .activity .actions */
+{
   position: inherit !important;
   padding: 5px 0;
   display: flex;

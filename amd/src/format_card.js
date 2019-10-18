@@ -236,7 +236,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                     $(selector).find('.wdmactivitytype').toggle();
                 } else {
                     $(selector).closest('.single-card-container').removeClass('col-12').addClass('col-lg-4 col-md-6 col-sm-12');
-                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-min-row').addClass('wdm-col');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-min-row wdm-row').addClass('wdm-col');
                     $(selector).find('.wdmactivitytype').toggle();
                 }
                 // setEqualHeight($('.single-card'));
