@@ -72,17 +72,6 @@
   body.path-course.pinaside.site-menubar-unfold .single-card-container {
     min-width: 50% !important;
   }
-
-  /* General Section */
-  /* body.path-course.pinaside.site-menubar-unfold .generaldetails {
-    order: 12;
-    min-width: 100%;
-  }
-  
-  body.path-course.pinaside.site-menubar-unfold .coursedetails {
-    order: 1;
-    min-width: 100%;
-  } */
 }
 
 
@@ -306,6 +295,11 @@ ul.remui-format-list h4.sectionname {
   clear: both; /* Fordson */
 }
 
+#page-course-view-remuiformat div#card-container .section-title.light:hover,
+#page-course-view-remuiformat div#card-container .section-title.dark:hover {
+  text-decoration: underline;
+}
+
 .wdm-single-activity-title a {
   color: #37474f;
 }
@@ -447,6 +441,11 @@ input.ignoredirty.form-control{
   padding: 1rem !important;
 }
 
+.single-card .wdm-drag-drop {
+  float: left;
+  margin-right: 5px;
+}
+
 .single-card.wdm-min-row {
   min-height: 80px !important;
 }
@@ -537,8 +536,9 @@ input.ignoredirty.form-control{
     margin: 0px 2px 0px 0px;
 }
 .wdm-activity-actions {
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .wdm-activity-actions .dropdown-menu {
@@ -573,12 +573,43 @@ input.ignoredirty.form-control{
 
 #page-course-view-remuiformat .wdm-activity-actions div.moodle-actionmenu.section-cm-edit-actions {
     position: unset;
-    margin-left: 10px;
 }
-#page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings {
-  padding: 0;
+
+#page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings,
+#page-course-view-remuiformat .wdm-activity-actions .wdm-show-in-row.btn {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings.d-lg-inline .wdm-show-in-row.btn {
   margin-left: 10px;
 }
+
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings.d-lg-inline .wdm-show-in-row.btn,
+#page-course-view-remuiformat .wdm-activity-actions .d-lg-inline .ecf-sections-settings .dropdown .btn {
+  margin-bottom: 5px;
+}
+
+/* Fix for Handlebar theme */
+#page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings .dropdown .btn,
+#page-course-view-remuiformat .wdm-activity-actions .wdm-show-in-row.btn,
+#page-course-view-remuiformat .single-card-container .wdm-add-new-section,
+#page-course-view-remuiformat .card .wdm-add-new-section {
+  border: 1px solid #e4eaec;
+}
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .wdmactivitytype img {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+/* #page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .action-menu .dropdown,
+#page-course-view-remuiformat .single-card-container .section_action_menu {
+  padding: .4rem .75rem;
+}
+
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .action-menu .action-menu-item {
+  padding: .4rem .0rem;
+} */
 
 #page-course-view-remuiformat .wdm-card-single-section {
   position: relative;
@@ -778,10 +809,6 @@ For list format
 @media (max-width: 992px) {
   .general-section-card-details .generalsecactivitiesmain.onshowmore {
     position: static;
-  }
-  .general-section-card-details .generaldetails {
-    padding-bottom: 55px !important;
-    padding-top: 15px;
   }
 }
 

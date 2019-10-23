@@ -76,9 +76,9 @@
                                 {{#editing}}
                                     <a class="wdm-drag-drop"><span><i class="fa fa-arrows" aria-hidden="true"></i></span></a>
                                 {{/editing}}
+                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{#layouttypecol}}{{ modulename }}{{/layouttypecol}}</div>
                                 <div class="wdm-activity-actions d-flex">
-                                    <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{#layouttypecol}}{{ modulename }}{{/layouttypecol}}</div>
-                                    <div class="wdm-activity-settings d-flex">
+                                    <div class="wdm-activity-settings d-flex justify-content-end flex-wrap">
                                         {{#editing}}
                                             {{#layouttyperow}}
                                                 <span id="wdmshowinrow" class="wdm-show-in-row btn btn-inverse" data-wdmsectionid="{{ section }}" data-wdmactivityid="{{ id }}">
@@ -107,6 +107,7 @@
                                         {{{ modicons }}}
                                     </div>
                                 </div>
+
                                 <h4 class="wdm-single-activity-title {{^summary}}nosummary{{/summary}}">{{{ title }}}</h4>
 
                                 <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
