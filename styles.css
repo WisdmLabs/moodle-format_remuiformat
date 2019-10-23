@@ -169,7 +169,6 @@
 ul.remui-format-list .section-summary-activities {
   padding: 3px 4px;
   color: #888;
-  margin-bottom: 3px;
   font-size: 0.90rem;
   line-height: 1rem;
 }
@@ -252,16 +251,11 @@ ul.remui-format-list .section-summary-activities {
 
 .single-card .sno, .general-single-card .sno {
     display: inline-block;
-    /* border-bottom: 2px solid; */
     font-size: 18px;
     font-weight: 900;
     color:rgba(0, 0, 0, 0.8);
     padding: 5px 0;
 }
-
-/* #page-course-view-remuiformat .single-card:hover {
-  background-color: white;
-} */
 
 .single-card-container .current::before {
   left: -.1rem !important;
@@ -295,6 +289,7 @@ ul.remui-format-list h4.sectionname {
   clear: both; /* Fordson */
 }
 
+#page-course-view-remuiformat div#card-container .section-title:hover,
 #page-course-view-remuiformat div#card-container .section-title.light:hover,
 #page-course-view-remuiformat div#card-container .section-title.dark:hover {
   text-decoration: underline;
@@ -342,10 +337,6 @@ input.ignoredirty.form-control{
   list-style: none;
   padding: 15px !important;
 }
-  
-.general-section-card-details {
-  /* display: flex;    */
-}
 
 .general-section-card-details .coursemainimagediv, .general-section-card-details .coursemainimage {
   height: 140px;
@@ -353,7 +344,6 @@ input.ignoredirty.form-control{
 
 .general-section-card-details .coursemainimage {
   width: 100%;
-  /* height: 140px; */
 }
 
 .general-section-card-details .coursedetails .row{
@@ -396,7 +386,8 @@ input.ignoredirty.form-control{
   background-color: white;
 }
 
-.general-section-card-details .progress {
+.general-section-card-details .progress,
+.first-section-li .progress {
   margin-bottom: 5px;
   border-radius: 15px;
   background-color: #ddd;

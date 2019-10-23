@@ -85,52 +85,41 @@
               // current format and the user's format are the same
               jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
                 var section_id = jQuery(this).parent().parent().parent().attr('id');
-                {{! console.log(edsectionstate[section_id]); }}
                 var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
                 var ed_sectionstate  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
 
                 {{#expanded}}
                   if(localStorage.getItem(namelocal) == 'false'){
-                    // change arrow
-                    //  jQuery(this).find('i').toggleClass('fa-angle-down');
-                    //  jQuery(this).find('i').toggleClass('fa-angle-up');
-                    // add appropriate classes
-                    // jQuery(this).addClass('collapsed');
-                    // jQuery(this).attr('aria-expanded', 'false');
-                    var attr_to_search = jQuery(this).attr('href');
-                    // console.log(jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search));
-                    // jQuery(this).parent().parent().siblings('.card-footer').find(attr_to_search).toggleClass('show');
-
+                    // Change arrow.
                     if (edstorage.get(ed_sectionstate) == 'collapsed' ) {
                       jQuery(this).find('i').toggleClass('fa-angle-up');
                       jQuery(this).find('i').toggleClass('fa-angle-down');
                       jQuery(this).parent().parent().next().next().removeClass('show');
                       jQuery(this).parent().parent().next().next().addClass('collapse');
                       jQuery(this).parent().parent().find('.summary').show(500);
-                      jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+                      {{! jQuery(this).parent().parent().find('.section-summary-activities').show(500); }}
                     } else {
                       jQuery(this).parent().parent().next().next().removeClass('collapse');
                       jQuery(this).parent().parent().next().next().addClass('show');
-                      jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+                      {{! jQuery(this).parent().parent().find('.section-summary-activities').hide(500); }}
                       jQuery(this).parent().parent().find('.summary').show(500);
                     }
                   }
                 {{/expanded}}
                 {{#collapsed}}
                   if(localStorage.getItem(namelocal) == 'true'){
-                    var attr_to_search = jQuery(this).attr('href');
                     if (edstorage.get(ed_sectionstate) == 'expanded' ) {
                       jQuery(this).find('i').toggleClass('fa-angle-down');
                       jQuery(this).find('i').toggleClass('fa-angle-up');
                       jQuery(this).parent().parent().next().next().removeClass('collapse');
                       jQuery(this).parent().parent().next().next().addClass('show');
                       jQuery(this).parent().parent().find('.summary').show(500);
-                      jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+                      {{! jQuery(this).parent().parent().find('.section-summary-activities').hide(500); }}
                     } else {
                       jQuery(this).parent().parent().next().next().removeClass('show');
                       jQuery(this).parent().parent().next().next().addClass('collapse');
                       jQuery(this).parent().parent().find('.summary').show(500);
-                      jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+                      {{! jQuery(this).parent().parent().find('.section-summary-activities').show(500); }}
                     }
                   }
                 {{/collapsed}}
@@ -154,14 +143,14 @@
                   jQuery(this).parent().parent().next().next().removeClass('show');
                   jQuery(this).parent().parent().next().next().addClass('collapse');
                   jQuery(this).parent().parent().find('.summary').show(500);
-                  jQuery(this).parent().parent().find('.section-summary-activities').show(500);
+                  {{! jQuery(this).parent().parent().find('.section-summary-activities').show(500); }}
               } else {
                   sectionstate = 'expanded';
                   localStorage.setItem(namelocal, 'true');
                   jQuery(this).parent().parent().next().next().removeClass('collapse');
                   jQuery(this).parent().parent().next().next().addClass('show');
                   jQuery(this).parent().parent().find('.summary').show(500);
-                  jQuery(this).parent().parent().find('.section-summary-activities').hide(500);
+                  {{! jQuery(this).parent().parent().find('.section-summary-activities').hide(500); }}
               }
               edstorage.set(ed_sectionstate, sectionstate);
 
@@ -187,12 +176,12 @@
                   jQuery(iconparent).parent().next().next().removeClass("show");
                   jQuery(iconparent).parent().next().next().addClass("collapse");
                   jQuery(iconparent).parent().find('.summary').show(500);
-                  jQuery(iconparent).parent().find('.section-summary-activities').show(500);
+                  {{! jQuery(iconparent).parent().find('.section-summary-activities').show(500); }}
               } else {
                   jQuery(iconparent).parent().next().next().removeClass('collapse');
                   jQuery(iconparent).parent().next().next().addClass("show");
                   jQuery(iconparent).parent().find('.summary').show(500);
-                  jQuery(iconparent).parent().find('.section-summary-activities').hide(500);
+                  {{! jQuery(iconparent).parent().find('.section-summary-activities').hide(500); }}
               }
           });
       });
