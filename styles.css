@@ -915,7 +915,7 @@ ul.remui-format-list span.inplaceeditable input {
 /* Aligning the up and down icon with edit button */
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
-  margin-top: 1%;
+  /* margin-top: 1%; */
   margin-right: 2%;
 }
 
