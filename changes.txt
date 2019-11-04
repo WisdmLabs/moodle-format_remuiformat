@@ -1,24 +1,25 @@
-Version 0.0.9
-* Beta version released.
-
-Version 1.0.1
-* Initial version released.
-
-Version 1.0.2
-Bug fixes
-* Switch list to card does not correctly update course layout field.
-
-Features
-* Save the sections collapsed/uncollapsed state in List format in local storage.
-* Show activity as a row or column in card format.
-* Add new section after specific section.
-
 Version 1.0.3
-Bug fixes
+Fixes
 * 
 
 Features
 * Add background image to section in Card format.
 * Move activity to specific section in Card format.
 * Course progress and total number of different activity count details in the course added in Card format general section.
-* Resume to last viewed activity functionality in Card format geleral section.
+* Resume to last viewed activity functionality in Card format general section.
+* Add new section after specific section in list format.
+
+Version 1.0.2
+Fixes
+* Switch list to card does not correctly update course layout field.
+
+Features
+* Save the sections collapsed/uncollapsed state in List format in local storage.
+* Show activity as a row or column in card format.
+* Add new section after specific section in card format.
+
+Version 1.0.1
+* Initial version released.
+
+Version 0.0.9
+* Beta version released.
