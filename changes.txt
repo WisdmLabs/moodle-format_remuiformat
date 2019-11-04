@@ -1,11 +1,9 @@
 Version 1.0.3
-Fixes
-* 
-
 Features
 * Add background image to section in Card format.
 * Move activity to specific section in Card format.
 * Course progress and total number of different activity count details in the course added in Card format general section.
+* Showed limited activity depending on screen size in general section in  Card foramt.
 * Resume to last viewed activity functionality in Card format general section.
 * Add new section after specific section in list format.
 
