@@ -18,13 +18,13 @@
   overflow: visible;
 }
 /* Boost 3.6 */
-#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main,  {
-  background: #f2f2f2;
-  overflow: visible;
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
+  background : #f2f2f2;
+  overflow : visible;
 }
 
 /* Fordson 3.7 */
-#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main  {
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
   background: #f2f2f2 !important;
   overflow: visible;
 }
@@ -52,6 +52,11 @@
 .wdm-completion-container form.togglecompletion .btn.btn-link,
 .wdm-completion-container .autocompletion {
   padding: 0 0 0 10px;
+  background: transparent;
+}
+
+.wdm-completion-container form.togglecompletion .btn.btn-link:hover {
+  background: transparent !important;
 }
 
 .wdm-completion-container form.togglecompletion .btn.btn-link img,
@@ -61,8 +66,36 @@
   margin: 4px 0;
 }
 
+@media (max-width:1400px) {
+  /* Sections */
+  body.path-course.editing.site-menubar-unfold .single-card-container,
+  body.path-course.pinaside.site-menubar-unfold .single-card-container {
+    min-width: 50% !important;
+  }
+}
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px)  {
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
+    min-width: 50% !important;
+  }
+
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
+    min-width: 50% !important;
+  }
+  /* General section in Boost theme */
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .generaldetails {
+    min-width: 100% !important;
+    order: 12;
+  }
+  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .coursedetails {
+    min-width: 100% !important;
+    order: 1;
+  }
+}
+
 /* Show two cards per row, when both sidebars open in RemUI
- * when left sidebar and right blocks section open in Boost
+* when left sidebar and right blocks section open in Boost
 */
 
 @media (max-width:1200px) {
@@ -70,18 +103,20 @@
   body.path-course.pinaside.site-menubar-unfold ul.section.first-section li {
     min-width: 50% !important;
   }
-
+  
   body.path-course.editing .single-card-container,
   body.path-course.site-menubar-unfold .single-card-container,
   body.path-course.pinaside .single-card-container {
     min-width: 50% !important;
   }
-}
 
-@media (max-width:1400px) {
-  body.path-course.editing.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside.site-menubar-unfold .single-card-container {
-    min-width: 50% !important;
+  /* General Section */
+  body.path-course.site-menubar-unfold .generaldetails,
+  body.path-course.site-menubar-unfold .coursedetails,
+  body.path-course.pinaside .generaldetails,
+  body.path-course.pinaside .coursedetails {
+    max-width: 50%;
+    flex: auto;
   }
 }
 
@@ -98,15 +133,24 @@
   body#page-course-view-remuiformat.drawer-open-left .single-card-container {
     min-width: 50% !important;
   }
-}
 
-@media only screen and (min-width: 1200px) and (max-width: 1400px)  {
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
-    min-width: 50% !important;
+  body.path-course.pinaside.site-menubar-unfold .generaldetails {
+    order: 12;
+    min-width: 100%;
   }
-
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
-    min-width: 50% !important;
+  body.path-course.pinaside.site-menubar-unfold .coursedetails {
+    order: 1;
+    min-width: 100%;
+    padding-bottom: 15px;
+  }
+  body.path-course.pinaside.site-menubar-unfold .coursemainimagediv {
+    display: none !important;
+  }
+}
+@media (max-width:768px) {
+  body.path-course.site-menubar-unfold .generaldetails,
+  body.path-course.site-menubar-unfold .coursedetails {
+    min-width: 100% !important;
   }
 }
 
@@ -125,7 +169,6 @@
 ul.remui-format-list .section-summary-activities {
   padding: 3px 4px;
   color: #888;
-  margin-bottom: 3px;
   font-size: 0.90rem;
   line-height: 1rem;
 }
@@ -145,13 +188,19 @@ ul.remui-format-list .section-summary-activities {
 }
 
 .section-action-container .progress-text {
+  width: 92%;
+  min-height: 18px;
+  margin: 0 auto;
   align-self: center;
-  display: none;
-  font-size: 0.85rem;
+  /* display: block; */
+  font-size: 14px;
+  font-weight: 500;
+  visibility: hidden;
 }
 
 .single-card:hover .progress-text {
-  display: block;
+  /* display: block; */
+  visibility: visible
 }
 
 .flex-1 {
@@ -171,12 +220,17 @@ ul.remui-format-list .section-summary-activities {
 }
 
 .format-remuiformat.pagelayout-course .progress-xs {
+  width: 92%;
+  margin: 0 auto;
   border-bottom: 0 !important;
+  border-radius: 5px;
+  position: relative;
+  bottom: 0;
 }
 
 .progress-xs, .progress-xs .progress-bar {
-  height: 4px !important;
-  border-radius: 0px;
+  height: 6px !important;
+  border-radius: 5px;
 }
 
 .progress-xs .progress-bar {
@@ -187,21 +241,20 @@ ul.remui-format-list .section-summary-activities {
   background-color: #11c26d!important;
 }
 
-.bg-grey-300 {
-  background-color: #e0e0e0!important;
+.format-remuiformat.pagelayout-course .progress-xs.dark {
+  background-color: #e0e0e09e!important;
+}
+
+.format-remuiformat.pagelayout-course .progress-xs.light {
+  background-color: #b7b4b4a3!important;
 }
 
 .single-card .sno, .general-single-card .sno {
     display: inline-block;
-    border-bottom: 2px solid;
     font-size: 18px;
     font-weight: 900;
     color:rgba(0, 0, 0, 0.8);
     padding: 5px 0;
-}
-
-#page-course-view-remuiformat .single-card:hover {
-  background-color: white;
 }
 
 .single-card-container .current::before {
@@ -217,9 +270,6 @@ body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-
   display: none;
 }
 
-#page-course-view-remuiformat div#card-editing-container .section-title,
-#page-course-view-remuiformat div#card-container .section-title,
-#page-course-view-remuiformat .single-section-title,
 #page-course-view-remuiformat .wdm-single-activity-title,
 ul.remui-format-list h4.sectionname {
     margin:0;
@@ -227,6 +277,22 @@ ul.remui-format-list h4.sectionname {
     font-weight: 500;
     padding: 7px 0;
     clear: both; /* Fordson */
+}
+
+#page-course-view-remuiformat div#card-editing-container .section-title,
+#page-course-view-remuiformat div#card-container .section-title,
+#page-course-view-remuiformat .single-section-title {
+  margin:0;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 7px 0;
+  clear: both; /* Fordson */
+}
+
+#page-course-view-remuiformat div#card-container .section-title:hover,
+#page-course-view-remuiformat div#card-container .section-title.light:hover,
+#page-course-view-remuiformat div#card-container .section-title.dark:hover {
+  text-decoration: underline;
 }
 
 .wdm-single-activity-title a {
@@ -263,13 +329,84 @@ input.ignoredirty.form-control{
 }
 
 .general-single-card{
-    box-shadow: 0px 0px 8px #ddd;
-    border-radius: 2px;
-    background-color: white;
-    position: relative;
-    min-height: 50px;
-    list-style: none;
-    padding: 15px !important;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 2px;
+  background-color: white;
+  position: relative;
+  min-height: 50px;
+  list-style: none;
+  padding: 15px !important;
+}
+
+.general-section-card-details .coursemainimagediv, .general-section-card-details .coursemainimage {
+  height: 140px;
+}
+
+.general-section-card-details .coursemainimage {
+  width: 100%;
+}
+
+.general-section-card-details .coursedetails .row{
+  background-color: #f1f4f5;
+  padding: 15px 0;
+  margin: 0px;
+}
+
+.general-section-card-details .generalsecactivities {
+  float: left;
+  margin: 0px 0px 15px 0px!important;
+}
+
+.general-section-card-details .generalsecactivitiesmain {
+  padding: 0px;
+  margin-bottom: 1rem !important;
+}
+
+#card-editing-container .general-section-card-details .generalsecactivitiesmain.onshowmore {
+  height: 350px;
+}
+
+.general-section-card-details .generalsecactivities .activityinstance img {
+  width: 65px !important;
+  height: 65px !important;
+}
+
+.general-section-card-details .generalsecactivities .activityinstance .instancename {
+  display: block;
+}
+
+.general-section-card-details .generalsecactivities > div:first-child {
+  text-align: center;
+  padding: 12px!important;
+  box-shadow: 0 0 8px #ddd;
+}
+
+.general-section-card-details .generalsecactivities:hover > .generalsecactivitiescontent .availabilityinfo {
+  display: block;
+  background-color: white;
+}
+
+.general-section-card-details .progress,
+.first-section-li .progress {
+  margin-bottom: 5px;
+  border-radius: 15px;
+  background-color: #ddd;
+  height: 12px;
+}
+
+.general-activities-list-group {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
+.general-activities-list-group-item {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 3px 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .single-card {
@@ -283,7 +420,6 @@ input.ignoredirty.form-control{
 
 .single-card.wdm-row{
   background-color: unset !important;
-  /* box-shadow: 0 0 2px #b9b9b9 !important; */
   box-shadow: none;
 }
 
@@ -291,8 +427,26 @@ input.ignoredirty.form-control{
   min-height: 80px !important;
   padding: 0 !important;
 }
+
+.container-fluid .single-card.wdm-row {
+  padding: 1rem !important;
+}
+
+.single-card .wdm-drag-drop {
+  float: left;
+  margin-right: 5px;
+}
+
 .single-card.wdm-min-row {
   min-height: 80px !important;
+}
+
+#page-course-view-remuiformat .single-card-container {
+  transition: all 0.5s ease;
+}
+
+#page-course-view-remuiformat .single-card-container a:hover {
+  text-decoration: none;
 }
 
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
@@ -304,29 +458,22 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
     margin: 15px 0 0 0;
     padding: 8px !important;
-    box-shadow: 0 0px 4px #ddd;
+    /* box-shadow: 0 0px 4px #ddd; */
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
     height: 28px;
     width:28px;
 }
-#page-course-view-remuiformat div#card-editing-container .general-single-card .section_action_menu,
-#page-course-view-remuiformat div#card-editing-container .single-card .section_action_menu {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+
+#page-course-view-remuiformat div#card-editing-container .general-single-card .section_action_menu {
+  top: 0px;
 }
 
 #page-course-view-remuiformat ul.section.first-section div.moodle-actionmenu.section-cm-edit-actions {
     position: inherit;
     top: none;
     right: none;
-}
-#page-course-view-remuiformat div.moodle-actionmenu.section-cm-edit-actions {
-    position: absolute;
-    top: -5px;
-    right: 32px;
 }
 #page-course-view-remuiformat  span.section-modchooser-link .fa.fa-plus{
     color: white;
@@ -349,6 +496,19 @@ input.ignoredirty.form-control{
     list-style: none;
 }
 
+.wdm-section-summary.summary-muted * {
+  color: #526069!important;
+  display: none;
+}
+
+.wdm-section-summary.dark * {
+  color: #e4e4e4!important;
+}
+
+.wdm-section-summary.light * {
+  color: #101010!important;
+}
+
 .wdm-card-section {
     display: flex;
     justify-content: space-between;
@@ -367,14 +527,27 @@ input.ignoredirty.form-control{
     margin: 0px 2px 0px 0px;
 }
 .wdm-activity-actions {
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    margin-bottom: 10px;
+}
+
+.wdm-activity-actions .dropdown-menu {
+  width: 200px;
+  max-height: 240px;
+  overflow-y: scroll;
+}
+
+.wdm-activity-actions .ecfsectionname {
+  cursor: pointer;
+  white-space: normal;
+  font-size: 13px;
 }
 
 .wdm-completion-container {
     display: flex;
     justify-content: flex-end;
-    width: 70% !important;
+    width: 100% !important;
     align-items: center!important;
 }
 
@@ -391,8 +564,44 @@ input.ignoredirty.form-control{
 
 #page-course-view-remuiformat .wdm-activity-actions div.moodle-actionmenu.section-cm-edit-actions {
     position: unset;
-    margin-left: 10px;
 }
+
+#page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings,
+#page-course-view-remuiformat .wdm-activity-actions .wdm-show-in-row.btn {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings.d-lg-inline .wdm-show-in-row.btn {
+  margin-left: 10px;
+}
+
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings.d-lg-inline .wdm-show-in-row.btn,
+#page-course-view-remuiformat .wdm-activity-actions .d-lg-inline .ecf-sections-settings .dropdown .btn {
+  margin-bottom: 5px;
+}
+
+/* Fix for Handlebar theme */
+#page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings .dropdown .btn,
+#page-course-view-remuiformat .wdm-activity-actions .wdm-show-in-row.btn,
+#page-course-view-remuiformat .single-card-container .wdm-add-new-section,
+#page-course-view-remuiformat .card .wdm-add-new-section {
+  border: 1px solid #e4eaec;
+}
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .wdmactivitytype img {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+/* #page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .action-menu .dropdown,
+#page-course-view-remuiformat .single-card-container .section_action_menu {
+  padding: .4rem .75rem;
+}
+
+#page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .action-menu .action-menu-item {
+  padding: .4rem .0rem;
+} */
+
 #page-course-view-remuiformat .wdm-card-single-section {
   position: relative;
 }
@@ -535,8 +744,10 @@ For list format
   width: 75px;
   height: 75px;
 }
-.section.first-section div.actions {
-  position: inherit;
+.section.first-section div.actions, .section.first-section span.actions
+/* .section .activity .actions */
+{
+  position: inherit !important;
   padding: 5px 0;
   display: flex;
   justify-content: center;
@@ -548,8 +759,18 @@ For list format
   display: block;
 }
 
+@media (min-width: 1200px) {
+  .showhidecardactivity .first-section-activity:nth-child(n+4) {
+      display: none;
+  }
+}
 @media (min-width: 992px) {
   .showhideactivity .first-section-activity:nth-child(n+5) {
+    display: none;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .showhidecardactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
 }
@@ -557,15 +778,28 @@ For list format
   .showhideactivity .first-section-activity:nth-child(n+4) {
     display: none;
   }
+  .showhidecardactivity .first-section-activity:nth-child(n+4) {
+    display: none;
+  }
 }
 @media (max-width: 767px) {
   .showhideactivity .first-section-activity:nth-child(n+3) {
+    display: none;
+  }
+  .showhidecardactivity .first-section-activity:nth-child(n+3) {
     display: none;
   }
 }
 @media (min-width: 480px) and (max-width: 767px) {
   .section-action-container .progress-text {
     padding: 5px 0 0 13px !important;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .general-section-card-details .generalsecactivitiesmain.onshowmore {
+    position: static;
   }
 }
 
@@ -681,7 +915,7 @@ ul.remui-format-list span.inplaceeditable input {
 /* Aligning the up and down icon with edit button */
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
-  margin-top: 1%;
+  /* margin-top: 1%; */
   margin-right: 2%;
 }
 
@@ -710,20 +944,45 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .badge
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions
  {
-  background-color: #666;
+  background-color: #ececec;
+  color: #353535;
+  /* background-color: #4c4c4c;
+  color: white; */
   text-align: left;
-  color: white;
   display: inline-block;
-  padding: .25rem .4em;
+  padding: 0.75rem 1.4em;
   font-size: 0.9rem;
   font-weight: 400;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5px;
   line-height: 1.3;
   border-radius: .215rem;
   white-space: normal;
+}
+
+#page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag,
+#page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
+  background-color: #ececec;
+  color: #353535;
+  /* background-color: #4c4c4c;
+  color: white; */
+  text-align: left;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  border-radius: .215rem;
+  white-space: normal;
+  opacity: 0.8;
+}
+
+#page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag {
+  padding: 1.25rem 1.4em;
+}
+
+#page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
+  padding: 0.25rem 0.6em;
 }
 
 #page-course-view-remuiformat .availabilityinfo .tag ul li {
@@ -806,36 +1065,127 @@ ul.remui-format-list span.inplaceeditable input {
   text-align: center;
 }
 
-.card-current, .list-current {
+.card-current {
+  position: absolute;
+  top: -1px;
+  right: 30px;
+  width: 0px;
+  height: 0px;
+  border-left: 18px solid;
+  border-right: 18px solid;
+  border-top: 26px solid;
+  border-bottom: 16px solid;
+  border-bottom-color: transparent;
+}
+
+.list-current {
   height: 7px;
   position: absolute;
   top: 0;
   width: 100%;
   left: 0;
-  z-index: 1;
 }
 .list-current {
   width: 7px;
   height: 100%;
 }
 
-.wdm-show-in-row {
+.wdmoverlay {
   position: absolute;
-  right: 145px;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
 }
 
-.wdm-add-new-section {
-  position: absolute;
-  right: 120px;
-  z-index: 13;
+.single-card .sno, .single-card .card-content {
+  position: relative;
 }
 
-.wdm-change-layout-notify {
+/* Compatible CSS for Moodle 35 START*/
+.btn-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+.btn-light:hover {
+  color: #212529;
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+.modal-content {
+  width: 100%;
+}
+
+.modal-dialog-centered {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  min-height: calc(100% - (10px * 2)); 
+}
+
+@media (min-width: 480px) {
+  .modal-dialog-centered {
+    min-height: calc(100% - (30px * 2)); 
+  }
+}
+.container-fluid .modal-dialog{
+  height: 100%;
+  top: 12%;
+}
+/* Compatible CSS for Moodle 35 END. */
+
+.path-course-view li.activity>div {
+  padding: 0px !important;
+}
+
+/* General section summary show/hide. */
+.read-more-state {
   display: none;
-  position: fixed;
-  bottom: 120px;
-  right: 2%;
-  z-index: 5;
-  border-radius: 10px;
-  padding: 10px;
 }
+
+.read-more-target {
+  height: 110px;
+  overflow: hidden;
+}
+
+.read-more-target:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.fadeout-summary {
+  position: absolute;
+  margin-top: -50px;
+  width: 95%;
+  height: 50px;
+  background-image: linear-gradient(rgba(255,255,255,0.3) 0,rgba(255,255,255,1) 100%);
+}
+
+.read-more-state:checked ~ .read-more-target {
+  height: auto;
+  overflow: inherit;
+}
+
+.read-more-state:checked ~ .fadeout-summary {
+  display: none;
+}
+
+.read-more-trigger {
+  cursor: pointer !important;
+}
+
+.read-more-state ~ .read-more-trigger:before {
+  content: ' + Show full summary';
+}
+
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: 'Show less';
+}
+/* General section summary show/hide end. */

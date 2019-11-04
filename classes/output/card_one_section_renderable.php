@@ -30,6 +30,7 @@ use renderable;
 use renderer_base;
 use templatable;
 use stdClass;
+use html_writer;
 use context_course;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
@@ -43,7 +44,7 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  * @copyright  2018 Wisdmlabs
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class format_remuiformat_activity implements renderable, templatable {
+class format_remuiformat_card_one_section implements renderable, templatable {
     private $course;
     private $courseformat;
     private $courserenderer;
@@ -115,39 +116,22 @@ class format_remuiformat_activity implements renderable, templatable {
         }
 
         // Get the details of the activities.
-        $rformat = $this->settings['remuicourseformat'];
-        switch ($rformat) {
-            case REMUI_CARD_FORMAT:
-                $export->activities = $this->get_activities_details($currentsection);
-                $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
-                    $this->course,
-                    $this->displaysection,
-                    $this->displaysection
-                );
-                $export->remuicourseformatcard = true;
-                $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
-
-                break;
-            case REMUI_LIST_FORMAT:
-                $export->remuicourseformatlist = true;
-                $export->activities = $this->courserenderer->course_section_cm_list(
-                    $this->course, $currentsection, $this->displaysection
-                );
-                $export->activities .= $this->courserenderer->course_section_add_cm_control(
-                    $this->course, $this->displaysection, $this->displaysection
-                );
-                $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
-                break;
-        }
+        $export->activities = $this->get_activities_details($currentsection);
+        $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
+            $this->course,
+            $this->displaysection,
+            $this->displaysection
+        );
+        $export->remuicourseformatcard = true;
+        $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }
 
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER, $DB;
+        global $PAGE, $USER, $DB, $OUTPUT;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
-
         if (!empty($modinfo->sections[$section->section])) {
             $count = 1;
             foreach ($modinfo->sections[$section->section] as $modnumber) {
@@ -155,18 +139,14 @@ class format_remuiformat_activity implements renderable, templatable {
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
-
-                $completiondata = $completioninfo->get_data($mod, true);
-
+                
+                $completiondata = $completioninfo->get_data($mod, true);               
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
                     $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                        $this->course,
-                        $completioninfo,
-                        $mod,
-                        $displayoptions
+                        $this->course, $completioninfo, $mod, $displayoptions
                     );
                     // Activities which are completed conditionally.
                     $activitydetails->autocompletion = 0;
@@ -183,14 +163,14 @@ class format_remuiformat_activity implements renderable, templatable {
                     $this->courserenderer->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
-
+                
                 // In case of label activity send full text of cm to open in modal.
                 if ($mod->modname == 'label') {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
-
+                
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
@@ -211,10 +191,12 @@ class format_remuiformat_activity implements renderable, templatable {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
-
+                
                 // Set the section layout using the databases value.
                 $table = 'format_remuiformat';
                 $record = $DB->get_record($table, array('courseid' => $this->course->id, 'activityid' => $modnumber), '*');
+                
+                
                 if ( !empty($record) ) {
                     if ($record->layouttype == 'row') {
                         $activitydetails->layouttyperow = 'row';
@@ -224,6 +206,22 @@ class format_remuiformat_activity implements renderable, templatable {
                 } else {
                     $activitydetails->layouttypecol = 'col';
                 }
+
+                // Get all sections from course.
+                $sections = $DB->get_records('course_sections', array('course' => $this->course->id), 'section', 'id,section,name,sequence');
+                
+                // Create a section dropdown with section name, section ID and activity ID.
+                $sectionlist = '';
+                foreach ($sections as $value) {
+                    // Skip current section.
+                    if ($section->section != $value->section ) {
+                        if (empty($value->name)) {
+                            $value->name = 'Section '.$value->section;
+                        }
+                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item p-1', array('data-sectionidtomove' => $value->section, 'data-oldsectionid' => $section->section));
+                    }
+                }
+                $activitydetails->sectionlist = $sectionlist;
 
                 $output[] = $activitydetails;
                 $count++;

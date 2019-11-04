@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="course/format/remuiformat/db" VERSION="20190814" COMMENT="XMLDB file for core Moodle tables"
+<XMLDB PATH="course/format/remuiformat/db" VERSION="20191104" COMMENT="XMLDB file for core Moodle tables"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../lib/xmldb/xmldb.xsd"
 >
@@ -8,7 +8,6 @@
         <FIELDS>
             <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
             <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the course"/>
-            <!-- <FIELD NAME="format" TYPE="char" LENGTH="21" NOTNULL="true" SEQUENCE="false" COMMENT="Format this option is for"/> -->
             <FIELD NAME="sectionid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Null if this is a course option, otherwise id of the section this option is for"/>
             <FIELD NAME="activityid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Null if this is a course option, otherwise id of the section this option is for"/>
             <FIELD NAME="layouttype" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" COMMENT="Name of the layout type option"/>

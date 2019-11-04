@@ -29,7 +29,6 @@ defined('MOODLE_INTERNAL') || die;
 global $CFG;
 
 if ($ADMIN->fulltree) {
-
     // Default length of sumary of the section/activities.
     $name = 'format_remuiformat/defaultsectionsummarymaxlength';
     $title = get_string('defaultsectionsummarymaxlength', 'format_remuiformat');

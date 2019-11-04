@@ -149,9 +149,9 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
 
         M.course.format.get_config = function () {
             return {
-                container_node: 'ul',
+                container_node: 'div',
                 container_class: 'cards',
-                section_node: 'li',
+                section_node: 'div',
                 section_class: 'section'
             };
         }
@@ -230,9 +230,42 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 }
             ]);
             activitysave[0].done(function (response) {
-                $(selector).addClass('bg-primary');
-                $('.wdm-change-layout-notify').show();
-                $('.wdm-change-layout-notify').delay(2000).fadeOut('slow');
+                if (response['type'] == 'row') {
+                    $(selector).closest('.single-card-container').removeClass('col-lg-4 col-md-6 col-sm-12').addClass('col-12');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-col').addClass('wdm-min-row');
+                    $(selector).find('.wdmactivitytype').toggle();
+                } else {
+                    $(selector).closest('.single-card-container').removeClass('col-12').addClass('col-lg-4 col-md-6 col-sm-12');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-min-row wdm-row').addClass('wdm-col');
+                    $(selector).find('.wdmactivitytype').toggle();
+                }
+                // setEqualHeight($('.single-card'));
+            });
+        });
+
+        // Call AJAX to move activity to specific section in cars format.
+        $('.wdm-section-wrapper .single-card-container .wdm-activity-actions .ecfsectionname').on('click', function() {
+            var courseid = getUrlParameter('id');
+            var oldsectionid = $(this).data('oldsectionid');
+            var newsection = $(this).data('sectionidtomove');
+            var activitytomove = $(this).closest('.single-card-container').attr('data-id');
+            var selector = $(this);
+
+
+            var activitymovetosection = Ajax.call([
+                {
+                    methodname: "format_remuiformat_move_activity_to_section",
+                    args: { courseid : courseid, newsectionid: newsection, oldsectionid: oldsectionid, activityidtomove: activitytomove }
+                }
+            ]);
+            activitymovetosection[0].done(function (response) {
+                if (response['success'] == 1) {
+                    // $('<div class="wdmactivityerrormsg alert alert-success mt-10">' + response['message'] + '</div>').insertAfter($(selector).closest('.single-card-container .wdm-activity-actions')); 
+                    // $(selector).closest('.single-card-container').delay(1000).fadeOut();
+                    $(selector).closest('.single-card-container').fadeOut('slow');
+                } else {
+                    $('<div class="wdmactivityerrormsg alert alert-danger mt-10">' + response['message'] + '</div>').insertAfter($(selector).closest('.single-card-container .wdm-activity-actions')); 
+                }
             });
         });
     }

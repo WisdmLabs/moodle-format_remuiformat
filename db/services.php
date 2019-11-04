@@ -40,4 +40,12 @@ $functions = [
         'type' => 'write',
         'ajax' => true,
     ],
+    'format_remuiformat_move_activity_to_section' => [
+        'classname' => 'format_remuiformat\external\api',
+        'methodname' => 'move_activity_to_section',
+        'classpath' => '',
+        'description' => 'Show activity in row.',
+        'type' => 'write',
+        'ajax' => true,
+    ]
 ];
