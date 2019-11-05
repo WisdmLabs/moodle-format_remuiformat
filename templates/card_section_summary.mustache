@@ -1,4 +1,3 @@
-
 {{!
     This file is part of Moodle - http://moodle.org/
 
@@ -17,7 +16,7 @@
 }}
 
 {{!
-    @template format_remuiformat/allactivities
+    @template format_remuiformat/card_section_summary
 
 
     Example context (json):
@@ -71,46 +70,55 @@
 
 {{^addsection}}
 <div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
-    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3">
-        {{#highlighted}}<div class="card-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
-        <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">{{ index }}&#46;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        {{{ addnewsection }}}
-        {{{ optionmenu }}}
+    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
+        style="background-image: url({{sectionfirstimage}});
+                background-repeat: no-repeat;
+                background-size: cover;";>
+        <div class='wdmoverlay' style="background-color: {{remuidefaultsectionoverlay}}"></div>
+        {{#highlighted}}<div class="card-current moodle-has-zindex text-primary"></div>{{/highlighted}}
+        <div class='d-flex position-relative justify-content-end'>
+            {{{ addnewsection }}}
+            {{{ optionmenu }}}
+        </div>
+        <span class="sno {{^hidden}}text-primary1{{/hidden}}{{#hidden}}text-muted1{{/hidden}}" style="color: {{remuinewfontcolor}}">SECTION {{ index }}</span>
         <div class="card-content pb-10 pb-2">
-            <h2 class="section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
-            {{{ hiddenmessage }}}
+            {{#addnewsection}}
+                <h2 class="section-title" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
+            {{/addnewsection}}
+            {{^addnewsection}}
+                {{^hidden}}
+                    <a href="{{{ singlepageurl }}}">
+                {{/hidden}}
+                    <h2 class="section-title {{{remuinewthemecolor}}}" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
+                {{^hidden}}
+                    </a>
+                {{/hidden}}
+            {{/addnewsection}}
+            <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}} {{{remuinewthemecolor}}}">
+                {{{ summary }}}
+            </div>
             <div class="section-summary-activities">
                 {{#activityinfo}}
-                    <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
+                    <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}" style="color: {{remuinewfontcolor}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
-            {{{ summary }}}
+            {{{ hiddenmessage }}}
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
         </div>
         <div class="section-action-container card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
             {{#progressinfo}}
-                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
+                <div class="progress progress-xs bg-grey-300 {{{remuinewthemecolor}}} m-b-1">
                     <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
                     </div>
                 </div>
             {{/progressinfo}}
-            {{^progressinfo}}
-                <div class="progress progress-xs m-0 bg-grey-300 mb-10 mb-2 m-b-1 w-p100">
-                    <div class="progress-bar bg-green-600" style="width: 0%;" role="progressbar">
-                    </div>
-                </div>
-            {{/progressinfo}}
-
-            <div class="pl-15 p-l-1 flex-1">
-                <a href="{{{ singlepageurl }}}" class = "view-topic-btn btn {{^hidden}}btn-primary{{/hidden}}{{#hidden}}btn-dark{{/hidden}} border-0">{{#str}} viewtopic, format_remuiformat {{/str}}</a>
+            <div class="text-right progress-text">
+                {{#progressinfo}}
+                    {{{ progress }}}
+                {{/progressinfo}}
             </div>
-            {{#progressinfo}}
-                <div class="text-right pr-15 p-r-1 progress-text">
-                    {{ progress }}
-                </div>
-            {{/progressinfo}}
         </div>
     </div>
 </div>

@@ -52,7 +52,7 @@ trait show_activity_in_row {
     }
 
     public static function show_activity_in_row($courseid, $sectionid, $activityid) {
-        global $DB;
+        global $DB, $OUTPUT;
         $table = 'format_remuiformat';
         $record = $DB->get_record($table,
             array('courseid' => $courseid, 'sectionid' => $sectionid, 'activityid' => $activityid),
@@ -63,19 +63,21 @@ trait show_activity_in_row {
             if ($record->layouttype == 'row') {
                 $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
                 'activityid' => $activityid, 'layouttype' => 'col']);
+                $output['type'] = 'col';
             } else {
                 $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
                 'activityid' => $activityid, 'layouttype' => 'row']);
+                $output['type'] = 'row';
             }
             $output['success'] = true;
             $output['message'] = 'Record Updated';
         } else {
             $DB->insert_record($table, ['courseid' => $courseid, 'sectionid' => $sectionid,
             'activityid' => $activityid, 'layouttype' => 'row']);
+            $output['type'] = 'row';
             $output['success'] = true;
             $output['message'] = 'Record Inserted';
         }
-
         return $output;
     }
 
@@ -83,7 +85,8 @@ trait show_activity_in_row {
         return new \external_single_structure (
             array(
                 'success' => new external_value(PARAM_BOOL, 'If error occurs or not.'),
-                'message' => new external_value(PARAM_RAW, 'Error message.')
+                'message' => new external_value(PARAM_RAW, 'Error message.'),
+                'type' => new external_value(PARAM_RAW, 'Activity type.'),
             )
         );
     }

@@ -76,15 +76,16 @@ $string['notsubscribed'] = "Not Subscribed";
 $string['completed'] = "Completed";
 $string['notcompleted'] = 'Not Completed';
 $string['progress'] = 'Progress';
-$string['showinrow'] = 'Show as Row';
-$string['showincard'] = 'Show as Card';
+$string['showinrow'] = 'Make row';
+$string['showincard'] = 'Make card';
+$string['moveto'] = 'Move to';
 $string['changelayoutnotify'] = 'Refresh page to see changes.';
-
-$string['showless'] = 'Show Less';
-$string['showmore'] = 'Show More';
+$string['generalactivities'] = 'Activities';
+$string['coursecompletionprogress'] = 'Course Progress';
+$string['resumetoactivity'] = 'Resume';
+$string['resumetocourse'] = 'Start';
 
 // For list.
-
 $string['remuicourseformat'] = 'Choose layout';
 $string['remuicourseformat_card'] = 'Card Layout';
 $string['remuicourseformat_list'] = 'List Layout';
@@ -102,8 +103,24 @@ $string['remuidefaultsectionview'] = 'Choose default sections view';
 $string['remuidefaultsectionview_help'] = 'Choose a default view for the sections of the course.';
 $string['expanded'] = 'Expand All';
 $string['collapsed'] = 'Collapse All';
+
+$string['remuienablecardbackgroundimg'] = 'Section background image';
+$string['remuienablecardbackgroundimg_help'] = 'Enable section background image. By default it is disable. It fetches the image from section summary.';
+$string['enablecardbackgroundimg'] = 'Show background image to section in card.';
+$string['disablecardbackgroundimg'] = 'Hide background image to section in card.';
 $string['next'] = 'Next';
 $string['previous'] = 'Previous';
+
+$string['remuidefaultsectiontheme'] = 'Choose default sections theme';
+$string['remuidefaultsectiontheme_help'] = 'Choose a default theme for the sections of the course.';
+
+$string['dark'] = 'Dark';
+$string['light'] = 'Light';
+
+$string['defaultcardbackgroundcolor'] = 'Set the section background color in card format.';
+$string['cardbackgroundcolor_help'] = 'Card background color Help.';
+$string['cardbackgroundcolor'] = 'Set the section background color in card format.';
+$string['defaultcardbackgroundcolordesc'] = 'Card background color Description';
 
 // GDPR.
 $string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store any personal data.';
@@ -112,8 +129,15 @@ $string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store 
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
 
 // Activities completed text.
+$string['activitystart'] = "Let's Start";
 $string['outof'] = 'out of';
 $string['activitiescompleted'] = 'activities completed';
+$string['activitycompleted'] = 'activity completed';
+$string['activitiesremaining'] = 'activities remaining';
+$string['activityremaining'] = 'activity remaining';
+$string['allactivitiescompleted'] = "All activitie's completed";
+
+
 
 // Used in format.js on change course layout.
 $string['showallsectionperpage'] = 'Show all sections per page';
