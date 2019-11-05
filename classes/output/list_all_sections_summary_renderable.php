@@ -130,7 +130,12 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
         $export->generalsectionsummary = $generalsectionsummary;
         $export->generalsection['remuicourseimage'] = $imgurl;
         // For Completion percentage.
-        $export->generalsection['activities'] = $this->courseformatdatacommontrait->get_list_activities_details($generalsection, $this->course, $this->courserenderer, $this->settings);
+        $export->generalsection['activities'] = $this->courseformatdatacommontrait->get_list_activities_details(
+            $generalsection,
+            $this->course,
+            $this->courserenderer,
+            $this->settings
+        );
         $completion = new \completion_info($this->course);
         $percentage = progress::get_course_progress_percentage($this->course);
         if (!is_null($percentage)) {
@@ -206,6 +211,14 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
 
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
-        $export->sections = $this->courseformatdatacommontrait->get_all_section_data($renderer, $editing, $rformat, $this->settings, $this->course, $this->courseformat, $this->courserenderer);
+        $export->sections = $this->courseformatdatacommontrait->get_all_section_data(
+            $renderer,
+            $editing,
+            $rformat,
+            $this->settings,
+            $this->course,
+            $this->courseformat,
+            $this->courserenderer
+        );
     }
 }

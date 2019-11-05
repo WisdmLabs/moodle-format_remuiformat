@@ -50,7 +50,7 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class format_remuiformat_list_all_sections implements renderable, templatable {
-    
+
     // Variables.
     private $course;
     private $courseformat;
@@ -89,7 +89,6 @@ class format_remuiformat_list_all_sections implements renderable, templatable {
         $editing = $PAGE->user_is_editing();
         $export->editing = $editing;
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
-
 
         if ($rformat == REMUI_LIST_FORMAT) {
             $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
@@ -131,7 +130,12 @@ class format_remuiformat_list_all_sections implements renderable, templatable {
         $export->generalsectionsummary = $generalsectionsummary;
         $export->generalsection['remuicourseimage'] = $imgurl;
         // For Completion percentage.
-        $export->generalsection['activities'] = $this->courseformatdatacommontrait->get_list_activities_details($generalsection, $this->course, $this->courserenderer, $this->settings);
+        $export->generalsection['activities'] = $this->courseformatdatacommontrait->get_list_activities_details(
+            $generalsection,
+            $this->course,
+            $this->courserenderer,
+            $this->settings
+        );
 
         $completion = new \completion_info($this->course);
         $percentage = progress::get_course_progress_percentage($this->course);
@@ -207,6 +211,14 @@ class format_remuiformat_list_all_sections implements renderable, templatable {
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         // Setting up data for remianing sections.
-        $export->sections = $this->courseformatdatacommontrait->get_all_section_data($renderer, $editing, $rformat, $this->settings, $this->course, $this->courseformat, $this->courserenderer);
+        $export->sections = $this->courseformatdatacommontrait->get_all_section_data(
+            $renderer,
+            $editing,
+            $rformat,
+            $this->settings,
+            $this->course,
+            $this->courseformat,
+            $this->courserenderer
+        );
     }
 }

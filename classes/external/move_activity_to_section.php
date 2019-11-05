@@ -55,20 +55,20 @@ trait move_activity_to_section {
 
     public static function move_activity_to_section($courseid, $newsectionid, $oldsectionid, $activityidtomove) {
         global $DB, $CFG;
-        
-        // Get course object
+
+        // Get course object.
         $course = get_course($courseid);
-        
+
         // Get activity object.
         $cm = get_coursemodule_from_id(null, $activityidtomove, $courseid, false, MUST_EXIST);
         require_login($course, false, $cm);
-        
+
         // Get new section object.
         $section = $DB->get_record('course_sections', array('course' => $courseid, 'section' => $newsectionid));
-        
+
         $output = array();
         // Move the activity to new section. Function moveto_module() define in /course/lib.php.
-        if( moveto_module($cm, $section, '') ) {
+        if ( moveto_module($cm, $section, '') ) {
             // Generate new URL to redirect to same section with success message.
             $urltogo = $CFG->wwwroot.'/course/view.php?id=' . $courseid . '&section=' . $oldsectionid;
             $output['urltogo'] = $urltogo;
