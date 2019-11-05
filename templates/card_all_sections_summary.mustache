@@ -16,12 +16,12 @@
 }}
 
 {{!
-    @template format_remuiformat/allactivities
+    @template format_remuiformat/card_all_sections_summary
 
 
     Example context (json):
     {
-        "editing: "1",
+        "editing: "1/0",
         "defaultview: "1/0",
         "expanded: "1/0",
         "collapsed: "1/0",
@@ -46,49 +46,49 @@
                 }
             ],
             "generalsectionsummary": "General Section Summary",
+            "sections": [
+                {
+                    "index": "1",
+                    "title": "Section Title",
+                    "singlepageurl": "Single Page URL",
+                    "hiddenmessage": "Hidden message",
+                    "hidden": "1/0",
+                    "summary": "Summary",
+                    "activityinfostring": "2 Files, 2 Quizzes"
+                    "sectionactivities" [
+                        {
+                            
+                        }
+                    ] 
+                }
+            ]
          }
         ],
-        "sections": [
-            {
-                "index": "1",
-                "title": "Section Title",
-                "singlepageurl": "Single Page URL",
-                "hiddenmessage": "Hidden message",
-                "summary": "Summary",
-                "hidden": "1/0",
-                "activityinfostring": "2 Files, 2 Quizzes"
-                "sectionactivities" [
-                    {
-                        
-                    }
-                ] 
-            }
-        ]
     }
 }}
 
 {{#editing}}
-    <ul class="remui-format-list">
+    <div id="card-editing-container" class="row mt-20">
         {{! Display General Section }}
         {{#generalsection}}
-            {{> format_remuiformat/list_generalsectionedit }}
+            {{> format_remuiformat/card_general_section_edit }}
         {{/generalsection}}
         {{! Display Remaining Section }}
         {{#sections}}
-            {{> format_remuiformat/list_singleonesection }}
+            {{> format_remuiformat/card_section_summary }}
         {{/sections}}
         {{{ addsection }}}
-    </ul>
+    </div>
 {{/editing}}
 {{^editing}}
-    <ul class="remui-format-list">
+    <div id="card-container" class="row mt-20">
         {{! Display General Section }}
         {{#generalsection}}
-            {{> format_remuiformat/list_generalsection }}
+            {{> format_remuiformat/card_general_section }}
         {{/generalsection}}
         {{! Display Remaining Section }}
         {{#sections}}
-            {{> format_remuiformat/list_singleonesection }}
+            {{> format_remuiformat/card_section_summary }}
         {{/sections}}
-    </ul>
+    </div>
 {{/editing}}

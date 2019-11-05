@@ -16,7 +16,7 @@
 }}
 
 {{!
-    @template format_remuiformat/allactivities
+    @template format_remuiformat/list_sections_summary
 
 
     Example context (json):
@@ -39,7 +39,6 @@
         ]
     }
 }}
-
 
 {{#addsection}}
 <li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="">
@@ -68,7 +67,8 @@
         <div class="left side float-left">
           {{{ leftside }}}
         </div>
-         <div class="right side float-right">
+         <div class="right side float-right d-flex">
+           {{{ addnewsection }}}
            {{{ optionmenu }}}
          </div>
          {{{leftside}}}

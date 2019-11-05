@@ -311,6 +311,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
 
         return $o;
     }
+
     /**
      * Generate the edit control items of a section
      *
@@ -376,6 +377,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             return array_merge($controls, $parentcontrols);
         }
     }
+
     /**
      * If section is not visible, display the message about that ('Not available
      * until...', that sort of thing). Otherwise, returns blank.
@@ -605,79 +607,68 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return
      */
-    public function render_all_sections(\format_remuiformat\output\format_remuiformat_section $section) {
+    public function render_card_all_sections_summary(\format_remuiformat\output\format_remuiformat_card_all_sections_summary $section) {
         $templatecontext = $section->export_for_template($this);
-        $rformat = $this->settings['remuicourseformat'];
-        if (empty($rformat)) {
-            $rformat = REMUI_CARD_FORMAT;
-        }
         if (isset($templatecontext->error)) {
             print_error($templatecontext->error);
         } else {
-            switch ($rformat) {
-                case REMUI_CARD_FORMAT:
-                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                    break;
-                case REMUI_LIST_FORMAT:
-                    echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
-                    break;
-                default:
-                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                    break;
-            }
-        }
-    }
-    /**
-     * Renders the mutiple section page.
-     * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
-     * @return
-     */
-    public function render_single_list_section(\format_remuiformat\output\format_remuiformat_single_section $section) {
-        $templatecontext = $section->export_for_template($this);
-        $rformat = $this->settings['remuicourseformat'];
-        if (empty($rformat)) {
-            $rformat = REMUI_CARD_FORMAT;
-        }
-        if (isset($templatecontext->error)) {
-            print_error($templatecontext->error);
-        } else {
-            switch ($rformat) {
-                case REMUI_CARD_FORMAT:
-                        echo "REMUI_CARD_FORMAT";
-                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                    break;
-                case REMUI_LIST_FORMAT:
-                    echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
-                    break;
-                default:
-                    echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
-                    break;
-            }
+            // echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
+            echo $this->render_from_template('format_remuiformat/card_all_sections_summary', $templatecontext);
         }
     }
 
     /**
-     * Renders the single section page.
+     * Renders the card one section page.
      * @param  \format_cards\output\format_cards_activity $activity Object of Activity renderable
      * @return
      */
-    public function render_single_section(\format_remuiformat\output\format_remuiformat_activity $activity) {
+    public function render_card_one_section(\format_remuiformat\output\format_remuiformat_card_one_section $activity) {
         $templatecontext = $activity->export_for_template($this);
-        $rformat = $this->settings['remuicourseformat'];
-        if (empty($rformat)) {
-            $rformat = REMUI_CARD_FORMAT;
+        // echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
+        echo $this->render_from_template('format_remuiformat/card_one_section', $templatecontext);
+    }
+
+    /**
+     * Renders the list all sections page with all activities.
+     * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
+     * @return
+     */
+    public function render_list_all_sections(\format_remuiformat\output\format_remuiformat_list_all_sections $section) {
+        
+        $templatecontext = $section->export_for_template($this);
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            // echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
+            echo $this->render_from_template('format_remuiformat/list_all_sections', $templatecontext);
         }
-        switch ($rformat) {
-            case REMUI_CARD_FORMAT:
-                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-                break;
-            case REMUI_LIST_FORMAT:
-                echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
-                break;
-            default:
-                echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
-                break;
+    }
+    
+    /**
+     * Renders the list all sections page without activities.
+     * List Format -> All Section Page.
+     * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
+     * @return
+     */
+    public function render_list_all_sections_summary(\format_remuiformat\output\format_remuiformat_list_all_sections_summary $section) {
+        $templatecontext = $section->export_for_template($this);
+        if (isset($templatecontext->error)) {
+            print_error($templatecontext->error);
+        } else {
+            // echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
+            echo $this->render_from_template('format_remuiformat/list_all_sections_summary', $templatecontext);
         }
+    }
+
+    /**
+     * Renders the list one section page.
+     * @param  \format_cards\output\format_cards_activity $activity Object of Activity renderable
+     * @return
+     */
+    public function render_list_one_section(\format_remuiformat\output\format_remuiformat_list_one_section $activity) {
+        $templatecontext = $activity->export_for_template($this);
+        // echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
+        echo $this->render_from_template('format_remuiformat/list_one_section', $templatecontext);
     }
 
     public function abstract_html_contents($html, $maxlength = 100) {

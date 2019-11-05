@@ -21,12 +21,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function ($, Ajax) {
+define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($, Ajax) {
 
     function init() {
 
         var cardminHeight = 200;
-        $(document).ready(function(){
+        $(document).ready(function() {
             inittest();
         });
 
@@ -59,12 +59,12 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
         }
 
         // Function to set Equal Height of all cards.
-        var setEqualHeight = function (selector) {
+        var setEqualHeight = function(selector) {
             if (selector.length > 0) {
                 var arr = [];
                 var selector_height;
                 selector.css("min-height", "initial");
-                selector.each(function (index, elem) {
+                selector.each(function(index, elem) {
                     selector_height = elem.offsetHeight;
                     selector_height = (selector_height > cardminHeight) ? selector_height : cardminHeight;
                     arr.push(selector_height);
@@ -72,16 +72,16 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                 selector_height = Math.max.apply(null, arr) + 55;
                 selector.css("min-height", selector_height);
             }
-        }
+        };
 
-        $(window).resize(function(){
+        $(window).resize(function() {
             setEqualHeight($('.single-card.wdm-col'));
         });
 
         // Mark Completion.
         $('form.togglecompletion button').on('click', function() {
             var id = $(this).closest("form").find('input[name="id"]').val();
-            if(id) {
+            if (id) {
                 var completion = $('.wdm-completion-status-' + id).text().trim();
                 if (completion == "Completed") {
                     $('.wdm-completion-status-' + id).html(M.util.get_string('markcomplete', 'format_remuiformat'));
@@ -101,7 +101,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
         // Set Equal height of cards on load.
         setEqualHeight($('.single-card'));
         $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
-        $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 600, "swing");
+        $('.single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 600, "swing");
 
         function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -128,11 +128,10 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
             var sectionsave = Ajax.call([
                 {
                     methodname: "format_remuiformat_move_activities",
-                    args: { courseid : courseid, sectionid: section, sequence : sequence }
+                    args: {courseid: courseid, sectionid: section, sequence: sequence}
                 }
             ]);
-            sectionsave[0].done(function (response) {
-                // ...console.log(response);.
+            sectionsave[0].done(function() {
             });
         }
 
@@ -147,14 +146,14 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
 
         M.course.format = M.course.format || {};
 
-        M.course.format.get_config = function () {
+        M.course.format.get_config = function() {
             return {
-                container_node: 'ul',
+                container_node: 'div',
                 container_class: 'cards',
-                section_node: 'li',
+                section_node: 'div',
                 section_class: 'section'
             };
-        }
+        };
 
         /**
          * Swap section
@@ -164,7 +163,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
          * @param {string} node2 node to swap with
          * @return {NodeList} section list
          */
-        M.course.format.swap_sections = function (Y, node1, node2) {
+        M.course.format.swap_sections = function(Y, node1, node2) {
             var CSS = {
                 COURSECONTENT: 'course-content',
                 SECTIONADDMENUS: 'section_add_menus'
@@ -173,7 +172,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
             var sectionlist = Y.Node.all('.' + CSS.COURSECONTENT + ' ' + M.course.format.get_section_selector(Y));
             // Swap menus.
             sectionlist.item(node1).one('.' + CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.' + CSS.SECTIONADDMENUS));
-        }
+        };
 
         /**
          * Process sections after ajax response
@@ -184,7 +183,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
          * @param {string} sectionto last affected section
          * @return void
          */
-        M.course.format.process_sections = function (Y, sectionlist, response, sectionfrom, sectionto) {
+        M.course.format.process_sections = function(Y, sectionlist, response, sectionfrom, sectionto) {
             var CSS = {
                 SECTIONNAME: 'sectionname'
             },
@@ -216,23 +215,59 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
                     ele.setAttribute('title', newstr); // For FireFox as 'alt' is not refreshed.
                 }
             }
-        }
-        // Call AJAX to set activity layout (Row or Card)
+        };
+        // Call AJAX to set activity layout (Row or Card).
         $('.wdm-section-wrapper .single-card-container .wdm-activity-actions .wdm-show-in-row').on('click', function() {
-            var courseid = getUrlParameter('id');  
+            var courseid = getUrlParameter('id');
             var section = $(this).data('wdmsectionid');
             var activity = $(this).data('wdmactivityid');
             var selector = $(this);
             var activitysave = Ajax.call([
                 {
                     methodname: "format_remuiformat_show_activity_in_row",
-                    args: { courseid : courseid, sectionid: section, activityid : activity }
+                    args: {courseid: courseid, sectionid: section, activityid: activity}
                 }
             ]);
-            activitysave[0].done(function (response) {
-                $(selector).addClass('bg-primary');
-                $('.wdm-change-layout-notify').show();
-                $('.wdm-change-layout-notify').delay(2000).fadeOut('slow');
+            activitysave[0].done(function(response) {
+                if (response.type == 'row') {
+                    $(selector).closest('.single-card-container').removeClass('col-lg-4 col-md-6 col-sm-12').addClass('col-12');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-col').addClass('wdm-min-row');
+                    $(selector).find('.wdmactivitytype').toggle();
+                } else {
+                    $(selector).closest('.single-card-container').removeClass('col-12').addClass('col-lg-4 col-md-6 col-sm-12');
+                    $(selector).closest('.single-card-container .single-card').removeClass('wdm-min-row wdm-row')
+                    .addClass('wdm-col');
+                    $(selector).find('.wdmactivitytype').toggle();
+                }
+                // SetEqualHeight($('.single-card'));.
+            });
+        });
+
+        // Call AJAX to move activity to specific section in cars format.
+        $('.wdm-section-wrapper .single-card-container .wdm-activity-actions .ecfsectionname').on('click', function() {
+            var courseid = getUrlParameter('id');
+            var oldsectionid = $(this).data('oldsectionid');
+            var newsection = $(this).data('sectionidtomove');
+            var activitytomove = $(this).closest('.single-card-container').attr('data-id');
+            var selector = $(this);
+            var activitymovetosection = Ajax.call([
+                {
+                    methodname: "format_remuiformat_move_activity_to_section",
+                    args: {
+                        courseid: courseid,
+                        newsectionid: newsection,
+                        oldsectionid: oldsectionid,
+                        activityidtomove: activitytomove
+                    }
+                }
+            ]);
+            activitymovetosection[0].done(function(response) {
+                if (response.success == 1) {
+                    $(selector).closest('.single-card-container').fadeOut('slow');
+                } else {
+                    $('<div class="wdmactivityerrormsg alert alert-danger mt-10">' + response.message + '</div>')
+                    .insertAfter($(selector).closest('.single-card-container .wdm-activity-actions'));
+                }
             });
         });
     }
@@ -240,5 +275,5 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function (
 
     return {
         init: init
-    }
+    };
 });
