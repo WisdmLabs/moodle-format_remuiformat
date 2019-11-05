@@ -64,12 +64,10 @@ trait show_activity_in_row {
                 $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
                 'activityid' => $activityid, 'layouttype' => 'col']);
                 $output['type'] = 'col';
-                // $output['layouttypecardimg'] = $OUTPUT->pix_icon('ecf-cols', get_string('showincard', 'format_remuiformat'), 'format_remuiformat');
             } else {
                 $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
                 'activityid' => $activityid, 'layouttype' => 'row']);
                 $output['type'] = 'row';
-                // $output['layouttypecardimg'] = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
             }
             $output['success'] = true;
             $output['message'] = 'Record Updated';
@@ -77,11 +75,9 @@ trait show_activity_in_row {
             $DB->insert_record($table, ['courseid' => $courseid, 'sectionid' => $sectionid,
             'activityid' => $activityid, 'layouttype' => 'row']);
             $output['type'] = 'row';
-            // $output['layouttypecardimg'] = $OUTPUT->pix_icon('ecf-rows', get_string('showinrow', 'format_remuiformat'), 'format_remuiformat');
             $output['success'] = true;
             $output['message'] = 'Record Inserted';
         }
-
         return $output;
     }
 
@@ -91,7 +87,6 @@ trait show_activity_in_row {
                 'success' => new external_value(PARAM_BOOL, 'If error occurs or not.'),
                 'message' => new external_value(PARAM_RAW, 'Error message.'),
                 'type' => new external_value(PARAM_RAW, 'Activity type.'),
-                // 'layouttypecardimg' => new external_value(PARAM_RAW, 'Activity type image')
             )
         );
     }

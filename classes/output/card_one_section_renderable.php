@@ -139,8 +139,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
-                
-                $completiondata = $completioninfo->get_data($mod, true);               
+
+                $completiondata = $completioninfo->get_data($mod, true);
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
@@ -163,14 +163,14 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $this->courserenderer->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
-                
+
                 // In case of label activity send full text of cm to open in modal.
                 if ($mod->modname == 'label') {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
-                
+
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
@@ -191,12 +191,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
-                
+
                 // Set the section layout using the databases value.
                 $table = 'format_remuiformat';
                 $record = $DB->get_record($table, array('courseid' => $this->course->id, 'activityid' => $modnumber), '*');
-                
-                
+
                 if ( !empty($record) ) {
                     if ($record->layouttype == 'row') {
                         $activitydetails->layouttyperow = 'row';
@@ -208,8 +207,14 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 }
 
                 // Get all sections from course.
-                $sections = $DB->get_records('course_sections', array('course' => $this->course->id), 'section', 'id,section,name,sequence');
-                
+                $sections = $DB->get_records(
+                    'course_sections',
+                    array(
+                        'course' => $this->course->id),
+                        'section',
+                        'id,section,name,sequence'
+                    );
+
                 // Create a section dropdown with section name, section ID and activity ID.
                 $sectionlist = '';
                 foreach ($sections as $value) {
@@ -218,7 +223,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                         if (empty($value->name)) {
                             $value->name = 'Section '.$value->section;
                         }
-                        $sectionlist .= html_writer::span($value->name, 'ecfsectionname dropdown-item p-1', array('data-sectionidtomove' => $value->section, 'data-oldsectionid' => $section->section));
+                        $sectionlist .= html_writer::span(
+                            $value->name,
+                            'ecfsectionname dropdown-item p-1',
+                            array('data-sectionidtomove' => $value->section, 'data-oldsectionid' => $section->section)
+                        );
                     }
                 }
                 $activitydetails->sectionlist = $sectionlist;

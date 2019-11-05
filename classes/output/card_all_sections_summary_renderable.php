@@ -50,7 +50,7 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class format_remuiformat_card_all_sections_summary implements renderable, templatable {
-    
+
     // Variables.
     private $course;
     private $courseformat;
@@ -71,7 +71,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
         $this->settings = $this->courseformat->get_settings();
     }
 
-        /**
+    /**
      * Function to export the renderer data in a format that is suitable for a
      * question mustache template.
      *
@@ -110,7 +110,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
         $sections = $modinfo->get_section_info_all();
-        
+
         // Setting up data for General Section.
         $generalsection = $modinfo->get_section_info(0);
         $generalsectionsummary = $renderer->format_summary_text($generalsection);
@@ -122,12 +122,12 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $export->generalsection['optionmenu'] = $renderer->section_right_content($generalsection, $this->course, false);
             } else {
                 $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
-            }            
-            
+            }
+
             $export->generalsection['activities'] = $this->get_activities_details($generalsection);
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
-            
+
             $export->generalsection['summary'] = $renderer->abstract_html_contents(
                 $generalsectionsummary, 400
             );
@@ -140,23 +140,18 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
             }
             $export->generalsection['coursemainimage'] = $imgurl;
-            // $completion = new \completion_info($this->course);
             $percentage = progress::get_course_progress_percentage($this->course);
-            
             if (!is_null($percentage)) {
                 $percentage = floor($percentage);
                 $export->generalsection['percentage'] = $percentage;
             }
-            
             $courseallactivities = get_array_of_activities($this->course->id);
-	    $export->nooftotalactivities = sizeof($courseallactivities);
+            $export->nooftotalactivities = count($courseallactivities);
             $allactivitiesarray = array();
             foreach ($courseallactivities as $key => $value) {
-                if (array_key_exists($value->mod,$allactivitiesarray)) {
+                if (array_key_exists($value->mod, $allactivitiesarray)) {
                     $allactivitiesarray[$value->mod]++;
-                }
-                else
-                {
+                } else {
                     $allactivitiesarray[$value->mod] = 1;
                 }
             }
@@ -167,7 +162,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $key = $key.'s';
                 }
                 $output['activitylist'][] = $value.' '.$key;
-            }            
+            }
             $export->activitylist = $output['activitylist'];
             $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
             if ( isset($export->resumeactivityurl) ) {
@@ -178,9 +173,16 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
         // Setting up data for remianing sections.
-        $export->sections = $this->courseformatdatacommontrait->get_all_section_data($renderer, $editing, $rformat, $this->settings, $this->course, $this->courseformat, $this->courserenderer);
+        $export->sections = $this->courseformatdatacommontrait->get_all_section_data(
+            $renderer,
+            $editing, $rformat,
+            $this->settings,
+            $this->course,
+            $this->courseformat,
+            $this->courserenderer
+        );
     }
-    
+
     private function get_activities_details($section, $displayoptions = array()) {
         global $PAGE;
         $modinfo = get_fast_modinfo($this->course);

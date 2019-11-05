@@ -22,22 +22,21 @@
  */
 
  define(['jquery', 'core/str'],
-function ($, str) {
-    function init(arr) {
+function($, str) {
+    function init() {
         str.get_strings([
-            {'key' : 'showallsectionperpage', 'component':'format_remuiformat'},
+            {'key': 'showallsectionperpage', 'component': 'format_remuiformat'},
         ]).done(function(ss) {
-            $(document).ready(function(){
+            $(document).ready(function() {
                 var sectionlayout_val;
                 var sectionbackground_val;
                 // Hide and show the course settings on course format selection.
-                $("#id_remuicourseformat").change(function(){
+                $("#id_remuicourseformat").change(function() {
                     var layout_value = $("#id_remuicourseformat").val();
-                    // CARD
+                    // CARD.
                     if (layout_value == 0) {
                         $("#id_coursedisplay option[value='0']").remove();
                         $('#id_coursedisplay').val(1).trigger('change');
-                        // $("#id_remuicourseimage_filemanager").parent().parent().hide();
                         $("#id_remuiteacherdisplay").parent().parent().hide();
                         $("#id_remuidefaultsectionview").parent().parent().hide();
                         $("#id_remuienablecardbackgroundimg").parent().parent().show();
@@ -47,12 +46,11 @@ function ($, str) {
                         } else {
                             $("#id_remuidefaultsectiontheme").parent().parent().show();
                         }
-                    // LIST
+                    // LIST.
                     } else {
                         $('#id_coursedisplay').append('<option value="0">' + ss[0] + '</option>');
                         var oldcoursedisplay = window.localStorage.getItem('coursedisplay');
                         $('#id_coursedisplay').val(oldcoursedisplay).trigger('change');
-                        // $("#id_remuicourseimage_filemanager").parent().parent().show();
                         $("#id_remuiteacherdisplay").parent().parent().show();
                         $("#id_remuienablecardbackgroundimg").parent().parent().hide();
                         $("#id_remuidefaultsectiontheme").parent().parent().hide();
@@ -67,10 +65,9 @@ function ($, str) {
                 var layout_value = $("#id_remuicourseformat").val();
                 window.localStorage.setItem('coursedisplay', $("#id_coursedisplay").val());
 
-                // CARD
+                // CARD.
                 if (layout_value == 0) {
                     $("#id_coursedisplay").find("option").eq(1).hide();
-                    // $("#id_remuicourseimage_filemanager").parent().parent().hide();
                     $("#id_remuiteacherdisplay").parent().parent().hide();
                     $("#id_remuidefaultsectionview").parent().parent().hide();
                     sectionbackground_val = $("#id_remuienablecardbackgroundimg").val();
@@ -79,9 +76,8 @@ function ($, str) {
                     } else {
                         $("#id_remuidefaultsectiontheme").parent().parent().show();
                     }
-                // LIST
+                // LIST.
                 } else {
-                    // $("#id_remuicourseimage_filemanager").parent().parent().show();
                     $("#id_remuiteacherdisplay").parent().parent().show();
                     sectionlayout_val = $("#id_coursedisplay").val();
                     if (sectionlayout_val == 1) {
@@ -90,7 +86,7 @@ function ($, str) {
                     $("#id_remuienablecardbackgroundimg").parent().parent().hide();
                     $("#id_remuidefaultsectiontheme").parent().parent().hide();
                 }
-                $("#id_coursedisplay").change(function(){
+                $("#id_coursedisplay").change(function() {
                     sectionlayout_val = $("#id_coursedisplay").val();
                     if (sectionlayout_val == 1) {
                         $("#id_remuidefaultsectionview").parent().parent().hide();
@@ -110,7 +106,7 @@ function ($, str) {
 
             });
         }
-        ).fail(function(){
+        ).fail(function() {
 
         });
     }
@@ -118,5 +114,5 @@ function ($, str) {
     // Must return the init function.
     return {
         init: init
-    }
+    };
 });

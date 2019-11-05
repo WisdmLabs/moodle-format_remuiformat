@@ -3,155 +3,157 @@
 /* hide borders from region main */
 #page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card,
 #page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
-  border: none;
+    border: none;
 }
 
 /* Boost 3.4 */
 #page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card.card-block:first-of-type {
-  background: transparent;
-  padding: 0;
-  overflow: visible;
+    background: transparent;
+    padding: 0;
+    overflow: visible;
 }
 /* Boost 3.5 */
-#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card>.card-body:first-of-type {
-  background: #f2f2f2;
-  overflow: visible;
+#page-course-view-remuiformat.pagelayout-course .container-fluid #region-main .card > .card-body:first-of-type {
+    background: #f2f2f2;
+    overflow: visible;
 }
 /* Boost 3.6 */
 #page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
-  background : #f2f2f2;
-  overflow : visible;
+    background: #f2f2f2;
+    overflow: visible;
 }
 
 /* Fordson 3.7 */
 #page-course-view-remuiformat.pagelayout-course .container-fluid #region-main {
-  background: #f2f2f2 !important;
-  overflow: visible;
+    background: #f2f2f2 !important;
+    overflow: visible;
 }
 
 /* RemUI 3.4, 3.5, 3.6 */
 #page-course-view-remuiformat.pagelayout-course .container #region-main .card.card-block:first-of-type {
-  background: transparent;
-  padding: 0;
-  overflow: visible;
+    background: transparent;
+    padding: 0;
+    overflow: visible;
 }
 
 .wdm-card-section {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
-  font-size: 15px;
+    font-size: 15px;
 }
 
 .wdm-completion-container form.togglecompletion,
 .wdm-completion-container form.togglecompletion > div {
-  display: inline !important;
+    display: inline !important;
 }
 
 .wdm-completion-container form.togglecompletion .btn.btn-link,
 .wdm-completion-container .autocompletion {
-  padding: 0 0 0 10px;
-  background: transparent;
+    padding: 0 0 0 10px;
+    background: transparent;
 }
 
 .wdm-completion-container form.togglecompletion .btn.btn-link:hover {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 .wdm-completion-container form.togglecompletion .btn.btn-link img,
 .wdm-completion-container .autocompletion img {
-  width: 18px;
-  height: 18px;
-  margin: 4px 0;
+    width: 18px;
+    height: 18px;
+    margin: 4px 0;
 }
 
-@media (max-width:1400px) {
-  /* Sections */
-  body.path-course.editing.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside.site-menubar-unfold .single-card-container {
-    min-width: 50% !important;
-  }
+@media (max-width: 1400px) {
+    /* Sections */
+    body.path-course.editing.site-menubar-unfold .single-card-container,
+    body.path-course.pinaside.site-menubar-unfold .single-card-container {
+        min-width: 50% !important;
+    }
 }
 
 
-@media only screen and (min-width: 1200px) and (max-width: 1400px)  {
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
-    min-width: 50% !important;
-  }
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+    body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
+        min-width: 50% !important;
+    }
 
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
-    min-width: 50% !important;
-  }
-  /* General section in Boost theme */
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .generaldetails {
-    min-width: 100% !important;
-    order: 12;
-  }
-  body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .coursedetails {
-    min-width: 100% !important;
-    order: 1;
-  }
+    body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .single-card-container {
+        min-width: 50% !important;
+    }
+    /* General section in Boost theme */
+    body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .generaldetails {
+        min-width: 100% !important;
+        order: 12;
+    }
+    body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks .coursedetails {
+        min-width: 100% !important;
+        order: 1;
+    }
 }
 
 /* Show two cards per row, when both sidebars open in RemUI
 * when left sidebar and right blocks section open in Boost
 */
 
-@media (max-width:1200px) {
-  body.path-course.editing.site-menubar-unfold ul.section.first-section li,
-  body.path-course.pinaside.site-menubar-unfold ul.section.first-section li {
-    min-width: 50% !important;
-  }
-  
-  body.path-course.editing .single-card-container,
-  body.path-course.site-menubar-unfold .single-card-container,
-  body.path-course.pinaside .single-card-container {
-    min-width: 50% !important;
-  }
+@media (max-width: 1200px) {
+    body.path-course.editing.site-menubar-unfold ul.section.first-section li,
+    body.path-course.pinaside.site-menubar-unfold ul.section.first-section li {
+        min-width: 50% !important;
+    }
 
-  /* General Section */
-  body.path-course.site-menubar-unfold .generaldetails,
-  body.path-course.site-menubar-unfold .coursedetails,
-  body.path-course.pinaside .generaldetails,
-  body.path-course.pinaside .coursedetails {
-    max-width: 50%;
-    flex: auto;
-  }
+    body.path-course.editing .single-card-container,
+    body.path-course.site-menubar-unfold .single-card-container,
+    body.path-course.pinaside .single-card-container {
+        min-width: 50% !important;
+    }
+
+    /* General Section */
+    body.path-course.site-menubar-unfold .generaldetails,
+    body.path-course.site-menubar-unfold .coursedetails,
+    body.path-course.pinaside .generaldetails,
+    body.path-course.pinaside .coursedetails {
+        max-width: 50%;
+        flex: auto;
+    }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px)  {
-  body#page-course-view-remuiformat.drawer-open-left .single-card-container {
-    min-width: 100% !important;
-  }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    body#page-course-view-remuiformat.drawer-open-left .single-card-container {
+        min-width: 100% !important;
+    }
 }
-@media only screen and (min-width: 992px) and (max-width: 1199px)  {
-  body#page-course-view-remuiformat.drawer-open-left ul.section.first-section li {
-    min-width: 50% !important;
-  }
 
-  body#page-course-view-remuiformat.drawer-open-left .single-card-container {
-    min-width: 50% !important;
-  }
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    body#page-course-view-remuiformat.drawer-open-left ul.section.first-section li {
+        min-width: 50% !important;
+    }
 
-  body.path-course.pinaside.site-menubar-unfold .generaldetails {
-    order: 12;
-    min-width: 100%;
-  }
-  body.path-course.pinaside.site-menubar-unfold .coursedetails {
-    order: 1;
-    min-width: 100%;
-    padding-bottom: 15px;
-  }
-  body.path-course.pinaside.site-menubar-unfold .coursemainimagediv {
-    display: none !important;
-  }
+    body#page-course-view-remuiformat.drawer-open-left .single-card-container {
+        min-width: 50% !important;
+    }
+
+    body.path-course.pinaside.site-menubar-unfold .generaldetails {
+        order: 12;
+        min-width: 100%;
+    }
+    body.path-course.pinaside.site-menubar-unfold .coursedetails {
+        order: 1;
+        min-width: 100%;
+        padding-bottom: 15px;
+    }
+    body.path-course.pinaside.site-menubar-unfold .coursemainimagediv {
+        display: none !important;
+    }
 }
-@media (max-width:768px) {
-  body.path-course.site-menubar-unfold .generaldetails,
-  body.path-course.site-menubar-unfold .coursedetails {
-    min-width: 100% !important;
-  }
+
+@media (max-width: 768px) {
+    body.path-course.site-menubar-unfold .generaldetails,
+    body.path-course.site-menubar-unfold .coursedetails {
+        min-width: 100% !important;
+    }
 }
 
 .card-bottom {
@@ -162,117 +164,124 @@
 }
 
 .section-summary-activities {
-  padding: 2px 0 8px 0;
+    padding: 2px 0 8px 0;
 }
 
-.section-mod-details,  .wdm-mod-name,
+.section-mod-details,
+.wdm-mod-name,
 ul.remui-format-list .section-summary-activities {
-  padding: 3px 4px;
-  color: #888;
-  font-size: 0.90rem;
-  line-height: 1rem;
+    padding: 3px 4px;
+    color: #888;
+    font-size: 0.90rem;
+    line-height: 1rem;
 }
 
-.section-summary-activities>.section-mod-details:first-child, .wdm-mod-name {
-  padding-left: 0px;
+.section-summary-activities > .section-mod-details:first-child,
+.wdm-mod-name {
+    padding-left: 0;
 }
 
 .wdm-mod-name {
-  font-weight: 600;
+    font-weight: 600;
 }
 
-.section-action-container, .wdm-bottom-container {
+.section-action-container,
+.wdm-bottom-container {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 -15px;
 }
 
 .section-action-container .progress-text {
-  width: 92%;
-  min-height: 18px;
-  margin: 0 auto;
-  align-self: center;
-  /* display: block; */
-  font-size: 14px;
-  font-weight: 500;
-  visibility: hidden;
+    width: 92%;
+    min-height: 18px;
+    margin: 0 auto;
+    align-self: center;
+    /* display: block; */
+    font-size: 14px;
+    font-weight: 500;
+    visibility: hidden;
 }
 
 .single-card:hover .progress-text {
-  /* display: block; */
-  visibility: visible
+    /* display: block; */
+    visibility: visible;
 }
 
 .flex-1 {
-  flex: 1;
+    flex: 1;
 }
 
 .w-p100 {
-  width: 100% !important;
+    width: 100% !important;
 }
 
 .text-right {
-  text-align: right !important;
+    text-align: right !important;
 }
 
 .text-center {
-  text-align: center !important;
+    text-align: center !important;
 }
 
 .format-remuiformat.pagelayout-course .progress-xs {
-  width: 92%;
-  margin: 0 auto;
-  border-bottom: 0 !important;
-  border-radius: 5px;
-  position: relative;
-  bottom: 0;
+    width: 92%;
+    margin: 0 auto;
+    border-bottom: 0 !important;
+    border-radius: 5px;
+    position: relative;
+    bottom: 0;
 }
 
-.progress-xs, .progress-xs .progress-bar {
-  height: 6px !important;
-  border-radius: 5px;
+.progress-xs,
+.progress-xs .progress-bar {
+    height: 6px !important;
+    border-radius: 5px;
 }
 
 .progress-xs .progress-bar {
-  line-height: 4px !important;
+    line-height: 4px !important;
 }
 
 .bg-green-600 {
-  background-color: #11c26d!important;
+    background-color: #11c26d !important;
 }
 
 .format-remuiformat.pagelayout-course .progress-xs.dark {
-  background-color: #e0e0e09e!important;
+    background-color: #e0e0e09e !important;
 }
 
 .format-remuiformat.pagelayout-course .progress-xs.light {
-  background-color: #b7b4b4a3!important;
+    background-color: #b7b4b4a3 !important;
 }
 
-.single-card .sno, .general-single-card .sno {
+.single-card .sno,
+.general-single-card .sno {
     display: inline-block;
     font-size: 18px;
     font-weight: 900;
-    color:rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.8);
     padding: 5px 0;
 }
 
 .single-card-container .current::before {
-  left: -.1rem !important;
+    left: -.1rem !important;
 }
 
 body#page-course-view-remuiformat.editing ul.wdm-section-wrapper li.single-card-container {
-  padding: 15px !important;
+    padding: 15px !important;
 }
 
-#page-course-view-remuiformat ul.wdm-section-wrapper li.single-card-container div.moodle-actionmenu div.dropdown-menu-right a.editing_moveright,
-#page-course-view-remuiformat ul.wdm-section-wrapper li.single-card-container div.moodle-actionmenu div.dropdown-menu-right a.editing_moveleft {
-  display: none;
+#page-course-view-remuiformat ul.wdm-section-wrapper li.single-card-container
+div.moodle-actionmenu div.dropdown-menu-right a.editing_moveright,
+#page-course-view-remuiformat ul.wdm-section-wrapper li.single-card-container
+div.moodle-actionmenu div.dropdown-menu-right a.editing_moveleft {
+    display: none;
 }
 
 #page-course-view-remuiformat .wdm-single-activity-title,
 ul.remui-format-list h4.sectionname {
-    margin:0;
+    margin: 0;
     font-size: 18px;
     font-weight: 500;
     padding: 7px 0;
@@ -282,171 +291,172 @@ ul.remui-format-list h4.sectionname {
 #page-course-view-remuiformat div#card-editing-container .section-title,
 #page-course-view-remuiformat div#card-container .section-title,
 #page-course-view-remuiformat .single-section-title {
-  margin:0;
-  font-size: 22px;
-  font-weight: 700;
-  padding: 7px 0;
-  clear: both; /* Fordson */
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 7px 0;
+    clear: both; /* Fordson */
 }
 
 #page-course-view-remuiformat div#card-container .section-title:hover,
 #page-course-view-remuiformat div#card-container .section-title.light:hover,
 #page-course-view-remuiformat div#card-container .section-title.dark:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .wdm-single-activity-title a {
-  color: #37474f;
+    color: #37474f;
 }
 
 .wdm-single-activity-title img {
-  margin-right: 10px;
-  margin-top: -3px;
+    margin-right: 10px;
+    margin-top: -3px;
 }
 
 .wdm-single-activity-title.nosummary a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #37474f;
-  text-decoration: none;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #37474f;
+    text-decoration: none;
+    text-align: center;
 }
 
 .wdm-single-activity-title.nosummary img {
-  height: 75px;
-  width: 75px;
-  margin: 20px 0;
+    height: 75px;
+    width: 75px;
+    margin: 20px 0;
 }
 
 .nosummary .availabilityinfo {
-  text-align: center;
+    text-align: center;
 }
 
-input.ignoredirty.form-control{
+input.ignoredirty.form-control {
     width: 100% !important;
 }
 
-.general-single-card{
-  box-shadow: 0px 0px 8px #ddd;
-  border-radius: 2px;
-  background-color: white;
-  position: relative;
-  min-height: 50px;
-  list-style: none;
-  padding: 15px !important;
+.general-single-card {
+    box-shadow: 0 0 8px #ddd;
+    border-radius: 2px;
+    background-color: white;
+    position: relative;
+    min-height: 50px;
+    list-style: none;
+    padding: 15px !important;
 }
 
-.general-section-card-details .coursemainimagediv, .general-section-card-details .coursemainimage {
-  height: 140px;
+.general-section-card-details .coursemainimagediv,
+.general-section-card-details .coursemainimage {
+    height: 140px;
 }
 
 .general-section-card-details .coursemainimage {
-  width: 100%;
+    width: 100%;
 }
 
-.general-section-card-details .coursedetails .row{
-  background-color: #f1f4f5;
-  padding: 15px 0;
-  margin: 0px;
+.general-section-card-details .coursedetails .row {
+    background-color: #f1f4f5;
+    padding: 15px 0;
+    margin: 0;
 }
 
 .general-section-card-details .generalsecactivities {
-  float: left;
-  margin: 0px 0px 15px 0px!important;
+    float: left;
+    margin: 0 0 15px 0 !important;
 }
 
 .general-section-card-details .generalsecactivitiesmain {
-  padding: 0px;
-  margin-bottom: 1rem !important;
+    padding: 0;
+    margin-bottom: 1rem !important;
 }
 
 #card-editing-container .general-section-card-details .generalsecactivitiesmain.onshowmore {
-  height: 350px;
+    height: 350px;
 }
 
 .general-section-card-details .generalsecactivities .activityinstance img {
-  width: 65px !important;
-  height: 65px !important;
+    width: 65px !important;
+    height: 65px !important;
 }
 
 .general-section-card-details .generalsecactivities .activityinstance .instancename {
-  display: block;
+    display: block;
 }
 
 .general-section-card-details .generalsecactivities > div:first-child {
-  text-align: center;
-  padding: 12px!important;
-  box-shadow: 0 0 8px #ddd;
+    text-align: center;
+    padding: 12px !important;
+    box-shadow: 0 0 8px #ddd;
 }
 
 .general-section-card-details .generalsecactivities:hover > .generalsecactivitiescontent .availabilityinfo {
-  display: block;
-  background-color: white;
+    display: block;
+    background-color: white;
 }
 
 .general-section-card-details .progress,
 .first-section-li .progress {
-  margin-bottom: 5px;
-  border-radius: 15px;
-  background-color: #ddd;
-  height: 12px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    background-color: #ddd;
+    height: 12px;
 }
 
 .general-activities-list-group {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  /* overflow: hidden; */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; */
 }
 .general-activities-list-group-item {
-  float: left;
-  display: block;
-  text-align: center;
-  padding: 3px 5px;
-  text-decoration: none;
-  font-size: 0.9rem;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 3px 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
 
 .single-card {
-  box-shadow: 0px 0px 8px #ddd;
-  border-radius: 2px;
-  background-color: white;
-  visibility: hidden;
-  position: relative;
-  padding: 1rem !important;
-}
-
-.single-card.wdm-row{
-  background-color: unset !important;
-  box-shadow: none;
+    box-shadow: 0 0 8px #ddd;
+    border-radius: 2px;
+    background-color: white;
+    visibility: hidden;
+    position: relative;
+    padding: 1rem !important;
 }
 
 .single-card.wdm-row {
-  min-height: 80px !important;
-  padding: 0 !important;
+    background-color: unset !important;
+    box-shadow: none;
+}
+
+.single-card.wdm-row {
+    min-height: 80px !important;
+    padding: 0 !important;
 }
 
 .container-fluid .single-card.wdm-row {
-  padding: 1rem !important;
+    padding: 1rem !important;
 }
 
 .single-card .wdm-drag-drop {
-  float: left;
-  margin-right: 5px;
+    float: left;
+    margin-right: 5px;
 }
 
 .single-card.wdm-min-row {
-  min-height: 80px !important;
+    min-height: 80px !important;
 }
 
 #page-course-view-remuiformat .single-card-container {
-  transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 #page-course-view-remuiformat .single-card-container a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 #page-course-view-remuiformat div#card-editing-container .general-single-card ul.section,
@@ -463,19 +473,14 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
     height: 28px;
-    width:28px;
+    width: 28px;
 }
 
 #page-course-view-remuiformat div#card-editing-container .general-single-card .section_action_menu {
-  top: 0px;
+    top: 0;
 }
 
-#page-course-view-remuiformat ul.section.first-section div.moodle-actionmenu.section-cm-edit-actions {
-    position: inherit;
-    top: none;
-    right: none;
-}
-#page-course-view-remuiformat  span.section-modchooser-link .fa.fa-plus{
+#page-course-view-remuiformat  span.section-modchooser-link .fa.fa-plus {
     color: white;
 }
 #page-course-view-remuiformat  span.section-modchooser-link a,
@@ -485,8 +490,8 @@ input.ignoredirty.form-control{
 
 #page-course-view-remuiformat div#card-editing-container div.availabilityinfo.ishidden,
 #page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden,
-#page-course-view-remuiformat li.wdm-card-single-section div.availabilityinfo{
-    padding: 10px 0px;
+#page-course-view-remuiformat li.wdm-card-single-section div.availabilityinfo {
+    padding: 10px 0;
     font-weight: bold;
 }
 
@@ -497,16 +502,16 @@ input.ignoredirty.form-control{
 }
 
 .wdm-section-summary.summary-muted * {
-  color: #526069!important;
-  display: none;
+    color: #526069 !important;
+    display: none;
 }
 
 .wdm-section-summary.dark * {
-  color: #e4e4e4!important;
+    color: #e4e4e4 !important;
 }
 
 .wdm-section-summary.light * {
-  color: #101010!important;
+    color: #101010 !important;
 }
 
 .wdm-card-section {
@@ -524,7 +529,7 @@ input.ignoredirty.form-control{
 }
 
 .wdm-card-completion button.btn-link img {
-    margin: 0px 2px 0px 0px;
+    margin: 0 2px 0 0;
 }
 .wdm-activity-actions {
     justify-content: flex-end;
@@ -533,22 +538,22 @@ input.ignoredirty.form-control{
 }
 
 .wdm-activity-actions .dropdown-menu {
-  width: 200px;
-  max-height: 240px;
-  overflow-y: scroll;
+    width: 200px;
+    max-height: 240px;
+    overflow-y: scroll;
 }
 
 .wdm-activity-actions .ecfsectionname {
-  cursor: pointer;
-  white-space: normal;
-  font-size: 13px;
+    cursor: pointer;
+    white-space: normal;
+    font-size: 13px;
 }
 
 .wdm-completion-container {
     display: flex;
     justify-content: flex-end;
     width: 100% !important;
-    align-items: center!important;
+    align-items: center !important;
 }
 
 .wdm-completion-title {
@@ -557,9 +562,10 @@ input.ignoredirty.form-control{
     line-height: 18px;
 }
 
-.card-section-leftnav a, .card-section-rightnav a {
+.card-section-leftnav a,
+.card-section-rightnav a {
     color: #333;
-    border: 1px solid #ddd
+    border: 1px solid #ddd;
 }
 
 #page-course-view-remuiformat .wdm-activity-actions div.moodle-actionmenu.section-cm-edit-actions {
@@ -568,17 +574,17 @@ input.ignoredirty.form-control{
 
 #page-course-view-remuiformat .wdm-activity-actions .ecf-sections-settings,
 #page-course-view-remuiformat .wdm-activity-actions .wdm-show-in-row.btn {
-  margin-right: 5px;
-  margin-bottom: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 #page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings.d-lg-inline .wdm-show-in-row.btn {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 #page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings.d-lg-inline .wdm-show-in-row.btn,
 #page-course-view-remuiformat .wdm-activity-actions .d-lg-inline .ecf-sections-settings .dropdown .btn {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 /* Fix for Handlebar theme */
@@ -586,11 +592,11 @@ input.ignoredirty.form-control{
 #page-course-view-remuiformat .wdm-activity-actions .wdm-show-in-row.btn,
 #page-course-view-remuiformat .single-card-container .wdm-add-new-section,
 #page-course-view-remuiformat .card .wdm-add-new-section {
-  border: 1px solid #e4eaec;
+    border: 1px solid #e4eaec;
 }
 #page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .wdmactivitytype img {
-  margin-right: 0px;
-  margin-left: 0px;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 /* #page-course-view-remuiformat .wdm-activity-actions .wdm-activity-settings .action-menu .dropdown,
@@ -603,7 +609,7 @@ input.ignoredirty.form-control{
 } */
 
 #page-course-view-remuiformat .wdm-card-single-section {
-  position: relative;
+    position: relative;
 }
 
 #page-course-view-remuiformat .wdm-card-single-section .section_action_menu {
@@ -624,194 +630,199 @@ input.ignoredirty.form-control{
 }
 
 #page-course-view-remuiformat div.section-modchooser {
-  padding: 10px 0 0 0;
+    padding: 10px 0 0 0;
 }
 
 #page-course-view-remuiformat #changenumsections .single-card,
 #page-course-view-remuiformat #changenumsections .card-block {
-  justify-content: center;
-  box-shadow: none;
-  background: #e5e5e5;
+    justify-content: center;
+    box-shadow: none;
+    background: #e5e5e5;
 }
 #page-course-view-remuiformat #changenumsections a {
-  color: #526069 !important;
+    color: #526069 !important;
 }
 
 #page-course-view-remuiformat #changenumsections i.fa {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 /*
 For list format
 */
 .course-content ul.remui-format-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 .course-content ul.remui-format-list li.section .content {
-  margin: 0;
+    margin: 0;
 }
 .course-content ul.remui-format-list li.section .panel.activity-list {
-  box-shadow: none;
-  margin-bottom: 0;
+    box-shadow: none;
+    margin-bottom: 0;
 }
 .course-content li.section li.activity ul {
-  padding-left: 2rem !important;
+    padding-left: 2rem !important;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-1 {
-  width: 35px;
+    width: 35px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-2 {
-  width: 70px;
+    width: 70px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-3 {
-  width: 105px;
+    width: 105px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-4 {
-  width: 140px;
+    width: 140px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-5 {
-  width: 175px;
+    width: 175px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-6 {
-  width: 210px;
+    width: 210px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-7 {
-  width: 245px;
+    width: 245px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-8 {
-  width: 280px;
+    width: 280px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-9 {
-  width: 315px;
+    width: 315px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-10 {
-  width: 350px;
+    width: 350px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-11 {
-  width: 385px;
+    width: 385px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-12 {
-  width: 420px;
+    width: 420px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-13 {
-  width: 455px;
+    width: 455px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-14 {
-  width: 490px;
+    width: 490px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-15 {
-  width: 525px;
+    width: 525px;
 }
 .course-content ul.remui-format-list li.section ul.section .mod-indent-16 {
-  width: 560px;
+    width: 560px;
 }
 .course-content ul.remui-format-list li.section .left {
-  padding-top: 0;
-  text-align: right;
+    padding-top: 0;
+    text-align: right;
 }
 .section.first-section .activityinstance .iconlarge.activityicon {
-  width: 75px;
-  height: 75px;
+    width: 75px;
+    height: 75px;
 }
 .section.first-section .activityinstance > a {
-  padding-left: 0;
-  text-indent: 0;
+    padding-left: 0;
+    text-indent: 0;
 }
-.section .activity .activityinstance > a, .section .activity .contentwithoutlink > a {
-  display: block;
+.section .activity .activityinstance > a,
+.section .activity .contentwithoutlink > a {
+    display: block;
 }
 .section.first-section .instancename {
-  display: block;
+    display: block;
 }
 .first-section-li .course-cover-image {
-  min-height: 200px;
-  height: auto;
-  -webkit-background-size: cover;
-  background-size: cover;
+    min-height: 200px;
+    height: auto;
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 .section.first-section .activityinstance {
-  min-width: auto;
-  min-height: auto;
-  padding: 0px !important;
+    min-width: auto;
+    min-height: auto;
+    padding: 0 !important;
 }
 .section.first-section .activityinstance > a {
-  text-indent: 0px;
-  padding-left: 0px;
+    text-indent: 0;
+    padding-left: 0;
 }
 .section.first-section .activityinstance .iconlarge.activityicon {
-  width: 75px;
-  height: 75px;
+    width: 75px;
+    height: 75px;
 }
-.section.first-section div.actions, .section.first-section span.actions
-/* .section .activity .actions */
-{
-  position: inherit !important;
-  padding: 5px 0;
-  display: flex;
-  justify-content: center;
+.section.first-section div.actions,
+.section.first-section span.actions {
+    position: inherit !important;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
 }
 .section.first-section div.actions .filler {
-  display: none;
+    display: none;
 }
 .section.first-section .instancename {
-  display: block;
+    display: block;
 }
 
 @media (min-width: 1200px) {
-  .showhidecardactivity .first-section-activity:nth-child(n+4) {
-      display: none;
-  }
+    .showhidecardactivity .first-section-activity:nth-child(n+4) {
+        display: none;
+    }
 }
+
 @media (min-width: 992px) {
-  .showhideactivity .first-section-activity:nth-child(n+5) {
-    display: none;
-  }
+    .showhideactivity .first-section-activity:nth-child(n+5) {
+        display: none;
+    }
 }
+
 @media (min-width: 992px) and (max-width: 1199px) {
-  .showhidecardactivity .first-section-activity:nth-child(n+4) {
-    display: none;
-  }
+    .showhidecardactivity .first-section-activity:nth-child(n+4) {
+        display: none;
+    }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
-  .showhideactivity .first-section-activity:nth-child(n+4) {
-    display: none;
-  }
-  .showhidecardactivity .first-section-activity:nth-child(n+4) {
-    display: none;
-  }
+    .showhideactivity .first-section-activity:nth-child(n+4) {
+        display: none;
+    }
+    .showhidecardactivity .first-section-activity:nth-child(n+4) {
+        display: none;
+    }
 }
+
 @media (max-width: 767px) {
-  .showhideactivity .first-section-activity:nth-child(n+3) {
-    display: none;
-  }
-  .showhidecardactivity .first-section-activity:nth-child(n+3) {
-    display: none;
-  }
+    .showhideactivity .first-section-activity:nth-child(n+3) {
+        display: none;
+    }
+    .showhidecardactivity .first-section-activity:nth-child(n+3) {
+        display: none;
+    }
 }
+
 @media (min-width: 480px) and (max-width: 767px) {
-  .section-action-container .progress-text {
-    padding: 5px 0 0 13px !important;
-  }
+    .section-action-container .progress-text {
+        padding: 5px 0 0 13px !important;
+    }
 }
 
 
 @media (max-width: 992px) {
-  .general-section-card-details .generalsecactivitiesmain.onshowmore {
-    position: static;
-  }
+    .general-section-card-details .generalsecactivitiesmain.onshowmore {
+        position: static;
+    }
 }
 
 /* For course summary */
 .remui-list-content-border {
-  border-bottom: 1px solid #e4eaec !important;
-  padding: 10px 15px 10px 15px !important;
+    border-bottom: 1px solid #e4eaec !important;
+    padding: 10px 15px 10px 15px !important;
 }
 
 /* For section title */
 ul.remui-format-list li.section.main {
-    border-bottom: none!important;
+    border-bottom: none !important;
 }
 
 /* For activity icons */
@@ -822,118 +833,120 @@ ul.remui-format-list img.activityicon {
 }
 
 li.first-section-li .summary {
-  min-height: 6.5rem;
+    min-height: 6.5rem;
 }
 
 /* Editing menu */
 .course-content ul.remui-format-list li.section div.left,
 .course-content ul.remui-format-list li.section div.right {
-  padding: 0 6px;
+    padding: 0 6px;
 }
 
 /* activity style */
 ul.remui-format-list li.section ul.section {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 ul.remui-format-list li.section ul.section li.activity {
     clear: both;
-    padding: 8px 0px !important;
+    padding: 8px 0 !important;
     border-bottom: 1px solid #f3f3f3;
 }
 
 ul.remui-format-list li.section ul.section li.activity:last-of-type {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo,
 #page-course-view-remuiformat ul.remui-format-list .section .activity .contentafterlink {
-  margin-left: 5px;
-  margin-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 ul.remui-format-list .mod-indent-outer .actions {
-  padding: 0px;
-  margin-right: 0px;
+    padding: 0;
+    margin-right: 0;
 }
 
-#page-course-view-remuiformat #teachers-carousel .carousel-item {
-    justify-content: space-evenly;
-}
 .teacher-img-container {
-  margin: 0 10px;
+    margin: 0 10px;
 }
 .teacher-img-container img.userpicture {
-  margin: 0 1rem;
+    margin: 0 1rem;
 }
 
 .mb-25 {
-  margin-bottom: 25px!important;
+    margin-bottom: 25px !important;
 }
 
-.carousel-control-next, .carousel-control-prev {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  line-height: 35px;
-  color: #fff;
-  text-align: center;
+.carousel-control-next,
+.carousel-control-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    line-height: 35px;
+    color: #fff;
+    text-align: center;
 }
 
 .carousel-control-next {
-  right: 0;
+    right: 0;
 }
 
-.carousel-control.left,.carousel-control.right, .carousel-control-prev,.carousel-control-next {
+.carousel-control.left,
+.carousel-control.right,
+.carousel-control-prev,
+.carousel-control-next {
     opacity: 1 !important;
     min-width: 25px !important;
 }
 
 .teacher-label {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 #page-course-view-remuiformat #teachers-carousel {
-  max-width: 175px;
-  height: 35px;
+    max-width: 175px;
+    height: 35px;
 }
 
 .text-white * {
-  color: #fff!important;
+    color: #fff !important;
 }
 
 /* For in place editing of the general section */
 ul.remui-format-list span.inplaceeditable label,
 ul.remui-format-list span.inplaceeditable input {
-  color: #76838f!important;
+    color: #76838f !important;
 }
 
 
 /* Aligning the up and down icon with edit button */
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
-  /* margin-top: 1%; */
-  margin-right: 2%;
+    /* margin-top: 1%; */
+    margin-right: 2%;
 }
 
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up:hover,
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* Boost compatible CSS */
 
 .wdm-generalsectiontitle {
-  font-size: 24px;
+    font-size: 24px;
 }
 
-.wdm-card, .wdm-allactivities {
-  border: none !important;
-  box-shadow: 0px 0px 8px #ddd !important;
-  background-color: #fff !important;
+.wdm-card,
+.wdm-allactivities {
+    border: none !important;
+    box-shadow: 0 0 8px #ddd !important;
+    background-color: #fff !important;
 }
 
 #page-course-view-remuiformat ul.remui-format-list .section .activity .availabilityinfo .tag,
@@ -944,248 +957,248 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions
- {
-  background-color: #ececec;
-  color: #353535;
-  /* background-color: #4c4c4c;
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions {
+    background-color: #ececec;
+    color: #353535;
+    /* background-color: #4c4c4c;
   color: white; */
-  text-align: left;
-  display: inline-block;
-  padding: 0.75rem 1.4em;
-  font-size: 0.9rem;
-  font-weight: 400;
-  margin: 5px;
-  line-height: 1.3;
-  border-radius: .215rem;
-  white-space: normal;
+    text-align: left;
+    display: inline-block;
+    padding: 0.75rem 1.4em;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 5px;
+    line-height: 1.3;
+    border-radius: .215rem;
+    white-space: normal;
 }
 
 #page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag,
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-  background-color: #ececec;
-  color: #353535;
-  /* background-color: #4c4c4c;
+    background-color: #ececec;
+    color: #353535;
+    /* background-color: #4c4c4c;
   color: white; */
-  text-align: left;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.3;
-  border-radius: .215rem;
-  white-space: normal;
-  opacity: 0.8;
+    text-align: left;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    border-radius: .215rem;
+    white-space: normal;
+    opacity: 0.8;
 }
 
 #page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag {
-  padding: 1.25rem 1.4em;
+    padding: 1.25rem 1.4em;
 }
 
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-  padding: 0.25rem 0.6em;
+    padding: 0.25rem 0.6em;
 }
 
 #page-course-view-remuiformat .availabilityinfo .tag ul li {
-  white-space: normal;
+    white-space: normal;
 }
 
 .w-full {
-  width: 100%!important;
+    width: 100% !important;
 }
 
 /* Boost compatible CSS End*/
 .btn-inverse {
-  background-color: #fff;
-  border-color: #e4eaec;
+    background-color: #fff;
+    border-color: #e4eaec;
 }
 
 /* Fordson Compatible CSS - Moodle 34*/
 #page-course-view-remuiformat li#section-0 .content {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .d-flex {
-  display: flex !important;
+    display: flex !important;
 }
 
 .d-block {
-  display: block !important;
+    display: block !important;
 }
 
 .mdl-right {
-  text-align: right !important;
+    text-align: right !important;
 }
 
 @media (min-width: 768px) {
-  .col-md-12 {
-    float: none !important;
-  }
+    .col-md-12 {
+        float: none !important;
+    }
 }
 
 .float-right {
-  float: right!important;
+    float: right !important;
 }
 
-.card-footer{
-  background-color: #fff !important;
+.card-footer {
+    background-color: #fff !important;
 }
 
 .align-items-center {
-  align-items: center!important;
+    align-items: center !important;
 }
 
 .remui-list-content-border .d-block.row:after {
-  content: none !important;
+    content: none !important;
 }
 
 /* Show More / Show Less Button */
 .showactivitywrapper {
-  text-align: center!important;
+    text-align: center !important;
 }
 
 #page-course-view-remuiformat ul.section.first-section.row {
-  flex-wrap: wrap;
-  justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #page #learningcontent #page-content #region-main-box {
-  padding-top: 16px !important;
+    padding-top: 16px !important;
 }
 /* Fordson Compatible CSS End*/
 
 
 /* For editing on mode */
 .editinstructions {
-  background-color: aliceblue !important;
+    background-color: aliceblue !important;
 }
 
 .fa-4x {
-  font-size: 4em;
-  width: 1.2857142857em;
-  text-align: center;
+    font-size: 4em;
+    width: 1.2857142857em;
+    text-align: center;
 }
 
 .card-current {
-  position: absolute;
-  top: -1px;
-  right: 30px;
-  width: 0px;
-  height: 0px;
-  border-left: 18px solid;
-  border-right: 18px solid;
-  border-top: 26px solid;
-  border-bottom: 16px solid;
-  border-bottom-color: transparent;
+    position: absolute;
+    top: -1px;
+    right: 30px;
+    width: 0;
+    height: 0;
+    border-left: 18px solid;
+    border-right: 18px solid;
+    border-top: 26px solid;
+    border-bottom: 16px solid;
+    border-bottom-color: transparent;
 }
 
 .list-current {
-  height: 7px;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  left: 0;
+    height: 7px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
 }
 .list-current {
-  width: 7px;
-  height: 100%;
+    width: 7px;
+    height: 100%;
 }
 
 .wdmoverlay {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  right: 0%;
-  bottom: 0%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
 }
 
-.single-card .sno, .single-card .card-content {
-  position: relative;
+.single-card .sno,
+.single-card .card-content {
+    position: relative;
 }
 
 /* Compatible CSS for Moodle 35 START*/
 .btn-light {
-  color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
 }
 .btn-light:hover {
-  color: #212529;
-  background-color: #e2e6ea;
-  border-color: #dae0e5;
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
 }
 
 .modal-content {
-  width: 100%;
+    width: 100%;
 }
 
 .modal-dialog-centered {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  min-height: calc(100% - (10px * 2)); 
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: calc(100% - (10px * 2));
 }
 
 @media (min-width: 480px) {
-  .modal-dialog-centered {
-    min-height: calc(100% - (30px * 2)); 
-  }
+    .modal-dialog-centered {
+        min-height: calc(100% - (30px * 2));
+    }
 }
-.container-fluid .modal-dialog{
-  height: 100%;
-  top: 12%;
+.container-fluid .modal-dialog {
+    height: 100%;
+    top: 12%;
 }
 /* Compatible CSS for Moodle 35 END. */
 
-.path-course-view li.activity>div {
-  padding: 0px !important;
+.path-course-view li.activity > div {
+    padding: 0 !important;
 }
 
 /* General section summary show/hide. */
 .read-more-state {
-  display: none;
+    display: none;
 }
 
 .read-more-target {
-  height: 110px;
-  overflow: hidden;
+    height: 110px;
+    overflow: hidden;
 }
 
 .read-more-target:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
 }
 
 .fadeout-summary {
-  position: absolute;
-  margin-top: -50px;
-  width: 95%;
-  height: 50px;
-  background-image: linear-gradient(rgba(255,255,255,0.3) 0,rgba(255,255,255,1) 100%);
+    position: absolute;
+    margin-top: -50px;
+    width: 95%;
+    height: 50px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 1) 100%);
 }
 
 .read-more-state:checked ~ .read-more-target {
-  height: auto;
-  overflow: inherit;
+    height: auto;
+    overflow: inherit;
 }
 
 .read-more-state:checked ~ .fadeout-summary {
-  display: none;
+    display: none;
 }
 
 .read-more-trigger {
-  cursor: pointer !important;
+    cursor: pointer !important;
 }
 
 .read-more-state ~ .read-more-trigger:before {
-  content: ' + Show full summary';
+    content: ' + Show full summary';
 }
 
 .read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Show less';
+    content: 'Show less';
 }
 /* General section summary show/hide end. */

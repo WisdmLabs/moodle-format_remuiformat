@@ -86,7 +86,7 @@ class course_format_data_common_trait {
         }
         return '';
     }
-    
+
     /**
      * Get all activities for list format for specific section.
      * @param section Current section object to get activities.
@@ -193,7 +193,10 @@ class course_format_data_common_trait {
                     )
                 );
                 $label = html_writer::span(get_string('addnewsection', 'format_remuiformat'), 'wdmaddsection d-none d-lg-block');
-                $label .= html_writer::span('<i class="fa fa-plus-circle" aria-hidden="true"></i>', 'wdmaddsection d-block d-lg-none');
+                $label .= html_writer::span(
+                    '<i class="fa fa-plus-circle" aria-hidden="true"></i>',
+                    'wdmaddsection d-block d-lg-none'
+                );
 
                 $sectiondetails->addnewsection = html_writer::link($actionsectionurl, $label,
                     array('class' => 'wdm-add-new-section btn btn-inverse')
@@ -210,7 +213,7 @@ class course_format_data_common_trait {
             $sectiontitlesummarymaxlength = $settings['sectiontitlesummarymaxlength'];
             $remuienablecardbackgroundimg = $settings['remuienablecardbackgroundimg'];
             $remuidefaultsectiontheme = $settings['remuidefaultsectiontheme'];
-            
+
             $sectiondetails->hiddenmessage = $renderer->section_availability_message($currentsection, has_capability(
                 'moodle/course:viewhiddensections',
                 $coursecontext
@@ -226,13 +229,14 @@ class course_format_data_common_trait {
                     $sectiondetails->summary = $renderer->abstract_html_contents(
                         $currentsection->summary, $sectiontitlesummarymaxlength
                     );
-                    // Check if background image to section card setting is enable and image exists in summary, if yes then add background image to context.
+                    // Check if background image to section card setting is enable and image exists in summary,
+                    // if yes then add background image to context.
                     if ($remuienablecardbackgroundimg == 1 && $this->get_section_first_image(
                         $currentsection, $currentsection->summary
                     )) {
                         $remuidefaultsectionoverlay = 'rgba(255,255,255,0.8)';
-                        if( $remuidefaultsectiontheme == 1 ) {
-                            // Dark theme
+                        if ( $remuidefaultsectiontheme == 1 ) {
+                            // Dark theme.
                             $remuidefaultsectionoverlay = 'rgba(0,0,0,0.45)';
                             $remuinewfontcolor = '#eaeaea';
                             $remuinewthemecolor = 'dark';
@@ -288,7 +292,7 @@ class course_format_data_common_trait {
         }
         return $sections;
     }
-    
+
     public function get_section_module_info($section, $course, $mods, $singlepageurl) {
         $modinfo = get_fast_modinfo($course);
         $output = array(
@@ -338,8 +342,7 @@ class course_format_data_common_trait {
             $pinfo->completed = ($complete == $total) ? "completed" : "";
             if ($pinfo->percentage == 0) {
                 $pinfo->progress = '<a href=' . $singlepageurl . '>' . get_string('activitystart', 'format_remuiformat') . '</a>';
-                // $pinfo->progress = get_string('activitystart', 'format_remuiformat');
-            } else if( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
+            } else if ( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
                 if ($total == 1) {
                     $status = get_string('activitycompleted', 'format_remuiformat');
                 } else {
@@ -347,15 +350,15 @@ class course_format_data_common_trait {
                 }
                 $pinfo->progress = $total . $status;
                 $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.$status;
-            } else if( $pinfo->percentage >= 50 && $pinfo->percentage < 100 ) {
-                $total = $total-$complete;
+            } else if ( $pinfo->percentage >= 50 && $pinfo->percentage < 100 ) {
+                $total = $total - $complete;
                 if ($total == 1) {
                     $status = get_string('activityremaining', 'format_remuiformat');
                 } else {
                     $status = get_string('activitiesremaining', 'format_remuiformat');
                 }
                 $pinfo->progress = $total.' '.$status;
-            } elseif ( $pinfo->percentage == 100 ) {
+            } else if ( $pinfo->percentage == 100 ) {
                 $pinfo->progress = get_string('allactivitiescompleted', 'format_remuiformat');
             }
             $output['progressinfo'][] = $pinfo;
@@ -387,7 +390,6 @@ class course_format_data_common_trait {
     public static function get_dummy_color_for_id($id) {
         // The colour palette is hardcoded for now. It would make sense to combine it with theme settings.
         $basecolors = ['#81ecec', '#74b9ff', '#a29bfe', '#dfe6e9', '#00b894','#0984e3', '#b2bec3', '#fdcb6e', '#fd79a8', '#6c5ce7'];
-
         $color = $basecolors[$id % 10];
         return $color;
     }
@@ -400,7 +402,7 @@ class course_format_data_common_trait {
      */
     public function get_activity_to_resume($course) {
         global $USER, $DB;
-        
+
         $lastviewedactivitytmp = $DB->get_records('logstore_standard_log',
                                 array('action' => 'viewed',
                                     'target' => 'course_module',
@@ -414,17 +416,17 @@ class course_format_data_common_trait {
                                 0,
                                 1
                             );
-                           
+
         foreach ($lastviewedactivitytmp as $key => $value) {
             $lastviewedactivity = $value->contextinstanceid;
         }
-        
-        if( !empty($lastviewedactivity) ) {
+
+        if ( !empty($lastviewedactivity) ) {
             // Resume to activity logic goes here...
             $modinfo = get_fast_modinfo($course);
             $cminfo = $modinfo->get_cm($lastviewedactivity);
             $section = $cminfo->sectionnum;
-            
+
             foreach ($modinfo->sections[$section] as $modnumber) {
                 if ($modnumber == $lastviewedactivity) {
                     $mod = $modinfo->cms[$lastviewedactivity];
@@ -434,7 +436,7 @@ class course_format_data_common_trait {
                     $resumeactivityurl = $mod->url;
                     return $resumeactivityurl->out();
                 }
-            }            
+            }
         } else {
             // Resume to section logic from RemUI theme goes here...
             $resumeactivityurl = '';
