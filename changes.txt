@@ -1,4 +1,7 @@
 Version 1.0.3
+Fixes
+* Fixed Drag&Drop Upload Problem in List format.
+
 Features
 * Add background image to section in Card format.
 * Move activity to specific section in Card format.
