@@ -1041,6 +1041,9 @@ ul.remui-format-list span.inplaceeditable input {
 .card-footer {
     background-color: #fff !important;
 }
+.card-footer.border-top {
+    border-top: 1px solid #e4eaec!important;
+}
 
 .align-items-center {
     align-items: center !important;
