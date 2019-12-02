@@ -1178,9 +1178,9 @@ ul.remui-format-list span.inplaceeditable input {
 
 .fadeout-summary {
     position: absolute;
-    margin-top: -50px;
+    margin-top: -60px;
     width: 95%;
-    height: 50px;
+    height: 55px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 1) 100%);
 }
 
@@ -1195,13 +1195,14 @@ ul.remui-format-list span.inplaceeditable input {
 
 .read-more-trigger {
     cursor: pointer !important;
+    display: none;
 }
 
-.read-more-state ~ .read-more-trigger:before {
+/* .read-more-state ~ .read-more-trigger:before {
     content: ' + Show full summary';
 }
 
 .read-more-state:checked ~ .read-more-trigger:before {
     content: 'Show less';
-}
+} */
 /* General section summary show/hide end. */

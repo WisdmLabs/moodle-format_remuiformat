@@ -124,7 +124,14 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
             }
 
-            $export->generalsection['activities'] = $this->get_activities_details($generalsection);
+            $generalsecactivities = $this->get_activities_details($generalsection);
+            $export->generalsection['activities'] = $generalsecactivities;
+            // Check if activities exists in general section.
+            if ( !empty($generalsecactivities) ) {
+                $export->generalsection['activityexists'] = 1;
+            } else {
+                $export->generalsection['activityexists'] = 0;
+            }
             $export->generalsection['availability'] = $renderer->section_availability($generalsection);
             $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
 
@@ -145,25 +152,29 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $percentage = floor($percentage);
                 $export->generalsection['percentage'] = $percentage;
             }
-            $courseallactivities = get_array_of_activities($this->course->id);
-            $export->nooftotalactivities = count($courseallactivities);
-            $allactivitiesarray = array();
-            foreach ($courseallactivities as $key => $value) {
-                if (array_key_exists($value->mod, $allactivitiesarray)) {
-                    $allactivitiesarray[$value->mod]++;
-                } else {
-                    $allactivitiesarray[$value->mod] = 1;
+
+            // Get the all activities count from the all sections.
+            $sectionmods = array();
+            for($i = 0; $i < count($sections); $i++) {
+                if (isset($modinfo->sections[$i])) {
+                    foreach ($modinfo->sections[$i] as $cmid) {
+                        $thismod = $modinfo->cms[$cmid];
+                        if (isset($sectionmods[$thismod->modname])) {
+                            $sectionmods[$thismod->modname]['name'] = $thismod->modplural;
+                            $sectionmods[$thismod->modname]['count']++;
+                        } else {
+                            $sectionmods[$thismod->modname]['name'] = $thismod->modfullname;
+                            $sectionmods[$thismod->modname]['count'] = 1;
+                        }
+                    }                
                 }
             }
-            $output = array();
-            foreach ($allactivitiesarray as $key => $value) {
-                // Make activity type plural if count is more than 1.
-                if ($value > 1) {
-                    $key = $key.'s';
-                }
-                $output['activitylist'][] = $value.' '.$key;
+            foreach ($sectionmods as $mod) {
+                $output['activitylist'][] = $mod['count'].' '.$mod['name'];
             }
             $export->activitylist = $output['activitylist'];
+
+            // Get reseume activity link.
             $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
             if ( isset($export->resumeactivityurl) ) {
                 $baseurl = course_get_url($this->course);

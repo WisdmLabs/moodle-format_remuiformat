@@ -227,7 +227,7 @@ class course_format_data_common_trait {
                 if (!empty($currentsection->summary)) {
                     // Get the section summary.
                     $sectiondetails->summary = $renderer->abstract_html_contents(
-                        $currentsection->summary, $sectiontitlesummarymaxlength
+                        $renderer->format_summary_text($currentsection), $sectiontitlesummarymaxlength
                     );
                     // Check if background image to section card setting is enable and image exists in summary,
                     // if yes then add background image to context.
