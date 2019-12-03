@@ -285,7 +285,7 @@ ul.remui-format-list h4.sectionname {
     font-size: 18px;
     font-weight: 500;
     padding: 7px 0;
-    clear: both; /* Fordson */
+    /* clear: both; Fordson */
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
@@ -295,7 +295,7 @@ ul.remui-format-list h4.sectionname {
     font-size: 22px;
     font-weight: 700;
     padding: 7px 0;
-    clear: both; /* Fordson */
+    /* clear: both; Fordson */
 }
 
 #page-course-view-remuiformat div#card-container .section-title:hover,
@@ -1180,7 +1180,7 @@ ul.remui-format-list span.inplaceeditable input {
     position: absolute;
     margin-top: -60px;
     width: 95%;
-    height: 55px;
+    height: 60px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 1) 100%);
 }
 
