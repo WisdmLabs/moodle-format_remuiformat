@@ -523,7 +523,6 @@ class format_remuiformat extends format_base {
         if (!empty($data)) {
             // Used optional_param() instead of using $_POST and $_GET.
             // Added check to handle restore course issue.
-            $request = $_REQUEST;
             if ( !isset( $data->remuicourseformat )) {
                 $data->remuicourseformat = optional_param('remuicourseformat', null, PARAM_INT);
             }
