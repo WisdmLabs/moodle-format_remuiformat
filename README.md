@@ -136,8 +136,7 @@ The file remuiformat/styles.css contains the CSS styles for the format.
 
 # Roadmap
 
-1. Course Forum Discussion at One place.
-2. Global Course Announcement Feature.
+1. Global Course Announcement Feature.
 
 [(Back to top)](#table-of-contents)
 
