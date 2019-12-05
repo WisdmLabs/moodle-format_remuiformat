@@ -522,10 +522,12 @@ class format_remuiformat extends format_base {
     public function update_course_format_options($data, $sectionid = null) {
         if (!empty($data)) {
             // Used optional_param() instead of using $_POST and $_GET.
+            
             // Added check to handle restore course issue.
-            if ( !isset( $data->remuicourseformat )) {
-                $data->remuicourseformat = optional_param('remuicourseformat', null, PARAM_INT);
-            }
+            // if ( !isset( $data->remuicourseformat )) {
+                // $data->remuicourseformat = optional_param('remuicourseformat', null, PARAM_INT);
+            // }
+
             $contextid = context_course::instance($this->courseid);
             if (!empty($data->remuicourseimage_filemanager)) {
                 file_postupdate_standard_filemanager(
