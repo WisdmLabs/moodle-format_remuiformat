@@ -1,13 +1,13 @@
 Version 1.0.4
 Fixes
-* Fixed switching course from list to card layout while restore.
+* Fixed switching course from list to card layout while restore and changing the visibility of the course.
 * Fixed multi language support of the summary of section in card format.
 * Fixed multi language support of the activity count showed in the general section in card format.
 * Hide label 'Activities' if no activity exists in general section of card format.
 * General section image changes when changed in the other duplicated course.
 
 Tweaks
-* Add a fixed SVG pattern to the section in Card format if image is not added in the summary or summary is not added to the section.
+* Added fixed SVG pattern to topic card if image is not added in topic summary.
 
 Version 1.0.3
 Fixes
