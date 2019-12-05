@@ -1,3 +1,14 @@
+Version 1.0.4
+Fixes
+* Fixed issue when course layout resets on course restore.
+* Fixed multi-language support for section/topic summary in card format.
+* Fixed language support issue in activity count showed in the general section in card format. 
+* General section image changes when changed in the other duplicated course in List format.
+
+Tweaks
+* Added fixed SVG pattern to topic card if image is not added in topic summary.
+* Hide label 'Activities' if no activity exists in general section of card format.
+
 Version 1.0.3
 Fixes
 * Fixed Drag&Drop Upload Problem in List format.
