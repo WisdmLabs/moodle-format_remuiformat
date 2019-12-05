@@ -29,6 +29,11 @@
     overflow: visible;
 }
 
+.col-12 {
+    padding-right: 1.0715rem !important;
+    padding-left: 1.0715rem !important;
+}
+
 /* RemUI 3.4, 3.5, 3.6 */
 #page-course-view-remuiformat.pagelayout-course .container #region-main .card.card-block:first-of-type {
     background: transparent;
@@ -285,7 +290,7 @@ ul.remui-format-list h4.sectionname {
     font-size: 18px;
     font-weight: 500;
     padding: 7px 0;
-    clear: both; /* Fordson */
+    /* clear: both; Fordson */
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
@@ -295,7 +300,7 @@ ul.remui-format-list h4.sectionname {
     font-size: 22px;
     font-weight: 700;
     padding: 7px 0;
-    clear: both; /* Fordson */
+    /* clear: both; Fordson */
 }
 
 #page-course-view-remuiformat div#card-container .section-title:hover,
@@ -402,6 +407,7 @@ input.ignoredirty.form-control {
     border-radius: 15px;
     background-color: #ddd;
     height: 12px;
+    border-bottom: unset; /* Fordson */
 }
 
 .general-activities-list-group {
@@ -621,6 +627,8 @@ input.ignoredirty.form-control {
 #page-course-view-remuiformat .wdm-section-wrapper {
     list-style-type: none;
     padding: 0;
+    margin-right: -1.0715rem;
+    margin-left: -1.0715rem;
 }
 
 #page-course-view-remuiformat .wdm-card-single-section .section-modchooser {
@@ -874,6 +882,7 @@ ul.remui-format-list .mod-indent-outer .actions {
 }
 .teacher-img-container img.userpicture {
     margin: 0 1rem;
+    border-radius: 50%;
 }
 
 .mb-25 {
@@ -901,7 +910,9 @@ ul.remui-format-list .mod-indent-outer .actions {
     opacity: 1 !important;
     min-width: 25px !important;
 }
-
+.first-section-li .carousel-inner {
+    width: 155px;
+}
 .teacher-label {
     display: flex;
     justify-content: flex-end;
@@ -1058,6 +1069,11 @@ ul.remui-format-list span.inplaceeditable input {
     text-align: center !important;
 }
 
+.showactivitywrapper .showactivity {
+    font-size: 24px;
+    line-height: 24px;
+}
+
 #page-course-view-remuiformat ul.section.first-section.row {
     flex-wrap: wrap;
     justify-content: center;
@@ -1178,9 +1194,9 @@ ul.remui-format-list span.inplaceeditable input {
 
 .fadeout-summary {
     position: absolute;
-    margin-top: -50px;
+    margin-top: -60px;
     width: 95%;
-    height: 50px;
+    height: 60px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 1) 100%);
 }
 
@@ -1195,13 +1211,14 @@ ul.remui-format-list span.inplaceeditable input {
 
 .read-more-trigger {
     cursor: pointer !important;
+    display: none;
 }
 
-.read-more-state ~ .read-more-trigger:before {
+/* .read-more-state ~ .read-more-trigger:before {
     content: ' + Show full summary';
 }
 
 .read-more-state:checked ~ .read-more-trigger:before {
     content: 'Show less';
-}
+} */
 /* General section summary show/hide end. */

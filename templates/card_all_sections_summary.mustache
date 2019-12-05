@@ -66,7 +66,14 @@
         ],
     }
 }}
-
+<style>
+.read-more-state ~ .read-more-trigger:before {
+    content: '{{#str}} showfullsummary, format_remuiformat{{/str}}';
+}
+.read-more-state:checked ~ .read-more-trigger:before {
+    content: '{{#str}} showless, format_remuiformat{{/str}}';
+}
+</style>
 {{#editing}}
     <div id="card-editing-container" class="row mt-20">
         {{! Display General Section }}
