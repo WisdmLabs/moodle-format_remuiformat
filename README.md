@@ -44,7 +44,7 @@ Card Format is another standout course format in the offering. Edwiser Card Form
 
 # Plugin Version
 
-v1.0.3 - Plugin Released
+v1.0.4 - Plugin Released
 
 [(Back to top)](#table-of-contents)
 
@@ -53,7 +53,7 @@ v1.0.3 - Plugin Released
 This version works with Moodle 3.4+ version 2017111300.00 (Build: 20171113) and above until the next release.
 
 Please ensure that your hardware and software complies with 'Requirements' in 'Installing Moodle' on
-'https://docs.moodle.org/37/en/Step-by-step_Installation_Guide_for_Ubuntu'.
+'https://docs.moodle.org/38/en/Step-by-step_Installation_Guide_for_Ubuntu'.
 
 [(Back to top)](#table-of-contents)
 
@@ -94,7 +94,7 @@ Together we could make this solution better for your Moodle.
 
 1. Ensure you have the version of Moodle as stated above in 'Required version of Moodle'.  This is essential as the
    format relies on underlying core code that is out of my control.
-2. Put Moodle in 'Maintenance Mode' (https://docs.moodle.org/37/en/Maintenance_mode) so that there are no
+2. Put Moodle in 'Maintenance Mode' (https://docs.moodle.org/38/en/Maintenance_mode) so that there are no
    users using it bar you as the administrator - if you have not already done so.
 3. Copy 'remuiformat' to '/course/format/' if you have not already done so.
 4. Go back in as an administrator and follow standard the 'plugin' update notification.  If needed, go to
