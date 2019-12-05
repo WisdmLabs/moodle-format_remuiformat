@@ -270,6 +270,12 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
                 }
             });
         });
+
+        // + Show full summary label show conditionally.
+        var summaryheight = $('.read-more-target .no-overflow').height();
+        if (summaryheight > 52) {
+            $('.read-more-trigger').show();
+        }
     }
     // Must return the init function.
 

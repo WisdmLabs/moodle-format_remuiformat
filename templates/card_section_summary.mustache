@@ -71,7 +71,7 @@
 {{^addsection}}
 <div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
     <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
-        style="background-image: url({{sectionfirstimage}});
+        style="background-image: {{sectionfirstimage}};
                 background-repeat: no-repeat;
                 background-size: cover;";>
         <div class='wdmoverlay' style="background-color: {{remuidefaultsectionoverlay}}"></div>
@@ -80,7 +80,7 @@
             {{{ addnewsection }}}
             {{{ optionmenu }}}
         </div>
-        <span class="sno {{^hidden}}text-primary1{{/hidden}}{{#hidden}}text-muted1{{/hidden}}" style="color: {{remuinewfontcolor}}">SECTION {{ index }}</span>
+        <span class="sno {{^hidden}}text-primary1{{/hidden}}{{#hidden}}text-muted1{{/hidden}}" style="color: {{remuinewfontcolor}}">{{#str}} sectionnamecaps, format_remuiformat{{/str}} {{ index }}</span>
         <div class="card-content pb-10 pb-2">
             {{#addnewsection}}
                 <h2 class="section-title" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
