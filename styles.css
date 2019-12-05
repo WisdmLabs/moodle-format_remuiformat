@@ -1074,14 +1074,6 @@ ul.remui-format-list span.inplaceeditable input {
     line-height: 24px;
 }
 
-.showactivitywrapper .showactivity .fa-angle-down:hover {
-    border-bottom: 1px solid;
-}
-
-.showactivitywrapper .showactivity .fa-angle-up:hover {
-    border-top: 1px solid;
-}
-
 #page-course-view-remuiformat ul.section.first-section.row {
     flex-wrap: wrap;
     justify-content: center;
