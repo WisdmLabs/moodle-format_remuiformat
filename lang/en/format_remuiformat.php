@@ -56,6 +56,7 @@ $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities
 
 // Section.
 $string['sectionname'] = 'Section';
+$string['sectionnamecaps'] = 'SECTION';
 $string['section0name'] = 'General';
 $string['hidefromothers'] = 'Hide topic';
 $string['showfromothers'] = 'Show topic';
@@ -137,7 +138,9 @@ $string['activitiesremaining'] = 'activities remaining';
 $string['activityremaining'] = 'activity remaining';
 $string['allactivitiescompleted'] = "All activitie's completed";
 
-
-
 // Used in format.js on change course layout.
 $string['showallsectionperpage'] = 'Show all sections per page';
+
+// Card format general section
+$string['showfullsummary'] = '+ Show full summary';
+$string['showless'] = 'Show less';

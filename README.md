@@ -136,8 +136,7 @@ The file remuiformat/styles.css contains the CSS styles for the format.
 
 # Roadmap
 
-1. Will give option to set image as background to the card in card layout.
-2. Will give option to adjust image brightness of the card in card layout.
+1. Global Course Announcement Feature.
 
 [(Back to top)](#table-of-contents)
 

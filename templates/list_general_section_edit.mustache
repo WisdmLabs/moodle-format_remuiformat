@@ -79,7 +79,7 @@
 
    <div class="content">
     <div class="section_availability badge badge-pill badge-info mb-10"></div>
-        <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-center text-center showhideactivity">
+        <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-start text-center showhideactivity">
             {{#activities}}
                 <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
                     <div>
@@ -99,7 +99,9 @@
             {{/activities}}
         </ul>
     <div class="text-center showactivitywrapper">
-        <button class="showactivity btn btn-primary px-25 show" style="visibility: hidden;"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></button>
+        <span class="showactivity text-primary show" style="visibility: hidden;">
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+        </span>
     </div>
     {{{addnewactivity}}}
    </div>
@@ -128,10 +130,10 @@ require(['jquery'], function(jQuery) {
     jQuery('.showactivity').on('click', function() {
         jQuery('.section.first-section').toggleClass('showhideactivity');
         if(jQuery(this).hasClass('show')) {
-            jQuery(this).html('<i class="fa fa-chevron-circle-up" aria-hidden="true"></i>');
+            jQuery(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show');
         } else {
-            jQuery(this).html('<i class="fa fa-chevron-circle-down" aria-hidden="true"></i>');
+            jQuery(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>');
             jQuery(this).toggleClass('show');
         }
     });
