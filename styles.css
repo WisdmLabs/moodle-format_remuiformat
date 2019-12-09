@@ -79,7 +79,6 @@
     }
 }
 
-
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
     body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
         min-width: 50% !important;
@@ -202,14 +201,12 @@ ul.remui-format-list .section-summary-activities {
     min-height: 18px;
     margin: 0 auto;
     align-self: center;
-    /* display: block; */
     font-size: 14px;
     font-weight: 500;
     visibility: hidden;
 }
 
 .single-card:hover .progress-text {
-    /* display: block; */
     visibility: visible;
 }
 
@@ -290,7 +287,6 @@ ul.remui-format-list h4.sectionname {
     font-size: 18px;
     font-weight: 500;
     padding: 7px 0;
-    /* clear: both; Fordson */
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
@@ -300,7 +296,6 @@ ul.remui-format-list h4.sectionname {
     font-size: 22px;
     font-weight: 700;
     padding: 7px 0;
-    /* clear: both; Fordson */
 }
 
 #page-course-view-remuiformat div#card-container .section-title:hover,
@@ -414,7 +409,6 @@ input.ignoredirty.form-control {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
 }
 .general-activities-list-group-item {
     float: left;
@@ -474,7 +468,6 @@ input.ignoredirty.form-control {
 #page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
     margin: 15px 0 0 0;
     padding: 8px !important;
-    /* box-shadow: 0 0px 4px #ddd; */
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
@@ -938,7 +931,6 @@ ul.remui-format-list span.inplaceeditable input {
 /* Aligning the up and down icon with edit button */
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
-    /* margin-top: 1%; */
     margin-right: 2%;
 }
 
@@ -971,8 +963,6 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions {
     background-color: #ececec;
     color: #353535;
-    /* background-color: #4c4c4c;
-  color: white; */
     text-align: left;
     display: inline-block;
     padding: 0.75rem 1.4em;
@@ -988,8 +978,6 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
     background-color: #ececec;
     color: #353535;
-    /* background-color: #4c4c4c;
-  color: white; */
     text-align: left;
     display: inline-block;
     font-size: 14px;

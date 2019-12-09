@@ -130,7 +130,8 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
-                $previouslink .= (core_text::strlen($prevsectionname) > 15) ? core_text::substr($prevsectionname, 0, 15)."..." : $prevsectionname;
+                $previouslink .=
+                (core_text::strlen($prevsectionname) > 15) ? core_text::substr($prevsectionname, 0, 15)."..." : $prevsectionname;
                 $links['previous'] = html_writer::link(course_get_url($course, $back), $previouslink, $params);
             }
             $back--;
@@ -145,7 +146,8 @@ class format_remuiformat_renderer extends format_section_renderer_base {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
                 $nextsectionname = get_section_name($course, $sections[$forward]);
-                $nextlink = (core_text::strlen($nextsectionname) > 15) ? core_text::substr($nextsectionname, 0, 15)."..." : $nextsectionname;
+                $nextlink =
+                (core_text::strlen($nextsectionname) > 15) ? core_text::substr($nextsectionname, 0, 15)."..." : $nextsectionname;
                 $nextlink .= html_writer::tag('span', $this->output->rarrow(), array('class' => 'rarrow'));
                 $links['next'] = html_writer::link(course_get_url($course, $forward), $nextlink, $params);
             }
@@ -607,12 +609,12 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return
      */
-    public function render_card_all_sections_summary(\format_remuiformat\output\format_remuiformat_card_all_sections_summary $section) {
+    public function render_card_all_sections_summary(
+        \format_remuiformat\output\format_remuiformat_card_all_sections_summary $section) {
         $templatecontext = $section->export_for_template($this);
         if (isset($templatecontext->error)) {
             print_error($templatecontext->error);
         } else {
-            // echo $this->render_from_template('format_remuiformat/allsections', $templatecontext);
             echo $this->render_from_template('format_remuiformat/card_all_sections_summary', $templatecontext);
         }
     }
@@ -622,9 +624,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @param  \format_cards\output\format_cards_activity $activity Object of Activity renderable
      * @return
      */
-    public function render_card_one_section(\format_remuiformat\output\format_remuiformat_card_one_section $activity) {
+    public function render_card_one_section(
+        \format_remuiformat\output\format_remuiformat_card_one_section $activity) {
         $templatecontext = $activity->export_for_template($this);
-        // echo $this->render_from_template('format_remuiformat/allactivities', $templatecontext);
         echo $this->render_from_template('format_remuiformat/card_one_section', $templatecontext);
     }
 
@@ -633,29 +635,28 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return
      */
-    public function render_list_all_sections(\format_remuiformat\output\format_remuiformat_list_all_sections $section) {
-        
+    public function render_list_all_sections(
+        \format_remuiformat\output\format_remuiformat_list_all_sections $section) {
         $templatecontext = $section->export_for_template($this);
         if (isset($templatecontext->error)) {
             print_error($templatecontext->error);
         } else {
-            // echo $this->render_from_template('format_remuiformat/list_allsections', $templatecontext);
             echo $this->render_from_template('format_remuiformat/list_all_sections', $templatecontext);
         }
     }
-    
+
     /**
      * Renders the list all sections page without activities.
      * List Format -> All Section Page.
      * @param  \format_cards\output\format_cards_section $section Object of the Section renderable.
      * @return
      */
-    public function render_list_all_sections_summary(\format_remuiformat\output\format_remuiformat_list_all_sections_summary $section) {
+    public function render_list_all_sections_summary(
+        \format_remuiformat\output\format_remuiformat_list_all_sections_summary $section) {
         $templatecontext = $section->export_for_template($this);
         if (isset($templatecontext->error)) {
             print_error($templatecontext->error);
         } else {
-            // echo $this->render_from_template('format_remuiformat/list_onesection', $templatecontext);
             echo $this->render_from_template('format_remuiformat/list_all_sections_summary', $templatecontext);
         }
     }
@@ -665,9 +666,9 @@ class format_remuiformat_renderer extends format_section_renderer_base {
      * @param  \format_cards\output\format_cards_activity $activity Object of Activity renderable
      * @return
      */
-    public function render_list_one_section(\format_remuiformat\output\format_remuiformat_list_one_section $activity) {
+    public function render_list_one_section(
+        \format_remuiformat\output\format_remuiformat_list_one_section $activity) {
         $templatecontext = $activity->export_for_template($this);
-        // echo $this->render_from_template('format_remuiformat/list_allactivities', $templatecontext);
         echo $this->render_from_template('format_remuiformat/list_one_section', $templatecontext);
     }
 

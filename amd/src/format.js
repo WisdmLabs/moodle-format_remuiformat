@@ -46,7 +46,7 @@ function($, str) {
                         } else {
                             $("#id_remuidefaultsectiontheme").parent().parent().show();
                         }
-                    // LIST.
+                        // LIST.
                     } else {
                         $('#id_coursedisplay').append('<option value="0">' + ss[0] + '</option>');
                         var oldcoursedisplay = window.localStorage.getItem('coursedisplay');
@@ -76,7 +76,7 @@ function($, str) {
                     } else {
                         $("#id_remuidefaultsectiontheme").parent().parent().show();
                     }
-                // LIST.
+                    // LIST.
                 } else {
                     $("#id_remuiteacherdisplay").parent().parent().show();
                     sectionlayout_val = $("#id_coursedisplay").val();

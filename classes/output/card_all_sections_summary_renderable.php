@@ -155,7 +155,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
 
             // Get the all activities count from the all sections.
             $sectionmods = array();
-            for($i = 0; $i < count($sections); $i++) {
+            for ($i = 0; $i < count($sections); $i++) {
                 if (isset($modinfo->sections[$i])) {
                     foreach ($modinfo->sections[$i] as $cmid) {
                         $thismod = $modinfo->cms[$cmid];
@@ -166,7 +166,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                             $sectionmods[$thismod->modname]['name'] = $thismod->modfullname;
                             $sectionmods[$thismod->modname]['count'] = 1;
                         }
-                    }                
+                    }
                 }
             }
             foreach ($sectionmods as $mod) {

@@ -62,15 +62,15 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
         var setEqualHeight = function(selector) {
             if (selector.length > 0) {
                 var arr = [];
-                var selector_height;
+                var selectorHeight;
                 selector.css("min-height", "initial");
                 selector.each(function(index, elem) {
-                    selector_height = elem.offsetHeight;
-                    selector_height = (selector_height > cardminHeight) ? selector_height : cardminHeight;
-                    arr.push(selector_height);
+                    selectorHeight = elem.offsetHeight;
+                    selectorHeight = (selectorHeight > cardminHeight) ? selectorHeight : cardminHeight;
+                    arr.push(selectorHeight);
                 });
-                selector_height = Math.max.apply(null, arr) + 55;
-                selector.css("min-height", selector_height);
+                selectorHeight = Math.max.apply(null, arr) + 55;
+                selector.css("min-height", selectorHeight);
             }
         };
 
@@ -101,8 +101,11 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
         // Set Equal height of cards on load.
         setEqualHeight($('.single-card'));
         $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
-        $('.single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 600, "swing");
+        $('.single-card').css({ opacity: 0.0, visibility: "visible", }).animate({ opacity: 1.0, }, 600, "swing");
 
+        /**
+         * @param  {} sParam 
+         */
         function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
@@ -118,6 +121,9 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
             }
         }
 
+        /**
+         * It saves the activity order after drag and drop.
+         */
         function saveOrder() {
             var section = $(this).data('section');
             var courseid = getUrlParameter('id');
@@ -132,6 +138,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
                 }
             ]);
             sectionsave[0].done(function() {
+                // Ajax Done Code goes here.
             });
         }
 
@@ -271,7 +278,7 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
             });
         });
 
-        // + Show full summary label show conditionally.
+        // ... + Show full summary label show conditionally.
         var summaryheight = $('.read-more-target .no-overflow').height();
         if (summaryheight > 52) {
             $('.read-more-trigger').show();
