@@ -141,6 +141,6 @@ $string['allactivitiescompleted'] = "All activitie's completed";
 // Used in format.js on change course layout.
 $string['showallsectionperpage'] = 'Show all sections per page';
 
-// Card format general section
+// Card format general section.
 $string['showfullsummary'] = '+ Show full summary';
 $string['showless'] = 'Show less';

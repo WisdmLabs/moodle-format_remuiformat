@@ -365,9 +365,8 @@ class format_remuiformat extends format_base {
      * @return array array of references to the added form elements.
      */
     public function create_edit_form_elements(&$mform, $forsection = false) {
-        global $COURSE, $CFG;
-        MoodleQuickForm::registerElementType('rfcolourpopup', "$CFG->dirroot/course/format/remuiformat/js/rf_colourpopup.php",
-        'MoodleQuickForm_rfcolourpopup');
+        global $COURSE;
+
         $elements = parent::create_edit_form_elements($mform, $forsection);
         if (!$forsection && (empty($COURSE->id) || $COURSE->id == SITEID)) {
             // Add "numsections" element to the create course form - it will force new course to be prepopulated
@@ -522,11 +521,6 @@ class format_remuiformat extends format_base {
     public function update_course_format_options($data, $sectionid = null) {
         if (!empty($data)) {
             // Used optional_param() instead of using $_POST and $_GET.
-            
-            // Added check to handle restore course issue.
-            // if ( !isset( $data->remuicourseformat )) {
-                // $data->remuicourseformat = optional_param('remuicourseformat', null, PARAM_INT);
-            // }
 
             $contextid = context_course::instance($this->courseid);
             if (!empty($data->remuicourseimage_filemanager)) {

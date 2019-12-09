@@ -73,29 +73,35 @@ $settings = $courseformat->get_settings();
 $rformat = $settings['remuicourseformat'];
 
 if ($section) {
-    // List Format -> One Section Page : render_list_one_section -> list_one_section
+    // List Format -> One Section Page : render_list_one_section -> list_one_section.
     if ($course->remuicourseformat && $course->coursedisplay) {
         $renderer->render_list_one_section(
             new \format_remuiformat\output\format_remuiformat_list_one_section($course, $displaysection, $baserenderer)
         );
     }
 }
-// List Format -> All Section Summary Page : render_list_all_sections_summary -> list_all_sections_summary
+// List Format -> All Section Summary Page : render_list_all_sections_summary -> list_all_sections_summary.
 if ($course->remuicourseformat && $course->coursedisplay && !$section) {
-    $renderer->render_list_all_sections_summary(new \format_remuiformat\output\format_remuiformat_list_all_sections_summary($course, $baserenderer));
+    $renderer->render_list_all_sections_summary(
+        new \format_remuiformat\output\format_remuiformat_list_all_sections_summary($course, $baserenderer)
+    );
 } else if ($displaysection && !$course->remuicourseformat) {
-    // Card Format -> One Section Page : render_card_one_section -> card_one_section
+    // Card Format -> One Section Page : render_card_one_section -> card_one_section.
     $renderer->render_card_one_section(
         new \format_remuiformat\output\format_remuiformat_card_one_section($course, $displaysection, $baserenderer)
     );
 } else if (!$displaysection) {
-    // Card Format -> All Section Page : render_card_all_sections_summary -> card_all_sections_summary
+    // Card Format -> All Section Page : render_card_all_sections_summary -> card_all_sections_summary.
     if ($rformat == REMUI_CARD_FORMAT) {
-        $renderer->render_card_all_sections_summary(new \format_remuiformat\output\format_remuiformat_card_all_sections_summary($course, $baserenderer));
+        $renderer->render_card_all_sections_summary(
+            new \format_remuiformat\output\format_remuiformat_card_all_sections_summary($course, $baserenderer)
+        );
     }
-    
-    // List Format -> All Section Page : render_list_all_sections -> list_all_sections
+
+    // List Format -> All Section Page : render_list_all_sections -> list_all_sections.
     if ($rformat == REMUI_LIST_FORMAT) {
-        $renderer->render_list_all_sections(new \format_remuiformat\output\format_remuiformat_list_all_sections($course, $baserenderer));       
+        $renderer->render_list_all_sections(
+            new \format_remuiformat\output\format_remuiformat_list_all_sections($course, $baserenderer)
+        );
     }
 }
