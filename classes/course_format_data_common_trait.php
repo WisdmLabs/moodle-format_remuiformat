@@ -443,17 +443,25 @@ class course_format_data_common_trait {
         if ( !empty($lastviewedactivity) ) {
             // Resume to activity logic goes here...
             $modinfo = get_fast_modinfo($course);
-            $cminfo = $modinfo->get_cm($lastviewedactivity);
-            $section = $cminfo->sectionnum;
-
-            foreach ($modinfo->sections[$section] as $modnumber) {
-                if ($modnumber == $lastviewedactivity) {
-                    $mod = $modinfo->cms[$lastviewedactivity];
-                    if (!$mod->is_visible_on_course_page()) {
-                        continue;
+            $modinfo = get_fast_modinfo($course);
+            foreach ($modinfo->get_cms() as $cminfo => $cm) {
+                // Check if last viewed activity is exist in course.
+                if ($cminfo == $lastviewedactivity) {
+                    $cminfo = $modinfo->get_cm($lastviewedactivity);
+                    $section = $cminfo->sectionnum;
+                }
+            }
+            
+            if ( !empty($section) ) {
+                foreach ($modinfo->sections[$section] as $modnumber) {
+                    if ($modnumber == $lastviewedactivity) {
+                        $mod = $modinfo->cms[$lastviewedactivity];
+                        if (!$mod->is_visible_on_course_page()) {
+                            continue;
+                        }
+                        $resumeactivityurl = $mod->url;
+                        return $resumeactivityurl->out();
                     }
-                    $resumeactivityurl = $mod->url;
-                    return $resumeactivityurl->out();
                 }
             }
         } else {
