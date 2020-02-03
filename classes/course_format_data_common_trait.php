@@ -48,41 +48,45 @@ class course_format_data_common_trait {
         return self::$instance;
     }
 
-    public function display_file($data) {
-        global $DB, $CFG, $OUTPUT;
-        $itemid = $data;
-        $filedata = $DB->get_records('files', array('itemid' => $itemid));
-        $tempdata = array();
-        foreach ($filedata as $key => $value) {
-            if ($value->filesize > 0 && $value->filearea == 'remuicourseimage_filearea') {
-                $tempdata = $value;
-            }
-        }
-        $fs = get_file_storage();
-        if (!empty($tempdata)) {
-            $files = $fs->get_area_files(
-                $tempdata->contextid,
-                'format_remuiformat',
-                'remuicourseimage_filearea',
-                $itemid
-            );
-            $url = '';
-            foreach ($files as $key => $file) {
-                $file->portfoliobutton = '';
+    public function display_file($itemid) {
+        global $DB, $CFG;
 
-                $path = '/'.
-                        $tempdata->contextid.
-                        '/'.
-                        'format_remuiformat'.
-                        '/'.
-                        'remuicourseimage_filearea'.
-                        '/'.
-                        $file->get_itemid().
-                        $file->get_filepath().
-                        $file->get_filename();
-                $url = file_encode_url("$CFG->wwwroot/pluginfile.php", $path, true);
+        // Added empty check here to check if 'remuicourseimage_filearea' is set or not.
+        if ( !empty($itemid) ) {
+            $filedata = $DB->get_records('files', array('itemid' => $itemid));
+        
+            $tempdata = array();
+            foreach ($filedata as $key => $value) {
+                if ($value->filesize > 0 && $value->filearea == 'remuicourseimage_filearea') {
+                    $tempdata = $value;
+                }
             }
-            return $url;
+            $fs = get_file_storage();
+            if (!empty($tempdata)) {
+                $files = $fs->get_area_files(
+                    $tempdata->contextid,
+                    'format_remuiformat',
+                    'remuicourseimage_filearea',
+                    $itemid
+                );
+                $url = '';
+                foreach ($files as $key => $file) {
+                    $file->portfoliobutton = '';
+
+                    $path = '/'.
+                            $tempdata->contextid.
+                            '/'.
+                            'format_remuiformat'.
+                            '/'.
+                            'remuicourseimage_filearea'.
+                            '/'.
+                            $file->get_itemid().
+                            $file->get_filepath().
+                            $file->get_filename();
+                    $url = file_encode_url("$CFG->wwwroot/pluginfile.php", $path, true);
+                }
+                return $url;
+            }
         }
         return '';
     }
