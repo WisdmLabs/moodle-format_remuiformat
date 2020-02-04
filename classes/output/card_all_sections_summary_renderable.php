@@ -176,7 +176,8 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
 
             // Get reseume activity link.
             $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
-            if ( isset($export->resumeactivityurl) ) {
+            // Check if resume activity url is set. If not set course URL as a resume activity URL.
+            if ( !isset($export->resumeactivityurl) ) {
                 $baseurl = course_get_url($this->course);
                 $export->resumecourseurl = $baseurl->out();
             }

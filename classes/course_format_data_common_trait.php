@@ -447,19 +447,21 @@ class course_format_data_common_trait {
         if ( !empty($lastviewedactivity) ) {
             // Resume to activity logic goes here...
             $modinfo = get_fast_modinfo($course);
-            $modinfo = get_fast_modinfo($course);
             foreach ($modinfo->get_cms() as $cminfo => $cm) {
                 // Check if last viewed activity is exist in course.
                 if ($cminfo == $lastviewedactivity) {
                     $cminfo = $modinfo->get_cm($lastviewedactivity);
                     $section = $cminfo->sectionnum;
+                    break;
                 }
             }
             
-            if ( !empty($section) ) {
+            // Get the activity URL from the section.
+            if ( isset($section) ) {
                 foreach ($modinfo->sections[$section] as $modnumber) {
                     if ($modnumber == $lastviewedactivity) {
                         $mod = $modinfo->cms[$lastviewedactivity];
+                        // Check if current module is available to user.
                         if (!$mod->is_visible_on_course_page()) {
                             continue;
                         }
