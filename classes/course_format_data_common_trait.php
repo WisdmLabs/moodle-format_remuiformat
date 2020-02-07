@@ -280,6 +280,7 @@ class course_format_data_common_trait {
                     $sectiondetails->summary = $renderer->format_summary_text($currentsection);
                 }
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
+                $sectiondetails->progressinfo = $extradetails['progressinfo'];
                 $sectiondetails->sectionactivities = $courserenderer->course_section_cm_list(
                     $course, $currentsection, 0
                 );

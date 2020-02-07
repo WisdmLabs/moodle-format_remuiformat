@@ -79,13 +79,24 @@
          {{/editing}}
          {{^editing}}
             <a class="panel-title p-0 {{#expanded}}true{{/expanded}}" data-toggle="collapse" href="#sectionwrapper-{{{index}}}" aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
-         {{/editing}}
-            {{#collapsed}}
-            <i class="fa fa-angle-down float-right"></i>
-            {{/collapsed}}
-            {{#expanded}}
-            <i class="fa fa-angle-up float-right"></i>
-            {{/expanded}}
+            {{/editing}}
+               {{#collapsed}}
+               <i class="fa fa-angle-down float-right"></i>
+               {{/collapsed}}
+               {{#expanded}}
+               <i class="fa fa-angle-up float-right"></i>
+               {{/expanded}}
+               {{^editing}}
+                  {{#progressinfo}}
+                     {{#completed}}
+                        <!-- Default checked -->
+                        <div class="float-right pr-10">
+                           <i class="fa fas fa-check-square text-success"></i>
+                           <!-- {{{ progress }}} -->
+                        </div>
+                     {{/completed}}
+                  {{/progressinfo}}
+               {{/editing}}
             </a>
       </h4>
       {{{ hiddenmessage }}}
