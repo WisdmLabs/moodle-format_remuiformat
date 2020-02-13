@@ -298,9 +298,8 @@ ul.remui-format-list h4.sectionname {
     padding: 7px 0;
 }
 
-#page-course-view-remuiformat div#card-container .section-title:hover,
-#page-course-view-remuiformat div#card-container .section-title.light:hover,
-#page-course-view-remuiformat div#card-container .section-title.dark:hover {
+/* Hover effect only if Section is available. */
+#page-course-view-remuiformat div#card-container a .section-title:hover {
     text-decoration: underline;
 }
 
