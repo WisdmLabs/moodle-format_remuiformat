@@ -7,9 +7,7 @@ var concat = require('gulp-concat');
 var prefix = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
 var shell  = require('gulp-shell');
-const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
-var debug = require('gulp-debug');
 // JS stuff.
 const minify = require('gulp-minify');
 var jssrc = './amd/src/*.js';
