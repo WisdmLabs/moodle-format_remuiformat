@@ -402,6 +402,7 @@ input.ignoredirty.form-control {
     background-color: #ddd;
     height: 12px;
     border-bottom: unset; /* Fordson */
+    margin-left: 0px; /* Moove */
 }
 
 .general-activities-list-group {
