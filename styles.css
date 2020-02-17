@@ -960,8 +960,11 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions {
-    background-color: #ececec;
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden .badge {
+    /* background-color: #ececec; */
+    background-color: #b1b1b1;
     color: #353535;
     text-align: left;
     display: inline-block;
@@ -976,7 +979,8 @@ ul.remui-format-list span.inplaceeditable input {
 
 #page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag,
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-    background-color: #ececec;
+    /* background-color: #ececec; */
+    background-color: #b1b1b1;
     color: #353535;
     text-align: left;
     display: inline-block;
