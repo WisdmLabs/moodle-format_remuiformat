@@ -174,7 +174,7 @@
 .section-mod-details,
 .wdm-mod-name,
 ul.remui-format-list .section-summary-activities {
-    padding: 3px 4px;
+    padding: 3px 25px 3px 4px;
     color: #888;
     font-size: 0.90rem;
     line-height: 1rem;
@@ -286,7 +286,7 @@ ul.remui-format-list h4.sectionname {
     margin: 0;
     font-size: 18px;
     font-weight: 500;
-    padding: 7px 0;
+    /* padding: 7px 0; */
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
