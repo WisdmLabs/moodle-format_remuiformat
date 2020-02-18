@@ -143,3 +143,17 @@ $string['showallsectionperpage'] = 'Show all sections per page';
 // Card format general section.
 $string['showfullsummary'] = '+ Show full summary';
 $string['showless'] = 'Show less';
+
+// Usage tracking
+$string['enableusagetracking'] = "Enable Usage Trakcing";
+$string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
+
+<hr class='text-muted' />
+
+<p>Edwiser from now on will collect anonymous data to generate product usage statistics.</p>
+
+<p>This information will help us guide the development in right direction and the Edwiser community prosper.</p>
+
+<p>Having said that we don't gather your personal data or of your students during this process. You can disable this from the plugin whenever you wish to opt out of this service.</p>
+
+<p>An overview of the data collected is available <strong><a href='https://forums.edwiser.org/topic/67/anonymously-tracking-the-usage-of-edwiser-products' target='_blank'>here</a></strong>.</p>";
