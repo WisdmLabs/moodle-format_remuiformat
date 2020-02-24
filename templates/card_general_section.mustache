@@ -73,7 +73,7 @@
                             <img src='{{coursemainimage}}' class='coursemainimage'>
                         </div>
                     {{/coursemainimage}}
-                    <div class="col-12 mb-4">
+                    <div class="col-12">
                         <h6 class="courseprogress mt-0 bold">{{#str}} coursecompletionprogress, format_remuiformat{{/str}}</h6>
                         {{#percentage}}
                             <div class="progress progress-rounded mb-4">
@@ -96,13 +96,8 @@
                         </ul>
                     </div>
                     {{#resumeactivityurl}}
-                        <div class="col-12 text-center">
+                        <div class="col-12 text-center mt-4">
                             <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
-                        </div>
-                    {{/resumeactivityurl}}
-                    {{^resumeactivityurl}}
-                        <div class="col-12 text-center">
-                            <a class="btn btn-primary btn-block bold" href="{{{ resumecourseurl }}}" role="button">{{#str}} resumetocourse, format_remuiformat{{/str}}</a>
                         </div>
                     {{/resumeactivityurl}}
                 </div>

@@ -79,7 +79,6 @@
     }
 }
 
-
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
     body#page-course-view-remuiformat.drawer-open-left #region-main.has-blocks ul.section.first-section li {
         min-width: 50% !important;
@@ -175,7 +174,7 @@
 .section-mod-details,
 .wdm-mod-name,
 ul.remui-format-list .section-summary-activities {
-    padding: 3px 4px;
+    padding: 3px 25px 3px 4px;
     color: #888;
     font-size: 0.90rem;
     line-height: 1rem;
@@ -202,14 +201,12 @@ ul.remui-format-list .section-summary-activities {
     min-height: 18px;
     margin: 0 auto;
     align-self: center;
-    /* display: block; */
     font-size: 14px;
     font-weight: 500;
     visibility: hidden;
 }
 
 .single-card:hover .progress-text {
-    /* display: block; */
     visibility: visible;
 }
 
@@ -289,8 +286,7 @@ ul.remui-format-list h4.sectionname {
     margin: 0;
     font-size: 18px;
     font-weight: 500;
-    padding: 7px 0;
-    /* clear: both; Fordson */
+    /* padding: 7px 0; */
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
@@ -300,12 +296,10 @@ ul.remui-format-list h4.sectionname {
     font-size: 22px;
     font-weight: 700;
     padding: 7px 0;
-    /* clear: both; Fordson */
 }
 
-#page-course-view-remuiformat div#card-container .section-title:hover,
-#page-course-view-remuiformat div#card-container .section-title.light:hover,
-#page-course-view-remuiformat div#card-container .section-title.dark:hover {
+/* Hover effect only if Section is available. */
+#page-course-view-remuiformat div#card-container a .section-title:hover {
     text-decoration: underline;
 }
 
@@ -408,13 +402,13 @@ input.ignoredirty.form-control {
     background-color: #ddd;
     height: 12px;
     border-bottom: unset; /* Fordson */
+    margin-left: 0px; /* Moove */
 }
 
 .general-activities-list-group {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
 }
 .general-activities-list-group-item {
     float: left;
@@ -474,7 +468,6 @@ input.ignoredirty.form-control {
 #page-course-view-remuiformat div#card-container .general-single-card ul.section li.activity {
     margin: 15px 0 0 0;
     padding: 8px !important;
-    /* box-shadow: 0 0px 4px #ddd; */
 }
 #page-course-view-remuiformat div#card-editing-container .general-single-card li.activity img.activityicon {
     vertical-align: middle;
@@ -938,7 +931,6 @@ ul.remui-format-list span.inplaceeditable input {
 /* Aligning the up and down icon with edit button */
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
 .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
-    /* margin-top: 1%; */
     margin-right: 2%;
 }
 
@@ -968,11 +960,12 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions {
-    background-color: #ececec;
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden .badge {
+    /* background-color: #ececec; */
+    background-color: #b1b1b1;
     color: #353535;
-    /* background-color: #4c4c4c;
-  color: white; */
     text-align: left;
     display: inline-block;
     padding: 0.75rem 1.4em;
@@ -986,10 +979,9 @@ ul.remui-format-list span.inplaceeditable input {
 
 #page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag,
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-    background-color: #ececec;
+    /* background-color: #ececec; */
+    background-color: #b1b1b1;
     color: #353535;
-    /* background-color: #4c4c4c;
-  color: white; */
     text-align: left;
     display: inline-block;
     font-size: 14px;

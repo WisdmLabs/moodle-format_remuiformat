@@ -44,7 +44,7 @@ Card Format is another standout course format in the offering. Edwiser Card Form
 
 # Plugin Version
 
-v1.0.4 - Plugin Released
+v1.0.5 - Plugin Released
 
 [(Back to top)](#table-of-contents)
 
