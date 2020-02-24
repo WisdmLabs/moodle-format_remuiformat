@@ -57,7 +57,7 @@ class usage_tracking {
 
                     $analytics_data = json_encode($this->prepare_usage_analytics());                 
 
-                    $url = "https://newdev.edwiser.org/wp-json/edwiser_customizations/send_usage_data";
+                    $url = "https://edwiser.org/wp-json/edwiser_customizations/send_usage_data";
                     // call api endpoint with data
                     $ch = curl_init();
 
