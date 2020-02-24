@@ -174,7 +174,7 @@
 .section-mod-details,
 .wdm-mod-name,
 ul.remui-format-list .section-summary-activities {
-    padding: 3px 4px;
+    padding: 3px 25px 3px 4px;
     color: #888;
     font-size: 0.90rem;
     line-height: 1rem;
@@ -286,7 +286,7 @@ ul.remui-format-list h4.sectionname {
     margin: 0;
     font-size: 18px;
     font-weight: 500;
-    padding: 7px 0;
+    /* padding: 7px 0; */
 }
 
 #page-course-view-remuiformat div#card-editing-container .section-title,
@@ -298,9 +298,8 @@ ul.remui-format-list h4.sectionname {
     padding: 7px 0;
 }
 
-#page-course-view-remuiformat div#card-container .section-title:hover,
-#page-course-view-remuiformat div#card-container .section-title.light:hover,
-#page-course-view-remuiformat div#card-container .section-title.dark:hover {
+/* Hover effect only if Section is available. */
+#page-course-view-remuiformat div#card-container a .section-title:hover {
     text-decoration: underline;
 }
 
@@ -403,6 +402,7 @@ input.ignoredirty.form-control {
     background-color: #ddd;
     height: 12px;
     border-bottom: unset; /* Fordson */
+    margin-left: 0px; /* Moove */
 }
 
 .general-activities-list-group {
@@ -960,8 +960,11 @@ ul.remui-format-list span.inplaceeditable input {
 #page-course-view-remuiformat .single-card-container .availabilityinfo .tag,
 #page-course-view-remuiformat .single-card-container .availabilityinfo .badge,
 #page-course-view-remuiformat .general-single-card .availabilityinfo .tag,
-#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions {
-    background-color: #ececec;
+#page-course-view-remuiformat .general-single-card .availabilityinfo .badge.actions,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden,
+#page-course-view-remuiformat div#card-container div.availabilityinfo.ishidden .badge {
+    /* background-color: #ececec; */
+    background-color: #b1b1b1;
     color: #353535;
     text-align: left;
     display: inline-block;
@@ -976,7 +979,8 @@ ul.remui-format-list span.inplaceeditable input {
 
 #page-course-view-remuiformat .single-card-container .sectionfirstimage .availabilityinfo .tag,
 #page-course-view-remuiformat .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-    background-color: #ececec;
+    /* background-color: #ececec; */
+    background-color: #b1b1b1;
     color: #353535;
     text-align: left;
     display: inline-block;

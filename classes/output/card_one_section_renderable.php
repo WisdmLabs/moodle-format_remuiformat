@@ -194,7 +194,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
                 // Set the section layout using the databases value.
                 $table = 'format_remuiformat';
-                $record = $DB->get_record($table, array('courseid' => $this->course->id, 'activityid' => $modnumber), '*');
+                $record = $DB->get_record($table, array('courseid' => $this->course->id, 'sectionid' => $section->section, 'activityid' => $modnumber), '*');
 
                 if ( !empty($record) ) {
                     if ($record->layouttype == 'row') {

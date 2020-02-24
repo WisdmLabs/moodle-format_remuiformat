@@ -48,41 +48,45 @@ class course_format_data_common_trait {
         return self::$instance;
     }
 
-    public function display_file($data) {
-        global $DB, $CFG, $OUTPUT;
-        $itemid = $data;
-        $filedata = $DB->get_records('files', array('itemid' => $itemid));
-        $tempdata = array();
-        foreach ($filedata as $key => $value) {
-            if ($value->filesize > 0 && $value->filearea == 'remuicourseimage_filearea') {
-                $tempdata = $value;
-            }
-        }
-        $fs = get_file_storage();
-        if (!empty($tempdata)) {
-            $files = $fs->get_area_files(
-                $tempdata->contextid,
-                'format_remuiformat',
-                'remuicourseimage_filearea',
-                $itemid
-            );
-            $url = '';
-            foreach ($files as $key => $file) {
-                $file->portfoliobutton = '';
+    public function display_file($itemid) {
+        global $DB, $CFG;
 
-                $path = '/'.
-                        $tempdata->contextid.
-                        '/'.
-                        'format_remuiformat'.
-                        '/'.
-                        'remuicourseimage_filearea'.
-                        '/'.
-                        $file->get_itemid().
-                        $file->get_filepath().
-                        $file->get_filename();
-                $url = file_encode_url("$CFG->wwwroot/pluginfile.php", $path, true);
+        // Added empty check here to check if 'remuicourseimage_filearea' is set or not.
+        if ( !empty($itemid) ) {
+            $filedata = $DB->get_records('files', array('itemid' => $itemid));
+        
+            $tempdata = array();
+            foreach ($filedata as $key => $value) {
+                if ($value->filesize > 0 && $value->filearea == 'remuicourseimage_filearea') {
+                    $tempdata = $value;
+                }
             }
-            return $url;
+            $fs = get_file_storage();
+            if (!empty($tempdata)) {
+                $files = $fs->get_area_files(
+                    $tempdata->contextid,
+                    'format_remuiformat',
+                    'remuicourseimage_filearea',
+                    $itemid
+                );
+                $url = '';
+                foreach ($files as $key => $file) {
+                    $file->portfoliobutton = '';
+
+                    $path = '/'.
+                            $tempdata->contextid.
+                            '/'.
+                            'format_remuiformat'.
+                            '/'.
+                            'remuicourseimage_filearea'.
+                            '/'.
+                            $file->get_itemid().
+                            $file->get_filepath().
+                            $file->get_filename();
+                    $url = file_encode_url("$CFG->wwwroot/pluginfile.php", $path, true);
+                }
+                return $url;
+            }
         }
         return '';
     }
@@ -276,6 +280,7 @@ class course_format_data_common_trait {
                     $sectiondetails->summary = $renderer->format_summary_text($currentsection);
                 }
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
+                $sectiondetails->progressinfo = $extradetails['progressinfo'];
                 $sectiondetails->sectionactivities = $courserenderer->course_section_cm_list(
                     $course, $currentsection, 0
                 );
@@ -443,17 +448,27 @@ class course_format_data_common_trait {
         if ( !empty($lastviewedactivity) ) {
             // Resume to activity logic goes here...
             $modinfo = get_fast_modinfo($course);
-            $cminfo = $modinfo->get_cm($lastviewedactivity);
-            $section = $cminfo->sectionnum;
-
-            foreach ($modinfo->sections[$section] as $modnumber) {
-                if ($modnumber == $lastviewedactivity) {
-                    $mod = $modinfo->cms[$lastviewedactivity];
-                    if (!$mod->is_visible_on_course_page()) {
-                        continue;
+            foreach ($modinfo->get_cms() as $cminfo => $cm) {
+                // Check if last viewed activity is exist in course.
+                if ($cminfo == $lastviewedactivity) {
+                    $cminfo = $modinfo->get_cm($lastviewedactivity);
+                    $section = $cminfo->sectionnum;
+                    break;
+                }
+            }
+            
+            // Get the activity URL from the section.
+            if ( isset($section) ) {
+                foreach ($modinfo->sections[$section] as $modnumber) {
+                    if ($modnumber == $lastviewedactivity) {
+                        $mod = $modinfo->cms[$lastviewedactivity];
+                        // Check if current module is available to user.
+                        if (!$mod->is_visible_on_course_page()) {
+                            continue;
+                        }
+                        $resumeactivityurl = $mod->url;
+                        return $resumeactivityurl->out();
                     }
-                    $resumeactivityurl = $mod->url;
-                    return $resumeactivityurl->out();
                 }
             }
         } else {

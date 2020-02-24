@@ -33,7 +33,9 @@ require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_all_s
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_one_section_renderable.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/card_one_section_renderable.php');
 
-
+// Edwiser Course Format Usage Tracking (Edwiser Course Format Analytics)
+$ranalytics = new \format_remuiformat\usage_tracking();
+$ranalytics->send_usage_analytics();
 
 $renderer = $PAGE->get_renderer('format_remuiformat');
 // Backward Compatibility.

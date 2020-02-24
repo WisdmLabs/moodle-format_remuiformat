@@ -176,10 +176,6 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
 
             // Get reseume activity link.
             $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
-            if ( isset($export->resumeactivityurl) ) {
-                $baseurl = course_get_url($this->course);
-                $export->resumecourseurl = $baseurl->out();
-            }
         }
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
