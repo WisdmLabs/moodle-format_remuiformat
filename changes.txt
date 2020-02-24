@@ -1,3 +1,14 @@
+Version 1.0.5
+Fixes
+* Fixed : Getting an “Invalid course module ID” error when viewing the main course page in card format.
+* Fixed : JS issues when javascript caching is off in Moodle.
+* Fixed : mdb->get_record() found more than one record! at single section page in card format.
+* Fixed : Add hover effect on section title only if section is available in Card format.
+
+Features
+* Add the Section Completion indicator in List format.
+* Added Extra code for User Usage Tracking and its Analytics
+
 Version 1.0.4
 Fixes
 * Fixed issue when course layout resets on course restore.
