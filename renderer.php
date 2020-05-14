@@ -672,74 +672,47 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         echo $this->render_from_template('format_remuiformat/list_one_section', $templatecontext);
     }
 
-    public function abstract_html_contents($html, $maxlength = 100) {
-        mb_internal_encoding("UTF-8");
-        $printedlength = 0;
-        $position = 0;
-        $tags = array();
-        $newcontent = '';
-
-        $html = $content = preg_replace("/<img[^>]+\>/i", "", $html);
-
-        while ($printedlength < $maxlength && preg_match(
-            '{</?([a-z]+)[^>]*>|&#?[a-zA-Z0-9]+;}', $html, $match, PREG_OFFSET_CAPTURE, $position)
-            ) {
-            list($tag, $tagposition) = $match[0];
-            // Print text leading up to the tag.
-            $str = core_text::substr($html, $position, $tagposition - $position);
-            if ($printedlength + core_text::strlen($str) > $maxlength) {
-                $newstr = core_text::substr($str, 0, $maxlength - $printedlength);
-                $newstr = preg_replace('~\s+\S+$~', '', $newstr);
-                $newcontent .= $newstr;
-                $printedlength = $maxlength;
-                break;
-            }
-            $newcontent .= $str;
-            $printedlength += core_text::strlen($str);
-            if ($tag[0] == '&') {
-                // Handle the entity.
-                $newcontent .= $tag;
-                $printedlength++;
-            } else {
-                // Handle the tag.
-                $tagname = $match[1][0];
-                if ($tag[1] == '/') {
-                    // This is a closing tag.
-                    $openingtag = array_pop($tags);
-                    // Check that tags are properly nested.
-                    if ($openingtag == $tagname) {
-                        $newcontent .= $tag;
-                    }
-                } else if ($tag[core_text::strlen($tag) - 2] == '/') {
-                    // Self-closing tag.
-                    $newcontent .= $tag;
-                } else {
-                      // Opening tag.
-                      $newcontent .= $tag;
-                      $tags[] = $tagname;
-                }
-            }
-
-            // Continue after the tag.
-            $position = $tagposition + core_text::strlen($tag);
+    /**
+     * Limit string without break html tags.
+     * Supports UTF8
+     * 
+     * @param string $value
+     * @param int $limit Default 100
+     */
+    function abstract_html_contents($value, $limit = 100){
+        $value = preg_replace("/<img[^>]+\>/i", "", $value);
+        
+        if (mb_strwidth($value, 'UTF-8') <= $limit) {
+            return $value;
         }
+        
+        // Strip text with HTML tags, sum html len tags too.
+        // Is there another way to do it?
+        do {
+            $len = mb_strwidth( $value, 'UTF-8' );
+            $len_stripped = mb_strwidth( strip_tags($value), 'UTF-8' );
+            $len_tags = $len - $len_stripped;
+            
+            $value = mb_strimwidth($value, 0, $limit+$len_tags, '', 'UTF-8');
+        } while( $len_stripped > $limit);
+        
+        // Append ... 
+        $value .= '...';
+        
+        // Load as HTML ignoring errors
+        $dom = new DOMDocument();
+        @$dom->loadHTML('<?xml encoding="utf-8" ?>' . $value, LIBXML_HTML_NODEFDTD);      
 
-        // Print any remaining text.
-        if ($printedlength < $maxlength && $position < core_text::strlen($html)) {
-            $newstr = core_text::substr($html, $position, $maxlength - $printedlength);
-            $newstr = preg_replace('~\s+\S+$~', '', $newstr);
-            $newcontent .= $newstr;
-        }
+        // Fix the html errors
+        $value = $dom->saveHtml($dom->getElementsByTagName('body')->item(0));
+        
+        // Remove body tag
+        $value = mb_strimwidth($value, 6, mb_strwidth($value, 'UTF-8') - 13, '', 'UTF-8'); // <body> and </body>
 
-        // Append.
-        if (core_text::strlen(strip_tags(format_text($html))) > $maxlength) {
-            $newcontent .= '...';
-        }
-        // Close any open tags.
-        while (!empty($tags)) {
-            $newcontent .= sprintf('</%s>', array_pop($tags));
-        }
+        // Remove empty tags
+        $value =  preg_replace('/<(\w+)\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|"[^"]*"|[\w\-.:]+))?)*\s*\/?>\s*<\/\1\s*>/', '', $value);
 
-        return $newcontent;
+        // Return.
+        return $value;
     }
 }
