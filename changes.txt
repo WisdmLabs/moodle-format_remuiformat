@@ -1,3 +1,7 @@
+Version 1.0.6
+Fixes
+* Fixed : HTML support for section description in card layout.
+
 Version 1.0.5
 Fixes
 * Fixed : Getting an “Invalid course module ID” error when viewing the main course page in card format.
