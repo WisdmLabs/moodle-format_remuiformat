@@ -1,3 +1,8 @@
+Version 1.0.7
+Fixes
+* Fixed : Position issue with topic title in List layout in editing mode.
+* Fixed : Position issue with topic title and topic summary in list layout if show all section on one page option is selected in non-editing mode.
+
 Version 1.0.6
 Fixes
 * Fixed : HTML support for section description in card layout.
