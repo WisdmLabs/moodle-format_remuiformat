@@ -289,6 +289,12 @@ ul.remui-format-list h4.sectionname {
     /* padding: 7px 0; */
 }
 
+/* Was added in RemUI theme */
+#page-course-view-remuiformat.editing ul.remui-format-list h4.sectionname{
+    padding: 10px 0!important;
+    clear: none!important;
+}
+
 #page-course-view-remuiformat div#card-editing-container .section-title,
 #page-course-view-remuiformat div#card-container .section-title,
 #page-course-view-remuiformat .single-section-title {
