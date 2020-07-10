@@ -87,6 +87,7 @@ class format_remuiformat extends format_base {
     public function get_settings() {
         if (empty($this->settings) == true) {
             $this->settings = $this->get_format_options();
+            $this->settings['remuicourseimage_filemanager'] = $this->get_remuicourseimage_filemanager();
         }
         return $this->settings;
     }
@@ -184,26 +185,11 @@ class format_remuiformat extends format_base {
      */
     public function course_format_options($foreditform = false) {
         static $courseformatoptions = false;
+
         if ($courseformatoptions === false) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
             this needs to be stripped off here if it's there for the format's specific colour picker. */
             $courseconfig = get_config('moodlecourse');
-            $contextid = context_course::instance($this->courseid);
-            $data = new stdClass;
-            $draftitemid = file_get_submitted_draft_itemid('remuicourseimage');
-
-            try {
-                $data = file_prepare_standard_filemanager(
-                    $data,
-                    'remuicourseimage',
-                    array('accepted_types' => 'images', 'maxfiles' => 1),
-                    $contextid,
-                    'format_remuiformat',
-                    'remuicourseimage_filearea'
-                );
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-            }
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
@@ -216,10 +202,6 @@ class format_remuiformat extends format_base {
                 'coursedisplay' => array(
                     'default' => $courseconfig->coursedisplay,
                     'type' => PARAM_INT
-                ),
-                'remuicourseimage_filemanager' => array(
-                    'default' => get_config('format_remuiformat', 'remuicourseimage_filemanager'),
-                    'type' => PARAM_CLEANFILE
                 ),
                 'sectiontitlesummarymaxlength' => array(
                     'default' => get_config('format_remuiformat', 'defaultsectionsummarymaxlength'),
@@ -245,6 +227,7 @@ class format_remuiformat extends format_base {
         }
 
         if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
+
             $courseconfig = get_config('moodlecourse');
             $courseformatoptionsedit = array(
                 'hiddensections' => array(
@@ -282,19 +265,6 @@ class format_remuiformat extends format_base {
                     ),
                     'help' => 'coursedisplay',
                     'help_component' => 'moodle',
-                ),
-                'remuicourseimage_filemanager' => array(
-                    'label' => new lang_string('remuicourseimage', 'format_remuiformat'),
-                    'element_type' => 'filemanager',
-                    'element_attributes' => array(
-                        null,
-                        array(
-                        'maxfiles' => 1,
-                        'accepted_types' => array('image'),
-                        )
-                    ),
-                    'help' => 'remuicourseimage',
-                    'help_component' => 'format_remuiformat',
                 ),
                 'sectiontitlesummarymaxlength' => array(
                     'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remuiformat'),
@@ -354,7 +324,38 @@ class format_remuiformat extends format_base {
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
         }
+
         return $courseformatoptions;
+    }
+
+    /**
+     * DB value setter for remuicourseimage_filemanager option
+     * @param boolean $itemid Image itemid
+     */
+    public function set_remuicourseimage_filemanager($itemid = false) {
+        global $DB;
+        $DB->set_field('course_format_options', 'value', $itemid, array(
+            'courseid' => $this->courseid,
+            'format' => 'remuiformat',
+            'sectionid' => 0,
+            'name' => 'remuicourseimage_filemanager'
+        ));
+        return true;
+    }
+
+    /**
+     * DB value setter for remuicourseimage_filemanager option
+     * @return int Item id
+     */
+    public function get_remuicourseimage_filemanager() {
+        global $DB;
+        $itemid = $DB->get_field('course_format_options', 'value', array(
+            'courseid' => $this->courseid,
+            'format' => 'remuiformat',
+            'sectionid' => 0,
+            'name' => 'remuicourseimage_filemanager'
+        ));
+        return $itemid;
     }
 
     /**
@@ -382,7 +383,36 @@ class format_remuiformat extends format_base {
             }
             array_unshift($elements, $element);
         }
-        return $elements;
+
+        $elementsnew = [];
+
+        foreach ($elements as $key => $element) {
+            if ($element->getName() == 'sectiontitlesummarymaxlength') {
+                $contextid = context_course::instance($this->courseid);
+                $data = new stdClass;
+                $fileitemid = $this->get_remuicourseimage_filemanager();
+                $data = file_prepare_standard_filemanager(
+                    $data,
+                    'remuicourseimage',
+                    array('accepted_types' => 'images', 'maxfiles' => 1),
+                    $contextid,
+                    'format_remuiformat',
+                    'remuicourseimage_filearea',
+                    $fileitemid
+                );
+
+                $filemanager = $mform->addElement('filemanager', 'remuicourseimage_filemanager', new lang_string('remuicourseimage', 'format_remuiformat'), null, array(
+                    'maxfiles' => 1,
+                    'accepted_types' => array('image'),
+                ));
+                $filemanager->setValue($data->remuicourseimage_filemanager);
+                $elementsnew[] = $filemanager;
+            }
+            unset($elements[$key]);
+            $elementsnew[] = $element;
+        }
+
+        return $elementsnew;
     }
 
     /**
@@ -539,6 +569,7 @@ class format_remuiformat extends format_base {
             if ( !isset($_REQUEST['remuicourseimage_filemanager']) && isset($data->remuicourseimage_filemanager ) ) {
                 $data->remuicourseimage_filemanager = '';
             }
+            $this->set_remuicourseimage_filemanager($data->remuicourseimage_filemanager);
         }
         return $this->update_format_options($data);
     }
