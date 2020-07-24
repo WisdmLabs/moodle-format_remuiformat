@@ -36,6 +36,7 @@ use external_api;
  * aggregates them all.
  */
 class api extends external_api {
+	use course_progress_data;
     use move_activities;
     use show_activity_in_row;
     use move_activity_to_section;
