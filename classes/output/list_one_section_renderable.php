@@ -123,6 +123,7 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         $export->activities .= $this->courserenderer->course_section_add_cm_control(
             $this->course, $this->displaysection, $this->displaysection
         );
+        $export->courseid = $this->course->id;
         $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
         return $export;
     }

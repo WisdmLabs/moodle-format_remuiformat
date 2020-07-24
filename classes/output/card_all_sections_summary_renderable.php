@@ -151,6 +151,8 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
             if (!is_null($percentage)) {
                 $percentage = floor($percentage);
                 $export->generalsection['percentage'] = $percentage;
+            } else {
+                $export->generalsection['percentage'] = 0;
             }
 
             // Get the all activities count from the all sections.
@@ -172,6 +174,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
             foreach ($sectionmods as $mod) {
                 $output['activitylist'][] = $mod['count'].' '.$mod['name'];
             }
+            $export->courseid = $this->course->id;
             $export->activitylist = $output['activitylist'];
 
             // Get reseume activity link.

@@ -117,6 +117,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
+        $export->courseid = $this->course->id;
         $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
             $this->course,
             $this->displaysection,

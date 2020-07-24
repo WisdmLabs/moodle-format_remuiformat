@@ -141,6 +141,8 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
         if (!is_null($percentage)) {
             $percentage = floor($percentage);
             $export->generalsection['percentage'] = $percentage;
+        } else {
+            $export->generalsection['percentage'] = 0;
         }
 
         // For right side.
@@ -208,6 +210,7 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
                 }
             }
         }
+        $export->courseid = $this->course->id;
 
         // Add new activity.
         $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
