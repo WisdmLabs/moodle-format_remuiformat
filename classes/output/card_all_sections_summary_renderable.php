@@ -164,6 +164,9 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 if (isset($modinfo->sections[$i])) {
                     foreach ($modinfo->sections[$i] as $cmid) {
                         $thismod = $modinfo->cms[$cmid];
+                        if (!$thismod->is_visible_on_course_page()) {
+                            continue;
+                        }
                         if (isset($sectionmods[$thismod->modname])) {
                             $sectionmods[$thismod->modname]['name'] = $thismod->modplural;
                             $sectionmods[$thismod->modname]['count']++;
