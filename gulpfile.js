@@ -10,6 +10,8 @@ var shell  = require('gulp-shell');
 const sourcemaps = require('gulp-sourcemaps');
 // JS stuff.
 const minify = require('gulp-minify');
+const del = require('del');
+
 var jssrc = './amd/src/*.js';
 
 // Compile all your Sass.
@@ -45,11 +47,16 @@ gulp.task('compress', function(done) {
     done();
 });
 
-gulp.task('purge', shell.task('php ' + __dirname + '/../../admin/cli/purge_caches.php'));
+gulp.task('purge', shell.task('php ' + __dirname + '/../../../admin/cli/purge_caches.php'));
 
 gulp.task('watch', function(done) {
-    gulp.watch('./amd/src/*.js', gulp.series('compress'));
+    gulp.watch('./amd/src/*.js', gulp.series('clean', 'compress', 'purge'));
     // gulp.watch('./styles/*.css', gulp.series('sass'));
+    done();
 });
 
-gulp.task('default', gulp.series('watch', 'compress', 'purge'));
+gulp.task('clean', function() {
+    return del(['amd/build/*']);
+});
+
+gulp.task('default', gulp.series('clean', 'compress', 'purge', 'watch'));
