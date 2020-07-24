@@ -334,12 +334,23 @@ class format_remuiformat extends format_base {
      */
     public function set_remuicourseimage_filemanager($itemid = false) {
         global $DB;
-        $DB->set_field('course_format_options', 'value', $itemid, array(
+        $courseimage = $DB->get_record('course_format_options', array(
             'courseid' => $this->courseid,
             'format' => 'remuiformat',
             'sectionid' => 0,
             'name' => 'remuicourseimage_filemanager'
         ));
+        if ($courseimage == false) {
+            $courseimage = (object) array(
+                'courseid' => $this->courseid,
+                'format' => 'remuiformat',
+                'sectionid' => 0,
+                'name' => 'remuicourseimage_filemanager'
+            );
+            $courseimage->id = $DB->insert_record('course_format_options', $courseimage);
+        }
+        $courseimage->value = $itemid;
+        $DB->update_record('course_format_options', $courseimage);
         return true;
     }
 
@@ -355,6 +366,9 @@ class format_remuiformat extends format_base {
             'sectionid' => 0,
             'name' => 'remuicourseimage_filemanager'
         ));
+        if (!$itemid) {
+            $itemid = file_get_unused_draft_itemid();
+        }
         return $itemid;
     }
 
@@ -366,7 +380,7 @@ class format_remuiformat extends format_base {
      * @return array array of references to the added form elements.
      */
     public function create_edit_form_elements(&$mform, $forsection = false) {
-        global $COURSE;
+        global $COURSE, $USER;
 
         $elements = parent::create_edit_form_elements($mform, $forsection);
         if (!$forsection && (empty($COURSE->id) || $COURSE->id == SITEID)) {
@@ -386,16 +400,20 @@ class format_remuiformat extends format_base {
 
         $elementsnew = [];
 
+        $fs = get_file_storage();
+        $coursecontext = context_course::instance($this->courseid);
+        $usercontext = context_user::instance($USER->id);
+
         foreach ($elements as $key => $element) {
             if ($element->getName() == 'sectiontitlesummarymaxlength') {
-                $contextid = context_course::instance($this->courseid);
                 $data = new stdClass;
                 $fileitemid = $this->get_remuicourseimage_filemanager();
+                $fs->delete_area_files($usercontext->id, 'user', 'draft', $fileitemid);
                 $data = file_prepare_standard_filemanager(
                     $data,
                     'remuicourseimage',
                     array('accepted_types' => 'images', 'maxfiles' => 1),
-                    $contextid,
+                    $coursecontext,
                     'format_remuiformat',
                     'remuicourseimage_filearea',
                     $fileitemid
