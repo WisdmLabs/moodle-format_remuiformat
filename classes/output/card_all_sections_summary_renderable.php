@@ -110,6 +110,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
      */
     private function get_card_format_context(&$export, $renderer, $editing, $rformat) {
         global $OUTPUT;
+        $output = array();
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
         $sections = $modinfo->get_section_info_all();
