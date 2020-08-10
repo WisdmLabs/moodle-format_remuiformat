@@ -278,6 +278,11 @@ class course_format_data_common_trait {
             } else if ($rformat == REMUI_LIST_FORMAT) {
                 if (!empty($currentsection->summary)) {
                     $sectiondetails->summary = $renderer->format_summary_text($currentsection);
+                    if ($settings['coursedisplay'] == 1) {
+                        $sectiondetails->summary = $renderer->abstract_html_contents(
+                            $sectiondetails->summary, $sectiontitlesummarymaxlength
+                        );
+                    }
                 }
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
