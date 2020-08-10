@@ -145,7 +145,7 @@ $string['showfullsummary'] = '+ Show full summary';
 $string['showless'] = 'Show less';
 
 // Usage tracking
-$string['enableusagetracking'] = "Enable Usage Trakcing";
+$string['enableusagetracking'] = "Enable Usage Tracking";
 $string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
 
 <hr class='text-muted' />
