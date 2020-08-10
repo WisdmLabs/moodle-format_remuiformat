@@ -93,6 +93,7 @@ $string['remuicourseformat_help'] = 'Choose a course layout';
 $string['remuicourseimage'] = 'Choose a course image';
 $string['remuicourseimage_help'] = 'Choose a course image';
 $string['addsections'] = 'Add sections';
+$string['teacher'] = 'Teacher';
 $string['teachers'] = 'Teachers';
 $string['remuiteacherdisplay'] = 'Show Teacher image';
 $string['remuiteacherdisplay_help'] = 'Show Teacher image in the Course header.';

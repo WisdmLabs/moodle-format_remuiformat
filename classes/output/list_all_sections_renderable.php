@@ -162,7 +162,7 @@ class format_remuiformat_list_all_sections implements renderable, templatable {
                 $export->generalsection['teachers'] = $teachers;
                 $export->generalsection['teachers']['teacherimg'] = '
                 <div class="teacher-label"><span>'
-                .get_string('teachers', 'format_remuiformat').
+                .get_string(count($teachers) > 1 ? 'teachers' : 'teacher', 'format_remuiformat').
                 '</span></div>
                 <div class="carousel slide" data-ride="carousel" id="teachers-carousel">
                 <div class="carousel-inner text-center">';
