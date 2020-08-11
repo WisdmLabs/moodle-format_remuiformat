@@ -112,89 +112,17 @@
                                 <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
                                 
                                 {{#summary}}
-                                    {{#layouttypecol}}
-                                        {{#label}}
-                                            <a href="{{viewurl}}" data-toggle="modal" data-target="#{{viewurl}}">
-                                        {{/label}}
-                                    {{/layouttypecol}}
+                                    {{#label}}
+                                        <div class="pt-10 mb-10">
+                                            {{{ fullcontent }}}
+                                        </div>
+                                    {{/label}}
+                                    {{^label}}
                                         <div class="pt-10 mb-10">
                                             {{{ summary }}}
                                         </div>
-                                    {{#layouttypecol}}
-                                        {{#label}}
-                                            </a>
-                                        {{/label}}
-                                    {{/layouttypecol}}
+                                    {{/label}}
                                 {{/summary}}
-                                
-                                {{^availstatus}}
-                                <div class="d-flex wdm-bottom-container card-bottom {{#hidden}}text-muted{{/hidden}}{{^fullcontent}}{{^hidden}}text-primary{{/hidden}}{{/fullcontent}}">
-                                    <div class="flex-1 pl-15 p-l-1">
-                                            <!-- show open modal button in case of label activity -->
-                                            {{#fullcontent}}
-                                                {{#summary}}
-                                                {{#hidefornow}}
-                                                    {{#layouttyperow}}
-                                                        {{^label}}
-                                                            <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
-                                                        {{/label}}
-                                                    {{/layouttyperow}}
-                                                    {{#layouttypecol}}
-                                                        {{#label}}
-                                                            <a href="{{viewurl}}" data-toggle="modal" data-target="#{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
-                                                        {{/label}}
-                                                        {{^label}}
-                                                            <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
-                                                        {{/label}}
-                                                    {{/layouttypecol}}
-                                                {{/hidefornow}}
-                    
-                                                    <!-- The Modal -->
-                                                    <div class="modal" id="{{viewurl}}">
-                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                                                            <div class="modal-content">
-                                                            {{! <div class="modal-header">
-                                                                <h4 class="modal-title"></h4>
-                                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></button>
-                                                            </div> }}
-                                                            <!-- Modal body -->
-                                                            <div class="modal-body">
-                                                                {{{fullcontent}}}
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                {{/summary}}
-                                            {{/fullcontent}}
-                                            {{#hidefornow}}
-                                                {{#layouttypecol}}
-                                                    {{^fullcontent}}
-                                                        <a href="{{viewurl}}" class="btn {{^hidden}}btn-primary{{/hidden}} {{#hidden}}btn-dark{{/hidden}}">{{#str}}viewtopic, format_remuiformat{{/str}}</a>
-                                                    {{/fullcontent}}
-                                                {{/layouttypecol}}
-                                            {{/hidefornow}}
-                                        </div>
-                                    {{#completion}}
-                                    <div class="wdm-completion-container align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
-                                        <div class="wdm-completion-check-{{id}}">
-                                            <span class="m-0 text-right wdm-completion-title wdm-completion-status-{{id}}" style="display: inline;">
-                                                {{^autocompletion}}
-                                                    {{^label}}
-                                                        {{#completed}}
-                                                            {{#str}} completed, format_remuiformat{{/str}}
-                                                        {{/completed}}
-                                                        {{^completed}}
-                                                            {{#str}} markcomplete, format_remuiformat{{/str}}
-                                                        {{/completed}}
-                                                    {{/label}} 
-                                                {{/autocompletion}}
-                                            </span>
-                                            {{{ completion }}}
-                                        </div>
-                                    </div>
-                                    {{/completion}}
-                                </div>
-                                {{/availstatus}}
                             </div>
                         </li>
                     {{/activities}}
