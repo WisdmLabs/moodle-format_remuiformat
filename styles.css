@@ -1212,7 +1212,6 @@ ul.remui-format-list span.inplaceeditable input {
 
 .read-more-trigger {
     cursor: pointer !important;
-    display: none;
 }
 
 /* .read-more-state ~ .read-more-trigger:before {

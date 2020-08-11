@@ -280,8 +280,8 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
 
         // ... + Show full summary label show conditionally.
         var summaryheight = $('.read-more-target .no-overflow').height();
-        if (summaryheight > 52) {
-            $('.read-more-trigger').show();
+        if (summaryheight < 110) {
+            $('.read-more-trigger, .fadeout-summary').hide();
         }
     }
     // Must return the init function.
