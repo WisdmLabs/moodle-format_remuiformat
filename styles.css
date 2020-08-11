@@ -775,39 +775,48 @@ For list format
     display: block;
 }
 
-@media (min-width: 1200px) {
-    .showhidecardactivity .first-section-activity:nth-child(n+4) {
-        display: none;
-    }
+.remui-format-list .first-section-li > .content {
+    padding: 10px 0;
 }
 
+.remui-format-list .first-section-li ul.first-section {
+    padding: 0 !important;
+}
+
+/* List Layout */
+/* Desktops, large screens */
 @media (min-width: 992px) {
-    .showhideactivity .first-section-activity:nth-child(n+5) {
+    .remui-format-list .showhideactivity .first-section-activity:nth-child(n+5) {
         display: none;
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-    .showhidecardactivity .first-section-activity:nth-child(n+4) {
-        display: none;
-    }
-}
-
+/* Small screens, laptops */
 @media (min-width: 768px) and (max-width: 991px) {
-    .showhideactivity .first-section-activity:nth-child(n+4) {
-        display: none;
-    }
-    .showhidecardactivity .first-section-activity:nth-child(n+4) {
+    .remui-format-list .showhideactivity .first-section-activity:nth-child(n+4) {
         display: none;
     }
 }
 
+/* iPads, Tablets */
 @media (max-width: 767px) {
-    .showhideactivity .first-section-activity:nth-child(n+3) {
+    .remui-format-list .showhideactivity .first-section-activity:nth-child(n+3) {
         display: none;
     }
-    .showhidecardactivity .first-section-activity:nth-child(n+3) {
-        display: none;
+}
+
+/* Card layout */
+/* Desktops, large screens */
+@media (min-width: 768px) {
+    .remui-format-card .showhideactivity .first-section-activity:nth-child(n+4) {
+        display: none !important;
+    }
+}
+
+/* Small screens, laptops */
+@media (max-width: 767px) {
+    .remui-format-card .showhideactivity .first-section-activity:nth-child(n+3) {
+        display: none !important;
     }
 }
 
@@ -816,7 +825,6 @@ For list format
         padding: 5px 0 0 13px !important;
     }
 }
-
 
 @media (max-width: 992px) {
     .general-section-card-details .generalsecactivitiesmain.onshowmore {
@@ -1073,6 +1081,7 @@ ul.remui-format-list span.inplaceeditable input {
 .showactivitywrapper .showactivity {
     font-size: 24px;
     line-height: 24px;
+    cursor: pointer;
 }
 
 #page-course-view-remuiformat ul.section.first-section.row {

@@ -79,7 +79,7 @@
 
    <div class="content">
     <div class="section_availability badge badge-pill badge-info mb-10"></div>
-        <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-start text-center showhideactivity">
+        <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-start text-center">
             {{#activities}}
                 <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
                     <div>
@@ -99,7 +99,7 @@
             {{/activities}}
         </ul>
     <div class="text-center showactivitywrapper">
-        <span class="showactivity text-primary show" style="visibility: hidden;">
+        <span class="showactivity text-primary show">
             <i class="fa fa-angle-down" aria-hidden="true"></i>
         </span>
     </div>
@@ -125,56 +125,6 @@ require(['jquery'], function(jQuery) {
       var config = { attributes: true, childList: true, characterData: true };
       // pass in the target node, as well as the observer options
       observer.observe(target, config);
-
-    // show hide extra activities in general/first section
-    jQuery('.showactivity').on('click', function() {
-        jQuery('.section.first-section').toggleClass('showhideactivity');
-        if(jQuery(this).hasClass('show')) {
-            jQuery(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
-            jQuery(this).toggleClass('show');
-        } else {
-            jQuery(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>');
-            jQuery(this).toggleClass('show');
-        }
-    });
-
-    showmorebuttonedit();
-
-    // Show load more button conditionally on window resize and load.
-    function showmorebuttonedit() {
-        var wwidth = jQuery(window).width();
-        var count = jQuery(".first-section-activity").length;
-
-        // Show load more button conditionally on window load.
-        if(wwidth > 991) {
-            if(count > 4) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        } else if(wwidth > 767 && wwidth < 992) {
-            if(count > 3) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        } else {
-            if(count > 2) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        }
-    }
 });
 
 {{/js}}

@@ -108,7 +108,7 @@
             <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
         {{/activityexists}}
         <div class="content">
-            <ul class="section first-section img-text d-flex row generalsecactivitiesmain justify-content-start text-center showhidecardactivity yui3-dd-drop" data-draggroups="resource">
+            <ul class="section first-section img-text d-flex row generalsecactivitiesmain justify-content-start text-center yui3-dd-drop" data-draggroups="resource">
                 {{#activities}}
                     <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-12 col-sm-6 col-md-4 col-lg-4 col-xlq-2 justify-content-center list-unstyled yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
                         <div class="generalsecactivitiescontent">
@@ -129,8 +129,8 @@
             </ul>
         </div>
 
-        <div class="text-center showactivitywrapper" style="display: none;">
-            <span class="showactivity text-primary show" style="display: none;">
+        <div class="text-center showactivitywrapper">
+            <span class="showactivity text-primary show">
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
             </span>
         </div>
@@ -157,63 +157,5 @@ require(['jquery'], function(jQuery) {
       observer.observe(target, config);
 
     // show hide extra activities in general/first section
-    jQuery('.showactivity').on('click', function() {
-
-        if(jQuery(this).hasClass('show')) {
-            jQuery(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
-            jQuery(this).toggleClass('show'); //Remove show class
-        } else {
-            jQuery(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>');
-            jQuery(this).toggleClass('show'); //Add show class
-            jQuery("html, body").animate({ scrollTop: 0 }, "slow");
-        }
-        jQuery('.generalsecactivitiesmain').toggleClass('showhidecardactivity');
-    });
-
-    showmorebutton();
-
-    // Show load more button conditionally on window resize and load.
-    function showmorebutton() {
-        var wwidth = jQuery(window).width();
-        var count = jQuery(".first-section-activity").length;
-        // Show load more button conditionally on window load.
-            if(wwidth > 1200) {
-            if(count > 3) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        } else if(wwidth > 991) {
-            if(count > 3) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        } else if(wwidth > 767 && wwidth < 992) {
-            if(count > 2) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        } else {
-            if(count > 2) {
-                jQuery('.showactivity').removeAttr( 'style' );
-                jQuery('.showactivitywrapper').removeAttr( 'style' );
-                }
-            else {
-                jQuery('.showactivity').css('display', 'none');
-                jQuery('.showactivitywrapper').css('display', 'none');
-                }
-        }
-    }
 });
 {{/js}}

@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($, Ajax) {
+define(['jquery', 'core/ajax', 'format_remuiformat/common', 'format_remuiformat/jquery.dragsort'], function($, Ajax, common) {
 
     function init() {
 
@@ -283,6 +283,8 @@ define(['jquery', 'core/ajax', 'format_remuiformat/jquery.dragsort'], function($
         if (summaryheight < 110) {
             $('.read-more-trigger, .fadeout-summary').hide();
         }
+
+        common.init();
     }
     // Must return the init function.
 
