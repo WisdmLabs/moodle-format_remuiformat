@@ -29,7 +29,7 @@
     overflow: visible;
 }
 
-.col-12 {
+#page-course-view-remuiformat .course-content .col-12 {
     padding-right: 1.0715rem !important;
     padding-left: 1.0715rem !important;
 }
@@ -1041,7 +1041,7 @@ ul.remui-format-list span.inplaceeditable input {
 }
 
 @media (min-width: 768px) {
-    .col-md-12 {
+    #page-course-view-remuiformat .course-content .col-md-12 {
         float: none !important;
     }
 }
