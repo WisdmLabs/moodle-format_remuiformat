@@ -359,6 +359,8 @@ input.ignoredirty.form-control {
 
 .general-section-card-details .coursemainimage {
     width: 100%;
+    background-position: center;
+    background-size: cover;
 }
 
 .general-section-card-details .coursedetails .row {
