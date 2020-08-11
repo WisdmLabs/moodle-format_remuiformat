@@ -746,6 +746,7 @@ For list format
     height: auto;
     -webkit-background-size: cover;
     background-size: cover;
+    background-position: center;
 }
 .section.first-section .activityinstance {
     min-width: auto;
