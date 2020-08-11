@@ -222,7 +222,7 @@ class course_format_data_common_trait {
                 'moodle/course:viewhiddensections',
                 $coursecontext
             ));
-            if ($sectiondetails->hiddenmessage != "") {
+            if ($sectiondetails->hiddenmessage != "" && !has_capability( 'moodle/course:viewhiddensections', $coursecontext )) {
                 $sectiondetails->hidden = 1;
             }
             $extradetails = $this->get_section_module_info($currentsection, $course, null, $singlepageurl);
