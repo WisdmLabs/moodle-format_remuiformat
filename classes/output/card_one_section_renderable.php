@@ -75,6 +75,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
+        $sections = $modinfo->get_section_info_all();
+
         $renderer = $PAGE->get_renderer('format_remuiformat');
 
         $export->section = $this->displaysection;
@@ -124,6 +126,16 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             $this->displaysection
         );
         $export->remuicourseformatcard = true;
+        $export->sections = [];
+        foreach ($sections as $index => $section_info) {
+            if ($section_info->section == $this->displaysection) {
+                continue;
+            }
+            $section = new stdClass;
+            $section->index = $section_info->section;
+            $section->name = $this->courseformat->get_section_name($section->index);
+            $export->sections[] = $section;
+        }
         $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }
