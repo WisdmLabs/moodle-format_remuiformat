@@ -117,6 +117,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
 
         // Setting up data for General Section.
         $generalsection = $modinfo->get_section_info(0);
+        $export->generalsection['index'] = 0;
         $generalsectionsummary = $renderer->format_summary_text($generalsection);
         if ($generalsection) {
             if ($editing) {
@@ -142,7 +143,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
             $export->generalsection['summary'] = $renderer->abstract_html_contents(
                 $generalsectionsummary, 400
             );
-            $export->generalsection['fullsummary'] = $renderer->format_summary_text($generalsection);
+            $export->generalsection['fullsummary'] = $generalsectionsummary;
             // Get course image if added.
 
             $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);

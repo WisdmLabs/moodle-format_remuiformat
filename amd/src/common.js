@@ -27,7 +27,7 @@
  		ACTIVITY_TOGGLE: '.showactivity',
  		ACTIVITY_TOGGLE_CLASS: 'showhideactivity',
  		ACTIVITY_TOGGLE_WRAPPER: '.showactivitywrapper',
- 		FIRST_SECTION: '.section.first-section',
+ 		FIRST_SECTION: '#section-0',
  		SHOW: 'show'
  	};
 
@@ -37,7 +37,7 @@
  	 */
  	function getActivitiesPerRow() {
  		let width = $(window).width();
- 		if ($('.remui-format-list')) {
+ 		if ($('.remui-format-list').length) {
 	 		if (width >= 992) {
 	 			return 4;
 	 		}
@@ -92,6 +92,7 @@
     }
 
     return {
-    	init: init
+    	init: init,
+    	adjustGeneralSectionActivities: adjustGeneralSectionActivities
     };
 });

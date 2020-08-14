@@ -1,11 +1,11 @@
-define(['jquery', 'core/ajax', 'core/templates', 'core/notification'], function($, Ajax, Templates, Notification) {
+define(['jquery', 'core/ajax', 'core/templates', 'core/notification', 'format_remuiformat/common'], function($, Ajax, Templates, Notification, common) {
 
     /**
      * element SELECTORS list
      * @type {Object}
      */
 	var SELECTORS = {
-		GENERAL_ROOT: '.general-single-card',
+		GENERAL_ROOT: '.general-section',
 		ACTIVITY: 'li.activity',
 		COURSE_PROGRESS: '.course-prgress-container'
 	};
@@ -54,6 +54,7 @@ define(['jquery', 'core/ajax', 'core/templates', 'core/notification'], function(
         $(document).bind('DOMNodeRemoved', function(event) {
             if ($(event.target).is('li.activity')) {
                 update_course_progress();
+                common.adjustGeneralSectionActivities();
             }
         });
     }
