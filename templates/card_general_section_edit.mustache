@@ -66,9 +66,9 @@
         ]
     }
 }}
-<div class="cards col-lg-12 col-sm-12 general-single-card-container mb-25 mb-4">
-    <div class="section general-single-card general-section-card-details px-15 px-3 pt-10 pt-2 p-x-1 p-y-1">
-        <div class="row">
+<li id="section-{{{index}}}" class="section cards col-lg-12 col-sm-12 mb-25 mb-4 p-10">
+    <div class="general-section">
+        <div class="section-details">
             <div class="generaldetails col-sm-12 col-lg-8 content pb-3 order-12 order-md-1 pb-10">
                 <div class="left side">
                     {{{ leftsection }}}
@@ -108,20 +108,22 @@
             <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
         {{/activityexists}}
         <div class="content">
-            <ul class="section first-section img-text d-flex row generalsecactivitiesmain justify-content-start text-center yui3-dd-drop" data-draggroups="resource">
+            <div class="summary"></div>
+            <ul class="img-text general-section-activities justify-content-start text-center yui3-dd-drop" data-draggroups="resource">
                 {{#activities}}
-                    <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} generalsecactivities col-12 col-sm-6 col-md-4 col-lg-4 col-xlq-2 justify-content-center list-unstyled yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
-                        <div class="generalsecactivitiescontent">
-                            <div>
-                                <div class="activityinstance p-0 d-inline-block">
-                                    {{{title}}}
-                                    <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
-                                </div>
-                                <div class="actions">
-                                    {{{completion}}}
-                                    {{{modicons}}}
-                                    {{{availstatus}}}
-                                </div>
+                    <li class="activity {{{modulename}}} modtype_{{{modulename}}} justify-content-center list-unstyled yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
+                        <div>
+                            <div class="activityinstance p-0 d-inline-block">
+                                {{{title}}}
+                                <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                            </div>
+                            <div class="actions">
+                                {{{completion}}}
+                                {{{modicons}}}
+                                {{{availstatus}}}
+                            </div>
+                            <div class="contentafterlink">
+                                {{{summary}}}
                             </div>
                         </div>
                     </li>
@@ -136,26 +138,4 @@
         </div>
         {{{addnewactivity}}}
     </div>
-</div>
-{{#js}}
-require(['jquery'], function(jQuery) {
-
-        // change css for li after drag and drop
-    
-     // select the target node
-      var target = document.querySelector('div.cards ul.first-section')
-      // create an observer instance
-      var observer = new MutationObserver(function(mutations) {
-        {{! jQuery('div.cards ul.first-section').find('li.activity').attr('class', 'activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-3 col-xlq-2 justify-content-center yui3-dd-drop'); }}
-        jQuery('div.cards ul.first-section').find('li.activity').addClass('activity first-section-activity generalsecactivities col-6 col-sm-6 col-md-4 col-lg-4 justify-content-center yui3-dd-drop');
-        jQuery('div.cards ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
-        jQuery('div.cards ul.first-section').find('.mod-indent-outer').removeAttr('class');
-        });
-      // configuration of the observer:
-      var config = { attributes: true, childList: true, characterData: true };
-      // pass in the target node, as well as the observer options
-      observer.observe(target, config);
-
-    // show hide extra activities in general/first section
-});
-{{/js}}
+</li>
