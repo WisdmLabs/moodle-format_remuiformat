@@ -567,6 +567,9 @@ class format_remuiformat extends format_base {
     }
 
     public function update_course_format_options($data, $sectionid = null) {
+        if (!isset($data->remuicourseimage_filemanager)) {
+            $data->remuicourseimage_filemanager = '';
+        }
         if (!empty($data)) {
             // Used optional_param() instead of using $_POST and $_GET.
 
@@ -583,10 +586,6 @@ class format_remuiformat extends format_base {
                 );
             }
 
-            // Remove course image in case of Restore.
-            if ( !isset($_REQUEST['remuicourseimage_filemanager']) && isset($data->remuicourseimage_filemanager ) ) {
-                $data->remuicourseimage_filemanager = '';
-            }
             $this->set_remuicourseimage_filemanager($data->remuicourseimage_filemanager);
         }
         return $this->update_format_options($data);
