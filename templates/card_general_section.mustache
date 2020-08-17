@@ -86,7 +86,7 @@
             <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
             <ul class="general-section-activities justify-content-start text-center">
                 {{#activities}}
-                    <li class="activity justify-content-center list-unstyled" id="module-{{id}}">
+                    <li class="activity justify-content-center list-unstyled {{{modulename}}} modtype_{{{modulename}}}" id="module-{{id}}">
                         <div class="generalsecactivitiescontent w-100">
                             {{#editing}}
                                 {{{leftside}}}
