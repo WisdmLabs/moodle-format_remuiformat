@@ -367,7 +367,7 @@ class course_format_data_common_trait {
                     $status = get_string('activitiescompleted', 'format_remuiformat');
                 }
                 $pinfo->progress = $total . $status;
-                $pinfo->progress = $complete.' '.get_string('outof', 'format_remuiformat').' '.$total.' '.$status;
+                $pinfo->progress = '<a href=' . $singlepageurl . '>' . $complete . ' ' . get_string('outof', 'format_remuiformat') . ' ' . $total . ' ' . $status . '</a>';
             } else if ( $pinfo->percentage >= 50 && $pinfo->percentage < 100 ) {
                 $total = $total - $complete;
                 if ($total == 1) {
@@ -375,7 +375,7 @@ class course_format_data_common_trait {
                 } else {
                     $status = get_string('activitiesremaining', 'format_remuiformat');
                 }
-                $pinfo->progress = $total.' '.$status;
+                $pinfo->progress = '<a href=' . $singlepageurl . '>' . $total . ' ' . $status . '</a>';
             } else if ( $pinfo->percentage == 100 ) {
                 $pinfo->progress = get_string('allactivitiescompleted', 'format_remuiformat');
             }
