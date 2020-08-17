@@ -115,7 +115,7 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
         // User id for toggle.
         $export->user_id = $USER->id;
         // Course Information.
-        $export->course_id = $this->course->id;
+        $export->courseid = $this->course->id;
         $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);
 
         // General Section Details.
