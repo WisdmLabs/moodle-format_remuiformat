@@ -32,17 +32,17 @@
                 "activityinfostring": "2 Files, 2 Quizzes"
                 "sectionactivities" [
                     {
-                        
+
                     }
-                ] 
+                ]
             }
         ]
     }
 }}
 
 {{#addsection}}
-<li id="{{divid}}" class="card main clearfix mb-4 m-b-2" role="region" style="">
-   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border d-flex align-items-center " style="clear:both;">
+<li id="{{divid}}" class="card clearfix mb-4 m-b-2" role="region" style="">
+   <div class="content card-block px-15 px-3 py-10 py-2 remui-list-content-border d-flex align-items-center">
       {{#numsections}}
          <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
 
@@ -59,11 +59,10 @@
 {{/addsection}}
 
 {{^addsection}}
-<li id="section-{{{index}}}" class="card section main clearfix mb-4 wdm-card" role="region" style="" aria-label="">
+<li id="section-{{{index}}}" class="card section clearfix mb-4" role="region" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
    {{#highlighted}}<div class="list-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
-   <span class="hidden sectionname">{{{ title }}}</span>
-   <div class="content card-block px-15 py-15 py-3 px-3 remui-list-content-border" style="clear:both;">
-      <div class="row d-block">
+   <div class="content card-block px-15 py-15 py-3 px-3 remui-list-content-border" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
+      <div class="d-block">
         <div class="left side float-left">
           {{{ leftside }}}
         </div>
@@ -100,6 +99,5 @@
       {{/availability}}
       <div class="section-summary-activities mdl-right {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div>
    </div>
-   <span class="hidden sectionname">{{{ title }}}</span>
 </li>
 {{/addsection}}

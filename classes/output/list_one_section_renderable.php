@@ -75,6 +75,7 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
+        $sections = $modinfo->get_section_info_all();
         $renderer = $PAGE->get_renderer('format_remuiformat');
 
         $export->section = $this->displaysection;
@@ -110,7 +111,6 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
         $export->title = $sectionname;
-        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
         if (!empty($currentsection->summary)) {
             $export->summary = $renderer->format_summary_text($currentsection);
         }
@@ -124,6 +124,16 @@ class format_remuiformat_list_one_section implements renderable, templatable {
             $this->course, $this->displaysection, $this->displaysection
         );
         $export->courseid = $this->course->id;
+        $export->sections = [];
+        foreach ($sections as $index => $section_info) {
+            if ($section_info->section == $this->displaysection) {
+                continue;
+            }
+            $section = new stdClass;
+            $section->index = $section_info->section;
+            $section->name = $this->courseformat->get_section_name($section->index);
+            $export->sections[] = $section;
+        }
         $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
         return $export;
     }
