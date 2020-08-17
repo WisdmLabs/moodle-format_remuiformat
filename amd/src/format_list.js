@@ -21,11 +21,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- define(['jquery', 'format_remuiformat/common'], function($, common) {
+ define(['jquery', './common', './format_card_ordering'], function($, common, ordering) {
 
     function init() {
 
-        $('#page-course-view-remuiformat span.section-modchooser-link').addClass("btn btn-primary");
         $('.general-single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 200, "swing");
         $('.single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 400, "swing");
 
@@ -69,8 +68,10 @@
             };
 
             var sectionlist = Y.Node.all('.' + CSS.COURSECONTENT + ' ' + M.course.format.get_section_selector(Y));
-            // Swap menus.
-            sectionlist.item(node1).one('.' + CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.' + CSS.SECTIONADDMENUS));
+
+            if (sectionlist.item(node1).one('.'+CSS.SECTIONADDMENUS)) {
+                sectionlist.item(node1).one('.'+CSS.SECTIONADDMENUS).swap(sectionlist.item(node2).one('.'+CSS.SECTIONADDMENUS));
+            }
         };
 
         /**
@@ -116,6 +117,7 @@
         };
 
         common.init();
+        ordering.init();
     }
 
     // Must return the init function.

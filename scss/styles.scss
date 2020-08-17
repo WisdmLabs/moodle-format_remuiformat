@@ -1,5 +1,67 @@
 body.format-remuiformat {
 	@import './card-layout.scss';
+	@import './list-layout.scss';
+
+	.remui-format-card, .remui-format-list {
+		.hide {
+			display: none;
+		}
+	}
+
+	.general-section-activities {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 0 1rem;
+        .activity {
+        	display: flex;
+            padding: 2rem 1rem 0rem;
+            & > div {
+                width: 100%;
+            }
+            .actions {
+                display: block;
+                position: relative;
+                .spinner {
+                    position: relative;
+                    left: 0;
+                }
+            }
+            .activityinstance {
+                padding: 0;
+                width: 100%;
+            }
+            .contentafterlink {
+                margin: 0 !important;
+            }
+            .editing_move {
+                left: 1rem;
+                top: 1rem;
+            }
+        }
+        @media (max-width: 992px) {
+            &.onshowmore {
+                position: static;
+            }
+        }
+
+        &.onshowmore {
+            height: 350px;
+        }
+
+        .activityinstance img {
+            width: 65px !important;
+            height: 65px !important;
+        }
+
+        .activityinstance .instancename {
+            display: block;
+        }
+
+        &:hover .availabilityinfo {
+            display: block;
+            background-color: white;
+        }
+    }
 
 	.course-content {
 		.sections {
@@ -7,6 +69,10 @@ body.format-remuiformat {
 			margin: 0;
 			padding: 0;
 		}
+	}
+
+	.content .summary .no-overflow {
+		width: 100%;
 	}
 	// /* Global */
 
@@ -157,20 +223,6 @@ body.format-remuiformat {
 	//     display: none;
 	// }
 
-	// .wdm-single-activity-title,
-	// ul.remui-format-list h4.sectionname {
-	//     margin: 0;
-	//     font-size: 18px;
-	//     font-weight: 500;
-	//     /* padding: 7px 0; */
-	// }
-
-	// /* Was added in RemUI theme */
-	// &.editing ul.remui-format-list h4.sectionname{
-	//     padding: 10px 0!important;
-	//     clear: none!important;
-	// }
-
 	// div#card-editing-container .section-title,
 	// div#card-container .section-title,
 	// .single-section-title {
@@ -236,7 +288,6 @@ body.format-remuiformat {
 	// }
 
 	.section-modchooser {
-	    padding: 2rem 1rem 0;
 		.section-modchooser-link {
 			*, a:hover {
 		    	color: white;
@@ -405,62 +456,13 @@ body.format-remuiformat {
 	//     padding-top: 0;
 	//     text-align: right;
 	// }
-	// .section.first-section .activityinstance .iconlarge.activityicon {
-	//     width: 75px;
-	//     height: 75px;
-	// }
-	// .section.first-section .activityinstance > a {
-	//     padding-left: 0;
-	//     text-indent: 0;
-	// }
+	
 	// .section .activity .activityinstance > a,
 	// .section .activity .contentwithoutlink > a {
 	//     display: block;
 	// }
-	// .section.first-section .instancename {
-	//     display: block;
-	// }
-	// .first-section-li .course-cover-image {
-	//     min-height: 200px;
-	//     height: auto;
-	//     -webkit-background-size: cover;
-	//     background-size: cover;
-	//     background-position: center;
-	// }
-	// .section.first-section .activityinstance {
-	//     min-width: auto;
-	//     min-height: auto;
-	//     padding: 0 !important;
-	// }
-	// .section.first-section .activityinstance > a {
-	//     text-indent: 0;
-	//     padding-left: 0;
-	// }
-	// .section.first-section .activityinstance .iconlarge.activityicon {
-	//     width: 75px;
-	//     height: 75px;
-	// }
-	// .section.first-section div.actions,
-	// .section.first-section span.actions {
-	//     position: inherit !important;
-	//     padding: 5px 0;
-	//     display: flex;
-	//     justify-content: center;
-	// }
-	// .section.first-section div.actions .filler {
-	//     display: none;
-	// }
-	// .section.first-section .instancename {
-	//     display: block;
-	// }
 
-	// .remui-format-list .first-section-li > .content {
-	//     padding: 10px 0;
-	// }
-
-	// .remui-format-list .first-section-li ul.first-section {
-	//     padding: 0 !important;
-	// }
+	
 
 	// /* For course summary */
 	// .remui-list-content-border {
@@ -480,9 +482,7 @@ body.format-remuiformat {
 	//     vertical-align: middle;
 	// }
 
-	// li.first-section-li .summary {
-	//     min-height: 6.5rem;
-	// }
+
 
 	// /* Editing menu */
 	// .course-content ul.remui-format-list li.section div.left,
@@ -494,12 +494,6 @@ body.format-remuiformat {
 	// ul.remui-format-list li.section ul.section {
 	//     padding: 0;
 	//     margin: 0;
-	// }
-
-	// ul.remui-format-list li.section ul.section li.activity {
-	//     clear: both;
-	//     padding: 8px 0 !important;
-	//     border-bottom: 1px solid #f3f3f3;
 	// }
 
 	// ul.remui-format-list li.section ul.section li.activity:last-of-type {
@@ -550,9 +544,7 @@ body.format-remuiformat {
 	//     opacity: 1 !important;
 	//     min-width: 25px !important;
 	// }
-	// .first-section-li .carousel-inner {
-	//     width: 155px;
-	// }
+
 
 	// #teachers-carousel {
 	//     max-width: 175px;
@@ -571,15 +563,6 @@ body.format-remuiformat {
 
 
 	// /* Aligning the up and down icon with edit button */
-	// .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up,
-	// .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down {
-	//     margin-right: 2%;
-	// }
-
-	// .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-up:hover,
-	// .pagelayout-course.editing ul.remui-format-list .card-title .fa-angle-down:hover {
-	//     cursor: pointer;
-	// }
 
 	// /* Boost compatible CSS */
 

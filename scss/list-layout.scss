@@ -1,0 +1,191 @@
+// List Layout
+// Desktops, large screens
+&.editing {
+	.remui-format-list {
+		.sections {
+			.section {
+				.side {
+					margin: 0;
+					&.left {
+						padding: 10px 0!important;
+					}
+				}
+				.card-title {
+					.fa-angle-up, .fa-angle-down {
+					    margin-right: 2%;
+					    &:hover {
+					    	cursor: pointer;
+					    }
+					}
+				}
+				// Was added in RemUI theme
+				.sectionname{
+				    padding: 10px 0!important;
+				    clear: none!important;
+				}
+			}
+			#changenumsections {
+				width: 100%;
+			}
+
+		}
+	}
+	.general-section-activities {
+		margin-bottom: 2rem;
+	}
+}
+.remui-format-list {
+	#section-0 {
+		&.showhideactivity {
+			.general-section-activities .activity {
+				@media (min-width: 992px) {
+				    &:nth-child(n+5) {
+				        display: none;
+				    }
+				}
+
+				// Small screens, laptops
+				@media (min-width: 768px) and (max-width: 991px) {
+				    &:nth-child(n+4) {
+				        display: none;
+				    }
+				}
+
+				// iPads, Tablets
+				@media (max-width: 767px) {
+				    &:nth-child(n+3) {
+				        display: none;
+				    }
+				}
+
+			}
+		}
+		.general-section-activities {
+			padding: 0;
+			margin-left: 0;
+			margin-right: 0;
+			.activity {
+
+				@media (min-width: 992px) {
+			        width: 25%;
+				}
+
+				// Small screens, laptops
+				@media (min-width: 768px) and (max-width: 991px) {
+			        width: 33%;
+				}
+
+				// iPads, Tablets
+				@media (max-width: 767px) {
+			        width: 50%;
+				}
+				& > div {
+					padding: 0;
+				}
+				.activityinstance {
+				    min-width: auto;
+				    min-height: auto;
+				    padding: 0 !important;
+					& > a {
+					    padding-left: 0;
+					    text-indent: 0;
+					}
+					.iconlarge.activityicon {
+					    width: 75px;
+					    height: 75px;
+					}
+				}
+				.actions {
+				    position: inherit !important;
+				    padding: 5px 0;
+				    display: flex;
+				    justify-content: center;
+					.filler {
+					    display: none;
+					}
+				}
+			}
+			.instancename {
+			    display: block;
+			}
+		}
+		.section-title {
+			color: white;
+			a {
+				color: white;
+			}
+		}
+		.teacher-label {
+		    display: flex;
+		    justify-content: flex-end;
+		    align-items: center;
+		    margin-right: 0.5rem;
+		}
+		.course-cover-image {
+		    min-height: 200px;
+		    height: auto;
+		    -webkit-background-size: cover;
+		    background-size: cover;
+		    background-position: center;
+		}
+		& > .content {
+		    padding: 10px 0;
+		}
+
+		.summary {
+		    min-height: 6.5rem;
+		}
+		.carousel-inner {
+		    width: 155px;
+		}
+	}
+	.sections {
+		list-style: none;
+		.section {
+			width: 100%;
+			.sectionname {
+			    margin: 0;
+			    font-size: 18px;
+			    font-weight: 500;
+			}
+			.card-footer {
+				background: transparent;
+			}
+			ul.section {
+				padding: 0;
+			}
+		}
+	}
+	&.one-section-format {
+		&.all-section {
+			.sections {
+				.section:not(#section-0) {
+					ul.section {
+						display: none;
+					}
+				}
+			}
+		}
+		.activities-list {
+			border: none;
+		    -webkit-box-shadow: 0 0 8px #ddd;
+		    box-shadow: 0 0 8px #ddd;
+		    background-color: #fff;
+		    padding: 15px;
+		    ul.section {
+		    	margin: 0;
+		    	.activity {
+				    clear: both;
+				    padding: 8px 0 !important;
+				    border-bottom: 1px solid #f3f3f3;
+				    &:last-child {
+				    	border-bottom: 0 !important;
+				    }
+				}
+		    }
+		    .section-modchooser {
+		    	padding-top: 10px;
+		    }
+		}
+	}
+}

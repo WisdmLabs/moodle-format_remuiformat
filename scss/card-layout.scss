@@ -126,7 +126,6 @@
 
         @media (min-width: 768px) {
              .general-section-activities .activity {
-                display: flex;
                 flex: 0 0 33.33%;
                 & > div {
                     width:  100%;
@@ -140,7 +139,6 @@
         // Small screens, laptops
         @media (max-width: 767px) {
             .general-section-activities .activity {
-                display: flex;
                 flex: 0 0 50%;
                 & > div {
                     width:  100%;
@@ -245,64 +243,13 @@
                 padding: 0 1rem;
             }
             .general-section-activities {
-                display: flex;
-                flex-wrap: wrap;
-                padding: 0 0 1rem;
-                .activity {
-                    padding: 2rem 1rem 0rem;
-                    & > div {
-                        width: 100%;
-                    }
-                    .actions {
-                        display: block;
-                        position: relative;
-                        .spinner {
-                            position: relative;
-                            left: 0;
-                        }
-                    }
-                    .activityinstance {
+                & > div {
+                    text-align: center;
+                    padding: 12px !important;
+                    box-shadow: 0 0 8px #ddd;
+                    .mod-indent-outer {
                         padding: 0;
-                        width: 100%;
                     }
-                    .contentafterlink {
-                        margin: 0 !important;
-                    }
-                    & > div {
-                        text-align: center;
-                        padding: 12px !important;
-                        box-shadow: 0 0 8px #ddd;
-                        .mod-indent-outer {
-                            padding: 0;
-                        }
-                    }
-                    .editing_move {
-                        left: 1rem;
-                        top: 1rem;
-                    }
-                }
-                @media (max-width: 992px) {
-                    &.onshowmore {
-                        position: static;
-                    }
-                }
-
-                &.onshowmore {
-                    height: 350px;
-                }
-
-                .activityinstance img {
-                    width: 65px !important;
-                    height: 65px !important;
-                }
-
-                .activityinstance .instancename {
-                    display: block;
-                }
-
-                &:hover .availabilityinfo {
-                    display: block;
-                    background-color: white;
                 }
             }
             .general-section {
@@ -445,5 +392,9 @@
             text-decoration: none;
         }
     }
-
+    .section {
+        .section-modchooser {
+            padding: 2rem 1rem 0;
+        }
+    }
 }

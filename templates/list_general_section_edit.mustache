@@ -28,7 +28,7 @@
         "user_id: "1",
         "course_id: "1",
         "generalsection": [
-         {  
+         {
             "generalsectiontitle": "General Section Title",
             "activities": [
                 {
@@ -50,7 +50,7 @@
         ]
     }
 }}
-<li id="section-0" class="first-section-li section main clearfix mb-25 mb-4" role="region" aria-label="{{{generalsectiontitlename}}}">
+<li id="section-0" class="first-section-li section clearfix mb-25 mb-4" role="region" aria-label="{{{generalsectiontitlename}}}">
    <div class="px-15 py-10 px-3 p-x-1 py-2 p-y-1 course-cover-image" style="background-image: linear-gradient(to right, rgba(14, 35, 53, 0.68), rgba(14, 35, 53, 0.68)), url({{{remuicourseimage}}});">
     {{#rightside}}
     <div class="right side">
@@ -58,7 +58,9 @@
     </div>
     {{/rightside}}
         <div class="text-white">
-            <div class="page-title mb-15 wdm-generalsectiontitle">{{{generalsectiontitle}}}</div>
+            <h2 class="section-title">
+                {{{generalsectiontitle}}}
+            </h2>
             <div class="font-size-14 summary">{{{ generalsectionsummary }}}</div>
         </div>
         <div class="text-white mb-10 m-b-1 d-flex" style="justify-content: flex-end;">
@@ -78,54 +80,30 @@
    <span class="hidden sectionname">{{{generalsectiontitlename}}}</span>
 
    <div class="content">
-    <div class="section_availability badge badge-pill badge-info mb-10"></div>
-        <ul class="section first-section img-text row p-0 py-10 py-2 p-y-1 d-flex justify-content-start text-center">
-            {{#activities}}
-                <li class="activity first-section-activity {{{modulename}}} modtype_{{{modulename}}} col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
-                    <div>
+        <div class="section_availability badge badge-pill badge-info mb-10"></div>
+            <div class="summary hide"></div>
+            <ul class="section general-section-activities img-text row justify-content-start text-center">
+                {{#activities}}
+                    <li class="activity first-section-activity modtype_{{{modulename}}} justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
                         <div>
                             <div class="activityinstance p-0 d-inline-block">
-                            {{{title}}}
-                            <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                                {{{title}}}
+                                <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
                             </div>
                             <div class="actions">
-                            {{{completion}}}
-                            {{{modicons}}}
-                            {{{availstatus}}}
+                                {{{completion}}}
+                                {{{modicons}}}
+                                {{{availstatus}}}
                             </div>
                         </div>
-                    </div>
-                </li>
-            {{/activities}}
-        </ul>
-    <div class="text-center showactivitywrapper">
-        <span class="showactivity text-primary show">
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
-        </span>
+                    </li>
+                {{/activities}}
+            </ul>
+        <div class="text-center showactivitywrapper">
+            <span class="showactivity text-primary show">
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+        </div>
+        {{{addnewactivity}}}
     </div>
-    {{{addnewactivity}}}
-   </div>
 </li>
-
-
-{{#js}}
-require(['jquery'], function(jQuery) {
-
-     // change css for li after drag and drop
-    
-     // select the target node
-      var target = document.querySelector('ul.remui-format-list ul.first-section')
-      // create an observer instance
-      var observer = new MutationObserver(function(mutations) {
-        {{! jQuery('ul.remui-format-list ul.first-section').find('li.activity').attr('class', 'activity first-section-activity forum modtype_forum col-6 col-sm-6 col-md-4 col-lg-3 justify-content-center p-0 pt-10 pt-2 yui3-dd-drop yui3-dd-draggable'); }}
-        jQuery('ul.remui-format-list ul.first-section').find('.activityinstance').attr('class', 'activityinstance p-0 d-inline-block');
-        jQuery('ul.remui-format-list ul.first-section').find('.mod-indent-outer').removeAttr('class');
-        });
-      // configuration of the observer:
-      var config = { attributes: true, childList: true, characterData: true };
-      // pass in the target node, as well as the observer options
-      observer.observe(target, config);
-});
-
-{{/js}}
-

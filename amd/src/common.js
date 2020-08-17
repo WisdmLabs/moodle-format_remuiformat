@@ -72,7 +72,7 @@
     function init() {
 
     	$('#page-course-view-remuiformat .section-modchooser-link').addClass("btn btn-primary");
-    	
+
     	adjustGeneralSectionActivities();
     	$(window).resize(function() {
             adjustGeneralSectionActivities();
