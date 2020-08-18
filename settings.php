@@ -26,9 +26,6 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-defined('REMUI_HIDE_GENERAL_SECTION') || define ('REMUI_HIDE_GENERAL_SECTION', 1);
-defined('REMUI_SHOW_GENERAL_SECTION') || define ('REMUI_SHOW_GENERAL_SECTION', 0);
-
 global $CFG;
 
 if ($ADMIN->fulltree) {
@@ -43,15 +40,15 @@ if ($ADMIN->fulltree) {
     $name = 'format_remuiformat/hidegeneralsectionwhenempty';
     $title = new lang_string('hidegeneralsectionwhenempty', 'format_remuiformat');
     $description = new lang_string('hidegeneralsectionwhenempty_help', 'format_remuiformat');
-    $default = REMUI_HIDE_GENERAL_SECTION;
+    $default = 1;
     $settings->add(new admin_setting_configselect(
         $name,
         $title,
         $description,
         $default,
         array(
-            REMUI_HIDE_GENERAL_SECTION => new lang_string('hide'),
-            REMUI_SHOW_GENERAL_SECTION => new lang_string('show')
+            1 => new lang_string('hide'),
+            0 => new lang_string('show')
         )
     ));
 
