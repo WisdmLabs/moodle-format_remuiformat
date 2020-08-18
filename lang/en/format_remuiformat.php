@@ -53,6 +53,8 @@ $string['sectiontitlesummarymaxlength'] = 'Set the section/activities summary ma
 $string['sectiontitlesummarymaxlength_help'] = 'Set the the section/activities title summary maxium length displayed on the card.';
 $string['defaultsectionsummarymaxlength'] = 'Set the section/activities summary maximum length.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities summary maxium length displayed on the card.';
+$string['hidegeneralsectionwhenempty'] = 'Hide general section when empty';
+$string['hidegeneralsectionwhenempty_help'] = 'When general section does not have any activity and summary then you can hide it.';
 
 // Section.
 $string['sectionname'] = 'Section';

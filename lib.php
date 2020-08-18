@@ -30,6 +30,9 @@ require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 define ('REMUI_CARD_FORMAT', 0);
 define ('REMUI_LIST_FORMAT', 1);
 
+define ('REMUI_HIDE_GENERAL_SECTION', 1);
+define ('REMUI_SHOW_GENERAL_SECTION', 0);
+
 class format_remuiformat extends format_base {
 
     /**
@@ -137,6 +140,34 @@ class format_remuiformat extends format_base {
     }
 
     /**
+     * Hide general section when empty
+     * @param  object   $course  Course object
+     * @param  mod_info $modinfo Module info
+     * @return bool              True to hide general section
+     */
+    public function hide_general_section_when_empty($course, $modinfo = false) {
+        global $PAGE;
+        if ($modinfo == false) {
+            $modinfo = get_fast_modinfo($course);
+        }
+
+        $settings = $this->get_settings();
+        $section_info = $modinfo->get_section_info(0);
+
+        $hidegeneralsectionwhenempty = gettype($settings['hidegeneralsectionwhenempty']) == 'integer' ?
+                                        $settings['hidegeneralsectionwhenempty'] :
+                                        (get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || 1);
+
+        if ($section_info->summary ||
+            !empty($modinfo->sections[0]) ||
+            $PAGE->user_is_editing() ||
+            !$hidegeneralsectionwhenempty) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * The URL to use for the specified course (with section)
      * @param int|stdClass $section Section object from database or just field course_sections.section
      *     if omitted the course view page is returned
@@ -199,6 +230,10 @@ class format_remuiformat extends format_base {
                     'default' => 1,
                     'type' => PARAM_INT
                 ),
+                'hidegeneralsectionwhenempty' => array(
+                    'defult' => get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || true,
+                    'type' => PARAM_INT
+                ),
                 'coursedisplay' => array(
                     'default' => $courseconfig->coursedisplay,
                     'type' => PARAM_INT
@@ -253,6 +288,18 @@ class format_remuiformat extends format_base {
                     ),
                     'help' => 'remuicourseformat',
                     'help_component' => 'format_remuiformat',
+                ),
+                'hidegeneralsectionwhenempty' => array(
+                    'label' => new lang_string('hidegeneralsectionwhenempty', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            REMUI_HIDE_GENERAL_SECTION => new lang_string('hide'),
+                            REMUI_SHOW_GENERAL_SECTION => new lang_string('show')
+                        )
+                    ),
+                    'help' => 'hidegeneralsectionwhenempty',
+                    'help_component' => 'format_remuiformat'
                 ),
                 'coursedisplay' => array(
                     'label' => new lang_string('coursedisplay'),

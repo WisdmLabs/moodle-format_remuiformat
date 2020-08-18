@@ -26,6 +26,9 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+defined('REMUI_HIDE_GENERAL_SECTION') || define ('REMUI_HIDE_GENERAL_SECTION', 1);
+defined('REMUI_SHOW_GENERAL_SECTION') || define ('REMUI_SHOW_GENERAL_SECTION', 0);
+
 global $CFG;
 
 if ($ADMIN->fulltree) {
@@ -35,6 +38,22 @@ if ($ADMIN->fulltree) {
     $description = get_string('defaultsectionsummarymaxlength_desc', 'format_remuiformat');
     $default = 100;
     $settings->add(new admin_setting_configtext($name, $title, $description, $default, PARAM_INT));
+
+    // Default setting hide general section when empty
+    $name = 'format_remuiformat/hidegeneralsectionwhenempty';
+    $title = new lang_string('hidegeneralsectionwhenempty', 'format_remuiformat');
+    $description = new lang_string('hidegeneralsectionwhenempty_help', 'format_remuiformat');
+    $default = REMUI_HIDE_GENERAL_SECTION;
+    $settings->add(new admin_setting_configselect(
+        $name,
+        $title,
+        $description,
+        $default,
+        array(
+            REMUI_HIDE_GENERAL_SECTION => new lang_string('hide'),
+            REMUI_SHOW_GENERAL_SECTION => new lang_string('show')
+        )
+    ));
 
     // Usage tracking GDPR setting
     $name = 'format_remuiformat/enableusagetracking';
