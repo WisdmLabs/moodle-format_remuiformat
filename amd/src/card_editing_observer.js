@@ -1,4 +1,4 @@
-define(['jquery', 'core/ajax', 'core/templates', 'core/notification', 'format_remuiformat/common'], function($, Ajax, Templates, Notification, common) {
+define(['jquery', 'core/ajax', 'core/templates', 'core/notification'], function($, Ajax, Templates, Notification) {
 
     /**
      * element SELECTORS list
@@ -54,7 +54,6 @@ define(['jquery', 'core/ajax', 'core/templates', 'core/notification', 'format_re
         $(document).bind('DOMNodeRemoved', function(event) {
             if ($(event.target).is('li.activity')) {
                 update_course_progress();
-                common.adjustGeneralSectionActivities();
             }
         });
     }
