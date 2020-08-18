@@ -225,7 +225,12 @@
                     font-size: 0.9rem;
                 }
             }
-
+            .wdm-section-summary {
+                .no-overflow {
+                    margin: 0;
+                    width: 100%;
+                }
+            }
         }
 
         #section-0 {

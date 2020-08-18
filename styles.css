@@ -191,6 +191,11 @@ body.format-remuiformat .remui-format-card.all-section-format .section .section-
   font-size: 0.9rem;
 }
 
+body.format-remuiformat .remui-format-card.all-section-format .section .wdm-section-summary .no-overflow {
+  margin: 0;
+  width: 100%;
+}
+
 body.format-remuiformat .remui-format-card.all-section-format #section-0 {
   background: transparent !important;
   margin-bottom: 2rem;
