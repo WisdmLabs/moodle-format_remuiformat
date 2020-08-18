@@ -210,13 +210,21 @@ body.format-remuiformat .remui-format-card.all-section-format #section-0 .activi
   padding: 0 1rem;
 }
 
-body.format-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities > div {
+body.format-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities {
+  padding: 0 1rem;
+}
+
+body.format-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities .activity {
+  padding: 15px;
+}
+
+body.format-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities .activity > div {
   text-align: center;
   padding: 12px !important;
   box-shadow: 0 0 8px #ddd;
 }
 
-body.format-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities > div .mod-indent-outer {
+body.format-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities .activity > div .mod-indent-outer {
   padding: 0;
 }
 
@@ -583,6 +591,7 @@ body.format-remuiformat .general-section-activities {
 body.format-remuiformat .general-section-activities .activity {
   display: flex;
   padding: 2rem 1rem 0rem;
+  text-align: center;
 }
 
 body.format-remuiformat .general-section-activities .activity > div {

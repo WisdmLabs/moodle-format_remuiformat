@@ -243,12 +243,16 @@
                 padding: 0 1rem;
             }
             .general-section-activities {
-                & > div {
-                    text-align: center;
-                    padding: 12px !important;
-                    box-shadow: 0 0 8px #ddd;
-                    .mod-indent-outer {
-                        padding: 0;
+                padding: 0 1rem;
+                .activity {
+                    padding: 15px;
+                    & > div {
+                        text-align: center;
+                        padding: 12px !important;
+                        box-shadow: 0 0 8px #ddd;
+                        .mod-indent-outer {
+                            padding: 0;
+                        }
                     }
                 }
             }
@@ -263,10 +267,10 @@
             }
         }
 
-        #section-0 {   
+        #section-0 {
             .coursemainimagediv, .coursemainimage {
                 height: 140px;
-            }            
+            }
         }
     }
     &.single-section-format {
