@@ -1,4 +1,4 @@
-body.format-remuiformat {
+body#page-course-view-remuiformat {
 	@import './card-layout.scss';
 	@import './list-layout.scss';
 
@@ -20,8 +20,9 @@ body.format-remuiformat {
                 width: 100%;
             }
             .actions {
-                display: block;
+                display: flex;
                 position: relative;
+                justify-content: center;
                 .spinner {
                     position: relative;
                     left: 0;
@@ -62,6 +63,13 @@ body.format-remuiformat {
             display: block;
             background-color: white;
         }
+        .moodle-actionmenu {
+        	.dropdown-menu-right {
+          		.editing_moveright, .editing_moveleft {
+          			display: none;
+          		}
+        	}
+        }
     }
 
 	.course-content {
@@ -69,6 +77,10 @@ body.format-remuiformat {
 			list-style: none;
 			margin: 0;
 			padding: 0;
+			.wdm-add-new-section {
+	            margin-right: 1rem;
+	            border: 1px solid #e4eaec;
+	        }
 		}
 	}
 
@@ -77,46 +89,46 @@ body.format-remuiformat {
 	}
 	// /* Global */
 
-	// /* hide borders from region main */
-	// .container-fluid #region-main .card,
-	// .container-fluid #region-main {
-	//     border: none;
-	// }
+	/* hide borders from region main */
+	.container-fluid #region-main .card,
+	.container-fluid #region-main {
+	    border: none;
+	}
 
-	// /* Boost 3.4 */
-	// .container-fluid #region-main .card.card-block:first-of-type {
-	//     background: transparent;
-	//     padding: 0;
-	//     overflow: visible;
-	// }
-	// /* Boost 3.5 */
-	// .container-fluid #region-main .card > .card-body:first-of-type {
-	//     background: #f2f2f2;
-	//     overflow: visible;
-	// }
-	// /* Boost 3.6 */
-	// .container-fluid #region-main {
-	//     background: #f2f2f2;
-	//     overflow: visible;
-	// }
+	/* Boost 3.4 */
+	.container-fluid #region-main .card.card-block:first-of-type {
+	    background: transparent;
+	    padding: 0;
+	    overflow: visible;
+	}
+	/* Boost 3.5 */
+	.container-fluid #region-main .card > .card-body:first-of-type {
+	    background: #f2f2f2;
+	    overflow: visible;
+	}
+	/* Boost 3.6 */
+	.container-fluid #region-main {
+	    background: #f2f2f2;
+	    overflow: visible;
+	}
 
-	// /* Fordson 3.7 */
-	// .container-fluid #region-main {
-	//     background: #f2f2f2 !important;
-	//     overflow: visible;
-	// }
+	/* Fordson 3.7 */
+	.container-fluid #region-main {
+	    background: #f2f2f2 !important;
+	    overflow: visible;
+	}
 
 	// .course-content .col-12 {
 	//     padding-right: 1.0715rem !important;
 	//     padding-left: 1.0715rem !important;
 	// }
 
-	// /* RemUI 3.4, 3.5, 3.6 */
-	// .container #region-main .card.card-block:first-of-type {
-	//     background: transparent;
-	//     padding: 0;
-	//     overflow: visible;
-	// }
+	/* RemUI 3.4, 3.5, 3.6 */
+	.container #region-main .card.card-block:first-of-type {
+	    background: transparent;
+	    padding: 0;
+	    overflow: visible;
+	}
 
 	.wdm-card-section {
 	    display: flex;
@@ -124,51 +136,51 @@ body.format-remuiformat {
 	    margin-top: 30px;
 	}
 
-	// .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
-	//     font-size: 15px;
-	// }
+	.format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
+	    font-size: 15px;
+	}
 
-	// .wdm-completion-container form.togglecompletion,
-	// .wdm-completion-container form.togglecompletion > div {
-	//     display: inline !important;
-	// }
+	.wdm-completion-container form.togglecompletion,
+	.wdm-completion-container form.togglecompletion > div {
+	    display: inline !important;
+	}
 
-	// .wdm-completion-container form.togglecompletion .btn.btn-link,
-	// .wdm-completion-container .autocompletion {
-	//     padding: 0 0 0 10px;
-	//     background: transparent;
-	// }
+	.wdm-completion-container form.togglecompletion .btn.btn-link,
+	.wdm-completion-container .autocompletion {
+	    padding: 0 0 0 10px;
+	    background: transparent;
+	}
 
-	// .wdm-completion-container form.togglecompletion .btn.btn-link:hover {
-	//     background: transparent !important;
-	// }
+	.wdm-completion-container form.togglecompletion .btn.btn-link:hover {
+	    background: transparent !important;
+	}
 
-	// .wdm-completion-container form.togglecompletion .btn.btn-link img,
-	// .wdm-completion-container .autocompletion img {
-	//     width: 18px;
-	//     height: 18px;
-	//     margin: 4px 0;
-	// }
+	.wdm-completion-container form.togglecompletion .btn.btn-link img,
+	.wdm-completion-container .autocompletion img {
+	    width: 18px;
+	    height: 18px;
+	    margin: 4px 0;
+	}
 
-	// .section-summary-activities {
-	//     padding: 2px 0 8px 0;
-	// }
+	.section-summary-activities {
+	    padding: 2px 0 8px 0;
+	}
 
-	// .flex-1 {
-	//     flex: 1;
-	// }
+	.flex-1 {
+	    flex: 1;
+	}
 
-	// .w-p100 {
-	//     width: 100% !important;
-	// }
+	.w-p100 {
+	    width: 100% !important;
+	}
 
-	// .text-right {
-	//     text-align: right !important;
-	// }
+	.text-right {
+	    text-align: right !important;
+	}
 
-	// .text-center {
-	//     text-align: center !important;
-	// }
+	.text-center {
+	    text-align: center !important;
+	}
 
 	.progress-xs {
 	    width: 92%;
@@ -189,9 +201,9 @@ body.format-remuiformat {
 	    line-height: 4px !important;
 	}
 
-	// .bg-green-600 {
-	//     background-color: #11c26d !important;
-	// }
+	.bg-green-600 {
+	    background-color: #11c26d !important;
+	}
 
 	.progress-xs.dark {
 	    background-color: #e0e0e09e !important;
@@ -201,27 +213,20 @@ body.format-remuiformat {
 	    background-color: #b7b4b4a3 !important;
 	}
 
-	// #section-0 .sno {
-	//     display: inline-block;
-	//     font-size: 18px;
-	//     font-weight: 900;
-	//     color: rgba(0, 0, 0, 0.8);
-	//     padding: 5px 0;
-	// }
+	#section-0 .sno {
+	    display: inline-block;
+	    font-size: 18px;
+	    font-weight: 900;
+	    color: rgba(0, 0, 0, 0.8);
+	    padding: 5px 0;
+	}
 
-	// .remui-format-card .current::before {
-	//     left: -.1rem !important;
-	// }
+	.remui-format-card .current::before {
+	    left: -.1rem !important;
+	}
 
 	// &.editing ul.wdm-section-wrapper li.single-card-container {
 	//     padding: 15px !important;
-	// }
-
-	// ul.wdm-section-wrapper li.single-card-container
-	// div.moodle-actionmenu div.dropdown-menu-right a.editing_moveright,
-	// ul.wdm-section-wrapper li.single-card-container
-	// div.moodle-actionmenu div.dropdown-menu-right a.editing_moveleft {
-	//     display: none;
 	// }
 
 	// div#card-editing-container .section-title,
@@ -233,14 +238,14 @@ body.format-remuiformat {
 	//     padding: 7px 0;
 	// }
 
-	// /* Hover effect only if Section is available. */
-	// div#card-container a .section-title:hover {
-	//     text-decoration: underline;
-	// }
+	/* Hover effect only if Section is available. */
+	div#card-container a .section-title:hover {
+	    text-decoration: underline;
+	}
 
-	// input.ignoredirty.form-control {
-	//     width: 100% !important;
-	// }
+	input.ignoredirty.form-control {
+	    width: 100% !important;
+	}
 
 	// .section-0 {
 	//     box-shadow: 0 0 8px #ddd;
@@ -271,11 +276,11 @@ body.format-remuiformat {
 	//     margin: 15px 0 0 0;
 	//     padding: 8px !important;
 	// }
-	// div#card-editing-container #section-0 li.activity img.activityicon {
-	//     vertical-align: middle;
-	//     height: 28px;
-	//     width: 28px;
-	// }
+	div#card-editing-container #section-0 li.activity img.activityicon {
+	    vertical-align: middle;
+	    height: 28px;
+	    width: 28px;
+	}
 
 	// div#card-editing-container #section-0 .section_action_menu {
 	//     top: 0;
@@ -296,12 +301,12 @@ body.format-remuiformat {
 		}
 	}
 
-	// div#card-editing-container div.availabilityinfo.ishidden,
-	// div#card-container div.availabilityinfo.ishidden,
-	// li.wdm-card-single-section div.availabilityinfo {
-	//     padding: 10px 0;
-	//     font-weight: bold;
-	// }
+	div#card-editing-container div.availabilityinfo.ishidden,
+	div#card-container div.availabilityinfo.ishidden,
+	li.wdm-card-single-section div.availabilityinfo {
+	    padding: 10px 0;
+	    font-weight: bold;
+	}
 
 	// div#card-editing-container div.availabilityinfo,
 	// div#card-container div.availabilityinfo,
@@ -309,31 +314,23 @@ body.format-remuiformat {
 	//     list-style: none;
 	// }
 
-	// .wdm-section-summary.summary-muted * {
-	//     color: #526069 !important;
-	//     display: none;
-	// }
-
-	// .wdm-section-summary.dark * {
-	//     color: #e4e4e4 !important;
-	// }
-
-	// .wdm-section-summary.light * {
-	//     color: #101010 !important;
-	// }
+	.wdm-section-summary.summary-muted * {
+	    color: #526069 !important;
+	    display: none;
+	}
 
 	// ul.cards {
 	//     list-style: none !important;
 	//     padding: 0;
 	// }
 
-	// .wdm-card-completion button.btn-link {
-	//     padding: 0;
-	// }
+	.wdm-card-completion button.btn-link {
+	    padding: 0;
+	}
 
-	// .wdm-card-completion button.btn-link img {
-	//     margin: 0 2px 0 0;
-	// }
+	.wdm-card-completion button.btn-link img {
+	    margin: 0 2px 0 0;
+	}
 
 	// .wdm-completion-container {
 	//     display: flex;
@@ -372,6 +369,9 @@ body.format-remuiformat {
 	// }
 
 	#changenumsections {
+		& > div {
+			width: 100%;
+		}
 		.single-card,
 		.card-block {
 		    justify-content: center;
@@ -405,54 +405,7 @@ body.format-remuiformat {
 	// .course-content li.section li.activity ul {
 	//     padding-left: 2rem !important;
 	// }
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-1 {
-	    width: 35px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-2 {
-	    width: 70px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-3 {
-	    width: 105px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-4 {
-	    width: 140px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-5 {
-	    width: 175px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-6 {
-	    width: 210px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-7 {
-	    width: 245px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-8 {
-	    width: 280px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-9 {
-	    width: 315px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-10 {
-	    width: 350px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-11 {
-	    width: 385px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-12 {
-	    width: 420px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-13 {
-	    width: 455px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-14 {
-	    width: 490px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-15 {
-	    width: 525px;
-	}
-	.course-content ul.remui-format-list li.section ul.section .mod-indent-16 {
-	    width: 560px;
-	}
+
 	// .course-content ul.remui-format-list li.section .left {
 	//     padding-top: 0;
 	//     text-align: right;
@@ -522,34 +475,6 @@ body.format-remuiformat {
 
 	// .mb-25 {
 	//     margin-bottom: 25px !important;
-	// }
-
-	// .carousel-control-next,
-	// .carousel-control-prev {
-	//     position: absolute;
-	//     top: 0;
-	//     bottom: 0;
-	//     line-height: 35px;
-	//     color: #fff;
-	//     text-align: center;
-	// }
-
-	// .carousel-control-next {
-	//     right: 0;
-	// }
-
-	// .carousel-control.left,
-	// .carousel-control.right,
-	// .carousel-control-prev,
-	// .carousel-control-next {
-	//     opacity: 1 !important;
-	//     min-width: 25px !important;
-	// }
-
-
-	// #teachers-carousel {
-	//     max-width: 175px;
-	//     height: 35px;
 	// }
 
 	// .text-white * {

@@ -13,6 +13,11 @@
                     margin-bottom: 1.5rem !important;
                 }
             }
+            .activity {
+                .title {
+                    margin-bottom: 30px;
+                }
+            }
         }
     }
 }
@@ -155,9 +160,6 @@
 
             .right.side {
                 display: flex;
-                .wdm-add-new-section {
-                    margin-right: 1rem;
-                }
             }
 
             .right.side .icon.spacer {
@@ -226,6 +228,14 @@
                 }
             }
             .wdm-section-summary {
+                &.dark * {
+                    color: #e4e4e4 !important;
+                }
+
+                &.light * {
+                    color: #101010 !important;
+                }
+
                 .no-overflow {
                     margin: 0;
                     width: 100%;
@@ -236,9 +246,9 @@
         #section-0 {
             background: transparent !important;
             margin-bottom: 2rem;
-            .coursedetails .row {
+            .coursedetails .details {
                 background-color: #f1f4f5;
-                padding: 15px 0;
+                padding: 15px;
                 margin: 0;
             }
             .section-details {
@@ -288,6 +298,11 @@
                 display: none !important;
             }
         }
+        .general-single-card {
+            box-shadow: 0 0 8px #ddd;
+            border-radius: 2px;
+            background-color: white;
+        }
         .activity-cards {
             display: flex;
             flex-wrap: wrap;
@@ -296,6 +311,9 @@
             margin: 0;
             .activity {
                 transition: all 0.5s ease;
+                &:hover {
+                    background: transparent !important;
+                }
                 .single-card {
                     min-height: 255px;
                 }
@@ -369,6 +387,13 @@
                             width: 75px;
                             margin: 20px 0;
                         }
+                    }
+                }
+                .toggle-row-column {
+                    border:1px solid #e4eaec;
+                    margin-right: 5px;
+                    img.icon {
+                        margin: 0;
                     }
                 }
                 &.col-activity {
