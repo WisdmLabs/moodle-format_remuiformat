@@ -28,6 +28,12 @@
         $('.general-single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 200, "swing");
         $('.single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 400, "swing");
 
+        $('.sectionname').click(function() {
+            if ($(this).siblings('.card-footer').length) {
+                $(this).siblings('.card-footer').slideToggle('fast');
+            }
+        });
+
         M.course = M.course || {};
 
         M.course.format = M.course.format || {};
