@@ -262,6 +262,9 @@
                 background-color: #f1f4f5;
                 padding: 15px;
                 margin: 0;
+                .col-12 {
+                    padding: 0;
+                }
             }
             .section-details {
                 display: flex;
