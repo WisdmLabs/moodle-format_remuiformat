@@ -59,8 +59,8 @@
 
 {{^addsection}}
 <li id="section-{{{index}}}" class="card section clearfix mb-4" role="region" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
-   {{#highlighted}}<div class="list-current moodle-has-zindex bg-primary"></div>{{/highlighted}}
    <div class="content card-block px-15 py-15 py-3 px-3 remui-list-content-border" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
+      {{#highlighted}}<div class="highlight bg-primary"></div>{{/highlighted}}
       <div class="d-block">
         <div class="left side float-left">
           {{{ leftside }}}

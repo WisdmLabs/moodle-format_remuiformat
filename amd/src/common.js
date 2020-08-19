@@ -28,7 +28,8 @@
  		ACTIVITY_TOGGLE_CLASS: 'showhideactivity',
  		ACTIVITY_TOGGLE_WRAPPER: '.showactivitywrapper',
  		FIRST_SECTION: '#section-0',
- 		SHOW: 'show'
+ 		SHOW: 'show',
+        TOGGLE_HIGHLIGHT: '.dropdown-item.editing_highlight'
  	};
 
  	/**
@@ -92,6 +93,10 @@
 	        }
 	        $(SELECTORS.FIRST_SECTION).toggleClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
 	    });
+        $('body').on('click', SELECTORS.TOGGLE_HIGHLIGHT, function() {
+            window.reload();
+        });
+
     }
 
     return {
