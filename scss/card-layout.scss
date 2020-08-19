@@ -191,6 +191,24 @@
             .single-card {
                 visibility: hidden;
                 min-height: 340px;
+                &.dark {
+                    .left.side,
+                    .sectionname,
+                    .sectionname *,
+                    .wdm-section-summary *,
+                    .section-activities-summary {
+                        color: #e4e4e4 !important;
+                    }
+                }
+                &.light {
+                    .left.side,
+                    .sectionname,
+                    .sectionname *,
+                    .wdm-section-summary *,
+                    .section-activities-summary {
+                        color: #101010 !important;
+                    }
+                }
                 &:hover .progress-text {
                     visibility: visible;
                 }
@@ -240,14 +258,6 @@
                 }
             }
             .wdm-section-summary {
-                &.dark * {
-                    color: #e4e4e4 !important;
-                }
-
-                &.light * {
-                    color: #101010 !important;
-                }
-
                 .no-overflow {
                     margin: 0;
                     width: 100%;
