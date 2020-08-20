@@ -443,6 +443,13 @@
                         display: none;
                     }
                 }
+                .moodle-actionmenu {
+                    .dropdown-menu-right {
+                        .editing_moveright, .editing_moveleft {
+                            display: none;
+                        }
+                    }
+                }
             }
         }
     }

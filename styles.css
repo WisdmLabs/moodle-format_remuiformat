@@ -443,6 +443,10 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   display: none;
 }
 
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .moodle-actionmenu .dropdown-menu-right .editing_moveright, body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .moodle-actionmenu .dropdown-menu-right .editing_moveleft {
+  display: none;
+}
+
 body#page-course-view-remuiformat .remui-format-card .single-card a:hover {
   text-decoration: none;
 }
