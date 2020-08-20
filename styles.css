@@ -809,11 +809,6 @@ body#page-course-view-remuiformat .general-section-activities .activityinstance 
   display: block;
 }
 
-body#page-course-view-remuiformat .general-section-activities:hover .availabilityinfo {
-  display: block;
-  background-color: white;
-}
-
 body#page-course-view-remuiformat .general-section-activities .moodle-actionmenu .dropdown-menu-right .editing_moveright, body#page-course-view-remuiformat .general-section-activities .moodle-actionmenu .dropdown-menu-right .editing_moveleft {
   display: none;
 }
