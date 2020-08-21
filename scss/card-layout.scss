@@ -121,12 +121,6 @@
             .single-card-container {
                 min-width: 50% !important;
             }
-
-            // General Section
-            .generaldetails, .coursedetails {
-                max-width: 50%;
-                flex: auto;
-            }
         }
 
         @media (min-width: 768px) {
@@ -277,7 +271,40 @@
                 }
             }
             .section-details {
-                display: flex;
+                @media (min-width: 681px) {
+                    display: flex;
+                    .generaldetails {
+                        order: 1;
+                    }
+                    .coursedetails {
+                        order: 2;
+                    }
+                }
+                .generaldetails, .coursedetails {
+                    position: relative;
+                    padding: 0 1rem 1rem 1rem;
+                }
+                @media (max-width: 680px) {
+                    .generaldetails {
+                        width: 100%;
+                    }
+                    .coursedetails {
+                        width: 100%;
+                    }
+                }
+                @media (min-width: 681px) and (max-width: 768px) {
+                    .generaldetails, .coursedetails {
+                        width: 50%;
+                    }
+                }
+                @media (min-width: 769px) {
+                    .generaldetails {
+                        width: 66.66%;
+                    }
+                    .coursedetails {
+                        width: 33.33%;
+                    }
+                }
             }
             .activitieshead {
                 padding: 0 1rem;

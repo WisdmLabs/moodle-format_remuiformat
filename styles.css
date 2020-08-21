@@ -85,10 +85,6 @@ body#page-course-view-remuiformat.editing .remui-format-card.single-section-form
   body#page-course-view-remuiformat .remui-format-card.all-section-format .single-card-container {
     min-width: 50% !important;
   }
-  body#page-course-view-remuiformat .remui-format-card.all-section-format .generaldetails, body#page-course-view-remuiformat .remui-format-card.all-section-format .coursedetails {
-    max-width: 50%;
-    flex: auto;
-  }
 }
 
 @media (min-width: 768px) {
@@ -247,8 +243,45 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format #section
   padding: 0;
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details {
-  display: flex;
+@media (min-width: 681px) {
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details {
+    display: flex;
+  }
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
+    order: 1;
+  }
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
+    order: 2;
+  }
+}
+
+body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails, body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
+  position: relative;
+  padding: 0 1rem 1rem 1rem;
+}
+
+@media (max-width: 680px) {
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
+    width: 100%;
+  }
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
+    width: 100%;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 768px) {
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails, body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
+    width: 50%;
+  }
+}
+
+@media (min-width: 769px) {
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
+    width: 66.66%;
+  }
+  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
+    width: 33.33%;
+  }
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .activitieshead {

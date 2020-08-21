@@ -68,7 +68,22 @@
 <li id="section-{{{index}}}" class="section cards col-lg-12 col-sm-12 mb-25 mb-4 p-10">
     <div class="general-section">
         <div class="section-details">
-            <div class="generaldetails col-sm-12 col-lg-8 content pb-3 order-12 order-md-1 pb-10">
+            <div class="coursedetails">
+                <div class="details">
+                    {{#coursemainimage}}
+                        <div class="col-12 coursemainimagediv text-right d-md-block mb-4">
+                            <div class="coursemainimage" style="background-image: url('{{coursemainimage}}');"></div>
+                        </div>
+                    {{/coursemainimage}}
+                    {{> format_remuiformat/course_progress }}
+                    {{#resumeactivityurl}}
+                        <div class="col-12 text-center mt-4">
+                            <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
+                        </div>
+                    {{/resumeactivityurl}}
+                </div>
+            </div>
+            <div class="generaldetails content">
                 <div class="left side">
                     {{{ leftsection }}}
                 </div>
@@ -86,21 +101,6 @@
                     {{/fullsummary}}
                 </div>
                 <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
-            </div>
-            <div class="coursedetails col-sm-12 col-lg-4 order-1 order-md-12">
-                <div class="details">
-                    {{#coursemainimage}}
-                        <div class="col-12 coursemainimagediv text-right d-md-block mb-4">
-                            <div class="coursemainimage" style="background-image: url('{{coursemainimage}}');"></div>
-                        </div>
-                    {{/coursemainimage}}
-                    {{> format_remuiformat/course_progress }}
-                    {{#resumeactivityurl}}
-                        <div class="col-12 text-center mt-4">
-                            <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
-                        </div>
-                    {{/resumeactivityurl}}
-                </div>
             </div>
         </div>
         {{#activityexists}}

@@ -54,19 +54,7 @@
 <li id="section-{{{index}}}" class="section col-12">
     <div class="general-section">
         <div class="section-details">
-            <div class="generaldetails col-sm-12 col-md-6 col-lg-8 content pb-3 order-12 order-md-1">
-                <h2 class="section-title pt-0 p-t-0">{{ title }}</h2>
-                <div class='generalsectioninfo'>
-                    {{{availability}}}
-                    {{#fullsummary}}
-                        <input type="checkbox" class="read-more-state" id="read-more-summary" />
-                        <div class="read-more-target">{{{ fullsummary }}}</div>
-                        <div class="fadeout-summary"></div>
-                        <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
-                    {{/fullsummary}}
-                </div>
-            </div>
-            <div class="coursedetails col-sm-12 col-md-6 col-lg-4 order-1 order-md-12">
+            <div class="coursedetails">
                 <div class="details">
                     {{#coursemainimage}}
                         <div class="col-12 coursemainimagediv text-right d-md-block mb-4">
@@ -79,6 +67,18 @@
                             <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
                         </div>
                     {{/resumeactivityurl}}
+                </div>
+            </div>
+            <div class="generaldetails content">
+                <h2 class="section-title pt-0 p-t-0">{{ title }}</h2>
+                <div class='generalsectioninfo'>
+                    {{{availability}}}
+                    {{#fullsummary}}
+                        <input type="checkbox" class="read-more-state" id="read-more-summary" />
+                        <div class="read-more-target">{{{ fullsummary }}}</div>
+                        <div class="fadeout-summary"></div>
+                        <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
+                    {{/fullsummary}}
                 </div>
             </div>
         </div>
