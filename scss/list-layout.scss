@@ -19,7 +19,7 @@
 					}
 				}
 				// Was added in RemUI theme
-				.sectionname{
+				.sectionname {
 				    padding: 10px 0!important;
 				    clear: none!important;
 				}
@@ -242,6 +242,33 @@
 				}
 				.mod-indent-16 {
 				    width: 560px;
+				}
+			}
+		}
+	}
+	&.all-section-format {
+		ul.sections {
+			li.section {
+				.toggle-icon {
+					margin: 0 1rem 0 0;
+					cursor: pointer;
+					transform: rotate(-90deg);
+					border: 0 !important;
+					background: transparent !important;
+					box-shadow: none !important;
+					outline: 0 !important;
+					&::before {
+						display: flex;
+						transition: all 0.5s ease;
+						font-size: 1.2rem;
+					}
+				}
+				&.collapsed {
+					.toggle-icon {
+						&::before {
+							transform: rotate(180deg);
+						}
+					}
 				}
 			}
 		}

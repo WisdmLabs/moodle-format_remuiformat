@@ -28,9 +28,13 @@
         $('.general-single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 200, "swing");
         $('.single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 400, "swing");
 
-        $('.sectionname').click(function() {
-            if ($(this).siblings('.card-footer').length) {
-                $(this).siblings('.card-footer').slideToggle('fast');
+        $('.sections .section .toggle-icon, body:not(.editing) .sectionname').click(function(event) {
+            let container = $(this).closest('li.section');
+            if (container.find('.card-footer').length) {
+                event.preventDefault();
+                container.toggleClass('collapsed');
+                container.find('.card-footer').slideToggle('fast');
+                return false;
             }
         });
 
