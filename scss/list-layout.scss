@@ -79,8 +79,12 @@
 				@media (max-width: 767px) {
 			        width: 50%;
 				}
-				& > div {
-					padding: 0;
+				padding: 1rem 0 0 0;
+				& > div, .mod-indent-outer, .mod-indent {
+					padding: 0 !important;
+				}
+				.mod-indent {
+					width: 0 !important;
 				}
 				.activityinstance {
 				    min-width: auto;

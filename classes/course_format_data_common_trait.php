@@ -114,6 +114,14 @@ class course_format_data_common_trait {
                 $completiondata = $completioninfo->get_data($mod, true);
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
+                if (!empty($mod->indent)) {
+                    $indentclasses = 'mod-indent mod-indent-'.$mod->indent;
+                    if ($mod->indent > 15) {
+                        $indentclasses .= ' mod-indent-huge';
+                    }
+                    $activitydetails->indent = $indentclasses;
+                }
+
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
                     $activitydetails->completion = $courserenderer->course_section_cm_completion(

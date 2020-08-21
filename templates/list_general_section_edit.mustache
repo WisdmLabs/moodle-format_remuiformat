@@ -79,22 +79,29 @@
 
    <span class="hidden sectionname">{{{generalsectiontitlename}}}</span>
 
-   <div class="content">
+   <div class="content" aria-label="{{{generalsectiontitlename}}}">
         <div class="section_availability badge badge-pill badge-info mb-10"></div>
             <div class="summary hide"></div>
             <ul class="section general-section-activities img-text row justify-content-start text-center">
                 {{#activities}}
-                    <li class="activity first-section-activity modtype_{{{modulename}}} justify-content-center p-0 pt-10 yui3-dd-drop yui3-dd-draggable" id="module-{{id}}">
+                    <li class="activity first-section-activity modtype_{{{modulename}}} yui3-dd-drop" id="module-{{id}}">
                         <div>
-                            <div class="activityinstance p-0 d-inline-block">
-                                {{{title}}}
-                                <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                            <span class="editing_move moodle-core-dragdrop-draghandle" title="Move resource" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" styles="cursor: move;"></i></span>
+                            <div class="mod-indent-outer w-100">
+                                {{#indent}}
+                                    <div class="{{{indent}}}"></div>
+                                {{/indent}}
+                                <div>
+                                    <div class="activityinstance p-0 d-inline-block">
+                                        {{{title}}}
+                                    </div>
+                                    <div class="actions">
+                                        {{{completion}}}
+                                        {{{modicons}}}
+                                    </div>
+                                </div>
+                                {{{availstatus}}}
                             </div>
-                            <div class="actions">
-                                {{{completion}}}
-                                {{{modicons}}}
-                            </div>
-                            {{{availstatus}}}
                         </div>
                     </li>
                 {{/activities}}

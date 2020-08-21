@@ -508,6 +508,10 @@ body#page-course-view-remuiformat .remui-format-list #section-0 .general-section
   margin-right: 0;
 }
 
+body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity {
+  padding: 1rem 0 0 0;
+}
+
 @media (min-width: 992px) {
   body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity {
     width: 25%;
@@ -526,8 +530,12 @@ body#page-course-view-remuiformat .remui-format-list #section-0 .general-section
   }
 }
 
-body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity > div {
-  padding: 0;
+body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity > div, body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity .mod-indent-outer, body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity .mod-indent {
+  padding: 0 !important;
+}
+
+body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity .mod-indent {
+  width: 0 !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list #section-0 .general-section-activities .activity .activityinstance {
