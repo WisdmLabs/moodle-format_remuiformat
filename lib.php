@@ -30,9 +30,6 @@ require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
 define ('REMUI_CARD_FORMAT', 0);
 define ('REMUI_LIST_FORMAT', 1);
 
-define ('REMUI_HIDE_GENERAL_SECTION', 1);
-define ('REMUI_SHOW_GENERAL_SECTION', 0);
-
 class format_remuiformat extends format_base {
 
     /**
@@ -156,7 +153,7 @@ class format_remuiformat extends format_base {
 
         $hidegeneralsectionwhenempty = gettype($settings['hidegeneralsectionwhenempty']) == 'integer' ?
                                         $settings['hidegeneralsectionwhenempty'] :
-                                        (get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || 1);
+                                        (get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || false);
 
         if ($section_info->summary ||
             !empty($modinfo->sections[0]) ||
@@ -231,7 +228,7 @@ class format_remuiformat extends format_base {
                     'type' => PARAM_INT
                 ),
                 'hidegeneralsectionwhenempty' => array(
-                    'defult' => get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || true,
+                    'defult' => get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || false,
                     'type' => PARAM_INT
                 ),
                 'coursedisplay' => array(
@@ -294,8 +291,8 @@ class format_remuiformat extends format_base {
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            REMUI_HIDE_GENERAL_SECTION => new lang_string('hide'),
-                            REMUI_SHOW_GENERAL_SECTION => new lang_string('show')
+                            0 => new lang_string('show'),
+                            1 => new lang_string('hide')
                         )
                     ),
                     'help' => 'hidegeneralsectionwhenempty',

@@ -40,15 +40,15 @@ if ($ADMIN->fulltree) {
     $name = 'format_remuiformat/hidegeneralsectionwhenempty';
     $title = new lang_string('hidegeneralsectionwhenempty', 'format_remuiformat');
     $description = new lang_string('hidegeneralsectionwhenempty_help', 'format_remuiformat');
-    $default = 1;
+    $default = 0;
     $settings->add(new admin_setting_configselect(
         $name,
         $title,
         $description,
         $default,
         array(
-            1 => new lang_string('hide'),
-            0 => new lang_string('show')
+            0 => new lang_string('show'),
+            1 => new lang_string('hide')
         )
     ));
 
