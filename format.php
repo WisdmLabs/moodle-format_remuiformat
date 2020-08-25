@@ -73,6 +73,7 @@ $baserenderer = $renderer->get_base_renderer();
 $courseformat = course_get_format($course);
 $settings = $courseformat->get_settings();
 $rformat = $settings['remuicourseformat'];
+$type = 'list';
 
 if ($section) {
     // List Format -> One Section Page : render_list_one_section -> list_one_section.
@@ -95,12 +96,14 @@ if ($course->remuicourseformat && $course->coursedisplay && !$section) {
     }
 } else if ($displaysection && !$course->remuicourseformat) {
     // Card Format -> One Section Page : render_card_one_section -> card_one_section.
+    $type = 'card';
     $renderer->render_card_one_section(
         new \format_remuiformat\output\format_remuiformat_card_one_section($course, $displaysection, $baserenderer)
     );
 } else if (!$displaysection) {
     // Card Format -> All Section Page : render_card_all_sections_summary -> card_all_sections_summary.
     if ($rformat == REMUI_CARD_FORMAT) {
+        $type = 'card';
         $renderer->render_card_all_sections_summary(
             new \format_remuiformat\output\format_remuiformat_card_all_sections_summary($course, $baserenderer)
         );
@@ -113,3 +116,5 @@ if ($course->remuicourseformat && $course->coursedisplay && !$section) {
         );
     }
 }
+// Include course format js module
+$PAGE->requires->js('/course/format/remuiformat/format_' . $type . '.js');
