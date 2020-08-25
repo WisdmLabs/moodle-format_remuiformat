@@ -525,6 +525,14 @@ body#page-course-view-remuiformat.editing .general-section-activities {
   margin-bottom: 2rem;
 }
 
+body#page-course-view-remuiformat:not(.editing) .remui-format-list.theme-boost .sections .section .right.side {
+  margin-top: 0;
+}
+
+body#page-course-view-remuiformat:not(.editing) .remui-format-list.theme-boost .sections .section .sectionname .panel-title .float-right {
+  padding-right: 10px;
+}
+
 @media (min-width: 992px) {
   body#page-course-view-remuiformat .remui-format-list #section-0.showhideactivity .general-section-activities .activity:nth-child(n+5) {
     display: none;

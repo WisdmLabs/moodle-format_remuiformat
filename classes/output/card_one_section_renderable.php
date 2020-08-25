@@ -80,6 +80,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         $renderer = $PAGE->get_renderer('format_remuiformat');
 
         $export->section = $this->displaysection;
+        $export->theme = $PAGE->theme->name;
+
         // Check if section exists.
         if (!($sectioninfo = $modinfo->get_section_info($this->displaysection))) {
             // This section doesn't exist.

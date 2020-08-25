@@ -89,6 +89,7 @@ class format_remuiformat_list_all_sections implements renderable, templatable {
         $editing = $PAGE->user_is_editing();
         $export->editing = $editing;
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
+        $export->theme = $PAGE->theme->name;
 
         if ($rformat == REMUI_LIST_FORMAT) {
             $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');

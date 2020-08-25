@@ -89,6 +89,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
         $editing = $PAGE->user_is_editing();
         $export->editing = $editing;
         $export->courseformat = get_config('format_remuiformat', 'defaultcourseformat');
+        $export->theme = $PAGE->theme->name;
 
         if ($editing) {
             $PAGE->requires->js_call_amd('format_remuiformat/card_editing_observer', 'init');

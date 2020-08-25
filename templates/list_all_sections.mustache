@@ -36,7 +36,7 @@
 }}
 
 {{#editing}}
-  <div id="list-editing-container" class="remui-format-list all-section-format mt-20">
+  <div id="list-editing-container" class="remui-format-list all-section-format theme-{{theme}} mt-20">
     <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
@@ -51,7 +51,7 @@
   </div>
 {{/editing}}
 {{^editing}}
-<div id="list-container" class="remui-format-list all-section-format mt-20">
+<div id="list-container" class="remui-format-list all-section-format theme-{{theme}} mt-20">
     <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
