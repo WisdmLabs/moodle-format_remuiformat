@@ -15,6 +15,7 @@ body#page-course-view-remuiformat.editing .remui-format-card.single-section-form
 }
 
 body#page-course-view-remuiformat.editing .remui-format-card.single-section-format .activity-cards .wdm-mod-name {
+  padding-right: 10rem;
   margin-bottom: 1.5rem !important;
 }
 
