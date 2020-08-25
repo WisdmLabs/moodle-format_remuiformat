@@ -60,13 +60,13 @@ $string['hidegeneralsectionwhenempty_help'] = 'When general section does not hav
 $string['sectionname'] = 'Section';
 $string['sectionnamecaps'] = 'SECTION';
 $string['section0name'] = 'General';
-$string['hidefromothers'] = 'Hide topic';
-$string['showfromothers'] = 'Show topic';
+$string['hidefromothers'] = 'Hide section';
+$string['showfromothers'] = 'Show section';
 $string['viewtopic'] = 'View';
-$string['editsection'] = 'Edit topic';
-$string['editsectionname'] = 'Edit topic name';
-$string['newsectionname'] = 'New name for topic {$a}';
-$string['currentsection'] = 'This topic';
+$string['editsection'] = 'Edit section';
+$string['editsectionname'] = 'Edit section name';
+$string['newsectionname'] = 'New name for section {$a}';
+$string['currentsection'] = 'This section';
 $string['addnewsection'] = 'Add Section';
 
 // Activity.
