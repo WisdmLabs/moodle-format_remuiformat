@@ -525,12 +525,16 @@ body#page-course-view-remuiformat.editing .general-section-activities {
   margin-bottom: 2rem;
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list.theme-boost .sections .section .right.side {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .right.side {
   margin-top: 0;
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list.theme-boost .sections .section .sectionname .panel-title .float-right {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .sectionname .panel-title .float-right {
   padding-right: 10px;
+}
+
+body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-format .sections .section .sectionname .panel-title .float-right {
+  padding-right: 0;
 }
 
 @media (min-width: 992px) {

@@ -36,16 +36,27 @@
 }
 &:not(.editing) {
 	.remui-format-list {
-		&.theme-boost {
+		.sections {
+			.section {
+				.right.side {
+					margin-top: 0;
+				}
+				.sectionname {
+					.panel-title {
+						.float-right {
+							padding-right: 10px;
+						}
+					}
+				}
+			}
+		}
+		&.one-section-format {
 			.sections {
 				.section {
-					.right.side {
-						margin-top: 0;
-					}
 					.sectionname {
 						.panel-title {
 							.float-right {
-								padding-right: 10px;
+								padding-right: 0;
 							}
 						}
 					}

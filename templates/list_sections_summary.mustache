@@ -77,7 +77,6 @@
          {{/editing}}
          {{^editing}}
             <a class="panel-title p-0" href="{{{ singlepageurl }}}" aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}" aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
-            </a>
             {{#progressinfo}}
                {{#completed}}
                   <!-- Default checked -->
@@ -87,6 +86,7 @@
                   </div>
                {{/completed}}
             {{/progressinfo}}
+            </a>
          {{/editing}}
       </h4>
       {{{ hiddenmessage }}}
