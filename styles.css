@@ -383,6 +383,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .activity-content {
+  padding: 0.8rem 0 1.5rem 0;
   width: 100%;
   overflow: auto;
 }
