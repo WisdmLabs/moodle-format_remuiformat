@@ -114,6 +114,7 @@
     }
 }
 .remui-format-card {
+    margin-top: 20px;
     &.all-section-format {
         // Show two cards per row, when both sidebars open in RemUI
         // when left sidebar and right blocks section open in Boost
@@ -186,6 +187,9 @@
             .single-card {
                 visibility: hidden;
                 min-height: 340px;
+                margin-bottom: 1.75rem;
+                padding-bottom: 50px;
+                width: 100%;
                 &.dark {
                     .left.side,
                     .sectionname,
@@ -233,9 +237,9 @@
             }
             .card-bottom {
                 position: absolute;
-                bottom: 15px;
-                left: 15px;
-                right: 15px;
+                bottom: 0.5rem;
+                left: 1rem;
+                right: 1rem;
             }
             .section-activities-summary {
                 list-style-type: none;

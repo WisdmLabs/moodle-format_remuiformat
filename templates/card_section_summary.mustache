@@ -51,7 +51,7 @@
 
 {{#addsection}}
 <li id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 d-inline-flex single-card-container">
-    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 w-p100 d-flex align-items-center">
+    <div class="single-card d-flex align-items-center">
         {{#numsections}}
             <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
 
@@ -69,7 +69,7 @@
 
 {{^addsection}}
 <li class="col-lg-4 col-md-6 col-sm-6 d-inline-flex section" id="section-{{{index}}}" aria-labelledby="section-{{{index}}} .content .sectionname">
-    <div class="single-card {{{remuinewthemecolor}}} m-b-2 mb-25 mb-4 p-15 p-3 pb-45 w-100 {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
+    <div class="single-card {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
         style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
                 background-repeat: no-repeat;
                 background-size: cover;";>
