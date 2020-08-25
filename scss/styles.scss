@@ -66,6 +66,13 @@ body#page-course-view-remuiformat {
           		}
         	}
         }
+        .moodle-actionmenu {
+        	.dropdown-menu-right {
+          		.editing_moveright, .editing_moveleft {
+          			display: none;
+          		}
+        	}
+        }
     }
 
 	.course-content {
@@ -73,7 +80,10 @@ body#page-course-view-remuiformat {
 			list-style: none;
 			margin: 0;
 			padding: 0;
+<<<<<<< scss/styles.scss
 			width: 100%;
+=======
+>>>>>>> scss/styles.scss
 			.wdm-add-new-section {
 	            margin-right: 5px;
 	            border: 1px solid #e4eaec;
