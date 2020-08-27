@@ -185,6 +185,7 @@ class usage_tracking {
             '::1'
         );
 
+        $is_local = '';
         // Check if site is running on localhost or not.
         if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
             $is_local = 'localsite--';
