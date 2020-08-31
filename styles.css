@@ -700,10 +700,6 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .highlig
   left: 0;
 }
 
-body#page-course-view-remuiformat .remui-format-list .sections .section:not(#section-0) > div {
-  box-shadow: 0 0 8px 0 #ddd;
-}
-
 body#page-course-view-remuiformat .remui-format-list .sections .section .sectionname {
   margin: 0;
   font-size: 18px;
@@ -782,6 +778,10 @@ body#page-course-view-remuiformat .remui-format-list .sections .section ul.secti
   width: 560px;
 }
 
+body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section:not(#section-0) > div {
+  box-shadow: 0 0 8px 0 #ddd;
+}
+
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .toggle-icon {
   margin: 0 1rem 0 0;
   cursor: pointer;
@@ -802,6 +802,10 @@ body#page-course-view-remuiformat .remui-format-list.all-section-format ul.secti
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section.collapsed .toggle-icon::before {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+body#page-course-view-remuiformat .remui-format-list.one-section-format.all-section .sections .section:not(#section-0) > div {
+  box-shadow: 0 0 8px 0 #ddd;
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format.all-section .sections .section:not(#section-0) ul.section {

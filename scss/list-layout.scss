@@ -210,11 +210,6 @@
 				bottom: 0;
 				left: 0;
 			}
-			&:not(#section-0) {
-				& > div {
-					box-shadow: 0 0 8px 0 #ddd;
-				}
-			}
 			width: 100%;
 			.sectionname {
 			    margin: 0;
@@ -280,6 +275,11 @@
 	&.all-section-format {
 		ul.sections {
 			li.section {
+				&:not(#section-0) {
+					& > div {
+						box-shadow: 0 0 8px 0 #ddd;
+					}
+				}
 				.toggle-icon {
 					margin: 0 1rem 0 0;
 					cursor: pointer;
@@ -308,6 +308,9 @@
 		&.all-section {
 			.sections {
 				.section:not(#section-0) {
+					& > div {
+						box-shadow: 0 0 8px 0 #ddd;
+					}
 					ul.section {
 						display: none;
 					}
