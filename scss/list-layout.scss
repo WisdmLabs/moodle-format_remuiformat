@@ -65,8 +65,11 @@
 		}
 	}
 }
+// Styling for list format
 .remui-format-list {
+	// General section
 	#section-0 {
+		// Show and hide activity in general section.
 		&.showhideactivity {
 			.general-section-activities .activity {
 				@media (min-width: 992px) {
@@ -97,26 +100,33 @@
 			margin-right: 0;
 			.activity {
 
+				// Show 4 activities in row
 				@media (min-width: 992px) {
 			        width: 25%;
 				}
 
 				// Small screens, laptops
+				// Show 3 activities in row
 				@media (min-width: 768px) and (max-width: 991px) {
 			        width: 33%;
 				}
 
 				// iPads, Tablets
+				// Show 2 activities in row
 				@media (max-width: 767px) {
 			        width: 50%;
 				}
 				padding: 1rem 0 0 0;
+
+				// Remove padding of mod indent
 				& > div, .mod-indent-outer, .mod-indent {
 					padding: 0 !important;
 				}
 				.mod-indent {
 					width: 0 !important;
 				}
+
+				// Styling for general section activity card
 				.activityinstance {
 				    min-width: auto;
 				    min-height: auto;
@@ -130,6 +140,8 @@
 					    height: 75px;
 					}
 				}
+
+				// Removeing absolute postion of activity actions
 				.actions {
 				    position: inherit !important;
 				    padding: 5px 0;
@@ -170,6 +182,8 @@
 		.summary {
 		    min-height: 6.5rem;
 		}
+
+		// Teacher carousel
 		.carousel-inner {
 		    width: 155px;
 		}
@@ -203,6 +217,7 @@
 	.sections {
 		list-style: none;
 		.section {
+			// Highliging current section
 			.highlight {
 				position: absolute;
 				top: 0;
@@ -216,9 +231,11 @@
 			    font-size: 18px;
 			    font-weight: 500;
 			}
+			// Section contents.
 			.card-footer {
 				background: transparent;
 			}
+			// Indent classes for activities
 			ul.section {
 				padding: 0;
 				.mod-indent-1 {
@@ -272,14 +289,17 @@
 			}
 		}
 	}
+	// Styling for main course page where all sections are listed.
 	&.all-section-format {
 		ul.sections {
 			li.section {
+				// Apply box shadow to section except general section
 				&:not(#section-0) {
 					& > div {
 						box-shadow: 0 0 8px 0 #ddd;
 					}
 				}
+				// Custom section content toggle icon.
 				.toggle-icon {
 					margin: 0 1rem 0 0;
 					cursor: pointer;
@@ -294,6 +314,7 @@
 						font-size: 1.2rem;
 					}
 				}
+				// Rotating toggle icon when section is collapsed
 				&.collapsed {
 					.toggle-icon {
 						&::before {
@@ -304,6 +325,7 @@
 			}
 		}
 	}
+	// Styling for section when single section is opened.
 	&.one-section-format {
 		&.all-section {
 			.sections {
@@ -317,6 +339,7 @@
 				}
 			}
 		}
+		// Single section activity list styling.
 		.activities-list {
 			border: none;
 		    -webkit-box-shadow: 0 0 8px #ddd;

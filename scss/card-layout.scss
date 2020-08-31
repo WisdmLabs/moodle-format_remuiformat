@@ -150,6 +150,7 @@
             }
         }
         .section {
+            // Highlighting current section
             .highlight {
                 position: absolute;
                 top: -1px;
@@ -169,7 +170,7 @@
             .right.side {
                 display: flex;
             }
-
+            // Hide right side spacer.
             .right.side .icon.spacer {
                 display: none;
             }
@@ -184,12 +185,15 @@
                 position: relative;
                 padding: 1rem;
             }
+
+            // Styling for section cards
             .single-card {
                 visibility: hidden;
                 min-height: 340px;
                 margin-bottom: 1.75rem;
                 padding-bottom: 50px;
                 width: 100%;
+                // Dark theme
                 &.dark {
                     .left.side,
                     .sectionname,
@@ -199,6 +203,7 @@
                         color: #e4e4e4 !important;
                     }
                 }
+                // Light theme
                 &.light {
                     .left.side,
                     .sectionname,
@@ -217,7 +222,7 @@
                     text-decoration: none;
                 }
             }
-
+            // Placing section action container.
             .section-action-container {
                 justify-content: space-between;
                 flex-wrap: wrap;
@@ -241,6 +246,8 @@
                 left: 1rem;
                 right: 1rem;
             }
+
+            // Section activities summary container.
             .section-activities-summary {
                 list-style-type: none;
                 margin: 0;
@@ -263,7 +270,7 @@
                 }
             }
         }
-
+        // Styling for general section.
         #section-0 {
             background: transparent !important;
             margin-bottom: 2rem;
@@ -345,6 +352,7 @@
             }
         }
     }
+    // Styling for single section page
     &.single-section-format {
         .section-details {
             padding: 1rem 1rem 0;
@@ -360,6 +368,7 @@
             border-radius: 2px;
             background-color: white;
         }
+        // Section activities cards.
         .activity-cards {
             display: flex;
             flex-wrap: wrap;
@@ -395,10 +404,12 @@
                         padding: 0;
                     }
                 }
+                // Show activity in row.
                 &.row-activity {
                     flex: 0 0 100%;
                     width: 100%;
                 }
+                // Show activity as column.
                 &.col-activity {
                     display: flex;
                     @media (max-width: 767px) {
@@ -418,6 +429,7 @@
                     margin-bottom: 0.5rem;
                     font-weight: 600;
                 }
+                // Activity title in editing mode.
                 .title {
                     a {
                         color: #37474f;
@@ -447,6 +459,7 @@
                         }
                     }
                 }
+                // Toggle row column button styling
                 .toggle-row-column {
                     border:1px solid #e4eaec;
                     margin-right: 5px;
@@ -454,11 +467,13 @@
                         margin: 0;
                     }
                 }
+                // Hide column icon when activity is in column format.
                 &.col-activity {
                     .toggle-row-column .type-col {
                         display: none;
                     }
                 }
+                // Hide row icon when activity is in row format.
                 &.row-activity {
                     .wdm-mod-name, .toggle-row-column .type-row {
                         display: none;
@@ -467,6 +482,7 @@
                 .nosummary .availabilityinfo {
                     text-align: center;
                 }
+                // Placing conpletion marker.
                 .completion-container {
                     position: absolute;
                     bottom: 1rem;
@@ -476,6 +492,7 @@
                         display: none;
                     }
                 }
+                // Hiding move left and right menu items.
                 .moodle-actionmenu {
                     .dropdown-menu-right {
                         .editing_moveright, .editing_moveleft {
@@ -491,6 +508,7 @@
             text-decoration: none;
         }
     }
+    // Styling for activity chooser button.
     .section {
         .section-modchooser {
             padding: 2rem 1rem 0;
