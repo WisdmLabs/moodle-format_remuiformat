@@ -64,91 +64,12 @@ class ModStats {
     }
 
     /**
-     * Function to return the stats of the mod.
-     * @param  object   $course Course object
-     * @param  \cm_info $mod    Course module info
-     * @return string           Statistic
-     */
-    public function get_mod_stats($course, \cm_info $mod) {
-        $stats = "";
-        $modtype = $mod->modname;
-        switch ($modtype) {
-            case "quiz": $stats = $this->calculate_quizmarks($mod->instance);
-                break;
-            case "forum":$stats = $this->check_subscription($mod->instance);
-                break;
-            default : $stats = $this->check_completionstats($mod, $course);
-                break;
-        }
-        return $stats;
-    }
-
-    /**
-     * Calculate quiz marks
-     * @param  array  $quizid Quiz id
-     * @return string         Quiz marks
-     */
-    private function calculate_quizmarks($quizid = []) {
-        global $DB, $USER;
-        $output = "";
-        $quiz = $DB->get_record('quiz', array('id' => $quizid));
-        try {
-            $attempt = $DB->get_record('quiz_attempts', array('quiz' => $quizid, 'userid' => $USER->id));
-            if ($attempt && !empty($attempt)) {
-                $totalgrade = $quiz->sumgrades;
-                $currentgrade = $attempt->sumgrades;
-                $marks = round(($currentgrade / $totalgrade) * $quiz->grade, 2);
-                $output = get_string('grade', 'format_remuiformat')." : ".$marks ." / ". intval($quiz->grade);
-            } else {
-                $output = get_string('grade', 'format_remuiformat')." : ". get_string('notattempted', 'format_remuiformat');
-            }
-        } catch (Exception $e) {
-            $output = get_string('grade', 'format_remuiformat')." : ". get_string('notattempted', 'format_remuiformat');
-        }
-
-        return $output;
-    }
-
-    /**
-     * Check form forum subscription
-     * @param  int    $forumid Forum id
-     * @return stirng          Subscription info string
-     */
-    private function check_subscription($forumid) {
-        global $DB, $USER;
-        $forum   = $DB->get_record('forum', array('id' => $forumid), '*', MUST_EXIST);
-        $issubscribed = \mod_forum\subscriptions::is_subscribed($USER->id, $forum);
-        if ($issubscribed) {
-            return get_string("subscribed", "format_remuiformat");
-        } else {
-            return get_string("notsubscribed", "format_remuiformat");
-        }
-    }
-
-    /**
-     * Check module completion state
-     * @param  object $mod    Course module
-     * @param  object $course Course object
-     * @return string         Completion info
-     */
-    private function check_completionstats($mod, $course) {
-        global $USER;
-        $info = new \completion_info($course);
-        $data = $info->get_data($mod, false, $USER->id);
-        if (!empty($data) && $data->completionstate == 1) {
-            return get_string("completed", "format_remuiformat");
-        } else {
-            return get_string("notcompleted", "format_remuiformat");
-        }
-    }
-
-    /**
      * Returns the formatted summary of section
      * @param  string $summary  Summary text
      * @param  array  $settings Settings
      * @return string           Formatted summary
      */
-    public static function get_formatted_summary($summary, $settings) {
+    public function get_formatted_summary($summary, $settings) {
         $output = '';
         $summarylength = $settings['sectiontitlesummarymaxlength'];
         $summary = strip_tags($summary);
