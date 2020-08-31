@@ -216,8 +216,6 @@ class format_remuiformat extends format_base {
         static $courseformatoptions = false;
 
         if ($courseformatoptions === false) {
-            /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
-            this needs to be stripped off here if it's there for the format's specific colour picker. */
             $courseconfig = get_config('moodlecourse');
             $courseformatoptions = array(
                 'hiddensections' => array(
