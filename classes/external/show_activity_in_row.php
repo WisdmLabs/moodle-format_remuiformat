@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Provides {@link format_remuiformat\external\show_activity_in_row} trait.
+ * Provides format_remuiformat\external\show_activity_in_row trait.
  *
  * @package     format_remuiformat
  * @category    external
@@ -51,6 +51,13 @@ trait show_activity_in_row {
         );
     }
 
+    /**
+     * Show activity in row format
+     * @param  int   $courseid   Course Id
+     * @param  int   $sectionid  Section Id
+     * @param  int   $activityid Activity Id
+     * @return array             response
+     */
     public static function show_activity_in_row($courseid, $sectionid, $activityid) {
         global $DB, $OUTPUT;
         $table = 'format_remuiformat';
@@ -81,6 +88,10 @@ trait show_activity_in_row {
         return $output;
     }
 
+    /**
+     * Describes the parameters for show activity in row returns
+     * @return external_single_structure
+     */
     public static function show_activity_in_row_returns() {
         return new \external_single_structure (
             array(

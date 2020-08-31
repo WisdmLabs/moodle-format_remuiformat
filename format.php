@@ -17,8 +17,7 @@
 /**
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
- * @package course/format
- * @subpackage remuiformat
+ * @package format_remuiformat
  * @copyright  2019 Wisdmlabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,7 +32,7 @@ require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_all_s
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/list_one_section_renderable.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/output/card_one_section_renderable.php');
 
-// Edwiser Course Format Usage Tracking (Edwiser Course Format Analytics)
+// Edwiser Course Format Usage Tracking (Edwiser Course Format Analytics).
 $ranalytics = new \format_remuiformat\usage_tracking();
 $ranalytics->send_usage_analytics();
 
@@ -116,5 +115,5 @@ if ($course->remuicourseformat && $course->coursedisplay && !$section) {
         );
     }
 }
-// Include course format js module
+// Include course format js module.
 $PAGE->requires->js('/course/format/remuiformat/format_' . $type . '.js');

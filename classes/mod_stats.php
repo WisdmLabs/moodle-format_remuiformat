@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * This is built using the bootstrapbase template to allow for new theme's using
- * Moodle's new Bootstrap theme engine
+ * This is built using the bootstrapbase template to allow for new theme's using Moodle's new Bootstrap theme engine
  *
  * @package   format_remuiformat
  * @copyright Copyright (c) 2016 WisdmLabs. (http://www.wisdmlabs.com)
@@ -24,18 +23,39 @@
  */
 
 namespace format_remuiformat;
+
 defined('MOODLE_INTERNAL') || die;
+
 use html_writer;
-class ModStats
-{
+
+/**
+ * This is built using the bootstrapbase template to allow for new theme's using Moodle's new Bootstrap theme engine
+ */
+class ModStats {
+
+    /**
+     * Singltone instance
+     * @var ModStats
+     */
     protected static $instance;
+
+    /**
+     * Plugin config
+     * @var string
+     */
     private $_plugin_config;
 
-    // Constructor.
+    /**
+     * Private constructor
+     */
     private function __construct() {
         $this->plugin_config = "format_remuiformat";
     }
-    // Singleton Implementation.
+
+    /**
+     * Singleton Implementation.
+     * @return ModStats Object
+     */
     public static function getinstance() {
         if (!is_object(self::$instance)) {
             self::$instance = new self();
@@ -43,7 +63,12 @@ class ModStats
         return self::$instance;
     }
 
-    // Function to return the stats of the mod.
+    /**
+     * Function to return the stats of the mod.
+     * @param  object   $course Course object
+     * @param  \cm_info $mod    Course module info
+     * @return string           Statistic
+     */
     public function get_mod_stats($course, \cm_info $mod) {
         $stats = "";
         $modtype = $mod->modname;
@@ -58,7 +83,12 @@ class ModStats
         return $stats;
     }
 
-    private function calculate_quizmarks($quizid) {
+    /**
+     * Calculate quiz marks
+     * @param  array  $quizid Quiz id
+     * @return string         Quiz marks
+     */
+    private function calculate_quizmarks($quizid = []) {
         global $DB, $USER;
         $output = "";
         $quiz = $DB->get_record('quiz', array('id' => $quizid));
@@ -79,6 +109,11 @@ class ModStats
         return $output;
     }
 
+    /**
+     * Check form forum subscription
+     * @param  int    $forumid Forum id
+     * @return stirng          Subscription info string
+     */
     private function check_subscription($forumid) {
         global $DB, $USER;
         $forum   = $DB->get_record('forum', array('id' => $forumid), '*', MUST_EXIST);
@@ -90,6 +125,12 @@ class ModStats
         }
     }
 
+    /**
+     * Check module completion state
+     * @param  object $mod    Course module
+     * @param  object $course Course object
+     * @return string         Completion info
+     */
     private function check_completionstats($mod, $course) {
         global $USER;
         $info = new \completion_info($course);
@@ -103,8 +144,9 @@ class ModStats
 
     /**
      * Returns the formatted summary of section
-     * @param $summary String
-     * @return $summary String
+     * @param  string $summary  Summary text
+     * @param  array  $settings Settings
+     * @return string           Formatted summary
      */
     public static function get_formatted_summary($summary, $settings) {
         $output = '';

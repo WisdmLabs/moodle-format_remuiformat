@@ -17,8 +17,7 @@
 /**
  * Sinigle Section Renderable - A topics based format that uses card layout to diaply the content.
  *
- * @package course/format
- * @subpackage remuiformat
+ * @package format_remuiformat
  * @copyright  2019 WisdmLabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -51,16 +50,46 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  */
 class format_remuiformat_card_all_sections_summary implements renderable, templatable {
 
-    // Variables.
+    /**
+     * Course object
+     * @var object
+     */
     private $course;
+
+    /**
+     * Course format object
+     * @var format_remuiformat
+     */
     private $courseformat;
+
+    /**
+     * Course renderer object
+     * @var course_renderer
+     */
     protected $courserenderer;
+
+    /**
+     * Activity statistics
+     * @var \format_remuiformat\ModStats
+     */
     private $modstats;
+
+    /**
+     * Course format data common trait class object
+     * @var course_format_data_common_trait
+     */
     private $courseformatdatacommontrait;
+
+    /**
+     * Format Settings
+     * @var array
+     */
     private $settings;
 
     /**
      * Constructor
+     * @param object          $course         Course object
+     * @param course_renderer $renderer       Course renderer object
      */
     public function __construct($course, $renderer) {
         $this->courseformat = course_get_format($course);
@@ -104,10 +133,10 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
     /**
      * Returns the context containing the details required by the cards format mustache.
      *
-     * @param Object $export
-     * @param Object $renderer
-     * @param Boolean $editing
-     * @return Object
+     * @param object             $export   Object to export
+     * @param format_remuiformat $renderer Format renderer object
+     * @param bool               $editing  Is user is editing
+     * @param int                $rformat  Layout
      */
     private function get_card_format_context(&$export, $renderer, $editing, $rformat) {
         global $OUTPUT;
@@ -125,7 +154,10 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
             if ($generalsection) {
                 if ($editing) {
                     $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
-                    $export->generalsection['editsetionurl'] = new \moodle_url('editsection.php', array('id' => $generalsection->id));
+                    $export->generalsection['editsetionurl'] = new \moodle_url(
+                        'editsection.php',
+                        array('id' => $generalsection->id)
+                    );
                     $export->generalsection['leftsection'] = $renderer->section_left_content($generalsection, $this->course, false);
                     $export->generalsection['optionmenu'] = $renderer->section_right_content($generalsection, $this->course, false);
                 } else {
@@ -192,7 +224,11 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
                 }
                 // Add new activity.
-                $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control($this->course, 0, 0);
+                $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control(
+                    $this->course,
+                    0,
+                    0
+                );
             }
         }
 
@@ -208,6 +244,12 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
         );
     }
 
+    /**
+     * Get activities details from section
+     * @param  object $section        Section object
+     * @param  array  $displayoptions Display options
+     * @return array                  Output array
+     */
     private function get_activities_details($section, $displayoptions = array()) {
         global $PAGE;
         $modinfo = get_fast_modinfo($this->course);

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Provides {@link format_remuiformat\external\move_activity_to_section} trait.
+ * Provides format_remuiformat\external\move_activity_to_section trait.
  *
  * @package     format_remuiformat
  * @category    external
@@ -53,6 +53,14 @@ trait move_activity_to_section {
         );
     }
 
+    /**
+     * Move activity to section
+     * @param  int   $courseid         Course Id
+     * @param  int   $newsectionid     Section Id
+     * @param  int   $oldsectionid     Old Section Id
+     * @param  int   $activityidtomove New Section Id
+     * @return array                   response
+     */
     public static function move_activity_to_section($courseid, $newsectionid, $oldsectionid, $activityidtomove) {
         global $DB, $CFG;
 
@@ -85,6 +93,10 @@ trait move_activity_to_section {
         }
     }
 
+    /**
+     * Describes the parameters for move activity to section returns
+     * @return external_single_structure
+     */
     public static function move_activity_to_section_returns() {
         return new \external_single_structure (
             array(

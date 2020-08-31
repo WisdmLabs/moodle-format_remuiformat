@@ -147,7 +147,7 @@ $string['showallsectionperpage'] = 'Show all sections per page';
 $string['showfullsummary'] = '+ Show full summary';
 $string['showless'] = 'Show less';
 
-// Usage tracking
+// Usage tracking.
 $string['enableusagetracking'] = "Enable Usage Tracking";
 $string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
 

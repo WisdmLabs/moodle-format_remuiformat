@@ -17,24 +17,25 @@
 /**
  * Cards Format - A topics based format that uses card layout to display the activities/section/topics.
  *
- * @package    course/format
- * @subpackage remuiformat
+ * @package    format_remuiformat
  * @copyright  2019 Wisdmlabs
- * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot . '/course/format/lib.php'); // For format_base.
+require_once($CFG->dirroot . '/course/format/lib.php'); // For format_remuiformat.
 
 define ('REMUI_CARD_FORMAT', 0);
 define ('REMUI_LIST_FORMAT', 1);
 
+/**
+ * Cards Format - A topics based format that uses card layout to display the activities/section/topics.
+ */
 class format_remuiformat extends format_base {
 
     /**
      * Creates a new instance of class
-     * Please use {@link course_get_format($courseorid)} to get an instance of the format class
+     * Please use course_get_format($courseorid) to get an instance of the format class
      * @param string $format
      * @param int $courseid
      * @return format_remuiformat
@@ -70,7 +71,7 @@ class format_remuiformat extends format_base {
      *
      * The returned object's property (boolean)capable indicates that
      * the course format supports Moodle course ajax features.
-     * The property (array)testedbrowsers can be used as a parameter for {@link ajaxenabled()}.
+     * The property (array)testedbrowsers can be used as a parameter for ajaxenabled().
      *
      * @return stdClass
      */
@@ -119,7 +120,7 @@ class format_remuiformat extends format_base {
     /**
      * Returns the default section name for the topics course format.
      * If the section number is 0, it will use the string with key = section0name from the course format's lang file.
-     * If the section number is not 0, the base implementation of format_base::get_default_section_name which uses
+     * If the section number is not 0, the base implementation of format_remuiformat::get_default_section_name which uses
      * the string with the key = 'sectionname' from the course format's lang file + the section number will be used.
      *
      * @param stdClass $section Section object from database or just field course_sections section
@@ -130,7 +131,7 @@ class format_remuiformat extends format_base {
             // Return the general section.
             return get_string('section0name', 'format_remuiformat');
         } else {
-            // Use format_base::get_default_section_name implementation which
+            // Use format_remuiformat::get_default_section_name implementation which
             // will display the section name in "Topic n" format.
             return get_string('sectionname', 'format_remuiformat').' '. $section->section;
         }
@@ -149,13 +150,13 @@ class format_remuiformat extends format_base {
         }
 
         $settings = $this->get_settings();
-        $section_info = $modinfo->get_section_info(0);
+        $sectioninfo = $modinfo->get_section_info(0);
 
         $hidegeneralsectionwhenempty = gettype($settings['hidegeneralsectionwhenempty']) == 'integer' ?
                                         $settings['hidegeneralsectionwhenempty'] :
                                         (get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || false);
 
-        if ($section_info->summary ||
+        if ($sectioninfo->summary ||
             !empty($modinfo->sections[0]) ||
             $PAGE->user_is_editing() ||
             !$hidegeneralsectionwhenempty) {
@@ -418,7 +419,7 @@ class format_remuiformat extends format_base {
 
     /**
      * Adds format options elements to the course/section edit form.
-     * This function is called from {@link course_edit_form::definition_after_data()}.
+     * This function is called from course_edit_form::definition_after_data().
      * @param MoodleQuickForm $mform form the elements are added to.
      * @param bool $forsection 'true' if this is a section edit form, 'false' if this is course edit form.
      * @return array array of references to the added form elements.
@@ -463,10 +464,13 @@ class format_remuiformat extends format_base {
                     $fileitemid
                 );
 
-                $filemanager = $mform->addElement('filemanager', 'remuicourseimage_filemanager', new lang_string('remuicourseimage', 'format_remuiformat'), null, array(
-                    'maxfiles' => 1,
-                    'accepted_types' => array('image'),
-                ));
+                $filemanager = $mform->addElement(
+                    'filemanager',
+                    'remuicourseimage_filemanager',
+                    new lang_string('remuicourseimage', 'format_remuiformat'),
+                    null,
+                    array('maxfiles' => 1, 'accepted_types' => array('image'))
+                );
                 $filemanager->setValue($data->remuicourseimage_filemanager);
                 $elementsnew[] = $filemanager;
             }
@@ -480,7 +484,7 @@ class format_remuiformat extends format_base {
     /**
      * Whether this format allows to delete sections
      *
-     * Do not call this function directly, instead use {@link course_can_delete_section()}
+     * Do not call this function directly, instead use course_can_delete_section()
      *
      * @param int|stdClass|section_info $section
      * @return bool
@@ -582,6 +586,19 @@ class format_remuiformat extends format_base {
         return !$section->section || $section->visible;
     }
 
+    /**
+     * Callback used in WS core_course_edit_section when teacher performs an AJAX action on a section (show/hide)
+     *
+     * Access to the course is already validated in the WS but the callback has to make sure
+     * that particular action is allowed by checking capabilities
+     *
+     * Course formats should register
+     *
+     * @param stdClass|section_info $section
+     * @param string $action
+     * @param int $sr
+     * @return null|array|stdClass any data for the Javascript post-processor (must be json-encodeable)
+     */
     public function section_action($section, $action, $sr) {
         global $PAGE;
 
@@ -610,6 +627,15 @@ class format_remuiformat extends format_base {
         return $this->get_format_options();
     }
 
+    /**
+     * Updates format options for a course
+     *
+     * If $data does not contain property with the option name, the option will not be updated
+     *
+     * @param stdClass|array $data      return value from moodleform::get_data() or array with data
+     * @param int            $sectionid Section id
+     * @return bool whether there were any changes to the options values
+     */
     public function update_course_format_options($data, $sectionid = null) {
         if (!isset($data->remuicourseimage_filemanager)) {
             $data->remuicourseimage_filemanager = '';
@@ -656,6 +682,16 @@ class format_remuiformat extends format_base {
         return array('sectiontitles' => $titles, 'action' => 'move');
     }
 
+    /**
+     * Extra validation of the format options
+     *
+     * @param array $data array of ("fieldname"=>value) of submitted data
+     * @param array $files array of uploaded files "element_name"=>tmp_file_path
+     * @param array $errors errors already discovered in edit form validation
+     * @return array of "element_name"=>"error_description" if there are errors,
+     *         or an empty array if everything is OK.
+     *         Do not repeat errors from $errors param here
+     */
     public function edit_form_validation($data, $files, $errors) {
         if (isset($data)) {
             $rformat = $data['remuicourseformat'];
@@ -693,8 +729,19 @@ function format_remuiformat_inplace_editable($itemtype, $itemid, $newvalue) {
     }
 }
 
-
-function format_remuiformat_pluginfile ($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+/**
+ * Serves file from remuicourseimage_filearea
+ *
+ * @param mixed $course course or id of the course
+ * @param mixed $cm course module or id of the course module
+ * @param context $context
+ * @param string $filearea
+ * @param array $args
+ * @param bool $forcedownload
+ * @param array $options additional options affecting the file serving
+ * @return bool false if file not found, does not return if found - just send the file
+ */
+function format_remuiformat_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     global $DB;
     if ($context->contextlevel != CONTEXT_COURSE) {
         return false;

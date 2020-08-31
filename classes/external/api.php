@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Provides {@link format_remuiformat\external\api} class.
+ * Provides format_remuiformat\external\api class.
  *
  * @package     format_remuiformat
  * @category    external
@@ -36,7 +36,7 @@ use external_api;
  * aggregates them all.
  */
 class api extends external_api {
-	use course_progress_data;
+    use course_progress_data;
     use move_activities;
     use show_activity_in_row;
     use move_activity_to_section;

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Provides {@link format_remuiformat\external\course_progress_data} trait.
+ * Provides format_remuiformat\external\course_progress_data trait.
  *
  * @package     format_remuiformat
  * @category    external
@@ -52,6 +52,11 @@ trait course_progress_data {
         );
     }
 
+    /**
+     * Fetch course progress data
+     * @param  int   $courseid Course id
+     * @return array           response
+     */
     public static function course_progress_data($courseid) {
         $output = [];
         $course = get_course($courseid);
@@ -93,6 +98,10 @@ trait course_progress_data {
         return $output;
     }
 
+    /**
+     * Describes the parameters for course progress data returns
+     * @return external_single_structure
+     */
     public static function course_progress_data_returns() {
         return new external_single_structure (
             array(

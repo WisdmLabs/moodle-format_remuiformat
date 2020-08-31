@@ -17,8 +17,7 @@
 /**
  * Sinigle Section Renderable - A topics based format that uses card layout to diaply the content.
  *
- * @package course/format
- * @subpackage remuiformat
+ * @package format_remuiformat
  * @copyright  2019 WisdmLabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -48,19 +47,48 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  * @copyright  2018 Wisdmlabs
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class format_remuiformat_list_all_sections_summary implements renderable, templatable
-{
+class format_remuiformat_list_all_sections_summary implements renderable, templatable {
 
+    /**
+     * Course object
+     * @var object
+     */
     private $course;
+
+    /**
+     * Course format object
+     * @var format_remuiformat
+     */
     private $courseformat;
+
+    /**
+     * Course renderer object
+     * @var course_renderer
+     */
     protected $courserenderer;
+
+    /**
+     * Activities statistics
+     * @var \format_remuiformat\ModStats
+     */
     private $modstats;
+
+    /**
+     * Course format data common triat
+     * @var course_format_data_common_trait
+     */
     private $courseformatdatacommontrait;
 
+    /**
+     * Course format settings
+     * @var array
+     */
     private $settings;
 
     /**
-     * Constructor
+     * Contructor
+     * @param object          $course   Course object
+     * @param course_renderer $renderer Course renderer
      */
     public function __construct($course, $renderer) {
         $this->courseformat = course_get_format($course);
@@ -99,6 +127,13 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
         return  $export;
     }
 
+    /**
+     * Get list layout context
+     * @param  object      $export  Object in which context will be stored
+     * @param  format_remuiformat $renderer format renderer
+     * @param  bool        $editing  Editing mode
+     * @param  int         $rformat  layout type
+     */
     private function get_list_format_context(&$export, $renderer, $editing, $rformat) {
         global $DB, $OUTPUT, $USER;
         $coursecontext = context_course::instance($this->course->id);
@@ -167,9 +202,9 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
                     $export->generalsection['teachers']['teacherimg'] =
                     '<div class="teacher-label"><span>'
                     .get_string(count($teachers) > 1 ? 'teachers' : 'teacher', 'format_remuiformat').
-                    '</span></div>
-                    <div class="carousel slide" data-ride="carousel" id="teachers-carousel">
-                    <div class="carousel-inner text-center">';
+                    '</span></div>'
+                    . '<div class="carousel slide" data-ride="carousel" id="teachers-carousel">'
+                    . '<div class="carousel-inner text-center">';
 
                     foreach ($teachers as $teacher) {
                         if ($count % 2 == 0) {
@@ -198,18 +233,18 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
                     }
                     if (count($teachers) > 2) {
                         $export->generalsection['teachers']['teacherimg'] .=
-                        '</div><a class="carousel-control-prev" href="#teachers-carousel" role="button" data-slide="prev">
-                                <i class="fa fa-chevron-left"></i>
-                                <span class="sr-only">'
-                                .get_string('previous', 'format_remuiformat').
-                                '</span>
-                            </a>
-                            <a class="carousel-control-next" href="#teachers-carousel" role="button" data-slide="next">
-                                <i class="fa fa-chevron-right"></i>
-                                <span class="sr-only">'
-                                .get_string('next', 'format_remuiformat').
-                                '</span>
-                            </a></div>';
+                        '</div><a class="carousel-control-prev" href="#teachers-carousel" role="button" data-slide="prev">'
+                                . '<i class="fa fa-chevron-left"></i>'
+                                . '<span class="sr-only">'
+                                . get_string('previous', 'format_remuiformat')
+                                . '</span>'
+                            . '</a>'
+                            . '<a class="carousel-control-next" href="#teachers-carousel" role="button" data-slide="next">'
+                                . '<i class="fa fa-chevron-right"></i>'
+                                . '<span class="sr-only">'
+                                . get_string('next', 'format_remuiformat')
+                                . '</span>'
+                            . '</a></div>';
                     } else {
                         $export->generalsection['teachers']['teacherimg'] .= '</div></div>';
                     }

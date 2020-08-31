@@ -15,9 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Edwiser Usage Tracking
+ * Edwiser Usage Tracking.
+ *
  * We send anonymous user data to imporve our product compatibility with various plugins and systems.
- * 
+ *
  * Cards Format - A topics based format that uses card layout to diaply the content.
  * @package    format_remuiformat
  * @copyright  (c) 2020 WisdmLabs (https://wisdmlabs.com/)
@@ -26,89 +27,96 @@
 
 namespace format_remuiformat;
 
+/**
+ * Edwiser Usage Tracking
+ */
 class usage_tracking {
-    
+
     /**
      * Send usage analytics to Edwiser, only anonymous data is sent.
-     * 
+     *
      * every 7 days the data is sent, function runs for admin user only
      */
     public function send_usage_analytics() {
 
         global $DB, $CFG;
 
-        
-        // execute code only if current user is site admin
-        // reduces calls to DB
+        // Execute code only if current user is site admin.
+        // Reduces calls to DB.
         if (is_siteadmin()) {
-            
-            // check consent to send tracking data
+
+            // Check consent to send tracking data.
             $consent = get_config('format_remuiformat', 'enableusagetracking');
-            if($consent) {
-                
+            if ($consent) {
+
                 // TODO: A check needs to be added here, that user has agreed to send this data.
                 // TODO: We will have to add a settings checkbox for that or something similar.
-                
-                $last_sent_data = isset($CFG->usage_data_last_sent_format_remuiformat)?$CFG->usage_data_last_sent_format_remuiformat:false;
-                
-                // if current time is greater then saved time, send data again
-                if(!$last_sent_data || time() > $last_sent_data) {
-                    $result_arr = [];
 
-                    $analytics_data = json_encode($this->prepare_usage_analytics());                 
+                $lastsentdata = isset($CFG->usage_data_last_sent_format_remuiformat) ?
+                                $CFG->usage_data_last_sent_format_remuiformat :
+                                false;
+
+                // If current time is greater then saved time, send data again.
+                if (!$lastsentdata || time() > $lastsentdata) {
+                    $resultarr = [];
+
+                    $analyticsdata = json_encode($this->prepare_usage_analytics());
 
                     $url = "https://edwiser.org/wp-json/edwiser_customizations/send_usage_data";
-                    // call api endpoint with data
+                    // Call api endpoint with data.
                     $ch = curl_init();
 
-                    //set the url, number of POST vars, POST data
-                    curl_setopt($ch,CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $analytics_data);                                                                  
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
-                        'Content-Type: application/json',                                                                                
-                        'Content-Length: ' . strlen($analytics_data))                                                                       
+                    // Set the url, number of POST vars, POST data.
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $analyticsdata);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                        'Content-Type: application/json',
+                        'Content-Length: ' . strlen($analyticsdata))
                     );
 
-                    //execute post
+                    // Execute post.
                     $result = curl_exec($ch);
-                    if($result) {
-                        $result_arr = json_decode($result, 1);
+                    if ($result) {
+                        $resultarr = json_decode($result, 1);
                     }
-                    //close connection
+                    // Close connection.
                     curl_close($ch);
 
-                    // save new timestamp, 7 days --- save only if api returned success
-                    if(isset($result_arr['success']) && $result_arr['success']) {
-                        set_config('usage_data_last_sent_format_remuiformat', time()+604800);
+                    // Save new timestamp, 7 days --- save only if api returned success.
+                    if (isset($resultarr['success']) && $resultarr['success']) {
+                        set_config('usage_data_last_sent_format_remuiformat', time() + 604800);
                     }
                 }
             }
         }
     }
 
-     /** 
-      * Prepare usage analytics 
+     /**
+      * Prepare usage analytics
       */
     private function prepare_usage_analytics() {
 
         global $CFG, $DB;
 
-        // Suppressing all the errors here, just in case the setting does not exists, to avoid many if statements
-        $analytics_data = array(
-            'siteurl' => $this->detect_site_type() . preg_replace('#^https?://#', '', rtrim(@$CFG->wwwroot,'/')), // replace protocol and trailing slash
+        // Suppressing all the errors here, just in case the setting does not exists, to avoid many if statements.
+        $analyticsdata = array(
+            // Replace protocol and trailing slash.
+            'siteurl' => $this->detect_site_type() . preg_replace('#^https?://#', '', rtrim(@$CFG->wwwroot, '/')),
             'product_name' => "Edwiser Course Format",
-            'product_settings' => $this->get_plugin_settings('format_remuiformat'), // all settings in json, of current product which you are tracking,
+            // All settings in json, of current product which you are tracking.
+            'product_settings' => $this->get_plugin_settings('format_remuiformat'),
             'active_theme' => @$CFG->theme,
-            'total_courses' => $DB->count_records('course', array('format' => 'remuiformat')), // Include only with format type remuicourseformat.
-            // 'total_categories' => $DB->count_records('course_categories'), // includes hidden categories
-            'total_users' => $DB->count_records('user', array('deleted' => 0)), // exclude deleted
-            // 'installed_plugins' => $this->get_user_installed_plugins(), // along with versions
-            'system_version' => @$CFG->release, // Moodle version
+            // Include only with format type remuicourseformat.
+            'total_courses' => $DB->count_records('course', array('format' => 'remuiformat')),
+            // Includes hidden categories. 'total_categories' => $DB->count_records('course_categories'),.
+            'total_users' => $DB->count_records('user', array('deleted' => 0)), // Exclude deleted.
+            // Along with versions. 'installed_plugins' => $this->get_user_installed_plugins(),.
+            'system_version' => @$CFG->release, // Moodle version.
             'system_lang' => @$CFG->lang,
             'system_settings' => array(
-                // 'blog_active' => @$CFG->enableblogs,
+                // Enabling blogs. 'blog_active' => @$CFG->enableblogs,.
                 'cachejs_active' => @$CFG->cachejs,
                 'messaging_active' => @$CFG->messaging,
                 'theme_designermode_active' => @$CFG->themedesignermode,
@@ -132,22 +140,25 @@ class usage_tracking {
                 'memory_limit' => ini_get("memory_limit")
             ),
         );
-        return $analytics_data;
+        return $analyticsdata;
     }
 
-    // get plugins installed by user excluding the default plugins
+    /**
+     * Get plugins installed by user excluding the default plugins
+     * @return object All plugins object
+     */
     private function get_user_installed_plugins() {
-        // all plugins - "external/installed by user"
-        $all_plugins = array();
+        // All plugins - "external/installed by user".
+        $allplugins = array();
 
         $pluginman = \core_plugin_manager::instance();
         $plugininfos = $pluginman->get_plugins();
-        
-        foreach($plugininfos as $key => $modtype) {
-            foreach($modtype as $key => $plug) {
+
+        foreach ($plugininfos as $key => $modtype) {
+            foreach ($modtype as $key => $plug) {
                 if (!$plug->is_standard() && !$plug->is_subplugin()) {
-                    // each plugin data, // can be different structuer in case of wordpress product
-                    $all_plugins[] = array(
+                    // Each plugin data, // can be different structuer in case of wordpress product.
+                    $allplugins[] = array(
                         'name' => $plug->displayname,
                         'versiondisk' => $plug->versiondisk,
                         'versiondb' => $plug->versiondb,
@@ -158,22 +169,26 @@ class usage_tracking {
             }
         }
 
-        return $all_plugins;
+        return $allplugins;
     }
 
-    // get specific settings of the current plugin, eg: remui
+    /**
+     * Get specific settings of the current plugin, eg: remui
+     * @param  string $plugin pluginname
+     * @return object         plugin object
+     */
     private function get_plugin_settings($plugin) {
         global $DB;
-        // get complete config
-        $plugin_config = get_config($plugin);
-        $filtered_plugin_config = array();
-        
-        // Suppressing all the errors here, just in case the setting does not exists, to avoid many if statements
-        $filtered_plugin_config['defaultsectionsummarymaxlength'] = @$plugin_config->defaultsectionsummarymaxlength;
-        $filtered_plugin_config['enableusagetracking'] = @$plugin_config->enableusagetracking;
-        $filtered_plugin_config['version'] = @$plugin_config->version;
-        
-        return $filtered_plugin_config;
+        // Get complete config.
+        $pluginconfig = get_config($plugin);
+        $filteredpluginconfig = array();
+
+        // Suppressing all the errors here, just in case the setting does not exists, to avoid many if statements.
+        $filteredpluginconfig['defaultsectionsummarymaxlength'] = @$pluginconfig->defaultsectionsummarymaxlength;
+        $filteredpluginconfig['enableusagetracking'] = @$pluginconfig->enableusagetracking;
+        $filteredpluginconfig['version'] = @$pluginconfig->version;
+
+        return $filteredpluginconfig;
     }
 
     /**
@@ -185,11 +200,10 @@ class usage_tracking {
             '::1'
         );
 
-        $is_local = '';
         // Check if site is running on localhost or not.
-        if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
-            $is_local = 'localsite--';
+        if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+            return 'localsite--';
         }
-        return $is_local;
+        return '';
     }
 }
