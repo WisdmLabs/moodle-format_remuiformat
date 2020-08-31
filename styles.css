@@ -1124,6 +1124,30 @@ body#page-course-view-remuiformat #changenumsections i.fa {
   margin: 0 auto;
 }
 
+body#page-course-view-remuiformat .w-full {
+  width: 100% !important;
+}
+
+body#page-course-view-remuiformat .d-flex {
+  display: flex !important;
+}
+
+body#page-course-view-remuiformat .d-block {
+  display: block !important;
+}
+
+body#page-course-view-remuiformat .mdl-right {
+  text-align: right !important;
+}
+
+body#page-course-view-remuiformat .float-right {
+  float: right !important;
+}
+
+body#page-course-view-remuiformat .align-items-center {
+  align-items: center !important;
+}
+
 body#page-course-view-remuiformat .showactivitywrapper {
   text-align: center !important;
 }

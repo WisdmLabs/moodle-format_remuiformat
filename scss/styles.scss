@@ -122,11 +122,6 @@ body#page-course-view-remuiformat {
 	    overflow: visible;
 	}
 
-	// .course-content .col-12 {
-	//     padding-right: 1.0715rem !important;
-	//     padding-left: 1.0715rem !important;
-	// }
-
 	/* RemUI 3.4, 3.5, 3.6 */
 	.container #region-main .card.card-block:first-of-type {
 	    background: transparent;
@@ -229,19 +224,6 @@ body#page-course-view-remuiformat {
 	    left: -.1rem !important;
 	}
 
-	// &.editing ul.wdm-section-wrapper li.single-card-container {
-	//     padding: 15px !important;
-	// }
-
-	// div#card-editing-container .section-title,
-	// div#card-container .section-title,
-	// .single-section-title {
-	//     margin: 0;
-	//     font-size: 22px;
-	//     font-weight: 700;
-	//     padding: 7px 0;
-	// }
-
 	/* Hover effect only if Section is available. */
 	div#card-container a .section-title:hover {
 	    text-decoration: underline;
@@ -250,16 +232,6 @@ body#page-course-view-remuiformat {
 	input.ignoredirty.form-control {
 	    width: 100% !important;
 	}
-
-	// .section-0 {
-	//     box-shadow: 0 0 8px #ddd;
-	//     border-radius: 2px;
-	//     background-color: white;
-	//     position: relative;
-	//     min-height: 50px;
-	//     list-style: none;
-	//     padding: 15px !important;
-	// }
 
 	#section-0 .progress {
 	    margin-bottom: 5px;
@@ -270,32 +242,11 @@ body#page-course-view-remuiformat {
 	    margin-left: 0px; /* Moove */
 	}
 
-	// div#card-editing-container #section-0 ul.section,
-	// div#card-container #section-0 ul.section {
-	//     margin: 0;
-	//     padding: 0;
-	// }
-	// div#card-editing-container #section-0 ul.section li.activity,
-	// div#card-container #section-0 ul.section li.activity {
-	//     margin: 15px 0 0 0;
-	//     padding: 8px !important;
-	// }
 	div#card-editing-container #section-0 li.activity img.activityicon {
 	    vertical-align: middle;
 	    height: 28px;
 	    width: 28px;
 	}
-
-	// div#card-editing-container #section-0 .section_action_menu {
-	//     top: 0;
-	// }
-
-
-	// .wdm-card-single-section .section-modchooser {
-	//     position: absolute;
-	//     bottom: -10px;
-	//     right: 15px;
-	// }
 
 	.section-modchooser {
 		.section-modchooser-link {
@@ -312,21 +263,10 @@ body#page-course-view-remuiformat {
 	    font-weight: bold;
 	}
 
-	// div#card-editing-container div.availabilityinfo,
-	// div#card-container div.availabilityinfo,
-	// li.wdm-card-single-section div.availabilityinfo ul {
-	//     list-style: none;
-	// }
-
 	.wdm-section-summary.summary-muted * {
 	    color: #526069 !important;
 	    display: none;
 	}
-
-	// ul.cards {
-	//     list-style: none !important;
-	//     padding: 0;
-	// }
 
 	.wdm-card-completion button.btn-link {
 	    padding: 0;
@@ -335,42 +275,6 @@ body#page-course-view-remuiformat {
 	.wdm-card-completion button.btn-link img {
 	    margin: 0 2px 0 0;
 	}
-
-	// .wdm-completion-container {
-	//     display: flex;
-	//     justify-content: flex-end;
-	//     width: 100% !important;
-	//     align-items: center !important;
-	// }
-
-	// .wdm-completion-title {
-	//     font-size: 13px;
-	//     font-weight: 700;
-	//     line-height: 18px;
-	// }
-
-	// .card-section-leftnav a,
-	// .card-section-rightnav a {
-	//     color: #333;
-	//     border: 1px solid #ddd;
-	// }
-
-	// .wdm-card-single-section {
-	//     position: relative;
-	// }
-
-	// .wdm-card-single-section .section_action_menu {
-	//     position: absolute;
-	//     top: -20px;
-	//     right: 15px;
-	// }
-
-	// .wdm-section-wrapper {
-	//     list-style-type: none;
-	//     padding: 0;
-	//     margin-right: -1.0715rem;
-	//     margin-left: -1.0715rem;
-	// }
 
 	#changenumsections {
 		& > div {
@@ -391,221 +295,29 @@ body#page-course-view-remuiformat {
 		}
 	}
 
-	// /*
-	// For list format
-	// */
-	// .course-content ul.remui-format-list {
-	//     padding: 0;
-	//     margin: 0;
-	//     list-style: none;
-	// }
-	// .course-content ul.remui-format-list li.section .content {
-	//     margin: 0;
-	// }
-	// .course-content ul.remui-format-list li.section .panel.activity-list {
-	//     box-shadow: none;
-	//     margin-bottom: 0;
-	// }
-	// .course-content li.section li.activity ul {
-	//     padding-left: 2rem !important;
-	// }
+	.w-full {
+	    width: 100% !important;
+	}
 
-	// .course-content ul.remui-format-list li.section .left {
-	//     padding-top: 0;
-	//     text-align: right;
-	// }
-	
-	// .section .activity .activityinstance > a,
-	// .section .activity .contentwithoutlink > a {
-	//     display: block;
-	// }
+	.d-flex {
+	    display: flex !important;
+	}
 
-	
+	.d-block {
+	    display: block !important;
+	}
 
-	// /* For course summary */
-	// .remui-list-content-border {
-	//     border-bottom: 1px solid #e4eaec !important;
-	//     padding: 10px 15px 10px 15px !important;
-	// }
+	.mdl-right {
+	    text-align: right !important;
+	}
 
-	// /* For section title */
-	// ul.remui-format-list li.section.main {
-	//     border-bottom: none !important;
-	// }
+	.float-right {
+	    float: right !important;
+	}
 
-	// /* For activity icons */
-	// ul.remui-format-list img.activityicon {
-	//     width: 32px;
-	//     height: 32px;
-	//     vertical-align: middle;
-	// }
-
-
-
-	// /* Editing menu */
-	// .course-content ul.remui-format-list li.section div.left,
-	// .course-content ul.remui-format-list li.section div.right {
-	//     padding: 0 6px;
-	// }
-
-	// /* activity style */
-	// ul.remui-format-list li.section ul.section {
-	//     padding: 0;
-	//     margin: 0;
-	// }
-
-	// ul.remui-format-list li.section ul.section li.activity:last-of-type {
-	//     border-bottom: none;
-	// }
-
-	// ul.remui-format-list .section .activity .availabilityinfo,
-	// ul.remui-format-list .section .activity .contentafterlink {
-	//     margin-left: 5px;
-	//     margin-right: 5px;
-	// }
-
-	// ul.remui-format-list .mod-indent-outer .actions {
-	//     padding: 0;
-	//     margin-right: 0;
-	// }
-
-	// .teacher-img-container {
-	//     margin: 0 10px;
-	// }
-	// .teacher-img-container img.userpicture {
-	//     margin: 0 1rem;
-	//     border-radius: 50%;
-	// }
-
-	// .mb-25 {
-	//     margin-bottom: 25px !important;
-	// }
-
-	// .text-white * {
-	//     color: #fff !important;
-	// }
-
-	// /* For in place editing of the general section */
-	// ul.remui-format-list span.inplaceeditable label,
-	// ul.remui-format-list span.inplaceeditable input {
-	//     color: #76838f !important;
-	// }
-
-
-	// /* Aligning the up and down icon with edit button */
-
-	// /* Boost compatible CSS */
-
-	// .wdm-card,
-	// .wdm-allactivities {
-	//     border: none !important;
-	//     box-shadow: 0 0 8px #ddd !important;
-	//     background-color: #fff !important;
-	// }
-
-	// ul.remui-format-list .section .activity .availabilityinfo .tag,
-	// ul.remui-format-list .isrestricted .tag,
-	// ul.remui-format-list .isrestricted .badge,
-	// ul.remui-format-list .ishidden .tag,
-	// ul.remui-format-list .ishidden .badge,
-	// .single-card-container .availabilityinfo .tag,
-	// .single-card-container .availabilityinfo .badge,
-	// #section-0 .availabilityinfo .tag,
-	// #section-0 .availabilityinfo .badge.actions,
-	// div#card-container div.availabilityinfo.ishidden,
-	// div#card-container div.availabilityinfo.ishidden .badge {
-	//     /* background-color: #ececec; */
-	//     background-color: #b1b1b1;
-	//     color: #353535;
-	//     text-align: left;
-	//     display: inline-block;
-	//     padding: 0.75rem 1.4em;
-	//     font-size: 0.9rem;
-	//     font-weight: 400;
-	//     margin: 5px;
-	//     line-height: 1.3;
-	//     border-radius: .215rem;
-	//     white-space: normal;
-	// }
-
-	// .single-card-container .sectionfirstimage .availabilityinfo .tag,
-	// .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-	//     /* background-color: #ececec; */
-	//     background-color: #b1b1b1;
-	//     color: #353535;
-	//     text-align: left;
-	//     display: inline-block;
-	//     font-size: 14px;
-	//     font-weight: 600;
-	//     line-height: 1.3;
-	//     border-radius: .215rem;
-	//     white-space: normal;
-	//     opacity: 0.8;
-	// }
-
-	// .single-card-container .sectionfirstimage .availabilityinfo .tag {
-	//     padding: 1.25rem 1.4em;
-	// }
-
-	// .container-fluid .single-card-container .sectionfirstimage .availabilityinfo {
-	//     padding: 0.25rem 0.6em;
-	// }
-
-	// .availabilityinfo .tag ul li {
-	//     white-space: normal;
-	// }
-
-	// .w-full {
-	//     width: 100% !important;
-	// }
-
-	// /* Boost compatible CSS End*/
-	// .btn-inverse {
-	//     background-color: #fff;
-	//     border-color: #e4eaec;
-	// }
-
-	// /* Fordson Compatible CSS - Moodle 34*/
-	// li#section-0 .content {
-	//     border-bottom: none;
-	// }
-
-	// .d-flex {
-	//     display: flex !important;
-	// }
-
-	// .d-block {
-	//     display: block !important;
-	// }
-
-	// .mdl-right {
-	//     text-align: right !important;
-	// }
-
-	// @media (min-width: 768px) {
-	//     .course-content .col-md-12 {
-	//         float: none !important;
-	//     }
-	// }
-
-	// .float-right {
-	//     float: right !important;
-	// }
-
-	// .card-footer {
-	//     background-color: #fff !important;
-	// }
-	// .card-footer.border-top {
-	//     border-top: 1px solid #e4eaec!important;
-	// }
-
-	// .align-items-center {
-	//     align-items: center !important;
-	// }
-
-	// .remui-list-content-border .d-block.row:after {
-	//     content: none !important;
-	// }
+	.align-items-center {
+	    align-items: center !important;
+	}
 
 	// Show More / Show Less Button
 	.showactivitywrapper {
@@ -616,106 +328,6 @@ body#page-course-view-remuiformat {
 		    cursor: pointer;
 		}
 	}
-
-
-	// ul.section.first-section.row {
-	//     flex-wrap: wrap;
-	//     justify-content: center;
-	// }
-
-	// #page #learningcontent #page-content #region-main-box {
-	//     padding-top: 16px !important;
-	// }
-	// /* Fordson Compatible CSS End*/
-
-
-	// /* For editing on mode */
-	// .editinstructions {
-	//     background-color: aliceblue !important;
-	// }
-
-	// .fa-4x {
-	//     font-size: 4em;
-	//     width: 1.2857142857em;
-	//     text-align: center;
-	// }
-
-	// .card-current {
-	//     position: absolute;
-	//     top: -1px;
-	//     right: 30px;
-	//     width: 0;
-	//     height: 0;
-	//     border-left: 18px solid;
-	//     border-right: 18px solid;
-	//     border-top: 26px solid;
-	//     border-bottom: 16px solid;
-	//     border-bottom-color: transparent;
-	// }
-
-	// .list-current {
-	//     height: 7px;
-	//     position: absolute;
-	//     top: 0;
-	//     width: 100%;
-	//     left: 0;
-	// }
-	// .list-current {
-	//     width: 7px;
-	//     height: 100%;
-	// }
-
-	// .wdmoverlay {
-	//     position: absolute;
-	//     top: 0%;
-	//     left: 0%;
-	//     right: 0%;
-	//     bottom: 0%;
-	// }
-
-	// .single-card .sno,
-	// .single-card .card-content {
-	//     position: relative;
-	// }
-
-	// /* Compatible CSS for Moodle 35 START*/
-	// .btn-light {
-	//     color: #212529;
-	//     background-color: #f8f9fa;
-	//     border-color: #f8f9fa;
-	// }
-	// .btn-light:hover {
-	//     color: #212529;
-	//     background-color: #e2e6ea;
-	//     border-color: #dae0e5;
-	// }
-
-	// .modal-content {
-	//     width: 100%;
-	// }
-
-	// .modal-dialog-centered {
-	//     display: -ms-flexbox;
-	//     display: flex;
-	//     -ms-flex-align: center;
-	//     align-items: center;
-	//     min-height: calc(100% - (10px * 2));
-	// }
-
-	// @media (min-width: 480px) {
-	//     .modal-dialog-centered {
-	//         min-height: calc(100% - (30px * 2));
-	//     }
-	// }
-	// .container-fluid .modal-dialog {
-	//     height: 100%;
-	//     top: 12%;
-	// }
-	// /* Compatible CSS for Moodle 35 END. */
-
-	// .path-course-view li.activity > div {
-	//     padding: 0 !important;
-	// }
 
 	/* General section summary show/hide. */
 	.read-more-state {
