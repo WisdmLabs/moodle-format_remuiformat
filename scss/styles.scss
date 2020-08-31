@@ -16,6 +16,13 @@ body#page-course-view-remuiformat {
         	display: flex;
             padding: 2rem 1rem 0rem;
             text-align: center;
+            // margin: 0 auto;
+            &:first-of-type {
+            	margin-left: auto;
+            }
+            &:last-of-type {
+            	margin-right: auto;
+            }
             & > div {
                 width: 100%;
             }

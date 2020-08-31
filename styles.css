@@ -849,6 +849,14 @@ body#page-course-view-remuiformat .general-section-activities .activity {
   text-align: center;
 }
 
+body#page-course-view-remuiformat .general-section-activities .activity:first-of-type {
+  margin-left: auto;
+}
+
+body#page-course-view-remuiformat .general-section-activities .activity:last-of-type {
+  margin-right: auto;
+}
+
 body#page-course-view-remuiformat .general-section-activities .activity > div {
   width: 100%;
 }
