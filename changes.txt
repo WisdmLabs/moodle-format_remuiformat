@@ -1,7 +1,25 @@
+Version 1.0.8
+Fixes
+* Removed bootstrap classes from plugin CSS.
+* Students can check section content even if it is restricted.
+* Fixed General section image responsiveness and alignment.
+* Fixed section loading icon issue when section position is changed.
+* Fixed Show full summary toggle issue when general section summary is short.
+
+Feature
+* Added setting to hide the general section if it is empty.
+* Now section position can be changed in a card layout.
+* Easily move activity between section in card layout and one section per page in a list layout. Just click on the activity move
+    icon.
+
+Tweak
+* Editing mode is similar for one section and all sections per page of the list layout.
+
 Version 1.0.7
 Fixes
 * Fixed : Position issue with topic title in List layout in editing mode.
-* Fixed : Position issue with topic title and topic summary in list layout if show all section on one page option is selected in non-editing mode.
+* Fixed : Position issue with topic title and topic summary in list layout if show all section on one page option is selected in
+            non-editing mode.
 
 Version 1.0.6
 Fixes
