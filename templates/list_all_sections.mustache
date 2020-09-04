@@ -28,7 +28,7 @@
         "addnewactivity": "1/0",
         "leftnav": "1/0",
         "rightnav": "1/0",
-        "course_id": "course_id"
+        "courseid": "courseid"
         "user_id": "user_id"
         "defaultview": "defaultview"
         "index": "index"
@@ -36,7 +36,8 @@
 }}
 
 {{#editing}}
-    <ul class="remui-format-list">
+  <div id="list-editing-container" class="remui-format-list all-section-format theme-{{theme}} mt-20">
+    <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
             {{> format_remuiformat/list_general_section_edit }}
@@ -47,9 +48,11 @@
         {{/sections}}
         {{{ addsection }}}
     </ul>
+  </div>
 {{/editing}}
 {{^editing}}
-    <ul class="remui-format-list">
+<div id="list-container" class="remui-format-list all-section-format theme-{{theme}} mt-20">
+    <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
             {{> format_remuiformat/list_general_section }}
@@ -59,13 +62,14 @@
             {{> format_remuiformat/list_sections }}
         {{/sections}}
     </ul>
+</div>
     {{#js}}
       require(['jquery', 'core/storagewrapper'], function(jQuery, StorageWrapper) {
           // Moodle localstorage wrapper.
           var edstorage = new StorageWrapper(window.localStorage);
 
           // save the current choice by admin - expanded or collapsed
-          var formatlabel = {{{ course_id }}} + '_' + {{{ user_id }}} + '_defaultview';
+          var formatlabel = {{{ courseid }}} + '_' + {{{ user_id }}} + '_defaultview';
           var userformat = localStorage.getItem(formatlabel);
           // alert(userformat);
           if(userformat == null) {
@@ -75,7 +79,7 @@
             // the user's last format and the current format do not match, reset user data
             if(userformat != {{{ defaultview }}}) {
             {{#sections}}
-              var namelocal  = 'section-'+ {{{ index }}} + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              var namelocal  = 'section-'+ {{{ index }}} + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
               localStorage.removeItem(namelocal);
             {{/sections}}
             localStorage.setItem(formatlabel, {{{ defaultview }}});
@@ -84,8 +88,8 @@
               // current format and the user's format are the same
               jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').each(function(){
                 var section_id = jQuery(this).parent().parent().parent().attr('id');
-                var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-                var ed_sectionstate  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+                var namelocal  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
+                var ed_sectionstate  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
 
                 {{#expanded}}
                   if(localStorage.getItem(namelocal) == 'false'){
@@ -132,8 +136,8 @@
               jQuery(this).find('i').toggleClass('fa-angle-up');
               var section_id = jQuery(this).parent().parent().parent().attr('id');
               
-              var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
-              var ed_sectionstate  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              var namelocal  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
+              var ed_sectionstate  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
               
               jQuery(this).parent().parent().find('.summary').show(500);
               if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
@@ -165,7 +169,7 @@
               jQuery(iconparent).find('.float-right').toggleClass('fa-angle-down');
               jQuery(iconparent).find('.float-right').toggleClass('fa-angle-up');
               var section_id = jQuery(iconparent).parent().parent().parent().attr('id');
-              var namelocal  = section_id + '_' + {{{ course_id }}} + '_' + {{{ user_id }}};
+              var namelocal  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
               localStorage.setItem(namelocal, 'true');
               jQuery(iconparent).parent().find('.summary').show(500);
               if(jQuery(iconparent).find('.float-right').hasClass('fa-angle-down')) {

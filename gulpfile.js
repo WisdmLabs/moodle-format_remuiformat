@@ -10,24 +10,23 @@ var shell  = require('gulp-shell');
 const sourcemaps = require('gulp-sourcemaps');
 // JS stuff.
 const minify = require('gulp-minify');
+const del = require('del');
+
 var jssrc = './amd/src/*.js';
 
 // Compile all your Sass.
-// gulp.task('sass', function (done){
-//     gulp.src(['./styles/*.css'])
-//         .pipe(sass({
-//             includePaths: ['./sass'],
-//             outputStyle: 'expanded'
-//         }))
-//         .pipe(prefix(
-//             "last 1 version", "> 1%", "ie 8", "ie 7"
-//             ))
-//         .pipe(minifycss())
-//         .pipe(concat('styles.css'))
-//         .pipe(gulp.dest('.'));
-//     // Task code here.
-//     done();
-// });
+gulp.task('sass', function (done){
+    gulp.src(['./scss/styles.scss'])
+        .pipe(sass({
+            outputStyle: 'expanded'
+        }))
+        .pipe(prefix(
+            "last 1 version", "> 1%", "ie 8", "ie 7"
+            ))
+        .pipe(gulp.dest('.'));
+    // Task code here.
+    done();
+});
 
 gulp.task('compress', function(done) {
     gulp.src(jssrc)
@@ -45,11 +44,16 @@ gulp.task('compress', function(done) {
     done();
 });
 
-gulp.task('purge', shell.task('php ' + __dirname + '/../../admin/cli/purge_caches.php'));
+gulp.task('purge', shell.task('php ' + __dirname + '/../../../admin/cli/purge_caches.php'));
 
 gulp.task('watch', function(done) {
-    gulp.watch('./amd/src/*.js', gulp.series('compress'));
-    // gulp.watch('./styles/*.css', gulp.series('sass'));
+    gulp.watch('./amd/src/*.js', gulp.series('clean', 'compress', 'purge'));
+    gulp.watch('./scss/*.scss', gulp.series('sass', 'purge'));
+    done();
 });
 
-gulp.task('default', gulp.series('watch', 'compress', 'purge'));
+gulp.task('clean', function() {
+    return del(['amd/build/*']);
+});
+
+gulp.task('default', gulp.series('clean', 'compress', 'sass', 'purge', 'watch'));

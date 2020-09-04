@@ -25,9 +25,9 @@
         "expanded: "1/0",
         "collapsed: "1/0",
         "user_id: "1",
-        "course_id: "1",
+        "courseid: "1",
         "generalsection": [
-         {  
+         {
             "generalsectiontitle": "General Section Title",
             "activities": [
                 {
@@ -56,9 +56,8 @@
                     "activityinfostring": "2 Files, 2 Quizzes"
                     "sectionactivities" [
                         {
-                            
                         }
-                    ] 
+                    ]
                 }
             ]
          }
@@ -74,27 +73,31 @@
 }
 </style>
 {{#editing}}
-    <div id="card-editing-container" class="row mt-20">
+    <div id="card-editing-container" class="remui-format-card all-section-format theme-{{theme}} row">
         {{! Display General Section }}
-        {{#generalsection}}
-            {{> format_remuiformat/card_general_section_edit }}
-        {{/generalsection}}
-        {{! Display Remaining Section }}
-        {{#sections}}
-            {{> format_remuiformat/card_section_summary }}
-        {{/sections}}
-        {{{ addsection }}}
+        <ul class="sections row">
+            {{#generalsection}}
+                {{> format_remuiformat/card_general_section_edit }}
+            {{/generalsection}}
+            {{! Display Remaining Section }}
+            {{#sections}}
+                {{> format_remuiformat/card_section_summary }}
+            {{/sections}}
+            {{{ addsection }}}
+        </ul>
     </div>
 {{/editing}}
 {{^editing}}
-    <div id="card-container" class="row mt-20">
+    <div id="card-container" class="remui-format-card all-section-format theme-{{theme}} row">
         {{! Display General Section }}
-        {{#generalsection}}
-            {{> format_remuiformat/card_general_section }}
-        {{/generalsection}}
-        {{! Display Remaining Section }}
-        {{#sections}}
-            {{> format_remuiformat/card_section_summary }}
-        {{/sections}}
+        <ul class="sections row">
+            {{#generalsection}}
+                {{> format_remuiformat/card_general_section }}
+            {{/generalsection}}
+            {{! Display Remaining Section }}
+            {{#sections}}
+                {{> format_remuiformat/card_section_summary }}
+            {{/sections}}
+        </ul>
     </div>
 {{/editing}}

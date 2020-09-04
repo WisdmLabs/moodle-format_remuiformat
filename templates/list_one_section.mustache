@@ -26,9 +26,9 @@
         "expanded: "1/0",
         "collapsed: "1/0",
         "user_id: "1",
-        "course_id: "1",
+        "courseid: "1",
         "generalsection": [
-         {  
+         {
             "generalsectiontitle" => "General",
             "activities": [
                 {
@@ -56,9 +56,8 @@
                 "activityinfostring": "2 Files, 2 Quizzes"
                 "sectionactivities" [
                     {
-                        
                     }
-                ] 
+                ]
             }
         ]
     }
@@ -68,25 +67,44 @@
     {{{ hiddensection }}}
 {{/hiddensection}}
 {{^hiddensection}}
-    <div class="col-md-12 px-0 p-x-0 my-20">
-        <h2 class="single-section-title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</h2>
-        <p>{{{ summary}}}</p>
-    </div>
-    <ul class="remui-format-list p-15 py-2 px-2 p-y-1 p-x-1 wdm-allactivities">
-        <li id="section-{{section}}" class="section">
-            <div class="left side">
-                {{{ leftside }}}
-            </div>
-            <div class="right side">
-                {{{ optionmenu }}}
-            </div>
-            <div class="content">
-                {{{ activities }}}
-            </div>
-            {{{ addnewactivity }}}
-        </li>
-    </ul>
+    <div id="list-container" class="remui-format-list one-section-format mt-20">
+        <ul class="sections p-15 py-2 px-2 p-y-1 p-x-1">
+            <li id="section-{{section}}" class="section" aria-labelledby="section-{{section}} .content .summary .title">
+                <div class="right side">
+                    {{{ optionmenu }}}
+                </div>
+                <h2 class="section-title">
+                    <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+                        {{ section }}&#46;
+                    </span>
+                    <span class="title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
+                </h2>
+                {{{ summary}}}
+                <div class="content">
+                    <div class="summary">
+                    </div>
+                    <div class="activities-list">
+                        {{{ activities }}}
+                    </div>
+                </div>
+                {{{ addnewactivity }}}
+            </li>
+            {{#sections}}
+            <li id="section-{{index}}" class="section hide">
+                <div class="content">
+                    <div class="sectionname">
+                        <h2>
+                            {{name}}
+                        </h2>
+                    </div>
+                    <div class="summary">
 
+                    </div>
+                </div>
+            </li>
+            {{/sections}}
+        </ul>
+    </div>
     <!-- next/prev sections -->
     <div class="col-md-12 p-0 wdm-card-section m-t-2">
         <div class="card-section-leftnav">

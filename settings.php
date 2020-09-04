@@ -17,10 +17,8 @@
 /**
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
- * @package    course/format
- * @subpackage remuiformat
+ * @package    format_remuiformat
  * @copyright  2019 Wisdmlabs
- * @version    See the value of '$plugin->version' in version.php.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -36,7 +34,23 @@ if ($ADMIN->fulltree) {
     $default = 100;
     $settings->add(new admin_setting_configtext($name, $title, $description, $default, PARAM_INT));
 
-    // Usage tracking GDPR setting
+    // Default setting hide general section when empty.
+    $name = 'format_remuiformat/hidegeneralsectionwhenempty';
+    $title = new lang_string('hidegeneralsectionwhenempty', 'format_remuiformat');
+    $description = new lang_string('hidegeneralsectionwhenempty_help', 'format_remuiformat');
+    $default = 0;
+    $settings->add(new admin_setting_configselect(
+        $name,
+        $title,
+        $description,
+        $default,
+        array(
+            0 => new lang_string('show'),
+            1 => new lang_string('hide')
+        )
+    ));
+
+    // Usage tracking GDPR setting.
     $name = 'format_remuiformat/enableusagetracking';
     $title = get_string('enableusagetracking', 'format_remuiformat');
     $description = get_string('enableusagetrackingdesc', 'format_remuiformat');

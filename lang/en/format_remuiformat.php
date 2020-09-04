@@ -53,18 +53,20 @@ $string['sectiontitlesummarymaxlength'] = 'Set the section/activities summary ma
 $string['sectiontitlesummarymaxlength_help'] = 'Set the the section/activities title summary maxium length displayed on the card.';
 $string['defaultsectionsummarymaxlength'] = 'Set the section/activities summary maximum length.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities summary maxium length displayed on the card.';
+$string['hidegeneralsectionwhenempty'] = 'Hide general section when empty';
+$string['hidegeneralsectionwhenempty_help'] = 'When general section does not have any activity and summary then you can hide it.';
 
 // Section.
 $string['sectionname'] = 'Section';
 $string['sectionnamecaps'] = 'SECTION';
 $string['section0name'] = 'General';
-$string['hidefromothers'] = 'Hide topic';
-$string['showfromothers'] = 'Show topic';
+$string['hidefromothers'] = 'Hide section';
+$string['showfromothers'] = 'Show section';
 $string['viewtopic'] = 'View';
-$string['editsection'] = 'Edit topic';
-$string['editsectionname'] = 'Edit topic name';
-$string['newsectionname'] = 'New name for topic {$a}';
-$string['currentsection'] = 'This topic';
+$string['editsection'] = 'Edit section';
+$string['editsectionname'] = 'Edit section name';
+$string['newsectionname'] = 'New name for section {$a}';
+$string['currentsection'] = 'This section';
 $string['addnewsection'] = 'Add Section';
 
 // Activity.
@@ -93,6 +95,7 @@ $string['remuicourseformat_help'] = 'Choose a course layout';
 $string['remuicourseimage'] = 'Choose a course image';
 $string['remuicourseimage_help'] = 'Choose a course image';
 $string['addsections'] = 'Add sections';
+$string['teacher'] = 'Teacher';
 $string['teachers'] = 'Teachers';
 $string['remuiteacherdisplay'] = 'Show Teacher image';
 $string['remuiteacherdisplay_help'] = 'Show Teacher image in the Course header.';
@@ -144,8 +147,8 @@ $string['showallsectionperpage'] = 'Show all sections per page';
 $string['showfullsummary'] = '+ Show full summary';
 $string['showless'] = 'Show less';
 
-// Usage tracking
-$string['enableusagetracking'] = "Enable Usage Trakcing";
+// Usage tracking.
+$string['enableusagetracking'] = "Enable Usage Tracking";
 $string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
 
 <hr class='text-muted' />

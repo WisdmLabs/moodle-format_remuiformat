@@ -17,8 +17,7 @@
 /**
  * Activity Renderable - A topics based format that uses card layout to diaply the content.
  *
- * @package course/format
- * @subpackage remuiformat
+ * @package format_remuiformat
  * @copyright  2019 Wisdmlabs
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -45,14 +44,47 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class format_remuiformat_card_one_section implements renderable, templatable {
+    /**
+     * Course object
+     * @var object
+     */
     private $course;
+
+    /**
+     * Course format object
+     * @var format_remuiformat
+     */
     private $courseformat;
+
+    /**
+     * Course renderer
+     * @var course_renderer
+     */
     private $courserenderer;
+
+    /**
+     * Activity statistic
+     * @var \format_remuiformat\ModStats
+     */
     private $modstats;
+
+    /**
+     * Settings array
+     * @var array
+     */
     private $settings;
+
+    /**
+     * Current selected section
+     * @var int
+     */
     private $displaysection;
+
     /**
      * Constructor
+     * @param object          $course         Course object
+     * @param int             $displaysection Current section
+     * @param course_renderer $renderer       Course renderer object
      */
     public function __construct($course, $displaysection, $renderer) {
         $this->displaysection = $displaysection;
@@ -75,9 +107,13 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
+        $sections = $modinfo->get_section_info_all();
+
         $renderer = $PAGE->get_renderer('format_remuiformat');
 
         $export->section = $this->displaysection;
+        $export->theme = $PAGE->theme->name;
+
         // Check if section exists.
         if (!($sectioninfo = $modinfo->get_section_info($this->displaysection))) {
             // This section doesn't exist.
@@ -117,16 +153,33 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
+        $export->courseid = $this->course->id;
         $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
             $this->course,
             $this->displaysection,
             $this->displaysection
         );
         $export->remuicourseformatcard = true;
+        $export->sections = [];
+        foreach ($sections as $index => $sectioninfo) {
+            if ($sectioninfo->section == $this->displaysection) {
+                continue;
+            }
+            $section = new stdClass;
+            $section->index = $sectioninfo->section;
+            $section->name = $this->courseformat->get_section_name($section->index);
+            $export->sections[] = $section;
+        }
         $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }
 
+    /**
+     * Get activities details from section
+     * @param  object $section        Section object
+     * @param  array  $displayoptions Display options
+     * @return array                  Output array
+     */
     private function get_activities_details($section, $displayoptions = array()) {
         global $PAGE, $USER, $DB, $OUTPUT;
         $modinfo = get_fast_modinfo($this->course);
@@ -194,7 +247,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
                 // Set the section layout using the databases value.
                 $table = 'format_remuiformat';
-                $record = $DB->get_record($table, array('courseid' => $this->course->id, 'sectionid' => $section->section, 'activityid' => $modnumber), '*');
+                $record = $DB->get_record(
+                    $table,
+                    array('courseid' => $this->course->id, 'sectionid' => $section->section, 'activityid' => $modnumber),
+                    '*'
+                );
 
                 if ( !empty($record) ) {
                     if ($record->layouttype == 'row') {

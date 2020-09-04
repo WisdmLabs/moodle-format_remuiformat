@@ -47,5 +47,13 @@ $functions = [
         'description' => 'Show activity in row.',
         'type' => 'write',
         'ajax' => true,
+    ],
+    'format_remuiformat_course_progress_data' => [
+        'classname' => 'format_remuiformat\external\api',
+        'methodname' => 'course_progress_data',
+        'classpath' => '',
+        'description' => 'It will return course progress and module details',
+        'type' => 'read',
+        'ajax' => true,
     ]
 ];

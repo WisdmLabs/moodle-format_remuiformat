@@ -26,9 +26,9 @@
         "expanded: "1/0",
         "collapsed: "1/0",
         "user_id: "1",
-        "course_id: "1",
+        "courseid: "1",
         "generalsection": [
-         {  
+         {
             "generalsectiontitle": "General Section Title",
             "activities": [
                 {
@@ -59,16 +59,16 @@
                 "activityinfostring": "2 Files, 2 Quizzes"
                 "sectionactivities" [
                     {
-                        
                     }
-                ] 
+                ]
             }
         ]
     }
 }}
 
 {{#editing}}
-    <ul class="remui-format-list">
+<div id="list-editing-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+    <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
             {{> format_remuiformat/list_general_section_edit }}
@@ -79,9 +79,11 @@
         {{/sections}}
         {{{ addsection }}}
     </ul>
+</div>
 {{/editing}}
 {{^editing}}
-    <ul class="remui-format-list">
+<div id="list-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+    <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
             {{> format_remuiformat/list_general_section }}
@@ -91,4 +93,5 @@
             {{> format_remuiformat/list_sections_summary }}
         {{/sections}}
     </ul>
+</div>
 {{/editing}}

@@ -26,9 +26,9 @@
         "expanded: "1/0",
         "collapsed: "1/0",
         "user_id: "1",
-        "course_id: "1",
+        "courseid: "1",
         "generalsection": [
-         {  
+         {
             "sections": [
                 {
                     "index": "1",
@@ -40,9 +40,8 @@
                     "activityinfostring": "2 Files, 2 Quizzes"
                     "sectionactivities" [
                         {
-                            
                         }
-                    ] 
+                    ]
                 }
             ]
          }
@@ -51,8 +50,8 @@
 }}
 
 {{#addsection}}
-<div id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 single-card-container">
-    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 w-p100 d-flex align-items-center">
+<li id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 d-inline-flex single-card-container">
+    <div class="single-card d-flex align-items-center">
         {{#numsections}}
             <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
 
@@ -65,41 +64,46 @@
             <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
         {{/numsections}}
     </div>
-</div>
+</li>
 {{/addsection}}
 
 {{^addsection}}
-<div class="col-lg-4 col-md-6 col-sm-6 single-card-container">
-    <div class="single-card m-b-2 mb-25 mb-4 p-15 p-3 {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
-        style="background-image: {{sectionfirstimage}};
+<li class="col-lg-4 col-md-6 col-sm-6 d-inline-flex section" id="section-{{{index}}}" aria-labelledby="section-{{{index}}} .content .sectionname">
+    <div class="single-card {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
+        style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
                 background-repeat: no-repeat;
                 background-size: cover;";>
-        <div class='wdmoverlay' style="background-color: {{remuidefaultsectionoverlay}}"></div>
-        {{#highlighted}}<div class="card-current moodle-has-zindex text-primary"></div>{{/highlighted}}
-        <div class='d-flex position-relative justify-content-end'>
+        {{#highlighted}}<div class="highlight text-primary"></div>{{/highlighted}}
+        <div class="left side float-left mt-0">
+            {{{ leftside }}}
+        </div>
+        <div class='right side float-right mt-0'>
             {{{ addnewsection }}}
             {{{ optionmenu }}}
         </div>
-        <span class="sno {{^hidden}}text-primary1{{/hidden}}{{#hidden}}text-muted1{{/hidden}}" style="color: {{remuinewfontcolor}}">{{#str}} sectionnamecaps, format_remuiformat{{/str}} {{ index }}</span>
-        <div class="card-content pb-10 pb-2">
+        <div class="content pb-10 pb-2">
+            <div class="summary">
+            </div>
             {{#addnewsection}}
-                <h2 class="section-title" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
+                <h2 class="sectionname">{{{ title }}}</h2>
             {{/addnewsection}}
             {{^addnewsection}}
-                {{^hidden}}
-                    <a href="{{{ singlepageurl }}}">
-                {{/hidden}}
-                    <h2 class="section-title {{{remuinewthemecolor}}}" style="color: {{remuinewfontcolor}}">{{{ title }}}</h2>
-                {{^hidden}}
-                    </a>
-                {{/hidden}}
+                <div class="section-header">
+                    {{^hidden}}
+                        <a href="{{{ singlepageurl }}}">
+                    {{/hidden}}
+                        <h2 class="sectionname">{{{ title }}}</h2>
+                    {{^hidden}}
+                        </a>
+                    {{/hidden}}
+                </div>
             {{/addnewsection}}
-            <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}} {{{remuinewthemecolor}}}">
+            <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}}">
                 {{{ summary }}}
             </div>
-            <div class="section-summary-activities">
+            <div class="section-activities-summary">
                 {{#activityinfo}}
-                    <span class="section-mod-details {{#hidden}}text-muted{{/hidden}}" style="color: {{remuinewfontcolor}}">{{ . }}</span>
+                    <span class="item {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
             {{{ hiddenmessage }}}
@@ -109,7 +113,7 @@
         </div>
         <div class="section-action-container card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
             {{#progressinfo}}
-                <div class="progress progress-xs bg-grey-300 {{{remuinewthemecolor}}} m-b-1">
+                <div class="progress progress-xs bg-grey-300 m-b-1">
                     <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
                     </div>
                 </div>
@@ -121,5 +125,5 @@
             </div>
         </div>
     </div>
-</div>
+</li>
 {{/addsection}}
