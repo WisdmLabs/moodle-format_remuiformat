@@ -726,11 +726,13 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $value = mb_strimwidth($value, 6, mb_strwidth($value, 'UTF-8') - 13, '', 'UTF-8'); // <body> and </body>.
 
         // Remove empty tags.
-        $value = preg_replace(
-            '/<(\w+)\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|"[^"]*"|[\w\-.:]+))?)*\s*\/?>\s*<\/\1\s*>/',
-            '',
-            $value
-        );
+        if (stripos("<source", $value) !== false) {
+            $value = preg_replace(
+                '/<(\w+)\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|"[^"]*"|[\w\-.:]+))?)*\s*\/?>\s*<\/\1\s*>/',
+                '',
+                $value
+            );
+        }
 
         // Return.
         return $value;

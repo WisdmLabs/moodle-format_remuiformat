@@ -95,6 +95,7 @@ body#page-course-view-remuiformat .remui-format-card {
 @media (min-width: 768px) {
   body#page-course-view-remuiformat .remui-format-card.all-section-format .general-section-activities .activity {
     flex: 0 0 33.33%;
+    width: 33.33%;
   }
   body#page-course-view-remuiformat .remui-format-card.all-section-format .general-section-activities .activity > div {
     width: 100%;
