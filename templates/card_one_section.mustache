@@ -36,6 +36,7 @@
             "viewurl": "viewurl",
             "title": "title",
             "modulename": "modulename",
+            "modulefullname": "Module full name",
             "summary": "summary",
             "completed": "completed",
             "hidden": "hidden",
@@ -83,12 +84,12 @@
                                 {{#editing}}
                                     {{{move}}}
                                 {{/editing}}
-                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
+                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulefullname }}</div>
                                 {{#editing}}
                                 <div class="actions">
                                     <span class="toggle-row-column btn btn-inverse" data-activityid="{{ id }}">
                                         <span class='type-col'>
-                                            {{# pix }} 
+                                            {{# pix }}
                                                 ecf-cols, format_remuiformat,
                                                 {{# str }} showincard, format_remuiformat {{/ str }}
                                             {{/ pix }}
