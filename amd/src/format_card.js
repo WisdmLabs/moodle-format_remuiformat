@@ -62,8 +62,6 @@ define([
             }
         });
 
-        $('.single-card').css({ opacity: 0.0, visibility: "visible", }).animate({ opacity: 1.0, }, 600, "swing");
-
         // Call AJAX to set activity layout (Row or Card).
         $('.remui-format-card.single-section-format .activity-cards .actions .toggle-row-column').on('click', function() {
             var courseid = $('[data-courseid]').data('courseid');
