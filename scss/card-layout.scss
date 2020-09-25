@@ -128,6 +128,7 @@
         @media (min-width: 768px) {
              .general-section-activities .activity {
                 flex: 0 0 33.33%;
+                width: 33.33%;
                 & > div {
                     width:  100%;
                 }
@@ -141,6 +142,7 @@
         @media (max-width: 767px) {
             .general-section-activities .activity {
                 flex: 0 0 50%;
+                width: 50%;;
                 & > div {
                     width:  100%;
                 }
@@ -162,9 +164,6 @@
                 border-top: 26px solid;
                 border-bottom: 16px solid;
                 border-bottom-color: transparent;
-            }
-            .summary + [data-draggroups="resource"] {
-                display: none;
             }
 
             .right.side {
@@ -354,6 +353,11 @@
     }
     // Styling for single section page
     &.single-section-format {
+        .section.main {
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
         .section-details {
             padding: 1rem 1rem 0;
         }
@@ -410,20 +414,18 @@
                     width: 100%;
                 }
                 // Show activity as column.
-                &.col-activity {
-                    display: flex;
-                    @media (max-width: 767px) {
-                        flex: 0 0 100%;
-                        width: 100%;
-                    }
-                    @media (min-width: 768px) and (max-width: 1200px) {
-                        flex: 0 0 50%;
-                        width: 50%;
-                    }
-                    @media (min-width: 1201px) {
-                        flex: 0 0 33.33%;
-                        width: 33.33%;
-                    }
+                display: flex;
+                @media (max-width: 767px) {
+                    flex: 0 0 100%;
+                    width: 100%;
+                }
+                @media (min-width: 768px) and (max-width: 1200px) {
+                    flex: 0 0 50%;
+                    width: 50%;
+                }
+                @media (min-width: 1201px) {
+                    flex: 0 0 33.33%;
+                    width: 33.33%;
                 }
                 .wdm-mod-name {
                     margin-bottom: 0.5rem;
@@ -502,6 +504,9 @@
                 }
             }
         }
+    }
+    .contentwithoutlink {
+        padding: 0;
     }
     .single-card {
         a:hover {

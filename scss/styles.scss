@@ -8,6 +8,16 @@ body#page-course-view-remuiformat {
 		}
 	}
 
+	&.editing {
+		.general-section-activities {
+			.activity {
+				&:nth-last-child(2) {
+					margin-right: auto;
+				}
+			}
+		}
+	}
+
 	.general-section-activities {
         display: flex;
         flex-wrap: wrap;
