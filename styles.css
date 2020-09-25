@@ -1144,27 +1144,27 @@ body#page-course-view-remuiformat #changenumsections i.fa {
 }
 
 body#page-course-view-remuiformat .w-full {
-  width: 100% !important;
+  width: 100%;
 }
 
 body#page-course-view-remuiformat .d-flex {
-  display: flex !important;
+  display: flex;
 }
 
 body#page-course-view-remuiformat .d-block {
-  display: block !important;
+  display: block;
 }
 
 body#page-course-view-remuiformat .mdl-right {
-  text-align: right !important;
+  text-align: right;
 }
 
 body#page-course-view-remuiformat .float-right {
-  float: right !important;
+  float: right;
 }
 
 body#page-course-view-remuiformat .align-items-center {
-  align-items: center !important;
+  align-items: center;
 }
 
 body#page-course-view-remuiformat .showactivitywrapper {
