@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Provides format_remuiformat\external\course_progress_data trait.
  *
@@ -105,7 +104,7 @@ trait course_progress_data {
     public static function course_progress_data_returns() {
         return new external_single_structure (
             array(
-                'percentage' => new external_value(PARAM_NUMBER, 'Course completion percentage'),
+                'percentage' => new external_value(PARAM_FLOAT, 'Course completion percentage'),
                 'activitylist' => new external_multiple_structure(
                     new external_value(PARAM_TEXT, 'Activity count details'),
                     'Acitvity count list'

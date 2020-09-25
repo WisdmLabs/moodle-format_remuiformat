@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Edwiser Usage Tracking.
  *
@@ -51,7 +50,6 @@ class usage_tracking {
 
                 // TODO: A check needs to be added here, that user has agreed to send this data.
                 // TODO: We will have to add a settings checkbox for that or something similar.
-
                 $lastsentdata = isset($CFG->usage_data_last_sent_format_remuiformat) ?
                                 $CFG->usage_data_last_sent_format_remuiformat :
                                 false;
@@ -110,9 +108,7 @@ class usage_tracking {
             'active_theme' => @$CFG->theme,
             // Include only with format type remuicourseformat.
             'total_courses' => $DB->count_records('course', array('format' => 'remuiformat')),
-            // Includes hidden categories. 'total_categories' => $DB->count_records('course_categories'),.
             'total_users' => $DB->count_records('user', array('deleted' => 0)), // Exclude deleted.
-            // Along with versions. 'installed_plugins' => $this->get_user_installed_plugins(),.
             'system_version' => @$CFG->release, // Moodle version.
             'system_lang' => @$CFG->lang,
             'system_settings' => array(

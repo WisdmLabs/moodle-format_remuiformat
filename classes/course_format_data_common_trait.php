@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * This is built using the bootstrapbase template to allow for new theme's using Moodle's new Bootstrap theme engine
  *
@@ -475,7 +474,7 @@ class course_format_data_common_trait {
     /**
      * Fetches the last viewed activity from the database table mdl_logstore_standard_log.
      *
-     * @param  int    $course Course ID.
+     * @param  object $course Course ID.
      * @return string         Last viewed activity.
      */
     public function get_activity_to_resume($course) {
