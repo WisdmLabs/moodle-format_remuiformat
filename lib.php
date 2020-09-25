@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Cards Format - A topics based format that uses card layout to display the activities/section/topics.
  *
@@ -639,8 +638,8 @@ class format_remuiformat extends format_base {
             $data->remuicourseimage_filemanager = '';
         }
         if (!empty($data)) {
-            // Used optional_param() instead of using $_POST and $_GET.
 
+            // Used optional_param() instead of using $_POST and $_GET.
             $contextid = context_course::instance($this->courseid);
             if (!empty($data->remuicourseimage_filemanager)) {
                 file_postupdate_standard_filemanager(

@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
@@ -44,8 +43,8 @@ if ($topic = optional_param('topic', 0, PARAM_INT)) {
     debugging('Outdated topic param passed to course/view.php', DEBUG_DEVELOPER);
     redirect($url);
 }
-// End backwards-compatible aliasing..
 
+// End backwards-compatible aliasing.
 $coursecontext = context_course::instance($course->id);
 
 // Retrieve course format option fields and add them to the $course object.

@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Strings for component 'format_remuiformat'
  *
@@ -87,7 +86,7 @@ $string['generalactivities'] = 'Activities';
 $string['coursecompletionprogress'] = 'Course Progress';
 $string['resumetoactivity'] = 'Resume';
 
-// For list.
+// For list format.
 $string['remuicourseformat'] = 'Choose layout';
 $string['remuicourseformat_card'] = 'Card Layout';
 $string['remuicourseformat_list'] = 'List Layout';

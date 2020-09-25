@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Sinigle Section Renderable - A topics based format that uses card layout to diaply the content.
  *
@@ -179,8 +178,8 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $generalsectionsummary, 400
                 );
                 $export->generalsection['fullsummary'] = $generalsectionsummary;
-                // Get course image if added.
 
+                // Get course image if added.
                 $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);
                 $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);
                 if (empty($imgurl)) {
