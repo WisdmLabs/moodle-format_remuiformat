@@ -704,6 +704,7 @@ body#page-course-view-remuiformat .remui-format-list .sections .section.main {
   background: transparent;
   border: 0;
   box-shadow: none;
+  padding: 0;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .highlight {
