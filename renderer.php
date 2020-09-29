@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Cards Format - A topics based format that uses card layout to diaply the content.
  *
@@ -467,7 +466,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             // Current course format has 'numsections' option, which is very confusing and we suggest course format
             // developers to get rid of it (see MDL-57769 on how to do it).
             // Display "Increase section" / "Decrease section" links.
-
             echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
 
             // Increase number of sections.
@@ -497,7 +495,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             // Display the "Add section" link that will insert a section in the end.
             // Note to course format developers: inserting sections in the other positions should check both
             // capabilities 'moodle/course:update' and 'moodle/course:movesections'.
-
             echo html_writer::start_tag('div', array('id' => 'changenumsections', 'class' => 'mdl-right'));
             if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
                 $straddsections = get_string('addsections', 'format_'.$course->format);
@@ -543,7 +540,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             // Current course format has 'numsections' option, which is very confusing and we suggest course format.
             // developers to get rid of it (see MDL-57769 on how to do it).
             // Display "Increase section" / "Decrease section" links.
-
             $straddsection = get_string('increasesections', 'moodle');
 
             // Increase number of sections.
@@ -580,7 +576,6 @@ class format_remuiformat_renderer extends format_section_renderer_base {
             // Display the "Add section" link that will insert a section in the end.
             // Note to course format developers: inserting sections in the other positions should check both
             // capabilities 'moodle/course:update' and 'moodle/course:movesections'.
-
             $addnewsection->numsections = 0;
 
             if (get_string_manager()->string_exists('addsections', 'format_'.$course->format)) {
@@ -726,11 +721,13 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $value = mb_strimwidth($value, 6, mb_strwidth($value, 'UTF-8') - 13, '', 'UTF-8'); // <body> and </body>.
 
         // Remove empty tags.
-        $value = preg_replace(
-            '/<(\w+)\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|"[^"]*"|[\w\-.:]+))?)*\s*\/?>\s*<\/\1\s*>/',
-            '',
-            $value
-        );
+        if (stripos("<source", $value) !== false) {
+            $value = preg_replace(
+                '/<(\w+)\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|"[^"]*"|[\w\-.:]+))?)*\s*\/?>\s*<\/\1\s*>/',
+                '',
+                $value
+            );
+        }
 
         // Return.
         return $value;

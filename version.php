@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Version details
  *
@@ -24,8 +23,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020090200;                    // The current plugin version (Date: YYYYMMDDXX).
-$plugin->release   = '1.0.8';
+$plugin->version   = 2020092900;                    // The current plugin version (Date: YYYYMMDDXX).
+$plugin->release   = '1.0.9';
 $plugin->requires  = 2017111300;                    // Requires this Moodle version (Moodle V3.4.0).
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->component = 'format_remuiformat';          // Full name of the plugin (used for diagnostics).

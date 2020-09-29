@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Activity Renderable - A topics based format that uses card layout to diaply the content.
  *
@@ -118,9 +117,9 @@ class format_remuiformat_list_one_section implements renderable, templatable {
 
         // Check if the section is hidden section.
         if (!$sectioninfo->uservisible) {
-            if (!$course->hiddensections) {
+            if (!$this->course->hiddensections) {
                 $export->hiddensection = $renderer->start_section_list();
-                $export->hiddensection .= $renderer->section_hidden($displaysection, $this->course->id);
+                $export->hiddensection .= $renderer->section_hidden($this->displaysection, $this->course->id);
                 $export->hiddensection .= $renderer->end_section_list();
             }
             // Can't view this section.

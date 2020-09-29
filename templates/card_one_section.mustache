@@ -36,6 +36,7 @@
             "viewurl": "viewurl",
             "title": "title",
             "modulename": "modulename",
+            "modulefullname": "Module full name",
             "summary": "summary",
             "completed": "completed",
             "hidden": "hidden",
@@ -55,7 +56,7 @@
 
     <div id="card-editing-container" class="remui-format-card single-section-format row mt-20">
         <ul class="sections">
-            <li id="section-{{section}}" class="section" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}" data-courseid="{{ courseid }}">
+            <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}" data-courseid="{{ courseid }}">
                 <div class="section-details">
                     <div class="col-md-12 p-0 general-single-card p-15 p-3">
                         {{#editing}}
@@ -83,12 +84,12 @@
                                 {{#editing}}
                                     {{{move}}}
                                 {{/editing}}
-                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulename }}</div>
+                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulefullname }}</div>
                                 {{#editing}}
                                 <div class="actions">
                                     <span class="toggle-row-column btn btn-inverse" data-activityid="{{ id }}">
                                         <span class='type-col'>
-                                            {{# pix }} 
+                                            {{# pix }}
                                                 ecf-cols, format_remuiformat,
                                                 {{# str }} showincard, format_remuiformat {{/ str }}
                                             {{/ pix }}

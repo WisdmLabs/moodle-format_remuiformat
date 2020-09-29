@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Activity Renderable - A topics based format that uses card layout to diaply the content.
  *
@@ -211,7 +210,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails->move = course_get_cm_move($mod, $section->section);
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
-                $activitydetails->modulename = $mod->modfullname;
+                $activitydetails->modulename = $mod->modname;
+                $activitydetails->modulefullname = $mod->modfullname;
                 $activitydetails->summary = $this->modstats->get_formatted_summary(
                     $this->courserenderer->course_section_cm_text($mod, $displayoptions),
                     $this->settings

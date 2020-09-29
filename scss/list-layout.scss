@@ -217,6 +217,17 @@
 	.sections {
 		list-style: none;
 		.section {
+			&:not(#section-0) {
+				.content {
+					background: white;
+				}
+			}
+			&.main {
+				background: transparent;
+				border: 0;
+				box-shadow: none;
+				padding: 0;
+			}
 			// Highliging current section
 			.highlight {
 				position: absolute;
