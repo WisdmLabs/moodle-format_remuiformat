@@ -152,7 +152,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card {
-  visibility: hidden;
   min-height: 340px;
   margin-bottom: 1.75rem;
   padding-bottom: 50px;
@@ -705,6 +704,7 @@ body#page-course-view-remuiformat .remui-format-list .sections .section.main {
   background: transparent;
   border: 0;
   box-shadow: none;
+  padding: 0;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .highlight {
