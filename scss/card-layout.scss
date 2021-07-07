@@ -115,7 +115,23 @@
 }
 .remui-format-card {
     margin-top: 20px;
+    .availabilityinfo {
+        &.isrestricted {
+            font-size: 90%;
+            padding: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 5px 0!important
+        }
+    }
     &.all-section-format {
+        .sections {
+            .section:not(#section-0) {
+                .content .yui3-dd-drop {
+                    display: none;
+                }
+            }
+        }
         // Show two cards per row, when both sidebars open in RemUI
         // when left sidebar and right blocks section open in Boost
 
@@ -443,7 +459,7 @@
                     }
 
                     &.nosummary {
-                        a {
+                        & > a, div {
                             display: flex;
                             flex-direction: column;
                             justify-content: center;

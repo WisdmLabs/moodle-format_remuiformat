@@ -86,6 +86,18 @@ body#page-course-view-remuiformat .remui-format-card {
   margin-top: 20px;
 }
 
+body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted {
+  font-size: 90%;
+  padding: 10px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  margin: 5px 0 !important;
+}
+
+body#page-course-view-remuiformat .remui-format-card.all-section-format .sections .section:not(#section-0) .content .yui3-dd-drop {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   body#page-course-view-remuiformat .remui-format-card.all-section-format .single-card-container {
     min-width: 50% !important;
@@ -437,7 +449,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   margin-top: -3px;
 }
 
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .title.nosummary a {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .title.nosummary > a, body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .title.nosummary div {
   display: flex;
   flex-direction: column;
   justify-content: center;
