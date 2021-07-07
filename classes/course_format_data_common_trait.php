@@ -124,7 +124,7 @@ class course_format_data_common_trait {
      * @return array                           Output
      */
     public function get_list_activities_details($section, $course, $courserenderer, $settings, $displayoptions = array()) {
-        global $PAGE;
+        global $PAGE, $CFG, $USER;
         $modinfo = get_fast_modinfo($course);
         $output = array();
         $completioninfo = new \completion_info($course);
@@ -149,9 +149,16 @@ class course_format_data_common_trait {
 
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $courserenderer->course_section_cm_completion(
-                        $course,   $completioninfo, $mod, $displayoptions
-                    );
+                    if ($CFG->branch >= 311) {
+                        // Show the activity information output component.
+                        $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
+                        $activitydates = \core\activity_dates::get_dates_for_module($mod, $USER->id);
+                        $activitydetails->completion = $courserenderer->activity_information($mod, $cmcompletion, $activitydates);
+                    } else {
+                        $activitydetails->completion = $courserenderer->course_section_cm_completion(
+                            $course,   $completioninfo, $mod, $displayoptions
+                        );
+                    }
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $courserenderer->course_section_cm_name($mod, $displayoptions);

@@ -180,7 +180,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @return array                  Output array
      */
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER, $DB, $OUTPUT;
+        global $PAGE, $USER, $DB, $CFG;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -197,9 +197,20 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
                 if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                        $this->course, $completioninfo, $mod, $displayoptions
-                    );
+                    if ($CFG->branch >= 311) {
+                        // Show the activity information output component.
+                        $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
+                        $activitydates = \core\activity_dates::get_dates_for_module($mod, $USER->id);
+                        $activitydetails->completion = $this->courserenderer->activity_information(
+                            $mod,
+                            $cmcompletion,
+                            $activitydates
+                        );
+                    } else {
+                        $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
+                            $this->course, $completioninfo, $mod, $displayoptions
+                        );
+                    }
                     // Activities which are completed conditionally.
                     $activitydetails->autocompletion = 0;
                     if (strpos($activitydetails->completion, 'autocompletion') !== false) {
