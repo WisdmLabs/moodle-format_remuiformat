@@ -688,6 +688,36 @@ body#page-course-view-remuiformat .remui-format-list #section-0 #teachers-carous
   height: 35px;
 }
 
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white .h1,
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white h1 {
+  color: white;
+}
+
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white .h2,
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white h2 {
+  color: white;
+}
+
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white .h3,
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white h3 {
+  color: white;
+}
+
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white .h4,
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white h4 {
+  color: white;
+}
+
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white .h5,
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white h5 {
+  color: white;
+}
+
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white .h6,
+body#page-course-view-remuiformat .remui-format-list #section-0 .text-white h6 {
+  color: white;
+}
+
 body#page-course-view-remuiformat .remui-format-list .sections {
   list-style: none;
 }
