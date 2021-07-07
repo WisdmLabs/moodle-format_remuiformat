@@ -67,6 +67,7 @@ $string['editsectionname'] = 'Edit section name';
 $string['newsectionname'] = 'New name for section {$a}';
 $string['currentsection'] = 'This section';
 $string['addnewsection'] = 'Add Section';
+$string['moveresource'] = 'Move resource';
 
 // Activity.
 $string['viewactivity'] = 'View Activity';
@@ -137,7 +138,7 @@ $string['activitiescompleted'] = 'activities completed';
 $string['activitycompleted'] = 'activity completed';
 $string['activitiesremaining'] = 'activities remaining';
 $string['activityremaining'] = 'activity remaining';
-$string['allactivitiescompleted'] = "All activitie's completed";
+$string['allactivitiescompleted'] = "All activities completed";
 
 // Used in format.js on change course layout.
 $string['showallsectionperpage'] = 'Show all sections per page';
