@@ -216,13 +216,14 @@ class format_remuiformat extends format_base {
 
         if ($courseformatoptions === false) {
             $courseconfig = get_config('moodlecourse');
+            $defaultlayout = get_config('format_remuiformat', 'remuicourseformat');
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT,
                 ),
                 'remuicourseformat' => array(
-                    'default' => 1,
+                    'default' => $defaultlayout,
                     'type' => PARAM_INT
                 ),
                 'hidegeneralsectionwhenempty' => array(
