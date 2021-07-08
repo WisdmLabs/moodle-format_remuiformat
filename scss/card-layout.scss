@@ -396,6 +396,10 @@
             margin: 0;
             .activity {
                 transition: all 0.5s ease;
+                .autocompletion img {
+                    width: 18px;
+                    height: 18px;
+                }
                 &:hover {
                     background: transparent !important;
                 }

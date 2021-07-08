@@ -376,6 +376,11 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   display: flex;
 }
 
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .autocompletion img {
+  width: 18px;
+  height: 18px;
+}
+
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity:hover {
   background: transparent !important;
 }
