@@ -49,6 +49,22 @@ if ($ADMIN->fulltree) {
         )
     ));
 
+    // Default setting hide general section when empty.
+    $name = 'format_remuiformat/remuicourseformat';
+    $title = new lang_string('remuicourseformat', 'format_remuiformat');
+    $description = new lang_string('remuicourseformat_help', 'format_remuiformat');
+    $default = 0;
+    $settings->add(new admin_setting_configselect(
+        $name,
+        $title,
+        $description,
+        $default,
+        array(
+            0 => new lang_string('remuicourseformat_card', 'format_remuiformat'),
+            1 => new lang_string('remuicourseformat_list', 'format_remuiformat')
+        )
+    ));
+
     // Usage tracking GDPR setting.
     $name = 'format_remuiformat/enableusagetracking';
     $title = get_string('enableusagetracking', 'format_remuiformat');
