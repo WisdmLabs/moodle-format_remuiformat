@@ -1142,6 +1142,10 @@ body#page-course-view-remuiformat div#card-editing-container #section-0 li.activ
   width: 28px;
 }
 
+body#page-course-view-remuiformat.theme_adaptable .section-modchooser .section-modchooser-link *, body#page-course-view-remuiformat.theme_adaptable .section-modchooser .section-modchooser-link a:hover {
+  color: #51666C;
+}
+
 body#page-course-view-remuiformat .section-modchooser .section-modchooser-link *, body#page-course-view-remuiformat .section-modchooser .section-modchooser-link a:hover {
   color: white;
 }

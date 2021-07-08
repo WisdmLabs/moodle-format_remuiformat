@@ -258,6 +258,16 @@ body#page-course-view-remuiformat {
 	    width: 28px;
 	}
 
+	&.theme_adaptable {
+		.section-modchooser {
+			.section-modchooser-link {
+				*, a:hover {
+					color: #51666C;
+				}
+			}
+		}
+	}
+
 	.section-modchooser {
 		.section-modchooser-link {
 			*, a:hover {
