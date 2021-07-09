@@ -102,7 +102,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $PAGE, $CFG;
+        global $PAGE, $CFG, $COURSE;
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
@@ -122,9 +122,9 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Check if the section is hidden section.
         if (!$sectioninfo->uservisible) {
-            if (!$course->hiddensections) {
+            if (!$this->course->hiddensections) {
                 $export->hiddensection = $renderer->start_section_list();
-                $export->hiddensection .= $renderer->section_hidden($displaysection, $this->course->id);
+                $export->hiddensection .= $renderer->section_hidden($this->displaysection, $this->course->id);
                 $export->hiddensection .= $renderer->end_section_list();
             }
             // Can't view this section.
