@@ -628,7 +628,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         \format_remuiformat\output\format_remuiformat_card_all_sections_summary $section) {
         $templatecontext = $section->export_for_template($this);
         if (isset($templatecontext->error)) {
-            print_error($templatecontext->error);
+            throw new \moodle_exception($templatecontext->error);
         } else {
             echo $this->render_from_template('format_remuiformat/card_all_sections_summary', $templatecontext);
         }
@@ -652,7 +652,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         \format_remuiformat\output\format_remuiformat_list_all_sections $section) {
         $templatecontext = $section->export_for_template($this);
         if (isset($templatecontext->error)) {
-            print_error($templatecontext->error);
+            throw new \moodle_exception($templatecontext->error);
         } else {
             echo $this->render_from_template('format_remuiformat/list_all_sections', $templatecontext);
         }
@@ -667,7 +667,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         \format_remuiformat\output\format_remuiformat_list_all_sections_summary $section) {
         $templatecontext = $section->export_for_template($this);
         if (isset($templatecontext->error)) {
-            print_error($templatecontext->error);
+            throw new \moodle_exception($templatecontext->error);
         } else {
             echo $this->render_from_template('format_remuiformat/list_all_sections_summary', $templatecontext);
         }
@@ -718,7 +718,7 @@ class format_remuiformat_renderer extends format_section_renderer_base {
         $value = $dom->saveHtml($dom->getElementsByTagName('body')->item(0));
 
         // Remove body tag.
-        $value = mb_strimwidth($value, 6, mb_strwidth($value, 'UTF-8') - 13, '', 'UTF-8'); // <body> and </body>.
+        $value = mb_strimwidth($value, 6, mb_strwidth($value, 'UTF-8') - 13, '', 'UTF-8');
 
         // Remove empty tags.
         if (stripos("<source", $value) !== false) {
