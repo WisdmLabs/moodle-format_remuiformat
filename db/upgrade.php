@@ -73,5 +73,32 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         // Remuiformat savepoint reached.
         upgrade_plugin_savepoint(true, 2020061800, 'format', 'remuiformat');
     }
+
+    if ($oldversion < 2021070800) {
+        // Define table remuiformat_course_module_visits to be created.
+        $table = new xmldb_table('remuiformat_course_visits');
+
+        // Adding fields to table remuiformat_course_module_visits.
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('course', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('user', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('cm', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('timevisited', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+
+        // Adding keys to table remuiformat_course_module_visits.
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+
+        // Adding indexes to table remuiformat_course_module_visits.
+        $table->add_index('remuiformatvisits', XMLDB_INDEX_UNIQUE, ['course', 'user']);
+
+        // Conditionally launch create table for remuiformat_course_module_visits.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // Remuiformat savepoint reached.
+        upgrade_plugin_savepoint(true, 2021070800, 'format', 'remuiformat');
+    }
+
     return true;
 }
