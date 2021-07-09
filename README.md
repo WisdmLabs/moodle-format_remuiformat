@@ -21,17 +21,19 @@ Edwiser Course Formats block plugin for Moodle
 
 Let your students focus on what matters - learning, with the all-new and intuitive Edwiser Course Formats plugin! Choose from unique course formats like Card and List.
 
-Edwiser Course Formats plugin comes with two different layouts for your courses. 
+Edwiser Course Formats plugin comes with two different layouts for your courses.
 
 The List Format is one of the simplest course formats you can come across. Using this format, you can list your course activities in the form of lists. This format is minimalistic in design, with an option to collapse/expand course sections. The collapsible nature of List format completely removes any scope of endless scrolling across courses.
 
 Card Format is another standout course format in the offering. Edwiser Card Format displays your courses neatly stacked as cards on your course page. This format is pleasing to the eye and also highly functional.
 
+Note: Please use image of 34:35 size in card layout to apply proper background to cards.
+
 [(Back to top)](#table-of-contents)
 
 # Features
 
-* With List Format, you can choose between showing all sections on a single page and showing one section per page. 
+* With List Format, you can choose between showing all sections on a single page and showing one section per page.
 * Card Format also renders all the activities from the section in the card format.
 * Compatible with Boost Theme.
 * Compatible with Fordson Theme.
@@ -83,10 +85,10 @@ Together we could make this solution better for your Moodle.
 
 # Installation
 
-1. Download remuiformat.zip file from the purchase receipt. 
+1. Download remuiformat.zip file from the purchase receipt.
 2. Open your Moodle website and go to Site administration > Plugins > Install plugins.
 3. Choose the remuiformat.zip’ file. Then click on Install plugin from zip file.
-4. Refresh your Moodle site or go to Site administration > Plugins > Plugin overview and click on Check for available updates.   
+4. Refresh your Moodle site or go to Site administration > Plugins > Plugin overview and click on Check for available updates.
 5. In the list of plugins appearing, scroll down and click Upgrade Moodle database.
 6. The Plugins will get updated and installed in your Moodle database.
 
