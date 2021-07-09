@@ -23,8 +23,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020092901;                    // The current plugin version (Date: YYYYMMDDXX).
-$plugin->release   = '1.0.9';
-$plugin->requires  = 2017111300;                    // Requires this Moodle version (Moodle V3.4.0).
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'format_remuiformat';          // Full name of the plugin (used for diagnostics).
+$observers = array(
+    array(
+        'eventname'   => '\core\event\course_module_viewed',
+        'callback'    => '\format_remuiformat\observers\course_module::viewed',
+    )
+);
