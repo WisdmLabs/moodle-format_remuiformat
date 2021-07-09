@@ -907,6 +907,11 @@ body#page-course-view-remuiformat.editing .general-section-activities .activity:
   margin-right: auto;
 }
 
+body#page-course-view-remuiformat.editing .general-section-activities .activity.modtype_folder .contentwithoutlink {
+  padding-left: 2.142rem;
+  padding-top: 0.714rem;
+}
+
 body#page-course-view-remuiformat .general-section-activities {
   display: flex;
   flex-wrap: wrap;
@@ -917,6 +922,11 @@ body#page-course-view-remuiformat .general-section-activities .activity {
   display: flex;
   padding: 2rem 1rem 0rem;
   text-align: center;
+}
+
+body#page-course-view-remuiformat .general-section-activities .activity.modtype_folder .activityinstance,
+body#page-course-view-remuiformat .general-section-activities .activity.modtype_folder .activityinstance div {
+  display: block;
 }
 
 body#page-course-view-remuiformat .general-section-activities .activity:first-of-type {

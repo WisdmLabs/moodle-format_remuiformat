@@ -283,16 +283,20 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
-                if ($mod->modname == 'label') {
+                if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->title = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
-                $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
-                $activitydetails->summary = $this->modstats->get_formatted_summary(
-                    $activitydetails->summary,
-                    $this->settings
-                );
+                if ($mod->modname != 'folder') {
+                    $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->summary = $this->modstats->get_formatted_summary(
+                        $activitydetails->summary,
+                        $this->settings
+                    );
+                } else {
+                    $activitydetails->summary = '';
+                }
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {

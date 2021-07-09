@@ -229,7 +229,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 );
 
                 // In case of label activity send full text of cm to open in modal.
-                if ($mod->modname == 'label') {
+                if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
