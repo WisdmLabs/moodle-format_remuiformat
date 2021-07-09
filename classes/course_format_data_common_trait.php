@@ -162,7 +162,7 @@ class course_format_data_common_trait {
                 }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $courserenderer->course_section_cm_name($mod, $displayoptions);
-                if ($mod->modname == 'label') {
+                if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->title = $courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
                 $activitydetails->title .= $mod->afterlink;
