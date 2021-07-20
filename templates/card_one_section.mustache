@@ -123,7 +123,7 @@
                                 </div>
 
                                 {{#completion}}
-                                    <div class="completion-container align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
+                                    <div class="completion-container {{#manualcompletion}}manual-completion{{/manualcompletion}} align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
                                         <div class="completion-check-{{id}}">
                                             {{{ completion }}}
                                         </div>

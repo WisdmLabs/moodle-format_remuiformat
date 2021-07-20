@@ -491,14 +491,14 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   text-align: center;
 }
 
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container.manual-completion {
   position: absolute;
   bottom: 1rem;
   padding: 0;
   right: 0;
 }
 
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container .filler {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container.manual-completion .filler {
   display: none;
 }
 
