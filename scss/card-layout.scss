@@ -504,7 +504,7 @@
                     text-align: center;
                 }
                 // Placing conpletion marker.
-                .completion-container {
+                .completion-container.manual-completion {
                     position: absolute;
                     bottom: 1rem;
                     padding: 0;

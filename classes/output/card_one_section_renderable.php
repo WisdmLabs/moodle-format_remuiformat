@@ -206,10 +206,16 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                             $cmcompletion,
                             $activitydates
                         );
+                        // Check if completion is enabled. Set manual completion only if it not automatic.
+                        if ($cmcompletion->has_completion() && $cmcompletion->is_automatic() != true) {
+                            $activitydetails->manualcompletion = true;
+                        }
                     } else {
                         $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
                             $this->course, $completioninfo, $mod, $displayoptions
                         );
+                        // Check if completion is enabled. Set manual completion only if it not automatic.
+                        $activitydetails->manualcompletion = true;
                     }
                     // Activities which are completed conditionally.
                     $activitydetails->autocompletion = 0;
