@@ -265,22 +265,14 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                if ($completioninfo->is_enabled()) {
-                    if ($CFG->branch >= 311) {
-                        // Show the activity information output component.
-                        $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
-                        $activitydates = \core\activity_dates::get_dates_for_module($mod, $USER->id);
-                        $activitydetails->completion = $this->courserenderer->activity_information(
-                            $mod,
-                            $cmcompletion,
-                            $activitydates
-                        );
-                    } else {
-                        $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                            $this->course,   $completioninfo, $mod, $displayoptions
-                        );
-                    }
-                }
+                $activitydetails = $this->courseformatdatacommontrait->activity_completion(
+                    $this->course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $this->courserenderer,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
