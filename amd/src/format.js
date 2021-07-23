@@ -61,7 +61,7 @@ function($, str) {
                     } else {
                         $("#id_remuidefaultsectionview").parent().parent().show();
                     }
-                });
+                }).trigger('change');
                 var layout_value = $("#id_remuicourseformat").val();
                 window.localStorage.setItem('coursedisplay', $("#id_coursedisplay").val());
 
