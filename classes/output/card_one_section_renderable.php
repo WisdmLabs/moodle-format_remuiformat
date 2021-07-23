@@ -33,6 +33,7 @@ use context_course;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_format_data_common_trait.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 
 /**
@@ -60,6 +61,12 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @var course_renderer
      */
     private $courserenderer;
+
+    /**
+     * Course format data common trait class object
+     * @var course_format_data_common_trait
+     */
+    private $courseformatdatacommontrait;
 
     /**
      * Activity statistic
@@ -91,6 +98,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         $this->course = $this->courseformat->get_course();
         $this->courserenderer = $renderer;
         $this->modstats = \format_remuiformat\ModStats::getinstance();
+        $this->courseformatdatacommontrait = \format_remuiformat\course_format_data_common_trait::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
 
@@ -196,33 +204,14 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                if ($completioninfo->is_enabled()) {
-                    if ($CFG->branch >= 311) {
-                        // Show the activity information output component.
-                        $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
-                        $activitydates = \core\activity_dates::get_dates_for_module($mod, $USER->id);
-                        $activitydetails->completion = $this->courserenderer->activity_information(
-                            $mod,
-                            $cmcompletion,
-                            $activitydates
-                        );
-                        // Check if completion is enabled. Set manual completion only if it not automatic.
-                        if ($cmcompletion->has_completion() && $cmcompletion->is_automatic() != true) {
-                            $activitydetails->manualcompletion = true;
-                        }
-                    } else {
-                        $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                            $this->course, $completioninfo, $mod, $displayoptions
-                        );
-                        // Check if completion is enabled. Set manual completion only if it not automatic.
-                        $activitydetails->manualcompletion = true;
-                    }
-                    // Activities which are completed conditionally.
-                    $activitydetails->autocompletion = 0;
-                    if (strpos($activitydetails->completion, 'autocompletion') !== false) {
-                        $activitydetails->autocompletion = 1;
-                    }
-                }
+                $activitydetails = $this->courseformatdatacommontrait->activity_completion(
+                    $this->course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $this->courserenderer,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->move = course_get_cm_move($mod, $section->section);
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);

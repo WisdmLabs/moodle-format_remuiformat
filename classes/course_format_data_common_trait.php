@@ -115,6 +115,44 @@ class course_format_data_common_trait {
     }
 
     /**
+     * Check for activity completion data.
+     * @param stdClass         $course          Course object
+     * @param \completion_info $completioninfo  Completion info object of course
+     * @param stdClass         $activitydetails Activity details object
+     * @param \cm_info         $mod             Course module info object
+     * @param course_renderer  $courserenderer  Base renderer
+     * @param array            $displayoptions  Display options array
+     */
+    public function activity_completion($course, $completioninfo, $activitydetails, $mod, $courserenderer, $displayoptions) {
+        global $CFG, $USER;
+        if (!$completioninfo->is_enabled()) {
+            return $activitydetails;
+        }
+        if ($CFG->branch < 311) {
+            $activitydetails->completion = $courserenderer->course_section_cm_completion(
+                $course, $completioninfo, $mod, $displayoptions
+            );
+            // Check if completion is enabled. Set manual completion only if it not automatic.
+            $activitydetails->manualcompletion = true;
+            return $activitydetails;
+        }
+        if ($course->showcompletionconditions == COMPLETION_SHOW_CONDITIONS) {
+            // Show the activity information output component.
+            $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
+            $activitydetails->completion = $courserenderer->activity_information(
+                $mod,
+                $cmcompletion,
+                []
+            );
+            // Check if completion is enabled. Set manual completion only if it not automatic.
+            if ($cmcompletion->has_completion() && $cmcompletion->is_automatic() != true) {
+                $activitydetails->manualcompletion = true;
+            }
+        }
+        return $activitydetails;
+    }
+
+    /**
      * Get all activities for list format for specific section.
      * @param  object          $section        Current section object to get activities.
      * @param  object          $course         Current course.
@@ -148,18 +186,14 @@ class course_format_data_common_trait {
                 }
 
                 $activitydetails->id = $mod->id;
-                if ($completioninfo->is_enabled()) {
-                    if ($CFG->branch >= 311) {
-                        // Show the activity information output component.
-                        $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
-                        $activitydates = \core\activity_dates::get_dates_for_module($mod, $USER->id);
-                        $activitydetails->completion = $courserenderer->activity_information($mod, $cmcompletion, $activitydates);
-                    } else {
-                        $activitydetails->completion = $courserenderer->course_section_cm_completion(
-                            $course,   $completioninfo, $mod, $displayoptions
-                        );
-                    }
-                }
+                $activitydetails = $this->activity_completion(
+                    $course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $courserenderer,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $courserenderer->course_section_cm_name($mod, $displayoptions);
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
