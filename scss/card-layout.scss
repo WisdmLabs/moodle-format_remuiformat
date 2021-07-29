@@ -479,6 +479,15 @@
                             margin: 20px 0;
                         }
                     }
+                    .inplaceeditable {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        .activityicon {
+                            display: block;
+                            margin: 20px auto;
+                        }
+                    }
                 }
                 // Toggle row column button styling
                 .toggle-row-column {
@@ -521,6 +530,7 @@
                         }
                     }
                 }
+
             }
         }
     }

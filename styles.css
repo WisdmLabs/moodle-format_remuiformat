@@ -470,6 +470,17 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   margin: 20px 0;
 }
 
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .title .inplaceeditable {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .title .inplaceeditable .activityicon {
+  display: block;
+  margin: 20px auto;
+}
+
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .toggle-row-column {
   border: 1px solid #e4eaec;
   margin-right: 5px;
