@@ -231,7 +231,7 @@ class format_remuiformat extends format_base {
                     'type' => PARAM_INT
                 ),
                 'coursedisplay' => array(
-                    'default' => $defaultlayout == REMUI_CARD_FORMAT ? COURSE_DISPLAY_SINGLEPAGE : $courseconfig->coursedisplay,
+                    'default' => 0,
                     'type' => PARAM_INT
                 ),
                 'remuicourseimage_filemanager' => array(
