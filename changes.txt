@@ -1,3 +1,19 @@
+Version 1.1.0
+Feature
+* Added setting to set default course layout
+* Moodle 3.11 compatibility
+
+Fixes
+* Fixed Grammatical errors
+* General section Heading tags color issue with list layout
+* Activity card icon issue with restricted activities
+* Compatibility with Adaptable theme
+* Folder activity was not working with cards
+
+Tweak
+* Refreshing page Enable/Disable/Hide/Show section in card layout
+* Improved course format image handling
+
 Version 1.0.9
 Fixes
 * Fixed resource creation using drag and drop.
