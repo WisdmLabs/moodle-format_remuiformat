@@ -33,6 +33,7 @@ use context_course;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
+require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_format_data_common_trait.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 
 /**
@@ -60,6 +61,12 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @var course_renderer
      */
     private $courserenderer;
+
+    /**
+     * Course format data common trait class object
+     * @var course_format_data_common_trait
+     */
+    private $courseformatdatacommontrait;
 
     /**
      * Activity statistic
@@ -91,6 +98,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         $this->course = $this->courseformat->get_course();
         $this->courserenderer = $renderer;
         $this->modstats = \format_remuiformat\ModStats::getinstance();
+        $this->courseformatdatacommontrait = \format_remuiformat\course_format_data_common_trait::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
 
@@ -102,7 +110,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $PAGE, $CFG;
+        global $PAGE, $CFG, $COURSE;
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
@@ -122,9 +130,9 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Check if the section is hidden section.
         if (!$sectioninfo->uservisible) {
-            if (!$course->hiddensections) {
+            if (!$this->course->hiddensections) {
                 $export->hiddensection = $renderer->start_section_list();
-                $export->hiddensection .= $renderer->section_hidden($displaysection, $this->course->id);
+                $export->hiddensection .= $renderer->section_hidden($this->displaysection, $this->course->id);
                 $export->hiddensection .= $renderer->end_section_list();
             }
             // Can't view this section.
@@ -180,7 +188,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @return array                  Output array
      */
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER, $DB, $OUTPUT;
+        global $PAGE, $USER, $DB, $CFG;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -196,16 +204,14 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                        $this->course, $completioninfo, $mod, $displayoptions
-                    );
-                    // Activities which are completed conditionally.
-                    $activitydetails->autocompletion = 0;
-                    if (strpos($activitydetails->completion, 'autocompletion') !== false) {
-                        $activitydetails->autocompletion = 1;
-                    }
-                }
+                $activitydetails = $this->courseformatdatacommontrait->activity_completion(
+                    $this->course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $this->courserenderer,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->move = course_get_cm_move($mod, $section->section);
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
@@ -218,7 +224,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 );
 
                 // In case of label activity send full text of cm to open in modal.
-                if ($mod->modname == 'label') {
+                if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);

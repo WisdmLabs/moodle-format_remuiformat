@@ -115,6 +115,44 @@ class course_format_data_common_trait {
     }
 
     /**
+     * Check for activity completion data.
+     * @param stdClass         $course          Course object
+     * @param \completion_info $completioninfo  Completion info object of course
+     * @param stdClass         $activitydetails Activity details object
+     * @param \cm_info         $mod             Course module info object
+     * @param course_renderer  $courserenderer  Base renderer
+     * @param array            $displayoptions  Display options array
+     */
+    public function activity_completion($course, $completioninfo, $activitydetails, $mod, $courserenderer, $displayoptions) {
+        global $CFG, $USER;
+        if (!$completioninfo->is_enabled()) {
+            return $activitydetails;
+        }
+        if ($CFG->branch < 311) {
+            $activitydetails->completion = $courserenderer->course_section_cm_completion(
+                $course, $completioninfo, $mod, $displayoptions
+            );
+            // Check if completion is enabled. Set manual completion only if it not automatic.
+            $activitydetails->manualcompletion = true;
+            return $activitydetails;
+        }
+        if ($course->showcompletionconditions == COMPLETION_SHOW_CONDITIONS) {
+            // Show the activity information output component.
+            $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
+            $activitydetails->completion = $courserenderer->activity_information(
+                $mod,
+                $cmcompletion,
+                []
+            );
+            // Check if completion is enabled. Set manual completion only if it not automatic.
+            if ($cmcompletion->has_completion() && $cmcompletion->is_automatic() != true) {
+                $activitydetails->manualcompletion = true;
+            }
+        }
+        return $activitydetails;
+    }
+
+    /**
      * Get all activities for list format for specific section.
      * @param  object          $section        Current section object to get activities.
      * @param  object          $course         Current course.
@@ -124,7 +162,7 @@ class course_format_data_common_trait {
      * @return array                           Output
      */
     public function get_list_activities_details($section, $course, $courserenderer, $settings, $displayoptions = array()) {
-        global $PAGE;
+        global $PAGE, $CFG, $USER;
         $modinfo = get_fast_modinfo($course);
         $output = array();
         $completioninfo = new \completion_info($course);
@@ -148,14 +186,17 @@ class course_format_data_common_trait {
                 }
 
                 $activitydetails->id = $mod->id;
-                if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $courserenderer->course_section_cm_completion(
-                        $course,   $completioninfo, $mod, $displayoptions
-                    );
-                }
+                $activitydetails = $this->activity_completion(
+                    $course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $courserenderer,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $courserenderer->course_section_cm_name($mod, $displayoptions);
-                if ($mod->modname == 'label') {
+                if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->title = $courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
                 $activitydetails->title .= $mod->afterlink;
@@ -472,6 +513,37 @@ class course_format_data_common_trait {
     }
 
     /**
+     * Get last viewed activity from logstore_standard_log.
+     *
+     * @param  Integer    $course Course id
+     * @return Bool|Array         False if lastviewed activity does not exists else activity
+     */
+    public function get_activity_to_resume_from_log($course) {
+        global $USER, $DB;
+
+        $lastviewed = $DB->get_records('logstore_standard_log',
+            array('action' => 'viewed',
+                'target' => 'course_module',
+                'crud' => 'r',
+                'userid' => $USER->id,
+                'courseid' => $course->id,
+                'origin' => 'web'
+            ),
+            'timecreated desc',
+            '*',
+            0,
+            1
+        );
+
+        if (empty($lastviewed)) {
+            return false;
+        }
+
+        return (object)['cm' => end($lastviewed)->contextinstanceid];
+
+    }
+
+    /**
      * Fetches the last viewed activity from the database table mdl_logstore_standard_log.
      *
      * @param  object $course Course ID.
@@ -480,55 +552,38 @@ class course_format_data_common_trait {
     public function get_activity_to_resume($course) {
         global $USER, $DB;
 
-        $lastviewedactivitytmp = $DB->get_records('logstore_standard_log',
-                                array('action' => 'viewed',
-                                    'target' => 'course_module',
-                                    'crud' => 'r',
-                                    'userid' => $USER->id,
-                                    'courseid' => $course->id,
-                                    'origin' => 'web'
-                                ),
-                                'timecreated desc',
-                                '*',
-                                0,
-                                1
-                            );
+        // Fetch last viewed from remuiformat_course_visits table.
+        $lastviewed = $DB->get_record('remuiformat_course_visits',
+            array(
+                'course' => $course->id,
+                'user' => $USER->id
+            )
+        );
 
-        foreach ($lastviewedactivitytmp as $key => $value) {
-            $lastviewedactivity = $value->contextinstanceid;
+        // Fetch last viewed from log if not record in remuiformat_course_visits.
+        // If no record found in log then return empty string.
+        if (empty($lastviewed)) {
+            $lastviewed = $this->get_activity_to_resume_from_log($course);
+            if ($lastviewed === false) {
+                return '';
+            }
         }
 
-        if ( !empty($lastviewedactivity) ) {
-            // Resume to activity logic goes here...
-            $modinfo = get_fast_modinfo($course);
-            foreach ($modinfo->get_cms() as $cminfo => $cm) {
-                // Check if last viewed activity is exist in course.
-                if ($cminfo == $lastviewedactivity) {
-                    $cminfo = $modinfo->get_cm($lastviewedactivity);
-                    $section = $cminfo->sectionnum;
-                    break;
-                }
-            }
+        // Get all activities.
+        $modinfo = get_fast_modinfo($course);
 
-            // Get the activity URL from the section.
-            if ( isset($section) ) {
-                foreach ($modinfo->sections[$section] as $modnumber) {
-                    if ($modnumber == $lastviewedactivity) {
-                        $mod = $modinfo->cms[$lastviewedactivity];
-                        // Check if current module is available to user.
-                        if (!$mod->is_visible_on_course_page()) {
-                            continue;
-                        }
-                        $resumeactivityurl = $mod->url;
-                        return $resumeactivityurl->out();
-                    }
-                }
-            }
-        } else {
-            // Resume to section logic from RemUI theme goes here...
-            $resumeactivityurl = '';
-            return $resumeactivityurl;
+        // Check if activity record exists.
+        if (!$mod = $modinfo->cms[$lastviewed->cm]) {
+            return '';
         }
+
+        // Check if activity url is set.
+        if (empty($mod->url)) {
+            return '';
+        }
+
+        // Return activity url.
+        return $mod->url->out();
     }
 
     /**

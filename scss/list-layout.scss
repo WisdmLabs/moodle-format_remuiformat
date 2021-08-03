@@ -213,6 +213,14 @@
 		    max-width: 175px;
 		    height: 35px;
 		}
+		.text-white {
+			@for $i from 1 through 6 {
+				.h#{$i},
+				h#{$i} {
+					color: white;
+				}
+			}
+		}
 	}
 	.sections {
 		list-style: none;

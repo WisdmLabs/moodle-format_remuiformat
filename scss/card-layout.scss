@@ -115,7 +115,23 @@
 }
 .remui-format-card {
     margin-top: 20px;
+    .availabilityinfo {
+        &.isrestricted {
+            font-size: 90%;
+            padding: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 5px 0!important
+        }
+    }
     &.all-section-format {
+        .sections {
+            .section:not(#section-0) {
+                .content .yui3-dd-drop {
+                    display: none;
+                }
+            }
+        }
         // Show two cards per row, when both sidebars open in RemUI
         // when left sidebar and right blocks section open in Boost
 
@@ -380,6 +396,10 @@
             margin: 0;
             .activity {
                 transition: all 0.5s ease;
+                .autocompletion img {
+                    width: 18px;
+                    height: 18px;
+                }
                 &:hover {
                     background: transparent !important;
                 }
@@ -443,7 +463,7 @@
                     }
 
                     &.nosummary {
-                        a {
+                        & > a, div {
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
@@ -457,6 +477,15 @@
                             height: 75px;
                             width: 75px;
                             margin: 20px 0;
+                        }
+                    }
+                    .inplaceeditable {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        .activityicon {
+                            display: block;
+                            margin: 20px auto;
                         }
                     }
                 }
@@ -484,7 +513,7 @@
                     text-align: center;
                 }
                 // Placing conpletion marker.
-                .completion-container {
+                .completion-container.manual-completion {
                     position: absolute;
                     bottom: 1rem;
                     padding: 0;
@@ -501,6 +530,7 @@
                         }
                     }
                 }
+
             }
         }
     }

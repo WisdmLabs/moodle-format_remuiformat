@@ -250,7 +250,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
      * @return array                  Output array
      */
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE;
+        global $PAGE, $USER, $CFG;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -265,23 +265,30 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
-                if ($completioninfo->is_enabled()) {
-                    $activitydetails->completion = $this->courserenderer->course_section_cm_completion(
-                        $this->course,   $completioninfo, $mod, $displayoptions
-                    );
-                }
+                $activitydetails = $this->courseformatdatacommontrait->activity_completion(
+                    $this->course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $this->courserenderer,
+                    $displayoptions
+                );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
-                if ($mod->modname == 'label') {
+                if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->title = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
-                $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
-                $activitydetails->summary = $this->modstats->get_formatted_summary(
-                    $activitydetails->summary,
-                    $this->settings
-                );
+                if ($mod->modname != 'folder') {
+                    $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->summary = $this->modstats->get_formatted_summary(
+                        $activitydetails->summary,
+                        $this->settings
+                    );
+                } else {
+                    $activitydetails->summary = '';
+                }
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {

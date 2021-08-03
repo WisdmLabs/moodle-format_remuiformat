@@ -29,7 +29,8 @@
  		ACTIVITY_TOGGLE_WRAPPER: '.showactivitywrapper',
  		FIRST_SECTION: '#section-0',
  		SHOW: 'show',
-        TOGGLE_HIGHLIGHT: '.dropdown-item.editing_highlight'
+        TOGGLE_HIGHLIGHT: '.dropdown-item.editing_highlight',
+		TOGGLE_SHOWHIDE: '.dropdown-item.editing_showhide'
  	};
 
  	/**
@@ -93,7 +94,7 @@
 	        }
 	        $(SELECTORS.FIRST_SECTION).toggleClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
 	    });
-        $('body').on('click', SELECTORS.TOGGLE_HIGHLIGHT, function() {
+        $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT}, ${SELECTORS.TOGGLE_SHOWHIDE}`, function() {
             window.reload();
         });
 

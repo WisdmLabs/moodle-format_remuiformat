@@ -67,6 +67,7 @@ $string['editsectionname'] = 'Edit section name';
 $string['newsectionname'] = 'New name for section {$a}';
 $string['currentsection'] = 'This section';
 $string['addnewsection'] = 'Add Section';
+$string['moveresource'] = 'Move resource';
 
 // Activity.
 $string['viewactivity'] = 'View Activity';
@@ -91,8 +92,8 @@ $string['remuicourseformat'] = 'Choose layout';
 $string['remuicourseformat_card'] = 'Card Layout';
 $string['remuicourseformat_list'] = 'List Layout';
 $string['remuicourseformat_help'] = 'Choose a course layout';
-$string['remuicourseimage'] = 'Choose a course image';
-$string['remuicourseimage_help'] = 'Choose a course image';
+$string['remuicourseimage_filemanager'] = 'Course format image';
+$string['remuicourseimage_filemanager_help'] = 'This image will be displayed in General section card in card layout and as a background of General section in list layout. <strong>Recommended image size 16:9.<strong>';
 $string['addsections'] = 'Add sections';
 $string['teacher'] = 'Teacher';
 $string['teachers'] = 'Teachers';
@@ -137,7 +138,7 @@ $string['activitiescompleted'] = 'activities completed';
 $string['activitycompleted'] = 'activity completed';
 $string['activitiesremaining'] = 'activities remaining';
 $string['activityremaining'] = 'activity remaining';
-$string['allactivitiescompleted'] = "All activitie's completed";
+$string['allactivitiescompleted'] = "All activities completed";
 
 // Used in format.js on change course layout.
 $string['showallsectionperpage'] = 'Show all sections per page';

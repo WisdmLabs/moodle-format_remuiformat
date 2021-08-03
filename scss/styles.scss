@@ -14,6 +14,12 @@ body#page-course-view-remuiformat {
 				&:nth-last-child(2) {
 					margin-right: auto;
 				}
+				&.modtype_folder {
+					.contentwithoutlink {
+						padding-left: 2.142rem;
+						padding-top: 0.714rem;
+					}
+				}
 			}
 		}
 	}
@@ -23,6 +29,12 @@ body#page-course-view-remuiformat {
         flex-wrap: wrap;
         padding: 0 0 1rem;
         .activity {
+			&.modtype_folder {
+				.activityinstance,
+				.activityinstance div {
+					display: block;
+				}
+			}
         	display: flex;
             padding: 2rem 1rem 0rem;
             text-align: center;
@@ -256,6 +268,16 @@ body#page-course-view-remuiformat {
 	    vertical-align: middle;
 	    height: 28px;
 	    width: 28px;
+	}
+
+	&.theme_adaptable {
+		.section-modchooser {
+			.section-modchooser-link {
+				*, a:hover {
+					color: #51666C;
+				}
+			}
+		}
 	}
 
 	.section-modchooser {

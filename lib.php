@@ -216,13 +216,14 @@ class format_remuiformat extends format_base {
 
         if ($courseformatoptions === false) {
             $courseconfig = get_config('moodlecourse');
+            $defaultlayout = get_config('format_remuiformat', 'remuicourseformat');
             $courseformatoptions = array(
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT,
                 ),
                 'remuicourseformat' => array(
-                    'default' => 1,
+                    'default' => $defaultlayout,
                     'type' => PARAM_INT
                 ),
                 'hidegeneralsectionwhenempty' => array(
@@ -230,7 +231,11 @@ class format_remuiformat extends format_base {
                     'type' => PARAM_INT
                 ),
                 'coursedisplay' => array(
-                    'default' => $courseconfig->coursedisplay,
+                    'default' => 0,
+                    'type' => PARAM_INT
+                ),
+                'remuicourseimage_filemanager' => array(
+                    'default' => false,
                     'type' => PARAM_INT
                 ),
                 'sectiontitlesummarymaxlength' => array(
@@ -308,10 +313,20 @@ class format_remuiformat extends format_base {
                     'help' => 'coursedisplay',
                     'help_component' => 'moodle',
                 ),
+                'remuicourseimage_filemanager' => array(
+                    'label' => new lang_string('remuicourseimage_filemanager', 'format_remuiformat'),
+                    'element_type' => 'filemanager',
+                    'element_attributes' => array(
+                        'subdirs' => 0,
+                        'maxfiles' => 1,
+                        'accepted_types' => array('web_image')
+                    ),
+                    'help' => 'remuicourseimage_filemanager',
+                    'help_component' => 'format_remuiformat',
+                ),
                 'sectiontitlesummarymaxlength' => array(
                     'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remuiformat'),
                     'element_type' => 'text',
-                    'element_attributes' => array('size' => 3),
                     'help' => 'sectiontitlesummarymaxlength',
                     'help_component' => 'format_remuiformat'
                 ),
@@ -422,7 +437,7 @@ class format_remuiformat extends format_base {
      * @return array array of references to the added form elements.
      */
     public function create_edit_form_elements(&$mform, $forsection = false) {
-        global $COURSE, $USER;
+        global $COURSE, $USER, $OUTPUT;
 
         $elements = parent::create_edit_form_elements($mform, $forsection);
         if (!$forsection && (empty($COURSE->id) || $COURSE->id == SITEID)) {
@@ -440,42 +455,30 @@ class format_remuiformat extends format_base {
             array_unshift($elements, $element);
         }
 
-        $elementsnew = [];
-
         $fs = get_file_storage();
         $coursecontext = context_course::instance($this->courseid);
         $usercontext = context_user::instance($USER->id);
 
+        $data = new stdClass;
+        $fileitemid = $this->get_remuicourseimage_filemanager();
+        $fs->delete_area_files($usercontext->id, 'user', 'draft', $fileitemid);
+        $data = file_prepare_standard_filemanager(
+            $data,
+            'remuicourseimage',
+            array('accepted_types' => 'images', 'maxfiles' => 1),
+            $coursecontext,
+            'format_remuiformat',
+            'remuicourseimage_filearea',
+            $fileitemid
+        );
+        $mform->setDefault('remuicourseimage_filemanager', $data->remuicourseimage_filemanager);
         foreach ($elements as $key => $element) {
-            if ($element->getName() == 'sectiontitlesummarymaxlength') {
-                $data = new stdClass;
-                $fileitemid = $this->get_remuicourseimage_filemanager();
-                $fs->delete_area_files($usercontext->id, 'user', 'draft', $fileitemid);
-                $data = file_prepare_standard_filemanager(
-                    $data,
-                    'remuicourseimage',
-                    array('accepted_types' => 'images', 'maxfiles' => 1),
-                    $coursecontext,
-                    'format_remuiformat',
-                    'remuicourseimage_filearea',
-                    $fileitemid
-                );
-
-                $filemanager = $mform->addElement(
-                    'filemanager',
-                    'remuicourseimage_filemanager',
-                    new lang_string('remuicourseimage', 'format_remuiformat'),
-                    null,
-                    array('maxfiles' => 1, 'accepted_types' => array('image'))
-                );
-                $filemanager->setValue($data->remuicourseimage_filemanager);
-                $elementsnew[] = $filemanager;
+            if ($element->getName() == 'remuicourseimage_filemanager') {
+                $element->setMaxfiles(1);
             }
-            unset($elements[$key]);
-            $elementsnew[] = $element;
         }
 
-        return $elementsnew;
+        return $elements;
     }
 
     /**
