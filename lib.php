@@ -327,7 +327,6 @@ class format_remuiformat extends format_base {
                 'sectiontitlesummarymaxlength' => array(
                     'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remuiformat'),
                     'element_type' => 'text',
-                    'element_attributes' => array('size' => 3),
                     'help' => 'sectiontitlesummarymaxlength',
                     'help_component' => 'format_remuiformat'
                 ),
