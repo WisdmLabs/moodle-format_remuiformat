@@ -36,6 +36,5 @@
                 <INDEX NAME="remuiformatvisits" UNIQUE="true" FIELDS="course, user"/>
             </INDEXES>
         </TABLE>
-        </TABLE>
     </TABLES>
 </XMLDB>
