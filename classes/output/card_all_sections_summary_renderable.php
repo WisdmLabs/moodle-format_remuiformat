@@ -275,8 +275,8 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
-                if (array_search($mod->modname, array('label', 'folder')) !== false) {
-                    $activitydetails->title = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                if (array_search($mod->modname, array('folder')) !== false) {
+                    $activitydetails->title .= $this->courserenderer->course_section_cm_text($mod, $displayoptions);
                 }
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;

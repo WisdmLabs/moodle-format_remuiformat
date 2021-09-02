@@ -316,11 +316,11 @@ class format_remuiformat extends format_base {
                 'remuicourseimage_filemanager' => array(
                     'label' => new lang_string('remuicourseimage_filemanager', 'format_remuiformat'),
                     'element_type' => 'filemanager',
-                    'element_attributes' => array(
+                    'element_attributes' => [[], array(
                         'subdirs' => 0,
                         'maxfiles' => 1,
                         'accepted_types' => array('web_image')
-                    ),
+                    )],
                     'help' => 'remuicourseimage_filemanager',
                     'help_component' => 'format_remuiformat',
                 ),
