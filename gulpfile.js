@@ -53,7 +53,7 @@ gulp.task('watch', function(done) {
 });
 
 gulp.task('clean', function() {
-    return del(['amd/build/*']);
+    return del(['./amd/build/*']);
 });
 
 gulp.task('default', gulp.series('clean', 'compress', 'sass', 'purge', 'watch'));
