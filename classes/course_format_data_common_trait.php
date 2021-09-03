@@ -68,50 +68,31 @@ class course_format_data_common_trait {
 
     /**
      * Display image file
+     * @param  context $context Course context
      * @param  int $itemid File item id
      * @return string      Image file url
      */
-    public function display_file($itemid) {
-        global $DB, $CFG;
-
-        // Added empty check here to check if 'remuicourseimage_filearea' is set or not.
-        if ( !empty($itemid) ) {
-            $filedata = $DB->get_records('files', array('itemid' => $itemid));
-
-            $tempdata = array();
-            foreach ($filedata as $key => $value) {
-                if ($value->filesize > 0 && $value->filearea == 'remuicourseimage_filearea') {
-                    $tempdata = $value;
-                }
-            }
-            $fs = get_file_storage();
-            if (!empty($tempdata)) {
-                $files = $fs->get_area_files(
-                    $tempdata->contextid,
-                    'format_remuiformat',
-                    'remuicourseimage_filearea',
-                    $itemid
-                );
-                $url = '';
-                foreach ($files as $key => $file) {
-                    $file->portfoliobutton = '';
-
-                    $path = '/'.
-                            $tempdata->contextid.
-                            '/'.
-                            'format_remuiformat'.
-                            '/'.
-                            'remuicourseimage_filearea'.
-                            '/'.
-                            $file->get_itemid().
-                            $file->get_filepath().
-                            $file->get_filename();
-                    $url = file_encode_url("$CFG->wwwroot/pluginfile.php", $path, true);
-                }
-                return $url;
-            }
+    public function display_file($context, $itemid) {
+        if (empty($itemid)) {
+            return '';
         }
-        return '';
+
+        $files = get_file_storage()->get_area_files(
+            $context->id, 'format_remuiformat', 'remuicourseimage_filearea',
+            $itemid, 'itemid, filepath, filename', false);
+
+        if (empty($files)) {
+            return '';
+        }
+
+        $file = current($files);
+        return \moodle_url::make_pluginfile_url(
+            $file->get_contextid(),
+            $file->get_component(),
+            $file->get_filearea(),
+            $file->get_itemid(),
+            $file->get_filepath(),
+            $file->get_filename(), false);
     }
 
     /**

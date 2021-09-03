@@ -180,8 +180,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $export->generalsection['fullsummary'] = $generalsectionsummary;
 
                 // Get course image if added.
-                $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);
-                $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);
+                $imgurl = $this->courseformatdatacommontrait->display_file($coursecontext, $this->settings['remuicourseimage_filemanager']);
                 if (empty($imgurl)) {
                     $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
                 }

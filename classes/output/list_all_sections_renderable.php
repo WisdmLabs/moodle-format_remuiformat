@@ -156,7 +156,7 @@ class format_remuiformat_list_all_sections implements renderable, templatable {
         $export->courseid = $this->course->id;
 
         if (!$hidegeneralsection) {
-            $imgurl = $this->courseformatdatacommontrait->display_file($this->settings['remuicourseimage_filemanager']);
+            $imgurl = $this->courseformatdatacommontrait->display_file($coursecontext, $this->settings['remuicourseimage_filemanager']);
             // General Section Details.
             $generalsection = $modinfo->get_section_info(0);
             if ($editing) {
