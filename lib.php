@@ -242,6 +242,10 @@ class format_remuiformat extends format_base {
                     'default' => get_config('format_remuiformat', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
+                'activityfullcontent' => array(
+                    'default' => '',
+                    'type' => PARAM_TAGLIST
+                ),
                 'remuiteacherdisplay' => array(
                     'default' => 1,
                     'type' => PARAM_INT
@@ -328,6 +332,28 @@ class format_remuiformat extends format_base {
                     'label' => new lang_string('sectiontitlesummarymaxlength', 'format_remuiformat'),
                     'element_type' => 'text',
                     'help' => 'sectiontitlesummarymaxlength',
+                    'help_component' => 'format_remuiformat'
+                ),
+                'activityfullcontent' => array(
+                    'label' => new lang_string('activityfullcontent', 'format_remuiformat'),
+                    'element_type' => 'autocomplete',
+                    'element_attributes' => array(
+                        call_user_func(function () {
+                            $mods = array_map(
+                                function ($mod) {
+                                    return $mod->modname;
+                                },
+                                array_filter(get_course_mods($this->courseid), function ($mod) {
+                                    return ! in_array($mod->modname, array('label', 'folder'));
+                                })
+                            );
+                            return array_combine($mods, $mods);
+                        }),
+                        array(
+                            'multiple' => true,
+                        )
+                    ),
+                    'help' => 'activityfullcontent',
                     'help_component' => 'format_remuiformat'
                 ),
                 'remuiteacherdisplay' => array(
@@ -641,6 +667,8 @@ class format_remuiformat extends format_base {
             $data->remuicourseimage_filemanager = '';
         }
         if (!empty($data)) {
+
+            $data->activityfullcontent = implode(',', $data->activityfullcontent);
 
             // Used optional_param() instead of using $_POST and $_GET.
             $contextid = context_course::instance($this->courseid);

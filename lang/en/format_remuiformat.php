@@ -55,6 +55,10 @@ $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities
 $string['hidegeneralsectionwhenempty'] = 'Hide general section when empty';
 $string['hidegeneralsectionwhenempty_help'] = 'When general section does not have any activity and summary then you can hide it.';
 
+$string['activityfullcontent'] = 'Activities/Resources with full content displayed';
+$string['activityfullcontent_help'] = 'A list of activities and resources for which the full content should be '
+    . 'displayed on cards. This includes label and folder by default.';
+
 // Section.
 $string['sectionname'] = 'Section';
 $string['sectionnamecaps'] = 'SECTION';

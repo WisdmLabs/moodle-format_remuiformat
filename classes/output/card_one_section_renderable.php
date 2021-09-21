@@ -218,10 +218,19 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->modulefullname = $mod->modfullname;
-                $activitydetails->summary = $this->modstats->get_formatted_summary(
-                    $this->courserenderer->course_section_cm_text($mod, $displayoptions),
-                    $this->settings
-                );
+
+                $modallowedfullcontent = isset($this->settings['activityfullcontent'])
+                    && in_array($mod->modname, explode(',', trim($this->settings['activityfullcontent'])));
+
+                if ($modallowedfullcontent) {
+                    $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                } else {
+                    $activitydetails->summary = $this->modstats->get_formatted_summary(
+                        $this->courserenderer->course_section_cm_text($mod, $displayoptions),
+                        $this->settings
+                    );
+                }
+
 
                 // In case of label activity send full text of cm to open in modal.
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
