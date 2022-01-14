@@ -633,30 +633,39 @@ class format_remuiformat extends format_base {
      * If $data does not contain property with the option name, the option will not be updated
      *
      * @param stdClass|array $data      return value from moodleform::get_data() or array with data
-     * @param int            $sectionid Section id
+     * @param stdClass|array            $oldcourse Old course id
      * @return bool whether there were any changes to the options values
      */
-    public function update_course_format_options($data, $sectionid = null) {
-        if (!isset($data->remuicourseimage_filemanager)) {
-            $data->remuicourseimage_filemanager = '';
+    public function update_course_format_options($data, $oldcourse = null) {
+        $data = (array) $data;
+        if ($oldcourse !== null) {
+            $oldcourse = (array)$oldcourse;
+            $options = $this->course_format_options();
+            foreach ($options as $key => $unused) {
+                if (!array_key_exists($key, $data)) {
+                    if (array_key_exists($key, $oldcourse)) {
+                        $data[$key] = $oldcourse[$key];
+                    }
+                }
+            }
         }
-        if (!empty($data)) {
-
-            // Used optional_param() instead of using $_POST and $_GET.
-            $contextid = context_course::instance($this->courseid);
-            if (!empty($data->remuicourseimage_filemanager)) {
-                file_postupdate_standard_filemanager(
-                    $data,
-                    'remuicourseimage',
-                    array ('accepted_types' => 'images', 'maxfiles' => 1),
-                    $contextid,
+        if (isset($data['id']) && $data['id']) {
+            $courseid = $data['id'];
+            if (!isset($data["remuicourseimage_filemanager"])) {
+                $data["remuicourseimage_filemanager"] = '';
+            }
+            $contextid = context_course::instance($courseid);
+            if (!empty($data["remuicourseimage_filemanager"]) && !empty($data["saveanddisplay"])) {
+                file_save_draft_area_files(
+                    $data['remuicourseimage_filemanager'],
+                    $contextid->id,
                     'format_remuiformat',
                     'remuicourseimage_filearea',
-                    $data->remuicourseimage_filemanager
+                    $data["remuicourseimage_filemanager"],
+                    ['accepted_types' => 'images', 'maxfiles' => 1]
                 );
+                $this->set_remuicourseimage_filemanager($data["remuicourseimage_filemanager"]);
             }
-
-            $this->set_remuicourseimage_filemanager($data->remuicourseimage_filemanager);
         }
         return $this->update_format_options($data);
     }
