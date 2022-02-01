@@ -171,7 +171,12 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 } else {
                     $export->generalsection['activityexists'] = 0;
                 }
-                $export->generalsection['availability'] = $renderer->section_availability($generalsection);
+
+                $format = course_get_format($this->course->id);
+                $elementclass = $format->get_output_classname('content\\section\\availability');
+                $availability = new $elementclass($format, $generalsection);
+
+                $export->generalsection['availability'] = $renderer->render($availability);
                 $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
 
                 $export->generalsection['summary'] = $renderer->abstract_html_contents(
@@ -273,14 +278,14 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $displayoptions
                 );
                 $activitydetails->viewurl = $mod->url;
-                $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
+                $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
                 if (array_search($mod->modname, array('folder')) !== false) {
-                    $activitydetails->title .= $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->title .= $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions);
                 }
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
                 if ($mod->modname != 'folder') {
-                    $activitydetails->summary = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->summary = $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions);
                     $activitydetails->summary = $this->modstats->get_formatted_summary(
                         $activitydetails->summary,
                         $this->settings
