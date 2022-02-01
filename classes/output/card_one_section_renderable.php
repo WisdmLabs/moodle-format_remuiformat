@@ -214,12 +214,12 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 );
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->move = course_get_cm_move($mod, $section->section);
-                $activitydetails->title = $this->courserenderer->course_section_cm_name($mod, $displayoptions);
+                $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->modulefullname = $mod->modfullname;
                 $activitydetails->summary = $this->modstats->get_formatted_summary(
-                    $this->courserenderer->course_section_cm_text($mod, $displayoptions),
+                    $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
 
@@ -227,7 +227,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
-                    $activitydetails->fullcontent = $this->courserenderer->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->fullcontent = $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions);
                 }
 
                 $activitydetails->completed = $completiondata->completionstate;

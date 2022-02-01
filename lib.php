@@ -30,7 +30,7 @@ define ('REMUI_LIST_FORMAT', 1);
 /**
  * Cards Format - A topics based format that uses card layout to display the activities/section/topics.
  */
-class format_remuiformat extends format_base {
+class format_remuiformat extends core_courseformat\base {
 
     /**
      * Creates a new instance of class

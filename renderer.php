@@ -25,10 +25,12 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 
+use core_courseformat\output\section_renderer;
+
 /**
  * Remui format renderer class
  */
-class format_remuiformat_renderer extends format_section_renderer_base {
+class format_remuiformat_renderer extends section_renderer {
 
     /**
      * Our course format object as defined in lib.php.

@@ -595,6 +595,108 @@ class course_format_data_common_trait {
     }
 
     /**
+     * Renders html to display a name with the link to the course module on a course page
+     *
+     * If module is unavailable for user but still needs to be displayed
+     * in the list, just the name is returned without a link
+     *
+     * Note, that for course modules that never have separate pages (i.e. labels)
+     * this function return an empty string
+     *
+     * @param cm_info $mod
+     * @param array $displayoptions
+     * @return string
+     */
+    public function course_section_cm_name(cm_info $mod, $displayoptions = array()) {
+        global $PAGE, $OUTPUT;
+
+        if (!$mod->is_visible_on_course_page() || !$mod->url) {
+            // Nothing to be displayed to the user.
+            return '';
+        }
+
+        list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
+        $groupinglabel = $mod->get_grouping_label($textclasses);
+
+        // Render element that allows to edit activity name inline.
+        $format = course_get_format($mod->course);
+        $cmnameclass = $format->get_output_classname('content\\cm\\cmname');
+        // Mod inplace name editable.
+        $cmname = new $cmnameclass(
+            $format,
+            $mod->get_section_info(),
+            $mod,
+            $PAGE->user_is_editing(),
+            $displayoptions
+        );
+
+        $data = $cmname->export_for_template($OUTPUT);
+
+        return $OUTPUT->render_from_template('core/inplace_editable', $data) .
+            $groupinglabel;
+    }
+
+    /**
+     * Returns the CSS classes for the activity name/content
+     *
+     * For items which are hidden, unavailable or stealth but should be displayed
+     * to current user ($mod->is_visible_on_course_page()), we show those as dimmed.
+     * Students will also see as dimmed activities names that are not yet available
+     * but should still be displayed (without link) with availability info.
+     *
+     * @param cm_info $mod
+     * @return array array of two elements ($linkclasses, $textclasses)
+     */
+    protected function course_section_cm_classes(cm_info $mod) {
+
+        $format = course_get_format($mod->course);
+
+        $cmclass = $format->get_output_classname('content\\cm');
+        $cmoutput = new $cmclass(
+            $format,
+            $mod->get_section_info(),
+            $mod,
+        );
+        return [
+            $cmoutput->get_link_classes(),
+            $cmoutput->get_text_classes(),
+        ];
+    }
+
+    /**
+     * Renders html to display the module content on the course page (i.e. text of the labels)
+     *
+     * @param cm_info $mod
+     * @param array $displayoptions
+     * @return string
+     */
+    public function course_section_cm_text(cm_info $mod, $displayoptions = array()) {
+
+        $output = '';
+        if (!$mod->is_visible_on_course_page()) {
+            // nothing to be displayed to the user
+            return $output;
+        }
+        $content = $mod->get_formatted_content(array('overflowdiv' => true, 'noclean' => true));
+        list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
+        if ($mod->url && $mod->uservisible) {
+            if ($content) {
+                // If specified, display extra content after link.
+                $output = html_writer::tag('div', $content, array('class' =>
+                        trim('contentafterlink ' . $textclasses)));
+            }
+        } else {
+            $groupinglabel = $mod->get_grouping_label($textclasses);
+
+            // No link, so display only content.
+            $output = html_writer::tag('div', $content . $groupinglabel,
+                    array('class' => 'contentwithoutlink ' . $textclasses));
+        }
+        return $output;
+    }
+
+
+    /**
      * Extract first image from html
      *
      * @param string $html (must be well formed)
