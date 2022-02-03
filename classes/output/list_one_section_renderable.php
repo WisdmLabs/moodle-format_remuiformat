@@ -76,6 +76,12 @@ class format_remuiformat_list_one_section implements renderable, templatable {
     private $displaysection;
 
     /**
+     * Course format data common trait class object
+     * @var course_format_data_common_trait
+     */
+    private $courseformatdatacommontrait;
+
+    /**
      * Constructor
      * @param object          $course         Course object
      * @param int             $displaysection Current section
@@ -87,6 +93,7 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         $this->course = $this->courseformat->get_course();
         $this->courserenderer = $renderer;
         $this->modstats = \format_remuiformat\ModStats::getinstance();
+        $this->courseformatdatacommontrait = \format_remuiformat\course_format_data_common_trait::getinstance();
         $this->settings = $this->courseformat->get_settings();
     }
 
@@ -135,7 +142,8 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         $export->leftnav = $sectionnavlinks['previous'];
         $export->rightnav = $sectionnavlinks['next'];
         $export->leftside = $renderer->section_left_content($currentsection, $this->course, false);
-        $export->optionmenu = $renderer->section_right_content($currentsection, $this->course, false);
+
+        $export->optionmenu = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $currentsection);
 
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
@@ -146,9 +154,8 @@ class format_remuiformat_list_one_section implements renderable, templatable {
 
         // Get the details of the activities.
         $export->remuicourseformatlist = true;
-        $export->activities = $this->courserenderer->course_section_cm_list(
-                $this->course, $currentsection, $this->displaysection
-            );
+        $export->activities = $this->courseformatdatacommontrait->course_section_cm_list(
+            $this->course, $currentsection);
         $export->activities .= $this->courserenderer->course_section_add_cm_control(
             $this->course, $this->displaysection, $this->displaysection
         );
