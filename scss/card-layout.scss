@@ -2,6 +2,14 @@
 // Desktops, large screens
 &.editing {
     .remui-format-card {
+        .yui3-dd-proxy {
+            .section {
+                .toggle-icon {
+                    border: 0;
+                    background: transparent;
+                }
+            }
+        }
         &.single-section-format {
             .activity-cards {
                 .actions {
