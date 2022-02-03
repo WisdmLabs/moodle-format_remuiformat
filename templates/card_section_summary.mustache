@@ -50,7 +50,7 @@
 }}
 
 {{#addsection}}
-<li id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 d-inline-flex single-card-container">
+<li id="{{divid}}" class="border-0 col-lg-4 col-md-6 col-sm-6 d-inline-flex single-card-container">
     <div class="single-card d-flex align-items-center">
         {{#numsections}}
             <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
@@ -68,7 +68,12 @@
 {{/addsection}}
 
 {{^addsection}}
-<li class="col-lg-4 col-md-6 col-sm-6 d-inline-flex section" id="section-{{{index}}}" aria-labelledby="section-{{{index}}} .content .sectionname">
+<li id="section-{{{index}}}" class="border-0 col-lg-4 col-md-6 col-sm-6 section main clearfix"
+    aria-labelledby="section-{{{index}}} .content .sectionname"
+    data-sectionid="{{id}}"
+    data-sectionreturnid="{{sectionreturnid}}"
+    data-for="section"
+    data-number="{{num}}">
     <div class="single-card {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
         style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
                 background-repeat: no-repeat;
