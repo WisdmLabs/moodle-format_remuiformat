@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 use html_writer;
 use context_course;
 use cm_info;
+use core_courseformat\output\local\content\section;
 
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 
@@ -177,11 +178,11 @@ class course_format_data_common_trait {
                     $displayoptions
                 );
                 $activitydetails->viewurl = $mod->url;
-                $activitydetails->title = $courserenderer->course_section_cm_name($mod, $displayoptions);
-                    $activitydetails->title .= $courserenderer->course_section_cm_text($mod, $displayoptions);
+                $activitydetails->title = $this->course_section_cm_name($mod, $displayoptions);
+                    $activitydetails->title .= $this->course_section_cm_text($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
-                $activitydetails->summary = $courserenderer->course_section_cm_text($mod, $displayoptions);
+                $activitydetails->summary = $this->course_section_cm_text($mod, $displayoptions);
                 $activitydetails->summary = $this->modstats->get_formatted_summary(
                     $activitydetails->summary,
                     $settings
@@ -191,13 +192,12 @@ class course_format_data_common_trait {
                 if ($mod->visible == 0) {
                     $activitydetails->hidden = 1;
                 }
-                $availstatus = $courserenderer->course_section_cm_availability($mod, $modnumber);
+                $availstatus = $this->course_section_cm_availability($mod, $modnumber);
                 if ($availstatus != "") {
                     $activitydetails->availstatus = $availstatus;
                 }
                 if ($PAGE->user_is_editing()) {
-                    $editactions = course_get_cm_edit_actions($mod, $mod->indent, $section->section);
-                    $modicons .= ' '. $courserenderer->course_section_cm_edit_actions($editactions, $mod, 0);
+                    $modicons .= ' '. $this->course_section_cm_controlmenu($mod, $section, $displayoptions);
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
@@ -220,6 +220,7 @@ class course_format_data_common_trait {
      * @return array                           Sections data
      */
     public function get_all_section_data($renderer, $editing, $rformat, $settings, $course, $courseformat, $courserenderer) {
+        global $OUTPUT;
         $modinfo = get_fast_modinfo($course);
         $coursecontext = context_course::instance($course->id);
         $startfrom = 1;
@@ -247,7 +248,8 @@ class course_format_data_common_trait {
                 $sectiondetails->title = $renderer->section_title($currentsection, $course);
                 $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
                 $sectiondetails->leftside = $renderer->section_left_content($currentsection, $course, false);
-                $sectiondetails->optionmenu = $renderer->section_right_content($currentsection, $course, false);
+
+                $sectiondetails->optionmenu = $this->course_section_controlmenu($course, $currentsection);
                 $actionsectionurl = new \moodle_url('/course/changenumsections.php',
                     array('courseid' => $course->id,
                         'insertsection' => $currentsection->section + 1,
@@ -345,8 +347,8 @@ class course_format_data_common_trait {
                 }
                 $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
                 $sectiondetails->progressinfo = $extradetails['progressinfo'];
-                $sectiondetails->sectionactivities = $courserenderer->course_section_cm_list(
-                    $course, $currentsection, 0
+                $sectiondetails->sectionactivities = $this->course_section_cm_list(
+                    $course, $currentsection
                 );
                 $sectiondetails->sectionactivities .= $courserenderer->course_section_add_cm_control(
                     $course, $currentsection->section, 0
@@ -596,6 +598,32 @@ class course_format_data_common_trait {
     }
 
     /**
+     * Renders HTML to display a list of course modules in a course section
+     * Also displays "move here" controls in Javascript-disabled mode.
+     *
+     *
+     * @param int|object $course         Course or id of the course
+     * @param object     $section        the section info
+     * @param mixed      $displayoptions optional extra display options
+     * @return string
+     */
+    public function course_section_cm_list($course, $section, $displayoptions = []) {
+        global $PAGE;
+
+        $format = course_get_format($course);
+
+        $cmlistclass = $format->get_output_classname('content\\section\\cmlist');
+        $cmlist = new $cmlistclass(
+            $format,
+            $section,
+            $displayoptions,
+        );
+
+        $renderer = $format->get_renderer($PAGE);
+        return $renderer->render($cmlist);
+    }
+
+    /**
      * Renders html to display a name with the link to the course module on a course page
      *
      * If module is unavailable for user but still needs to be displayed
@@ -696,6 +724,101 @@ class course_format_data_common_trait {
         return $output;
     }
 
+    /**
+     * Renders HTML to show course module availability information (for someone who isn't allowed
+     * to see the activity itself, or for staff)
+     *
+     * @param cm_info $mod
+     * @param array $displayoptions
+     * @return string
+     */
+    public function course_section_cm_availability(cm_info $mod, $displayoptions = array()) {
+        global $PAGE;
+
+        $format = course_get_format($mod->course);
+
+        $availabilityclass = $format->get_output_classname('content\\cm\\availability');
+        $availability = new $availabilityclass(
+            $format,
+            $mod->get_section_info(),
+            $mod,
+        );
+
+        $renderer = $format->get_renderer($PAGE);
+        $data = $availability->export_for_template($renderer);
+        return $renderer->render($availability);
+    }
+
+    /**
+     * Renders HTML to display controlmenu for course section
+     *
+     * @param cm_info $mod            Course module
+     * @param object  $section        Section object
+     * @param array   $displayoptions Display options
+     *
+     * @return string HTML to output.
+     */
+
+    public function course_section_cm_controlmenu(cm_info $mod, $section, $displayoptions = array()) {
+        global $PAGE;
+
+        $format = course_get_format($mod->course);
+
+        $controlmenuclass = $format->get_output_classname('content\\cm\\controlmenu');
+        // Edit actions.
+        $controlmenu = new $controlmenuclass(
+            $format,
+            $section,
+            $mod,
+            $displayoptions
+        );
+
+        $renderer = $format->get_renderer($PAGE);
+        return $renderer->render($controlmenu);
+    }
+
+    /**
+     * Renders HTML to display controlmenu for course section
+     *
+     * @param int|object $course  Course object or id
+     * @param object     $section Section object
+     *
+     * @return string HTML to output.
+     */
+    public function course_section_controlmenu($course, $section) {
+        global $PAGE;
+
+        $format = course_get_format($course);
+
+        $controlmenuclass = $format->get_output_classname('content\\section\\controlmenu');
+
+        // Edit actions.
+        $controlmenu = new $controlmenuclass($format, $section);
+
+        $renderer = $format->get_renderer($PAGE);
+        return $renderer->render($controlmenu);
+    }
+
+    /**
+     * Renders HTML to show course section availability information (for someone who isn't allowed
+     * to see the section itself, or for staff)
+     *
+     * @param int|object $course  Course object or id
+     * @param object     $section Section object
+     *
+     * @return string HTML to output.
+     */
+    public function course_section_availability($course, $section) {
+        global $PAGE;
+
+        $renderer = $PAGE->get_renderer('format_remuiformat');
+
+        $format = course_get_format($course);
+        $elementclass = $format->get_output_classname('content\\section\\availability');
+        $availability = new $elementclass($format, $section);
+
+        return $renderer->render($availability);
+    }
 
     /**
      * Extract first image from html
