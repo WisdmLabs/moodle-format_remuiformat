@@ -9,6 +9,10 @@ body#page-course-view-remuiformat {
   /* General section summary show/hide. */
 }
 
+body#page-course-view-remuiformat.editing .remui-format-card .yui3-dd-proxy .section .toggle-icon {
+  border: 0;
+  background: transparent;
+}
 
 body#page-course-view-remuiformat.editing .remui-format-card.single-section-format .activity-cards .actions {
   top: 1rem;
@@ -932,6 +936,10 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
 body#page-course-view-remuiformat .remui-format-card .hide,
 body#page-course-view-remuiformat .remui-format-list .hide {
   display: none;
+}
+
+body#page-course-view-remuiformat.editing .yui3-dd-proxy .section {
+  text-decoration: none;
 }
 
 body#page-course-view-remuiformat.editing .action-menu-trigger .dropdown-toggle::after,
