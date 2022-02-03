@@ -226,33 +226,37 @@ class course_format_data_common_trait {
         $startfrom = 1;
         $end = $courseformat->get_last_section_number();
         $sections = array();
-        for ($section = $startfrom; $section <= $end; $section++) {
-            $sectiondetails = new \stdClass();
-            $sectiondetails->index = $section;
+        for ($sectionindex = $startfrom; $sectionindex <= $end; $sectionindex++) {
 
             // Get current section info.
-            $currentsection = $modinfo->get_section_info($section);
+            $section = $modinfo->get_section_info($sectionindex);
+            $data = new \stdClass();
+            $data->index = $sectionindex;
+            $data->num = $section->section;
+            $data->id = $section->id;
+            $data->sectionreturnid = course_get_format($course)->get_section_number();
+            $data->insertafter = false;
 
             // Check if the user has permission to view this section or not.
-            $showsection = $currentsection->uservisible ||
-                    ($currentsection->visible && !$currentsection->available && !empty($currentsection->availableinfo)) ||
-                    (!$currentsection->visible && !$course->hiddensections);
+            $showsection = $section->uservisible ||
+                    ($section->visible && !$section->available && !empty($section->availableinfo)) ||
+                    (!$section->visible && !$course->hiddensections);
             if (!$showsection) {
                 continue;
             }
 
             // Get the title of the section.
             if (!$editing) {
-                $sectiondetails->title = $courseformat->get_section_name($currentsection);
+                $data->title = $courseformat->get_section_name($section);
             } else {
-                $sectiondetails->title = $renderer->section_title($currentsection, $course);
-                $sectiondetails->editsectionurl = new \moodle_url('editsection.php', array('id' => $currentsection->id));
-                $sectiondetails->leftside = $renderer->section_left_content($currentsection, $course, false);
+                $data->title = $renderer->section_title($section, $course);
+                $data->editsectionurl = new \moodle_url('editsection.php', array('id' => $section->id));
+                $data->header = $this->course_section_header($course, $section);
 
-                $sectiondetails->optionmenu = $this->course_section_controlmenu($course, $currentsection);
+                $data->optionmenu = $this->course_section_controlmenu($course, $section);
                 $actionsectionurl = new \moodle_url('/course/changenumsections.php',
                     array('courseid' => $course->id,
-                        'insertsection' => $currentsection->section + 1,
+                        'insertsection' => $section->section + 1,
                         'sesskey' => sesskey(),
                         'returnurl' => course_get_url($course)
                     )
@@ -263,7 +267,7 @@ class course_format_data_common_trait {
                     'wdmaddsection d-block d-lg-none'
                 );
 
-                $sectiondetails->addnewsection = html_writer::link($actionsectionurl, $label,
+                $data->addnewsection = html_writer::link($actionsectionurl, $label,
                     array('class' => 'wdm-add-new-section btn btn-inverse')
                 );
             }
@@ -271,33 +275,33 @@ class course_format_data_common_trait {
             // Get the section view url.
             $singlepageurl = '';
             if ($course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
-                $singlepageurl = $courseformat->get_view_url($section)->out(true);
+                $singlepageurl = $courseformat->get_view_url($sectionindex)->out(true);
             }
 
-            $sectiondetails->singlepageurl = $singlepageurl;
+            $data->singlepageurl = $singlepageurl;
             $sectiontitlesummarymaxlength = $settings['sectiontitlesummarymaxlength'];
             $remuienablecardbackgroundimg = $settings['remuienablecardbackgroundimg'];
             $remuidefaultsectiontheme = $settings['remuidefaultsectiontheme'];
 
-            $sectiondetails->hiddenmessage = $renderer->section_availability_message($currentsection, has_capability(
+            $data->hiddenmessage = $renderer->section_availability_message($section, has_capability(
                 'moodle/course:viewhiddensections',
                 $coursecontext
             ));
-            if ($sectiondetails->hiddenmessage != "" && !has_capability( 'moodle/course:viewhiddensections', $coursecontext )) {
-                $sectiondetails->hidden = 1;
+            if ($data->hiddenmessage != "" && !has_capability( 'moodle/course:viewhiddensections', $coursecontext )) {
+                $data->hidden = 1;
             }
-            $extradetails = $this->get_section_module_info($currentsection, $course, null, $singlepageurl);
+            $extradetails = $this->get_section_module_info($section, $course, null, $singlepageurl);
 
             if ($rformat == REMUI_CARD_FORMAT) {
                 // Get the section summary.
-                $sectiondetails->summary = $renderer->abstract_html_contents(
-                    $renderer->format_summary_text($currentsection), $sectiontitlesummarymaxlength
+                $data->summary = $renderer->abstract_html_contents(
+                    $renderer->format_summary_text($section), $sectiontitlesummarymaxlength
                 );
 
                 // Check if background image to section card setting is enable and image exists in summary,
                 // if yes then add background image to context.
                 if ( $remuienablecardbackgroundimg == 1
-                && $this->get_section_first_image( $currentsection, $currentsection->summary ) ) {
+                && $this->get_section_first_image( $section, $section->summary ) ) {
                     if ( $remuidefaultsectiontheme == 1 ) {
                         // Dark theme.
                         $remuidefaultsectionoverlay = 'rgba(0,0,0,0.45)';
@@ -311,8 +315,8 @@ class course_format_data_common_trait {
                     }
 
                     // Get first image from section to set card card background image.
-                    $imgarray = $this->get_section_first_image( $currentsection, $currentsection->summary );
-                    $sectiondetails->sectionfirstimage = $imgarray['img'];
+                    $imgarray = $this->get_section_first_image( $section, $section->summary );
+                    $data->sectionfirstimage = $imgarray['img'];
 
                     // Change the overlay opacity if pattern image.
                     if ( $remuidefaultsectiontheme == 0 &&  $imgarray['pattern'] == 1) {
@@ -323,42 +327,42 @@ class course_format_data_common_trait {
                         $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55)';
                     }
 
-                    $sectiondetails->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
-                    $sectiondetails->remuinewfontcolor = $remuinewfontcolor;
-                    $sectiondetails->remuinewthemecolor = $remuinewthemecolor;
+                    $data->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
+                    $data->remuinewfontcolor = $remuinewfontcolor;
+                    $data->remuinewthemecolor = $remuinewthemecolor;
                 }
 
-                $sectiondetails->activityinfo = $extradetails['activityinfo'];
-                $sectiondetails->progressinfo = $extradetails['progressinfo'];
+                $data->activityinfo = $extradetails['activityinfo'];
+                $data->progressinfo = $extradetails['progressinfo'];
 
                 // Set Marker.
-                if ($course->marker == $section) {
-                    $sectiondetails->highlighted = 1;
+                if ($course->marker == $sectionindex) {
+                    $data->highlighted = 1;
                 }
-                $sections[] = $sectiondetails;
+                $sections[] = $data;
             } else if ($rformat == REMUI_LIST_FORMAT) {
-                if (!empty($currentsection->summary)) {
-                    $sectiondetails->summary = $renderer->format_summary_text($currentsection);
+                if (!empty($section->summary)) {
+                    $data->summary = $renderer->format_summary_text($section);
                     if ($settings['coursedisplay'] == 1) {
-                        $sectiondetails->summary = $renderer->abstract_html_contents(
-                            $sectiondetails->summary, $sectiontitlesummarymaxlength
+                        $data->summary = $renderer->abstract_html_contents(
+                            $data->summary, $sectiontitlesummarymaxlength
                         );
                     }
                 }
-                $sectiondetails->activityinfostring = implode(', ', $extradetails['activityinfo']);
-                $sectiondetails->progressinfo = $extradetails['progressinfo'];
-                $sectiondetails->sectionactivities = $this->course_section_cm_list(
-                    $course, $currentsection
+                $data->activityinfostring = implode(', ', $extradetails['activityinfo']);
+                $data->progressinfo = $extradetails['progressinfo'];
+                $data->sectionactivities = $this->course_section_cm_list(
+                    $course, $section
                 );
-                $sectiondetails->sectionactivities .= $courserenderer->course_section_add_cm_control(
-                    $course, $currentsection->section, 0
+                $data->sectionactivities .= $courserenderer->course_section_add_cm_control(
+                    $course, $section->section, 0
                 );
 
                 // Set Marker.
-                if ($course->marker == $section) {
-                    $sectiondetails->highlighted = 1;
+                if ($course->marker == $sectionindex) {
+                    $data->highlighted = 1;
                 }
-                $sections[] = $sectiondetails;
+                $sections[] = $data;
             }
         }
 
@@ -570,15 +574,15 @@ class course_format_data_common_trait {
 
     /**
      * Get the image from section.
-     * @param  object $currentsection Current section object
-     * @param  string $summaryhtml    Summary html
-     * @return array                  Image array
+     * @param  object $section     Section object
+     * @param  string $summaryhtml Summary html
+     * @return array               Image array
      */
-    public function get_section_first_image($currentsection, $summaryhtml) {
+    public function get_section_first_image($section, $summaryhtml) {
         $imgarray = array();
-        $context = context_course::instance($currentsection->course);
+        $context = context_course::instance($section->course);
         $summarytext = file_rewrite_pluginfile_urls($summaryhtml, 'pluginfile.php',
-           $context->id, 'course', 'section', $currentsection->id);
+           $context->id, 'course', 'section', $section->id);
         $image = '';
         if ( !empty($summarytext) ) {
             $image = $this->extract_first_image($summarytext);
@@ -775,6 +779,28 @@ class course_format_data_common_trait {
 
         $renderer = $format->get_renderer($PAGE);
         return $renderer->render($controlmenu);
+    }
+
+    /**
+     * Renders HTML to display controlmenu for course section
+     *
+     * @param int|object $course  Course object or id
+     * @param object     $section Section object
+     *
+     * @return string HTML to output.
+     */
+    public function course_section_header($course, $section) {
+        global $PAGE;
+
+        $format = course_get_format($course);
+
+        $headerclass = $format->get_output_classname('content\\section\\header');
+
+        // Edit actions.
+        $header = new $headerclass($format, $section);
+
+        $renderer = $format->get_renderer($PAGE);
+        return $renderer->render($header);
     }
 
     /**
