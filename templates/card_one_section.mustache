@@ -54,7 +54,7 @@
 {{/hiddensection}}
 {{^hiddensection}}
 
-    <div id="card-editing-container" class="remui-format-card single-section-format row mt-20">
+    <div id="card-editing-container" class="remui-format-card single-section-format row mt-20 p-3">
         <ul class="sections">
             <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}" data-courseid="{{ courseid }}">
                 <div class="section-details">
@@ -86,7 +86,7 @@
                                 {{/editing}}
                                 <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulefullname }}</div>
                                 {{#editing}}
-                                <div class="actions">
+                                <div class="actions d-inline-flex">
                                     <span class="toggle-row-column btn btn-inverse" data-activityid="{{ id }}">
                                         <span class='type-col'>
                                             {{# pix }}

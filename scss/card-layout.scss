@@ -1,6 +1,5 @@
 // Card layout
 // Desktops, large screens
-
 &.editing {
     .remui-format-card {
         &.single-section-format {
@@ -10,7 +9,7 @@
                     right: 0.5rem;
                 }
                 .wdm-mod-name {
-                    padding-right: 10rem;
+                    padding-right: 5rem;
                     margin-bottom: 1.5rem !important;
                 }
             }
@@ -22,10 +21,12 @@
         }
     }
 }
+
 @media (max-width: 1400px) {
     // Sections
     &.site-menubar-unfold {
-        &.path-course.editing, &.path-course.pinaside {
+        &.path-course.editing,
+        &.path-course.pinaside {
             .remui-format-card {
                 .single-card-container {
                     min-width: 50% !important;
@@ -34,6 +35,7 @@
         }
     }
 }
+
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
     &.drawer-open-left {
         #region-main {
@@ -58,11 +60,12 @@
             }
         }
     }
-
 }
+
 @media (max-width: 1200px) {
     &.site-menubar-unfold {
-        &.editing, &.pinaside {
+        &.editing,
+        &.pinaside {
             .remui-format-card {
                 .general-section-activities li {
                     min-width: 50% !important;
@@ -71,48 +74,53 @@
         }
     }
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-        &.drawer-open-left {
-            .remui-card-format {
-                .general-section-activities li, .single-card-container {
-                    min-width: 50% !important;
-                }
+    &.drawer-open-left {
+        .remui-card-format {
+            .general-section-activities li,
+            .single-card-container {
+                min-width: 50% !important;
             }
         }
-
-        &.site-menubar-unfold {
-            &.path-course.pinaside {
-                .remui-card-format {
-                    .generaldetails {
-                        order: 12;
-                        min-width: 100%;
-                    }
-                    .coursedetails {
-                        order: 1;
-                        min-width: 100%;
-                        padding-bottom: 15px;
-                    }
-                    .coursemainimagediv {
-                        display: none !important;
-                    }
+    }
+    &.site-menubar-unfold {
+        &.path-course.pinaside {
+            .remui-card-format {
+                .generaldetails {
+                    order: 12;
+                    min-width: 100%;
+                }
+                .coursedetails {
+                    order: 1;
+                    min-width: 100%;
+                    padding-bottom: 15px;
+                }
+                .coursemainimagediv {
+                    display: none !important;
                 }
             }
         }
     }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     &.drawer-open-left .single-card-container {
         min-width: 100% !important;
     }
 }
+
 @media (max-width: 768px) {
     &.path-course.site-menubar-unfold {
         .remui-card-format {
-            .generaldetails, .coursedetails {
+            .generaldetails,
+            .coursedetails {
                 min-width: 100% !important;
             }
         }
     }
 }
+
 .remui-format-card {
     margin-top: 20px;
     .availabilityinfo {
@@ -134,38 +142,40 @@
         }
         // Show two cards per row, when both sidebars open in RemUI
         // when left sidebar and right blocks section open in Boost
-
         @media (max-width: 1200px) {
             .single-card-container {
                 min-width: 50% !important;
             }
         }
-
         @media (min-width: 768px) {
-             .general-section-activities .activity {
+            .general-section-activities .activity {
                 flex: 0 0 33.33%;
                 width: 33.33%;
-                & > div {
-                    width:  100%;
+                &>div {
+                    width: 100%;
                 }
             }
             .showhideactivity .general-section-activities .activity:nth-child(n+4) {
                 display: none !important;
             }
         }
-
         // Small screens, laptops
         @media (max-width: 767px) {
             .general-section-activities .activity {
                 flex: 0 0 50%;
-                width: 50%;;
-                & > div {
-                    width:  100%;
+                width: 50%;
+                ;
+                &>div {
+                    width: 100%;
                 }
             }
             .showhideactivity .general-section-activities .activity:nth-child(n+3) {
                 display: none !important;
             }
+        }
+        #changenumsections {
+            min-height: 340px;
+            max-height: 340px;
         }
         .section {
             // Highlighting current section
@@ -181,7 +191,6 @@
                 border-bottom: 16px solid;
                 border-bottom-color: transparent;
             }
-
             .right.side {
                 display: flex;
             }
@@ -189,18 +198,17 @@
             .right.side .icon.spacer {
                 display: none;
             }
-
             .sectionname {
                 font-size: 1.5rem;
             }
-            .single-card, .general-section {
+            .single-card,
+            .general-section {
                 box-shadow: 0 0 8px #ddd;
                 border-radius: 2px;
                 background-color: white;
                 position: relative;
                 padding: 1rem;
             }
-
             // Styling for section cards
             .single-card {
                 min-height: 340px;
@@ -260,7 +268,6 @@
                 left: 1rem;
                 right: 1rem;
             }
-
             // Section activities summary container.
             .section-activities-summary {
                 list-style-type: none;
@@ -306,9 +313,13 @@
                         order: 2;
                     }
                 }
-                .generaldetails, .coursedetails {
+                .generaldetails {
                     position: relative;
-                    padding: 0 1rem 1rem 1rem;
+                    padding: 0 1rem 1rem 0;
+                }
+                .coursedetails {
+                    position: relative;
+                    padding: 0 0 1rem 1rem;
                 }
                 @media (max-width: 680px) {
                     .generaldetails {
@@ -319,7 +330,8 @@
                     }
                 }
                 @media (min-width: 681px) and (max-width: 768px) {
-                    .generaldetails, .coursedetails {
+                    .generaldetails,
+                    .coursedetails {
                         width: 50%;
                     }
                 }
@@ -332,14 +344,11 @@
                     }
                 }
             }
-            .activitieshead {
-                padding: 0 1rem;
-            }
             .general-section-activities {
-                padding: 0 1rem;
+                margin: 1rem -0.5rem;
                 .activity {
-                    padding: 15px;
-                    & > div {
+                    padding: 0.5rem;
+                    &>div {
                         text-align: center;
                         padding: 12px !important;
                         box-shadow: 0 0 8px #ddd;
@@ -350,7 +359,7 @@
                 }
             }
             .general-section {
-                padding: 1rem 0;
+                padding: 1rem;
                 background: white;
             }
             .coursemainimage {
@@ -359,22 +368,22 @@
                 background-size: cover;
             }
         }
-
         #section-0 {
-            .coursemainimagediv, .coursemainimage {
+            .coursemainimagediv,
+            .coursemainimage {
                 height: 140px;
             }
         }
     }
     // Styling for single section page
     &.single-section-format {
+        .content {
+            margin: 0 -0.5rem;
+        }
         .section.main {
             background: transparent;
             border: 0;
             box-shadow: none;
-        }
-        .section-details {
-            padding: 1rem 1rem 0;
         }
         .sections {
             width: 100%;
@@ -394,7 +403,25 @@
             padding: 0 !important;
             width: 100%;
             margin: 0;
+            position: relative;
             .activity {
+                .activitytitle {
+                    margin: auto;
+                    .media-body .text-uppercase.small {
+                        display: none;
+                    }
+                    .activityiconcontainer {
+                        align-self: center !important;
+                        margin: 0 !important;
+                    }
+                }
+                .cm_action_menu {
+                    position: relative !important;
+                    top: 0 !important;
+                    right: 0 !important;
+                }
+                padding: 0.5rem;
+                display: flex;
                 transition: all 0.5s ease;
                 .autocompletion img {
                     width: 18px;
@@ -410,8 +437,7 @@
                     position: relative;
                     float: left;
                 }
-                padding: 2rem 1rem 0rem;
-                & > div {
+                &>div {
                     width: 100%;
                     box-shadow: 0 0 8px #ddd;
                     border-radius: 2px;
@@ -433,7 +459,6 @@
                     width: 100%;
                 }
                 // Show activity as column.
-                display: flex;
                 @media (max-width: 767px) {
                     flex: 0 0 100%;
                     width: 100%;
@@ -456,14 +481,9 @@
                         color: #37474f;
                         width: 100%;
                     }
-
-                    img {
-                        margin-right: 10px;
-                        margin-top: -3px;
-                    }
-
                     &.nosummary {
-                        & > a, div {
+                        &>a,
+                        div {
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
@@ -471,12 +491,6 @@
                             color: #37474f;
                             text-decoration: none;
                             text-align: center;
-                        }
-
-                        img {
-                            height: 75px;
-                            width: 75px;
-                            margin: 20px 0;
                         }
                     }
                     .inplaceeditable {
@@ -491,7 +505,7 @@
                 }
                 // Toggle row column button styling
                 .toggle-row-column {
-                    border:1px solid #e4eaec;
+                    border: 1px solid #e4eaec;
                     margin-right: 5px;
                     img.icon {
                         margin: 0;
@@ -505,7 +519,7 @@
                 }
                 // Hide row icon when activity is in row format.
                 &.row-activity {
-                    .wdm-mod-name, .toggle-row-column .type-row {
+                    .toggle-row-column .type-row {
                         display: none;
                     }
                 }
@@ -517,7 +531,7 @@
                     position: absolute;
                     bottom: 1rem;
                     padding: 0;
-                    right: 0;
+                    right: 1rem;
                     .filler {
                         display: none;
                     }
@@ -525,12 +539,12 @@
                 // Hiding move left and right menu items.
                 .moodle-actionmenu {
                     .dropdown-menu-right {
-                        .editing_moveright, .editing_moveleft {
+                        .editing_moveright,
+                        .editing_moveleft {
                             display: none;
                         }
                     }
                 }
-
             }
         }
     }
@@ -540,12 +554,6 @@
     .single-card {
         a:hover {
             text-decoration: none;
-        }
-    }
-    // Styling for activity chooser button.
-    .section {
-        .section-modchooser {
-            padding: 2rem 1rem 0;
         }
     }
 }
