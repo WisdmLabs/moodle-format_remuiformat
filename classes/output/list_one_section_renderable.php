@@ -132,30 +132,32 @@ class format_remuiformat_list_one_section implements renderable, templatable {
             // Can't view this section.
             return $export;
         }
+
+        // The requested section page.
+        $section = $modinfo->get_section_info($this->displaysection);
+
         if ($PAGE->user_is_editing()) {
             $export->editing = 1;
+            $export->optionmenu = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $section);
         }
-        // The requested section page.
-        $currentsection = $modinfo->get_section_info($this->displaysection);
+
         // Title with section navigation links.
         $sectionnavlinks = $renderer->get_nav_links($this->course, $modinfo->get_section_info_all(), $this->displaysection);
         $export->leftnav = $sectionnavlinks['previous'];
         $export->rightnav = $sectionnavlinks['next'];
-        $export->leftside = $renderer->section_left_content($currentsection, $this->course, false);
-
-        $export->optionmenu = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $currentsection);
+        $export->leftside = $renderer->section_left_content($section, $this->course, false);
 
         // Title.
-        $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
+        $sectionname = $renderer->section_title_without_link($section, $this->course);
         $export->title = $sectionname;
-        if (!empty($currentsection->summary)) {
-            $export->summary = $renderer->format_summary_text($currentsection);
+        if (!empty($section->summary)) {
+            $export->summary = $renderer->format_summary_text($section);
         }
 
         // Get the details of the activities.
         $export->remuicourseformatlist = true;
         $export->activities = $this->courseformatdatacommontrait->course_section_cm_list(
-            $this->course, $currentsection);
+            $this->course, $section);
         $export->activities .= $this->courserenderer->course_section_add_cm_control(
             $this->course, $this->displaysection, $this->displaysection
         );
