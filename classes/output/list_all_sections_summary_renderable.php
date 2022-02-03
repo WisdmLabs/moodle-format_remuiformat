@@ -184,8 +184,7 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
             }
 
             // For right side.
-            $rightside = $renderer->section_right_content($generalsection, $this->course, false);
-            $export->generalsection['rightside'] = $rightside;
+            $export->generalsection['rightside'] = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $generalsection);
             $displayteacher = $this->settings['remuiteacherdisplay'];
             if ($displayteacher == 1) {
                 $role = $DB->get_record('role', array('shortname' => 'editingteacher'));

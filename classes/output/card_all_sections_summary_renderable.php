@@ -138,7 +138,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
      * @param int                $rformat  Layout
      */
     private function get_card_format_context(&$export, $renderer, $editing, $rformat) {
-        global $OUTPUT;
+        global $PAGE;
         $output = array();
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
@@ -158,7 +158,8 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                         array('id' => $generalsection->id)
                     );
                     $export->generalsection['leftsection'] = $renderer->section_left_content($generalsection, $this->course, false);
-                    $export->generalsection['optionmenu'] = $renderer->section_right_content($generalsection, $this->course, false);
+                    // New menu option.
+                    $export->generalsection['optionmenu'] = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $generalsection);
                 } else {
                     $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
                 }
@@ -172,11 +173,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $export->generalsection['activityexists'] = 0;
                 }
 
-                $format = course_get_format($this->course->id);
-                $elementclass = $format->get_output_classname('content\\section\\availability');
-                $availability = new $elementclass($format, $generalsection);
-
-                $export->generalsection['availability'] = $renderer->render($availability);
+                $export->generalsection['availability'] = $this->courseformatdatacommontrait->course_section_availability($this->course, $generalsection);
                 $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
 
                 $export->generalsection['summary'] = $renderer->abstract_html_contents(
@@ -254,7 +251,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
      * @return array                  Output array
      */
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER, $CFG;
+        global $PAGE;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -298,13 +295,16 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 if ($mod->visible == 0) {
                     $activitydetails->hidden = 1;
                 }
-                $availstatus = $this->courserenderer->course_section_cm_availability($mod, $modnumber);
-                if ($availstatus != "") {
+
+                $availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $modnumber);
+
+                if (trim($availstatus) != '') {
                     $activitydetails->availstatus = $availstatus;
                 }
                 if ($PAGE->user_is_editing()) {
-                    $editactions = course_get_cm_edit_actions($mod, $mod->indent, $section->section);
-                    $modicons .= ' '. $this->courserenderer->course_section_cm_edit_actions($editactions, $mod, 0);
+
+                    $modicons .=  $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section, $displayoptions);
+
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
