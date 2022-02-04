@@ -70,15 +70,18 @@
     <div id="list-container" class="remui-format-list one-section-format mt-20">
         <ul class="sections p-15 py-2 px-2 p-y-1 p-x-1">
             <li id="section-{{section}}" class="section" aria-labelledby="section-{{section}} .content .summary .title">
-                <div class="right side">
+                <div class="course-section-header d-flex dropready draggable" data-for="section_title" data-id="7" data-number="1" draggable="true" id="yui_3_17_2_1_1643968975008_225">
+                    <h2 class="section-title">
+                        <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+                            {{ section }}.
+                        </span>
+                        <span class="title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
+                    </h2>
+                    <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+                        {{> core_courseformat/local/content/section/badges }}
+                    </div>
                     {{{ optionmenu }}}
                 </div>
-                <h2 class="section-title">
-                    <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-                        {{ section }}&#46;
-                    </span>
-                    <span class="title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
-                </h2>
                 {{{ summary}}}
                 <div class="content">
                     <div class="summary">

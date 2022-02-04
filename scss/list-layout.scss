@@ -7,7 +7,7 @@
                 .side {
                     margin: 0;
                     &.left {
-                        padding: 10px 0!important;
+                        padding: 0.5rem 0!important;
                     }
                 }
                 .card-title {
@@ -18,11 +18,6 @@
                             cursor: pointer;
                         }
                     }
-                }
-                // Was added in RemUI theme
-                .sectionname {
-                    padding: 10px 0!important;
-                    clear: none!important;
                 }
             }
             #changenumsections {
@@ -232,11 +227,6 @@
                 left: 0;
             }
             width: 100%;
-            .sectionname {
-                margin: 0;
-                font-size: 18px;
-                font-weight: 500;
-            }
             // Section contents.
             .card-footer {
                 background: transparent;

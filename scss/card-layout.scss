@@ -186,11 +186,16 @@
             max-height: 340px;
         }
         .section {
+            .sectionbadges {
+                [data-type="highlighted"] {
+                    display: none;
+                }
+            }
             // Highlighting current section
             .highlight {
                 position: absolute;
                 top: -1px;
-                right: 30px;
+                right: 16px;
                 width: 0;
                 height: 0;
                 border-left: 18px solid;
