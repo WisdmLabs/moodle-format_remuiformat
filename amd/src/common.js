@@ -21,87 +21,97 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- define(['jquery'], function($) {
+define(['jquery'], function($) {
 
- 	var SELECTORS = {
- 		ACTIVITY_TOGGLE: '.showactivity',
- 		ACTIVITY_TOGGLE_CLASS: 'showhideactivity',
- 		ACTIVITY_TOGGLE_WRAPPER: '.showactivitywrapper',
- 		FIRST_SECTION: '#section-0',
- 		SHOW: 'show',
-        TOGGLE_HIGHLIGHT: '.dropdown-item.editing_highlight',
-		TOGGLE_SHOWHIDE: '.dropdown-item.editing_showhide'
- 	};
+    var SELECTORS = {
+        ACTIVITY_TOGGLE: '.showactivity',
+        ACTIVITY_TOGGLE_CLASS: 'showhideactivity',
+        ACTIVITY_TOGGLE_WRAPPER: '.showactivitywrapper',
+        FIRST_SECTION: '#section-0',
+        SHOW: 'show',
+        TOGGLE_HIGHLIGHT: '.section_action_menu .dropdown-item.editing_highlight',
+        TOGGLE_SHOWHIDE: '.section_action_menu .dropdown-item.editing_showhide',
+        DELETE: '.section_action_menu .dropdown-item[data-action="deleteSection"]'
+    };
 
- 	/**
- 	 * Get number activities can be shown in first row and hide rest
- 	 * @return {Integer} Number activities in first row
- 	 */
- 	function getActivitiesPerRow() {
- 		let width = $(window).width();
- 		if ($('.remui-format-list').length) {
-	 		if (width >= 992) {
-	 			return 4;
-	 		}
-	 		if (width >= 768) {
-	 			return 3;
-	 		}
-	 		return 2;
- 		} else {
- 			if (width >= 768) {
-	 			return 3;
-	 		}
-	 		if (width >= 481) {
-	 			return 2;
-	 		}
-	 		return 1;
- 		}
- 	}
+    /**
+     * Get number activities can be shown in first row and hide rest
+     * @return {Integer} Number activities in first row
+     */
+    function getActivitiesPerRow() {
+        let width = $(window).width();
+        if ($('.remui-format-list').length) {
+            if (width >= 992) {
+                return 4;
+            }
+            if (width >= 768) {
+                return 3;
+            }
+            return 2;
+        } else {
+            if (width >= 768) {
+                return 3;
+            }
+            if (width >= 481) {
+                return 2;
+            }
+            return 1;
+        }
+    }
 
- 	/**
- 	 * Adjust the general section activities visibility after first row
- 	 */
- 	function adjustGeneralSectionActivities() {
- 		if ($(SELECTORS.FIRST_SECTION + ' .activity').length <= getActivitiesPerRow()) {
- 			$(SELECTORS.FIRST_SECTION).removeClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
- 			$(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).hide();
- 		} else {
- 			$(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).show();
- 			$(SELECTORS.FIRST_SECTION).addClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
- 		}
- 	}
+    /**
+     * Adjust the general section activities visibility after first row
+     */
+    function adjustGeneralSectionActivities() {
+        if ($(SELECTORS.FIRST_SECTION + ' .activity').length <= getActivitiesPerRow()) {
+            $(SELECTORS.FIRST_SECTION).removeClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
+            $(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).hide();
+        } else {
+            $(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).show();
+            $(SELECTORS.FIRST_SECTION).addClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
+        }
+    }
 
     function init() {
 
-    	$('#page-course-view-remuiformat .section-modchooser-link').addClass("btn btn-primary");
+        $('#page-course-view-remuiformat .section-modchooser-link').addClass("btn btn-primary");
 
-    	adjustGeneralSectionActivities();
-    	$(window).resize(function() {
+        adjustGeneralSectionActivities();
+        $(window).resize(function() {
             adjustGeneralSectionActivities();
         });
 
         $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
 
-	        if($(this).hasClass(SELECTORS.SHOW)) {
-	            $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
-	            $(this).toggleClass(SELECTORS.SHOW); //Remove show class
-	        } else {
-	            $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>');
-	            $(this).toggleClass(SELECTORS.SHOW); //Add show class
-	            $("html, body").animate({
-	            	scrollTop: $(SELECTORS.FIRST_SECTION + ' .activity:first-child').offset().top - 66
-	            }, "slow");
-	        }
-	        $(SELECTORS.FIRST_SECTION).toggleClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
-	    });
+            if ($(this).hasClass(SELECTORS.SHOW)) {
+                $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
+                $(this).toggleClass(SELECTORS.SHOW); //Remove show class
+            } else {
+                $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>');
+                $(this).toggleClass(SELECTORS.SHOW); //Add show class
+                $("html, body").animate({
+                    scrollTop: $(SELECTORS.FIRST_SECTION + ' .activity:first-child').offset().top - 66
+                }, "slow");
+            }
+            $(SELECTORS.FIRST_SECTION).toggleClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
+        });
+
+        // Handling highlight and show hide dropdown.
         $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT}, ${SELECTORS.TOGGLE_SHOWHIDE}`, function() {
-            window.reload();
+            location.reload();
+        });
+
+        // Handling deleteAction
+        $('body').on('click', `${SELECTORS.DELETE}`, function(event) {
+            event.preventDefault();
+            window.location.href = $(this).attr('href');
+            return true;
         });
 
     }
 
     return {
-    	init: init,
-    	adjustGeneralSectionActivities: adjustGeneralSectionActivities
+        init: init,
+        adjustGeneralSectionActivities: adjustGeneralSectionActivities
     };
 });
