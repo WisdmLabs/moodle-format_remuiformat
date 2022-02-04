@@ -142,10 +142,14 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format #changen
   max-height: 340px;
 }
 
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .sectionbadges [data-type="highlighted"] {
+  display: none;
+}
+
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .highlight {
   position: absolute;
   top: -1px;
-  right: 30px;
+  right: 16px;
   width: 0;
   height: 0;
   border-left: 18px solid;
@@ -557,7 +561,7 @@ body#page-course-view-remuiformat.editing .remui-format-list .sections .section 
 }
 
 body#page-course-view-remuiformat.editing .remui-format-list .sections .section .side.left {
-  padding: 10px 0 !important;
+  padding: 0.5rem 0 !important;
 }
 
 body#page-course-view-remuiformat.editing .remui-format-list .sections .section .card-title .fa-angle-up,
@@ -568,11 +572,6 @@ body#page-course-view-remuiformat.editing .remui-format-list .sections .section 
 body#page-course-view-remuiformat.editing .remui-format-list .sections .section .card-title .fa-angle-up:hover,
 body#page-course-view-remuiformat.editing .remui-format-list .sections .section .card-title .fa-angle-down:hover {
   cursor: pointer;
-}
-
-body#page-course-view-remuiformat.editing .remui-format-list .sections .section .sectionname {
-  padding: 10px 0 !important;
-  clear: none !important;
 }
 
 body#page-course-view-remuiformat.editing .remui-format-list .sections #changenumsections {
@@ -794,12 +793,6 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .highlig
   width: 3px;
   bottom: 0;
   left: 0;
-}
-
-body#page-course-view-remuiformat .remui-format-list .sections .section .sectionname {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 500;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .card-footer {
