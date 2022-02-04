@@ -105,12 +105,14 @@ class format_remuiformat_list_one_section implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $PAGE, $CFG;
+        global $PAGE, $USER;
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
+        $context = context_course::instance($this->course->id);
         $sections = $modinfo->get_section_info_all();
         $renderer = $PAGE->get_renderer('format_remuiformat');
+        $format = course_get_format($this->course);
 
         $export->section = $this->displaysection;
         $export->theme = $PAGE->theme->name;
@@ -135,6 +137,22 @@ class format_remuiformat_list_one_section implements renderable, templatable {
 
         // The requested section page.
         $section = $modinfo->get_section_info($this->displaysection);
+
+        if ($format->is_section_current($section)) {
+            $export->highlighted = true;
+            $export->currentlink = get_accesshide(
+                get_string('currentsection', 'format_' . $format->get_format())
+            );
+        }
+
+        if (!$section->visible) {
+            $export->ishidden = true;
+            $export->notavailable = true;
+            if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                $export->hiddenfromstudents = true;
+                $export->notavailable = false;
+            }
+        }
 
         if ($PAGE->user_is_editing()) {
             $export->editing = 1;
