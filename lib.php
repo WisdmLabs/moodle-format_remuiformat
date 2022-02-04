@@ -602,6 +602,9 @@ class format_remuiformat extends core_courseformat\base {
     public function section_action($section, $action, $sr) {
         global $PAGE;
 
+        if ($action == 'deleteSection') {
+            return null;
+        }
         if ($section->section && ($action === 'setmarker' || $action === 'removemarker')) {
             // Format 'topics' allows to set and remove markers in addition to common section actions.
             require_capability('moodle/course:setcurrentsection', context_course::instance($this->courseid));
