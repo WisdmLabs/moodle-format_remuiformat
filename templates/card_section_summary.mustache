@@ -78,7 +78,9 @@
         style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
                 background-repeat: no-repeat;
                 background-size: cover;";>
-        {{#highlighted}}<div class="highlight text-primary"></div>{{/highlighted}}
+        {{#highlighted}}
+            <div class="highlight text-primary"></div>
+        {{/highlighted}}
         <div class="left side float-left mt-0">
             {{{ leftside }}}
         </div>
@@ -111,8 +113,8 @@
                     <span class="item {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
-            <div class="section_availability">
-                {{{ hiddenmessage }}}
+            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center ml-2">
+                {{> core_courseformat/local/content/section/badges }}
             </div>
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
