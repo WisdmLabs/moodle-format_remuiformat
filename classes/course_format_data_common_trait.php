@@ -192,7 +192,7 @@ class course_format_data_common_trait {
                 if ($mod->visible == 0) {
                     $activitydetails->hidden = 1;
                 }
-                $availstatus = $this->course_section_cm_availability($mod, $modnumber);
+                $availstatus = $this->course_section_cm_availability($mod, $displayoptions);
                 if ($availstatus != "") {
                     $activitydetails->availstatus = $availstatus;
                 }
@@ -220,12 +220,13 @@ class course_format_data_common_trait {
      * @return array                           Sections data
      */
     public function get_all_section_data($renderer, $editing, $rformat, $settings, $course, $courseformat, $courserenderer) {
-        global $OUTPUT;
+        global $USER;
         $modinfo = get_fast_modinfo($course);
-        $coursecontext = context_course::instance($course->id);
+        $context = context_course::instance($course->id);
         $startfrom = 1;
         $end = $courseformat->get_last_section_number();
         $sections = array();
+
         for ($sectionindex = $startfrom; $sectionindex <= $end; $sectionindex++) {
 
             // Get current section info.
@@ -283,13 +284,24 @@ class course_format_data_common_trait {
             $remuienablecardbackgroundimg = $settings['remuienablecardbackgroundimg'];
             $remuidefaultsectiontheme = $settings['remuidefaultsectiontheme'];
 
-            $data->hiddenmessage = $renderer->section_availability_message($section, has_capability(
-                'moodle/course:viewhiddensections',
-                $coursecontext
-            ));
-            if ($data->hiddenmessage != "" && !has_capability( 'moodle/course:viewhiddensections', $coursecontext )) {
-                $data->hidden = 1;
+            $data->hiddenmessage = $this->course_section_availability($course, $section);
+
+            if ($courseformat->is_section_current($section)) {
+                $data->highlighted = true;
+                $data->currentlink = get_accesshide(
+                    get_string('currentsection', 'format_' . $courseformat->get_format())
+                );
             }
+
+            if (!$section->visible) {
+                $data->ishidden = true;
+                $data->notavailable = true;
+                if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                    $data->hiddenfromstudents = true;
+                    $data->notavailable = false;
+                }
+            }
+
             $extradetails = $this->get_section_module_info($section, $course, null, $singlepageurl);
 
             if ($rformat == REMUI_CARD_FORMAT) {
@@ -746,6 +758,7 @@ class course_format_data_common_trait {
             $format,
             $mod->get_section_info(),
             $mod,
+            $displayoptions
         );
 
         $renderer = $format->get_renderer($PAGE);

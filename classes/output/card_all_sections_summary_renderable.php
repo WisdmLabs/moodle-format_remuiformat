@@ -296,7 +296,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $activitydetails->hidden = 1;
                 }
 
-                $availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $modnumber);
+                $availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $displayoptions);
 
                 if (trim($availstatus) != '') {
                     $activitydetails->availstatus = $availstatus;

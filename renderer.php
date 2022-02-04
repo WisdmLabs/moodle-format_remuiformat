@@ -320,52 +320,6 @@ class format_remuiformat_renderer extends section_renderer {
     }
 
     /**
-     * If section is not visible, display the message about that ('Not available
-     * until...', that sort of thing). Otherwise, returns blank.
-     *
-     * For users with the ability to view hidden sections, it shows the
-     * information even though you can view the section and also may include
-     * slightly fuller information (so that teachers can tell when sections
-     * are going to be unavailable etc). This logic is the same as for
-     * activities.
-     *
-     * @param section_info $section The course_section entry from DB
-     * @param bool $canviewhidden True if user can view hidden sections
-     * @return string HTML to output
-     */
-    public function section_availability_message($section, $canviewhidden) {
-        global $CFG;
-        $o = '';
-        if (!$section->visible) {
-            if ($canviewhidden) {
-                $o .= $this->courserenderer->availability_info(get_string('hiddenfromstudents'), 'ishidden');
-            } else {
-                // We are here because of the setting "Hidden sections are shown in collapsed form".
-                // Student can not see the section contents but can see its name.
-                $o .= $this->courserenderer->availability_info(get_string('notavailable'), 'ishidden');
-            }
-        } else if (!$section->uservisible) {
-            if ($section->availableinfo) {
-                // Note: We only get to this function if availableinfo is non-empty,
-                // so there is definitely something to print.
-                $formattedinfo = \core_availability\info::format_info(
-                        $section->availableinfo, $section->course);
-                $o .= $this->courserenderer->availability_info($formattedinfo, 'isrestricted');
-            }
-        } else if ($canviewhidden && !empty($CFG->enableavailability)) {
-            // Check if there is an availability restriction.
-            $ci = new \core_availability\info_section($section);
-            $fullinfo = $ci->get_full_information();
-            if ($fullinfo) {
-                $formattedinfo = \core_availability\info::format_info(
-                        $fullinfo, $section->course);
-                $o .= $this->courserenderer->availability_info($formattedinfo, 'isrestricted isfullinfo');
-            }
-        }
-        return $o;
-    }
-
-    /**
      * Returns controls in the bottom of the page to increase/decrease number of sections
      *
      * @param stdClass $course
