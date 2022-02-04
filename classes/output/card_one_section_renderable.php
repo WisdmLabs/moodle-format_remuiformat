@@ -238,10 +238,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $activitydetails->hidden = 1;
                 }
 
-                $availstatus = $this->courseformatdatacommontrait->course_section_availability($this->course, $section);
-                if (trim($availstatus) != '') {
-                    $activitydetails->availstatus = $availstatus;
-                }
+                $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_availability($this->course, $section);
+
                 if ($PAGE->user_is_editing()) {
                     $activitydetails->editing = 1;
                     $modicons .= $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section, $displayoptions);
