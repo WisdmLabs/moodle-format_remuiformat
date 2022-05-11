@@ -157,9 +157,16 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                         'editsection.php',
                         array('id' => $generalsection->id)
                     );
-                    $export->generalsection['leftsection'] = $renderer->section_left_content($generalsection, $this->course, false);
+                    $export->generalsection['leftsection'] = $renderer->section_left_content(
+                        $generalsection,
+                        $this->course,
+                        false
+                    );
                     // New menu option.
-                    $export->generalsection['optionmenu'] = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $generalsection);
+                    $export->generalsection['optionmenu'] = $this->courseformatdatacommontrait->course_section_controlmenu(
+                        $this->course,
+                        $generalsection
+                    );
                 } else {
                     $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
                 }
@@ -173,8 +180,10 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $export->generalsection['activityexists'] = 0;
                 }
 
-                $export->generalsection['availability'] = $this->courseformatdatacommontrait->course_section_availability($this->course, $generalsection);
-                $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
+                $export->generalsection['availability'] = $this->courseformatdatacommontrait->course_section_availability(
+                    $this->course,
+                    $generalsection
+                );
 
                 $export->generalsection['summary'] = $renderer->abstract_html_contents(
                     $generalsectionsummary, 400
@@ -182,7 +191,10 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $export->generalsection['fullsummary'] = $generalsectionsummary;
 
                 // Get course image if added.
-                $imgurl = $this->courseformatdatacommontrait->display_file($coursecontext, $this->settings['remuicourseimage_filemanager']);
+                $imgurl = $this->courseformatdatacommontrait->display_file(
+                    $coursecontext,
+                    $this->settings['remuicourseimage_filemanager']
+                );
                 if (empty($imgurl)) {
                     $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
                 }
@@ -251,7 +263,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
      * @return array                  Output array
      */
     private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE;
+        global $PAGE, $USER;
         $modinfo = get_fast_modinfo($this->course);
         $output = array();
         $completioninfo = new \completion_info($this->course);
@@ -259,6 +271,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
             $count = 1;
             foreach ($modinfo->sections[$section->section] as $modnumber) {
                 $mod = $modinfo->cms[$modnumber];
+                $context = \context_module::instance($mod->id);
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
@@ -287,8 +300,19 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                         $activitydetails->summary,
                         $this->settings
                     );
+                    if ($mod->modname == 'label') {
+                        $activitydetails->title = $activitydetails->summary;
+                        $activitydetails->summary = '';
+                    }
                 } else {
                     $activitydetails->summary = '';
+                }
+                if ($mod->visible == 0) {
+                    $activitydetails->notavailable = true;
+                    if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                        $activitydetails->hiddenfromstudents = true;
+                        $activitydetails->notavailable = false;
+                    }
                 }
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
@@ -303,7 +327,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 }
                 if ($PAGE->user_is_editing()) {
 
-                    $modicons .=  $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section, $displayoptions);
+                    $modicons .= $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section, $displayoptions);
 
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;

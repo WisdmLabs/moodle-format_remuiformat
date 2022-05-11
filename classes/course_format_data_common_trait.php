@@ -153,6 +153,7 @@ class course_format_data_common_trait {
             $count = 1;
             foreach ($modinfo->sections[$section->section] as $modnumber) {
                 $mod = $modinfo->cms[$modnumber];
+                $context = \context_module::instance($mod->id);
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
@@ -190,7 +191,11 @@ class course_format_data_common_trait {
                 $activitydetails->completed = $completiondata->completionstate;
                 $modicons = '';
                 if ($mod->visible == 0) {
-                    $activitydetails->hidden = 1;
+                    $activitydetails->notavailable = true;
+                    if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                        $activitydetails->hiddenfromstudents = true;
+                        $activitydetails->notavailable = false;
+                    }
                 }
                 $availstatus = $this->course_section_cm_availability($mod, $displayoptions);
                 if ($availstatus != "") {
@@ -287,10 +292,8 @@ class course_format_data_common_trait {
             $data->hiddenmessage = $this->course_section_availability($course, $section);
 
             if ($courseformat->is_section_current($section)) {
-                $data->highlighted = true;
-                $data->currentlink = get_accesshide(
-                    get_string('currentsection', 'format_' . $courseformat->get_format())
-                );
+                $data->iscurrent = true;
+                $data->highlightedlabel = get_string('highlight');
             }
 
             if (!$section->visible) {
@@ -349,7 +352,8 @@ class course_format_data_common_trait {
 
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
-                    $data->highlighted = 1;
+                    $data->iscurrent = true;
+                    $data->highlightedlabel = get_string('highlight');
                 }
                 $sections[] = $data;
             } else if ($rformat == REMUI_LIST_FORMAT) {
@@ -372,7 +376,8 @@ class course_format_data_common_trait {
 
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
-                    $data->highlighted = 1;
+                    $data->iscurrent = true;
+                    $data->highlightedlabel = get_string('highlight');
                 }
                 $sections[] = $data;
             }
@@ -719,7 +724,7 @@ class course_format_data_common_trait {
 
         $output = '';
         if (!$mod->is_visible_on_course_page()) {
-            // nothing to be displayed to the user
+            // Nothing to be displayed to the user.
             return $output;
         }
         $content = $mod->get_formatted_content(array('overflowdiv' => true, 'noclean' => true));
