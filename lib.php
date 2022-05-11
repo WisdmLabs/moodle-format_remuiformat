@@ -33,6 +33,15 @@ define ('REMUI_LIST_FORMAT', 1);
 class format_remuiformat extends core_courseformat\base {
 
     /**
+     * Show course activity index on course page left sidebar.
+     *
+     * @return bool
+     */
+    public function uses_course_index() {
+        return true;
+    }
+
+    /**
      * Creates a new instance of class
      * Please use course_get_format($courseorid) to get an instance of the format class
      * @param string $format

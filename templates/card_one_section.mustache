@@ -70,6 +70,9 @@
                             </span>
                             <span id="{{uniqid}}" class="single-section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
                         </h2>
+                        <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+                            {{> core_courseformat/local/content/section/badges }}
+                        </div>
                         <p>{{{ summary }}}</p>
                     </div>
                 </div>
@@ -108,7 +111,9 @@
                                 <h4 id="module-{{id}}-title" class="title {{^summary}}nosummary{{/summary}}">
                                     {{{ title }}}
                                 </h4>
-
+                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+                                    {{> core_courseformat/local/content/section/badges }}
+                                </div>
                                 <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
 
                                 <div class="activity-content">

@@ -30,6 +30,12 @@
     }
 }
 
+.sections {
+    .single-card-container {
+        margin-bottom: 28px;
+    }
+}
+
 @media (max-width: 1400px) {
     // Sections
     &.site-menubar-unfold {
@@ -186,6 +192,8 @@
             max-height: 340px;
         }
         .section {
+            margin-bottom: 1.75rem;
+            padding: 0 1rem;
             .sectionbadges {
                 [data-type="highlighted"] {
                     display: none;
@@ -206,6 +214,7 @@
             }
             .right.side {
                 display: flex;
+                margin-left: auto;
             }
             // Hide right side spacer.
             .right.side .icon.spacer {
@@ -225,8 +234,6 @@
             // Styling for section cards
             .single-card {
                 min-height: 340px;
-                margin-bottom: 1.75rem;
-                padding-bottom: 50px;
                 width: 100%;
                 // Dark theme
                 &.dark {
@@ -363,7 +370,7 @@
                     padding: 0.5rem;
                     &>div {
                         text-align: center;
-                        padding: 12px !important;
+                        padding: 1.2rem !important;
                         box-shadow: 0 0 8px #ddd;
                         .mod-indent-outer {
                             padding: 0;
@@ -418,6 +425,9 @@
             margin: 0;
             position: relative;
             .activity {
+                .sectionbadges .badge {
+                    margin: auto;
+                }
                 .activitytitle {
                     margin: auto;
                     .media-body .text-uppercase.small {
@@ -501,6 +511,7 @@
                             flex-direction: column;
                             justify-content: center;
                             align-items: center;
+                            align-self: center !important;
                             color: #37474f;
                             text-decoration: none;
                             text-align: center;

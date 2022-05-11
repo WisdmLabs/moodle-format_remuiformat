@@ -92,8 +92,11 @@
                                     <div class="{{{indent}}}"></div>
                                 {{/indent}}
                                 <div>
-                                    <div class="activityinstance p-0 d-inline-block">
+                                    <div class="activityinstance p-0 d-inline-block contentafterlink">
                                         {{{title}}}
+                                    </div>
+                                    <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+                                        {{> core_courseformat/local/content/section/badges }}
                                     </div>
                                     <div class="actions">
                                         {{{completion}}}

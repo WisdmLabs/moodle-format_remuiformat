@@ -110,11 +110,13 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $PAGE, $CFG, $COURSE;
+        global $PAGE, $USER;
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
         $sections = $modinfo->get_section_info_all();
+        $format = course_get_format($this->course);
+        $context = context_course::instance($this->course->id);
 
         $renderer = $PAGE->get_renderer('format_remuiformat');
 
@@ -143,6 +145,20 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         }
         // The requested section page.
         $currentsection = $modinfo->get_section_info($this->displaysection);
+
+        if ($format->is_section_current($currentsection)) {
+            $export->iscurrent = true;
+            $export->highlightedlabel = get_string('highlight');
+        }
+
+        if (!$currentsection->visible) {
+            $export->notavailable = true;
+            if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                $export->hiddenfromstudents = true;
+                $export->notavailable = false;
+            }
+        }
+
         // Title with section navigation links.
         $sectionnavlinks = $renderer->get_nav_links($this->course, $modinfo->get_section_info_all(), $this->displaysection);
         $export->leftnav = $sectionnavlinks['previous'];
@@ -155,13 +171,13 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
         $export->title = $sectionname;
-        $sectiontitlesummarymaxlength = $this->settings['sectiontitlesummarymaxlength'];
         if (!empty($currentsection->summary)) {
             $export->summary = $renderer->format_summary_text($currentsection);
         }
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
+
         $export->courseid = $this->course->id;
         $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
             $this->course,
@@ -198,12 +214,26 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             $count = 1;
             foreach ($modinfo->sections[$section->section] as $modnumber) {
                 $mod = $modinfo->cms[$modnumber];
+
+                $context = \context_module::instance($mod->id);
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
                 }
 
                 $completiondata = $completioninfo->get_data($mod, true);
                 $activitydetails = new \stdClass();
+
+                if ($mod->visible == 0) {
+                    $activitydetails->notavailable = true;
+                    if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                        $activitydetails->hiddenfromstudents = true;
+                        $activitydetails->notavailable = false;
+                    }
+                }
+
+                // Dirty hack to remove Highlight badge from activity.
+                $activitydetails->iscurrent = false;
+
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
                 $activitydetails = $this->courseformatdatacommontrait->activity_completion(

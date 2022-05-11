@@ -139,14 +139,11 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         $section = $modinfo->get_section_info($this->displaysection);
 
         if ($format->is_section_current($section)) {
-            $export->highlighted = true;
-            $export->currentlink = get_accesshide(
-                get_string('currentsection', 'format_' . $format->get_format())
-            );
+            $export->iscurrent = true;
+            $export->highlightedlabel = get_string('highlight');
         }
 
         if (!$section->visible) {
-            $export->ishidden = true;
             $export->notavailable = true;
             if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
                 $export->hiddenfromstudents = true;
