@@ -72,7 +72,7 @@ body#page-course-view-remuiformat {
                     left: 0;
                 }
                 .activity-information {
-                    padding: 0 1rem 0 0;
+                    padding: 0 1rem;
                 }
             }
             .activityinstance {
@@ -124,12 +124,16 @@ body#page-course-view-remuiformat {
     .course-content {
         .sections {
             #section-0 {
-                .sectionbadges .badge {
-                    margin: auto;
+                .sectionbadges {
+                    .badge {
+                        margin: 0.2rem auto;
+                    }
                 }
             }
-            .sectionbadges .badge {
-                margin-left: .5rem;
+            .sectionbadges {
+                .badge {
+                    margin-right: .5rem;
+                }
             }
             list-style: none;
             margin: 0;
