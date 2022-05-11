@@ -143,7 +143,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format #changenumsections {
   min-height: 340px;
-  max-height: 340px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section {
@@ -192,6 +191,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card {
   min-height: 340px;
+  height: 100%;
   width: 100%;
 }
 
@@ -1047,7 +1047,7 @@ body#page-course-view-remuiformat .general-section-activities .activity .actions
 }
 
 body#page-course-view-remuiformat .general-section-activities .activity .actions .activity-information {
-  padding: 0 1rem 0 0;
+  padding: 0 1rem;
 }
 
 body#page-course-view-remuiformat .general-section-activities .activity .activityinstance {
@@ -1108,11 +1108,11 @@ body#page-course-view-remuiformat .course-content .sections {
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .sectionbadges .badge {
-  margin: auto;
+  margin: 0.2rem auto;
 }
 
 body#page-course-view-remuiformat .course-content .sections .sectionbadges .badge {
-  margin-left: .5rem;
+  margin-right: .5rem;
 }
 
 body#page-course-view-remuiformat .course-content .sections .wdm-add-new-section {

@@ -189,7 +189,6 @@
         }
         #changenumsections {
             min-height: 340px;
-            max-height: 340px;
         }
         .section {
             margin-bottom: 1.75rem;
@@ -234,6 +233,7 @@
             // Styling for section cards
             .single-card {
                 min-height: 340px;
+                height: 100%;
                 width: 100%;
                 // Dark theme
                 &.dark {
