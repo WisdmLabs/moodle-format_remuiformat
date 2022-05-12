@@ -236,7 +236,7 @@ class format_remuiformat extends core_courseformat\base {
                     'type' => PARAM_INT
                 ),
                 'hidegeneralsectionwhenempty' => array(
-                    'defult' => get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || false,
+                    'default' => get_config('format_remuiformat', 'hidegeneralsectionwhenempty') || false,
                     'type' => PARAM_INT
                 ),
                 'coursedisplay' => array(
