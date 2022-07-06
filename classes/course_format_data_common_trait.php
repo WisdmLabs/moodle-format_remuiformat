@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 use html_writer;
 use context_course;
 use cm_info;
+use core\output\inplace_editable;
 use core_courseformat\output\local\content\section;
 
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
@@ -679,11 +680,13 @@ class course_format_data_common_trait {
             $PAGE->user_is_editing(),
             $displayoptions
         );
-
-        $data = $cmname->export_for_template($OUTPUT);
-
-        return $OUTPUT->render_from_template('core/inplace_editable', $data) .
-            $groupinglabel;
+        if ($cmname instanceof inplace_editable) {
+            $data = $cmname->export_for_template($OUTPUT);
+            return $OUTPUT->render_from_template('core/inplace_editable', $data) .
+                $groupinglabel;
+        }
+        $renderer = $format->get_renderer($PAGE);
+        return $renderer->render($cmname) . $groupinglabel;
     }
 
     /**
