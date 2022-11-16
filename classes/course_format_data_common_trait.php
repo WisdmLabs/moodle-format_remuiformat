@@ -658,7 +658,7 @@ class course_format_data_common_trait {
      * @return string
      */
     public function course_section_cm_name(cm_info $mod, $displayoptions = array()) {
-        global $PAGE, $OUTPUT;
+        global $CFG, $PAGE, $OUTPUT;
 
         if (!$mod->is_visible_on_course_page() || !$mod->url) {
             // Nothing to be displayed to the user.
@@ -668,22 +668,43 @@ class course_format_data_common_trait {
         list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
         $groupinglabel = $mod->get_grouping_label($textclasses);
 
-        // Render element that allows to edit activity name inline.
-        $format = course_get_format($mod->course);
-        $cmnameclass = $format->get_output_classname('content\\cm\\cmname');
-        // Mod inplace name editable.
-        $cmname = new $cmnameclass(
+        // $currentversion = $CFG->release;
+        // $currentversion = substr( $currentversion, 0, strpos($currentversion, "+"));
+
+        // this if statement is used to handle the changes occur in moodle v4.0.3
+        // version_compare($currentversion, '4.0.3') == -1
+        if ($CFG->version <= '2022041902.01') {
+            // Render element that allows to edit activity name inline.
+            $format = course_get_format($mod->course);
+            $cmnameclass = $format->get_output_classname('content\\cm\\cmname');
+            // Mod inplace name editable.
+            $cmname = new $cmnameclass(
             $format,
             $mod->get_section_info(),
             $mod,
             $PAGE->user_is_editing(),
             $displayoptions
-        );
+            );
 
-        $data = $cmname->export_for_template($OUTPUT);
-
-        return $OUTPUT->render_from_template('core/inplace_editable', $data) .
+            $data = $cmname->export_for_template($OUTPUT);
+            return $OUTPUT->render_from_template('core/inplace_editable', $data) .
             $groupinglabel;
+        } else {
+            // Render element that allows to edit activity name inline.
+            $format = course_get_format($mod->course);
+            $cmnameclass = $format->get_output_classname('content\\cm\\cmname');
+            // Mod inplace name editable.
+            $cmname = new $cmnameclass(
+            $format,
+            $mod->get_section_info(),
+            $mod,
+            null,
+            $displayoptions
+            );
+            $renderer = $format->get_renderer($PAGE);
+            return $renderer->render($cmname) . $groupinglabel;
+        }
+
     }
 
     /**
