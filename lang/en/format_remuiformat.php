@@ -160,3 +160,19 @@ $string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
 <p>Having said that we don't gather your personal data or of your students during this process. You can disable this from the plugin whenever you wish to opt out of this service.</p>
 
 <p>An overview of the data collected is available <strong><a href='https://forums.edwiser.org/topic/67/anonymously-tracking-the-usage-of-edwiser-products' target='_blank'>here</a></strong>.</p>";
+
+
+$string['remuiheaderimagebgposition'] = "select bg position";
+$string['bottom'] = "bottom";
+$string['center'] = "center";
+$string['top'] = "top";
+$string['left'] = "left";
+$string['right'] = "right";
+$string["remuiheaderimagebgposition_help"] = "chose background image position";
+
+
+$string['remuiheaderimagebgsize'] = "select bg size";
+$string['cover'] = "cover";
+$string['contain'] = "contain";
+$string['auto'] = "auto";
+$string['remuiheaderimagebgsize_help'] = "select bg size";

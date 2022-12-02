@@ -266,7 +266,8 @@ class format_remuiformat extends core_courseformat\base {
                 'remuidefaultsectiontheme' => array(
                     'default' => 0,
                     'type' => PARAM_INT
-                )
+                ),
+
             );
         }
 
@@ -386,7 +387,36 @@ class format_remuiformat extends core_courseformat\base {
                     ),
                     'help' => 'remuidefaultsectiontheme',
                     'help_component' => 'format_remuiformat'
-                )
+                ),
+                'remuiheaderimagebgposition' => array(
+                    'label' => new lang_string('remuiheaderimagebgposition', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            "bottom" => new lang_string( 'bottom', 'format_remuiformat' ),
+                            "center" => new lang_string( 'center', 'format_remuiformat' ),
+                            "top" => new lang_string( 'top', 'format_remuiformat' ),
+                            "left" => new lang_string( 'left', 'format_remuiformat' ),
+                            "right" => new lang_string( 'right', 'format_remuiformat' ),
+                        )
+                    ),
+                    'help' => 'remuiheaderimagebgposition',
+                    'help_component' => 'format_remuiformat'
+                ),
+                'remuiheaderimagebgsize' => array(
+                    'label' => new lang_string('remuiheaderimagebgsize', 'format_remuiformat'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            "contain" => new lang_string( 'contain', 'format_remuiformat' ),
+                            "auto" => new lang_string( 'auto', 'format_remuiformat' ),
+                            "cover" => new lang_string( 'cover', 'format_remuiformat' ),
+                        )
+                    ),
+                    'help' => 'remuiheaderimagebgsize',
+                    'help_component' => 'format_remuiformat'
+                ),
+
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
         }
@@ -777,4 +807,49 @@ function format_remuiformat_pluginfile($course, $cm, $context, $filearea, $args,
         return false;
     }
     send_stored_file($file, 0, 0, 0, $options);
+}
+
+function check_plugin_available($component) {
+
+    list($type, $name) = core_component::normalize_component($component);
+
+    $dir = \core_component::get_plugin_directory($type, $name);
+    if (!file_exists($dir)) {
+        return false;
+    }
+    return true;
+}
+
+    /**
+     * Get Enrolled Teachers Context
+     */
+function get_enrolled_teachers_context_formate($courseid = null, $frontlineteacher = false) {
+    global $OUTPUT;
+    $coursecontext = \context_course::instance($courseid);
+    $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', 0, '*', 'firstname');
+
+    $context = array();
+
+    if ($teachers) {
+        $namescount = 2;
+        $profilecount = 0;
+
+        foreach ($teachers as $key => $teacher) {
+            if ($frontlineteacher && $profilecount < $namescount) {
+                $instructor = array();
+                $instructor['name'] = fullname($teacher, true);
+                $instructor['avatars'][] = $OUTPUT->user_picture($teacher);
+                if ($profilecount != 0) {
+                    $instructor['hasanother'] = true;
+                }
+                $context['instructors'][] = $instructor;
+            }
+            $profilecount++;
+        }
+        if ($profilecount > $namescount) {
+            $context['teachercount'] = $profilecount - $namescount;
+        }
+        $context['hasteachers'] = true;
+    }
+    return $context;
 }

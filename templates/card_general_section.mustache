@@ -53,6 +53,69 @@
 
 <li id="section-{{{index}}}" class="section border-0 col-12">
     <div class="general-section">
+        <header id="page-header" class="header-maxwidth d-print-none hasbackground design-1"
+            style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) -24.52%, #000000 97.67%), url('{{coursemainimage}}');">
+            <div class="w-100 header-wrapper">
+                <div class="d-flex flex-wrap w-100">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="dashboard-bar-wrapper">
+                            <div class="header-main-section">
+                                <div class="category">
+                                    <span class="badge ">
+                                        {{coursecategoryname}}
+                                    </span>
+                                </div>
+                                <div class="page-context-header">
+                                    <div class="page-header-headings">
+                                        <h1 class="h2 header-heading coursepage design-1">{{coursefullname}}</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header-sub-section">
+                                <div class="rating-instructor-wrapper">
+                                    {{#rnrdesign}}
+                                    <div class="edw-ratings-wrapper">
+                                        {{{rnrdesign}}}
+                                    </div>
+                                    {{/rnrdesign}}
+                                    {{#teachers}}
+                                    <div class="instructor-info stat-container">
+                                        <span class="titles h-semibold-6">
+                                            {{#instructors}}{{!
+                                            }}{{#hasanother}},&nbsp;{{/hasanother}}{{name}}{{!
+                                            }}{{/instructors}}
+                                        </span>
+                                        {{#teachercount}}
+                                        <span class="stat">
+                                            <b class="count"> +{{teachercount}}</b>
+                                        </span>
+                                        {{/teachercount}}
+                                    </div>
+                                    {{/teachers}}
+                                </div>
+                                <div class="progress-resume-wrapper">
+                                    <div class="progressbar-text-wrapper">
+                                        <div class="progress progress-rounded">
+                                            <div class="progress-bar bg-green-600"
+                                                style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
+                                                <span class="sr-only">{{{percentage}}}% Complete</span>
+                                            </div>
+                                        </div>
+                                        <span>{{{percentage}}}% Complete</span>
+                                    </div>
+                                    {{#resumeactivityurl}}
+                                    <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}"
+                                        role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
+                                    {{/resumeactivityurl}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </header>
+
+        {{! general section start here }}
         <div class="section-details">
             <div class="coursedetails">
                 <div class="details">

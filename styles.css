@@ -974,6 +974,82 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
   padding-top: 10px;
 }
 
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 336px;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-main-section .category .badge {
+  padding: 4px 6px;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #37be71;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper {
+  display: flex;
+  gap: 24px;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper {
+  color: #fff;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .inner {
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info {
+  color: #fff;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .stat {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #313848;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper .progressbar-text-wrapper {
+  color: #fff;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper .progress {
+  min-width: 230px;
+  height: 7px !important;
+}
+
+body#page-course-view-remuiformat .general-section header.hasbackground.design-1 .header-heading {
+  color: white;
+}
+
 body#page-course-view-remuiformat .remui-format-card .hide,
 body#page-course-view-remuiformat .remui-format-list .hide {
   display: none;
