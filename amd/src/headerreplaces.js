@@ -1,4 +1,3 @@
-<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -13,18 +12,33 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * Version details
+ * Enhancements to all components for easy course accessibility.
  *
- * @package    format_remuiformat
- * @copyright  2019 Wisdmlabs
+ * @module     format/remuiformat
+ * @copyright  WisdmLabs
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022112201;                    // The current plugin version (Date: YYYYMMDDXX).
-$plugin->release   = '4.0.1';
-$plugin->requires  = 2022041900;                    // Requires this Moodle version (Moodle V4.0).
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->component = 'format_remuiformat';          // Full name of the plugin (used for diagnostics).
+define(['jquery'], function ($) {
+    /**
+     * Init method
+     *
+     */
+    function init() {
+        // eslint-disable-next-line no-console
+        $(document).ready(function () {
+            var headercontent = $(".general-section .rmuiformate-header-wrapper").html();
+            // eslint-disable-next-line no-console
+            console.log(headercontent);
+            $('#page #page-header').replaceWith(headercontent);
+            $('..rmuiformate-header-wrapper').removeClass("d-none");
+        });
+    }
+    // Must return the init function.
+    return {
+        init: init
+    };
+});

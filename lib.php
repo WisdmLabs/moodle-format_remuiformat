@@ -267,6 +267,14 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => 0,
                     'type' => PARAM_INT
                 ),
+                'remuiheaderimagebgposition' => array(
+                    'default' => "cover",
+                    'type' => PARAM_RAW
+                ),
+                'remuiheaderimagebgsize' => array(
+                    'default' => "center",
+                    'type' => PARAM_RAW
+                ),
 
             );
         }
@@ -852,4 +860,65 @@ function get_enrolled_teachers_context_formate($courseid = null, $frontlineteach
         $context['hasteachers'] = true;
     }
     return $context;
+}
+
+    /**
+     * Get course image.
+     * @param  array   $corecourselistelement Course list element
+     * @param  boolean $islist                Is list
+     * @return string                         Course image
+     */
+function formate_get_course_image($corecourselistelement, $islist = false) {
+    global $CFG, $OUTPUT;
+
+    if (!$islist) {
+        $corecourselistelement = new \core_course_list_element($corecourselistelement);
+    }
+
+    // Course image.
+    foreach ($corecourselistelement->get_course_overviewfiles() as $file) {
+        $isimage = $file->is_valid_image();
+        $courseimage = file_encode_url(
+            "$CFG->wwwroot/pluginfile.php",
+            '/'. $file->get_contextid(). '/'. $file->get_component(). '/'.
+            $file->get_filearea(). $file->get_filepath(). $file->get_filename(),
+            !$isimage
+        );
+        if ($isimage) {
+            break;
+        }
+    }
+    if (!empty($courseimage)) {
+        return $courseimage;
+    } else {
+        return $OUTPUT->get_generated_image_for_id($corecourselistelement->id);
+    }
+}
+function get_extra_header_context(&$export, $course, $percentage) {
+    global $DB, $CFG;
+    $coursedetails = get_course($course->id);
+    if (!is_null($percentage)) {
+        $percentage = floor($percentage);
+        $export->generalsection['percentage'] = $percentage;
+    } else {
+        $export->generalsection['percentage'] = 0;
+    }
+    $categorydetails = $DB->get_record('course_categories', array('id' => $coursedetails->category));
+    $rnrshortdesign = '';
+    if (check_plugin_available("block_edwiserratingreview")) {
+        $rnr = new \block_edwiserratingreview\ReviewManager();
+        $rnrshortdesign = $rnr->get_short_design_enrolmentpage($course->id);
+    }
+    $coursesettings = course_get_format($course)->get_settings();
+    $export->generalsection['teachers'] = get_enrolled_teachers_context_formate($course->id, true);
+    $export->generalsection['coursefullname'] = $coursedetails->fullname;
+    $export->generalsection['coursecategoryname'] = $categorydetails->name;
+    $export->generalsection['rnrdesign'] = $rnrshortdesign;
+    $export->generalsection['headercourseimage'] = formate_get_course_image($course);
+    $export->generalsection['remuiheaderimagebgposition'] = $coursesettings['remuiheaderimagebgposition'];
+    $export->generalsection['remuiheaderimagebgsize'] = $coursesettings['remuiheaderimagebgsize'];
+    $export->generalsection['courseheaderdesign'] = true;
+    if ($CFG->theme == 'remui') {
+        $export->generalsection['courseheaderdesign'] = get_config('theme_remui', 'courseheaderdesign') == 0 ? false : true;
+    }
 }

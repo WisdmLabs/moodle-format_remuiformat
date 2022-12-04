@@ -138,7 +138,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
      * @param int                $rformat  Layout
      */
     private function get_card_format_context(&$export, $renderer, $editing, $rformat) {
-        global $PAGE, $DB;
+        global $PAGE;
         $output = array();
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
@@ -199,31 +199,8 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                     $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
                 }
                 $export->generalsection['coursemainimage'] = $imgurl;
-                $percentage = progress::get_course_progress_percentage($this->course);
-                if (!is_null($percentage)) {
-                    $percentage = floor($percentage);
-                    $export->generalsection['percentage'] = $percentage;
-                } else {
-                    $export->generalsection['percentage'] = 0;
-                }
-                $coursedetails = get_course($this->course->id);
-                $categorydetails = $DB->get_record('course_categories', array('id' => $coursedetails->category));
-                $rnrshortdesign = '';
-                if (check_plugin_available("block_edwiserratingreview")) {
-                    $rnr = new \block_edwiserratingreview\ReviewManager();
-                    $rnrshortdesign = $rnr->get_short_design_enrolmentpage($this->course->id);
-                }
-                $export->generalsection['teachers'] = get_enrolled_teachers_context_formate($this->course->id, true);
-                $export->generalsection['coursefullname'] = $coursedetails->fullname;
-                $export->generalsection['coursecategoryname'] = $categorydetails->name;
-                $export->generalsection['rnrdesign'] = $rnrshortdesign;
-                $export->generalsection['headerimagebgpos'] = get_config('format_remuiformat', 'remuiheaderimagebgposition');
-                $export->generalsection['headerimagebgsize'] = get_config('format_remuiformat', 'remuiheaderimagebgsize');
-                // echo '<pre>';
-                // print_r($export->generalsection['headerimagebgpos']);
-                // print_r($export->generalsection['headerimagebgsize']);
-                // echo '<pre>';
-                // exit;
+                // it will add extra data to the $export , this method takes 3 arguments $export, course, course progress percentage.
+                get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course));
                 // Get the all activities count from the all sections.
                 $sectionmods = array();
                 for ($i = 0; $i < count($sections); $i++) {
