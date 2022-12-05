@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery'], function($) {
+define(['jquery'], function ($) {
 
     var SELECTORS = {
         ACTIVITY_TOGGLE: '.showactivity',
@@ -50,7 +50,7 @@ define(['jquery'], function($) {
             return 2;
         } else {
             if (width >= 768) {
-                return 3;
+                return 4;
             }
             if (width >= 481) {
                 return 2;
@@ -63,7 +63,10 @@ define(['jquery'], function($) {
      * Adjust the general section activities visibility after first row
      */
     function adjustGeneralSectionActivities() {
+        // eslint-disable-next-line no-console
+        console.log(getActivitiesPerRow());
         if ($(SELECTORS.FIRST_SECTION + ' .activity').length <= getActivitiesPerRow()) {
+
             $(SELECTORS.FIRST_SECTION).removeClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
             $(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).hide();
         } else {
@@ -71,17 +74,20 @@ define(['jquery'], function($) {
             $(SELECTORS.FIRST_SECTION).addClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
         }
     }
-
+    /**
+     * Init method
+     *
+     */
     function init() {
 
         $('#page-course-view-remuiformat .section-modchooser-link').addClass("btn btn-primary");
 
         adjustGeneralSectionActivities();
-        $(window).resize(function() {
+        $(window).resize(function () {
             adjustGeneralSectionActivities();
         });
 
-        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
+        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function () {
 
             if ($(this).hasClass(SELECTORS.SHOW)) {
                 $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
@@ -97,12 +103,12 @@ define(['jquery'], function($) {
         });
 
         // Handling highlight and show hide dropdown.
-        $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT}, ${SELECTORS.TOGGLE_SHOWHIDE}`, function() {
+        $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT}, ${SELECTORS.TOGGLE_SHOWHIDE}`, function () {
             location.reload();
         });
 
         // Handling deleteAction
-        $('body').on('click', `${SELECTORS.DELETE}`, function(event) {
+        $('body').on('click', `${SELECTORS.DELETE}`, function (event) {
             event.preventDefault();
             window.location.href = $(this).attr('href');
             return true;

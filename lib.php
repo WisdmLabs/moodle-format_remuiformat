@@ -268,11 +268,11 @@ class format_remuiformat extends core_courseformat\base {
                     'type' => PARAM_INT
                 ),
                 'remuiheaderimagebgposition' => array(
-                    'default' => "cover",
+                    'default' => "center",
                     'type' => PARAM_RAW
                 ),
                 'remuiheaderimagebgsize' => array(
-                    'default' => "center",
+                    'default' => "cover",
                     'type' => PARAM_RAW
                 ),
 
@@ -894,7 +894,7 @@ function formate_get_course_image($corecourselistelement, $islist = false) {
         return $OUTPUT->get_generated_image_for_id($corecourselistelement->id);
     }
 }
-function get_extra_header_context(&$export, $course, $percentage) {
+function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
     global $DB, $CFG;
     $coursedetails = get_course($course->id);
     if (!is_null($percentage)) {
@@ -914,11 +914,17 @@ function get_extra_header_context(&$export, $course, $percentage) {
     $export->generalsection['coursefullname'] = $coursedetails->fullname;
     $export->generalsection['coursecategoryname'] = $categorydetails->name;
     $export->generalsection['rnrdesign'] = $rnrshortdesign;
-    $export->generalsection['headercourseimage'] = formate_get_course_image($course);
+    if (gettype($imgurl) != "object") {
+        $imgurl = formate_get_course_image($course);
+    }
+    $export->generalsection['headercourseimage'] = $imgurl;
     $export->generalsection['remuiheaderimagebgposition'] = $coursesettings['remuiheaderimagebgposition'];
     $export->generalsection['remuiheaderimagebgsize'] = $coursesettings['remuiheaderimagebgsize'];
     $export->generalsection['courseheaderdesign'] = true;
     if ($CFG->theme == 'remui') {
         $export->generalsection['courseheaderdesign'] = get_config('theme_remui', 'courseheaderdesign') == 0 ? false : true;
     }
+}
+function get_general_section_context(&$export, $course) {
+
 }

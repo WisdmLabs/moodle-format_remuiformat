@@ -285,12 +285,9 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
                     $coursecontext,
                     $this->settings['remuicourseimage_filemanager']
                 );
-                if (empty($imgurl)) {
-                    $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
-                }
                 $export->generalsection['coursemainimage'] = $imgurl;
                 // it will add extra data to the $export , this method takes 3 arguments $export, course, course progress percentage.
-                get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course));
+                get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course), $imgurl);
                 // Get the all activities count from the all sections.
                 $sectionmods = array();
                 for ($i = 0; $i < count($sections); $i++) {

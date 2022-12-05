@@ -136,7 +136,7 @@
 }
 
 .remui-format-card {
-    margin-top: 20px;
+    // margin-top: 20px;
     .availabilityinfo {
         &.isrestricted {
             font-size: 90%;
@@ -163,13 +163,13 @@
         }
         @media (min-width: 768px) {
             .general-section-activities .activity {
-                flex: 0 0 33.33%;
-                width: 33.33%;
+                // flex: 0 0 25%;
+                // width: 100%;
                 &>div {
                     width: 100%;
                 }
             }
-            .showhideactivity .general-section-activities .activity:nth-child(n+4) {
+            .showhideactivity .general-section-activities .activity:nth-child(n+5) {
                 display: none !important;
             }
         }
@@ -313,16 +313,16 @@
         }
         // Styling for general section.
         #section-0 {
-            background: transparent !important;
-            margin-bottom: 2rem;
-            .coursedetails .details {
-                background-color: #f1f4f5;
-                padding: 15px;
-                margin: 0;
-                .col-12 {
-                    padding: 0;
-                }
-            }
+            // background: transparent !important;
+            // margin-bottom: 2rem;
+            // .coursedetails .details {
+            //     background-color: #f1f4f5;
+            //     padding: 15px;
+            //     margin: 0;
+            //     .col-12 {
+            //         padding: 0;
+            //     }
+            // }
             .section-details {
                 @media (min-width: 681px) {
                     display: flex;
@@ -333,14 +333,14 @@
                         order: 2;
                     }
                 }
-                .generaldetails {
-                    position: relative;
-                    padding: 0 1rem 1rem 0;
-                }
-                .coursedetails {
-                    position: relative;
-                    padding: 0 0 1rem 1rem;
-                }
+                // .generaldetails {
+                //     position: relative;
+                //     padding: 0 1rem 1rem 0;
+                // }
+                // .coursedetails {
+                //     position: relative;
+                //     padding: 0 0 1rem 1rem;
+                // }
                 @media (max-width: 680px) {
                     .generaldetails {
                         width: 100%;
@@ -364,24 +364,14 @@
                     }
                 }
             }
-            .general-section-activities {
-                margin: 1rem -0.5rem;
-                .activity {
-                    padding: 0.5rem;
-                    &>div {
-                        text-align: center;
-                        padding: 1.2rem !important;
-                        box-shadow: 0 0 8px #ddd;
-                        .mod-indent-outer {
-                            padding: 0;
-                        }
-                    }
-                }
-            }
-            .general-section {
-                padding: 1rem;
-                background: white;
-            }
+
+            // .general-section {
+            //     padding: 0px;
+            //     background: transparent;
+            //     box-shadow: none;
+            //     border: none;
+            //     border-radius: unset;
+            // }
             .coursemainimage {
                 width: 100%;
                 background-position: center;

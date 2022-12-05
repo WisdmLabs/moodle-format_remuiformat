@@ -58,7 +58,7 @@ $string['hidegeneralsectionwhenempty_help'] = 'When general section does not hav
 // Section.
 $string['sectionname'] = 'Section';
 $string['sectionnamecaps'] = 'SECTION';
-$string['section0name'] = 'General';
+$string['section0name'] = 'Introduction';
 $string['hidefromothers'] = 'Hide section';
 $string['showfromothers'] = 'Show section';
 $string['viewtopic'] = 'View';
@@ -176,3 +176,4 @@ $string['cover'] = "cover";
 $string['contain'] = "contain";
 $string['auto'] = "auto";
 $string['remuiheaderimagebgsize_help'] = "select bg size";
+$string['courseinformation'] = "Course information ";

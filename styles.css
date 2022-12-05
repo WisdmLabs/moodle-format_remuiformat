@@ -93,10 +93,6 @@ body#page-course-view-remuiformat .sections .single-card-container {
   }
 }
 
-body#page-course-view-remuiformat .remui-format-card {
-  margin-top: 20px;
-}
-
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted {
   font-size: 90%;
   padding: 10px;
@@ -116,14 +112,10 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 }
 
 @media (min-width: 768px) {
-  body#page-course-view-remuiformat .remui-format-card.all-section-format .general-section-activities .activity {
-    flex: 0 0 33.33%;
-    width: 33.33%;
-  }
   body#page-course-view-remuiformat .remui-format-card.all-section-format .general-section-activities .activity > div {
     width: 100%;
   }
-  body#page-course-view-remuiformat .remui-format-card.all-section-format .showhideactivity .general-section-activities .activity:nth-child(n+4) {
+  body#page-course-view-remuiformat .remui-format-card.all-section-format .showhideactivity .general-section-activities .activity:nth-child(n+5) {
     display: none !important;
   }
 }
@@ -270,21 +262,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   width: 100%;
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 {
-  background: transparent !important;
-  margin-bottom: 2rem;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .coursedetails .details {
-  background-color: #f1f4f5;
-  padding: 15px;
-  margin: 0;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .coursedetails .details .col-12 {
-  padding: 0;
-}
-
 @media (min-width: 681px) {
   body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details {
     display: flex;
@@ -295,16 +272,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format #section
   body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
     order: 2;
   }
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
-  position: relative;
-  padding: 0 1rem 1rem 0;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
-  position: relative;
-  padding: 0 0 1rem 1rem;
 }
 
 @media (max-width: 680px) {
@@ -330,29 +297,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format #section
   body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
     width: 33.33%;
   }
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities {
-  margin: 1rem -0.5rem;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities .activity {
-  padding: 0.5rem;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities .activity > div {
-  text-align: center;
-  padding: 1.2rem !important;
-  box-shadow: 0 0 8px #ddd;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .general-section-activities .activity > div .mod-indent-outer {
-  padding: 0;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .general-section {
-  padding: 1rem;
-  background: white;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .coursemainimage {
@@ -974,6 +918,31 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
   padding-top: 10px;
 }
 
+body#page-course-view-remuiformat .text-clamp {
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+body#page-course-view-remuiformat .text-clamp.text-clamp-1 {
+  -webkit-line-clamp: 1;
+}
+
+body#page-course-view-remuiformat .text-clamp.text-clamp-2 {
+  -webkit-line-clamp: 2;
+}
+
+body#page-course-view-remuiformat .text-clamp.text-clamp-3 {
+  -webkit-line-clamp: 3;
+}
+
+body#page-course-view-remuiformat .text-clamp.text-clamp-4 {
+  -webkit-line-clamp: 4;
+}
+
+body#page-course-view-remuiformat .text-clamp.text-clamp-5 {
+  -webkit-line-clamp: 5;
+}
+
 body#page-course-view-remuiformat header.hasbackground.design-1 {
   display: flex;
   flex-direction: column;
@@ -1039,6 +1008,12 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   gap: 40px;
 }
 
+@media (max-width: 425px) {
+  body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
+    flex-wrap: wrap;
+  }
+}
+
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper .progressbar-text-wrapper {
   color: #fff;
   font-weight: 400;
@@ -1078,35 +1053,6 @@ body#page-course-view-remuiformat.editing .general-section-activities .activity.
   padding-top: 0.714rem;
 }
 
-body#page-course-view-remuiformat .general-section-activities {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 0 1rem;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity {
-  display: flex;
-  padding: 2rem 1rem 0rem;
-  text-align: center;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity:first-of-type {
-  margin-left: auto;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity:last-of-type {
-  margin-right: auto;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .activitytitle {
-  display: block !important;
-  margin: auto;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .activitytitle .activityiconcontainer {
-  margin: 0 !important;
-}
-
 body#page-course-view-remuiformat .general-section-activities .activity.modtype_folder .activityinstance,
 body#page-course-view-remuiformat .general-section-activities .activity.modtype_folder .activityinstance div {
   display: block;
@@ -1116,41 +1062,9 @@ body#page-course-view-remuiformat .general-section-activities .activity > div {
   width: 100%;
 }
 
-body#page-course-view-remuiformat .general-section-activities .activity .actions {
-  display: flex;
-  position: relative;
-  justify-content: center;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .actions .spinner {
-  position: relative;
-  left: 0;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .actions .activity-information {
-  padding: 0 1rem;
-}
-
 body#page-course-view-remuiformat .general-section-activities .activity .activityinstance {
   padding: 0;
   width: 100%;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .activityinstance .activitytitle {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 0.5em;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .activityinstance .activitytitle .activityiconcontainer {
-  align-self: center !important;
-  margin-right: 0 !important;
-}
-
-body#page-course-view-remuiformat .general-section-activities .activity .contentafterlink {
-  margin: 0 !important;
 }
 
 body#page-course-view-remuiformat .general-section-activities .activity .editing_move {
@@ -1167,11 +1081,6 @@ body#page-course-view-remuiformat .general-section-activities.onshowmore {
   height: 350px;
 }
 
-body#page-course-view-remuiformat .general-section-activities .activityinstance img {
-  width: 40px !important;
-  height: 65px !important;
-}
-
 body#page-course-view-remuiformat .general-section-activities .activityinstance .instancename {
   display: block;
 }
@@ -1186,6 +1095,194 @@ body#page-course-view-remuiformat .course-content .sections {
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section {
+  gap: 32px;
+  padding: 0px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  border-radius: unset;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-title {
+  color: #313848;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .generaldetails {
+  gap: 8px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .generaldetails .generalsectioninfo .coursesummary {
+  color: #4C5A73;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .generaldetails .generalsectioninfo .readbtn {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  color: #0051F9;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .coursedetails {
+  width: 100%;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .coursedetails .details {
+  gap: 8px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .coursedetails .details .activities-title {
+  color: #313848;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .coursedetails .details .section-activities-summary {
+  color: #4C5A73;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper {
+  gap: 16px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .activitieshead {
+  color: #313848;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 0px;
+  margin: 0px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #EBF0F9;
+  border-radius: 8px;
+  max-width: 311px;
+  flex: 0 0 25%;
+}
+
+@media (max-width: 1200px) {
+  body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity {
+    flex: 0 0 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity {
+    flex: 0 0 47%;
+  }
+}
+
+@media (max-width: 576px) {
+  body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity {
+    flex: unset;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 16px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .activityiconcontainer {
+  border-radius: 16px;
+  margin-right: 0 !important;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .activityiconcontainer .activityinstance img {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .media-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  width: 100%;
+  text-align: start;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .media-body > :first-child {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #647390;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .media-body .activityname a {
+  color: #313848;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions {
+  display: flex;
+  position: relative;
+  justify-content: start;
+  margin-top: 8px;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .spinner {
+  position: relative;
+  left: 0;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .activity-information {
+  width: 100%;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .activity-information .completion-info {
+  width: 100%;
+  float: left;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .activity-information .completion-info .btn {
+  width: 100%;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink {
+  margin-top: 8px !important;
+  display: flex;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #4C5A73;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .sectionbadges .badge {
@@ -1442,43 +1539,4 @@ body#page-course-view-remuiformat .showactivitywrapper .showactivity {
   font-size: 24px;
   line-height: 24px;
   cursor: pointer;
-}
-
-body#page-course-view-remuiformat .read-more-state {
-  display: none;
-}
-
-body#page-course-view-remuiformat .read-more-target {
-  height: 110px;
-  overflow: hidden;
-}
-
-body#page-course-view-remuiformat .read-more-target:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
-
-body#page-course-view-remuiformat .fadeout-summary {
-  position: absolute;
-  margin-top: -60px;
-  width: 95%;
-  height: 60px;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0, white 100%);
-}
-
-body#page-course-view-remuiformat .read-more-state:checked ~ .read-more-target {
-  height: auto;
-  overflow: inherit;
-}
-
-body#page-course-view-remuiformat .read-more-state:checked ~ .fadeout-summary {
-  display: none;
-}
-
-body#page-course-view-remuiformat .read-more-trigger {
-  cursor: pointer !important;
 }

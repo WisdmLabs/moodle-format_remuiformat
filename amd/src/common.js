@@ -50,7 +50,7 @@ define(['jquery'], function($) {
             return 2;
         } else {
             if (width >= 768) {
-                return 3;
+                return 4;
             }
             if (width >= 481) {
                 return 2;
@@ -71,7 +71,10 @@ define(['jquery'], function($) {
             $(SELECTORS.FIRST_SECTION).addClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
         }
     }
-
+    /**
+     * Init method
+     *
+     */
     function init() {
 
         $('#page-course-view-remuiformat .section-modchooser-link').addClass("btn btn-primary");

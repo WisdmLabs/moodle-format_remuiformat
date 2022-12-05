@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable valid-jsdoc */
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -27,8 +29,11 @@ define([
     'core/notification',
     'format_remuiformat/common',
     './format_card_ordering'
-], function($, Ajax, Notification, common, ordering) {
-
+], function ($, Ajax, Notification, common, ordering) {
+    /**
+     * Init method
+     *
+     */
     function init() {
 
         /**
@@ -42,6 +47,7 @@ define([
              * @param {integer} courseid   Current course id
              * @param {integer} sectionid  Current Section id
              * @param {integer} activityid Selected activity id
+             * @return
              */
             SHOW_ACTIVITY_IN_ROW: function(courseid, sectionid, activityid) {
                 return Ajax.call([{
@@ -53,7 +59,7 @@ define([
                     }
                 }])[0];
             }
-        }
+        };
 
         var cardminHeight = 200;
         $(document).ready(function() {
@@ -80,11 +86,21 @@ define([
         });
 
         // ... + Show full summary label show conditionally.
-        var summaryheight = $('.read-more-target .no-overflow').height();
-        if (summaryheight < 110) {
-            $('.read-more-trigger, .fadeout-summary').hide();
+        var summaryheight = $('.read-more-target').height();
+        if (summaryheight > 110) {
+            $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
+            $('.read-more-target').addClass('text-clamp text-clamp-3');
         }
-
+        $('#readmorebtn').on('click', function () {
+            $('.read-more-target').removeClass('text-clamp text-clamp-3');
+            $('.generalsectioninfo').find('#readmorebtn').addClass('d-none');
+            $('.generalsectioninfo').find('#readlessbtn').removeClass('d-none');
+        });
+        $('#readlessbtn').on('click', function () {
+            $('.read-more-target').addClass('text-clamp text-clamp-3');
+            $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
+            $('.generalsectioninfo').find('#readlessbtn').addClass('d-none');
+        });
         common.init();
     }
     // Must return the init function.

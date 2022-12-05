@@ -31,10 +31,8 @@ define(['jquery'], function ($) {
         // eslint-disable-next-line no-console
         $(document).ready(function () {
             var headercontent = $(".general-section .rmuiformate-header-wrapper").html();
-            // eslint-disable-next-line no-console
-            console.log(headercontent);
             $('#page #page-header').replaceWith(headercontent);
-            $('..rmuiformate-header-wrapper').removeClass("d-none");
+            // $('.rmuiformate-header-wrapper').removeClass("d-none");
         });
     }
     // Must return the init function.
