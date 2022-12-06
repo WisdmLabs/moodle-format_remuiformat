@@ -168,8 +168,8 @@ body#page-course-view-remuiformat {
             // }
 
             .activityinstance {
-                padding: 0;
-                width: 100%;
+                // padding: 0;
+                // width: 100%;
 
                 // .activitytitle {
                 //     flex-direction: column;
@@ -343,6 +343,16 @@ body#page-course-view-remuiformat {
                                                 color: $heading-color;
                                                 @include frmt-font-styling(20px, 28px, 700);
                                             }
+                                            .inplaceeditable{
+                                                display: inline;
+                                                // gap: 8px;
+                                                .instancename{
+                                                    display: inline;
+                                                }
+                                                .quickeditlink{
+                                                    margin-left: 8px;
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -352,10 +362,18 @@ body#page-course-view-remuiformat {
                                     position: relative;
                                     justify-content: start;
                                     margin-top: 8px;
+                                    padding: 0px;
 
                                     .spinner {
                                         position: relative;
                                         left: 0;
+                                    }
+
+                                    .cm_action_menu.actions {
+                                        margin: 0px;
+                                        width: 100%;
+                                        position: unset;
+                                        justify-content: flex-end;
                                     }
 
                                     .activity-information {
@@ -372,8 +390,16 @@ body#page-course-view-remuiformat {
                                     }
                                 }
 
+                                .editing_move {
+                                    position: absolute;
+                                    display: flex;
+                                    left: -20px;
+                                    top: -20px;
+                                }
+
                                 .contentafterlink {
-                                    margin-top: 8px !important;
+                                    margin: 8px 0px 0px 0px !important;
+                                    padding: 0px;
                                     display: flex;
                                     @include frmt-font-styling(14px, 22px, 400);
                                     color: $paragraph-color;

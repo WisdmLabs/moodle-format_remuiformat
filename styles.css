@@ -137,11 +137,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format #changen
   min-height: 340px;
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format .section {
-  margin-bottom: 1.75rem;
-  padding: 0 1rem;
-}
-
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .sectionbadges [data-type="highlighted"] {
   display: none;
 }
@@ -1062,11 +1057,6 @@ body#page-course-view-remuiformat .general-section-activities .activity > div {
   width: 100%;
 }
 
-body#page-course-view-remuiformat .general-section-activities .activity .activityinstance {
-  padding: 0;
-  width: 100%;
-}
-
 body#page-course-view-remuiformat .general-section-activities .activity .editing_move {
   z-index: 10;
 }
@@ -1251,16 +1241,36 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   font-weight: 700;
 }
 
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .media-body .activityname .inplaceeditable {
+  display: inline;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .media-body .activityname .inplaceeditable .instancename {
+  display: inline;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .activitytitle .media-body .activityname .inplaceeditable .quickeditlink {
+  margin-left: 8px;
+}
+
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions {
   display: flex;
   position: relative;
   justify-content: start;
   margin-top: 8px;
+  padding: 0px;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .spinner {
   position: relative;
   left: 0;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .cm_action_menu.actions {
+  margin: 0px;
+  width: 100%;
+  position: unset;
+  justify-content: flex-end;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions .activity-information {
@@ -1276,8 +1286,16 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   width: 100%;
 }
 
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .editing_move {
+  position: absolute;
+  display: flex;
+  left: -20px;
+  top: -20px;
+}
+
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink {
-  margin-top: 8px !important;
+  margin: 8px 0px 0px 0px !important;
+  padding: 0px;
   display: flex;
   font-size: 14px;
   line-height: 22px;
