@@ -67,12 +67,16 @@
 }}
 
 {{#editing}}
-<div id="list-editing-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+<div id="card-editing-container" class="remui-format-card all-section-format theme-{{theme}} row">
     <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
-            {{> format_remuiformat/list_general_section_edit }}
+        {{> format_remuiformat/card_general_section_edit }}
         {{/generalsection}}
+    </ul>
+</div>
+<div id="list-editing-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+    <ul class="sections row">
         {{! Display Remaining Section }}
         {{#sections}}
             {{> format_remuiformat/list_sections_summary }}
@@ -82,12 +86,16 @@
 </div>
 {{/editing}}
 {{^editing}}
-<div id="list-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+<div id="card-container" class="remui-format-card all-section-format theme-{{theme}} row">
     <ul class="sections row">
         {{! Display General Section }}
         {{#generalsection}}
-            {{> format_remuiformat/list_general_section }}
+        {{> format_remuiformat/card_general_section }}
         {{/generalsection}}
+    </ul>
+  </div>
+<div id="list-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+    <ul class="sections row">
         {{! Display Remaining Section }}
         {{#sections}}
             {{> format_remuiformat/list_sections_summary }}
