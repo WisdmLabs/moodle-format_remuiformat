@@ -1,9 +1,9 @@
 body#page-course-view-remuiformat {
+    @import './variables.scss';
+    @import './mixin.scss';
     @import './card-layout.scss';
     @import './list-layout.scss';
-    @import './variables.scss';
     @import './ellipsis.scss';
-    @import './mixin.scss';
 
     header.hasbackground.design-1 {
         display: flex;
@@ -124,94 +124,85 @@ body#page-course-view-remuiformat {
             }
         }
     }
-    .general-section-activities {
-        .activity {
-            // &:first-of-type {
-            //     margin-left: auto;
-            // }
 
-            // &:last-of-type {
-            //     margin-right: auto;
-            // }
-            // .activitytitle {
-            //     display: flex;
-            //     margin: auto;
+    .activityiconcontainer {
+        border-radius: 16px;
+        margin-right: 0 !important;
 
-            //     .activityiconcontainer {
-            //         margin: 0 !important;
-            //     }
-            // }
+        .activityinstance img {
+            width: 28px !important;
+            height: 28px !important;
+        }
+    }
 
-            &.modtype_folder {
+    .automatic-completion-conditions {
+        .badge {
+            padding: 8px;
+            background-color: $small-ui-bg;
+            border-radius: 4px;
 
-                .activityinstance,
-                .activityinstance div {
-                    display: block;
-                }
+            strong {
+                color: $heading-color;
+                @include frmt-font-styling(14px, 22px, 600);
             }
 
-            &>div {
+            span {
+                color: $paragraph-color;
+                @include frmt-font-styling(14px, 22px, 400);
+            }
+        }
+    }
+
+    .activity {
+        .activitytitle {
+            .media-body {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                gap: 8px;
                 width: 100%;
-            }
+                text-align: start;
 
-            // .actions {
-            //     display: flex;
-            //     position: relative;
-            //     justify-content: center;
-
-            //     .spinner {
-            //         position: relative;
-            //         left: 0;
-            //     }
-
-            //     .activity-information {
-            //         padding: 0 1rem;
-            //     }
-            // }
-
-            .activityinstance {
-                // padding: 0;
-                // width: 100%;
-
-                // .activitytitle {
-                //     flex-direction: column;
-                //     align-items: center;
-                //     justify-content: center;
-                //     width: 100%;
-                //     gap: 0.5em;
-
-                //     // .activityiconcontainer {
-                //     //     align-self: center !important;
-                //     //     margin-right: 0 !important;
-                //     // }
-                // }
-            }
-
-            .editing_move {
-                z-index: 10;
-            }
-        }
-
-        @media (max-width: 992px) {
-            &.onshowmore {
-                position: static;
-            }
-        }
-
-        &.onshowmore {
-            height: 350px;
-        }
-
-
-        .activityinstance .instancename {
-            display: block;
-        }
-        .moodle-actionmenu {
-            .dropdown-menu-right {
-                .editing_moveright,
-                .editing_moveleft {
-                    display: none;
+                &>:first-child {
+                    @include frmt-font-styling(16px, 24px, 400);
+                    color: #647390;
                 }
+
+                .activityname {
+                    & a {
+                        color: $heading-color;
+                        @include frmt-font-styling(20px, 28px, 700);
+                    }
+
+                    .inplaceeditable {
+                        display: inline;
+
+                        // gap: 8px;
+                        .instancename {
+                            display: inline;
+                        }
+
+                        .quickeditlink {
+                            margin-left: 8px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .activity-item:not(.activityinline) {
+            border: 1px solid $light-border;
+            border-radius: 8px;
+            background-color: $white;
+        }
+
+        .description {
+            .course-description-item {
+                padding: 8px;
+                margin-top: 8px;
+                background-color: $small-ui-bg;
+                border-radius: 4px;
+                color: $paragraph-color;
             }
         }
     }
@@ -317,48 +308,6 @@ body#page-course-view-remuiformat {
                                     width: 100%;
                                     gap: 16px;
 
-                                    .activityiconcontainer {
-                                        border-radius: 16px;
-                                        margin-right: 0 !important;
-
-                                        .activityinstance img {
-                                            width: 28px !important;
-                                            height: 28px !important;
-                                        }
-                                    }
-
-                                    .media-body {
-                                        display: flex;
-                                        flex-direction: column;
-                                        align-items: start;
-                                        gap: 8px;
-                                        width: 100%;
-                                        text-align: start;
-
-                                        &>:first-child {
-                                            @include frmt-font-styling(16px, 24px, 400);
-                                            color: #647390;
-                                        }
-
-                                        .activityname {
-                                            & a {
-                                                color: $heading-color;
-                                                @include frmt-font-styling(20px, 28px, 700);
-                                            }
-
-                                            .inplaceeditable {
-                                                display: inline;
-                                                // gap: 8px;
-                                                .instancename {
-                                                    display: inline;
-                                                }
-
-                                                .quickeditlink {
-                                                    margin-left: 8px;
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
 
                                 .actions {
@@ -399,6 +348,11 @@ body#page-course-view-remuiformat {
                                     display: flex;
                                     left: -15px;
                                     top: -15px;
+                                    z-index: 10;
+
+                                    i {
+                                        margin: 0px;
+                                    }
                                 }
 
                                 .contentafterlink {
@@ -412,7 +366,7 @@ body#page-course-view-remuiformat {
                         }
                     }
 
-                    .showactivity{
+                    .showactivity {
                         font-size: 14px;
                         line-height: 17px;
                         font-weight: 600;
@@ -429,7 +383,9 @@ body#page-course-view-remuiformat {
             }
             .sectionbadges {
                 .badge {
-                    margin-right: .5rem;
+                    padding: 4px 8px;
+                    @include frmt-font-styling(12px, 14px, 400);
+                    // margin-right: .5rem;
                 }
             }
             list-style: none;
@@ -504,8 +460,12 @@ body#page-course-view-remuiformat {
         height: 18px;
         margin: 4px 0;
     }
-    .section-summary-activities {
-        padding: 2px 0 8px 0;
+
+    .section-summary-activities,
+    .summary .no-overflow p {
+        // padding: 2px 0 8px 0;
+        color: $paragraph-color;
+        @include frmt-font-styling(16px, 24px, 400);
     }
     .flex-1 {
         flex: 1;
