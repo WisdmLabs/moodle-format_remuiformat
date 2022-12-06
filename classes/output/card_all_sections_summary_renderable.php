@@ -150,7 +150,9 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
             $generalsection = $modinfo->get_section_info(0);
             $export->generalsection['index'] = 0;
             $generalsectionsummary = $renderer->format_summary_text($generalsection);
-            $generalsectionsummary = strip_tags($this->course->summary);
+            if (empty($generalsectionsummary)) {
+                $generalsectionsummary = $this->course->summary;
+            }
             if ($generalsection) {
                 if ($editing) {
                     $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
