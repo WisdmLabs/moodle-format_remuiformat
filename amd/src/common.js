@@ -87,10 +87,10 @@ define(['jquery'], function($) {
         $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
 
             if ($(this).hasClass(SELECTORS.SHOW)) {
-                $(this).html('<i class="fa fa-angle-up" aria-hidden="true"></i>');
+                $(this).html('Show Less');
                 $(this).toggleClass(SELECTORS.SHOW); //Remove show class
             } else {
-                $(this).html('<i class="fa fa-angle-down" aria-hidden="true"></i>');
+                $(this).html('Show More');
                 $(this).toggleClass(SELECTORS.SHOW); //Add show class
                 $("html, body").animate({
                     scrollTop: $(SELECTORS.FIRST_SECTION + ' .activity:first-child').offset().top - 66

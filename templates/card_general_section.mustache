@@ -54,6 +54,7 @@
 <li id="section-{{{index}}}" class="section border-0 col-12 p-0">
     <div class="general-section d-flex flex-column">
         {{>format_remuiformat/optional_secheader}}
+        <div class="d-none hidden course-prgress-container" data-courseid="{{courseid}}"></div>
         <div class="section-details">
             <div class="coursedetails">
                 <div class="details d-flex flex-column">
@@ -117,7 +118,7 @@
         {{/activityexists}}
         <div class="text-center showactivitywrapper">
             <span class="showactivity text-primary show">
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                Show More
             </span>
         </div>
     </div>

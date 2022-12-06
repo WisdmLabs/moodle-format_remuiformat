@@ -14,6 +14,7 @@ body#page-course-view-remuiformat {
         border-radius: 8px;
         max-width: 100%;
         width: 100%;
+
         .header-main-section {
             .category {
                 .badge {
@@ -40,6 +41,7 @@ body#page-course-view-remuiformat {
                 display: flex;
                 gap: 24px;
                 flex-wrap: wrap;
+
                 .edw-ratings-wrapper {
                     color: $white;
 
@@ -343,13 +345,15 @@ body#page-course-view-remuiformat {
                                                 color: $heading-color;
                                                 @include frmt-font-styling(20px, 28px, 700);
                                             }
-                                            .inplaceeditable{
+
+                                            .inplaceeditable {
                                                 display: inline;
                                                 // gap: 8px;
-                                                .instancename{
+                                                .instancename {
                                                     display: inline;
                                                 }
-                                                .quickeditlink{
+
+                                                .quickeditlink {
                                                     margin-left: 8px;
                                                 }
                                             }
@@ -393,8 +397,8 @@ body#page-course-view-remuiformat {
                                 .editing_move {
                                     position: absolute;
                                     display: flex;
-                                    left: -20px;
-                                    top: -20px;
+                                    left: -15px;
+                                    top: -15px;
                                 }
 
                                 .contentafterlink {
@@ -407,8 +411,16 @@ body#page-course-view-remuiformat {
                             }
                         }
                     }
-                }
 
+                    .showactivity{
+                        font-size: 14px;
+                        line-height: 17px;
+                        font-weight: 600;
+                        color: #0051F9;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                }
                 .sectionbadges {
                     .badge {
                         margin: 0.2rem auto;

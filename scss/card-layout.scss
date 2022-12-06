@@ -214,6 +214,7 @@
             .right.side {
                 display: flex;
                 margin-left: auto;
+                margin: 0px;
             }
             // Hide right side spacer.
             .right.side .icon.spacer {
@@ -356,12 +357,12 @@
                     }
                 }
                 @media (min-width: 769px) {
-                    .generaldetails {
-                        width: 66.66%;
-                    }
-                    .coursedetails {
-                        width: 33.33%;
-                    }
+                    // .generaldetails {
+                    //     width: 66.66%;
+                    // }
+                    // .coursedetails {
+                    //     width: 33.33%;
+                    // }
                 }
             }
 

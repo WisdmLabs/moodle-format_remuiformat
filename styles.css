@@ -157,6 +157,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .right.side {
   display: flex;
   margin-left: auto;
+  margin: 0px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .right.side .icon.spacer {
@@ -282,15 +283,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails,
   body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
     width: 50%;
-  }
-}
-
-@media (min-width: 769px) {
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
-    width: 66.66%;
-  }
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
-    width: 33.33%;
   }
 }
 
@@ -1289,8 +1281,8 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .editing_move {
   position: absolute;
   display: flex;
-  left: -20px;
-  top: -20px;
+  left: -15px;
+  top: -15px;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink {
@@ -1301,6 +1293,15 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   line-height: 22px;
   font-weight: 400;
   color: #4C5A73;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .showactivity {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  color: #0051F9;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .sectionbadges .badge {
