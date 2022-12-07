@@ -111,6 +111,8 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections .section:not(#section-0) {
   flex: 1 1 calc(25% - 24px);
   max-width: 314px;
+  border: unset;
+  border-radius: 8px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections .section:not(#section-0) .content .yui3-dd-drop {
@@ -196,17 +198,20 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   display: none;
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format .section .sectionname {
-  font-size: 1.5rem;
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .sectionname,
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .sectionname a {
+  color: #313848;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card,
-body#page-course-view-remuiformat .remui-format-card.all-section-format .section .general-section {
-  box-shadow: 0 0 8px #ddd;
-  border-radius: 2px;
-  background-color: white;
-  position: relative;
-  padding: 1rem;
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card {
+  background-color: #fff;
+  border: 1px solid #EBF0F9;
+  border-radius: inherit;
+  padding: 24px;
+  gap: 36px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card {
@@ -240,19 +245,16 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .section-action-container {
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
-  margin: 0 -15px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .section-action-container .progress-text {
-  width: 92%;
-  min-height: 18px;
-  margin: 0 auto;
   align-self: center;
-  font-size: 14px;
-  font-weight: 500;
-  visibility: hidden;
+  color: #4C5A73;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 600;
 }
 
 @media (min-width: 480px) and (max-width: 767px) {
@@ -261,26 +263,22 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   }
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format .section .card-bottom {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 1rem;
-  right: 1rem;
-}
-
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .section-activities-summary {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 4px;
   width: 100%;
+  color: #4C5A73;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .section-activities-summary .item {
   float: left;
-  text-align: center;
-  padding: 3px 5px;
   text-decoration: none;
   font-size: 0.9rem;
 }
@@ -288,45 +286,14 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .wdm-section-summary .no-overflow {
   margin: 0;
   width: 100%;
+  color: #4C5A73;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
 }
 
-@media (min-width: 681px) {
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details {
-    display: flex;
-  }
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
-    order: 1;
-  }
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
-    order: 2;
-  }
-}
-
-@media (max-width: 680px) {
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails {
-    width: 100%;
-  }
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
-    width: 100%;
-  }
-}
-
-@media (min-width: 681px) and (max-width: 768px) {
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .generaldetails,
-  body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .section-details .coursedetails {
-    width: 50%;
-  }
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .coursemainimage {
-  width: 100%;
-  background-position: center;
-  background-size: cover;
-}
-
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .coursemainimagediv,
-body#page-course-view-remuiformat .remui-format-card.all-section-format #section-0 .coursemainimage {
-  height: 140px;
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .wdm-section-summary .no-overflow p {
+  margin: 0px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .content {
@@ -1333,8 +1300,7 @@ body#page-course-view-remuiformat .text-center {
 }
 
 body#page-course-view-remuiformat .progress-xs {
-  width: 92%;
-  margin: 0 auto;
+  width: 100%;
   border-bottom: 0 !important;
   border-radius: 5px;
   position: relative;
@@ -1343,7 +1309,7 @@ body#page-course-view-remuiformat .progress-xs {
 
 body#page-course-view-remuiformat .progress-xs,
 body#page-course-view-remuiformat .progress-xs .progress-bar {
-  height: 6px !important;
+  height: 7px !important;
   border-radius: 5px;
 }
 

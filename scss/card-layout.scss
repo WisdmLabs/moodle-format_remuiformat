@@ -143,7 +143,7 @@
             padding: 10px;
             background: #e0e0e0;
             border-radius: 5px;
-            margin: 5px 0!important
+            margin: 5px 0 !important
         }
     }
     &.all-section-format {
@@ -155,6 +155,9 @@
             .section:not(#section-0) {
                 flex: 1 1 calc(25% - 24px);
                 max-width: 314px;
+                border: unset;
+                border-radius: 8px;
+
                 .content .yui3-dd-drop {
                     display: none;
                 }
@@ -237,16 +240,20 @@
             .right.side .icon.spacer {
                 display: none;
             }
-            .sectionname {
-                font-size: 1.5rem;
+
+            .sectionname,
+            .sectionname a {
+                color: $heading-color;
+                @include frmt-font-styling(24px, 32px, 700);
             }
-            .single-card,
-            .general-section {
-                box-shadow: 0 0 8px #ddd;
-                border-radius: 2px;
-                background-color: white;
-                position: relative;
-                padding: 1rem;
+
+            .single-card {
+                background-color: $white;
+                // position: relative;
+                border: 1px solid $light-border;
+                border-radius: inherit;
+                padding: 24px;
+                gap: 36px;
             }
             // Styling for section cards
             .single-card {
@@ -284,27 +291,18 @@
             }
             // Placing section action container.
             .section-action-container {
-                justify-content: space-between;
+                justify-content: flex-end;
                 flex-wrap: wrap;
-                margin: 0 -15px;
+                // margin: 0 -15px;
+
                 .progress-text {
-                    width: 92%;
-                    min-height: 18px;
-                    margin: 0 auto;
                     align-self: center;
-                    font-size: 14px;
-                    font-weight: 500;
-                    visibility: hidden;
+                    color: $paragraph-color;
+                    @include frmt-font-styling(12px,15px,600);
                     @media (min-width: 480px) and (max-width: 767px) {
                         padding: 5px 0 0 13px !important;
                     }
                 }
-            }
-            .card-bottom {
-                position: absolute;
-                bottom: 0.5rem;
-                left: 1rem;
-                right: 1rem;
             }
             // Section activities summary container.
             .section-activities-summary {
@@ -313,95 +311,102 @@
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
+                gap: 4px;
                 width: 100%;
+                color: $paragraph-color;
+                @include frmt-font-styling(14px,22px,600);
                 .item {
                     float: left;
-                    text-align: center;
-                    padding: 3px 5px;
                     text-decoration: none;
                     font-size: 0.9rem;
                 }
             }
+
             .wdm-section-summary {
                 .no-overflow {
                     margin: 0;
                     width: 100%;
+                    color: $paragraph-color;
+                    @include frmt-font-styling(14px, 22px, 400);
+                    p{
+                        margin: 0px;
+                    }
                 }
             }
         }
         // Styling for general section.
-        #section-0 {
-            // background: transparent !important;
-            // margin-bottom: 2rem;
-            // .coursedetails .details {
-            //     background-color: #f1f4f5;
-            //     padding: 15px;
-            //     margin: 0;
-            //     .col-12 {
-            //         padding: 0;
-            //     }
-            // }
-            .section-details {
-                @media (min-width: 681px) {
-                    display: flex;
-                    .generaldetails {
-                        order: 1;
-                    }
-                    .coursedetails {
-                        order: 2;
-                    }
-                }
-                // .generaldetails {
-                //     position: relative;
-                //     padding: 0 1rem 1rem 0;
-                // }
-                // .coursedetails {
-                //     position: relative;
-                //     padding: 0 0 1rem 1rem;
-                // }
-                @media (max-width: 680px) {
-                    .generaldetails {
-                        width: 100%;
-                    }
-                    .coursedetails {
-                        width: 100%;
-                    }
-                }
-                @media (min-width: 681px) and (max-width: 768px) {
-                    .generaldetails,
-                    .coursedetails {
-                        width: 50%;
-                    }
-                }
-                @media (min-width: 769px) {
-                    // .generaldetails {
-                    //     width: 66.66%;
-                    // }
-                    // .coursedetails {
-                    //     width: 33.33%;
-                    // }
-                }
-            }
+        // #section-0 {
 
-            // .general-section {
-            //     padding: 0px;
-            //     background: transparent;
-            //     box-shadow: none;
-            //     border: none;
-            //     border-radius: unset;
-            // }
-            .coursemainimage {
-                width: 100%;
-                background-position: center;
-                background-size: cover;
-            }
-        }
-        #section-0 {
-            .coursemainimagediv,
-            .coursemainimage {
-                height: 140px;
-            }
-        }
+        //     .section-details {
+        //         @media (min-width: 681px) {
+        //             display: flex;
+
+        //             .generaldetails {
+        //                 order: 1;
+        //             }
+
+        //             .coursedetails {
+        //                 order: 2;
+        //             }
+        //         }
+
+        //         // .generaldetails {
+        //         //     position: relative;
+        //         //     padding: 0 1rem 1rem 0;
+        //         // }
+        //         // .coursedetails {
+        //         //     position: relative;
+        //         //     padding: 0 0 1rem 1rem;
+        //         // }
+        //         @media (max-width: 680px) {
+        //             .generaldetails {
+        //                 width: 100%;
+        //             }
+
+        //             .coursedetails {
+        //                 width: 100%;
+        //             }
+        //         }
+
+        //         @media (min-width: 681px) and (max-width: 768px) {
+
+        //             .generaldetails,
+        //             .coursedetails {
+        //                 width: 50%;
+        //             }
+        //         }
+
+        //         @media (min-width: 769px) {
+        //             // .generaldetails {
+        //             //     width: 66.66%;
+        //             // }
+        //             // .coursedetails {
+        //             //     width: 33.33%;
+        //             // }
+        //         }
+        //     }
+
+        //     // .general-section {
+        //     //     padding: 0px;
+        //     //     background: transparent;
+        //     //     box-shadow: none;
+        //     //     border: none;
+        //     //     border-radius: unset;
+        //     // }
+        //     .coursemainimage {
+        //         width: 100%;
+        //         background-position: center;
+        //         background-size: cover;
+        //     }
+        // }
+
+        // #section-0 {
+
+        //     .coursemainimagediv,
+        //     .coursemainimage {
+        //         height: 140px;
+        //     }
+        // }
     }
     // Styling for single section page
     &.single-section-format {

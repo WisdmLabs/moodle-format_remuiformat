@@ -479,8 +479,8 @@ body#page-course-view-remuiformat {
         text-align: center !important;
     }
     .progress-xs {
-        width: 92%;
-        margin: 0 auto;
+        width: 100%;
+        // margin: 0 auto;
         border-bottom: 0 !important;
         border-radius: 5px;
         position: relative;
@@ -488,7 +488,7 @@ body#page-course-view-remuiformat {
     }
     .progress-xs,
     .progress-xs .progress-bar {
-        height: 6px !important;
+        height: 7px !important;
         border-radius: 5px;
     }
     .progress-xs .progress-bar {
