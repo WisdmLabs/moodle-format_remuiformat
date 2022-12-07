@@ -193,13 +193,14 @@ body#page-course-view-remuiformat {
         .activity-item:not(.activityinline) {
             border: 1px solid $light-border;
             border-radius: 8px;
+            padding: 24px;
             background-color: $white;
         }
 
         .description {
             .course-description-item {
                 padding: 8px;
-                margin-top: 8px;
+                margin-top: 8px 0px 0px 0px;
                 background-color: $small-ui-bg;
                 border-radius: 4px;
                 color: $paragraph-color;
@@ -381,13 +382,11 @@ body#page-course-view-remuiformat {
                     }
                 }
             }
-            .sectionbadges {
                 .badge {
                     padding: 4px 8px;
                     @include frmt-font-styling(12px, 14px, 400);
                     // margin-right: .5rem;
                 }
-            }
             list-style: none;
             margin: 0;
             padding: 0;

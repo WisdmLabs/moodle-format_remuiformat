@@ -117,6 +117,9 @@
 
             .course-section-header {
                 margin-bottom: 8px;
+                // justify-content: space-between;
+                flex-wrap: wrap;
+
                 .sectionheading {
                     color: $heading-color;
                     @include frmt-font-styling(24px, 32px, 700);
@@ -196,6 +199,10 @@
             }
 
             .right.side {
+                margin-left: auto;
+                @media (max-width:768px) {
+                    margin-left: unset;
+                }
                 .section_action_menu.ml-auto {
                     margin: unset !important;
                 }
@@ -204,12 +211,17 @@
                     display: flex;
                     flex-direction: row;
                     gap: 16px;
-                    justify-content: center;
+                    // justify-content: center;
+                    flex-wrap: wrap;
                     align-items: center;
 
                     .progress {
                         height: 7px !important;
+                        margin: 0px;
                         width: 233px;
+                        @media (max-width:425px) {
+                            width:100%;
+                        }
                     }
 
                     .progress-text {

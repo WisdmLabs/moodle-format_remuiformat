@@ -590,6 +590,7 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .content
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header {
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header .sectionheading {
@@ -679,6 +680,16 @@ body#page-course-view-remuiformat .remui-format-list .sections .section ul.secti
   width: 560px;
 }
 
+body#page-course-view-remuiformat .remui-format-list .sections .section .right.side {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  body#page-course-view-remuiformat .remui-format-list .sections .section .right.side {
+    margin-left: unset;
+  }
+}
+
 body#page-course-view-remuiformat .remui-format-list .sections .section .right.side .section_action_menu.ml-auto {
   margin: unset !important;
 }
@@ -687,13 +698,20 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .right.s
   display: flex;
   flex-direction: row;
   gap: 16px;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .right.side .progress-bar-warpper .progress {
   height: 7px !important;
+  margin: 0px;
   width: 233px;
+}
+
+@media (max-width: 425px) {
+  body#page-course-view-remuiformat .remui-format-list .sections .section .right.side .progress-bar-warpper .progress {
+    width: 100%;
+  }
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .right.side .progress-bar-warpper .progress-text {
@@ -969,12 +987,13 @@ body#page-course-view-remuiformat .activity .activitytitle .media-body .activity
 body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) {
   border: 1px solid #EBF0F9;
   border-radius: 8px;
+  padding: 24px;
   background-color: #fff;
 }
 
 body#page-course-view-remuiformat .activity .description .course-description-item {
   padding: 8px;
-  margin-top: 8px;
+  margin-top: 8px 0px 0px 0px;
   background-color: #EBF0F9;
   border-radius: 4px;
   color: #4C5A73;
@@ -1176,7 +1195,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .sectionb
   margin: 0.2rem auto;
 }
 
-body#page-course-view-remuiformat .course-content .sections .sectionbadges .badge {
+body#page-course-view-remuiformat .course-content .sections .badge {
   padding: 4px 8px;
   font-size: 12px;
   line-height: 14px;
