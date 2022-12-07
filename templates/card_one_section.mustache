@@ -54,118 +54,136 @@
 {{/hiddensection}}
 {{^hiddensection}}
 
-    <div id="card-editing-container" class="remui-format-card single-section-format row mt-20 p-3">
-        <ul class="sections">
-            <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}" data-courseid="{{ courseid }}">
-                <div class="section-details">
-                    <div class="col-md-12 p-0 general-single-card p-15 p-3">
-                        {{#editing}}
-                            <div class="right side">
-                                {{{ optionmenu }}}
-                            </div>
-                        {{/editing}}
-                        <h2 class="section-title">
-                            <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-                                {{ section }}&#46;
-                            </span>
-                            <span id="{{uniqid}}" class="single-section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
-                        </h2>
-                        <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+<div id="card-editing-container" class="remui-format-card single-section-format row ">
+    <ul class="sections">
+        <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}"
+            data-courseid="{{ courseid }}">
+            <div class="section-details d-flex justify-content-between flex-wrap">
+                <div class=" general-single-card p-0">
+                    {{#editing}}
+                    <div class="right side">
+                        {{{ optionmenu }}}
+                    </div>
+                    {{/editing}}
+                    <h2 class="section-title m-0 d-flex justify-content-between flex-wrap ">
+                        <span class="sno {{#hidden}}text-muted{{/hidden}}">
+                            {{ section }}&#46;
+                        </span>
+                        <span id="{{uniqid}}" class="single-section-title {{#hidden}}text-muted{{/hidden}}">{{{ title
+                            }}}</span>
+                            <div data-region="sectionbadges"
+                            class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
                             {{> core_courseformat/local/content/section/badges }}
                         </div>
-                        <p>{{{ summary }}}</p>
+                    </h2>
+                    {{#summary }}
+                    <p>{{{ summary }}}</p>
+                    {{/summary }}
+                </div>
+                <!-- next/prev sections -->
+                <div class=" p-0 wdm-card-section m-0">
+                    <div class="card-section-leftnav">
+                        {{{ leftnav }}}
+                    </div>
+                    <div class="card-section-rightnav">
+                        {{{ rightnav }}}
                     </div>
                 </div>
-                <div class="content">
-                    <div class="summary">
-                    </div>
-                    <ul class="activity-cards section yui3-dd-drop">
+            </div>
+            <div class="content">
+                <div class="summary">
+                </div>
+                <ul class="activity-cards section yui3-dd-drop">
                     {{#activities}}
 
-                        <li class="activity {{#layouttypecol}}col-activity{{/layouttypecol}} {{#layouttyperow}}row-activity{{/layouttyperow}} modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}" aria-labelledby="module-{{id}}-title">
-                            <div class="single-card">
-                                {{#editing}}
-                                    {{{move}}}
-                                {{/editing}}
-                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulefullname }}</div>
-                                {{#editing}}
-                                <div class="actions d-inline-flex">
-                                    <span class="toggle-row-column btn btn-inverse" data-activityid="{{ id }}">
-                                        <span class='type-col'>
-                                            {{# pix }}
-                                                ecf-cols, format_remuiformat,
-                                                {{# str }} showincard, format_remuiformat {{/ str }}
-                                            {{/ pix }}
-                                        </span>
-                                        <span class='type-row'>
-                                            {{# pix }}
-                                                ecf-rows, format_remuiformat,
-                                                {{# str }} showinrow, format_remuiformat {{/ str }}
-                                            {{/ pix }}
-                                        </span>
+                    <li class="activity {{#layouttypecol}}col-activity{{/layouttypecol}} {{#layouttyperow}}row-activity{{/layouttyperow}} modtype_{{{modulename}}}"
+                        id="module-{{id}}" data-id="{{ id }}" data-section="{{ section }}"
+                        aria-labelledby="module-{{id}}-title">
+                        <div class="single-card">
+                            {{#editing}}
+                            {{{move}}}
+                            {{/editing}}
+                            <!-- <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulefullname }}</div> -->
+                            {{#editing}}
+                            <div class="actions d-inline-flex">
+                                <span class="toggle-row-column btn btn-inverse" data-activityid="{{ id }}">
+                                    <span class='type-col'>
+                                        {{# pix }}
+                                        ecf-cols, format_remuiformat,
+                                        {{# str }} showincard, format_remuiformat {{/ str }}
+                                        {{/ pix }}
                                     </span>
-                                    {{{ modicons }}}
-                                </div>
-                                {{/editing}}
-
-                                <h4 id="module-{{id}}-title" class="title {{^summary}}nosummary{{/summary}}">
-                                    {{{ title }}}
-                                </h4>
-                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
-                                    {{> core_courseformat/local/content/section/badges }}
-                                </div>
-                                <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
-
-                                <div class="activity-content">
-                                    {{#summary}}
-                                        {{#label}}
-                                            {{{ fullcontent }}}
-                                        {{/label}}
-                                        {{^label}}
-                                            {{{ summary }}}
-                                        {{/label}}
-                                    {{/summary}}
-                                </div>
-
-                                {{#completion}}
-                                    <div class="completion-container {{#manualcompletion}}manual-completion{{/manualcompletion}} align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
-                                        <div class="completion-check-{{id}}">
-                                            {{{ completion }}}
-                                        </div>
-                                    </div>
-                                {{/completion}}
-
+                                    <span class='type-row'>
+                                        {{# pix }}
+                                        ecf-rows, format_remuiformat,
+                                        {{# str }} showinrow, format_remuiformat {{/ str }}
+                                        {{/ pix }}
+                                    </span>
+                                </span>
+                                {{{ modicons }}}
                             </div>
-                        </li>
+                            {{/editing}}
+
+                            <h4 id="module-{{id}}-title" class="title {{^summary}}nosummary{{/summary}} m-0">
+                                {{{ title }}}
+                            </h4>
+                            <div data-region="sectionbadges"
+                                class="sectionbadges d-flex align-items-center {{^editing}}{{/editing}}">
+                                {{> core_courseformat/local/content/section/badges }}
+                            </div>
+                            <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
+
+                            <div class="activity-content">
+                                {{#summary}}
+                                {{#label}}
+                                {{{ fullcontent }}}
+                                {{/label}}
+                                {{^label}}
+                                {{{ summary }}}
+                                {{/label}}
+                                {{/summary}}
+                            </div>
+
+                            {{#completion}}
+                            <div
+                                class="completion-container {{#manualcompletion}}manual-completion{{/manualcompletion}} align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
+                                <div class="completion-check-{{id}}">
+                                    {{{ completion }}}
+                                </div>
+                            </div>
+                            {{/completion}}
+
+                        </div>
+                    </li>
                     {{/activities}}
-                    </ul>
+                </ul>
+            </div>
+            {{{ addnewactivity }}}
+        </li>
+        {{#sections}}
+        <li id="section-{{index}}" class="section hide">
+            <div class="content">
+                <div class="sectionname">
+                    <h2>
+                        {{name}}
+                    </h2>
                 </div>
-                {{{ addnewactivity }}}
-            </li>
-            {{#sections}}
-            <li id="section-{{index}}" class="section hide">
-                <div class="content">
-                    <div class="sectionname">
-                        <h2>
-                            {{name}}
-                        </h2>
-                    </div>
-                    <div class="summary">
+                <div class="summary">
 
-                    </div>
                 </div>
-            </li>
-            {{/sections}}
-        </ul>
-    </div>
+            </div>
+        </li>
+        {{/sections}}
+    </ul>
+</div>
 
-    <!-- next/prev sections -->
-    <div class="col-md-12 p-0 wdm-card-section">
-        <div class="card-section-leftnav">
-            {{{ leftnav }}}
-        </div>
-        <div class="card-section-rightnav">
-            {{{ rightnav }}}
-        </div>
+<!-- next/prev sections -->
+<div class="col-md-12 p-0 wdm-card-section">
+    <div class="card-section-leftnav">
+        {{{ leftnav }}}
     </div>
+    <div class="card-section-rightnav">
+        {{{ rightnav }}}
+    </div>
+</div>
 {{/hiddensection}}

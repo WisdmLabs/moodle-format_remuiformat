@@ -74,7 +74,8 @@
     data-sectionreturnid="{{sectionreturnid}}"
     data-for="section"
     data-number="{{num}}">
-    <div class="single-card d-flex flex-column justify-content-between  {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
+
+    <div class="single-card d-flex flex-column justify-content-between {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
         style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
                 background-repeat: no-repeat;
                 background-size: cover;";>
@@ -90,8 +91,8 @@
                 {{{ optionmenu }}}
             </div>
         </div>
-        <div class="content pb-10 pb-2">
-            <div class="summary">
+        <div class="content h-100">
+            <div class="summary d-none">
             </div>
             {{#addnewsection}}
                 <h2 class="sectionname m-0">{{{ title }}}</h2>
@@ -110,31 +111,33 @@
             <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
                 {{> core_courseformat/local/content/section/badges }}
             </div>
+            {{#summary }}
             <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}}">
                 {{{ summary }}}
             </div>
+            {{/summary }}
             <div class="section-activities-summary">
                 {{#activityinfo}}
                     <span class="item {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
             {{#editsectionurl}}
-                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
+                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
-            <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-                {{#progressinfo}}
-                    <div class="progress progress-xs bg-grey-300 ">
-                        <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
-                        </div>
+        </div>
+        <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+            {{#progressinfo}}
+                <div class="progress progress-xs bg-grey-300 ">
+                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
                     </div>
+                </div>
+            {{/progressinfo}}
+            <div class="text-right progress-text">
+                {{#progressinfo}}
+                {{! progress }}
+                <span>{{{percentage}}}% Complete</span>
                 {{/progressinfo}}
-                <div class="text-right progress-text">
-                    {{#progressinfo}}
-                    {{! progress }}
-                    <span>{{{percentage}}}% Complete</span>
-                    {{/progressinfo}}
-                 </div>
-            </div>
+             </div>
         </div>
     </div>
 </li>

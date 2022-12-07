@@ -92,6 +92,14 @@ body#page-course-view-remuiformat {
         }
     }
 
+    .card-section-rightnav,.card-section-leftnav{
+        background-color: $blue;
+        border-radius: 5px;
+        height: fit-content;
+        a{
+            color: $white;
+        }
+    }
     .remui-format-card,
     .remui-format-list {
         .hide {
@@ -159,7 +167,7 @@ body#page-course-view-remuiformat {
                 display: flex;
                 flex-direction: column;
                 align-items: start;
-                gap: 8px;
+                gap: 4px;
                 width: 100%;
                 text-align: start;
 
@@ -384,6 +392,7 @@ body#page-course-view-remuiformat {
             }
                 .badge {
                     padding: 4px 8px;
+                    margin: unset;
                     @include frmt-font-styling(12px, 14px, 400);
                     // margin-right: .5rem;
                 }
@@ -435,8 +444,9 @@ body#page-course-view-remuiformat {
     }
     .wdm-card-section {
         display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
+        justify-content: flex-end;
+        gap: 6px;
+        margin-top: 24px;
     }
     .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
         font-size: 15px;
