@@ -73,12 +73,17 @@
 }
 </style>
 {{#editing}}
+<div id="card-container" class="remui-format-card all-section-format theme-{{theme}} row">
+    <ul class="sections row">
+        {{! Display General Section }}
+        {{#generalsection}}
+        {{> format_remuiformat/card_general_section_edit }}
+        {{/generalsection}}
+    </ul>
+  </div>
     <div id="card-editing-container" class="remui-format-card all-section-format theme-{{theme}} row">
         {{! Display General Section }}
         <ul class="sections row">
-            {{#generalsection}}
-                {{> format_remuiformat/card_general_section_edit }}
-            {{/generalsection}}
             {{! Display Remaining Section }}
             {{#sections}}
                 {{> format_remuiformat/card_section_summary_edit }}
@@ -88,12 +93,17 @@
     </div>
 {{/editing}}
 {{^editing}}
+<div id="card-container" class="remui-format-card all-section-format theme-{{theme}} row">
+    <ul class="sections row">
+        {{! Display General Section }}
+        {{#generalsection}}
+        {{> format_remuiformat/card_general_section }}
+        {{/generalsection}}
+    </ul>
+  </div>
     <div id="card-container" class="remui-format-card all-section-format theme-{{theme}} row">
         {{! Display General Section }}
         <ul class="sections row">
-            {{#generalsection}}
-                {{> format_remuiformat/card_general_section }}
-            {{/generalsection}}
             {{! Display Remaining Section }}
             {{#sections}}
                 {{> format_remuiformat/card_section_summary }}
