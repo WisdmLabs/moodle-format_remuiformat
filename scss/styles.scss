@@ -5,6 +5,13 @@ body#page-course-view-remuiformat {
     @import './list-layout.scss';
     @import './ellipsis.scss';
 
+    #region-top-blocks.pb-3,#region-top-blocks.py-3{
+        padding: 0px !important;
+    }
+    .secondary-navigation{
+        padding: 0px;
+        margin-bottom: 24px;
+    }
     header.hasbackground.design-1 {
         display: flex;
         flex-direction: column;
@@ -14,9 +21,24 @@ body#page-course-view-remuiformat {
         border-radius: 8px;
         max-width: 100%;
         width: 100%;
+        @media (max-width:$sm-screen-bp) {
+            min-height: 445px;
+        }
+
+        .dashboard-bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            @media (max-width:$sm-screen-bp) {
+                gap: 8px;
+            }
+        }
 
         .header-main-section {
             .category {
+                margin-bottom: 8px;
+
                 .badge {
                     padding: 4px 6px;
                     border-radius: 4px;
@@ -37,10 +59,32 @@ body#page-course-view-remuiformat {
             gap: 24px;
             flex-wrap: wrap;
 
+            @media (max-width:1200px) {
+                align-items: unset;
+                justify-content: space-between;
+            }
+
+            @media (max-width:$sm-screen-bp) {
+                // align-items: unset;
+                flex-direction: column;
+                gap: 32px;
+                // justify-content: space-between;
+            }
+
             .rating-instructor-wrapper {
                 display: flex;
                 gap: 24px;
                 flex-wrap: wrap;
+
+                @media (max-width:1200px) {
+                    gap: 24px;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                @media (max-width:$sm-screen-bp) {
+                    gap: 16px;
+                }
 
                 .edw-ratings-wrapper {
                     color: $white;
@@ -70,19 +114,39 @@ body#page-course-view-remuiformat {
                 display: flex;
                 align-items: center;
                 gap: 40px;
-                @media (max-width: 425px) {
-                    flex-wrap: wrap;
+
+                @media (max-width:1200px) {
+                    gap: 24px;
+                    flex-direction: column;
                 }
+
+                @media (max-width: $sm-screen-bp) {
+                    gap: 16px;
+                    flex-wrap: wrap;
+                    align-items: flex-start;
+                }
+
                 .progressbar-text-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
                     color: $white;
                     font-weight: 400;
                     font-size: 12px;
                     line-height: 15px;
+
+                    @media (max-width:$sm-screen-bp) {
+                        width: 100%;
+                    }
                 }
 
                 .progress {
                     min-width: 230px;
                     height: 7px !important;
+
+                    @media (max-width:$sm-screen-bp) {
+                        min-width: unset;
+                    }
                 }
             }
         }
@@ -92,11 +156,13 @@ body#page-course-view-remuiformat {
         }
     }
 
-    .card-section-rightnav,.card-section-leftnav{
+    .card-section-rightnav,
+    .card-section-leftnav {
         background-color: $blue;
         border-radius: 5px;
         height: fit-content;
-        a{
+
+        a {
             color: $white;
         }
     }
@@ -390,12 +456,14 @@ body#page-course-view-remuiformat {
                     }
                 }
             }
-                .badge {
-                    padding: 4px 8px;
-                    margin: unset;
-                    @include frmt-font-styling(12px, 14px, 400);
-                    // margin-right: .5rem;
-                }
+
+            .badge {
+                padding: 4px 8px;
+                margin: unset;
+                @include frmt-font-styling(12px, 14px, 400);
+                // margin-right: .5rem;
+            }
+
             list-style: none;
             margin: 0;
             padding: 0;

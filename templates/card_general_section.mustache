@@ -56,17 +56,6 @@
         {{>format_remuiformat/optional_secheader}}
         <div class="d-none hidden course-prgress-container" data-courseid="{{courseid}}"></div>
         <div class="section-details">
-            <div class="coursedetails">
-                <div class="details d-flex flex-column">
-                    {{!> format_remuiformat/course_progress }}
-                    <h3 class="m-0 activities-title">{{#str}}courseinformation,format_remuiformat{{/str}}</h3>
-                    <ul class="section-activities-summary">
-                        {{#activitylist}}
-                        <li class="item">{{ . }}</li>
-                        {{/activitylist}}
-                    </ul>
-                </div>
-            </div>
             <div class="generaldetails content d-flex flex-column">
                 <h2 class="section-title pt-0 p-t-0 m-0">{{ title }}</h2>
                 <div class='generalsectioninfo'>
@@ -79,6 +68,17 @@
                     <a id="readlessbtn" class="d-none readbtn">Read Less</a>
                     {{! <label for="read-more-summary" class=" text-primary small read-more-trigger"></label> }}
                     {{/fullsummary}}
+                </div>
+            </div>
+            <div class="coursedetails">
+                <div class="details d-flex flex-column">
+                    {{!> format_remuiformat/course_progress }}
+                    <h3 class="m-0 activities-title">{{#str}}courseinformation,format_remuiformat{{/str}}</h3>
+                    <ul class="section-activities-summary">
+                        {{#activitylist}}
+                        <li class="item">{{ . }}</li>
+                        {{/activitylist}}
+                    </ul>
                 </div>
             </div>
         </div>

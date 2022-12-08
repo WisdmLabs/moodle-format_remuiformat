@@ -147,7 +147,7 @@
         }
     }
     &.all-section-format {
-        .sections {
+        .sections:not(.generalsection-container.sections) {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
@@ -161,17 +161,17 @@
                 .content .yui3-dd-drop {
                     display: none;
                 }
-                @media (max-width:1200px) {
-                    flex: 1 1 calc(33.33% - 24px);
-                }
-                @media (max-width:768px) {
-                    flex: 1 1 calc(50% - 24px);
-                }
-                @media (max-width:576px) {
-                    flex: 1 1 100%;
-                    width: 100%;
-                    max-width: 100%;
-                }
+                // @media (max-width:1200px) {
+                //     flex: 1 1 calc(33.33% - 24px);
+                // }
+                // @media (max-width:768px) {
+                //     flex: 1 1 calc(50% - 24px);
+                // }
+                // @media (max-width:576px) {
+                //     flex: 1 1 100%;
+                //     width: 100%;
+                //     max-width: 100%;
+                // }
             }
         }
         // Show two cards per row, when both sidebars open in RemUI
