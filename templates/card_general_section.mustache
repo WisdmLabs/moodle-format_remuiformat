@@ -96,13 +96,13 @@
                         {{! <div> }}
                             <div class="activityinstance p-0 m-0 d-inline-block">
                                 {{{title}}}
-                            </div>
-                            <div data-region="sectionbadges"
+                                <div class="contentafterlink">
+                                    {{{summary}}}
+                                </div>
+                                <div data-region="sectionbadges"
                                 class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
                                 {{> core_courseformat/local/content/section/badges }}
                             </div>
-                            <div class="contentafterlink">
-                                {{{summary}}}
                             </div>
                             <div class="actions">
                                 {{{completion}}}

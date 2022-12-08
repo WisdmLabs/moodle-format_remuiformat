@@ -202,7 +202,8 @@ body#page-course-view-remuiformat {
     .activityiconcontainer {
         border-radius: 16px;
         margin-right: 0 !important;
-
+        height: 80px;
+        width: 80px;
         .activityinstance img {
             width: 28px !important;
             height: 28px !important;
@@ -287,7 +288,7 @@ body#page-course-view-remuiformat {
 
                 // general section
                 .general-section {
-                    gap: 32px;
+                    gap: 48px;
                     padding: 0px;
                     background: transparent;
                     box-shadow: none;
@@ -302,7 +303,7 @@ body#page-course-view-remuiformat {
                     .section-details {
                         display: flex;
                         flex-direction: column;
-                        gap: 24px;
+                        gap: 32px;
 
                         .generaldetails {
                             gap: 8px;
@@ -362,6 +363,7 @@ body#page-course-view-remuiformat {
                                 background: $white;
                                 border: 1px solid $light-border;
                                 border-radius: 8px;
+                                min-height: 442px;
                                 // max-width: 314px;
                                 // flex: 1 1 calc(25% - 24px);
                                 // @media (max-width:1200px) {
