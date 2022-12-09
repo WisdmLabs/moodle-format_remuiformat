@@ -44,11 +44,12 @@
         {{/generalsection}}
     </ul>
 </div>
-<div id="list-editing-container" class="remui-format-list one-section-format all-section theme-{{theme}} mt-20">
+
+<div id="list-editing-container" class="remui-format-list all-section-format all-section theme-{{theme}} mt-20">
     <ul class="sections row ">
         {{! Display Remaining Section }}
         {{#sections}}
-            {{> format_remuiformat/list_sections_summary }}
+            {{> format_remuiformat/list_sections }}
         {{/sections}}
         {{{ addsection }}}
     </ul>

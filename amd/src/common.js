@@ -115,15 +115,18 @@ define(['jquery'], function($) {
         var summaryheight = $('.read-more-target').height();
         if (summaryheight > 110) {
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
-            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");;
+            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
+            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
         }
         $('#readmorebtn').on('click', function () {
             $('.read-more-target .no-overflow').removeClass('text-clamp text-clamp-3');
+            $('.read-more-target').removeClass('text-clamp text-clamp-3');
             $('.generalsectioninfo').find('#readmorebtn').addClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').removeClass('d-none');
         });
         $('#readlessbtn').on('click', function () {
             $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
+            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').addClass('d-none');
         });
