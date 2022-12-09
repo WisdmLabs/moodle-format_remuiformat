@@ -194,6 +194,16 @@
                     color: $heading-color;
                     @include frmt-font-styling(24px, 32px, 700);
                 }
+                .course-section-summary-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    & .no-overflow {
+                        @include frmt-font-styling(14px, 22px, 400);
+                        color: $paragraph-color;
+                    }
+                }
             }
 
             .course-section-header {
@@ -338,7 +348,6 @@
 
                         .activity {
                             padding: 0px;
-
                             .activitytitle {
                                 gap: 24px;
                             }
@@ -349,11 +358,33 @@
         }
     }
 
+    // common activity changes in list view
     .activities-list,
     .card-footer {
+        padding: unset;
         ul.section {
+            padding-top: 24px !important;
             li:not(:last-child) {
                 margin-bottom: 16px;
+            }
+            .activity{
+                .activitytitle {
+                    gap: 24px;
+                    @media (max-width:$sm-screen-bp) {
+                        flex-direction: column;
+                    }
+                }
+                .activity-info.mt-1 {
+                    @media (max-width:$tb-screenp-bp) {
+                        margin-top: 24px !important;
+                    }
+                }
+                .description{
+                    .availabilityinfo{
+                        margin: unset;
+                        margin-top: 16px;
+                    }
+                }
             }
         }
     }
@@ -382,17 +413,6 @@
                     padding-top: 24px;
                 }
             }
-
-            .course-section-summary-wrapper {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-
-                & .no-overflow {
-                    @include frmt-font-styling(14px, 22px, 400);
-                    color: $paragraph-color;
-                }
-            }
         }
 
         // Single section activity list styling.
@@ -403,23 +423,8 @@
 
                 .activity {
                     padding: 0px !important;
-
-                    .activitytitle {
-                        gap: 24px;
-
-                        @media (max-width:$sm-screen-bp) {
-                            flex-direction: column;
-                        }
-                    }
-
                     &:last-child {
                         border-bottom: 0 !important;
-                    }
-
-                    .activity-info.mt-1 {
-                        @media (max-width:$tb-screenp-bp) {
-                            margin-top: 24px !important;
-                        }
                     }
                 }
             }

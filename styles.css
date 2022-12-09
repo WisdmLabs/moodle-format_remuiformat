@@ -683,6 +683,19 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .content
   font-weight: 700;
 }
 
+body#page-course-view-remuiformat .remui-format-list .sections .section .content .course-section-summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .sections .section .content .course-section-summary-wrapper .no-overflow {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #4C5A73;
+}
+
 body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header {
   justify-content: space-between;
   align-items: center;
@@ -830,9 +843,44 @@ body#page-course-view-remuiformat .remui-format-list.all-section-format ul.secti
   gap: 24px;
 }
 
+body#page-course-view-remuiformat .remui-format-list .activities-list,
+body#page-course-view-remuiformat .remui-format-list .card-footer {
+  padding: unset;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section {
+  padding-top: 24px !important;
+}
+
 body#page-course-view-remuiformat .remui-format-list .activities-list ul.section li:not(:last-child),
 body#page-course-view-remuiformat .remui-format-list .card-footer ul.section li:not(:last-child) {
   margin-bottom: 16px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activitytitle,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activitytitle {
+  gap: 24px;
+}
+
+@media (max-width: 568px) {
+  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activitytitle,
+  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activitytitle {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-info.mt-1,
+  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-info.mt-1 {
+    margin-top: 24px !important;
+  }
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .description .availabilityinfo,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .description .availabilityinfo {
+  margin: unset;
+  margin-top: 16px;
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format.all-section .sections .section:not(#section-0) ul.section {
@@ -849,19 +897,6 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .one-sec
   padding-top: 24px;
 }
 
-body#page-course-view-remuiformat .remui-format-list.one-section-format .one-section-format-details-page-wrapper .course-section-summary-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-body#page-course-view-remuiformat .remui-format-list.one-section-format .one-section-format-details-page-wrapper .course-section-summary-wrapper .no-overflow {
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 400;
-  color: #4C5A73;
-}
-
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section {
   margin: 0;
   border: unset !important;
@@ -871,24 +906,8 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
   padding: 0px !important;
 }
 
-body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section .activity .activitytitle {
-  gap: 24px;
-}
-
-@media (max-width: 568px) {
-  body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section .activity .activitytitle {
-    flex-direction: column;
-  }
-}
-
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section .activity:last-child {
   border-bottom: 0 !important;
-}
-
-@media (max-width: 768px) {
-  body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section .activity .activity-info.mt-1 {
-    margin-top: 24px !important;
-  }
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list .section-modchooser {
