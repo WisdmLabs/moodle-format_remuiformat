@@ -582,10 +582,6 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-f
   padding-right: 0;
 }
 
-body#page-course-view-remuiformat #list-container {
-  margin-top: 48px;
-}
-
 body#page-course-view-remuiformat .remui-format-list .sections {
   list-style: none;
   display: flex;
@@ -1117,7 +1113,7 @@ body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) 
 
 body#page-course-view-remuiformat .activity .description .course-description-item {
   padding: 8px;
-  margin-top: 8px 0px 0px 0px;
+  margin-top: 8px 0px 0px 0px !important;
   background-color: #EBF0F9;
   border-radius: 4px;
   color: #4C5A73;
@@ -1128,6 +1124,10 @@ body#page-course-view-remuiformat .course-content .sections {
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+body#page-course-view-remuiformat .course-content .sections.generalsection-container {
+  margin-bottom: 48px;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section {

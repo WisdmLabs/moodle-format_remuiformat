@@ -275,7 +275,7 @@ body#page-course-view-remuiformat {
         .description {
             .course-description-item {
                 padding: 8px;
-                margin-top: 8px 0px 0px 0px;
+                margin-top: 8px 0px 0px 0px !important;
                 background-color: $small-ui-bg;
                 border-radius: 4px;
                 color: $paragraph-color;
@@ -284,6 +284,9 @@ body#page-course-view-remuiformat {
     }
     .course-content {
         .sections {
+            &.generalsection-container{
+                margin-bottom: 48px;
+            }
             #section-0 {
 
                 // general section
