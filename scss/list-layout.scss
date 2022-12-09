@@ -10,18 +10,27 @@
                     &.left {
                         // padding: 0.5rem 0!important;
                         align-items: center;
-                        gap: 4px;
-                        .sectionname {
-                            order: 2;
+
+                        // gap: 4px;
+                        @media (max-width:1200px) {
+                            flex-direction: column;
+                            align-items: start;
                         }
 
-                        .sectionbadges {
-                            order: 3;
+                        .section-handle {
+                            position: absolute;
+                            top: 5px;
+                            left: 5px;
                         }
                     }
 
                     &.right {
+                        @media (max-width:$screen-900) {
+                            width: 100%;
+                        }
+
                         gap: 8px;
+                        justify-content: space-between;
                     }
                 }
                 .sectionname {
@@ -42,6 +51,14 @@
                 width: 100%;
             }
         }
+
+        &.one-section-format {
+            .one-section-format-details-page-wrapper {
+                .course-section-header {
+                    flex-direction: row;
+                }
+            }
+        }
     }
 }
 
@@ -55,9 +72,34 @@
     .remui-format-list {
         .sections {
             .section {
-                .right.side {
-                    margin-top: 0;
-                    gap: 24px;
+                .side {
+                    &.left {
+                        // padding: 0.5rem 0!important;
+                        align-items: center;
+                        gap: 4px;
+                        // .sectionname {
+                        //     order: 2;
+                        // }
+
+                        // .sectionbadges {
+                        //     order: 3;
+                        // }
+                        @media (max-width:$screen-900) {
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                        }
+                    }
+
+                    &.right {
+                        margin-top: 0;
+                        gap: 24px;
+
+                        @media (max-width:$screen-900) {
+                            width: 100%;
+
+                        }
+                    }
                 }
                 .sectionname {
                     .panel-title {
@@ -90,6 +132,35 @@
 // }
 
 .remui-format-list {
+    .progress-bar-warpper {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+
+        @media (max-width:$sm-screen-bp) {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .progress {
+            height: 7px !important;
+            margin: 0px;
+            width: 233px;
+
+            @media (max-width:$sm-screen-bp) {
+                width: 100%;
+            }
+        }
+
+        .progress-text {
+            color: $paragraph-color;
+            white-space: nowrap;
+            @include frmt-font-styling(12px, 15px, 600);
+        }
+    }
+
     .sections {
         list-style: none;
         display: flex;
@@ -98,6 +169,16 @@
 
         .section {
             padding: 24px;
+
+            .side {
+                &.left {
+                    @media (max-width:$sm-screen-bp) {
+                        gap: 24px;
+                    }
+                }
+
+                &.right {}
+            }
 
             &:not(#section-0) {
                 background: white;
@@ -116,9 +197,14 @@
             }
 
             .course-section-header {
-                margin-bottom: 8px;
-                // justify-content: space-between;
-                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                gap: 24px;
+
+                @media (max-width:$screen-900) {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
 
                 .sectionheading {
                     color: $heading-color;
@@ -199,36 +285,20 @@
             }
 
             .right.side {
-                margin-left: auto;
+                // margin-left: auto;
+                width: max-content;
+
+                .wdm-add-new-section {
+                    white-space: nowrap
+                }
+
                 @media (max-width:768px) {
-                    margin-left: unset;
+                    // margin-left: unset;
                 }
-                .section_action_menu.ml-auto {
-                    margin: unset !important;
-                }
+            }
 
-                .progress-bar-warpper {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 16px;
-                    // justify-content: center;
-                    flex-wrap: wrap;
-                    align-items: center;
-
-                    .progress {
-                        height: 7px !important;
-                        margin: 0px;
-                        width: 233px;
-                        @media (max-width:425px) {
-                            width:100%;
-                        }
-                    }
-
-                    .progress-text {
-                        color: $paragraph-color;
-                        @include frmt-font-styling(12px, 15px, 600);
-                    }
-                }
+            .section_action_menu.ml-auto {
+                margin: unset !important;
             }
         }
     }
@@ -245,12 +315,14 @@
                     background: transparent !important;
                     box-shadow: none !important;
                     outline: 0 !important;
+
                     &::before {
                         display: flex;
                         transition: all 0.5s ease;
                         font-size: 1.2rem;
                     }
                 }
+
                 // Rotating toggle icon when section is collapsed
                 &.collapsed {
                     .toggle-icon {
@@ -280,7 +352,7 @@
     .activities-list,
     .card-footer {
         ul.section {
-            li:not(:last-child){
+            li:not(:last-child) {
                 margin-bottom: 16px;
             }
         }
@@ -294,33 +366,60 @@
                     ul.section {
                         display: none;
                     }
+
+                    & .content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                    }
+                }
+            }
+        }
+
+        .one-section-format-details-page-wrapper {
+            .section {
+                .content {
+                    padding-top: 24px;
+                }
+            }
+
+            .course-section-summary-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                & .no-overflow {
+                    @include frmt-font-styling(14px, 22px, 400);
+                    color: $paragraph-color;
                 }
             }
         }
 
         // Single section activity list styling.
         .activities-list {
-            // border: none;
-            // -webkit-box-shadow: 0 0 8px #ddd;
-            // box-shadow: 0 0 8px #ddd;
-            // background-color: #fff;
-            // padding: 15px;
-
             ul.section {
                 margin: 0;
                 border: unset !important;
 
                 .activity {
-                    // clear: both;
                     padding: 0px !important;
 
-                    // border-bottom: 1px solid #f3f3f3;
                     .activitytitle {
                         gap: 24px;
+
+                        @media (max-width:$sm-screen-bp) {
+                            flex-direction: column;
+                        }
                     }
 
                     &:last-child {
                         border-bottom: 0 !important;
+                    }
+
+                    .activity-info.mt-1 {
+                        @media (max-width:$tb-screenp-bp) {
+                            margin-top: 24px !important;
+                        }
                     }
                 }
             }

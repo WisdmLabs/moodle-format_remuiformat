@@ -211,11 +211,14 @@ body#page-course-view-remuiformat {
     }
 
     .automatic-completion-conditions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         .badge {
             padding: 8px;
             background-color: $small-ui-bg;
             border-radius: 4px;
-
+            width: fit-content;
             strong {
                 color: $heading-color;
                 @include frmt-font-styling(14px, 22px, 600);
@@ -466,6 +469,7 @@ body#page-course-view-remuiformat {
                 padding: 4px 8px;
                 margin: unset;
                 @include frmt-font-styling(12px, 14px, 400);
+                vertical-align: middle;
                 // margin-right: .5rem;
             }
 
