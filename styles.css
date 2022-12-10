@@ -105,7 +105,6 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
-  margin-top: 48px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections:not(.generalsection-container.sections) .section:not(#section-0) {
@@ -291,7 +290,18 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
   border-bottom: 1px solid #D5DDEA;
 }
 
-body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .section-title {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
+    flex-direction: column;
+  }
+}
+
+body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper .section-title {
+  gap: 8px;
   color: #313848;
   font-size: 24px;
   line-height: 32px;
@@ -613,41 +623,6 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
 
 body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-format .sections .section .sectionname .panel-title .float-right {
   padding-right: 0;
-}
-
-body#page-course-view-remuiformat .remui-format-list .progress-bar-warpper {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  align-items: center;
-}
-
-@media (max-width: 568px) {
-  body#page-course-view-remuiformat .remui-format-list .progress-bar-warpper {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-}
-
-body#page-course-view-remuiformat .remui-format-list .progress-bar-warpper .progress {
-  height: 7px !important;
-  margin: 0px;
-  width: 233px;
-}
-
-@media (max-width: 568px) {
-  body#page-course-view-remuiformat .remui-format-list .progress-bar-warpper .progress {
-    width: 100%;
-  }
-}
-
-body#page-course-view-remuiformat .remui-format-list .progress-bar-warpper .progress-text {
-  color: #4C5A73;
-  white-space: nowrap;
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: 600;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections {
@@ -1107,6 +1082,41 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-heading {
   color: white;
+}
+
+body#page-course-view-remuiformat .progress-bar-warpper {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 568px) {
+  body#page-course-view-remuiformat .progress-bar-warpper {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+body#page-course-view-remuiformat .progress-bar-warpper .progress {
+  height: 7px !important;
+  margin: 0px;
+  width: 233px;
+}
+
+@media (max-width: 568px) {
+  body#page-course-view-remuiformat .progress-bar-warpper .progress {
+    width: 100%;
+  }
+}
+
+body#page-course-view-remuiformat .progress-bar-warpper .progress-text {
+  color: #4C5A73;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 600;
 }
 
 body#page-course-view-remuiformat .card-section-rightnav,

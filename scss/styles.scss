@@ -156,6 +156,35 @@ body#page-course-view-remuiformat {
         }
     }
 
+    .progress-bar-warpper {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+
+        @media (max-width:$sm-screen-bp) {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .progress {
+            height: 7px !important;
+            margin: 0px;
+            width: 233px;
+
+            @media (max-width:$sm-screen-bp) {
+                width: 100%;
+            }
+        }
+
+        .progress-text {
+            color: $paragraph-color;
+            white-space: nowrap;
+            @include frmt-font-styling(12px, 15px, 600);
+        }
+    }
+
     .card-section-rightnav,
     .card-section-leftnav {
         background-color: $blue;

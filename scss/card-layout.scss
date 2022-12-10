@@ -151,7 +151,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
-            margin-top: 48px;
+            // margin-top: 48px;
             .section:not(#section-0) {
                 // flex: 1 1 calc(25% - 24px);
                 // max-width: 314px;
@@ -444,13 +444,16 @@
                     border-bottom: 1px solid #D5DDEA;
 
                     .general-single-card {
-
-                        // box-shadow: 0 0 8px #ddd;
-                        // border-radius: 2px;
-                        // background-color: white;
-                        .section-title {
-                            color: $heading-color;
-                            @include frmt-font-styling(24px, 32px, 700);
+                        .header-progresbar-wrapper{
+                            gap: 40px;
+                            @media (max-width:$screen-900) {
+                                flex-direction: column;
+                            }
+                            .section-title {
+                                gap: 8px;
+                                color: $heading-color;
+                                @include frmt-font-styling(24px, 32px, 700);
+                            }
                         }
                     }
                 }

@@ -145,7 +145,6 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         }
         // The requested section page.
         $currentsection = $modinfo->get_section_info($this->displaysection);
-
         if ($format->is_section_current($currentsection)) {
             $export->iscurrent = true;
             $export->highlightedlabel = get_string('highlight');
@@ -165,9 +164,13 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         $export->rightnav = $sectionnavlinks['next'];
         $export->leftside = $renderer->section_left_content($currentsection, $this->course, false);
 
+        $singlepageurl = $this->courseformat->get_view_url($sectioninfo->section)->out(true);
+
         // New menu option.
         $export->optionmenu = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $currentsection);
-
+        // Progress bar information
+        $extradetails = $this->courseformatdatacommontrait->get_section_module_info($currentsection, $this->course, null, $singlepageurl);
+        $export->progressinfo = $extradetails['progressinfo'];
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
         $export->title = $sectionname;
@@ -177,7 +180,6 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
-
         $export->courseid = $this->course->id;
         $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
             $this->course,

@@ -1,5 +1,10 @@
-define(['jquery', 'core_course/actions'], function($, action) {
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-tabs */
+define(['jquery', 'core_course/actions'], function ($, action) {
+    /**
+     * Init method
+     *
+     */
 	function init() {
 		// Register a function to be executed after D&D of an activity.
         Y.use('moodle-course-coursebase', function() {
