@@ -17,6 +17,10 @@ body#page-course-view-remuiformat .gap-16 {
   gap: 16px;
 }
 
+body#page-course-view-remuiformat .fullwidth-grid-item {
+  grid-column: 1/-1;
+}
+
 body#page-course-view-remuiformat.editing .remui-format-card .yui3-dd-proxy .section .toggle-icon {
   border: 0;
   background: transparent;
