@@ -77,9 +77,9 @@ define([
             PROMISES.SHOW_ACTIVITY_IN_ROW(courseid, section, activity)
             .done(function(response) {
                 if (response.type == 'row') {
-                    $(selector).closest('.col-activity').removeClass('col-activity').addClass('row-activity');
+                    $(selector).closest('.col-activity').removeClass('col-activity').addClass('row-activity fullwidth-grid-item');
                 } else {
-                    $(selector).closest('.row-activity').addClass('col-activity').removeClass('row-activity');
+                    $(selector).closest('.row-activity').addClass('col-activity').removeClass('row-activity fullwidth-grid-item');
                 }
             })
             .fail(Notification.exception);

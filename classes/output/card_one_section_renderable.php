@@ -30,7 +30,7 @@ use templatable;
 use stdClass;
 use html_writer;
 use context_course;
-
+use core_completion\progress;
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_format_data_common_trait.php');
@@ -197,6 +197,16 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             $section->name = $this->courseformat->get_section_name($section->index);
             $export->sections[] = $section;
         }
+         // Get course image if added.
+         $coursecontext = context_course::instance($this->course->id);
+        $imgurl = $this->courseformatdatacommontrait->display_file(
+        $coursecontext,
+        $this->settings['remuicourseimage_filemanager']
+        );
+        if (empty($imgurl)) {
+            $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
+        }
+        $export->headerdata = get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course), $imgurl);
         $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }

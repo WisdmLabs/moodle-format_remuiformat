@@ -217,6 +217,10 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   color: #313848;
 }
 
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .badge-primary {
+  color: white;
+}
+
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .left.side .section-handle .icon {
   color: #fff;
 }

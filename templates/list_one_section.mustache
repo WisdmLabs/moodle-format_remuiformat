@@ -68,6 +68,9 @@
 {{/hiddensection}}
 {{^hiddensection}}
 <div id="list-container" class="remui-format-list one-section-format ">
+    {{#headerdata}}
+    {{>format_remuiformat/optional_secheader}}
+    {{/headerdata}}
     <ul class="sections one-section-format-details-page-wrapper">
         <li id="section-{{section}}" class="section" aria-labelledby="section-{{section}} .content .summary .title">
             <div class="course-section-summary-wrapper">

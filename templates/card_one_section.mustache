@@ -55,6 +55,9 @@
 {{^hiddensection}}
 
 <div id="card-editing-container" class="remui-format-card single-section-format row ">
+    {{#headerdata}}
+    {{>format_remuiformat/optional_secheader}}
+    {{/headerdata}}
     <ul class="sections">
         <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}"
             data-courseid="{{ courseid }}">

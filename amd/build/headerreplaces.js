@@ -30,7 +30,7 @@ define(['jquery'], function ($) {
     function init() {
         // eslint-disable-next-line no-console
         $(document).ready(function () {
-            var headercontent = $(".general-section .rmuiformate-header-wrapper").html();
+            var headercontent = $(".rmuiformate-header-wrapper").html();
             $('#page #page-header').replaceWith(headercontent);
             // $('.rmuiformate-header-wrapper').removeClass("d-none");
         });
