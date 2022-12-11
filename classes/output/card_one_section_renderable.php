@@ -263,11 +263,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->modulefullname = $mod->modfullname;
+                $activitydetails->modstealth = $mod->is_stealth();
                 $activitydetails->summary = $this->modstats->get_formatted_summary(
                     $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
-
                 // In case of label activity send full text of cm to open in modal.
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
@@ -281,7 +281,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $activitydetails->hidden = 1;
                 }
 
-                $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_availability($this->course, $section);
+                // $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_availability($this->course, $section);
+                $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $displayoptions);
 
                 if ($PAGE->user_is_editing()) {
                     $activitydetails->editing = 1;

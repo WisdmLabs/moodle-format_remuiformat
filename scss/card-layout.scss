@@ -139,11 +139,24 @@
     // margin-top: 20px;
     .availabilityinfo {
         &.isrestricted {
-            font-size: 90%;
-            padding: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            margin: 5px 0 !important
+            // font-size: 90%;
+            // padding: 10px;
+            // background: #e0e0e0;
+            // border-radius: 5px;
+            // margin: 5px 0 !important
+            margin: 0px;
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: $border-radius-8;
+            background-color: $small-ui-bg;
+            i{
+                color: $paragraph-color;
+                @include frmt-font-styling(14px,22px,400);
+            }
+            strong{
+                color: $heading-color;
+                @include frmt-font-styling(14px,22px,600);
+            }
         }
     }
     &.all-section-format {

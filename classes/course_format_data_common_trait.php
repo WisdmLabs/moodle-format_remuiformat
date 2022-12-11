@@ -334,15 +334,16 @@ class course_format_data_common_trait {
                     $data->sectionfirstimage = $imgarray['img'];
 
                     // Change the overlay opacity if pattern image.
+                    $remuidefaultsectionmode = "";
                     if ( $remuidefaultsectiontheme == 0 &&  $imgarray['pattern'] == 1) {
                         // Light theme.
                         $remuidefaultsectionoverlay = 'rgba(255, 255, 255, 0)';
-                        $remuidefaultsectionmode = false; //it will be false for lightmode
+                        $remuidefaultsectionmode = false; // it will be false for lightmode
                     } else if ( $remuidefaultsectiontheme == 1 &&  $imgarray['pattern'] == 1 ) {
                         // Dark theme.
                         $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55) ';
                         // $remuidefaultsectionoverlay = "179.62deg, rgba(0, 0, 0, 0) 6.42%, #000000 71.44%";
-                        $remuidefaultsectionmode = true; //it will be  for darkmode
+                        $remuidefaultsectionmode = true; // it will be  for darkmode
                     }
                     $data->remuidefaultsectionmode = $remuidefaultsectionmode;
                     $data->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;

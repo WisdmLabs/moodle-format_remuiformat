@@ -276,6 +276,7 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
                 $activitydetails = new \stdClass();
                 $activitydetails->index = $count;
                 $activitydetails->id = $mod->id;
+                $activitydetails->modstealth = $mod->is_stealth();
                 $activitydetails = $this->courseformatdatacommontrait->activity_completion(
                     $this->course,
                     $completioninfo,

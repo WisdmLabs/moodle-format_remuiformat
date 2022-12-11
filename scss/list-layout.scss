@@ -339,11 +339,6 @@
     .activities-list,
     .card-footer {
         padding: unset;
-        .section-modchooser{
-            // margin: 24px !important;
-            // padding: 24px !important;
-            margin: 0px !important;
-        }
         ul.section {
             padding: 24px !important;
             li:not(:last-child) {
@@ -364,7 +359,7 @@
                 .description{
                     .availabilityinfo{
                         margin: unset;
-                        margin-top: 16px;
+                        margin-top: 8px;
                     }
                 }
             }
