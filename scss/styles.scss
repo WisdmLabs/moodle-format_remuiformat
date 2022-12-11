@@ -399,6 +399,7 @@ body#page-course-view-remuiformat {
                                 border: 1px solid $light-border;
                                 border-radius: 8px;
                                 min-height: 442px;
+                                box-shadow: $card-box-shadow;
                                 // max-width: 314px;
                                 // flex: 1 1 calc(25% - 24px);
                                 // @media (max-width:1200px) {
@@ -650,6 +651,11 @@ body#page-course-view-remuiformat {
         vertical-align: middle;
         height: 28px;
         width: 28px;
+    }
+    .section-modchooser{
+        // margin: 24px !important;
+        // padding: 24px !important;
+        margin: 0px !important;
     }
     &.theme_adaptable {
         .section-modchooser {
