@@ -276,7 +276,28 @@
                     .sectionname *,
                     .wdm-section-summary *,
                     .section-activities-summary {
-                        color: #e4e4e4 !important;
+                        color: $white;
+
+                    }
+                    .sectionname{
+                        .badge{
+                            color: $heading-color ;
+                        }
+                    }
+                    .left.side{
+                        .section-handle .icon{
+                            color: $white;
+                        }
+                    }
+                    .progress-bar-warpper{
+                        .progress-text{
+                            color: $white;
+                        }
+                    }
+                    .right.side{
+                        .wdm-add-new-section{
+                            color: $white;
+                        }
                     }
                 }
                 // Light theme
