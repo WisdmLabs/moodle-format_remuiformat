@@ -71,14 +71,17 @@
 
             <div class="progress-bar-warpper">
                <div class="progress progress-xs bg-grey-300 m-b-1">
-                  <div class="progress-bar bg-green-600" style="width:{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;" role="progressbar">
+                  <div class="progress-bar bg-green-600"
+                     style="width:{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;"
+                     role="progressbar">
                   </div>
                </div>
                <div class="text-right progress-text">
                   {{#progressinfo}}
                   {{! progress }}
                   {{/progressinfo}}
-                  <span>{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% Complete</span>
+                  <span>{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%
+                     Complete</span>
                </div>
             </div>
             {{#editing}}
@@ -89,17 +92,19 @@
             {{/editing}}
          </div>
       </div>
-      <div class="section_availability">
-         {{{ hiddenmessage }}}
+      <div class="">
+         <div class="section_availability">
+            {{{ hiddenmessage }}}
+         </div>
+         {{#summary}}
+         <div class="summary card-text {{#expanded}}hide{{/expanded}}"> {{{summary}}}</div>
+         {{/summary}}
+         {{#availability}}
+         <div class="section_availability badge badge-pill badge-info mb-10">
+            {{{availability}}}
+         </div>
+         {{/availability}}
+          <div class="section-summary-activities text-left {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div>
       </div>
-      {{#summary}}
-      <div class="summary card-text {{#expanded}}hide{{/expanded}}">{{{summary}}}</div>
-      {{/summary}}
-      {{#availability}}
-      <div class="section_availability badge badge-pill badge-info mb-10">
-         {{{availability}}}
-      </div>
-      {{/availability}}
-      <!-- <div class="section-summary-activities mdl-right {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div> -->
    </div>
 </li>

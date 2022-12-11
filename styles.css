@@ -9,6 +9,14 @@ body#page-course-view-remuiformat {
   /* General section summary show/hide. */
 }
 
+body#page-course-view-remuiformat .p-24 {
+  padding: 24px;
+}
+
+body#page-course-view-remuiformat .gap-16 {
+  gap: 16px;
+}
+
 body#page-course-view-remuiformat.editing .remui-format-card .yui3-dd-proxy .section .toggle-icon {
   border: 0;
   background: transparent;
@@ -103,7 +111,7 @@ body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestric
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections:not(.generalsection-container.sections) {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
 }
 
@@ -315,7 +323,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards,
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
   padding: 0 !important;
   width: 100%;
@@ -625,6 +633,13 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-f
   padding-right: 0;
 }
 
+body#page-course-view-remuiformat .remui-format-list .summary, body#page-course-view-remuiformat .remui-format-list .course-section-summary-wrapper {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #4C5A73;
+}
+
 body#page-course-view-remuiformat .remui-format-list .sections {
   list-style: none;
   display: flex;
@@ -633,7 +648,6 @@ body#page-course-view-remuiformat .remui-format-list .sections {
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section {
-  padding: 24px;
   width: 100%;
 }
 
@@ -662,6 +676,7 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .content
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 24px;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section .content .course-section-summary-wrapper .no-overflow {
@@ -808,6 +823,8 @@ body#page-course-view-remuiformat .remui-format-list.all-section-format ul.secti
 
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section {
   border: unset !important;
+  border-radius: unset !important;
+  border-top: 1px solid #EBF0F9 !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section .activity {
@@ -825,7 +842,7 @@ body#page-course-view-remuiformat .remui-format-list .card-footer {
 
 body#page-course-view-remuiformat .remui-format-list .activities-list ul.section,
 body#page-course-view-remuiformat .remui-format-list .card-footer ul.section {
-  padding-top: 24px !important;
+  padding: 24px !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list .activities-list ul.section li:not(:last-child),
@@ -866,15 +883,18 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format.all-sect
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 24px;
 }
 
-body#page-course-view-remuiformat .remui-format-list.one-section-format .one-section-format-details-page-wrapper .section .content {
-  padding-top: 24px;
+body#page-course-view-remuiformat .remui-format-list.one-section-format .one-section-format-details-page-wrapper .section .course-section-summary-wrapper {
+  padding: 24px;
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section {
   margin: 0;
   border: unset !important;
+  border-radius: unset !important;
+  border-top: 1px solid #EBF0F9 !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list ul.section .activity {
@@ -886,7 +906,11 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list .section-modchooser {
-  padding-top: 10px;
+  margin: 0px;
+}
+
+body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list .section-modchooser.mb-3 {
+  margin-bottom: 0px !important;
 }
 
 body#page-course-view-remuiformat .text-clamp {
@@ -1335,7 +1359,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
   padding: 0px;
   margin: 0px;

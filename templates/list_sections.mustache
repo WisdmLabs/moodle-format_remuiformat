@@ -61,9 +61,11 @@
 <li id="section-{{{index}}}" class="card section main {{#collapsed}}collapsed{{/collapsed}} clearfix " role="region" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
     <div class="content card-block  remui-list-content-border" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
         <div class="course-section-summary-wrapper">
+            {{#leftside }}
             <div class="left side float-left d-flex m-0 justify-content-between w-100">
                 {{{ leftside }}}
             </div>
+            {{/leftside }}
             <div class="course-section-header d-flex " data-for="section_title">
                 {{#leftside }}
                 <div class="side left">
