@@ -103,7 +103,7 @@ body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestric
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections:not(.generalsection-container.sections) {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
 }
 
@@ -1335,7 +1335,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
   padding: 0px;
   margin: 0px;
