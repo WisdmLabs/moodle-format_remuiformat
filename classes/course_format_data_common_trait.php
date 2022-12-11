@@ -449,7 +449,7 @@ class course_format_data_common_trait {
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
             if ($pinfo->percentage == 0) {
-                $pinfo->progress = '<a href=' . $singlepageurl . '>' . get_string('activitystart', 'format_remuiformat') . '</a>';
+                $pinfo->progress = '<a class = "btn btn-primary w-100" href=' . $singlepageurl .'>' . get_string('activitystart', 'format_remuiformat') . '</a>';
             } else if ( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
                 if ($total == 1) {
                     $status = get_string('activitycompleted', 'format_remuiformat');
@@ -470,6 +470,9 @@ class course_format_data_common_trait {
                 $pinfo->progress = '<a href=' . $singlepageurl . '>' . $total . ' ' . $status . '</a>';
             } else if ( $pinfo->percentage == 100 ) {
                 $pinfo->progress = get_string('allactivitiescompleted', 'format_remuiformat');
+            }
+            if ($pinfo->percentage == 0) {
+                $pinfo->percentage == false;
             }
             $output['progressinfo'][] = $pinfo;
         }

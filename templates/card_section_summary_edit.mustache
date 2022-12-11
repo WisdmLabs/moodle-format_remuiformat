@@ -104,7 +104,7 @@
             {{^addnewsection}}
                 <div class="section-header d-inline">
                     {{^hidden}}
-                        <a href="{{{ singlepageurl }}}">
+                        <a href="{{{ singlepageurl }}}" class="align-middle">
                     {{/hidden}}
                         <h2 class="sectionname m-0 d-inline">{{{ title }}}</h2>
                     {{^hidden}}
@@ -127,14 +127,24 @@
             {{/editsectionurl}}
         </div>
         <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-                <div class="progress progress-xs bg-grey-300 w-100">
-                    <div class="progress-bar bg-green-600" style="width: {{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;" role="progressbar">
-                    </div>
+            {{#progressinfo}}
+            {{#percentage}}
+            <div class="progress progress-xs bg-grey-300 w-100">
+                <div class="progress-bar bg-green-600"
+                    style="width: {{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;"
+                    role="progressbar">
                 </div>
+            </div>
             <div class="text-right progress-text align-self-end">
                 {{! progress }}
-                <span>{{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% Complete </span>
-             </div>
+                <span>{{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% Complete
+                </span>
+            </div>
+            {{/percentage}}
+                {{^percentage}}
+                    {{{progress}}}
+                {{/percentage}}
+            {{/progressinfo}}
         </div>
     </div>
 </li>
