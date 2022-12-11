@@ -1087,7 +1087,7 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-heading 
 body#page-course-view-remuiformat .progress-bar-warpper {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: 8px;
   align-items: center;
 }
 

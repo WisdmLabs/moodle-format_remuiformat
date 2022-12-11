@@ -95,22 +95,23 @@
             <div class="summary d-none">
             </div>
             {{#addnewsection}}
-                <h2 class="sectionname m-0">{{{ title }}}</h2>
+                <h2 class="sectionname m-0 d-inline">{{{ title }}}
+                    <div data-region="sectionbadges" class="sectionbadges d-inline">
+                        {{> core_courseformat/local/content/section/badges }}
+                    </div>
+                </h2>
             {{/addnewsection}}
             {{^addnewsection}}
-                <div class="section-header">
+                <div class="section-header d-inline">
                     {{^hidden}}
                         <a href="{{{ singlepageurl }}}">
                     {{/hidden}}
-                        <h2 class="sectionname m-o">{{{ title }}}</h2>
+                        <h2 class="sectionname m-0 d-inline">{{{ title }}}</h2>
                     {{^hidden}}
                         </a>
                     {{/hidden}}
                 </div>
             {{/addnewsection}}
-            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
-                {{> core_courseformat/local/content/section/badges }}
-            </div>
             {{#summary }}
             <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}}">
                 {{{ summary }}}
@@ -126,17 +127,13 @@
             {{/editsectionurl}}
         </div>
         <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-            {{#progressinfo}}
-                <div class="progress progress-xs bg-grey-300 ">
-                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%;" role="progressbar">
+                <div class="progress progress-xs bg-grey-300 w-100">
+                    <div class="progress-bar bg-green-600" style="width: {{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;" role="progressbar">
                     </div>
                 </div>
-            {{/progressinfo}}
-            <div class="text-right progress-text">
-                {{#progressinfo}}
+            <div class="text-right progress-text align-self-end">
                 {{! progress }}
-                <span>{{{percentage}}}% Complete</span>
-                {{/progressinfo}}
+                <span>{{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% Complete </span>
              </div>
         </div>
     </div>

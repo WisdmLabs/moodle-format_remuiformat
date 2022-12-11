@@ -925,6 +925,3 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
         $export->generalsection['courseheaderdesign'] = get_config('theme_remui', 'courseheaderdesign') == 0 ? false : true;
     }
 }
-function get_general_section_context(&$export, $course) {
-
-}
