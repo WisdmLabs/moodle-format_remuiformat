@@ -337,11 +337,14 @@ class course_format_data_common_trait {
                     if ( $remuidefaultsectiontheme == 0 &&  $imgarray['pattern'] == 1) {
                         // Light theme.
                         $remuidefaultsectionoverlay = 'rgba(255, 255, 255, 0)';
+                        $remuidefaultsectionmode = false; //it will be false for lightmode
                     } else if ( $remuidefaultsectiontheme == 1 &&  $imgarray['pattern'] == 1 ) {
                         // Dark theme.
-                        $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55)';
+                        $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55) ';
+                        // $remuidefaultsectionoverlay = "179.62deg, rgba(0, 0, 0, 0) 6.42%, #000000 71.44%";
+                        $remuidefaultsectionmode = true; //it will be  for darkmode
                     }
-
+                    $data->remuidefaultsectionmode = $remuidefaultsectionmode;
                     $data->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
                     $data->remuinewfontcolor = $remuinewfontcolor;
                     $data->remuinewthemecolor = $remuinewthemecolor;
@@ -360,9 +363,9 @@ class course_format_data_common_trait {
                 if (!empty($section->summary)) {
                     $data->summary = $renderer->format_summary_text($section);
                     if ($settings['coursedisplay'] == 1) {
-                        $data->summary = $renderer->abstract_html_contents(
+                        $data->summary = strip_tags($renderer->abstract_html_contents(
                             $data->summary, $sectiontitlesummarymaxlength
-                        );
+                        ));
                     }
                 }
                 $data->activityinfostring = implode(', ', $extradetails['activityinfo']);

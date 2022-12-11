@@ -75,8 +75,8 @@
     data-for="section"
     data-number="{{num}}">
 
-    <div class="single-card d-flex flex-column justify-content-between {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
-        style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
+    <div class="single-card d-flex flex-column justify-content-between {{{remuinewthemecolor}}}  {{remuidefaultcolormode}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
+        style="background: linear-gradient{{^remuidefaultsectionmode}}({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}),{{/remuidefaultsectionmode}}{{#remuidefaultsectionmode}}(180deg, rgba(255, 255, 255, 0) -24.52%, #000000 97.67%),{{/remuidefaultsectionmode}} {{sectionfirstimage}};
                 background-repeat: no-repeat;
                 background-size: cover;";>
         {{#highlighted}}
