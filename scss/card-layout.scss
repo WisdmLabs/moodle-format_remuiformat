@@ -479,8 +479,21 @@
                 .section-details {
                     padding-bottom: 20px;
                     border-bottom: 1px solid #D5DDEA;
-
+                    div.no-overflow{
+                        @include frmt-font-styling(14px,22px,400);
+                        color: $paragraph-color;
+                        img{
+                            border-radius: 8px;
+                        }
+                    }
                     .general-single-card {
+                        align-items: center;
+                        justify-content: space-between;
+                        @media (max-width:$screen-900) {
+                            flex-direction: column;
+                            align-items: unset;
+                            gap: 24px;
+                        }
                         .header-progresbar-wrapper{
                             gap: 40px;
                             @media (max-width:$screen-900) {
@@ -490,6 +503,11 @@
                                 gap: 8px;
                                 color: $heading-color;
                                 @include frmt-font-styling(24px, 32px, 700);
+                            }
+                            .progress-bar-warpper{
+                                @media (max-width:$sm-screen-bp){
+                                    justify-content: center;
+                                }
                             }
                         }
                     }

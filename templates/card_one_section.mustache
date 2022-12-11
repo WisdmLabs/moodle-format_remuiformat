@@ -62,7 +62,7 @@
         <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}"
             data-courseid="{{ courseid }}">
             <div class="section-details d-flex flex-column justify-content-between flex-wrap">
-                <div class=" general-single-card p-0 d-flex justify-content-between">
+                <div class=" general-single-card p-0 d-flex">
                     <div class="d-flex header-progresbar-wrapper">
                         <h2 class="section-title m-0 d-flex">
                             <span class="sno {{#hidden}}text-muted{{/hidden}}">
@@ -72,11 +72,13 @@
                                 class="single-section-title d-inline {{#hidden}}text-muted{{/hidden}}">
                                 {{{title}}}
                                 <div data-region="sectionbadges "
-                                    class="sectionbadges d-inline ml-2 {{^editing}}{{/editing}}">
+                                    class="sectionbadges d-inline ">
                                     {{> core_courseformat/local/content/section/badges }}
                                 </div>
                             </span>
                         </h2>
+                    </div>
+                    <div class="d-flex justify-content-between flex-gap-16">
                         <div class="progress-bar-warpper">
                             <div class="progress progress-xs bg-grey-300 m-b-1">
                                 <div class="progress-bar bg-green-600"
@@ -92,22 +94,22 @@
                                     }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex">
                         <!-- next/prev sections -->
-                        <div class=" p-0 wdm-card-section m-0">
-                            <div class="card-section-leftnav">
-                                {{{ leftnav }}}
+                        <div class="d-flex no-wrap flex-gap-8">
+                            <div class=" p-0 wdm-card-section m-0 text-nowrap align-items-center">
+                                <div class="card-section-leftnav">
+                                    {{{ leftnav }}}
+                                </div>
+                                <div class="card-section-rightnav">
+                                    {{{ rightnav }}}
+                                </div>
                             </div>
-                            <div class="card-section-rightnav">
-                                {{{ rightnav }}}
+                            {{#editing}}
+                            <div class="right side mt-0">
+                                {{{ optionmenu }}}
                             </div>
+                            {{/editing}}
                         </div>
-                        {{#editing}}
-                        <div class="right side mt-0">
-                            {{{ optionmenu }}}
-                        </div>
-                        {{/editing}}
                     </div>
                 </div>
                 {{#summary }}
@@ -158,7 +160,8 @@
                                 </div>
                                 {{#modstealth}}
                                 <div class="my-1 d-flex align-items-center">
-                                    <span class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
+                                    <span
+                                        class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
                                 </div>
                                 {{/modstealth}}
                                 <div class="activity-content">

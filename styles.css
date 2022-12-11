@@ -21,6 +21,14 @@ body#page-course-view-remuiformat .fullwidth-grid-item {
   grid-column: 1/-1;
 }
 
+body#page-course-view-remuiformat .flex-gap-8 {
+  gap: 8px;
+}
+
+body#page-course-view-remuiformat .flex-gap-16 {
+  gap: 16px;
+}
+
 body#page-course-view-remuiformat.editing .remui-format-card .yui3-dd-proxy .section .toggle-icon {
   border: 0;
   background: transparent;
@@ -336,6 +344,30 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
   border-bottom: 1px solid #D5DDEA;
 }
 
+body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details div.no-overflow {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #4C5A73;
+}
+
+body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details div.no-overflow img {
+  border-radius: 8px;
+}
+
+body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
+    flex-direction: column;
+    align-items: unset;
+    gap: 24px;
+  }
+}
+
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
   gap: 40px;
 }
@@ -352,6 +384,12 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
   font-size: 24px;
   line-height: 32px;
   font-weight: 700;
+}
+
+@media (max-width: 568px) {
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper .progress-bar-warpper {
+    justify-content: center;
+  }
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section.hide {
