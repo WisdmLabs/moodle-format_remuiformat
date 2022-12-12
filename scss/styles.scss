@@ -400,20 +400,10 @@ body#page-course-view-remuiformat {
                                 border: $border-height solid $light-border;
                                 border-radius: $border-radius-8;
                                 min-height: 350px;
-                                box-shadow: $card-box-shadow;
-                                // max-width: 314px;
-                                // flex: 1 1 calc(25% - 24px);
-                                // @media (max-width:1200px) {
-                                //     flex: 1 1 calc(33.33% - 24px);
-                                // }
-                                // @media (max-width:768px) {
-                                //     flex: 1 1 calc(50% - 24px);
-                                // }
-                                // @media (max-width:576px) {
-                                //     flex: 1 1 100%;
-                                //     width: 100%;
-                                //     max-width: 100%;
-                                // }
+                                &:hover{
+                                    box-shadow: $card-box-shadow;
+                                }
+
                                 .activitytitle {
                                     display: flex;
                                     flex-direction: column;
@@ -497,6 +487,7 @@ body#page-course-view-remuiformat {
             .badge {
                 padding: $pad-4 $pad-8;
                 margin: unset;
+                white-space: normal;
                 @include frmt-font-styling(12px, 14px, 400);
                 vertical-align: middle;
                 // margin-right: .5rem;

@@ -170,7 +170,9 @@
                 // max-width: 314px;
                 border: unset;
                 border-radius: $border-radius-8;
-
+                &:hover{
+                    box-shadow: $card-box-shadow;
+                }
                 .content .yui3-dd-drop {
                     display: none;
                 }
@@ -434,7 +436,9 @@
                 transition: all 0.5s ease;
                 padding: 0px;
                 min-height: $section-card-min-height;
-
+                &:hover{
+                    box-shadow: $card-box-shadow;
+                }
                 .activitytitle {
                     width: 100%;
                     display: flex;
