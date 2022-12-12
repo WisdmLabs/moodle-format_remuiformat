@@ -162,7 +162,7 @@
     &.all-section-format {
         .sections:not(.generalsection-container.sections) {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: $gap-24;
             // margin-top: 48px;
             .section:not(#section-0) {
@@ -188,9 +188,6 @@
                 &>div {
                     width: 100%;
                 }
-            }
-            .showhideactivity .general-section-activities .activity:nth-child(n+5) {
-                display: none !important;
             }
         }
         #changenumsections.section {
@@ -420,7 +417,7 @@
         .activity-cards,
         .activity-cards.section {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: $gap-24;
             padding: 0 !important;
             width: 100%;
@@ -428,7 +425,7 @@
             position: relative;
 
             @media (max-width:425px) {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             }
 
             .activity {
@@ -597,6 +594,52 @@
     .single-card {
         a:hover {
             text-decoration: none;
+        }
+    }
+}
+
+// Show More Less Handle
+&:not(.limitedwidth) {
+    .remui-format-card.all-section-format {
+        .showhideactivity .general-section-activities  {
+            .activity:nth-child(n+5) {
+                display: none !important;
+            }
+            @media only screen and (max-width: 1199px) {
+                .activity:nth-child(n+4) {
+                    display: none !important;
+                }
+            }
+            
+        }
+    }
+}
+&.limitedwidth {
+    .remui-format-card.all-section-format {
+        .showhideactivity .general-section-activities  {
+            .activity:nth-child(n+4) {
+                display: none !important;
+            }
+        }
+    }   
+}
+
+.remui-format-card.all-section-format {
+    .showhideactivity .general-section-activities  {
+        @media only screen and (max-width: 1023px) {
+            .activity:nth-child(n+3) {
+                display: none !important;
+            }
+        }
+        @media only screen and (max-width: 767px) {
+            .activity:nth-child(n+3) {
+                display: none !important;
+            }
+        }
+        @media only screen and (max-width: 550px) {
+            .activity:nth-child(n+2) {
+                display: none !important;
+            }
         }
     }
 }
