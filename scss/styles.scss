@@ -10,28 +10,28 @@ body#page-course-view-remuiformat {
     }
     .secondary-navigation{
         padding: 0px;
-        margin-bottom: 24px;
+        margin-bottom: $margin-24;
     }
     header.hasbackground.design-1 {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        min-height: 336px;
-        padding: 24px;
-        border-radius: 8px;
+        min-height: $header-img-min-height;
+        padding: $pad-24;
+        border-radius: $border-radius-8;
         max-width: 100%;
         width: 100%;
         @media (max-width:$sm-screen-bp) {
-            min-height: 445px;
+            min-height: $header-img-mob-height;
         }
 
         .dashboard-bar-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: $gap-24;
 
             @media (max-width:$sm-screen-bp) {
-                gap: 8px;
+                gap: $gap-8;
             }
         }
 
@@ -41,12 +41,10 @@ body#page-course-view-remuiformat {
 
                 .badge {
                     padding: 4px 6px;
-                    border-radius: 4px;
+                    border-radius: $border-radius-4;
                     background-color: $white;
                     color: $secondary-brand-color;
-                    font-weight: 400;
-                    font-size: 12px;
-                    line-height: 15px;
+                    @include frmt-font-styling(12px,15px,400);
                 }
             }
         }
@@ -56,7 +54,7 @@ body#page-course-view-remuiformat {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            gap: 24px;
+            gap: $gap-24;
             flex-wrap: wrap;
 
             @media (max-width:1200px) {
@@ -73,17 +71,17 @@ body#page-course-view-remuiformat {
 
             .rating-instructor-wrapper {
                 display: flex;
-                gap: 24px;
+                gap: $gap-24;
                 flex-wrap: wrap;
 
                 @media (max-width:1200px) {
-                    gap: 24px;
+                    gap: $gap-24;
                     flex-direction: column;
                     justify-content: space-between;
                 }
 
                 @media (max-width:$sm-screen-bp) {
-                    gap: 16px;
+                    gap: $gap-16;
                 }
 
                 .edw-ratings-wrapper {
@@ -91,7 +89,7 @@ body#page-course-view-remuiformat {
 
                     .inner {
                         flex-direction: row-reverse;
-                        gap: 8px;
+                        gap: $gap-8;
                     }
                 }
 
@@ -99,12 +97,10 @@ body#page-course-view-remuiformat {
                     color: $white;
 
                     .stat {
-                        font-weight: 400;
-                        font-size: 14px;
-                        line-height: 22px;
+                        @include frmt-font-styling(14px,22px,400);
                         color: #313848;
-                        padding: 4px;
-                        border-radius: 4px;
+                        padding: $pad-4;
+                        border-radius: $border-radius-4;
                         background-color: #fff;
                     }
                 }
@@ -116,12 +112,12 @@ body#page-course-view-remuiformat {
                 gap: 40px;
 
                 @media (max-width:1200px) {
-                    gap: 24px;
+                    gap: $gap-24;
                     flex-direction: column;
                 }
 
                 @media (max-width: $sm-screen-bp) {
-                    gap: 16px;
+                    gap: $gap-16;
                     flex-wrap: wrap;
                     align-items: flex-start;
                 }
@@ -129,20 +125,17 @@ body#page-course-view-remuiformat {
                 .progressbar-text-wrapper {
                     display: flex;
                     flex-direction: column;
-                    gap: 4px;
+                    gap: $gap-4;
                     color: $white;
-                    font-weight: 400;
-                    font-size: 12px;
-                    line-height: 15px;
-
+                    @include frmt-font-styling(12px,15px,400);
                     @media (max-width:$sm-screen-bp) {
                         width: 100%;
                     }
                 }
 
                 .progress {
-                    min-width: 230px;
-                    height: 7px !important;
+                    min-width: $progress-bar-min-width;
+                    height: $progress-bar-height !important;
 
                     @media (max-width:$sm-screen-bp) {
                         min-width: unset;
@@ -159,7 +152,7 @@ body#page-course-view-remuiformat {
     .progress-bar-warpper {
         display: flex;
         flex-direction: row;
-        gap: 8px;
+        gap: $gap-8;
         align-items: center;
 
         @media (max-width:$sm-screen-bp) {
@@ -169,9 +162,9 @@ body#page-course-view-remuiformat {
         }
 
         .progress {
-            height: 7px !important;
+            height: $progress-bar-height !important;
             margin: 0px;
-            width: 233px;
+            width: $progress-bar-min-width;
 
             @media (max-width:$sm-screen-bp) {
                 width: 100%;
@@ -188,7 +181,7 @@ body#page-course-view-remuiformat {
     .card-section-rightnav,
     .card-section-leftnav {
         background-color: $blue;
-        border-radius: 5px;
+        border-radius: $border-radius-5;
         height: fit-content;
 
         a {
@@ -229,24 +222,24 @@ body#page-course-view-remuiformat {
     }
 
     .activityiconcontainer {
-        border-radius: 16px;
+        border-radius: $border-radius-16;
         margin-right: 0 !important;
         height: 80px;
         width: 80px;
         .activityinstance img {
-            width: 28px !important;
-            height: 28px !important;
+            width: $activity-icon-width !important;
+            height: $activity-icon-height !important;
         }
     }
 
     .automatic-completion-conditions {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: $gap-8;
         .badge {
-            padding: 8px !important;
+            padding: $pad-8 !important;
             background-color: $small-ui-bg;
-            border-radius: 4px;
+            border-radius: $border-radius-4;
             width: fit-content;
             strong {
                 color: $heading-color;
@@ -266,7 +259,7 @@ body#page-course-view-remuiformat {
                 display: flex;
                 flex-direction: column;
                 align-items: start;
-                gap: 4px;
+                gap: $gap-4;
                 width: 100%;
                 text-align: start;
 
@@ -290,7 +283,7 @@ body#page-course-view-remuiformat {
                         }
 
                         .quickeditlink {
-                            margin-left: 8px;
+                            margin-left: $margin-8;
                         }
                     }
                 }
@@ -298,9 +291,9 @@ body#page-course-view-remuiformat {
         }
 
         .activity-item:not(.activityinline) {
-            border: 1px solid $light-border;
-            border-radius: 8px;
-            padding: 24px;
+            border: $border-height solid $light-border;
+            border-radius: $border-radius-8;
+            padding: $pad-24;
             background-color: $white;
         }
 
@@ -309,10 +302,10 @@ body#page-course-view-remuiformat {
                 // width: fit-content;
             }
             .course-description-item {
-                padding: 8px;
-                margin-top: 8px 0px 0px 0px !important;
+                padding: $border-radius-8;
+                margin-top: $margin-8 0px 0px 0px !important;
                 background-color: $small-ui-bg;
-                border-radius: 4px;
+                border-radius: $border-radius-4;
                 color: $paragraph-color;
                 .description-inner{
                     padding: 0px;
@@ -324,13 +317,13 @@ body#page-course-view-remuiformat {
     .course-content {
         .sections {
             &.generalsection-container{
-                margin-bottom: 48px;
+                margin-bottom: $margin-48;
             }
             #section-0 {
 
                 // general section
                 .general-section {
-                    gap: 48px;
+                    gap: $gap-48;
                     padding: 0px;
                     background: transparent;
                     box-shadow: none;
@@ -345,10 +338,10 @@ body#page-course-view-remuiformat {
                     .section-details {
                         display: flex;
                         flex-direction: column;
-                        gap: 32px;
+                        gap: $gap-32;
 
                         .generaldetails {
-                            gap: 8px;
+                            gap: $gap-8;
 
                             .generalsectioninfo {
                                 .coursesummary {
@@ -369,7 +362,7 @@ body#page-course-view-remuiformat {
                             width: 100%;
 
                             .details {
-                                gap: 8px;
+                                gap: $gap-8;
 
                                 .activities-title {
                                     color: $heading-color;
@@ -385,7 +378,7 @@ body#page-course-view-remuiformat {
                     }
 
                     .activities-wrapper {
-                        gap: 16px;
+                        gap: $gap-16;
 
                         .activitieshead {
                             color: $heading-color;
@@ -395,16 +388,16 @@ body#page-course-view-remuiformat {
                         .general-section-activities {
                             display: grid;
                             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-                            gap: 24px;
+                            gap: $gap-24;
                             // flex-wrap: wrap;
                             padding: 0px;
                             margin: 0px;
                             max-width: unset;
                             .activity {
-                                padding: 24px;
+                                padding: $pad-24;
                                 background: $white;
-                                border: 1px solid $light-border;
-                                border-radius: 8px;
+                                border: $border-height solid $light-border;
+                                border-radius: $border-radius-8;
                                 min-height: 442px;
                                 box-shadow: $card-box-shadow;
                                 // max-width: 314px;
@@ -426,7 +419,7 @@ body#page-course-view-remuiformat {
                                     align-items: center;
                                     justify-content: center;
                                     width: 100%;
-                                    gap: 16px;
+                                    gap: $gap-16;
 
                                 }
 
@@ -434,7 +427,7 @@ body#page-course-view-remuiformat {
                                     display: flex;
                                     position: relative;
                                     justify-content: start;
-                                    margin-top: 8px;
+                                    margin-top: $margin-8;
                                     padding: 0px;
 
                                     .spinner {
@@ -476,7 +469,7 @@ body#page-course-view-remuiformat {
                                 }
 
                                 .contentafterlink {
-                                    margin: 8px 0px 0px 0px !important;
+                                    margin: $margin-8 0px 0px 0px !important;
                                     padding: 0px;
                                     display: flex;
                                     @include frmt-font-styling(14px, 22px, 400);
@@ -487,10 +480,8 @@ body#page-course-view-remuiformat {
                     }
 
                     .showactivity {
-                        font-size: 14px;
-                        line-height: 17px;
-                        font-weight: 600;
-                        color: #0051F9;
+                        @include frmt-font-styling(14px,17px,600);
+                        color: $blue;
                         text-decoration: underline;
                         cursor: pointer;
                     }
@@ -503,7 +494,7 @@ body#page-course-view-remuiformat {
             }
 
             .badge {
-                padding: 4px 8px;
+                padding: $pad-4 $pad-8;
                 margin: unset;
                 @include frmt-font-styling(12px, 14px, 400);
                 vertical-align: middle;
@@ -516,7 +507,7 @@ body#page-course-view-remuiformat {
             width: 100%;
             .wdm-add-new-section {
                 // margin-right: 5px;
-                border: 1px solid #e4eaec;
+                border: $border-height solid #e4eaec;
             }
         }
     }
@@ -537,17 +528,17 @@ body#page-course-view-remuiformat {
     }
     /* Boost 3.5 */
     .container-fluid #region-main .card>.card-body:first-of-type {
-        background: #f2f2f2;
+        background: $white;
         overflow: visible;
     }
     /* Boost 3.6 */
     .container-fluid #region-main {
-        background: #f2f2f2;
+        background: $white;
         overflow: visible;
     }
     /* Fordson 3.7 */
     .container-fluid #region-main {
-        background: #f2f2f2 !important;
+        background: $white !important;
         overflow: visible;
     }
     /* RemUI 3.4, 3.5, 3.6 */
@@ -559,12 +550,12 @@ body#page-course-view-remuiformat {
     .wdm-card-section {
         display: flex;
         justify-content: flex-end;
-        gap: 6px;
-        margin-top: 24px;
+        gap: $gap-6;
+        margin-top: $margin-24;
     }
-    .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
-        font-size: 15px;
-    }
+    // .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
+    //     font-size: 15px;
+    // }
     .wdm-completion-container form.togglecompletion,
     .wdm-completion-container form.togglecompletion>div {
         display: inline !important;
@@ -606,14 +597,14 @@ body#page-course-view-remuiformat {
         width: 100%;
         // margin: 0 auto;
         border-bottom: 0 !important;
-        border-radius: 5px;
+        border-radius: $border-radius-5;
         position: relative;
         bottom: 0;
     }
     .progress-xs,
     .progress-xs .progress-bar {
         height: 7px !important;
-        border-radius: 5px;
+        border-radius: $border-radius-5;
     }
     .progress-xs .progress-bar {
         line-height: 4px !important;
@@ -627,13 +618,13 @@ body#page-course-view-remuiformat {
     .progress-xs.light {
         background-color: #b7b4b4a3 !important;
     }
-    #section-0 .sno {
-        display: inline-block;
-        font-size: 18px;
-        font-weight: 900;
-        color: rgba(0, 0, 0, 0.8);
-        padding: 5px 0;
-    }
+    // #section-0 .sno {
+    //     display: inline-block;
+    //     font-size: 18px;
+    //     font-weight: 900;
+    //     color: rgba(0, 0, 0, 0.8);
+    //     padding: 5px 0;
+    // }
     .remui-format-card .current::before {
         left: -.1rem !important;
     }
@@ -644,16 +635,16 @@ body#page-course-view-remuiformat {
     input.ignoredirty.form-control {
         width: 100% !important;
     }
-    #section-0 .progress {
-        margin-bottom: 5px;
-        border-radius: 15px;
-        background-color: #ddd;
-        height: 12px;
-        border-bottom: unset;
-        /* Fordson */
-        margin-left: 0px;
-        /* Moove */
-    }
+    // #section-0 .progress {
+    //     margin-bottom: 5px;
+    //     border-radius: 15px;
+    //     background-color: #ddd;
+    //     height: 12px;
+    //     border-bottom: unset;
+    //     /* Fordson */
+    //     margin-left: 0px;
+    //     /* Moove */
+    // }
     div#card-editing-container #section-0 li.activity img.activityicon {
         vertical-align: middle;
         height: 28px;

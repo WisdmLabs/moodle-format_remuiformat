@@ -212,7 +212,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   border: 1px solid #EBF0F9;
   border-radius: inherit;
   padding: 24px;
-  gap: 36px;
+  gap: 32px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card .content {
@@ -416,7 +416,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity,
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity {
-  padding: 0.5rem;
+  padding: 8px;
   display: flex;
   transition: all 0.5s ease;
   padding: 0px;
@@ -733,7 +733,7 @@ body#page-course-view-remuiformat .remui-format-list .sections .section {
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section:not(#section-0) {
-  background: white;
+  background: #fff;
   border-radius: 8px;
   border: 1px solid #EBF0F9;
 }
@@ -1060,9 +1060,9 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-main-sec
   border-radius: 4px;
   background-color: #fff;
   color: #37be71;
-  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  font-weight: 400;
 }
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section {
@@ -1122,9 +1122,9 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
 }
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .stat {
-  font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+  font-weight: 400;
   color: #313848;
   padding: 4px;
   border-radius: 4px;
@@ -1157,9 +1157,9 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   flex-direction: column;
   gap: 4px;
   color: #fff;
-  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  font-weight: 400;
 }
 
 @media (max-width: 568px) {
@@ -1201,7 +1201,7 @@ body#page-course-view-remuiformat .progress-bar-warpper {
 body#page-course-view-remuiformat .progress-bar-warpper .progress {
   height: 7px !important;
   margin: 0px;
-  width: 233px;
+  width: 230px;
 }
 
 @media (max-width: 568px) {
@@ -1538,7 +1538,6 @@ body#page-course-view-remuiformat .course-content .sections .badge {
 }
 
 body#page-course-view-remuiformat .course-content .sections .wdm-add-new-section {
-  margin-right: 5px;
   border: 1px solid #e4eaec;
 }
 
@@ -1558,17 +1557,17 @@ body#page-course-view-remuiformat .container-fluid #region-main .card.card-block
 }
 
 body#page-course-view-remuiformat .container-fluid #region-main .card > .card-body:first-of-type {
-  background: #f2f2f2;
+  background: #fff;
   overflow: visible;
 }
 
 body#page-course-view-remuiformat .container-fluid #region-main {
-  background: #f2f2f2;
+  background: #fff;
   overflow: visible;
 }
 
 body#page-course-view-remuiformat .container-fluid #region-main {
-  background: #f2f2f2 !important;
+  background: #fff !important;
   overflow: visible;
 }
 
@@ -1581,12 +1580,8 @@ body#page-course-view-remuiformat .container #region-main .card.card-block:first
 body#page-course-view-remuiformat .wdm-card-section {
   display: flex;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 16px;
   margin-top: 24px;
-}
-
-body#page-course-view-remuiformat .format-remuiformat div.actions form.togglecompletion button.btn.btn-link {
-  font-size: 15px;
 }
 
 body#page-course-view-remuiformat .wdm-completion-container form.togglecompletion,
@@ -1665,14 +1660,6 @@ body#page-course-view-remuiformat .progress-xs.light {
   background-color: #b7b4b4a3 !important;
 }
 
-body#page-course-view-remuiformat #section-0 .sno {
-  display: inline-block;
-  font-size: 18px;
-  font-weight: 900;
-  color: rgba(0, 0, 0, 0.8);
-  padding: 5px 0;
-}
-
 body#page-course-view-remuiformat .remui-format-card .current::before {
   left: -.1rem !important;
 }
@@ -1683,17 +1670,6 @@ body#page-course-view-remuiformat div#card-container a .section-title:hover {
 
 body#page-course-view-remuiformat input.ignoredirty.form-control {
   width: 100% !important;
-}
-
-body#page-course-view-remuiformat #section-0 .progress {
-  margin-bottom: 5px;
-  border-radius: 15px;
-  background-color: #ddd;
-  height: 12px;
-  border-bottom: unset;
-  /* Fordson */
-  margin-left: 0px;
-  /* Moove */
 }
 
 body#page-course-view-remuiformat div#card-editing-container #section-0 li.activity img.activityicon {

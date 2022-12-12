@@ -162,18 +162,18 @@ $string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
 <p>An overview of the data collected is available <strong><a href='https://forums.edwiser.org/topic/67/anonymously-tracking-the-usage-of-edwiser-products' target='_blank'>here</a></strong>.</p>";
 
 
-$string['remuiheaderimagebgposition'] = "select bg position";
+$string['remuiheaderimagebgposition'] = "Course header background image position";
 $string['bottom'] = "bottom";
 $string['center'] = "center";
 $string['top'] = "top";
 $string['left'] = "left";
 $string['right'] = "right";
-$string["remuiheaderimagebgposition_help"] = "chose background image position";
+$string["remuiheaderimagebgposition_help"] = "Choose background image position";
 
 
-$string['remuiheaderimagebgsize'] = "select bg size";
+$string['remuiheaderimagebgsize'] = "Course header background image size";
 $string['cover'] = "cover";
 $string['contain'] = "contain";
 $string['auto'] = "auto";
-$string['remuiheaderimagebgsize_help'] = "select bg size";
+$string['remuiheaderimagebgsize_help'] = "Select Course header background image size ";
 $string['courseinformation'] = "Course information ";

@@ -145,8 +145,8 @@
             // border-radius: 5px;
             // margin: 5px 0 !important
             margin: 0px;
-            margin-top: 8px;
-            padding: 8px;
+            margin-top: $margin-8;
+            padding: $pad-8;
             border-radius: $border-radius-8;
             background-color: $small-ui-bg;
             i{
@@ -163,28 +163,17 @@
         .sections:not(.generalsection-container.sections) {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
+            gap: $gap-24;
             // margin-top: 48px;
             .section:not(#section-0) {
                 // flex: 1 1 calc(25% - 24px);
                 // max-width: 314px;
                 border: unset;
-                border-radius: 8px;
+                border-radius: $border-radius-8;
 
                 .content .yui3-dd-drop {
                     display: none;
                 }
-                // @media (max-width:1200px) {
-                //     flex: 1 1 calc(33.33% - 24px);
-                // }
-                // @media (max-width:768px) {
-                //     flex: 1 1 calc(50% - 24px);
-                // }
-                // @media (max-width:576px) {
-                //     flex: 1 1 100%;
-                //     width: 100%;
-                //     max-width: 100%;
-                // }
             }
         }
         // Show two cards per row, when both sidebars open in RemUI
@@ -196,8 +185,6 @@
         }
         @media (min-width: 768px) {
             .general-section-activities .activity {
-                // flex: 0 0 25%;
-                // width: 100%;
                 &>div {
                     width: 100%;
                 }
@@ -206,20 +193,6 @@
                 display: none !important;
             }
         }
-        // Small screens, laptops
-        // @media (max-width: 767px) {
-        //     .general-section-activities .activity {
-        //         flex: 0 0 50%;
-        //         width: 50%;
-        //         ;
-        //         &>div {
-        //             width: 100%;
-        //         }
-        //     }
-        //     .showhideactivity .general-section-activities .activity:nth-child(n+3) {
-        //         display: none !important;
-        //     }
-        // }
         #changenumsections.section {
             flex: unset !important;
             padding: unset !important;
@@ -227,8 +200,6 @@
             max-width: unset !important;
         }
         .section {
-            // margin-bottom: 1.75rem;
-            // padding: 0 1rem;
             .sectionbadges {
                 [data-type="highlighted"] {
                     display: none;
@@ -266,20 +237,20 @@
             .single-card {
                 background-color: $white;
                 // position: relative;
-                border: 1px solid $light-border;
+                border: $border-height solid $light-border;
                 border-radius: inherit;
-                padding: 24px;
-                gap: 36px;
+                padding: $pad-24;
+                gap: $gap-32;
 
                 .content {
                     display: flex;
                     flex-direction: column;
-                    gap: 16px;
+                    gap: $gap-16;
                 }
             }
             // Styling for section cards
             .single-card {
-                min-height: 315px;
+                min-height: $section-card-min-height;
                 height: 100%;
                 width: 100%;
                 // Dark theme
@@ -358,7 +329,7 @@
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
-                gap: 4px;
+                gap: $gap-4;
                 width: 100%;
                 color: $paragraph-color;
                 @include frmt-font-styling(14px, 22px, 600);
@@ -383,85 +354,11 @@
                 }
             }
         }
-        // Styling for general section.
-        // #section-0 {
-
-        //     .section-details {
-        //         @media (min-width: 681px) {
-        //             display: flex;
-
-        //             .generaldetails {
-        //                 order: 1;
-        //             }
-
-        //             .coursedetails {
-        //                 order: 2;
-        //             }
-        //         }
-
-        //         // .generaldetails {
-        //         //     position: relative;
-        //         //     padding: 0 1rem 1rem 0;
-        //         // }
-        //         // .coursedetails {
-        //         //     position: relative;
-        //         //     padding: 0 0 1rem 1rem;
-        //         // }
-        //         @media (max-width: 680px) {
-        //             .generaldetails {
-        //                 width: 100%;
-        //             }
-
-        //             .coursedetails {
-        //                 width: 100%;
-        //             }
-        //         }
-
-        //         @media (min-width: 681px) and (max-width: 768px) {
-
-        //             .generaldetails,
-        //             .coursedetails {
-        //                 width: 50%;
-        //             }
-        //         }
-
-        //         @media (min-width: 769px) {
-        //             // .generaldetails {
-        //             //     width: 66.66%;
-        //             // }
-        //             // .coursedetails {
-        //             //     width: 33.33%;
-        //             // }
-        //         }
-        //     }
-
-        //     // .general-section {
-        //     //     padding: 0px;
-        //     //     background: transparent;
-        //     //     box-shadow: none;
-        //     //     border: none;
-        //     //     border-radius: unset;
-        //     // }
-        //     .coursemainimage {
-        //         width: 100%;
-        //         background-position: center;
-        //         background-size: cover;
-        //     }
-        // }
-
-        // #section-0 {
-
-        //     .coursemainimagediv,
-        //     .coursemainimage {
-        //         height: 140px;
-        //     }
-        // }
     }
     // Styling for single section page
     &.single-section-format {
         .content {
             // margin: 0 -0.5rem;
-
         }
         .section.main {
             background: transparent;
@@ -474,7 +371,7 @@
             .section {
                 display: flex;
                 flex-direction: column;
-                gap: 16px;
+                gap: $gap-16;
 
                 .section-details {
                     padding-bottom: 20px;
@@ -483,7 +380,7 @@
                         @include frmt-font-styling(14px,22px,400);
                         color: $paragraph-color;
                         img{
-                            border-radius: 8px;
+                            border-radius: $border-radius-8;
                         }
                     }
                     .general-single-card {
@@ -492,15 +389,15 @@
                         @media (max-width:$screen-900) {
                             flex-direction: column;
                             align-items: unset;
-                            gap: 24px;
+                            gap: $gap-24;
                         }
                         .header-progresbar-wrapper{
-                            gap: 40px;
+                            gap: $gap-40;
                             @media (max-width:$screen-900) {
                                 flex-direction: column;
                             }
                             .section-title {
-                                gap: 8px;
+                                gap: $gap-8;
                                 color: $heading-color;
                                 @include frmt-font-styling(24px, 32px, 700);
                             }
@@ -524,7 +421,7 @@
         .activity-cards.section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
+            gap: $gap-24;
             padding: 0 !important;
             width: 100%;
             margin: 0;
@@ -535,35 +432,23 @@
             }
 
             .activity {
-                padding: 0.5rem;
+                padding: $pad-8;
                 display: flex;
                 transition: all 0.5s ease;
                 padding: 0px;
-                min-height: 315px;
-
-                // .sectionbadges .badge {
-                //     margin: auto;
-                // }
+                min-height: $section-card-min-height;
 
                 .activitytitle {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: 16px;
+                    gap: $gap-16;
                     .media-body {
                         .text-font-small.small {
                             color: $paragraph-color;
                             @include frmt-font-styling(16px, 24px, 400);
                         }
                     }
-
-                    // .media-body .text-uppercase.small {
-                    //     display: none;
-                    // }
-                    // .activityiconcontainer {
-                    //     align-self: center !important;
-                    //     margin: 0 !important;
-                    // }
                 }
                 .cm_action_menu {
                     position: relative !important;
@@ -579,9 +464,9 @@
                     background: transparent !important;
                 }
                 .single-card {
-                    min-height: 255px;
+                    min-height: $single-card-min-height;
                     .single-card-child-wrapper{
-                        gap: 8px;
+                        gap: $gap-8;
                     }
                 }
                 .editing_move {
@@ -595,13 +480,13 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    gap: 16px;
+                    gap: $gap-16;
                     width: 100%;
-                    border-radius: 8px;
+                    border-radius: $border-radius-8;
                     background-color: white;
                     border: 1px solid $light-border;
                     position: relative;
-                    padding: 24px;
+                    padding: $pad-24;
                 }
 
                 .activity-content {
@@ -621,30 +506,12 @@
                     .automatic-completion-conditions{
                         display: flex;
                         flex-direction: column;
-                        gap: 8px;
+                        gap: $gap-8;
                         .badge{
                             width: fit-content;
                         }
                     }
                 }
-                // Show activity in row.
-                // &.row-activity {
-                //     flex: 0 0 100%;
-                //     width: 100%;
-                // }
-                // Show activity as column.
-                // @media (max-width: 767px) {
-                //     flex: 0 0 100%;
-                //     width: 100%;
-                // }
-                // @media (min-width: 768px) and (max-width: 1200px) {
-                //     flex: 0 0 50%;
-                //     width: 50%;
-                // }
-                // @media (min-width: 1201px) {
-                //     flex: 0 0 33.33%;
-                //     width: 33.33%;
-                // }
                 .wdm-mod-name {
                     margin-bottom: 0.5rem;
                     font-weight: 600;
@@ -661,14 +528,10 @@
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
-                            gap: 16px;
-                            // align-items: center;
-                            // align-self: center !important;
-                            // color: #37474f;
+                            gap: $gap-16;
                             text-decoration: none;
-                            // text-align: center;
                             .media-body{
-                                gap: 4px;
+                                gap: $gap-4;
                             }
                         }
                     }
@@ -685,8 +548,7 @@
                 }
                 // Toggle row column button styling
                 .toggle-row-column {
-                    border: 1px solid #e4eaec;
-                    // margin-right: 8px;
+                    border: $border-height solid #e4eaec;
                     img.icon {
                         margin: 0;
                     }

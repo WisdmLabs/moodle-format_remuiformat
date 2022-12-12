@@ -29,7 +29,7 @@
                             width: 100%;
                         }
 
-                        gap: 8px;
+                        gap: $gap-8;
                         justify-content: space-between;
                     }
                 }
@@ -76,7 +76,7 @@
                     &.left {
                         // padding: 0.5rem 0!important;
                         align-items: center;
-                        gap: 4px;
+                        gap: $gap-4;
                         // .sectionname {
                         //     order: 2;
                         // }
@@ -93,7 +93,7 @@
 
                     &.right {
                         margin-top: 0;
-                        gap: 24px;
+                        gap: $gap-24;
 
                         @media (max-width:$screen-900) {
                             width: 100%;
@@ -140,7 +140,7 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: $gap-24;
 
        & .section {
             // padding: 24px;
@@ -148,7 +148,7 @@
             .side {
                 &.left {
                     @media (max-width:$sm-screen-bp) {
-                        gap: 24px;
+                        gap: $gap-24;
                     }
                 }
 
@@ -156,10 +156,10 @@
             }
 
             &:not(#section-0) {
-                background: white;
+                background: $white;
                 // overflow: hidden;
                 border-radius: $border-radius-8;
-                border: 1px solid $light-border;
+                border: $border-height solid $light-border;
             }
 
             .content {
@@ -173,7 +173,7 @@
                 .course-section-summary-wrapper {
                     display: flex;
                     flex-direction: column;
-                    gap: 8px;
+                    gap: $gap-8;
                     padding: $pad-24;
                     & .no-overflow {
                         @include frmt-font-styling(14px, 22px, 400);
@@ -185,7 +185,7 @@
             .course-section-header {
                 justify-content: space-between;
                 align-items: center;
-                gap: 24px;
+                gap: $gap-24;
 
                 @media (max-width:$screen-900) {
                     flex-direction: column;
@@ -271,15 +271,9 @@
             }
 
             .right.side {
-                // margin-left: auto;
                 width: max-content;
-
                 .wdm-add-new-section {
                     white-space: nowrap
-                }
-
-                @media (max-width:768px) {
-                    // margin-left: unset;
                 }
             }
 
@@ -294,7 +288,6 @@
             li.section {
                 // Custom section content toggle icon.
                 .toggle-icon {
-                    // margin: 0 1rem 0 0;
                     cursor: pointer;
                     transform: rotate(-90deg);
                     border: 0 !important;
@@ -322,11 +315,11 @@
                     ul.section {
                         border: unset !important;
                         border-radius: unset !important;
-                        border-top: 1px solid $light-border !important;
+                        border-top: $border-height solid $light-border !important;
                         .activity {
                             padding: 0px;
                             .activitytitle {
-                                gap: 24px;
+                                gap: $gap-24;
                             }
                         }
                     }
@@ -340,26 +333,26 @@
     .card-footer {
         padding: unset;
         ul.section {
-            padding: 24px !important;
+            padding: $pad-24 !important;
             li:not(:last-child) {
-                margin-bottom: 16px;
+                margin-bottom: $margin-16;
             }
             .activity{
                 .activitytitle {
-                    gap: 24px;
+                    gap: $gap-24;
                     @media (max-width:$sm-screen-bp) {
                         flex-direction: column;
                     }
                 }
                 .activity-info.mt-1 {
                     @media (max-width:$tb-screenp-bp) {
-                        margin-top: 24px !important;
+                        margin-top: $margin-24 !important;
                     }
                 }
                 .description{
                     .availabilityinfo{
                         margin: unset;
-                        margin-top: 8px;
+                        margin-top: $margin-8;
                     }
                 }
             }
@@ -378,8 +371,8 @@
                     & .content {
                         display: flex;
                         flex-direction: column;
-                        gap: 16px;
-                        padding: 24px;
+                        gap: $gap-16;
+                        padding: $pad-24;
 
                         // .course-section-header{
                         //     padding: $pad-24;
@@ -406,7 +399,7 @@
                 margin: 0;
                 border: unset !important;
                 border-radius: unset !important;
-                border-top: 1px solid $light-border !important;
+                border-top: $border-height solid $light-border !important;
                 .activity {
                     padding: 0px !important;
                     &:last-child {
