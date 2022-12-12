@@ -726,37 +726,14 @@ body#page-course-view-remuiformat {
             cursor: pointer;
         }
     }
-    /* General section summary show/hide. */
-    // .read-more-state {
-    //     display: none;
-    // }
-    // .read-more-target {
-    //     height: 110px;
-    //     overflow: hidden;
-    // }
-    // .read-more-target:after {
-    //     content: "...";
-    //     display: block;
-    //     clear: both;
-    //     visibility: hidden;
-    //     line-height: 0;
-    //     height: 0;
-    // }
-    // .fadeout-summary {
-    //     position: absolute;
-    //     margin-top: -60px;
-    //     width: 95%;
-    //     height: 60px;
-    //     background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 1) 100%);
-    // }
-    // .read-more-state:checked~.read-more-target {
-    //     height: auto;
-    //     overflow: inherit;
-    // }
-    // .read-more-state:checked~.fadeout-summary {
-    //     display: none;
-    // }
-    // .read-more-trigger {
-    //     cursor: pointer !important;
-    // }
+
+    .inplaceeditable {
+        a {
+            &:focus {
+                box-shadow: unset;
+                border: unset;
+                background: unset;
+            }
+        }
+    }
 }

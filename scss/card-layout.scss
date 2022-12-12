@@ -288,13 +288,13 @@
                 }
                 // Light theme
                 &.light {
-                    .left.side,
-                    .sectionname,
-                    .sectionname *,
-                    .wdm-section-summary *,
-                    .section-activities-summary {
-                        color: #101010 !important;
-                    }
+                    // .left.side,
+                    // .sectionname,
+                    // .sectionname *,
+                    // .wdm-section-summary *
+                    // {
+                    //      color: #101010 !important;
+                    // }
                 }
                 &:hover .progress-text {
                     visibility: visible;

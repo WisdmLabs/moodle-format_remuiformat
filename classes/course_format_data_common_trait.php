@@ -287,7 +287,7 @@ class course_format_data_common_trait {
             $data->singlepageurl = $singlepageurl;
             $sectiontitlesummarymaxlength = $settings['sectiontitlesummarymaxlength'];
             $remuienablecardbackgroundimg = $settings['remuienablecardbackgroundimg'];
-            $remuidefaultsectiontheme = $settings['remuidefaultsectiontheme'];
+            $remuidefaultsectiontheme = 'dark';
 
             $data->hiddenmessage = $this->course_section_availability($course, $section);
 
@@ -316,35 +316,37 @@ class course_format_data_common_trait {
                 // Check if background image to section card setting is enable and image exists in summary,
                 // if yes then add background image to context.
                 $remuidefaultsectionmode = "";
-                if ( $remuienablecardbackgroundimg == 1
-                && $this->get_section_first_image( $section, $section->summary ) ) {
-                    if ( $remuidefaultsectiontheme == 1 ) {
-                        // Dark theme.
-                        $remuidefaultsectionoverlay = 'rgba(0,0,0,0.45)';
-                        $remuinewfontcolor = '#eaeaea';
-                        $remuinewthemecolor = 'dark';
-                        $remuidefaultsectionmode = true; // it will be  for darkmode
-                    } else {
-                        // Light theme.
-                        $remuidefaultsectionoverlay = 'rgba(255,255,255,0.8)';
-                        $remuinewfontcolor = '#101010';
-                        $remuinewthemecolor = 'light';
-                        $remuidefaultsectionmode = false; // it will be false for lightmode
-                    }
+                if ( $remuienablecardbackgroundimg == 1 && $this->get_section_first_image( $section, $section->summary )) {
+                    $remuinewthemecolor = 'dark';
+                    $remuidefaultsectionmode = true;
+                    $remuinewfontcolor = '#eaeaea';
+                    // if ( $remuidefaultsectiontheme == 1 ) {
+                    // Dark theme.
+                    // $remuidefaultsectionoverlay = 'rgba(0,0,0,0.45)';
+                    // $remuinewfontcolor = '#eaeaea';
+                    // $remuinewthemecolor = 'dark';
+                    // $remuidefaultsectionmode = true; // it will be  for darkmode
+                    // } else {
+                    // Light theme.
+                    // $remuidefaultsectionoverlay = 'rgba(255,255,255,0.8)';
+                    // $remuinewfontcolor = '#101010';
+                    // $remuinewthemecolor = 'light';
+                    // $remuidefaultsectionmode = false; // it will be false for lightmode
+                    // }
 
                     // Get first image from section to set card card background image.
                     $imgarray = $this->get_section_first_image( $section, $section->summary );
                     $data->sectionfirstimage = $imgarray['img'];
 
                     // Change the overlay opacity if pattern image.
-                    if ( $remuidefaultsectiontheme == 0 &&  $imgarray['pattern'] == 1) {
-                        // Light theme.
-                        $remuidefaultsectionoverlay = 'rgba(255, 255, 255, 0)';
-                    } else if ( $remuidefaultsectiontheme == 1 &&  $imgarray['pattern'] == 1 ) {
-                        // Dark theme.
-                        $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55) ';
-                        // $remuidefaultsectionoverlay = "179.62deg, rgba(0, 0, 0, 0) 6.42%, #000000 71.44%";
-                    }
+                    // if ( $remuidefaultsectiontheme == 0 &&  $imgarray['pattern'] == 1) {
+                    // Light theme.
+                    // $remuidefaultsectionoverlay = 'rgba(255, 255, 255, 0)';
+                    // } else if ( $remuidefaultsectiontheme == 1 &&  $imgarray['pattern'] == 1 ) {
+                    // Dark theme.
+                    // $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55) ';
+                        $remuidefaultsectionoverlay = "179.62deg, rgba(0, 0, 0, 0) 6.42%, #000000 71.44%";
+                    // }
                     $data->remuidefaultsectionmode = $remuidefaultsectionmode;
                     $data->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
                     $data->remuinewfontcolor = $remuinewfontcolor;
@@ -613,7 +615,7 @@ class course_format_data_common_trait {
             $image = $this->extract_first_image($summarytext);
         }
         if ($image) {
-            $imagesrc = 'url(' . $image['src'] . ')';
+            $imagesrc = $image['src'];
             $imgarray['img'] = $imagesrc;
             $imgarray['pattern'] = 0;
         } else {
