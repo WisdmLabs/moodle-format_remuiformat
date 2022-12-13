@@ -50,7 +50,7 @@
 }}
 
 {{#addsection}}
-<li id="{{divid}}" class=" col-lg-4 col-md-6 col-sm-6 section main clearfix">
+<div id="{{divid}}" class=" col-lg-4 col-md-6 col-sm-6 section main clearfix">
     <div class="single-card d-flex align-items-center">
         {{#numsections}}
             <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
@@ -64,7 +64,7 @@
             <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
         {{/numsections}}
     </div>
-</li>
+</div>
 {{/addsection}}
 
 {{^addsection}}
@@ -121,6 +121,8 @@
                     <span class="item {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
                 {{/activityinfo}}
             </div>
+            <ul class="section">
+            </ul>
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
