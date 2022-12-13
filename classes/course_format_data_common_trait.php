@@ -345,7 +345,7 @@ class course_format_data_common_trait {
                     // } else if ( $remuidefaultsectiontheme == 1 &&  $imgarray['pattern'] == 1 ) {
                     // Dark theme.
                     // $remuidefaultsectionoverlay = 'rgba(0, 0, 0, 0.55) ';
-                        $remuidefaultsectionoverlay = "179.62deg, rgba(0, 0, 0, 0) 6.42%, #000000 71.44%";
+                        $remuidefaultsectionoverlay = "179.62deg, rgba(0, 0, 0, 0) 6.42%, #000000b5 71.44%";
                     // }
                     $data->remuidefaultsectionmode = $remuidefaultsectionmode;
                     $data->remuidefaultsectionoverlay = $remuidefaultsectionoverlay;
