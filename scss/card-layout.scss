@@ -249,6 +249,11 @@
                     display: flex;
                     flex-direction: column;
                     gap: $gap-16;
+                    .section-activities-summary{
+                        .item{
+                            font-size: 0.8rem;
+                        }
+                    }
                 }
             }
             // Styling for section cards
