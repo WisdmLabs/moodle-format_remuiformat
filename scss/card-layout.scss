@@ -610,8 +610,13 @@
 &:not(.limitedwidth) {
     .remui-format-card.all-section-format {
         .showhideactivity .general-section-activities  {
-            .activity:nth-child(n+5) {
+            .activity:nth-child(n+6) {
                 display: none !important;
+            }
+            @media only screen and (max-width: 1439px) {
+                .activity:nth-child(n+5) {
+                    display: none !important;
+                }
             }
             @media only screen and (max-width: 1199px) {
                 .activity:nth-child(n+4) {
@@ -625,9 +630,9 @@
 &.limitedwidth {
     .remui-format-card.all-section-format {
         .showhideactivity .general-section-activities  {
-            .activity:nth-child(n+4) {
-                display: none !important;
-            }
+		.activity:nth-child(n+4) {
+		    display: none !important;
+		}
         }
     }   
 }

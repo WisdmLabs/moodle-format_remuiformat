@@ -71,9 +71,9 @@
 <li id="section-{{{index}}}" class="section main clearfix" aria-labelledby="section-{{{index}}} .content .sectionname"
     data-sectionid="{{id}}" data-sectionreturnid="{{sectionreturnid}}" data-for="section" data-number="{{num}}">
     <div class="single-card d-flex flex-column justify-content-between {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
-        style="background: linear-gradient({{remuidefaultsectionoverlay}}),url({{sectionfirstimage}});
+        {{#sectionfirstimage}}style="background: linear-gradient({{remuidefaultsectionoverlay}}),url({{sectionfirstimage}});
                 background-repeat: no-repeat;
-                background-size: cover;" ;>
+                background-size: cover;" {{/sectionfirstimage}}>
         {{#highlighted}}
         <div class="highlight text-primary"></div>
         {{/highlighted}}
