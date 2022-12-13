@@ -177,3 +177,6 @@ $string['contain'] = "contain";
 $string['auto'] = "auto";
 $string['remuiheaderimagebgsize_help'] = "Select Course header background image size ";
 $string['courseinformation'] = "Course information ";
+$string["defaultheader"] = 'Default Moodle header';
+$string["remuiheader"] = 'Edwiser header';
+$string["remuidefaultsectionheader"] = "Select header";

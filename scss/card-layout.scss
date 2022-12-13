@@ -272,6 +272,10 @@
 
                     }
                     .sectionname{
+                        .ignoredirty,.editinstructions{
+                            color:$heading-color;
+                        }
+
                         .badge{
                             color: $heading-color ;
                         }
@@ -628,7 +632,7 @@
                     display: none !important;
                 }
             }
-            
+
         }
     }
 }
@@ -639,7 +643,7 @@
 		    display: none !important;
 		}
         }
-    }   
+    }
 }
 
 .remui-format-card.all-section-format {
