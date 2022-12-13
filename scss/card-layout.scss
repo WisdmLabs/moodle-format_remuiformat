@@ -10,6 +10,10 @@
                 }
             }
         }
+       &.all-section-format .section .single-card{
+            padding: 24px;
+        }
+
         &.single-section-format {
             .activity-cards {
                 .actions {
@@ -646,4 +650,8 @@
             }
         }
     }
+}
+
+.frmt-pt-50{
+    padding-top: 50%;
 }
