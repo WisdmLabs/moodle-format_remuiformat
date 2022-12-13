@@ -263,10 +263,10 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => 0,
                     'type' => PARAM_INT
                 ),
-                'remuidefaultsectiontheme' => array(
-                    'default' => 0,
-                    'type' => PARAM_INT
-                ),
+                // 'remuidefaultsectiontheme' => array(
+                // 'default' => 0,
+                // 'type' => PARAM_INT
+                // ),
                 'remuiheaderimagebgposition' => array(
                     'default' => "center",
                     'type' => PARAM_RAW
@@ -384,18 +384,18 @@ class format_remuiformat extends core_courseformat\base {
                     'help' => 'remuienablecardbackgroundimg',
                     'help_component' => 'format_remuiformat'
                 ),
-                'remuidefaultsectiontheme' => array(
-                    'label' => new lang_string('remuidefaultsectiontheme', 'format_remuiformat'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            0 => new lang_string( 'light', 'format_remuiformat' ),
-                            1 => new lang_string( 'dark', 'format_remuiformat' ),
-                        )
-                    ),
-                    'help' => 'remuidefaultsectiontheme',
-                    'help_component' => 'format_remuiformat'
-                ),
+                // 'remuidefaultsectiontheme' => array(
+                // 'label' => new lang_string('remuidefaultsectiontheme', 'format_remuiformat'),
+                // 'element_type' => 'select',
+                // 'element_attributes' => array(
+                // array(
+                // 0 => new lang_string( 'light', 'format_remuiformat' ),
+                // 1 => new lang_string( 'dark', 'format_remuiformat' ),
+                // )
+                // ),
+                // 'help' => 'remuidefaultsectiontheme',
+                // 'help_component' => 'format_remuiformat'
+                // ),
                 'remuiheaderimagebgposition' => array(
                     'label' => new lang_string('remuiheaderimagebgposition', 'format_remuiformat'),
                     'element_type' => 'select',
