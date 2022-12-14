@@ -263,7 +263,7 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => 0,
                     'type' => PARAM_INT
                 ),
-                'remuidefaultsectionheader' => array(
+                'headereditingbutton' => array(
                 'default' => 1,
                 'type' => PARAM_INT
                 ),
@@ -384,8 +384,8 @@ class format_remuiformat extends core_courseformat\base {
                     'help' => 'remuienablecardbackgroundimg',
                     'help_component' => 'format_remuiformat'
                 ),
-                'remuidefaultsectionheader' => array(
-                'label' => new lang_string('remuidefaultsectionheader', 'format_remuiformat'),
+                'headereditingbutton' => array(
+                'label' => new lang_string('headereditingbutton', 'format_remuiformat'),
                 'element_type' => 'select',
                 'element_attributes' => array(
                 array(
@@ -895,7 +895,7 @@ function formate_get_course_image($corecourselistelement, $islist = false) {
     }
 }
 function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
-    global $DB, $CFG;
+    global $DB, $CFG, $OUTPUT, $PAGE;
     $coursedetails = get_course($course->id);
     if (!is_null($percentage)) {
         $percentage = floor($percentage);
@@ -921,13 +921,15 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
     $export->generalsection['remuiheaderimagebgposition'] = $coursesettings['remuiheaderimagebgposition'];
     $export->generalsection['remuiheaderimagebgsize'] = $coursesettings['remuiheaderimagebgsize'];
     $export->generalsection['courseheaderdesign'] = true;
+    if ($coursesettings['headereditingbutton'] == 1) {
+        $export->turneditingonswitch = $OUTPUT->page_heading_button();
+    } else {
+        $export->turneditingonswitch = "";
+    }
     if ($CFG->theme == 'remui') {
         $export->generalsection['courseheaderdesign'] = get_config('theme_remui', 'courseheaderdesign') == 0 ? false : true;
+        $export->turneditingonswitch = "";
     }
-    if ($coursesettings['remuidefaultsectionheader'] == 1) {
-        $export->generalsection['courseheaderdesign'] = true;
-    } else {
-        $export->generalsection['courseheaderdesign'] = false;
-    }
+
     return $export->generalsection;
 }
