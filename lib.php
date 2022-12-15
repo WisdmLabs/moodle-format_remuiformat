@@ -267,11 +267,11 @@ class format_remuiformat extends core_courseformat\base {
                 // 'default' => 1,
                 // 'type' => PARAM_INT
                 // ),
-                'remuiheaderimagebgposition' => array(
+                'edw_format_hd_bgpos' => array(
                     'default' => "center",
                     'type' => PARAM_RAW
                 ),
-                'remuiheaderimagebgsize' => array(
+                'edw_format_hd_bgsize' => array(
                     'default' => "cover",
                     'type' => PARAM_RAW
                 ),
@@ -396,8 +396,8 @@ class format_remuiformat extends core_courseformat\base {
                 // 'help' => 'remuidefaultsectiontheme',
                 // 'help_component' => 'format_remuiformat'
                 // ),
-                'remuiheaderimagebgposition' => array(
-                    'label' => new lang_string('remuiheaderimagebgposition', 'format_remuiformat'),
+                'edw_format_hd_bgpos' => array(
+                    'label' => new lang_string('edw_format_hd_bgpos', 'format_remuiformat'),
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
@@ -408,11 +408,11 @@ class format_remuiformat extends core_courseformat\base {
                             "right" => new lang_string( 'right', 'format_remuiformat' ),
                         )
                     ),
-                    'help' => 'remuiheaderimagebgposition',
+                    'help' => 'edw_format_hd_bgpos',
                     'help_component' => 'format_remuiformat'
                 ),
-                'remuiheaderimagebgsize' => array(
-                    'label' => new lang_string('remuiheaderimagebgsize', 'format_remuiformat'),
+                'edw_format_hd_bgsize' => array(
+                    'label' => new lang_string('edw_format_hd_bgsize', 'format_remuiformat'),
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
@@ -421,7 +421,7 @@ class format_remuiformat extends core_courseformat\base {
                             "cover" => new lang_string( 'cover', 'format_remuiformat' ),
                         )
                     ),
-                    'help' => 'remuiheaderimagebgsize',
+                    'help' => 'edw_format_hd_bgsize',
                     'help_component' => 'format_remuiformat'
                 ),
 
@@ -918,8 +918,8 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
         $imgurl = formate_get_course_image($course);
     }
     $export->generalsection['headercourseimage'] = $imgurl;
-    $export->generalsection['remuiheaderimagebgposition'] = $coursesettings['remuiheaderimagebgposition'];
-    $export->generalsection['remuiheaderimagebgsize'] = $coursesettings['remuiheaderimagebgsize'];
+    $export->generalsection['remuiheaderimagebgposition'] = $coursesettings['edw_format_hd_bgpos'];
+    $export->generalsection['remuiheaderimagebgsize'] = $coursesettings['edw_format_hd_bgsize'];
     $export->generalsection['courseheaderdesign'] = true;
     $export->turneditingonswitch = $OUTPUT->page_heading_button();
     if ($CFG->theme == 'remui') {

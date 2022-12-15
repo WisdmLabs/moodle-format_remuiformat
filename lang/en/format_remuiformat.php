@@ -92,8 +92,8 @@ $string['remuicourseformat'] = 'Choose layout';
 $string['remuicourseformat_card'] = 'Card Layout';
 $string['remuicourseformat_list'] = 'List Layout';
 $string['remuicourseformat_help'] = 'Choose a course layout';
-$string['remuicourseimage_filemanager'] = 'Course format image';
-$string['remuicourseimage_filemanager_help'] = 'This image will be displayed in General section card in card layout and as a background of General section in list layout. <strong>Recommended image size 16:9.<strong>';
+$string['remuicourseimage_filemanager'] = 'Course Header Image';
+$string['remuicourseimage_filemanager_help'] = 'This image will be displayed in General section card in card layout and as a background of General section in list layout. <strong>Recommended image size 1272x288.<strong>';
 $string['addsections'] = 'Add sections';
 $string['teacher'] = 'Teacher';
 $string['teachers'] = 'Teachers';
@@ -162,20 +162,20 @@ $string['enableusagetrackingdesc'] = "<strong>USAGE TRACKING NOTICE</strong>
 <p>An overview of the data collected is available <strong><a href='https://forums.edwiser.org/topic/67/anonymously-tracking-the-usage-of-edwiser-products' target='_blank'>here</a></strong>.</p>";
 
 
-$string['remuiheaderimagebgposition'] = "Course header background image position";
+$string['edw_format_hd_bgpos'] = "Course header background image position";
 $string['bottom'] = "bottom";
 $string['center'] = "center";
 $string['top'] = "top";
 $string['left'] = "left";
 $string['right'] = "right";
-$string["remuiheaderimagebgposition_help"] = "Choose background image position";
+$string["edw_format_hd_bgpos_help"] = "Choose background image position";
 
 
-$string['remuiheaderimagebgsize'] = "Course header background image size";
+$string['edw_format_hd_bgsize'] = "Course header background image size";
 $string['cover'] = "cover";
 $string['contain'] = "contain";
 $string['auto'] = "auto";
-$string['remuiheaderimagebgsize_help'] = "Select Course header background image size ";
+$string['edw_format_hd_bgsize_help'] = "Select Course header background image size ";
 $string['courseinformation'] = "Course information ";
 $string["defaultheader"] = 'Default ';
 $string["remuiheader"] = 'Header';
