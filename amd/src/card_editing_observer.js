@@ -39,11 +39,11 @@ define(['jquery', 'core/ajax', 'core/templates', 'core/notification'], function 
         PROMISES.GET_COURSE_PROGRESS(courseid)
             .done(function (response) {
                 response.courseid = courseid;
-                Templates.render('format_remuiformat/course_progress', response)
-                    .done(function (html, js) {
-                        Templates.replaceNode(container, html, js);
-                    })
-                    .fail(Notification.exception);
+                // Templates.render('format_remuiformat/course_progress', response)
+                //     .done(function (html, js) {
+                //         Templates.replaceNode(container, html, js);
+                //     })
+                //     .fail(Notification.exception);
             })
             .fail(Notification.exception);
     }

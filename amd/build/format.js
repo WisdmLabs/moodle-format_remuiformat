@@ -21,7 +21,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery'], function($) {
+define(['jquery'], function ($) {
+    /**
+     * Init method
+     *
+     * @param availableFormats Available formates
+     */
     function init(availableFormats) {
         $(document).ready(function() {
             var sectionlayout_val;
