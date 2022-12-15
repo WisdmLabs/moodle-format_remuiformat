@@ -817,7 +817,7 @@ function format_remuiformat_pluginfile($course, $cm, $context, $filearea, $args,
     send_stored_file($file, 0, 0, 0, $options);
 }
 
-function check_plugin_available($component) {
+function format_remuiformat_check_plugin_available($component) {
 
     list($type, $name) = core_component::normalize_component($component);
 
@@ -905,7 +905,7 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
     }
     $categorydetails = $DB->get_record('course_categories', array('id' => $coursedetails->category));
     $rnrshortdesign = '';
-    if (check_plugin_available("block_edwiserratingreview")) {
+    if (format_remuiformat_check_plugin_available("block_edwiserratingreview")) {
         $rnr = new \block_edwiserratingreview\ReviewManager();
         $rnrshortdesign = $rnr->get_short_design_enrolmentpage($course->id);
     }
