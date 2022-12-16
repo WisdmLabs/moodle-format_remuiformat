@@ -31,6 +31,8 @@ define(['jquery'], function($) {
         SHOW: 'show',
         TOGGLE_HIGHLIGHT: '.section_action_menu .dropdown-item.editing_highlight',
         TOGGLE_SHOWHIDE: '.section_action_menu .dropdown-item.editing_showhide',
+        BUTTON_HIDE: '.cm_action_menu .dropdown-menu .editing_hide',
+        BUTTON_SHOW: '.cm_action_menu .dropdown-menu .editing_show',
         DELETE: '.section_action_menu .dropdown-item[data-action="deleteSection"]'
     };
 
@@ -100,7 +102,10 @@ define(['jquery'], function($) {
         });
 
         // Handling highlight and show hide dropdown.
-        $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT}, ${SELECTORS.TOGGLE_SHOWHIDE}`, function() {
+        $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT},
+                               ${SELECTORS.TOGGLE_SHOWHIDE},
+                               ${SELECTORS.BUTTON_HIDE},
+                               ${SELECTORS.BUTTON_SHOW}`, function () {
             location.reload();
         });
 
@@ -110,6 +115,8 @@ define(['jquery'], function($) {
             window.location.href = $(this).attr('href');
             return true;
         });
+
+
 
         // ... + Show full summary label show conditionally.
         var summaryheight = $('.read-more-target').height();

@@ -5,6 +5,16 @@ body#page-course-view-remuiformat {
     @import './list-layout.scss';
     @import './ellipsis.scss';
 
+
+    &.editing {
+        .cm_action_menu.actions{
+            .section-cm-edit-actions{
+                .editing_moveright,.editing_moveleft{
+                    display: none;
+                }
+            }
+        }
+    }
     #region-top-blocks.pb-3,#region-top-blocks.py-3{
         padding: 0px !important;
     }
