@@ -1039,6 +1039,30 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
   margin-bottom: 0px !important;
 }
 
+body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item {
+  padding: 0px 24px 24px 24px;
+  color: #4C5A73;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+}
+
+body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item .availabilityinfo {
+  background-color: #EBF0F9;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item .availabilityinfo .description-inner ul li {
+  margin-top: 4px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item strong {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 600;
+}
+
 body#page-course-view-remuiformat .text-clamp {
   display: -webkit-box;
   overflow: hidden;
@@ -1405,6 +1429,10 @@ body#page-course-view-remuiformat .activity .description .course-description-ite
 body#page-course-view-remuiformat .activity .description .course-description-item .description-inner {
   padding: 0px;
   border: unset;
+}
+
+body#page-course-view-remuiformat .activity .description .course-description-item .description-inner ul li {
+  margin-bottom: unset;
 }
 
 body#page-course-view-remuiformat .course-content .sections {

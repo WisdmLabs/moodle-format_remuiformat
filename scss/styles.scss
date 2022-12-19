@@ -321,6 +321,11 @@ body#page-course-view-remuiformat {
                 .description-inner{
                     padding: 0px;
                     border:unset;
+                    ul{
+                        li{
+                            margin-bottom: unset;
+                        }
+                    }
                 }
             }
         }

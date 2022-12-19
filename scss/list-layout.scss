@@ -416,4 +416,22 @@
             }
         }
     }
+    .section_availability.course-description-item{
+        padding:0px  $pad-24 $pad-24 $pad-24 ;
+        color: $paragraph-color;
+        @include frmt-font-styling(12px,15px,400);
+        .availabilityinfo{
+            background-color: $small-ui-bg;
+            border-radius: $border-radius-4;
+            padding: $pad-8;
+            .description-inner{
+                ul li{
+                    margin-top: 4px;
+                }
+            }
+        }
+        strong{
+            @include frmt-font-styling(12px,15px,600);
+        }
+    }
 }
