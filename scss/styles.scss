@@ -746,4 +746,20 @@ body#page-course-view-remuiformat {
             }
         }
     }
+    .modchoosercontainer{
+        .chooser-container{
+            .tab-content{
+                .optionscontainer{
+                    .option{
+                        .optioninfo{
+                            .optionicon{
+                                margin-right: unset !important;
+                                margin: auto !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
