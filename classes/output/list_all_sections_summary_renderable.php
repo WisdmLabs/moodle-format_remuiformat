@@ -313,8 +313,13 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
                         }
                     }
                 }
+                $lastactivitydata = end($sectionmods);
                 foreach ($sectionmods as $mod) {
-                    $output['activitylist'][] = $mod['count'].' '.$mod['name'];
+                    if ($lastactivitydata != $mod) {
+                        $output['activitylist'][] = $mod['count'].' '.$mod['name'].',';
+                    } else {
+                        $output['activitylist'][] = $mod['count'].' '.$mod['name'].'.';
+                    }
                 }
                 $export->activitylist = $output['activitylist'];
 

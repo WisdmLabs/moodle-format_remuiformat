@@ -258,7 +258,11 @@ body#page-course-view-remuiformat {
 
             span {
                 color: $paragraph-color;
-                @include frmt-font-styling(14px, 22px, 400);
+                @include frmt-font-styling(12px, 22px, 400);
+                .font-weight-normal{
+                    color: $paragraph-color;
+                @include frmt-font-styling(12px, 22px, 400);
+                }
             }
         }
     }
@@ -428,6 +432,12 @@ body#page-course-view-remuiformat {
                                     gap: $gap-16;
 
                                 }
+                                .availabilityinfo{
+                                    .description-inner{
+                                        color: $paragraph-color;
+                                        text-align: left;
+                                    }
+                                }
 
                                 .actions {
                                     display: flex;
@@ -479,6 +489,7 @@ body#page-course-view-remuiformat {
                                     padding: 0px;
                                     display: flex;
                                     @include frmt-font-styling(14px, 22px, 400);
+                                    text-align: left;
                                     color: $paragraph-color;
                                 }
                             }
