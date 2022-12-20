@@ -425,8 +425,13 @@ class course_format_data_common_trait {
                 }
             }
         }
+        $lastactivitydata = end($sectionmods);
         foreach ($sectionmods as $mod) {
-            $output['activityinfo'][] = $mod['count'].' '.$mod['name'];
+            if ($lastactivitydata != $mod) {
+                $output['activityinfo'][] = $mod['count'].' '.$mod['name'].',';
+            } else {
+                $output['activityinfo'][] = $mod['count'].' '.$mod['name'].'.';
+            }
         }
         if ($total > 0) {
             $pinfo = new \stdClass();
