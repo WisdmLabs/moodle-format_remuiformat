@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery'], function($) {
+define(['jquery'], function ($) {
 
     var SELECTORS = {
         ACTIVITY_TOGGLE: '.showactivity',
@@ -86,7 +86,13 @@ define(['jquery'], function($) {
             adjustGeneralSectionActivities();
         });
 
-        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
+        if ($(".general-section-activities li:last").css('display') == 'none') {
+            $(".showactivitywrapper").show();
+        } else {
+            $(".showactivitywrapper").hide();
+        }
+
+        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function () {
 
             if ($(this).hasClass(SELECTORS.SHOW)) {
                 $(this).html('Show Less');

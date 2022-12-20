@@ -86,7 +86,13 @@ define(['jquery'], function($) {
             adjustGeneralSectionActivities();
         });
 
-        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
+        if ($(".general-section-activities li:last").css('display') == 'none') {
+            $(".showactivitywrapper").show();
+        } else {
+            $(".showactivitywrapper").hide();
+        }
+
+        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function () {
 
             if ($(this).hasClass(SELECTORS.SHOW)) {
                 $(this).html('Show Less');

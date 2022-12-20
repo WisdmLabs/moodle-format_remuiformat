@@ -408,6 +408,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
     justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: center;
   }
 }
 
