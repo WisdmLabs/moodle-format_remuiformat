@@ -362,13 +362,19 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
 }
 
 @media (max-width: 900px) {
   body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
-    flex-direction: column;
     align-items: unset;
-    gap: 24px;
+  }
+}
+
+@media (max-width: 568px) {
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
+    flex-direction: column;
+    gap: 32px;
   }
 }
 
@@ -378,7 +384,14 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 
 @media (max-width: 900px) {
   body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
     flex-direction: column;
+    gap: 16px;
   }
 }
 
@@ -393,6 +406,8 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 @media (max-width: 568px) {
   body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper .progress-bar-warpper {
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 }
 
@@ -1037,6 +1052,10 @@ body#page-course-view-remuiformat .remui-format-list.one-section-format .activit
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format .activities-list .section-modchooser.mb-3 {
   margin-bottom: 0px !important;
+}
+
+body#page-course-view-remuiformat .remui-format-list.one-section-format .section_availability.course-description-item {
+  padding: 0px 0px 24px 0px;
 }
 
 body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item {

@@ -398,15 +398,24 @@
                     .general-single-card {
                         align-items: center;
                         justify-content: space-between;
+                        gap:$gap-16;
                         @media (max-width:$screen-900) {
-                            flex-direction: column;
+                            // flex-direction: column;
                             align-items: unset;
-                            gap: $gap-24;
+                            // gap: $gap-24;
+                        }
+                        @media (max-width:$sm-screen-bp) {
+                            flex-direction: column;
+                            gap: $gap-32;
                         }
                         .header-progresbar-wrapper{
                             gap: $gap-40;
                             @media (max-width:$screen-900) {
+                                gap: $gap-24;
+                            }
+                            @media (max-width:$tb-screenp-bp) {
                                 flex-direction: column;
+                                gap:$gap-16
                             }
                             .section-title {
                                 gap: $gap-8;
@@ -416,6 +425,9 @@
                             .progress-bar-warpper{
                                 @media (max-width:$sm-screen-bp){
                                     justify-content: center;
+                                    flex-direction: row;
+                                    flex-wrap: nowrap;
+
                                 }
                             }
                         }
