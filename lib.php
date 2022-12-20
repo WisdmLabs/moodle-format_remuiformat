@@ -251,10 +251,10 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => get_config('format_remuiformat', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
-                'remuiteacherdisplay' => array(
-                    'default' => 1,
-                    'type' => PARAM_INT
-                ),
+                // 'remuiteacherdisplay' => array(
+                //     'default' => 1,
+                //     'type' => PARAM_INT
+                // ),
                 'remuidefaultsectionview' => array(
                     'default' => 1,
                     'type' => PARAM_INT
@@ -348,18 +348,18 @@ class format_remuiformat extends core_courseformat\base {
                     'help' => 'sectiontitlesummarymaxlength',
                     'help_component' => 'format_remuiformat'
                 ),
-                'remuiteacherdisplay' => array(
-                    'label' => new lang_string('remuiteacherdisplay', 'format_remuiformat'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            1 => new lang_string('yes'),
-                            0 => new lang_string('no')
-                        )
-                    ),
-                    'help' => 'remuiteacherdisplay',
-                    'help_component' => 'format_remuiformat'
-                ),
+                // 'remuiteacherdisplay' => array(
+                //     'label' => new lang_string('remuiteacherdisplay', 'format_remuiformat'),
+                //     'element_type' => 'select',
+                //     'element_attributes' => array(
+                //         array(
+                //             1 => new lang_string('yes'),
+                //             0 => new lang_string('no')
+                //         )
+                //     ),
+                //     'help' => 'remuiteacherdisplay',
+                //     'help_component' => 'format_remuiformat'
+                // ),
                 'remuidefaultsectionview' => array(
                     'label' => new lang_string('remuidefaultsectionview', 'format_remuiformat'),
                     'element_type' => 'select',

@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery'], function ($) {
+define(['jquery'], function($) {
 
     var SELECTORS = {
         ACTIVITY_TOGGLE: '.showactivity',
