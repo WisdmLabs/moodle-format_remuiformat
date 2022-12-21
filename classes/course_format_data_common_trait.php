@@ -349,7 +349,7 @@ class course_format_data_common_trait {
                         ));
                     }
                 }
-                $data->activityinfostring = implode(', ', $extradetails['activityinfo']);
+                $data->activityinfostring = implode($extradetails['activityinfo']);
                 $data->progressinfo = $extradetails['progressinfo'];
                 $data->sectionactivities = $this->course_section_cm_list(
                     $course, $section
