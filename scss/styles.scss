@@ -5,7 +5,12 @@ body#page-course-view-remuiformat {
     @import './list-layout.scss';
     @import './ellipsis.scss';
 
-
+    .row {
+        margin: unset;
+    }
+    #page.drawers div[role="main"]{
+        padding: unset;
+    }
     &.editing {
         .cm_action_menu.actions{
             .section-cm-edit-actions{

@@ -1108,11 +1108,21 @@ body#page-course-view-remuiformat .text-clamp.text-clamp-5 {
   -webkit-line-clamp: 5;
 }
 
-body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright, body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
+body#page-course-view-remuiformat .row {
+  margin: unset;
+}
+
+body#page-course-view-remuiformat #page.drawers div[role="main"] {
+  padding: unset;
+}
+
+body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright,
+body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
   display: none;
 }
 
-body#page-course-view-remuiformat #region-top-blocks.pb-3, body#page-course-view-remuiformat #region-top-blocks.py-3 {
+body#page-course-view-remuiformat #region-top-blocks.pb-3,
+body#page-course-view-remuiformat #region-top-blocks.py-3 {
   padding: 0px !important;
 }
 
