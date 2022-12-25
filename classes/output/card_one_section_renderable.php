@@ -31,6 +31,7 @@ use stdClass;
 use html_writer;
 use context_course;
 use core_completion\progress;
+use core\activity_dates;
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_format_data_common_trait.php');
@@ -264,6 +265,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->modulefullname = $mod->modfullname;
                 $activitydetails->modstealth = $mod->is_stealth();
+                // $data = $OUTPUT->render_from_template("core_course/activity_date", $activitydetails);
+
                 $activitydetails->summary = $this->modstats->get_formatted_summary(
                     $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions),
                     $this->settings
@@ -281,8 +284,9 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $activitydetails->hidden = 1;
                 }
 
-                // $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_availability($this->course, $section);
                 $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $displayoptions);
+
+                $this->courseformatdatacommontrait->get_opendue_status($activitydetails, $activitydetails->availstatus, $mod);
 
                 if ($PAGE->user_is_editing()) {
                     $activitydetails->editing = 1;

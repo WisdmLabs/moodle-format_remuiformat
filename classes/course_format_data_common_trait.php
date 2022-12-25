@@ -27,7 +27,8 @@ use html_writer;
 use context_course;
 use cm_info;
 use core_courseformat\output\local\content\section;
-
+use core_completion\progress;
+use core\activity_dates;
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 
 /**
@@ -631,7 +632,6 @@ class course_format_data_common_trait {
             $section,
             $displayoptions,
         );
-
         $renderer = $format->get_renderer($PAGE);
         return $renderer->render($cmlist);
     }
@@ -895,6 +895,215 @@ class course_format_data_common_trait {
             return array('src' => $src, 'alt' => $alt);
         } else {
             return false;
+        }
+    }
+
+    // It will add the open due data in  activity context
+    public function get_opendue_status(&$activitydetails, $availstatus, $mod) {
+        global $USER;
+        if (empty($availstatus)) {
+            $activitydetails->opendue = activity_dates::get_dates_for_module($mod, $USER->id);
+            if ($activitydetails->opendue) {
+                $activitydetails->hasopenduedata = true;
+                foreach ($activitydetails->opendue as $key => $data) {
+                    $activitydetails->opendue[$key]['timestamp'] = userdate($data['timestamp']);
+                }
+            }
+        }
+    }
+
+    /**
+     * Get activities details from section
+     * @param  object $section        Section object
+     * @param  array  $displayoptions Display options
+     * @return array                  Output array
+     */
+    private function get_activities_details($section, $course, $courserenderer, $settings, $displayoptions = array()) {
+        global $PAGE, $USER;
+        $modinfo = get_fast_modinfo($course);
+        $output = array();
+
+        $completioninfo = new \completion_info($course);
+        if (!empty($modinfo->sections[$section->section])) {
+            $count = 1;
+            foreach ($modinfo->sections[$section->section] as $modnumber) {
+                $mod = $modinfo->cms[$modnumber];
+                $context = \context_module::instance($mod->id);
+                if (!$mod->is_visible_on_course_page()) {
+                    continue;
+                }
+                $completiondata = $completioninfo->get_data($mod, true);
+                $activitydetails = new \stdClass();
+                $activitydetails->index = $count;
+                $activitydetails->id = $mod->id;
+                $activitydetails->modstealth = $mod->is_stealth();
+                $activitydetails = $this->activity_completion(
+                    $course,
+                    $completioninfo,
+                    $activitydetails,
+                    $mod,
+                    $courserenderer,
+                    $displayoptions
+                );
+                $activitydetails->viewurl = $mod->url;
+                $activitydetails->title = $this->course_section_cm_name($mod, $displayoptions);
+                if (array_search($mod->modname, array('folder')) !== false) {
+                    $activitydetails->title .= $this->course_section_cm_text($mod, $displayoptions);
+                }
+                $activitydetails->title .= $mod->afterlink;
+                $activitydetails->modulename = $mod->modname;
+                if ($mod->modname != 'folder') {
+                    $activitydetails->summary = $this->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->summary = $this->modstats->get_formatted_summary(
+                        $activitydetails->summary,
+                        $settings
+                    );
+                    if ($mod->modname == 'label') {
+                        $activitydetails->title = $activitydetails->summary;
+                        $activitydetails->summary = '';
+                    }
+                } else {
+                    $activitydetails->summary = '';
+                }
+                if ($mod->visible == 0) {
+                    $activitydetails->notavailable = true;
+                    if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
+                        $activitydetails->hiddenfromstudents = true;
+                        $activitydetails->notavailable = false;
+                    }
+                }
+                $activitydetails->completed = $completiondata->completionstate;
+                $modicons = '';
+                if ($mod->visible == 0) {
+                    $activitydetails->hidden = 1;
+                }
+
+                $availstatus = $this->course_section_cm_availability($mod, $displayoptions);
+                // it will add  the open due data in activitydetails context address is passed as argument
+                $this->get_opendue_status($activitydetails, $availstatus, $mod);
+
+                if (trim($availstatus) != '') {
+                    $activitydetails->availstatus = $availstatus;
+                }
+                if ($PAGE->user_is_editing()) {
+
+                    $modicons .= $this->course_section_cm_controlmenu($mod, $section, $displayoptions);
+
+                    $modicons .= $mod->afterediticons;
+                    $activitydetails->modicons = $modicons;
+                }
+                $output[] = $activitydetails;
+                $count++;
+            }
+        }
+        return $output;
+    }
+
+    public function add_generalsection_data(&$export, $renderer, $editing, $course, $courseformat, $courserenderer) {
+        $modinfo = get_fast_modinfo($course);
+        $coursecontext = context_course::instance($course->id);
+        $sections = $modinfo->get_section_info_all();
+        $hidegeneralsection = $courseformat->hide_general_section_when_empty($course, $modinfo);
+        $settings = $courseformat->get_settings();
+        if (!$hidegeneralsection) {
+            // Setting up data for General Section.
+            $generalsection = $modinfo->get_section_info(0);
+            $export->generalsection['index'] = 0;
+            $generalsectionsummary = $renderer->format_summary_text($generalsection);
+            if (empty($generalsectionsummary)) {
+                $generalsectionsummary = $course->summary;
+            }
+            if ($generalsection) {
+                if ($editing) {
+                    $export->generalsection['title'] = $renderer->section_title($generalsection, $course);
+                    $export->generalsection['editsetionurl'] = new \moodle_url(
+                        'editsection.php',
+                        array('id' => $generalsection->id)
+                    );
+                    $export->generalsection['leftsection'] = $renderer->section_left_content(
+                        $generalsection,
+                        $course,
+                        false
+                    );
+                    // New menu option.
+                    $export->generalsection['optionmenu'] = $this->course_section_controlmenu(
+                        $course,
+                        $generalsection
+                    );
+                } else {
+                    $export->generalsection['title'] = $courseformat->get_section_name($generalsection);
+                }
+
+                $generalsecactivities = $this->get_activities_details($generalsection, $course, $courserenderer, $settings);
+                $export->generalsection['activities'] = $generalsecactivities;
+                // Check if activities exists in general section.
+                if ( !empty($generalsecactivities) ) {
+                    $export->generalsection['activityexists'] = 1;
+                } else {
+                    $export->generalsection['activityexists'] = 0;
+                }
+
+                $export->generalsection['availability'] = $this->course_section_availability(
+                    $course,
+                    $generalsection
+                );
+
+                $export->generalsection['summary'] = $renderer->abstract_html_contents(
+                    $generalsectionsummary, 400
+                );
+                $export->generalsection['fullsummary'] = $generalsectionsummary;
+
+                // Get course image if added.
+                $imgurl = $this->display_file(
+                    $coursecontext,
+                    $settings['remuicourseimage_filemanager']
+                );
+                if (empty($imgurl)) {
+                    $imgurl = $this->get_dummy_image_for_id($course->id);
+                }
+                $export->generalsection['coursemainimage'] = $imgurl;
+                // it will add extra data to the $export , this method takes 3 arguments $export, course, course progress percentage.
+                get_extra_header_context($export, $course, progress::get_course_progress_percentage($course), $imgurl);
+                // Get the all activities count from the all sections.
+                $sectionmods = array();
+                for ($i = 0; $i < count($sections); $i++) {
+                    if (isset($modinfo->sections[$i])) {
+                        foreach ($modinfo->sections[$i] as $cmid) {
+                            $thismod = $modinfo->cms[$cmid];
+                            if (!$thismod->is_visible_on_course_page()) {
+                                continue;
+                            }
+                            if (isset($sectionmods[$thismod->modname])) {
+                                $sectionmods[$thismod->modname]['name'] = $thismod->modplural;
+                                $sectionmods[$thismod->modname]['count']++;
+                            } else {
+                                $sectionmods[$thismod->modname]['name'] = $thismod->modfullname;
+                                $sectionmods[$thismod->modname]['count'] = 1;
+                            }
+                        }
+                    }
+                }
+                $lastactivitydata = end($sectionmods);
+                foreach ($sectionmods as $mod) {
+                    if ($lastactivitydata != $mod) {
+                        $output['activitylist'][] = $mod['count'].' '.$mod['name'].',';
+                    } else {
+                        $output['activitylist'][] = $mod['count'].' '.$mod['name'].'.';
+                    }
+                }
+                $export->activitylist = $output['activitylist'];
+
+                if ($export->generalsection['percentage'] != 100) {
+                    // Get reseume activity link.
+                    $export->resumeactivityurl = $this->get_activity_to_resume($course);
+                }
+                // Add new activity.
+                $export->generalsection['addnewactivity'] = $courserenderer->course_section_add_cm_control(
+                    $course,
+                    0,
+                    0
+                );
+            }
         }
     }
 }

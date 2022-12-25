@@ -175,7 +175,19 @@
                                     {{/summary}}
                                 </div>
                             </div>
-
+                            {{#hasopenduedata}}
+                            <div class="description text-left">
+                                <div data-region="activity-dates" class="activity-dates small course-description-item">
+                                    <div class="description-inner">
+                                        {{#opendue}}
+                                        <div>
+                                            <strong>{{label}}</strong> {{timestamp}}
+                                        </div>
+                                        {{/opendue}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{/hasopenduedata}}
                             {{#completion}}
                             <div
                                 class="completion-container {{#manualcompletion}}manual-completion{{/manualcompletion}} align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">

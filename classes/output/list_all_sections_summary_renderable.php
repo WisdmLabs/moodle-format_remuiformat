@@ -125,88 +125,7 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
 
         return  $export;
     }
-        /**
-         * Get activities details from section
-         * @param  object $section        Section object
-         * @param  array  $displayoptions Display options
-         * @return array                  Output array
-         */
-    private function get_activities_details($section, $displayoptions = array()) {
-        global $PAGE, $USER;
-        $modinfo = get_fast_modinfo($this->course);
-        $output = array();
-        $completioninfo = new \completion_info($this->course);
-        if (!empty($modinfo->sections[$section->section])) {
-            $count = 1;
-            foreach ($modinfo->sections[$section->section] as $modnumber) {
-                $mod = $modinfo->cms[$modnumber];
-                $context = \context_module::instance($mod->id);
-                if (!$mod->is_visible_on_course_page()) {
-                    continue;
-                }
-                $completiondata = $completioninfo->get_data($mod, true);
-                $activitydetails = new \stdClass();
-                $activitydetails->index = $count;
-                $activitydetails->id = $mod->id;
-                $activitydetails = $this->courseformatdatacommontrait->activity_completion(
-                    $this->course,
-                    $completioninfo,
-                    $activitydetails,
-                    $mod,
-                    $this->courserenderer,
-                    $displayoptions
-                );
-                $activitydetails->viewurl = $mod->url;
-                $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
-                if (array_search($mod->modname, array('folder')) !== false) {
-                    $activitydetails->title .= $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions);
-                }
-                $activitydetails->title .= $mod->afterlink;
-                $activitydetails->modulename = $mod->modname;
-                if ($mod->modname != 'folder') {
-                    $activitydetails->summary = $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions);
-                    $activitydetails->summary = $this->modstats->get_formatted_summary(
-                        $activitydetails->summary,
-                        $this->settings
-                    );
-                    if ($mod->modname == 'label') {
-                        $activitydetails->title = $activitydetails->summary;
-                        $activitydetails->summary = '';
-                    }
-                } else {
-                    $activitydetails->summary = '';
-                }
-                if ($mod->visible == 0) {
-                    $activitydetails->notavailable = true;
-                    if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
-                        $activitydetails->hiddenfromstudents = true;
-                        $activitydetails->notavailable = false;
-                    }
-                }
-                $activitydetails->completed = $completiondata->completionstate;
-                $modicons = '';
-                if ($mod->visible == 0) {
-                    $activitydetails->hidden = 1;
-                }
 
-                $availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $displayoptions);
-
-                if (trim($availstatus) != '') {
-                    $activitydetails->availstatus = $availstatus;
-                }
-                if ($PAGE->user_is_editing()) {
-
-                    $modicons .= $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section, $displayoptions);
-
-                    $modicons .= $mod->afterediticons;
-                    $activitydetails->modicons = $modicons;
-                }
-                $output[] = $activitydetails;
-                $count++;
-            }
-        }
-        return $output;
-    }
 
     /**
      * Get list layout context
@@ -219,7 +138,6 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
         global $DB, $OUTPUT, $USER;
         $coursecontext = context_course::instance($this->course->id);
         $modinfo = get_fast_modinfo($this->course);
-        $hidegeneralsection = $this->courseformat->hide_general_section_when_empty($this->course, $modinfo);
         $sections = $modinfo->get_section_info_all();
         // Default view for all sections.
         $defaultview = $this->settings['remuidefaultsectionview'];
@@ -234,107 +152,7 @@ class format_remuiformat_list_all_sections_summary implements renderable, templa
         $export->user_id = $USER->id;
         // Course Information.
         $export->courseid = $this->course->id;
-
-        if (!$hidegeneralsection) {
-            // Setting up data for General Section.
-            $generalsection = $modinfo->get_section_info(0);
-            $export->generalsection['index'] = 0;
-            $generalsectionsummary = $renderer->format_summary_text($generalsection);
-            if (empty($generalsectionsummary)) {
-                $generalsectionsummary = $this->course->summary;
-            }
-            if ($generalsection) {
-                if ($editing) {
-                    $export->generalsection['title'] = $renderer->section_title($generalsection, $this->course);
-                    $export->generalsection['editsetionurl'] = new \moodle_url(
-                        'editsection.php',
-                        array('id' => $generalsection->id)
-                    );
-                    $export->generalsection['leftsection'] = $renderer->section_left_content(
-                        $generalsection,
-                        $this->course,
-                        false
-                    );
-                    // New menu option.
-                    $export->generalsection['optionmenu'] = $this->courseformatdatacommontrait->course_section_controlmenu(
-                        $this->course,
-                        $generalsection
-                    );
-                } else {
-                    $export->generalsection['title'] = $this->courseformat->get_section_name($generalsection);
-                }
-
-                $generalsecactivities = $this->get_activities_details($generalsection);
-                $export->generalsection['activities'] = $generalsecactivities;
-                // Check if activities exists in general section.
-                if ( !empty($generalsecactivities) ) {
-                    $export->generalsection['activityexists'] = 1;
-                } else {
-                    $export->generalsection['activityexists'] = 0;
-                }
-
-                $export->generalsection['availability'] = $this->courseformatdatacommontrait->course_section_availability(
-                    $this->course,
-                    $generalsection
-                );
-
-                $export->generalsection['summary'] = $renderer->abstract_html_contents(
-                    $generalsectionsummary, 400
-                );
-                $export->generalsection['fullsummary'] = $generalsectionsummary;
-
-                // Get course image if added.
-                $imgurl = $this->courseformatdatacommontrait->display_file(
-                    $coursecontext,
-                    $this->settings['remuicourseimage_filemanager']
-                );
-                if (empty($imgurl)) {
-                    $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
-                }
-                $export->generalsection['coursemainimage'] = $imgurl;
-                // it will add extra data to the $export , this method takes 3 arguments $export, course, course progress percentage.
-                get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course), $imgurl);
-                // Get the all activities count from the all sections.
-                $sectionmods = array();
-                for ($i = 0; $i < count($sections); $i++) {
-                    if (isset($modinfo->sections[$i])) {
-                        foreach ($modinfo->sections[$i] as $cmid) {
-                            $thismod = $modinfo->cms[$cmid];
-                            if (!$thismod->is_visible_on_course_page()) {
-                                continue;
-                            }
-                            if (isset($sectionmods[$thismod->modname])) {
-                                $sectionmods[$thismod->modname]['name'] = $thismod->modplural;
-                                $sectionmods[$thismod->modname]['count']++;
-                            } else {
-                                $sectionmods[$thismod->modname]['name'] = $thismod->modfullname;
-                                $sectionmods[$thismod->modname]['count'] = 1;
-                            }
-                        }
-                    }
-                }
-                $lastactivitydata = end($sectionmods);
-                foreach ($sectionmods as $mod) {
-                    if ($lastactivitydata != $mod) {
-                        $output['activitylist'][] = $mod['count'].' '.$mod['name'].',';
-                    } else {
-                        $output['activitylist'][] = $mod['count'].' '.$mod['name'].'.';
-                    }
-                }
-                $export->activitylist = $output['activitylist'];
-
-                if ($export->generalsection['percentage'] != 100) {
-                    // Get reseume activity link.
-                    $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
-                }
-                // Add new activity.
-                $export->generalsection['addnewactivity'] = $this->courserenderer->course_section_add_cm_control(
-                    $this->course,
-                    0,
-                    0
-                );
-            }
-        }
+        $this->courseformatdatacommontrait->add_generalsection_data($export, $renderer, $editing, $this->course, $this->courseformat,  $this->courserenderer);
         $export->sections = $this->courseformatdatacommontrait->get_all_section_data(
             $renderer,
             $editing,
