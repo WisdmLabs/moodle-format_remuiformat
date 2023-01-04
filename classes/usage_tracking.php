@@ -63,11 +63,12 @@ class usage_tracking {
                     $url = "https://edwiser.org/wp-json/edwiser_customizations/send_usage_data";
                     // Call api endpoint with data.
                     $ch = curl_init();
-
+                    $useragent = $_SERVER['HTTP_USER_AGENT'] . ' - ' . $CFG->wwwroot;
                     // Set the url, number of POST vars, POST data.
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $analyticsdata);
+                    curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                         'Content-Type: application/json',
