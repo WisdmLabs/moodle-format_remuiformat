@@ -441,6 +441,9 @@ body#page-course-view-remuiformat {
                                     .description-inner{
                                         color: $paragraph-color;
                                         text-align: left;
+                                        .icon{
+                                            margin: unset;
+                                        }
                                     }
                                 }
 

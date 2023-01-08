@@ -1593,6 +1593,10 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   text-align: left;
 }
 
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .availabilityinfo .description-inner .icon {
+  margin: unset;
+}
+
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .actions {
   display: flex;
   position: relative;
