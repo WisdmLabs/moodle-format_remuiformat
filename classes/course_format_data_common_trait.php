@@ -128,6 +128,7 @@ class course_format_data_common_trait {
                 $cmcompletion,
                 []
             );
+            $activitydetails->completion = str_replace("btn-outline-secondary", "btn-secondary", $activitydetails->completion);
             // Check if completion is enabled. Set manual completion only if it not automatic.
             if ($cmcompletion->has_completion() && $cmcompletion->is_automatic() != true) {
                 $activitydetails->manualcompletion = true;
