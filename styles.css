@@ -1116,13 +1116,11 @@ body#page-course-view-remuiformat #page.drawers div[role="main"] {
   padding: unset;
 }
 
-body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright,
-body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
+body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright, body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
   display: none;
 }
 
-body#page-course-view-remuiformat #region-top-blocks.pb-3,
-body#page-course-view-remuiformat #region-top-blocks.py-3 {
+body#page-course-view-remuiformat #region-top-blocks.pb-3, body#page-course-view-remuiformat #region-top-blocks.py-3 {
   padding: 0px !important;
 }
 
@@ -1744,9 +1742,9 @@ body#page-course-view-remuiformat .wdm-completion-container .autocompletion img 
 body#page-course-view-remuiformat .section-summary-activities,
 body#page-course-view-remuiformat .summary .no-overflow p {
   color: #4C5A73;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  font-size: 13px;
+  line-height: 22px;
+  font-weight: 600;
 }
 
 body#page-course-view-remuiformat .flex-1 {
@@ -1914,4 +1912,8 @@ body#page-course-view-remuiformat .modchoosercontainer .chooser-container .tab-c
   margin-right: unset !important;
   margin: auto !important;
   margin-top: 15px !important;
+}
+
+body#page-course-view-remuiformat .badge-primary {
+  background-color: #1C376F;
 }

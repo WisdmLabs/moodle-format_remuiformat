@@ -605,7 +605,7 @@ body#page-course-view-remuiformat {
     .summary .no-overflow p {
         // padding: 2px 0 8px 0;
         color: $paragraph-color;
-        @include frmt-font-styling(16px, 24px, 400);
+        @include frmt-font-styling(13px, 22px, 600);
     }
     .flex-1 {
         flex: 1;
@@ -786,5 +786,9 @@ body#page-course-view-remuiformat {
                 }
             }
         }
+    }
+
+    .badge-primary{
+        background-color: $asscent-bg-color;
     }
 }
