@@ -51,6 +51,20 @@ body#page-course-view-remuiformat.editing .remui-format-card.single-section-form
   margin-bottom: 30px;
 }
 
+body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .btn.btn-icon:hover,
+body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .btn.btn-icon:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .text-muted .fa-cog, body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .icon {
+  color: #fff;
+}
+
+body#page-course-view-remuiformat.editing .remui-format-card .dark .text-muted .fa-cog {
+  color: #fff;
+}
+
 body#page-course-view-remuiformat .sections .single-card-container {
   margin-bottom: 28px;
 }
@@ -1362,6 +1376,10 @@ body#page-course-view-remuiformat.editing .general-section-activities .activity.
   padding-top: 0.714rem;
 }
 
+body#page-course-view-remuiformat .activity.activity-wrapper .activity-item .description .activity-dates .description-inner div {
+  line-height: 22px;
+}
+
 body#page-course-view-remuiformat .activityiconcontainer {
   border-radius: 16px;
   margin-right: 0 !important;
@@ -1571,6 +1589,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   border: 1px solid #EBF0F9;
   border-radius: 8px;
   min-height: 350px;
+  transition: all 0.5s ease;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:hover {

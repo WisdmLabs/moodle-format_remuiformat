@@ -31,6 +31,23 @@
                 }
             }
         }
+
+        .dark {
+            .action-menu-trigger {
+                .btn.btn-icon:hover,
+                .btn.btn-icon:focus {
+                    background-color: transparent ;
+                    box-shadow: none ;
+                }
+                .text-muted .fa-cog,.icon {
+                    color: $white;
+                }
+            }
+            .text-muted .fa-cog {
+                color: $white;
+            }
+
+        }
     }
 }
 
