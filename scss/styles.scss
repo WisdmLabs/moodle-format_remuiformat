@@ -426,6 +426,7 @@ body#page-course-view-remuiformat {
                                 border: $border-height solid $light-border;
                                 border-radius: $border-radius-8;
                                 min-height: 350px;
+                                transition: all 0.5s ease;
                                 &:hover{
                                     box-shadow: $card-box-shadow;
                                 }
