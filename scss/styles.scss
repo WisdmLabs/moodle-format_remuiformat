@@ -235,7 +235,9 @@ body#page-course-view-remuiformat {
             }
         }
     }
-
+    .activity.activity-wrapper .activity-item .description .activity-dates .description-inner div {
+        line-height: 22px;
+    }
     .activityiconcontainer {
         border-radius: $border-radius-16;
         margin-right: 0 !important;
