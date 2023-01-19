@@ -81,7 +81,7 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         // Adding fields to table remuiformat_course_module_visits.
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
         $table->add_field('course', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
-        $table->add_field('user', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('cm', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('timevisited', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
 
@@ -99,6 +99,10 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         // Remuiformat savepoint reached.
         upgrade_plugin_savepoint(true, 2021070800, 'format', 'remuiformat');
     }
+
+    $table = new xmldb_table('remuiformat_course_visits');
+    $field = new xmldb_field('user', XMLDB_TYPE_INTEGER, 10);
+    $dbman->rename_field($table, $field, 'userid');
 
     return true;
 }

@@ -553,7 +553,7 @@ class course_format_data_common_trait {
         $lastviewed = $DB->get_record('remuiformat_course_visits',
             array(
                 'course' => $course->id,
-                'user' => $USER->id
+                'userid' => $USER->id
             )
         );
 
