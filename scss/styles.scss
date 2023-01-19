@@ -794,4 +794,10 @@ body#page-course-view-remuiformat {
     .badge-primary{
         background-color: $asscent-bg-color;
     }
+
+    .contentwithoutlink,
+    .contentafterlink{
+        max-height: $summary-max-height;
+        overflow: auto;
+    }
 }

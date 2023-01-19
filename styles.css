@@ -1098,8 +1098,8 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 }
 
 body#page-course-view-remuiformat .text-clamp {
-  display: -webkit-box;
-  overflow: hidden;
+  display: -webkit-box !important;
+  overflow: hidden !important;
 }
 
 body#page-course-view-remuiformat .text-clamp.text-clamp-1 {
@@ -1935,4 +1935,10 @@ body#page-course-view-remuiformat .modchoosercontainer .chooser-container .tab-c
 
 body#page-course-view-remuiformat .badge-primary {
   background-color: #1C376F;
+}
+
+body#page-course-view-remuiformat .contentwithoutlink,
+body#page-course-view-remuiformat .contentafterlink {
+  max-height: 300px;
+  overflow: auto;
 }

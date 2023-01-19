@@ -80,14 +80,14 @@
         <div class="content {{#sectionfirstimage}}frmt-pt-50{{/sectionfirstimage}}">
             <div class="summary d-none"></div>
             {{#addnewsection}}
-            <h2 class="sectionname m-0">{{{ title }}}</h2>
+            <h2 class="sectionname m-0 text-clamp text-clamp-3" style="-webkit-box-orient: vertical;">{{{ title }}}</h2>
             {{/addnewsection}}
             {{^addnewsection}}
             <div class="section-header d-inline">
                 {{^hidden}}
                 <a href="{{{ singlepageurl }}}" class="align-middle">
                     {{/hidden}}
-                    <h2 class="sectionname m-0 d-inline bg-transparent">{{{ title }}}</h2>
+                    <h2 class="sectionname m-0 d-inline bg-transparent text-clamp text-clamp-3" style="-webkit-box-orient: vertical;">{{{ title }}}</h2>
 
                     {{^hidden}}
                 </a>

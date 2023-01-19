@@ -1,8 +1,8 @@
 $ellipsis-range: 5;
 .text-clamp {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
 
     @for $i from 1 through $ellipsis-range {
         &.text-clamp-#{$i} {

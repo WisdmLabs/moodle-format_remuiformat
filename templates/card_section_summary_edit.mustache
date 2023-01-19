@@ -94,7 +94,7 @@
             <div class="summary d-none">
             </div>
             {{#addnewsection}}
-                <h2 class="sectionname m-0 d-inline bg-transparent">{{{ title }}}
+                <h2 class="sectionname m-0 d-inline bg-transparent text-clamp text-clamp-3" style="-webkit-box-orient: vertical;">{{{ title }}}
                     <div data-region="sectionbadges" class="sectionbadges d-inline mt-2">
                         {{> core_courseformat/local/content/section/badges }}
                     </div>
@@ -105,7 +105,7 @@
                     {{^hidden}}
                         <a href="{{{ singlepageurl }}}" class="align-middle">
                     {{/hidden}}
-                        <h2 class="sectionname m-0 d-inline bg-transparent">{{{ title }}}</h2>
+                        <h2 class="sectionname m-0 d-inline bg-transparent text-clamp text-clamp-3" style="-webkit-box-orient: vertical;">{{{ title }}}</h2>
                     {{^hidden}}
                         </a>
                     {{/hidden}}
