@@ -248,8 +248,19 @@ body#page-course-view-remuiformat {
             height: $activity-icon-height !important;
         }
     }
+    .course-section-header{
+        .sectionname{
+            .panel-title{
+                .text-success{
+                    margin-left: 5px;
+                    margin-top: 5px;
+                }
+            }
+        }
 
-    .automatic-completion-conditions {
+    }
+
+  .automatic-completion-conditions {
         display: flex;
         flex-direction: column;
         gap: $gap-8;

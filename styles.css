@@ -1392,6 +1392,11 @@ body#page-course-view-remuiformat .activityiconcontainer .activityinstance img {
   height: 28px !important;
 }
 
+body#page-course-view-remuiformat .course-section-header .sectionname .panel-title .text-success {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
 body#page-course-view-remuiformat .automatic-completion-conditions {
   display: flex;
   flex-direction: column;
