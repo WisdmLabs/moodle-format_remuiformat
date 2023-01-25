@@ -99,10 +99,11 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         // Remuiformat savepoint reached.
         upgrade_plugin_savepoint(true, 2021070800, 'format', 'remuiformat');
     }
-
     $table = new xmldb_table('remuiformat_course_visits');
     $field = new xmldb_field('user', XMLDB_TYPE_INTEGER, 10);
-    $dbman->rename_field($table, $field, 'userid');
+    if ($dbman->field_exists($table, $field)) {
+        $dbman->rename_field($table, $field, 'userid');
+    }
 
     return true;
 }
