@@ -1766,9 +1766,10 @@ body#page-course-view-remuiformat .wdm-completion-container .autocompletion img 
 body#page-course-view-remuiformat .section-summary-activities,
 body#page-course-view-remuiformat .summary .no-overflow p {
   color: #4C5A73;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 22px;
   font-weight: 600;
+  font-weight: bold;
 }
 
 body#page-course-view-remuiformat .flex-1 {

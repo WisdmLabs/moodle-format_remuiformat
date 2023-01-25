@@ -619,7 +619,8 @@ body#page-course-view-remuiformat {
     .summary .no-overflow p {
         // padding: 2px 0 8px 0;
         color: $paragraph-color;
-        @include frmt-font-styling(13px, 22px, 600);
+        @include frmt-font-styling(14px, 22px, 600);
+        font-weight: bold;
     }
     .flex-1 {
         flex: 1;
