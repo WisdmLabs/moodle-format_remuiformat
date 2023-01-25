@@ -254,7 +254,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname *,
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .wdm-section-summary *,
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .section-activities-summary {
-  color: #fff;
+  color: #fff !important;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .ignoredirty, body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .editinstructions {
