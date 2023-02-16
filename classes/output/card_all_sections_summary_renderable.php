@@ -28,11 +28,6 @@ use renderable;
 use renderer_base;
 use templatable;
 use stdClass;
-use context_course;
-use html_writer;
-use moodle_url;
-use core_completion\progress;
-use core_course\external\course_summary_exporter;
 
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/renderer.php');
@@ -141,7 +136,14 @@ class format_remuiformat_card_all_sections_summary implements renderable, templa
         global $PAGE;
         $output = array();
         $export->courseid = $this->course->id;
-        $this->courseformatdatacommontrait->add_generalsection_data($export, $renderer, $editing, $this->course, $this->courseformat,  $this->courserenderer);
+        $this->courseformatdatacommontrait->add_generalsection_data(
+            $export,
+            $renderer,
+            $editing,
+            $this->course,
+            $this->courseformat,
+            $this->courserenderer
+        );
         // Setting up data for remianing sections.
         $export->sections = $this->courseformatdatacommontrait->get_all_section_data(
             $renderer,

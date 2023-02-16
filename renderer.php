@@ -152,7 +152,6 @@ class format_remuiformat_renderer extends section_renderer {
                 if (!$sections[$back]->visible) {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
                 }
-                // $previouslink = html_writer::tag('span', $this->output->larrow(), array('class' => 'larrow'));
                 $previouslink = html_writer::tag('span', "&#10229;", array('class' => 'larrow mr-1'));
                 $previouslink .=
                 (core_text::strlen($prevsectionname) > 15) ? core_text::substr($prevsectionname, 0, 15)."..." : $prevsectionname;
@@ -172,7 +171,6 @@ class format_remuiformat_renderer extends section_renderer {
                 $nextsectionname = get_section_name($course, $sections[$forward]);
                 $nextlink =
                 (core_text::strlen($nextsectionname) > 15) ? core_text::substr($nextsectionname, 0, 15)."..." : $nextsectionname;
-                // $nextlink .= html_writer::tag('span', $this->output->rarrow(), array('class' => 'rarrow'));
                 $nextlink .= html_writer::tag('span', "&#10230;", array('class' => 'rarrow ml-1'));
                 $links['next'] = html_writer::link(course_get_url($course, $forward), $nextlink, $params);
             }

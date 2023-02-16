@@ -31,7 +31,6 @@ use stdClass;
 use html_writer;
 use context_course;
 use core_completion\progress;
-use core\activity_dates;
 require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_format_data_common_trait.php');
@@ -169,8 +168,14 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // New menu option.
         $export->optionmenu = $this->courseformatdatacommontrait->course_section_controlmenu($this->course, $currentsection);
-        // Progress bar information
-        $extradetails = $this->courseformatdatacommontrait->get_section_module_info($currentsection, $this->course, null, $singlepageurl);
+
+        // Progress bar information.
+        $extradetails = $this->courseformatdatacommontrait->get_section_module_info(
+            $currentsection,
+            $this->course,
+            null,
+            $singlepageurl
+        );
         $export->progressinfo = $extradetails['progressinfo'];
         // Title.
         $sectionname = $renderer->section_title_without_link($currentsection, $this->course);
@@ -208,7 +213,12 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
         }
         $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
-        $export->headerdata = get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course), $imgurl);
+        $export->headerdata = get_extra_header_context(
+            $export,
+            $this->course,
+            progress::get_course_progress_percentage($this->course),
+            $imgurl
+        );
         $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }
@@ -265,17 +275,20 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->modulefullname = $mod->modfullname;
                 $activitydetails->modstealth = $mod->is_stealth();
-                // $data = $OUTPUT->render_from_template("core_course/activity_date", $activitydetails);
 
                 $activitydetails->summary = $this->modstats->get_formatted_summary(
                     $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
+
                 // In case of label activity send full text of cm to open in modal.
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
                     $activitydetails->label = 1;
-                    $activitydetails->fullcontent = $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions);
+                    $activitydetails->fullcontent = $this->courseformatdatacommontrait->course_section_cm_text(
+                        $mod,
+                        $displayoptions
+                    );
                 }
 
                 $activitydetails->completed = $completiondata->completionstate;
@@ -284,7 +297,10 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $activitydetails->hidden = 1;
                 }
 
-                $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_cm_availability($mod, $displayoptions);
+                $activitydetails->availstatus = $this->courseformatdatacommontrait->course_section_cm_availability(
+                    $mod,
+                    $displayoptions
+                );
 
                 $this->courseformatdatacommontrait->get_opendue_status($activitydetails, $activitydetails->availstatus, $mod);
 

@@ -23,8 +23,6 @@
 
 namespace format_remuiformat;
 
-defined('MOODLE_INTERNAL') || die;
-
 use html_writer;
 
 /**

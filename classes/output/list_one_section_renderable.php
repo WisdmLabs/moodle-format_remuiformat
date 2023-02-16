@@ -204,7 +204,12 @@ class format_remuiformat_list_one_section implements renderable, templatable {
             $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
         }
         $export->resumeactivityurl = $this->courseformatdatacommontrait->get_activity_to_resume($this->course);
-        $export->headerdata = get_extra_header_context($export, $this->course, progress::get_course_progress_percentage($this->course), $imgurl);
+        $export->headerdata = get_extra_header_context(
+            $export,
+            $this->course,
+            progress::get_course_progress_percentage($this->course),
+            $imgurl
+        );
         $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
         return $export;
     }

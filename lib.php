@@ -33,6 +33,20 @@ define ('REMUI_LIST_FORMAT', 1);
 class format_remuiformat extends core_courseformat\base {
 
     /**
+     * Settings
+     *
+     * @var array
+     */
+    public $settings = [];
+
+    /**
+     * Available layouts.
+     *
+     * @var array
+     */
+    private $availablelayouts = [];
+
+    /**
      * Show course activity index on course page left sidebar.
      *
      * @return bool
@@ -251,10 +265,6 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => get_config('format_remuiformat', 'defaultsectionsummarymaxlength'),
                     'type' => PARAM_INT
                 ),
-                // 'remuiteacherdisplay' => array(
-                //     'default' => 1,
-                //     'type' => PARAM_INT
-                // ),
                 'remuidefaultsectionview' => array(
                     'default' => 1,
                     'type' => PARAM_INT
@@ -263,10 +273,6 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => 0,
                     'type' => PARAM_INT
                 ),
-                // 'headereditingbutton' => array(
-                // 'default' => 1,
-                // 'type' => PARAM_INT
-                // ),
                 'edw_format_hd_bgpos' => array(
                     'default' => "center",
                     'type' => PARAM_RAW
@@ -348,18 +354,6 @@ class format_remuiformat extends core_courseformat\base {
                     'help' => 'sectiontitlesummarymaxlength',
                     'help_component' => 'format_remuiformat'
                 ),
-                // 'remuiteacherdisplay' => array(
-                //     'label' => new lang_string('remuiteacherdisplay', 'format_remuiformat'),
-                //     'element_type' => 'select',
-                //     'element_attributes' => array(
-                //         array(
-                //             1 => new lang_string('yes'),
-                //             0 => new lang_string('no')
-                //         )
-                //     ),
-                //     'help' => 'remuiteacherdisplay',
-                //     'help_component' => 'format_remuiformat'
-                // ),
                 'remuidefaultsectionview' => array(
                     'label' => new lang_string('remuidefaultsectionview', 'format_remuiformat'),
                     'element_type' => 'select',
@@ -384,18 +378,6 @@ class format_remuiformat extends core_courseformat\base {
                     'help' => 'remuienablecardbackgroundimg',
                     'help_component' => 'format_remuiformat'
                 ),
-                // 'headereditingbutton' => array(
-                // 'label' => new lang_string('headereditingbutton', 'format_remuiformat'),
-                // 'element_type' => 'select',
-                // 'element_attributes' => array(
-                // array(
-                // 0 => new lang_string( 'defaultheader', 'format_remuiformat' ),
-                // 1 => new lang_string( 'remuiheader', 'format_remuiformat' ),
-                // )
-                // ),
-                // 'help' => 'remuidefaultsectiontheme',
-                // 'help_component' => 'format_remuiformat'
-                // ),
                 'edw_format_hd_bgpos' => array(
                     'label' => new lang_string('edw_format_hd_bgpos', 'format_remuiformat'),
                     'element_type' => 'select',
@@ -864,7 +846,7 @@ function get_enrolled_teachers_context_formate($courseid = null, $frontlineteach
 
     /**
      * Get course image.
-     * @param  array   $corecourselistelement Course list element
+     * @param  stdClass   $corecourselistelement Course list element
      * @param  boolean $islist                Is list
      * @return string                         Course image
      */

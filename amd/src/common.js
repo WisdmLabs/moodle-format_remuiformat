@@ -92,14 +92,14 @@ define(['jquery'], function($) {
             $(".showactivitywrapper").hide();
         }
 
-        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function () {
+        $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
 
             if ($(this).hasClass(SELECTORS.SHOW)) {
                 $(this).html('Show Less');
-                $(this).toggleClass(SELECTORS.SHOW); //Remove show class
+                $(this).toggleClass(SELECTORS.SHOW); // Remove show class
             } else {
                 $(this).html('Show More');
-                $(this).toggleClass(SELECTORS.SHOW); //Add show class
+                $(this).toggleClass(SELECTORS.SHOW); // Add show class
                 $("html, body").animate({
                     scrollTop: $(SELECTORS.FIRST_SECTION + ' .activity:first-child').offset().top - 66
                 }, "slow");
@@ -111,7 +111,7 @@ define(['jquery'], function($) {
         $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT},
                                ${SELECTORS.TOGGLE_SHOWHIDE},
                                ${SELECTORS.BUTTON_HIDE},
-                               ${SELECTORS.BUTTON_SHOW}`, function () {
+                               ${SELECTORS.BUTTON_SHOW}`, function() {
             location.reload();
         });
 
@@ -123,7 +123,6 @@ define(['jquery'], function($) {
         });
 
 
-
         // ... + Show full summary label show conditionally.
         var summaryheight = $('.read-more-target').height();
         if (summaryheight > 110) {
@@ -131,13 +130,13 @@ define(['jquery'], function($) {
             $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
             $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
         }
-        $('#readmorebtn').on('click', function () {
+        $('#readmorebtn').on('click', function() {
             $('.read-more-target .no-overflow').removeClass('text-clamp text-clamp-3');
             $('.read-more-target').removeClass('text-clamp text-clamp-3');
             $('.generalsectioninfo').find('#readmorebtn').addClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').removeClass('d-none');
         });
-        $('#readlessbtn').on('click', function () {
+        $('#readlessbtn').on('click', function() {
             $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
             $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');

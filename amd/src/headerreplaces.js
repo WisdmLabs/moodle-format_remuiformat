@@ -22,14 +22,14 @@
  */
 
 
-define(['jquery'], function ($) {
+define(['jquery'], function($) {
     /**
      * Init method
      *
      */
     function init() {
         // eslint-disable-next-line no-console
-        $(document).ready(function () {
+        $(document).ready(function() {
             var headercontent = $(".rmuiformate-header-wrapper").html();
             $('#page #page-header').replaceWith(headercontent);
             // $('.rmuiformate-header-wrapper').removeClass("d-none");

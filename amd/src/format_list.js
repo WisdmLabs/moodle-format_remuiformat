@@ -21,15 +21,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- define(['jquery', './common', './format_card_ordering'], function($, common, ordering) {
+define(['jquery', './common', './format_card_ordering'], function($, common, ordering) {
     /**
      * Init method
      *
      */
     function init() {
 
-        $('.general-single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 200, "swing");
-        $('.single-card').css({opacity: 0.0, visibility: "visible",}).animate({opacity: 1.0,}, 400, "swing");
+        $('.general-single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 200, "swing");
+        $('.single-card').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 400, "swing");
 
         $('.sections .section .toggle-icon, body:not(.editing) .sectionname').click(function(event) {
             let container = $(this).closest('li.section');
@@ -39,6 +39,7 @@
                 container.find('.card-footer').slideToggle('fast');
                 return false;
             }
+            return true;
         });
 
         common.init();
@@ -49,5 +50,5 @@
 
     return {
         init: init
-        };
- });
+    };
+});

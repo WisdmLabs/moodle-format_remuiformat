@@ -21,30 +21,30 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery'], function ($) {
+define(['jquery'], function($) {
     /**
      * Init method
      *
-     * @param availableFormats Available formates
+     * @param {Object} availableFormats Available formates
      */
     function init(availableFormats) {
         $(document).ready(function() {
-            var sectionlayout_val;
-            var sectionbackground_val;
-            var layout_value = $("#id_remuicourseformat").val();
+            var sectionLayoutVal;
+            var sectionBackgroundVal;
+            var layoutValue = $("#id_remuicourseformat").val();
             window.localStorage.setItem('coursedisplay', $("#id_coursedisplay").val());
             // Hide and show the course settings on course format selection.
             $("#id_remuicourseformat").change(function() {
-                var layout_value = $("#id_remuicourseformat").val();
+                var layoutValue = $("#id_remuicourseformat").val();
                 // CARD.
-                if (layout_value == availableFormats.REMUI_CARD_FORMAT.format) {
+                if (layoutValue == availableFormats.REMUI_CARD_FORMAT.format) {
                     $("#id_coursedisplay option[value='0']").hide();
                     $('#id_coursedisplay').val(1).trigger('change');
                     $("#id_remuiteacherdisplay").parent().parent().hide();
                     $("#id_remuidefaultsectionview").parent().parent().hide();
                     $("#id_remuienablecardbackgroundimg").parent().parent().show();
-                    sectionbackground_val = $("#id_remuienablecardbackgroundimg").val();
-                    if (sectionbackground_val == 0) {
+                    sectionBackgroundVal = $("#id_remuienablecardbackgroundimg").val();
+                    if (sectionBackgroundVal == 0) {
                         $("#id_remuidefaultsectiontheme").parent().parent().hide();
                     } else {
                         $("#id_remuidefaultsectiontheme").parent().parent().show();
@@ -58,8 +58,8 @@ define(['jquery'], function ($) {
                     $("#id_remuienablecardbackgroundimg").parent().parent().hide();
                     $("#id_remuidefaultsectiontheme").parent().parent().hide();
                 }
-                sectionlayout_val = $("#id_coursedisplay").val();
-                if (sectionlayout_val == 1) {
+                sectionLayoutVal = $("#id_coursedisplay").val();
+                if (sectionLayoutVal == 1) {
                     $("#id_remuidefaultsectionview").parent().parent().hide();
                 } else {
                     $("#id_remuidefaultsectionview").parent().parent().show();
@@ -67,12 +67,12 @@ define(['jquery'], function ($) {
             }).trigger('change');
 
             // CARD.
-            if (layout_value == availableFormats.REMUI_CARD_FORMAT.format) {
+            if (layoutValue == availableFormats.REMUI_CARD_FORMAT.format) {
                 $("#id_coursedisplay option[value='0']").hide();
                 $("#id_remuiteacherdisplay").parent().parent().hide();
                 $("#id_remuidefaultsectionview").parent().parent().hide();
-                sectionbackground_val = $("#id_remuienablecardbackgroundimg").val();
-                if (sectionbackground_val == 0) {
+                sectionBackgroundVal = $("#id_remuienablecardbackgroundimg").val();
+                if (sectionBackgroundVal == 0) {
                     $("#id_remuidefaultsectiontheme").parent().parent().hide();
                 } else {
                     $("#id_remuidefaultsectiontheme").parent().parent().show();
@@ -80,16 +80,16 @@ define(['jquery'], function ($) {
                 // LIST.
             } else {
                 $("#id_remuiteacherdisplay").parent().parent().show();
-                sectionlayout_val = $("#id_coursedisplay").val();
-                if (sectionlayout_val == 1) {
+                sectionLayoutVal = $("#id_coursedisplay").val();
+                if (sectionLayoutVal == 1) {
                     $("#id_remuidefaultsectionview").parent().parent().hide();
                 }
                 $("#id_remuienablecardbackgroundimg").parent().parent().hide();
                 $("#id_remuidefaultsectiontheme").parent().parent().hide();
             }
             $("#id_coursedisplay").change(function() {
-                sectionlayout_val = $("#id_coursedisplay").val();
-                if (sectionlayout_val == 1) {
+                sectionLayoutVal = $("#id_coursedisplay").val();
+                if (sectionLayoutVal == 1) {
                     $("#id_remuidefaultsectionview").parent().parent().hide();
                 } else {
                     $("#id_remuidefaultsectionview").parent().parent().show();
@@ -97,8 +97,8 @@ define(['jquery'], function ($) {
             });
 
             $("#id_remuienablecardbackgroundimg").change(function() {
-                sectionbackground_val = $("#id_remuienablecardbackgroundimg").val();
-                if (sectionbackground_val == 0) {
+                sectionBackgroundVal = $("#id_remuienablecardbackgroundimg").val();
+                if (sectionBackgroundVal == 0) {
                     $("#id_remuidefaultsectiontheme").parent().parent().hide();
                 } else {
                     $("#id_remuidefaultsectiontheme").parent().parent().show();

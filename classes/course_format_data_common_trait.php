@@ -440,7 +440,8 @@ class course_format_data_common_trait {
             $pinfo->percentage = round(($complete / $total) * 100, 0);
             $pinfo->completed = ($complete == $total) ? "completed" : "";
             if ($pinfo->percentage == 0) {
-                $pinfo->progress = '<a class = "btn btn-primary w-100" href=' . $singlepageurl .'>' . get_string('activitystart', 'format_remuiformat') . '</a>';
+                $pinfo->progress = '<a class = "btn btn-primary w-100" href=' . $singlepageurl .'>' .
+                get_string('activitystart', 'format_remuiformat') . '</a>';
             } else if ( $pinfo->percentage > 0 && $pinfo->percentage < 50 ) {
                 if ($total == 1) {
                     $status = get_string('activitycompleted', 'format_remuiformat');
@@ -661,11 +662,8 @@ class course_format_data_common_trait {
         list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
         $groupinglabel = $mod->get_grouping_label($textclasses);
 
-        // $currentversion = $CFG->release;
-        // $currentversion = substr( $currentversion, 0, strpos($currentversion, "+"));
-
-        // this if statement is used to handle the changes occur in moodle v4.0.3
-        // version_compare($currentversion, '4.0.3') == -1
+        // This if statement is used to handle the changes occur in moodle v4.0.3
+        // version_compare($currentversion, '4.0.3') == -1.
         if ($CFG->version <= '2022041902.01') {
             // Render element that allows to edit activity name inline.
             $format = course_get_format($mod->course);
@@ -899,7 +897,7 @@ class course_format_data_common_trait {
         }
     }
 
-    // It will add the open due data in  activity context
+    // It will add the open due data in  activity context.
     public function get_opendue_status(&$activitydetails, $availstatus, $mod) {
         global $USER;
         if (empty($availstatus)) {
@@ -980,7 +978,8 @@ class course_format_data_common_trait {
                 }
 
                 $availstatus = $this->course_section_cm_availability($mod, $displayoptions);
-                // it will add  the open due data in activitydetails context address is passed as argument
+
+                // It will add  the open due data in activitydetails context address is passed as argument.
                 $this->get_opendue_status($activitydetails, $availstatus, $mod);
 
                 if (trim($availstatus) != '') {
@@ -1063,7 +1062,9 @@ class course_format_data_common_trait {
                     $imgurl = $this->get_dummy_image_for_id($course->id);
                 }
                 $export->generalsection['coursemainimage'] = $imgurl;
-                // it will add extra data to the $export , this method takes 3 arguments $export, course, course progress percentage.
+
+                // It will add extra data to the $export , this method takes 3 arguments $export,
+                // course, course progress percentage.
                 get_extra_header_context($export, $course, progress::get_course_progress_percentage($course), $imgurl);
                 // Get the all activities count from the all sections.
                 $sectionmods = array();

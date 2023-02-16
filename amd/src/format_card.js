@@ -29,7 +29,7 @@ define([
     'core/notification',
     'format_remuiformat/common',
     './format_card_ordering'
-], function ($, Ajax, Notification, common, ordering) {
+], function($, Ajax, Notification, common, ordering) {
     /**
      * Init method
      *
