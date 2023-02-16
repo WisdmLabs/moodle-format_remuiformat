@@ -108,6 +108,8 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         // If field exists then change its name.
         if ($dbman->field_exists($table, $field)) {
             $dbman->rename_field($table, $field, 'userid');
+            $dbman->drop_index($table, new xmldb_index('user'));
+            $dbman->add_index($table, new xmldb_index('userid'));
         }
 
         // Remuiformat savepoint reached.
