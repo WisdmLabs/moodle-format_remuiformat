@@ -33,7 +33,7 @@
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             </KEYS>
             <INDEXES>
-                <INDEX NAME="remuiformatvisits" UNIQUE="true" FIELDS="course, user"/>
+                <INDEX NAME="remuiformatvisits" UNIQUE="true" FIELDS="course, userid"/>
             </INDEXES>
         </TABLE>
     </TABLES>

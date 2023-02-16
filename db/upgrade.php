@@ -37,8 +37,6 @@
  * @author     WisdmLabs
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Perform database upgrade
  * @param  int $oldversion Older plugin version
@@ -89,7 +87,7 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
 
         // Adding indexes to table remuiformat_course_module_visits.
-        $table->add_index('remuiformatvisits', XMLDB_INDEX_UNIQUE, ['course', 'user']);
+        $table->add_index('remuiformatvisits', XMLDB_INDEX_UNIQUE, ['course', 'userid']);
 
         // Conditionally launch create table for remuiformat_course_module_visits.
         if (!$dbman->table_exists($table)) {
@@ -99,10 +97,21 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
         // Remuiformat savepoint reached.
         upgrade_plugin_savepoint(true, 2021070800, 'format', 'remuiformat');
     }
-    $table = new xmldb_table('remuiformat_course_visits');
-    $field = new xmldb_field('user', XMLDB_TYPE_INTEGER, 10);
-    if ($dbman->field_exists($table, $field)) {
-        $dbman->rename_field($table, $field, 'userid');
+
+    if ($oldversion < 2023021600) {
+        // Course visits table.
+        $table = new xmldb_table('remuiformat_course_visits');
+
+        // Old user field.
+        $field = new xmldb_field('user', XMLDB_TYPE_INTEGER, 10);
+
+        // If field exists then change its name.
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->rename_field($table, $field, 'userid');
+        }
+
+        // Remuiformat savepoint reached.
+        upgrade_plugin_savepoint(true, 2023021600, 'format', 'remuiformat');
     }
 
     return true;
