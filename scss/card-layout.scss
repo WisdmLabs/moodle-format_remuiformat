@@ -183,8 +183,11 @@
     &.all-section-format {
         .sections:not(.generalsection-container.sections) {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax($card-min-width-1, 1fr));
             gap: $gap-24;
+            @media (min-width:1440px) {
+                grid-template-columns: repeat(auto-fill, minmax($card-min-width-2, $card-min-width-2));
+            }
             // margin-top: 48px;
             .section:not(#section-0) {
                 // flex: 1 1 calc(25% - 24px);
@@ -461,7 +464,10 @@
         .activity-cards,
         .activity-cards.section {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax($card-min-width-1, 1fr));
+            @media (min-width:1200px) {
+                grid-template-columns: repeat(auto-fill, minmax($card-min-width-2, 1fr));
+            }
             gap: $gap-24;
             padding: 0 !important;
             width: 100%;
@@ -469,7 +475,7 @@
             position: relative;
 
             @media (max-width:425px) {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax($card-min-width-1, 1fr));
             }
 
             .activity {
@@ -648,10 +654,11 @@
 &:not(.limitedwidth) {
     .remui-format-card.all-section-format {
         .showhideactivity .general-section-activities  {
-            .activity:nth-child(n+6) {
+            .activity:nth-child(n+5) {
                 display: none !important;
             }
             @media only screen and (max-width: 1439px) {
+
                 .activity:nth-child(n+5) {
                     display: none !important;
                 }
@@ -667,6 +674,16 @@
 }
 &.limitedwidth {
     .remui-format-card.all-section-format {
+        & .sections{
+            @media (min-width:1440px) {
+                grid-template-columns: repeat(auto-fill, minmax($card-min-width-1,1fr)) !important;
+            }
+        }
+        .general-section-activities{
+            @media (min-width:1440px) {
+                grid-template-columns: repeat(auto-fill, minmax($card-min-width-1,1fr)) !important;
+            }
+        }
         .showhideactivity .general-section-activities  {
 		.activity:nth-child(n+4) {
 		    display: none !important;
