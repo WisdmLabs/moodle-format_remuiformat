@@ -57,7 +57,7 @@ body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-
   box-shadow: none;
 }
 
-body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .text-muted .fa-cog, body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .icon {
+body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .text-muted .fa-cog, body#page-course-view-remuiformat.editing .remui-format-card .dark .action-menu-trigger .dropdown-toggle .icon {
   color: #fff;
 }
 
