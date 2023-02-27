@@ -1410,14 +1410,14 @@ body#page-course-view-remuiformat .activity.activity-wrapper .activity-item .des
   line-height: 22px;
 }
 
-body#page-course-view-remuiformat .activityiconcontainer {
+body#page-course-view-remuiformat #page .activityiconcontainer {
   border-radius: 16px;
   margin-right: 0 !important;
   height: 80px;
   width: 80px;
 }
 
-body#page-course-view-remuiformat .activityiconcontainer .activityinstance img {
+body#page-course-view-remuiformat #page .activityiconcontainer .activityinstance img {
   width: 28px !important;
   height: 28px !important;
 }
@@ -1983,4 +1983,8 @@ body#page-course-view-remuiformat .contentwithoutlink,
 body#page-course-view-remuiformat .contentafterlink {
   max-height: 300px;
   overflow: auto;
+}
+
+body#page-course-view-remuiformat .font-size-16 {
+  font-size: 16px;
 }

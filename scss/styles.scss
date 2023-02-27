@@ -238,14 +238,16 @@ body#page-course-view-remuiformat {
     .activity.activity-wrapper .activity-item .description .activity-dates .description-inner div {
         line-height: 22px;
     }
-    .activityiconcontainer {
-        border-radius: $border-radius-16;
-        margin-right: 0 !important;
-        height: 80px;
-        width: 80px;
-        .activityinstance img {
-            width: $activity-icon-width !important;
-            height: $activity-icon-height !important;
+    #page{
+        .activityiconcontainer {
+            border-radius: $border-radius-16;
+            margin-right: 0 !important;
+            height: 80px;
+            width: 80px;
+            .activityinstance img {
+                width: $activity-icon-width !important;
+                height: $activity-icon-height !important;
+            }
         }
     }
     .course-section-header{
@@ -814,5 +816,9 @@ body#page-course-view-remuiformat {
     .contentafterlink{
         max-height: $summary-max-height;
         overflow: auto;
+    }
+
+    .font-size-16{
+        font-size: 16px;
     }
 }
