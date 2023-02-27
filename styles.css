@@ -263,8 +263,8 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
   color: #fff !important;
 }
 
-body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .ignoredirty, body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .editinstructions {
-  color: #313848;
+body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .ignoredirty, body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .ignoredirty.form-control, body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .editinstructions {
+  color: #313848 !important;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card.dark .sectionname .badge {
@@ -700,6 +700,11 @@ body#page-course-view-remuiformat:not(.limitedwidth) .remui-format-card.all-sect
 
 body#page-course-view-remuiformat.limitedwidth .remui-format-card.all-section-format .showhideactivity .general-section-activities .activity:nth-child(n+4) {
   display: none !important;
+}
+
+body#page-course-view-remuiformat.limitedwidth .activity-cards,
+body#page-course-view-remuiformat.limitedwidth .activity-cards.section {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
 }
 
 @media only screen and (max-width: 1023px) {

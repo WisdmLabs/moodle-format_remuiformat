@@ -289,11 +289,10 @@
                     .wdm-section-summary *,
                     .section-activities-summary {
                         color: $white !important;
-
                     }
                     .sectionname{
-                        .ignoredirty,.editinstructions{
-                            color:$heading-color;
+                        .ignoredirty,.ignoredirty.form-control,.editinstructions{
+                            color:$heading-color !important;
                         }
 
                         .badge{
@@ -689,6 +688,10 @@
 		    display: none !important;
 		}
         }
+    }
+    .activity-cards,
+    .activity-cards.section {
+        grid-template-columns: repeat(auto-fill, minmax($card-min-width-1, 1fr)) !important;
     }
 }
 
