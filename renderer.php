@@ -138,6 +138,7 @@ class format_remuiformat_renderer extends section_renderer {
      * @return array associative array with previous and next section link
      */
     public function get_nav_links($course, $sections, $sectionno) {
+        global $CFG;
         // FIXME: This is really evil and should by using the navigation API.
         $course = course_get_format($course)->get_course();
         $canviewhidden = has_capability('moodle/course:viewhiddensections', context_course::instance($course->id))
@@ -147,12 +148,19 @@ class format_remuiformat_renderer extends section_renderer {
         $back = $sectionno - 1;
         while ($back > 0 and empty($links['previous'])) {
             if ($canviewhidden || $sections[$back]->uservisible) {
-                $params = array('class' => 'btn btn-inverse btn-sm');
+                $params = array('class' => 'btn btn-inverse btn-sm ');
+                $previouslink = html_writer::tag('span', "&#8249;", array('class' => 'larrow mr-1 font-size-16'));
+                if ($CFG->theme == 'remui') {
+                    $params = array('class' => 'btn btn-inverse btn-sm d-flex align-items-center');
+                    $previouslink = html_writer::tag('span', "", array('class' => 'larrow mr-1 font-size-16 edw-icon edw-icon-Left-Arrow'));
+                }
                 $prevsectionname = get_section_name($course, $sections[$back]);
                 if (!$sections[$back]->visible) {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
+                    if ($CFG->theme == 'remui') {
+                        $params = array('class' => 'dimmed_text btn btn-inverse btn-sm d-flex align-items-center');
+                    }
                 }
-                $previouslink = html_writer::tag('span', "&#10229;", array('class' => 'larrow mr-1'));
                 $previouslink .=
                 (core_text::strlen($prevsectionname) > 15) ? core_text::substr($prevsectionname, 0, 15)."..." : $prevsectionname;
                 $links['previous'] = html_writer::link(course_get_url($course, $back), $previouslink, $params);
@@ -165,13 +173,21 @@ class format_remuiformat_renderer extends section_renderer {
         while ($forward <= $numsections and empty($links['next'])) {
             if ($canviewhidden || $sections[$forward]->uservisible) {
                 $params = array('class' => 'btn btn-inverse btn-sm');
+                $nextlinkarrowcontent = html_writer::tag('span', "&#8250;", array('class' => 'rarrow ml-1 font-size-16'));
+                if ($CFG->theme == 'remui') {
+                    $params = array('class' => 'btn btn-inverse btn-sm d-flex align-items-center');
+                    $nextlinkarrowcontent = html_writer::tag('span', "", array('class' => 'rarrow ml-1 font-size-16 edw-icon edw-icon-Right-Arrow'));
+                }
                 if (!$sections[$forward]->visible) {
                     $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
+                    if ($CFG->theme == 'remui') {
+                        $params = array('class' => 'dimmed_text btn btn-inverse btn-sm d-flex align-items-center');
+                    }
                 }
                 $nextsectionname = get_section_name($course, $sections[$forward]);
                 $nextlink =
                 (core_text::strlen($nextsectionname) > 15) ? core_text::substr($nextsectionname, 0, 15)."..." : $nextsectionname;
-                $nextlink .= html_writer::tag('span', "&#10230;", array('class' => 'rarrow ml-1'));
+                $nextlink .= $nextlinkarrowcontent;
                 $links['next'] = html_writer::link(course_get_url($course, $forward), $nextlink, $params);
             }
             $forward++;

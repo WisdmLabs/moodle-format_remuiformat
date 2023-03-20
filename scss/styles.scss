@@ -238,14 +238,16 @@ body#page-course-view-remuiformat {
     .activity.activity-wrapper .activity-item .description .activity-dates .description-inner div {
         line-height: 22px;
     }
-    .activityiconcontainer {
-        border-radius: $border-radius-16;
-        margin-right: 0 !important;
-        height: 80px;
-        width: 80px;
-        .activityinstance img {
-            width: $activity-icon-width !important;
-            height: $activity-icon-height !important;
+    #page{
+        .activityiconcontainer {
+            border-radius: $border-radius-16;
+            margin-right: 0 !important;
+            height: 80px;
+            width: 80px;
+            .activityinstance img {
+                width: $activity-icon-width !important;
+                height: $activity-icon-height !important;
+            }
         }
     }
     .course-section-header{
@@ -425,7 +427,10 @@ body#page-course-view-remuiformat {
 
                         .general-section-activities {
                             display: grid;
-                            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                            grid-template-columns: repeat(auto-fill, minmax($card-min-width-1, 1fr));
+                            @media (min-width:1440px) {
+                                grid-template-columns: repeat(auto-fill, minmax($card-min-width-2, $card-min-width-2));
+                            }
                             gap: $gap-24;
                             // flex-wrap: wrap;
                             padding: 0px;
@@ -811,5 +816,9 @@ body#page-course-view-remuiformat {
     .contentafterlink{
         max-height: $summary-max-height;
         overflow: auto;
+    }
+
+    .font-size-16{
+        font-size: 16px;
     }
 }
