@@ -893,8 +893,8 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
     }
     $coursesettings = course_get_format($course)->get_settings();
     $export->generalsection['teachers'] = get_enrolled_teachers_context_formate($course->id, true);
-    $export->generalsection['coursefullname'] = $coursedetails->fullname;
-    $export->generalsection['coursecategoryname'] = $categorydetails->name;
+    $export->generalsection['coursefullname'] = format_text($coursedetails->fullname);
+    $export->generalsection['coursecategoryname'] = format_text($categorydetails->name);
     $export->generalsection['rnrdesign'] = $rnrshortdesign;
     if (gettype($imgurl) != "object") {
         $imgurl = formate_get_course_image($course);

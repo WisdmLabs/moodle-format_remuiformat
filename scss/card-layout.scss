@@ -26,6 +26,9 @@
                 }
             }
             .activity {
+                &.label {
+                    grid-column: 1/-1;
+                }
                 .title {
                     margin-bottom: 30px;
                 }
@@ -633,6 +636,23 @@
                         .editing_moveright,
                         .editing_moveleft {
                             display: none;
+                        }
+                    }
+                }
+                &.modtype_label{
+                    grid-column: 1/-1 !important;
+                    .single-card{
+                        background-color: transparent;
+
+                        .toggle-row-column{
+                            display: none;
+                        }
+                        .completion-info{
+                            display: flex;
+                            justify-content: flex-end;
+                            .btn{
+                                width: fit-content;
+                            }
                         }
                     }
                 }

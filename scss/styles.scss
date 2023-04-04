@@ -437,16 +437,60 @@ body#page-course-view-remuiformat {
                             margin: 0px;
                             max-width: unset;
                             .activity {
-                                padding: $pad-24;
-                                background: $white;
-                                border: $border-height solid $light-border;
-                                border-radius: $border-radius-8;
-                                min-height: 350px;
-                                transition: all 0.5s ease;
-                                &:hover{
-                                    box-shadow: $card-box-shadow;
+                                &:not(.modtype_label) {
+                                    padding: $pad-24;
+                                    background: $white;
+                                    border: $border-height solid $light-border;
+                                    border-radius: $border-radius-8;
+                                    min-height: 350px;
+                                    transition: all 0.5s ease;
+                                    &:hover{
+                                        box-shadow: $card-box-shadow;
+                                    }
+                                    .actions {
+                                        display: flex;
+                                        position: relative;
+                                        justify-content: start;
+                                        margin-top: $margin-8;
+                                        padding: 0px;
+
+                                        .spinner {
+                                            position: relative;
+                                            left: 0;
+                                        }
+
+                                        .cm_action_menu.actions {
+                                            margin: 0px;
+                                            width: 100%;
+                                            position: unset !important;
+                                            justify-content: flex-end;
+                                        }
+
+                                        .activity-information {
+                                            width: 100%;
+
+                                            .completion-info {
+                                                width: 100%;
+                                                float: left;
+
+                                                .btn {
+                                                    width: 100%;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
 
+                                &.modtype_label {
+                                    grid-column: 1/-1;
+                                    text-align: left ;
+                                    .actions{
+                                        position: relative !important;
+                                        justify-content: flex-end;
+                                        align-items: center;
+                                        gap: 16px;
+                                    }
+                                }
                                 .activitytitle {
                                     display: flex;
                                     flex-direction: column;
@@ -466,38 +510,7 @@ body#page-course-view-remuiformat {
                                     }
                                 }
 
-                                .actions {
-                                    display: flex;
-                                    position: relative;
-                                    justify-content: start;
-                                    margin-top: $margin-8;
-                                    padding: 0px;
 
-                                    .spinner {
-                                        position: relative;
-                                        left: 0;
-                                    }
-
-                                    .cm_action_menu.actions {
-                                        margin: 0px;
-                                        width: 100%;
-                                        position: unset;
-                                        justify-content: flex-end;
-                                    }
-
-                                    .activity-information {
-                                        width: 100%;
-
-                                        .completion-info {
-                                            width: 100%;
-                                            float: left;
-
-                                            .btn {
-                                                width: 100%;
-                                            }
-                                        }
-                                    }
-                                }
 
                                 .editing_move {
                                     position: absolute;
