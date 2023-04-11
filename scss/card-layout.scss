@@ -651,7 +651,8 @@
                             display: flex;
                             justify-content: flex-end;
                             .btn{
-                                width: fit-content;
+                                // width: fit-content;
+                                max-width: 262px;
                             }
                         }
                     }
