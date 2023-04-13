@@ -1,5 +1,10 @@
 CHANGES LOG
 
+Version 4.1.2
+=============.
+Tweak - UI improvements in Label activitity.
+Tweak - Multilang support added in header in course page.
+
 Version 4.1.1
 =============
 Fix   - Input field editable text visibility when background image is available on section cards.
