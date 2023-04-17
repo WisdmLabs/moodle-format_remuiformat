@@ -741,6 +741,7 @@ class course_format_data_common_trait {
         }
         $content = $mod->get_formatted_content(array('overflowdiv' => true, 'noclean' => true));
         list($linkclasses, $textclasses) = $this->course_section_cm_classes($mod);
+
         if ($mod->url && $mod->uservisible) {
             if ($content) {
                 // If specified, display extra content after link.
@@ -958,8 +959,10 @@ class course_format_data_common_trait {
                         $settings
                     );
                     if ($mod->modname == 'label') {
-                        $activitydetails->title = $activitydetails->summary;
+                        $activitydetails->title .= $this->course_section_cm_text($mod, $displayoptions);
+                        $activitydetails->displayasblock = true;
                         $activitydetails->summary = '';
+
                     }
                 } else {
                     $activitydetails->summary = '';
