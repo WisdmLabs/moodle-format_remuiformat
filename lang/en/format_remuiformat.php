@@ -145,7 +145,9 @@ $string['showallsectionperpage'] = 'Show all sections per page';
 
 // Card format general section.
 $string['showfullsummary'] = '+ Show full summary';
-$string['showless'] = 'Show less';
+$string['showless'] = 'Show Less';
+$string['showmore'] = 'Show More';
+$string['Complete'] = 'complete';
 
 // Usage tracking.
 $string['enableusagetracking'] = "Enable Usage Tracking";

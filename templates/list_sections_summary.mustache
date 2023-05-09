@@ -81,7 +81,7 @@
                   {{! progress }}
                   {{/progressinfo}}
                   <span>{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%
-                     Complete</span>
+                     {{#str}} Complete, format_remuiformat {{/str}}</span>
                </div>
             </div>
             {{#editing}}

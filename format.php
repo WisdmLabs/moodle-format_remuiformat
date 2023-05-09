@@ -114,5 +114,9 @@ if ($course->remuicourseformat && $course->coursedisplay && !$section) {
         );
     }
 }
+$PAGE->requires->strings_for_js([
+    'showless',
+    'showmore'
+], 'format_remuiformat');
 // Include course format js module.
 $PAGE->requires->js('/course/format/remuiformat/format_' . $type . '.js');
