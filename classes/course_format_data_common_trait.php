@@ -1008,6 +1008,7 @@ class course_format_data_common_trait {
         $sections = $modinfo->get_section_info_all();
         $hidegeneralsection = $courseformat->hide_general_section_when_empty($course, $modinfo);
         $settings = $courseformat->get_settings();
+        $output = array();
         if (!$hidegeneralsection) {
             // Setting up data for General Section.
             $generalsection = $modinfo->get_section_info(0);
@@ -1096,7 +1097,7 @@ class course_format_data_common_trait {
                         $output['activitylist'][] = $mod['count'].' '.$mod['name'].'.';
                     }
                 }
-                $export->activitylist = $output['activitylist'];
+                $export->activitylist = array_key_exists("activitylist", $output) ? $output['activitylist'] : '';
 
                 if ($export->generalsection['percentage'] != 100) {
                     // Get reseume activity link.
@@ -1108,6 +1109,12 @@ class course_format_data_common_trait {
                     0,
                     0
                 );
+                $export->generalsection['showgeneralsection'] = true;
+                $generalsectionavailability = $export->generalsection['availability'];
+                $generalsectionfullsummary  = $export->generalsection['fullsummary'];
+                if (empty(trim(strip_tags($generalsectionavailability))) && empty(trim(strip_tags($generalsectionfullsummary))) && empty($export->activitylist) && $settings['hidegeneralsectionwhenempty']) {
+                    $export->generalsection['showgeneralsection'] = false;
+                }
             }
         }
     }
