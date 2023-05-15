@@ -1188,10 +1188,6 @@ body#page-course-view-remuiformat .row {
   margin: unset;
 }
 
-body#page-course-view-remuiformat #page.drawers div[role="main"] {
-  padding: unset;
-}
-
 body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright, body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
   display: none;
 }
