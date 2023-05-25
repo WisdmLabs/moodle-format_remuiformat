@@ -55,11 +55,17 @@
     #page-course-view-remuiformat .courseindex-section:first-child {
         display: none !important;
     }
+</style>
+{{/showgeneralsectionintrodata}}
+
+{{^activityexists}}
+<style>
     #page-course-view-remuiformat .sections.generalsection-container{
         margin-bottom: 0px !important;
     }
 </style>
-{{/showgeneralsectionintrodata}}
+{{/activityexists}}
+
 <li id="section-{{{index}}}" class="section border-0 col-12 p-0">
     <div class="general-section d-flex flex-column">
         {{>format_remuiformat/optional_secheader}}
