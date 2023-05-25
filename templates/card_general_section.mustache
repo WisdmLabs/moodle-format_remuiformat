@@ -50,7 +50,7 @@
         ],
     }
 }}
-{{^showgeneralsection}}
+{{^showgeneralsectionintrodata}}
 <style>
     #page-course-view-remuiformat .courseindex-section:first-child {
         display: none !important;
@@ -59,13 +59,14 @@
         margin-bottom: 0px !important;
     }
 </style>
-{{/showgeneralsection}}
+{{/showgeneralsectionintrodata}}
 <li id="section-{{{index}}}" class="section border-0 col-12 p-0">
     <div class="general-section d-flex flex-column">
         {{>format_remuiformat/optional_secheader}}
         <div class="d-none hidden course-prgress-container" data-courseid="{{courseid}}"></div>
         {{#showgeneralsection}}
         <div class="section-details">
+            {{#showgeneralsectionintrodata}}
             <div class="generaldetails content d-flex flex-column">
                 <h2 class="section-title pt-0 p-t-0 m-0">{{ title }}</h2>
                 <div class='generalsectioninfo'>
@@ -80,6 +81,8 @@
                     {{/fullsummary}}
                 </div>
             </div>
+            {{/showgeneralsectionintrodata}}
+            {{#courseinformationdata}}
             <div class="coursedetails">
                 <div class="details d-flex flex-column">
                     {{!> format_remuiformat/course_progress }}
@@ -91,6 +94,7 @@
                     </ul>
                 </div>
             </div>
+            {{/courseinformationdata}}
         </div>
         {{#activityexists}}
         <div class="activities-wrapper d-flex flex-column">

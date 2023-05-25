@@ -1110,12 +1110,18 @@ class course_format_data_common_trait {
                     0
                 );
                 $export->generalsection['showgeneralsection'] = true;
+                $export->generalsection['showgeneralsectionintrodata'] = true;
+                $export->generalsection['courseinformationdata'] = true;
                 $generalsectionavailability = $export->generalsection['availability'];
                 $generalsectionfullsummary  = $export->generalsection['fullsummary'];
-                if (empty(trim(strip_tags($generalsectionavailability))) && empty(trim(strip_tags($generalsectionfullsummary))) && empty($export->activitylist) && $settings['hidegeneralsectionwhenempty']) {
-                    $export->generalsection['showgeneralsection'] = false;
+                if (empty(trim(strip_tags($generalsectionavailability))) && empty(trim(strip_tags($generalsectionfullsummary)))  && $settings['hidegeneralsectionwhenempty']) {
+                    $export->generalsection['showgeneralsectionintrodata'] = false;
+                }
+                if (empty($export->activitylist)) {
+                    $export->generalsection['courseinformationdata'] = false;
                 }
             }
         }
     }
+
 }
