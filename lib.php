@@ -804,7 +804,7 @@ function format_remuiformat_check_plugin_available($component) {
     list($type, $name) = core_component::normalize_component($component);
 
     $dir = \core_component::get_plugin_directory($type, $name);
-    if (!file_exists($dir)) {
+    if (!file_exists($dir ?? '')) {
         return false;
     }
     return true;
