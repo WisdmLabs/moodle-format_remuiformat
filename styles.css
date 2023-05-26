@@ -758,6 +758,12 @@ body#page-course-view-remuiformat .frmt-pt-50 {
   padding-top: 50%;
 }
 
+body#page-course-view-remuiformat .section.main:not(.course-section) .activity .availabilityinfo,
+body#page-course-view-remuiformat .section.main:not(.course-section) .activity .contentafterlink {
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
 body#page-course-view-remuiformat.editing .remui-format-list .sections .section .side {
   margin: 0;
 }
@@ -1742,6 +1748,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   margin: 8px 0px 0px 0px !important;
   padding: 0px;
   display: flex;
+  flex-direction: column;
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
@@ -2020,7 +2027,8 @@ body#page-course-view-remuiformat .badge-primary {
 body#page-course-view-remuiformat .contentwithoutlink,
 body#page-course-view-remuiformat .contentafterlink {
   max-height: 300px;
-  overflow: auto;
+  justify-content: space-between;
+  width: 100%;
 }
 
 body#page-course-view-remuiformat .font-size-16 {

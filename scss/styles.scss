@@ -528,6 +528,7 @@ body#page-course-view-remuiformat {
                                     margin: $margin-8 0px 0px 0px !important;
                                     padding: 0px;
                                     display: flex;
+                                    flex-direction: column;
                                     @include frmt-font-styling(14px, 22px, 400);
                                     text-align: left;
                                     color: $paragraph-color;
@@ -828,7 +829,9 @@ body#page-course-view-remuiformat {
     .contentwithoutlink,
     .contentafterlink{
         max-height: $summary-max-height;
-        overflow: auto;
+        justify-content: space-between;
+        width: 100%;
+        // overflow: auto;
     }
 
     .font-size-16{

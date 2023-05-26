@@ -738,3 +738,8 @@
 .frmt-pt-50{
     padding-top: 50%;
 }
+.section.main:not(.course-section) .activity .availabilityinfo,
+.section.main:not(.course-section) .activity .contentafterlink {
+    margin-top: 0px;
+    margin-left: 0px;
+}

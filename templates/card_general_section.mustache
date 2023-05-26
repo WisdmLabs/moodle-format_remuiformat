@@ -51,17 +51,22 @@
     }
 }}
 {{^showgeneralsectionintrodata}}
+{{^activityexists}}
 <style>
     #page-course-view-remuiformat .courseindex-section:first-child {
         display: none !important;
     }
 </style>
+{{/activityexists}}
 {{/showgeneralsectionintrodata}}
 
 {{^activityexists}}
 <style>
     #page-course-view-remuiformat .sections.generalsection-container{
         margin-bottom: 0px !important;
+    }
+    #page-course-view-remuiformat  .section-details{
+        margin-bottom: 24px;
     }
 </style>
 {{/activityexists}}
@@ -114,8 +119,8 @@
                         {{{leftside}}}
                         {{/editing}}
                         {{! <div> }}
-                            <div class="activityinstance p-0 m-0 d-inline-block">
-                                <div class="title-activity-container text-break ">
+                            <div class="activityinstance p-0 m-0 d-flex h-100 flex-column justify-content-between">
+                                <div class="title-activity-container text-break w-100 text-left ">
                                     {{{title}}}
                                 </div>
                                 <div class="contentafterlink">
