@@ -2036,5 +2036,5 @@ body#page-course-view-remuiformat .font-size-16 {
 }
 
 body#page-course-view-remuiformat.editing .general-section-activities .activity .contentafterlink .no-overflow {
-  overflow: unset !important;
+  overflow: scroll !important;
 }
