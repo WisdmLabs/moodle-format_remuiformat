@@ -2034,3 +2034,7 @@ body#page-course-view-remuiformat .contentafterlink {
 body#page-course-view-remuiformat .font-size-16 {
   font-size: 16px;
 }
+
+body#page-course-view-remuiformat.editing .general-section-activities .activity .contentafterlink .no-overflow {
+  overflow: unset !important;
+}
