@@ -842,7 +842,7 @@ body#page-course-view-remuiformat {
             .activity {
                 .contentafterlink {
                     .no-overflow{
-                        overflow: unset !important;
+                        overflow: scroll !important;
                     }
                 }
             }
