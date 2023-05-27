@@ -175,7 +175,7 @@
             background-color: $small-ui-bg;
             i{
                 color: $paragraph-color;
-                @include frmt-font-styling(14px,22px,400);
+                @include frmt-font-styling(14px,22px,600);
             }
             strong{
                 color: $heading-color;
