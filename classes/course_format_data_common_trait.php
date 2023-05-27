@@ -995,6 +995,7 @@ class course_format_data_common_trait {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
+                $activitydetails->summary = format_text($activitydetails->summary);
                 $output[] = $activitydetails;
                 $count++;
             }

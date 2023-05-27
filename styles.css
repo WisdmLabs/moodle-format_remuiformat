@@ -2026,7 +2026,7 @@ body#page-course-view-remuiformat .badge-primary {
 
 body#page-course-view-remuiformat .contentwithoutlink,
 body#page-course-view-remuiformat .contentafterlink {
-  max-height: 300px;
+  max-height: 220px;
   justify-content: space-between;
   width: 100%;
 }
@@ -2036,5 +2036,5 @@ body#page-course-view-remuiformat .font-size-16 {
 }
 
 body#page-course-view-remuiformat.editing .general-section-activities .activity .contentafterlink .no-overflow {
-  overflow: scroll !important;
+  overflow: auto !important;
 }
