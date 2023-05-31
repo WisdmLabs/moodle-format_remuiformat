@@ -8,9 +8,9 @@ body#page-course-view-remuiformat {
     .row {
         margin: unset;
     }
-    #page.drawers div[role="main"]{
-        padding: unset;
-    }
+    // #page.drawers div[role="main"]{
+    //     padding: unset;
+    // }
     &.editing {
         .cm_action_menu.actions{
             .section-cm-edit-actions{
@@ -528,6 +528,7 @@ body#page-course-view-remuiformat {
                                     margin: $margin-8 0px 0px 0px !important;
                                     padding: 0px;
                                     display: flex;
+                                    flex-direction: column;
                                     @include frmt-font-styling(14px, 22px, 400);
                                     text-align: left;
                                     color: $paragraph-color;
@@ -828,10 +829,23 @@ body#page-course-view-remuiformat {
     .contentwithoutlink,
     .contentafterlink{
         max-height: $summary-max-height;
-        overflow: auto;
+        justify-content: space-between;
+        width: 100%;
+        // overflow: auto;
     }
 
     .font-size-16{
         font-size: 16px;
+    }
+    &.editing {
+        .general-section-activities {
+            .activity {
+                .contentafterlink {
+                    .no-overflow{
+                        overflow: auto !important;
+                    }
+                }
+            }
+        }
     }
 }

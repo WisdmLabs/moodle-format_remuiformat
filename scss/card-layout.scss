@@ -175,7 +175,7 @@
             background-color: $small-ui-bg;
             i{
                 color: $paragraph-color;
-                @include frmt-font-styling(14px,22px,400);
+                @include frmt-font-styling(14px,22px,600);
             }
             strong{
                 color: $heading-color;
@@ -737,4 +737,9 @@
 
 .frmt-pt-50{
     padding-top: 50%;
+}
+.section.main:not(.course-section) .activity .availabilityinfo,
+.section.main:not(.course-section) .activity .contentafterlink {
+    margin-top: 0px;
+    margin-left: 0px;
 }

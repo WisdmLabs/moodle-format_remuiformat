@@ -47,10 +47,10 @@
                                     <div class="progress progress-rounded">
                                         <div class="progress-bar bg-green-600"
                                             style="width: {{{percentage}}}%; height: 100%;" role="progressbar">
-                                            <span class="sr-only">{{{percentage}}}% Complete</span>
+                                            <span class="sr-only">{{{percentage}}}% {{#str}} Complete, format_remuiformat {{/str}}</span>
                                         </div>
                                     </div>
-                                    <span>{{{percentage}}}% Complete</span>
+                                    <span>{{{percentage}}}% {{#str}} Complete, format_remuiformat {{/str}}</span>
                                 </div>
                                 {{#resumeactivityurl}}
                                 <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}"

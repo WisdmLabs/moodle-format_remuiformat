@@ -146,7 +146,7 @@ body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestric
   color: #4C5A73;
   font-size: 14px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted strong {
@@ -758,6 +758,12 @@ body#page-course-view-remuiformat .frmt-pt-50 {
   padding-top: 50%;
 }
 
+body#page-course-view-remuiformat .section.main:not(.course-section) .activity .availabilityinfo,
+body#page-course-view-remuiformat .section.main:not(.course-section) .activity .contentafterlink {
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
 body#page-course-view-remuiformat.editing .remui-format-list .sections .section .side {
   margin: 0;
 }
@@ -1158,6 +1164,9 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 
 body#page-course-view-remuiformat .text-clamp {
   display: -webkit-box !important;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
   overflow: hidden !important;
 }
 
@@ -1183,10 +1192,6 @@ body#page-course-view-remuiformat .text-clamp.text-clamp-5 {
 
 body#page-course-view-remuiformat .row {
   margin: unset;
-}
-
-body#page-course-view-remuiformat #page.drawers div[role="main"] {
-  padding: unset;
 }
 
 body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright, body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
@@ -1743,6 +1748,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   margin: 8px 0px 0px 0px !important;
   padding: 0px;
   display: flex;
+  flex-direction: column;
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
@@ -2020,10 +2026,15 @@ body#page-course-view-remuiformat .badge-primary {
 
 body#page-course-view-remuiformat .contentwithoutlink,
 body#page-course-view-remuiformat .contentafterlink {
-  max-height: 300px;
-  overflow: auto;
+  max-height: 220px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 body#page-course-view-remuiformat .font-size-16 {
   font-size: 16px;
+}
+
+body#page-course-view-remuiformat.editing .general-section-activities .activity .contentafterlink .no-overflow {
+  overflow: auto !important;
 }

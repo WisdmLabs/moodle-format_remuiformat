@@ -12,7 +12,7 @@ const minify = require('gulp-minify');
 const sourcemaps = require('gulp-sourcemaps');
 
 // Check if production mode on.
-const PRODUCTION = process.argv.includes('-production');
+const PRODUCTION = true;
 
 // Default js source.
 const jssrc = './amd/src/*.js';

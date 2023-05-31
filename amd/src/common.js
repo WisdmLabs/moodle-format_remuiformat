@@ -95,10 +95,10 @@ define(['jquery'], function($) {
         $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
 
             if ($(this).hasClass(SELECTORS.SHOW)) {
-                $(this).html('Show Less');
+                $(this).html(M.util.get_string('showless', 'format_remuiformat'));
                 $(this).toggleClass(SELECTORS.SHOW); // Remove show class
             } else {
-                $(this).html('Show More');
+                $(this).html(M.util.get_string('showmore', 'format_remuiformat'));
                 $(this).toggleClass(SELECTORS.SHOW); // Add show class
                 $("html, body").animate({
                     scrollTop: $(SELECTORS.FIRST_SECTION + ' .activity:first-child').offset().top - 66
@@ -125,10 +125,16 @@ define(['jquery'], function($) {
 
         // ... + Show full summary label show conditionally.
         var summaryheight = $('.read-more-target').height();
-        if (summaryheight > 110) {
+        var browservendor = window.navigator.vendor;
+        var webkitboxorient = "vertical";
+        if (browservendor.indexOf('Apple') != -1) {
+            webkitboxorient = "horizontal";
+        }
+
+        if (summaryheight > 100) {
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
-            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
-            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
+            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
+            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
         }
         $('#readmorebtn').on('click', function() {
             $('.read-more-target .no-overflow').removeClass('text-clamp text-clamp-3');
@@ -136,9 +142,9 @@ define(['jquery'], function($) {
             $('.generalsectioninfo').find('#readmorebtn').addClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').removeClass('d-none');
         });
-        $('#readlessbtn').on('click', function() {
-            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
-            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", "vertical");
+        $('#readlessbtn').on('click', function () {
+            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
+            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').addClass('d-none');
         });

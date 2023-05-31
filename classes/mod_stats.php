@@ -69,7 +69,7 @@ class ModStats {
     public function get_formatted_summary($summary, $settings) {
         $output = '';
         $summarylength = $settings['sectiontitlesummarymaxlength'];
-        $summary = strip_tags($summary);
+        $summary = $summary;
         if ($summary) {
             $end = "";
             if (strlen($summary) > $summarylength) {

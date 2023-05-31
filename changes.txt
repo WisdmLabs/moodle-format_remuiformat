@@ -1,5 +1,14 @@
 CHANGES LOG
 
+Version 4.1.3
+=============.
+Tweak - UI improvements.
+Fix - Hide general section when empty issue fixed.
+Fix - ellipsis issue in safari browser fixed
+Fix - Upgradation error issue fixed.
+Fix - Missing Lang strings added
+
+
 Version 4.1.2
 =============.
 Tweak - UI improvements in Label activitity.
