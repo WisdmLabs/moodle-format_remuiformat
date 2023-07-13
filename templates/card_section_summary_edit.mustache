@@ -126,6 +126,9 @@
             {{#editsectionurl}}
                 <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
             {{/editsectionurl}}
+            {{#hiddenmessage}}
+                {{{hiddenmessage}}}
+            {{/hiddenmessage}}
         </div>
         <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
             {{#progressinfo}}

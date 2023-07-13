@@ -1544,6 +1544,8 @@ body#page-course-view-remuiformat .activity .description .course-description-ite
   background-color: #EBF0F9;
   border-radius: 4px;
   color: #4C5A73;
+  font-size: 12px;
+  font-weight: 400px;
 }
 
 body#page-course-view-remuiformat .activity .description .course-description-item .description-inner {
