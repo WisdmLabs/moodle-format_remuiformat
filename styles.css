@@ -1517,6 +1517,7 @@ body#page-course-view-remuiformat .activity .activitytitle .media-body .activity
   font-size: 20px;
   line-height: 28px;
   font-weight: 700;
+  word-break: break-all;
 }
 
 body#page-course-view-remuiformat .activity .activitytitle .media-body .activityname .inplaceeditable {

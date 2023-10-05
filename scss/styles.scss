@@ -307,6 +307,7 @@ body#page-course-view-remuiformat {
                     & a {
                         color: $heading-color;
                         @include frmt-font-styling(20px, 28px, 700);
+                        word-break: break-all;
                     }
 
                     .inplaceeditable {
