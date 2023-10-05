@@ -647,8 +647,9 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   width: 100%;
 }
 
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container.manual-completion .completion-info .btn,
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .completion-container.manual-completion .completion-info .btn {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container.manual-completion .completion-info .btn, body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container.manual-completion [data-region="completion-info"] .btn,
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .completion-container.manual-completion .completion-info .btn,
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .completion-container.manual-completion [data-region="completion-info"] .btn {
   width: 100%;
 }
 
@@ -680,13 +681,17 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity.modtype_label .single-card .completion-info,
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card .completion-info {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity.modtype_label .single-card [data-region="completion-info"],
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card .completion-info,
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card [data-region="completion-info"] {
   display: flex;
   justify-content: flex-end;
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity.modtype_label .single-card .completion-info .btn,
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card .completion-info .btn {
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity.modtype_label .single-card [data-region="completion-info"] .btn,
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card .completion-info .btn,
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card [data-region="completion-info"] .btn {
   width: -webkit-fit-content;
   width: fit-content;
 }
@@ -1696,12 +1701,14 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   width: 100%;
 }
 
-body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information .completion-info {
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information .completion-info,
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information [data-region="completion-info"] {
   width: 100%;
   float: left;
 }
 
-body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information .completion-info .btn {
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information .completion-info .btn,
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information [data-region="completion-info"] .btn {
   width: 100%;
 }
 
@@ -1776,6 +1783,7 @@ body#page-course-view-remuiformat .course-content .sections .badge {
   line-height: 14px;
   font-weight: 400;
   vertical-align: middle;
+  text-align: left;
 }
 
 body#page-course-view-remuiformat .course-content .sections .wdm-add-new-section {

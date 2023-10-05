@@ -472,7 +472,8 @@ body#page-course-view-remuiformat {
                                         .activity-information {
                                             width: 100%;
 
-                                            .completion-info {
+                                            .completion-info,
+                                            [data-region="completion-info"] {
                                                 width: 100%;
                                                 float: left;
 
@@ -560,6 +561,7 @@ body#page-course-view-remuiformat {
                 white-space: normal;
                 @include frmt-font-styling(12px, 14px, 400);
                 vertical-align: middle;
+                text-align: left;
                 // margin-right: .5rem;
             }
 

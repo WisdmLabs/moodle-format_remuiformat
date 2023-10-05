@@ -622,7 +622,7 @@
                 // Placing conpletion marker.
                 .completion-container.manual-completion {
                     width: 100%;
-                    .completion-info .btn{
+                    .completion-info .btn,[data-region="completion-info"] .btn{
                         width: 100%;
                     }
 
@@ -647,7 +647,8 @@
                         .toggle-row-column{
                             display: none;
                         }
-                        .completion-info{
+                        .completion-info,
+                        [data-region="completion-info"] {
                             display: flex;
                             justify-content: flex-end;
                             .btn{
