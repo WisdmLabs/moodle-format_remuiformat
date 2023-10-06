@@ -829,6 +829,10 @@ body#page-course-view-remuiformat .modtype_label .contentwithoutlink {
   padding: 0px;
 }
 
+body#page-course-view-remuiformat .modtype_label .activity-badges .badge {
+  white-space: nowrap !important;
+}
+
 body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .side.left {
   align-items: center;
   gap: 4px;

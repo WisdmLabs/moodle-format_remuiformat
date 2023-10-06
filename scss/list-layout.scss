@@ -67,6 +67,11 @@
         max-height: 100%;
         padding: 0px;
     }
+    .activity-badges{
+        .badge{
+            white-space: nowrap !important;
+        }
+    }
 }
 
 &:not(.editing) {
