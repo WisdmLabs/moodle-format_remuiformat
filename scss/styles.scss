@@ -450,6 +450,9 @@ body#page-course-view-remuiformat {
                                     &:hover{
                                         box-shadow: $card-box-shadow;
                                     }
+                                    .sectionbadges{
+                                        width: 100%;
+                                    }
                                     .actions {
                                         display: flex;
                                         position: relative;
