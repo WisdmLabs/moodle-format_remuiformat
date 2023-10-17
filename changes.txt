@@ -1,5 +1,9 @@
 CHANGES LOG
 
+Version 4.1.4
+=============
+Feature - Compatibility with Moodle 4.3.
+
 Version 4.1.3
 =============.
 Tweak - UI improvements.
