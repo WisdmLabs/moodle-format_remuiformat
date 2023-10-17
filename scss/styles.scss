@@ -307,6 +307,7 @@ body#page-course-view-remuiformat {
                     & a {
                         color: $heading-color;
                         @include frmt-font-styling(20px, 28px, 700);
+                        word-break: break-all;
                     }
 
                     .inplaceeditable {
@@ -342,6 +343,8 @@ body#page-course-view-remuiformat {
                 background-color: $small-ui-bg;
                 border-radius: $border-radius-4;
                 color: $paragraph-color;
+                font-size: 12px;
+                font-weight: 400px;
                 .description-inner{
                     padding: 0px;
                     border:unset;
@@ -447,6 +450,9 @@ body#page-course-view-remuiformat {
                                     &:hover{
                                         box-shadow: $card-box-shadow;
                                     }
+                                    .sectionbadges{
+                                        width: 100%;
+                                    }
                                     .actions {
                                         display: flex;
                                         position: relative;
@@ -469,7 +475,8 @@ body#page-course-view-remuiformat {
                                         .activity-information {
                                             width: 100%;
 
-                                            .completion-info {
+                                            .completion-info,
+                                            [data-region="completion-info"] {
                                                 width: 100%;
                                                 float: left;
 
@@ -557,6 +564,7 @@ body#page-course-view-remuiformat {
                 white-space: normal;
                 @include frmt-font-styling(12px, 14px, 400);
                 vertical-align: middle;
+                text-align: left;
                 // margin-right: .5rem;
             }
 
