@@ -1002,7 +1002,7 @@ class course_format_data_common_trait {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
-                $activitydetails->summary = format_text($activitydetails->summary, FORMAT_HTML);
+                $activitydetails->summary = format_text($activitydetails->summary, FORMAT_HTML, array('trusted' => true));
                 $output[] = $activitydetails;
                 $count++;
             }
@@ -1062,7 +1062,7 @@ class course_format_data_common_trait {
             $export->generalsection['summary'] = $renderer->abstract_html_contents(
                 $generalsectionsummary, 400
             );
-            $export->generalsection['fullsummary'] = format_text($generalsectionsummary, FORMAT_HTML);
+            $export->generalsection['fullsummary'] = format_text($generalsectionsummary, FORMAT_HTML, array('trusted' => true));
 
             // Get course image if added.
             $imgurl = $this->display_file(

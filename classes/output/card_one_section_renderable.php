@@ -280,7 +280,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
-                $activitydetails->summary = format_text( $activitydetails->summary, FORMAT_HTML);
+                $activitydetails->summary = format_text( $activitydetails->summary, FORMAT_HTML, array('trusted' => true));
                 // In case of label activity send full text of cm to open in modal.
                 if (array_search($mod->modname, array('label', 'folder')) !== false) {
                     $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
@@ -289,7 +289,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                         $mod,
                         $displayoptions
                     );
-                    $activitydetails->fullcontent = format_text($activitydetails->fullcontent, FORMAT_HTML);
+                    $activitydetails->fullcontent = format_text($activitydetails->fullcontent, FORMAT_HTML, array('trusted' => true));
                 }
 
                 $activitydetails->completed = $completiondata->completionstate;
