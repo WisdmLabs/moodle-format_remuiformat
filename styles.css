@@ -493,6 +493,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
+  display: none;
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .cm_action_menu,
@@ -1518,6 +1519,7 @@ body#page-course-view-remuiformat .activity .activitytitle .media-body > :first-
   line-height: 24px;
   font-weight: 400;
   color: #647390;
+  display: none;
   text-transform: capitalize !important;
 }
 

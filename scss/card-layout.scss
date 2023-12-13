@@ -498,6 +498,7 @@
                         .text-font-small.small {
                             color: $paragraph-color;
                             @include frmt-font-styling(16px, 24px, 400);
+                            display: none;
                         }
                     }
                 }

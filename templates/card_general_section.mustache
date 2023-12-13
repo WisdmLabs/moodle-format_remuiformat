@@ -93,19 +93,6 @@
                 </div>
             </div>
             {{/showgeneralsectionintrodata}}
-            {{#courseinformationdata}}
-            <div class="coursedetails">
-                <div class="details d-flex flex-column">
-                    {{!> format_remuiformat/course_progress }}
-                    <h3 class="m-0 activities-title">{{#str}}courseinformation,format_remuiformat{{/str}}</h3>
-                    <ul class="section-activities-summary">
-                        {{#activitylist}}
-                        <li class="item">{{ . }}</li>
-                        {{/activitylist}}
-                    </ul>
-                </div>
-            </div>
-            {{/courseinformationdata}}
         </div>
         {{#activityexists}}
         <div class="activities-wrapper d-flex flex-column">

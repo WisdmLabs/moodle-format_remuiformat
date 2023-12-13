@@ -300,6 +300,7 @@ body#page-course-view-remuiformat {
                 &>:first-child {
                     @include frmt-font-styling(16px, 24px, 400);
                     color: #647390;
+                    display: none;
                     text-transform: capitalize !important;
                 }
 
