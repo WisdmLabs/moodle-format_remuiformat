@@ -384,7 +384,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
 }
@@ -403,7 +403,8 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
-  gap: 40px;
+  gap: 16px;
+  flex-direction: column;
 }
 
 @media (max-width: 900px) {
@@ -414,7 +415,6 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 
 @media (max-width: 768px) {
   body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper {
-    flex-direction: column;
     gap: 16px;
   }
 }

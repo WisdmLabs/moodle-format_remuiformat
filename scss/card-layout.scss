@@ -418,7 +418,7 @@
                         }
                     }
                     .general-single-card {
-                        align-items: center;
+                        align-items: flex-start;
                         justify-content: space-between;
                         gap:$gap-16;
                         @media (max-width:$screen-900) {
@@ -431,12 +431,12 @@
                             gap: $gap-32;
                         }
                         .header-progresbar-wrapper{
-                            gap: $gap-40;
+                            gap: $gap-6;
+                            flex-direction: column;
                             @media (max-width:$screen-900) {
                                 gap: $gap-24;
                             }
                             @media (max-width:$tb-screenp-bp) {
-                                flex-direction: column;
                                 gap:$gap-16
                             }
                             .section-title {
