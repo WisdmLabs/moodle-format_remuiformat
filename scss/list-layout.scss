@@ -361,6 +361,19 @@
                         margin-top: $margin-8;
                     }
                 }
+                &.indented{
+                    margin-left: $margin-24 !important;
+                    &:hover{
+                        background-color: unset!important;
+                    }
+                    .cm_action_menu.actions{
+                        .section-cm-edit-actions{
+                            .editing_moveright{
+                                display: none;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

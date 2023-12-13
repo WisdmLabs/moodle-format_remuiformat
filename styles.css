@@ -1105,6 +1105,21 @@ body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .ac
   margin-top: 8px;
 }
 
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity.indented,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity.indented {
+  margin-left: 24px !important;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity.indented:hover,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity.indented:hover {
+  background-color: unset !important;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity.indented .cm_action_menu.actions .section-cm-edit-actions .editing_moveright,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity.indented .cm_action_menu.actions .section-cm-edit-actions .editing_moveright {
+  display: none;
+}
+
 body#page-course-view-remuiformat .remui-format-list.one-section-format.all-section .sections .section:not(#section-0) ul.section {
   display: none;
 }
@@ -1203,7 +1218,7 @@ body#page-course-view-remuiformat .row {
   margin: unset;
 }
 
-body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveright, body#page-course-view-remuiformat.editing .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
+body#page-course-view-remuiformat.editing .general-section-activities .cm_action_menu.actions .section-cm-edit-actions .editing_moveright, body#page-course-view-remuiformat.editing .general-section-activities .cm_action_menu.actions .section-cm-edit-actions .editing_moveleft {
   display: none;
 }
 
