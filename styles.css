@@ -140,19 +140,18 @@ body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestric
   padding: 8px;
   border-radius: 8px;
   background-color: #EBF0F9;
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 400;
 }
 
-body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted i {
-  color: #4C5A73;
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 600;
+body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted .description-inner ul li {
+  margin-top: 4px;
 }
 
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted strong {
-  color: #313848;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 15px;
   font-weight: 600;
 }
 
@@ -1168,7 +1167,7 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 
 body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item strong {
   font-size: 12px;
-  line-height: 15px;
+  line-height: normal;
   font-weight: 600;
 }
 

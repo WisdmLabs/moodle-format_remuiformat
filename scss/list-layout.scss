@@ -440,7 +440,7 @@
             }
         }
         strong{
-            @include frmt-font-styling(12px,15px,600);
+            @include frmt-font-styling(12px,normal,600);
         }
     }
 }
