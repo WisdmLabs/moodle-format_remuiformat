@@ -1022,6 +1022,7 @@ class course_format_data_common_trait {
             $export->generalsection['index'] = 0;
             $generalsectionsummary = $renderer->format_summary_text($generalsection);
         if (empty($generalsectionsummary)) {
+            $course->summary = file_rewrite_pluginfile_urls($course->summary, 'pluginfile.php', $coursecontext->id, 'course', 'summary', null) ;
             $generalsectionsummary = $course->summary;
         }
         if ($generalsection) {

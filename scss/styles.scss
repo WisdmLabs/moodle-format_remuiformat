@@ -163,7 +163,12 @@ body#page-course-view-remuiformat {
             color: white;
         }
     }
-
+    .summary-collapsed{
+        max-height: 300px;
+        position: relative;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(180deg, #D9D9D9 51.56%, rgba(217, 217, 217, 0.00) 100%);
+    }
     .progress-bar-warpper {
         display: flex;
         flex-direction: row;

@@ -155,6 +155,12 @@ body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestric
   font-weight: 600;
 }
 
+body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted strong a {
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 400;
+}
+
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections:not(.generalsection-container.sections) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1186,6 +1192,12 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
   font-weight: 600;
 }
 
+body#page-course-view-remuiformat .remui-format-list .section_availability.course-description-item strong a {
+  font-size: 12px;
+  line-height: normal;
+  font-weight: 400;
+}
+
 body#page-course-view-remuiformat .text-clamp {
   display: -webkit-box !important;
   /* autoprefixer: off */
@@ -1390,6 +1402,13 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-heading {
   color: white;
+}
+
+body#page-course-view-remuiformat .summary-collapsed {
+  max-height: 300px;
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #D9D9D9 51.56%, rgba(217, 217, 217, 0) 100%);
 }
 
 body#page-course-view-remuiformat .progress-bar-warpper {

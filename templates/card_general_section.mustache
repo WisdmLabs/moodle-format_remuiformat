@@ -84,10 +84,10 @@
                     {{{availability}}}
                     {{#fullsummary}}
                     {{! <input type="checkbox" class="read-more-state" id="read-more-summary" /> }}
-                    <div class="read-more-target coursesummary" style="-webkit-box-orient: vertical;">{{{fullsummary}}}
+                    <div class="read-more-target coursesummary" >{{{fullsummary}}}
                     </div>
-                    <a id="readmorebtn" class="d-none readbtn">Read More</a>
-                    <a id="readlessbtn" class="d-none readbtn">Read Less</a>
+                    <a id="readmorebtn" class="d-none readbtn">{{#str}} showmore, format_remuiformat{{/str}}</a>
+                    <a id="readlessbtn" class="d-none readbtn">{{#str}} showless, format_remuiformat{{/str}}</a>
                     {{! <label for="read-more-summary" class=" text-primary small read-more-trigger"></label> }}
                     {{/fullsummary}}
                 </div>

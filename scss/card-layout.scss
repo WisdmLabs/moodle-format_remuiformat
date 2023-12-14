@@ -176,6 +176,9 @@
                 }
             strong{
                 @include frmt-font-styling(12px,15px,600);
+                a{
+                    @include frmt-font-styling(12px,normal,400);
+                }
             }
         }
     }
