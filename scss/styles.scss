@@ -245,13 +245,19 @@ body#page-course-view-remuiformat {
     }
     #page{
         .activityiconcontainer {
-            border-radius: $border-radius-16;
+            border-radius: $border-radius-8;
             margin-right: 0 !important;
-            height: 80px;
-            width: 80px;
+            height: 50px;
+            width: 50px;
             .activityinstance img {
                 width: $activity-icon-width !important;
                 height: $activity-icon-height !important;
+            }
+        }
+
+        .generalsecactivitiescontent {
+            & > .activityinstance {
+                gap: $gap-20;
             }
         }
     }
@@ -330,6 +336,10 @@ body#page-course-view-remuiformat {
                     }
                 }
             }
+        }
+
+        & > .activityinstance {
+            gap: $gap-20;
         }
 
         .activity-item:not(.activityinline) {
@@ -451,7 +461,7 @@ body#page-course-view-remuiformat {
                                     background: $white;
                                     border: $border-height solid $light-border;
                                     border-radius: $border-radius-8;
-                                    min-height: 350px;
+                                    min-height: $single-card-min-height;
                                     transition: all 0.5s ease;
                                     &:hover{
                                         box-shadow: $card-box-shadow;
@@ -510,7 +520,7 @@ body#page-course-view-remuiformat {
                                     align-items: center;
                                     justify-content: center;
                                     width: 100%;
-                                    gap: $gap-16;
+                                    gap: $gap-32;
 
                                 }
                                 .availabilityinfo{

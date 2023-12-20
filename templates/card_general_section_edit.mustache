@@ -109,21 +109,22 @@
                             <div class="title-activity-container text-break w-100 text-left ">
                                 {{{title}}}
                             </div>
-                            <span class=""><span class="editing_move moodle-core-dragdrop-draghandle"
-                                    title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0"
-                                    data-draggroups="resource" role="button" data-sectionreturn="0"
-                                    style="cursor: move;">{{#pix}} i/move_2d,core {{/pix}}</span></span>
-                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center mt-2">
+                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
                                 {{> core_courseformat/local/content/section/badges }}
                             </div>
                             {{#modstealth}}
-                            <div class="mt-2 d-flex align-items-center">
+                            <div class="d-flex align-items-center">
                                 <span class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
                             </div>
                             {{/modstealth}}
                             <div class="contentafterlink">
                                 {{{summary}}}
                             </div>
+                            <span class=""><span class="editing_move moodle-core-dragdrop-draghandle"
+                                title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0"
+                                data-draggroups="resource" role="button" data-sectionreturn="0"
+                                style="cursor: move;">{{#pix}} i/move_2d,core {{/pix}}</span>
+                            </span>
                         </div>
                         <div class="p-0">
                             {{#hasopenduedata}}

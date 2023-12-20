@@ -196,7 +196,9 @@
                                 </div>
                             </div>
                             {{/completion}}
-                            <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
+                            {{#availstatus}}
+                                <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
+                            {{/availstatus}}
 
                         </div>
                     </li>

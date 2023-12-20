@@ -110,18 +110,18 @@
                                 <div class="title-activity-container text-break w-100 text-left ">
                                     {{{title}}}
                                 </div>
-                                <div class="contentafterlink">
-                                    {{{summary}}}
-                                </div>
-                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center mt-2">
+                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
                                     {{> core_courseformat/local/content/section/badges }}
                                 </div>
                                 {{#modstealth}}
-                                <div class=" d-flex align-items-center mt-2">
+                                <div class=" d-flex align-items-center">
                                     <span
                                         class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
                                 </div>
                                 {{/modstealth}}
+                                <div class="contentafterlink">
+                                    {{{summary}}}
+                                </div>
                             </div>
                             <div class="p-0">
                                 {{#hasopenduedata}}

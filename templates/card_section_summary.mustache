@@ -83,7 +83,7 @@
             <h2 class="sectionname m-0 text-clamp text-clamp-3" style="-webkit-box-orient: vertical;">{{{ title }}}</h2>
             {{/addnewsection}}
             {{^addnewsection}}
-            <div class="section-header d-inline">
+            <div class="section-header d-flex flex-column">
                 {{^hidden}}
                 <a href="{{{ singlepageurl }}}" class="align-middle">
                     {{/hidden}}
@@ -92,7 +92,7 @@
                     {{^hidden}}
                 </a>
                 {{/hidden}}
-                <div data-region="sectionbadges" class="sectionbadges d-inline mt-2">
+                <div data-region="sectionbadges" class="sectionbadges d-inline">
                     {{> core_courseformat/local/content/section/badges }}
                 </div>
             </div>
@@ -111,26 +111,28 @@
                 {{{hiddenmessage}}}
             {{/hiddenmessage}}
         </div>
-        <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
-            {{#progressinfo}}
-            {{#percentage}}
-            <div class="progress progress-xs bg-grey-300 w-100">
-                <div class="progress-bar bg-green-600"
-                    style="width: {{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;"
-                    role="progressbar">
+        {{#progressinfo}}
+            <div class="section-action-container  progress-bar-warpper card-bottom d-flex {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+                
+                {{#percentage}}
+                <div class="progress progress-xs bg-grey-300 w-100">
+                    <div class="progress-bar bg-green-600"
+                        style="width: {{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;"
+                        role="progressbar">
+                    </div>
                 </div>
-            </div>
-            <div class=" progress-text w-100">
-                {{! progress }}
-                <span>{{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% {{#str}} Complete, format_remuiformat {{/str}}
-                </span>
-            </div>
-            {{/percentage}}
+                <div class=" progress-text w-100">
+                    {{! progress }}
+                    <span>{{#progressinfo}}{{{percentage}}}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% {{#str}} Complete, format_remuiformat {{/str}}
+                    </span>
+                </div>
+                {{/percentage}}
                 {{^percentage}}
                     {{{progress}}}
                 {{/percentage}}
-            {{/progressinfo}}
-        </div>
+                
+            </div>
+        {{/progressinfo}}
     </div>
 </li>
 {{/addsection}}
