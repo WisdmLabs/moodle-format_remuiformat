@@ -43,7 +43,7 @@
    aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
    <div class="content card-block  remui-list-content-border"
       aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
-      <div class="course-section-header d-flex" data-for="section_title">
+      <div class="course-section-header d-flex flex-column" data-for="section_title">
          <div class="left side float-left d-flex m-0 justify-content-between w-100">
             {{{ leftside }}}
             <h3 class="sectionname card-title m-0 d-inline">
@@ -81,7 +81,8 @@
                   {{! progress }}
                   {{/progressinfo}}
                   <span>{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%
-                     {{#str}} Complete, format_remuiformat {{/str}}</span>
+                  <!--   {{#str}} Complete, format_remuiformat {{/str}} -->
+                  </span>
                </div>
             </div>
             {{#editing}}

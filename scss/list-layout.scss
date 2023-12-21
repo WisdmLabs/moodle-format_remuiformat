@@ -192,11 +192,15 @@
             .course-section-header {
                 justify-content: space-between;
                 // align-items: center;
-                gap: $gap-24;
+                gap: $gap-16;
 
                 @media (max-width:$screen-900) {
                     flex-direction: column;
                     align-items: flex-start;
+                }
+
+                .name-progress-wrapper {
+                    gap: $gap-16;
                 }
 
                 .sectionheading {
