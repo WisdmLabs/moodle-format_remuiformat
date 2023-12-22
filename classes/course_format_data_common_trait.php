@@ -300,6 +300,9 @@ class course_format_data_common_trait {
 
             $data->hiddenmessage = $this->course_section_availability($course, $section);
 
+            if(empty(strip_tags($data->hiddenmessage))){
+                $data->hiddenmessage = false;
+            }
             if ($courseformat->is_section_current($section)) {
                 $data->iscurrent = true;
                 $data->highlightedlabel = get_string('highlight');
@@ -952,6 +955,9 @@ class course_format_data_common_trait {
                     $courserenderer,
                     $displayoptions
                 );
+                if (!$mod->visible) {
+                    $activitydetails->modhiddenfromstudents = true;
+                }
                 $activitydetails->viewurl = $mod->url;
                 $activitydetails->title = $this->course_section_cm_name($mod, $displayoptions);
                 if (array_search($mod->modname, array('folder')) !== false) {

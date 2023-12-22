@@ -150,30 +150,34 @@
                                     {{{ modicons }}}
                                 </div>
                                 {{/editing}}
-
+                                {{#title}}
                                 <h4 id="module-{{id}}-title" class="title {{^summary}}nosummary{{/summary}} m-0">
                                     {{{ title }}}
                                 </h4>
+                                {{/title}}
+                                {{#modhiddenfromstudents}}
                                 <div data-region="sectionbadges"
                                     class="sectionbadges d-flex align-items-center {{^editing}}{{/editing}}">
                                     {{> core_courseformat/local/content/section/badges }}
                                 </div>
+                                {{/modhiddenfromstudents}}
                                 {{#modstealth}}
                                 <div class="mt-2 d-flex align-items-center">
                                     <span
                                         class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
                                 </div>
                                 {{/modstealth}}
+
+                                {{#summary}}
                                 <div class="activity-content">
-                                    {{#summary}}
-                                    {{#label}}
-                                    {{{ fullcontent }}}
-                                    {{/label}}
-                                    {{^label}}
-                                    {{{ summary }}}
-                                    {{/label}}
-                                    {{/summary}}
+                                        {{#label}}
+                                            {{{ fullcontent }}}
+                                        {{/label}}
+                                        {{^label}}
+                                            {{{ summary }}}
+                                        {{/label}}
                                 </div>
+                                {{/summary}}
                             </div>
                             {{#hasopenduedata}}
                             <div class="description text-left">

@@ -92,9 +92,11 @@
                     {{^hidden}}
                 </a>
                 {{/hidden}}
+                {{#hiddenfromstudents}}
                 <div data-region="sectionbadges" class="sectionbadges d-inline">
                     {{> core_courseformat/local/content/section/badges }}
                 </div>
+                {{/hiddenfromstudents}}
             </div>
             {{/addnewsection}}
             {{#summary }}

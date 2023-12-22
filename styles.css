@@ -532,6 +532,11 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   gap: 20px;
 }
 
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity.modtype_label .single-card,
+body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity.modtype_label .single-card {
+  min-height: unset;
+}
+
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .editing_move,
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .editing_move {
   position: relative;
@@ -1606,7 +1611,7 @@ body#page-course-view-remuiformat .activity .activitytitle .media-body .activity
   font-size: 20px;
   line-height: 28px;
   font-weight: 700;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 body#page-course-view-remuiformat .activity .activitytitle .media-body .activityname .inplaceeditable {

@@ -521,6 +521,11 @@
                         gap: $gap-20;
                     }
                 }
+                &.modtype_label{
+                    .single-card{
+                        min-height: unset;
+                    }
+                }
                 .editing_move {
                     position: relative;
                     // float: left;
