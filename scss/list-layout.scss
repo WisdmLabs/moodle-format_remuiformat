@@ -63,6 +63,10 @@
 }
 
 .modtype_label {
+    box-shadow: unset !important;
+    .single-card {
+        border: 0 !important;
+    }
     .contentwithoutlink {
         max-height: 100%;
         padding: 0px;

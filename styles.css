@@ -838,6 +838,14 @@ body#page-course-view-remuiformat.editing .remui-format-list.one-section-format 
   flex-direction: row;
 }
 
+body#page-course-view-remuiformat .modtype_label {
+  box-shadow: unset !important;
+}
+
+body#page-course-view-remuiformat .modtype_label .single-card {
+  border: 0 !important;
+}
+
 body#page-course-view-remuiformat .modtype_label .contentwithoutlink {
   max-height: 100%;
   padding: 0px;
