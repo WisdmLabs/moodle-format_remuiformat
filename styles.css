@@ -651,11 +651,6 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   display: none;
 }
 
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .nosummary .availabilityinfo,
-body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .nosummary .availabilityinfo {
-  text-align: center;
-}
-
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .completion-container.manual-completion,
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .completion-container.manual-completion {
   width: 100%;
@@ -840,6 +835,8 @@ body#page-course-view-remuiformat.editing .remui-format-list.one-section-format 
 
 body#page-course-view-remuiformat .modtype_label {
   box-shadow: unset !important;
+  background-color: unset;
+  border: 0px !important;
 }
 
 body#page-course-view-remuiformat .modtype_label .single-card {
@@ -1178,6 +1175,11 @@ body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .ac
 body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item > *:not(.activity-basis):not(.editing_move),
 body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item > *:not(.activity-basis):not(.editing_move) {
   margin-left: 74px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity.modtype_label .activity-item > *,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity.modtype_label .activity-item > * {
+  margin-left: unset !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list.one-section-format.all-section .sections .section:not(#section-0) ul.section {

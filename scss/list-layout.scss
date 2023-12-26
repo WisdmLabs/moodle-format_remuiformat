@@ -64,6 +64,8 @@
 
 .modtype_label {
     box-shadow: unset !important;
+    background-color: unset;
+    border: 0px !important;
     .single-card {
         border: 0 !important;
     }
@@ -410,6 +412,9 @@
 
                 .activity-item > *:not(.activity-basis):not(.editing_move) {
                     margin-left: 74px;
+                }
+                &.modtype_label .activity-item > *{
+                    margin-left: unset !important ;
                 }
             }
         }
