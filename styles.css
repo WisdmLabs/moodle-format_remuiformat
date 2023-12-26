@@ -69,6 +69,10 @@ body#page-course-view-remuiformat.editing .remui-format-card .dark .text-muted .
   color: #fff;
 }
 
+body#page-course-view-remuiformat.editing .remui-format-card .activity .media-body .text-font-small.small {
+  display: block !important;
+}
+
 body#page-course-view-remuiformat .sections .single-card-container {
   margin-bottom: 28px;
 }
