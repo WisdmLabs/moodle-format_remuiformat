@@ -149,6 +149,10 @@ body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestric
   font-weight: 400;
 }
 
+body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted .description-inner ul {
+  padding-left: 1rem;
+}
+
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted .description-inner ul li {
   margin-top: 4px;
 }

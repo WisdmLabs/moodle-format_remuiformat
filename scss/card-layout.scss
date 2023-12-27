@@ -177,8 +177,11 @@
             background-color: $small-ui-bg;
             @include frmt-font-styling(12px,normal,400);
                 .description-inner{
-                    ul li{
-                        margin-top: 4px;
+                    ul {
+                        padding-left: 1rem;
+                        li{
+                            margin-top: 4px;
+                        }
                     }
                 }
             strong{
