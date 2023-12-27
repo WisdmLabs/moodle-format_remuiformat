@@ -185,4 +185,4 @@ $string["headereditingbutton"] = "Select editing button positon";
 $string['headereditingbutton_help'] = "Select editing button positon This setting will not work in remui, check course setting";
 
 $string['headeroverlayopacity'] = "Change the header overlay opacity";
-$string['headeroverlayopacity_help'] = "Select values from 0 to 100";
+$string['headeroverlayopacity_help'] = "The default value is already set to '100'. To adjust opacity, please enter a value between 0 and 100";
