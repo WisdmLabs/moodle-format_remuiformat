@@ -501,4 +501,7 @@
             }
         }
     }
+    .availability-summary-wrapper:not(:has(:first-child)) {
+        display: none;
+    }
 }

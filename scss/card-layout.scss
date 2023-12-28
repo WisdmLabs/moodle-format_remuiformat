@@ -503,7 +503,7 @@
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: $gap-16;
+                    gap: $gap-26 !important;
                     .media-body {
                         .text-font-small.small {
                             color: $paragraph-color;
@@ -528,7 +528,7 @@
                 .single-card {
                     min-height: $single-card-min-height;
                     .single-card-child-wrapper{
-                        gap: $gap-20;
+                        gap: $gap-12;
                     }
                 }
                 &.modtype_label{
@@ -561,7 +561,7 @@
                     width: 100%;
                     overflow: auto;
                     color: $paragraph-color;
-                    @include frmt-font-styling(16px,24px,400);
+                    @include frmt-font-styling(14px,24px,400);
                     .contentwithoutlink {
                         padding: 0;
                     }

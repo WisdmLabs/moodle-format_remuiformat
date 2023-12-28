@@ -300,7 +300,7 @@ class course_format_data_common_trait {
 
             $data->hiddenmessage = $this->course_section_availability($course, $section);
 
-            if(empty(strip_tags($data->hiddenmessage))){
+            if (empty(trim(strip_tags($data->hiddenmessage)))) {
                 $data->hiddenmessage = false;
             }
             if ($courseformat->is_section_current($section)) {

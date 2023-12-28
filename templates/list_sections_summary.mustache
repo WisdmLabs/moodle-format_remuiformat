@@ -93,19 +93,21 @@
             {{/editing}}
          </div>
       </div>
-      <div class="">
-         <div class="section_availability">
-            {{{ hiddenmessage }}}
-         </div>
+      <div class="availability-summary-wrapper">
+         {{#hiddenmessage}}
+            <div class="section_availability">
+               {{{ hiddenmessage }}}
+            </div>
+         {{/hiddenmessage}}
          {{#summary}}
-         <div class="summary card-text {{#expanded}}hide{{/expanded}}"> {{{summary}}}</div>
+            <div class="summary card-text {{#expanded}}hide{{/expanded}}"> {{{summary}}}</div>
          {{/summary}}
          {{#availability}}
-         <div class="section_availability badge badge-pill badge-info mb-10">
-            {{{availability}}}
-         </div>
+            <div class="section_availability badge badge-pill badge-info mb-10">
+               {{{availability}}}
+            </div>
          {{/availability}}
-          <!-- <div class="section-summary-activities text-left {{#expanded}}hide{{/expanded}}">{{{activityinfostring}}}</div> -->
+         {{!<div class="section-summary-activities text-left \{\{#expanded\}\}hide\{\{/expanded\}\}">\{\{\{activityinfostring\}\}\}</div> }}
       </div>
    </div>
 </li>

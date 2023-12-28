@@ -257,7 +257,7 @@ body#page-course-view-remuiformat {
 
         .generalsecactivitiescontent {
             & > .activityinstance {
-                gap: $gap-20;
+                gap: $gap-12;
             }
         }
     }
@@ -339,7 +339,7 @@ body#page-course-view-remuiformat {
         }
 
         & > .activityinstance {
-            gap: $gap-20;
+            gap: $gap-12;
         }
 
         .activity-item:not(.activityinline) {
@@ -520,7 +520,7 @@ body#page-course-view-remuiformat {
                                     align-items: center;
                                     justify-content: center;
                                     width: 100%;
-                                    gap: $gap-32;
+                                    gap: $gap-26;
 
                                 }
                                 .availabilityinfo{
@@ -548,7 +548,7 @@ body#page-course-view-remuiformat {
                                 }
 
                                 .contentafterlink {
-                                    margin: $margin-8 0px 0px 0px !important;
+                                    // margin: $margin-8 0px 0px 0px !important;
                                     padding: 0px;
                                     display: flex;
                                     flex-direction: column;
@@ -856,6 +856,10 @@ body#page-course-view-remuiformat {
         justify-content: space-between;
         width: 100%;
         // overflow: auto;
+        
+        p {
+            margin: 0;
+        }
     }
 
     .font-size-16{
