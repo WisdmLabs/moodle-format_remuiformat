@@ -97,12 +97,16 @@
                         <!-- next/prev sections -->
                         <div class="d-flex no-wrap flex-gap-8">
                             <div class=" p-0 wdm-card-section m-0 text-nowrap align-items-center">
-                                <div class="card-section-leftnav">
-                                    {{{ leftnav }}}
-                                </div>
-                                <div class="card-section-rightnav">
-                                    {{{ rightnav }}}
-                                </div>
+                                {{#leftnav}}
+                                    <div class="card-section-leftnav">
+                                        {{{ leftnav }}}
+                                    </div>
+                                {{/leftnav}}
+                                {{#rightnav}}
+                                    <div class="card-section-rightnav">
+                                        {{{ rightnav }}}
+                                    </div>
+                                {{/rightnav}}
                             </div>
                             {{#editing}}
                             <div class="right side mt-0">

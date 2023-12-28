@@ -406,12 +406,6 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
   gap: 16px;
 }
 
-@media (max-width: 900px) {
-  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
-    align-items: unset;
-  }
-}
-
 @media (max-width: 568px) {
   body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card {
     flex-direction: column;
@@ -446,11 +440,14 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
 
 @media (max-width: 568px) {
   body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper .progress-bar-warpper {
-    justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
   }
+}
+
+body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .header-progresbar-wrapper .progress-bar-warpper .progress {
+  max-width: 230px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section.hide {
@@ -837,10 +834,6 @@ body#page-course-view-remuiformat.editing .remui-format-list .sections #changenu
   width: 100%;
 }
 
-body#page-course-view-remuiformat.editing .remui-format-list.one-section-format .one-section-format-details-page-wrapper .course-section-header {
-  flex-direction: row;
-}
-
 body#page-course-view-remuiformat .modtype_label {
   box-shadow: unset !important;
   background-color: unset;
@@ -950,7 +943,7 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .course-
   gap: 16px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 568px) {
   body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header {
     flex-direction: column;
     align-items: flex-start;
@@ -995,10 +988,12 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .course-
 
 @media (max-width: 568px) {
   body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header .header-progresbar-wrapper .progress-bar-warpper {
-    justify-content: center;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+  }
+  body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header .header-progresbar-wrapper .progress-bar-warpper .progress {
+    max-width: 230px;
   }
 }
 

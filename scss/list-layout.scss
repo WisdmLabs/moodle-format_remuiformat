@@ -52,13 +52,13 @@
             }
         }
 
-        &.one-section-format {
-            .one-section-format-details-page-wrapper {
-                .course-section-header {
-                    flex-direction: row;
-                }
-            }
-        }
+        // &.one-section-format {
+        //     .one-section-format-details-page-wrapper {
+        //         .course-section-header {
+        //             flex-direction: row;
+        //         }
+        //     }
+        // }
     }
 }
 
@@ -200,7 +200,7 @@
                 // align-items: center;
                 gap: $gap-16;
 
-                @media (max-width:$screen-900) {
+                @media (max-width:$sm-screen-bp) {
                     flex-direction: column;
                     align-items: flex-start;
                 }
@@ -230,10 +230,14 @@
                     }
                     .progress-bar-warpper{
                         @media (max-width:$sm-screen-bp){
-                            justify-content: center;
+                            // justify-content: center;
                             flex-direction: row;
                             flex-wrap: nowrap;
                             align-items: center;
+
+                            .progress {
+                                max-width: $progress-bar-min-width;
+                            }
                         }
                     }
                 }
