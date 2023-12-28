@@ -450,12 +450,6 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .sect
   width: 230px;
 }
 
-@media (min-width: 768px) {
-  body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section .section-details .general-single-card .wdm-card-section {
-    white-space: nowrap !important;
-  }
-}
-
 body#page-course-view-remuiformat .remui-format-card.single-section-format .sections .section.hide {
   display: none !important;
 }
@@ -1000,12 +994,6 @@ body#page-course-view-remuiformat .remui-format-list .sections .section .course-
   }
   body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header .header-progresbar-wrapper .progress-bar-warpper .progress {
     width: 230px;
-  }
-}
-
-@media (min-width: 768px) {
-  body#page-course-view-remuiformat .remui-format-list .sections .section .course-section-header .wdm-card-section {
-    white-space: nowrap !important;
   }
 }
 
