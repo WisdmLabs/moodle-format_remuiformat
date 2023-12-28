@@ -436,7 +436,7 @@
                             // align-items: unset;
                             // gap: $gap-24;
                         }
-                        @media (max-width:$sm-screen-bp) {
+                        @media (max-width:$tb-screenp-bp) {
                             flex-direction: column;
                             gap: $gap-32;
                         }
@@ -463,8 +463,14 @@
                                 }
 
                                 .progress {
-                                    max-width: $progress-bar-min-width;
+                                    width: $progress-bar-min-width;
                                 }
+                            }
+                        }
+
+                        .wdm-card-section {
+                            @media (min-width: $tb-screenp-bp) {
+                                white-space: nowrap!important;
                             }
                         }
                     }

@@ -200,7 +200,7 @@
                 // align-items: center;
                 gap: $gap-16;
 
-                @media (max-width:$sm-screen-bp) {
+                @media (max-width:$tb-screenp-bp) {
                     flex-direction: column;
                     align-items: flex-start;
                 }
@@ -236,9 +236,14 @@
                             align-items: center;
 
                             .progress {
-                                max-width: $progress-bar-min-width;
+                                width: $progress-bar-min-width;
                             }
                         }
+                    }
+                }
+                .wdm-card-section {
+                    @media (min-width: $tb-screenp-bp) {
+                        white-space: nowrap!important;
                     }
                 }
             }
