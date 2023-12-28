@@ -414,7 +414,8 @@
                     }
                 }
 
-                .activity-item > *:not(.activity-basis):not(.editing_move) {
+                .activity-item:not(:has(.activity-grid)) > *:not(.activity-basis):not(.editing_move),
+                .activity-item .activity-grid > *:not(.activity-instance):not(.activity-actions) {
                     margin-left: 74px;
                 }
                 &.modtype_label .activity-item > *{
