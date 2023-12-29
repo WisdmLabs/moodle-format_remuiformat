@@ -2169,3 +2169,35 @@ body#page-course-view-remuiformat .font-size-16 {
 body#page-course-view-remuiformat.editing .general-section-activities .activity .contentafterlink .no-overflow {
   overflow: auto !important;
 }
+
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container .btn span.expanded-content {
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container .btn span.expanded-content .icon {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container.collapsed .btn span.collapsed-content {
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container.collapsed .btn span.collapsed-content .icon {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container.collapsed .btn .expanded-content {
+  display: none;
+}

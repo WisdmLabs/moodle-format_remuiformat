@@ -876,4 +876,40 @@ body#page-course-view-remuiformat {
             }
         }
     }
+
+    .availabilityinfo {
+        &.isrestricted {
+            .showmore-container .btn{
+                span.expanded-content{
+                    padding: 1px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon{
+                        font-size: 18px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+            .showmore-container.collapsed .btn{
+                span.collapsed-content{
+                    padding: 1px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon{
+                        font-size: 18px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+                .expanded-content{
+                    display: none;
+                }
+            }
+        }
+    }
 }
