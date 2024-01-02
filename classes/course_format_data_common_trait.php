@@ -300,7 +300,7 @@ class course_format_data_common_trait {
 
             $data->hiddenmessage = $this->course_section_availability($course, $section);
 
-            if (empty(trim(strip_tags($data->hiddenmessage)))) {
+            if(trim(strip_tags($data->hiddenmessage)) == ""){
                 $data->hiddenmessage = false;
             }
             if ($courseformat->is_section_current($section)) {
@@ -345,6 +345,9 @@ class course_format_data_common_trait {
 
                 $data->activityinfo = $extradetails['activityinfo'];
                 $data->progressinfo = $extradetails['progressinfo'];
+                if(!$course->enablecompletion){
+                    $data->progressinfo = false;
+                }
 
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
@@ -363,6 +366,13 @@ class course_format_data_common_trait {
                 }
                 $data->activityinfostring = implode($extradetails['activityinfo']);
                 $data->progressinfo = $extradetails['progressinfo'];
+                $data->checkrightsidecontent = true;
+                if(!$course->enablecompletion){
+                    $data->progressinfo = false;
+                }
+                if(!$data->progressinfo && !$editing){
+                    $data->checkrightsidecontent = false;
+                }
                 $data->sectionactivities = $this->course_section_cm_list(
                     $course, $section
                 );

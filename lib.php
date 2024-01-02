@@ -923,5 +923,6 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
     }else{
         $export->generalsection['overlayopacity'] = 1;
     }
+    $export->generalsection['coursecompletionstatus'] =  $course->enablecompletion;
     return $export->generalsection;
 }

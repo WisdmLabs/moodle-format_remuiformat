@@ -140,7 +140,7 @@ body#page-course-view-remuiformat .sections .single-card-container {
 
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted {
   margin: 0px;
-  margin-top: 8px;
+  margin-top: 16px;
   padding: 8px;
   border-radius: 8px;
   background-color: #EBF0F9;
@@ -267,7 +267,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card {
-  min-height: 157px;
+  min-height: 152px;
   height: 100%;
   width: 100%;
 }
@@ -529,7 +529,7 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .single-card,
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .single-card {
-  min-height: 157px;
+  min-height: 152px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .single-card .single-card-child-wrapper,
@@ -1781,7 +1781,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   background: #fff;
   border: 1px solid #EBF0F9;
   border-radius: 8px;
-  min-height: 157px;
+  min-height: 152px;
   transition: all 0.5s ease;
 }
 
@@ -1797,7 +1797,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   display: flex;
   position: relative;
   justify-content: start;
-  margin-top: 8px;
+  margin-top: 16px;
   padding: 0px;
 }
 
@@ -2168,6 +2168,10 @@ body#page-course-view-remuiformat .font-size-16 {
 
 body#page-course-view-remuiformat.editing .general-section-activities .activity .contentafterlink .no-overflow {
   overflow: auto !important;
+}
+
+body#page-course-view-remuiformat .action-availstatus-wrapper:not(:has(:first-child)) {
+  display: none;
 }
 
 body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container .btn span.expanded-content {

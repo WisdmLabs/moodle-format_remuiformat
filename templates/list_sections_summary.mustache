@@ -67,8 +67,9 @@
 
          </div>
 
+         {{#checkrightsidecontent}}
          <div class="right side float-right d-flex align-items-center">
-
+            {{#progressinfo}}
             <div class="progress-bar-warpper">
                <div class="progress progress-xs bg-grey-300 m-b-1">
                   <div class="progress-bar bg-green-600"
@@ -85,6 +86,7 @@
                   </span>
                </div>
             </div>
+            {{/progressinfo}}
             {{#editing}}
             <div class="d-flex">
                {{{ addnewsection }}}
@@ -92,6 +94,7 @@
             </div>
             {{/editing}}
          </div>
+         {{/checkrightsidecontent}}
       </div>
       <div class="availability-summary-wrapper">
          {{#hiddenmessage}}

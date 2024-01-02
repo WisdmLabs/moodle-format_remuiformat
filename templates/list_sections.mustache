@@ -92,6 +92,7 @@
                             {{> core_courseformat/local/content/section/badges }}
                         </div>
                     </h3>
+                    {{#progressinfo}}
                     <div class="progress-bar-warpper">
                         <div class="progress progress-xs bg-grey-300 m-b-1">
                            <div class="progress-bar bg-green-600" style="width:{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;" role="progressbar">
@@ -104,6 +105,7 @@
                            <span>{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}% {{#str}} Complete, format_remuiformat {{/str}}</span>
                         </div>
                      </div>
+                     {{/progressinfo}}
                 </div>
                 <div class="side right d-flex ">
 
