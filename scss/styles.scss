@@ -259,6 +259,10 @@ body#page-course-view-remuiformat {
             & > .activityinstance {
                 gap: $gap-12;
             }
+
+            .action-availstatus-wrapper:has(:first-child) {
+                margin-top: $margin-16;
+            }
         }
     }
     .course-section-header{
@@ -349,13 +353,15 @@ body#page-course-view-remuiformat {
             background-color: $white;
         }
 
-        .description {
+        .description,.activity-grid  {
             .availabilityinfo{
                 // width: fit-content;
             }
-            .course-description-item {
+            .course-description-item,.activity-dates,.activity-description {
                 padding: $border-radius-8;
-                margin: 0px 0px 0px 0px !important;
+                flex-direction: column;
+                // margin: 0px 0px 0px 0px !important;
+                margin-top: 0px !important;
                 background-color: $small-ui-bg;
                 border-radius: $border-radius-4;
                 color: $paragraph-color;
@@ -370,6 +376,12 @@ body#page-course-view-remuiformat {
                         }
                     }
                 }
+                p {
+                    margin: 0;
+                }
+            }
+            .activity-description {
+                border: 0;
             }
         }
     }

@@ -446,13 +446,21 @@
                     }
                 }
 
-                .activity-item:not(:has(.activity-grid)) > *:not(.activity-basis):not(.editing_move),
-                .activity-item .activity-grid > *:not(.activity-instance):not(.activity-actions) {
-                    margin-left: 74px;
+                @media (min-width:$tb-screenp-bp) {
+                    .activity-item:not(:has(.activity-grid)) > *:not(.activity-basis):not(.editing_move),
+                    .activity-item .activity-grid > *:not(.activity-instance):not(.activity-actions) {
+                        margin-left: 74px;
+                    }
                 }
+                @media (max-width:$tb-screenp-bp) {
+                    .activity-item .activity-grid .activity-instance {
+                        margin-bottom: $margin-8;
+                    }
+                }
+
                 .activity-item:not(:has(.activity-grid)) > *:has(.badge),
                 .activity-item .activity-grid > *:has(.badge) {
-                    margin-bottom: 16px !important;
+                    margin-bottom: $margin-16 !important;
                 }
                 &.modtype_label .activity-item > *{
                     margin-left: unset !important ;
