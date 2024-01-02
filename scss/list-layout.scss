@@ -128,6 +128,9 @@
                         }
                     }
                 }
+                .summary {
+                    margin-top: $margin-16;
+                }
             }
         }
         &.one-section-format {
@@ -535,7 +538,7 @@
     .section_availability .section_availability,
     .section_availability.course-description-item{
         color: $paragraph-color;
-        padding:2px  0px $pad-16 0px;
+        padding-top: 2px;
         @include frmt-font-styling(12px,15px,400);
         .availabilityinfo{
             background-color: $small-ui-bg;
