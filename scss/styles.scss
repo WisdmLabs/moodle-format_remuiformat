@@ -320,6 +320,7 @@ body#page-course-view-remuiformat {
                 }
 
                 .activityname {
+                    display: block;
                     & a {
                         color: $heading-color;
                         @include frmt-font-styling(20px, 28px, 700);
@@ -357,7 +358,7 @@ body#page-course-view-remuiformat {
             .availabilityinfo{
                 // width: fit-content;
             }
-            .course-description-item,.activity-dates,.activity-description {
+            .course-description-item,.activity-dates {
                 padding: $border-radius-8;
                 flex-direction: column;
                 // margin: 0px 0px 0px 0px !important;
@@ -376,12 +377,21 @@ body#page-course-view-remuiformat {
                         }
                     }
                 }
+                
+            }
+
+            .activity-altcontent,
+            .activity-description {
+                padding: $pad-8 0 0 0;
+                background-color: unset;
+                border: 0;
+                margin-top: 0;
+                margin-bottom: $margin-16;
+                font-size: 14px;
+
                 p {
                     margin: 0;
                 }
-            }
-            .activity-description {
-                border: 0;
             }
         }
     }

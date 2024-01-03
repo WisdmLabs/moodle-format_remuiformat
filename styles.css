@@ -906,12 +906,15 @@ body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestric
   font-weight: 400;
 }
 
-body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted .description-inner ul {
+body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted .description-inner ul,
+body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted .expanded-content ul {
   padding-left: 1rem;
 }
 
-body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted .description-inner ul li {
+body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted .description-inner ul li,
+body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted .expanded-content ul li {
   margin-top: 4px;
+  margin-bottom: unset !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted strong {
@@ -931,7 +934,11 @@ body#page-course-view-remuiformat .remui-format-list .summary, body#page-course-
   line-height: 24px;
   font-weight: 400;
   color: #4C5A73;
-  gap: 24px;
+  gap: 16px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .summary .no-overflow p, body#page-course-view-remuiformat .remui-format-list .course-section-summary-wrapper .no-overflow p {
+  margin: 0;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections {
@@ -1194,11 +1201,35 @@ body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .ac
   }
 }
 
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-info.mt-1,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-info.mt-1 {
+  margin-left: 74px;
+  padding-left: 0;
+}
+
 @media (max-width: 768px) {
   body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-info.mt-1,
   body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-info.mt-1 {
     margin-top: 24px !important;
+    margin-left: 0;
   }
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-info.mt-1 .activity-information .automatic-completion-conditions,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-info.mt-1 .activity-information .automatic-completion-conditions {
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-basis:has([data-region="completion-info"]),
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-basis:has([data-region="completion-info"]) {
+  margin-bottom: 16px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-basis > div.flex-column,
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-basis > div.flex-column {
+  flex-direction: column !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .description .availabilityinfo,
@@ -1219,17 +1250,19 @@ body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .ac
 
 @media (min-width: 768px) {
   body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item:not(:has(.activity-grid)) > *:not(.activity-basis):not(.editing_move),
-  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item .activity-grid > *:not(.activity-instance):not(.activity-actions),
+  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item .activity-grid > *:not(.activity-instance):not(.activityiconcontainer):not(.activity-actions),
   body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item:not(:has(.activity-grid)) > *:not(.activity-basis):not(.editing_move),
-  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item .activity-grid > *:not(.activity-instance):not(.activity-actions) {
+  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item .activity-grid > *:not(.activity-instance):not(.activityiconcontainer):not(.activity-actions) {
     margin-left: 74px;
   }
 }
 
 @media (max-width: 768px) {
-  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item .activity-grid .activity-instance,
-  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item .activity-grid .activity-instance {
-    margin-bottom: 8px;
+  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item .activity-grid > .activity-instance,
+  body#page-course-view-remuiformat .remui-format-list .activities-list ul.section .activity .activity-item .activity-grid > .activityiconcontainer,
+  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item .activity-grid > .activity-instance,
+  body#page-course-view-remuiformat .remui-format-list .card-footer ul.section .activity .activity-item .activity-grid > .activityiconcontainer {
+    margin-bottom: 8px !important;
   }
 }
 
@@ -1320,6 +1353,30 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 
 body#page-course-view-remuiformat .remui-format-list .availability-summary-wrapper:not(:has(:first-child)) {
   display: none;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid {
+  grid-template-rows: 1fr repeat(6, -webkit-min-content);
+  grid-template-rows: 1fr repeat(6, min-content);
+  grid-template-areas: "icon name groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "dates dates dates dates dates"
+ "altcontent altcontent altcontent altcontent altcontent"
+ "afterlink afterlink afterlink afterlink afterlink"
+ "availability availability availability availability availability";
+}
+
+body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates {
+  margin-right: 0 !important;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-instance:not(:has(.activityiconcontainer)) {
+  margin-left: 24px;
+}
+
+body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-instance:not(:has(.activityiconcontainer)) ~ .activity-badges {
+  margin-left: 24px !important;
 }
 
 body#page-course-view-remuiformat .text-clamp {
@@ -1688,6 +1745,10 @@ body#page-course-view-remuiformat .activity .activitytitle .media-body > :first-
   text-transform: capitalize !important;
 }
 
+body#page-course-view-remuiformat .activity .activitytitle .media-body .activityname {
+  display: block;
+}
+
 body#page-course-view-remuiformat .activity .activitytitle .media-body .activityname a {
   color: #313848;
   font-size: 20px;
@@ -1719,7 +1780,7 @@ body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) 
   background-color: #fff;
 }
 
-body#page-course-view-remuiformat .activity .description .course-description-item, body#page-course-view-remuiformat .activity .description .activity-dates, body#page-course-view-remuiformat .activity .description .activity-description, body#page-course-view-remuiformat .activity .activity-grid .course-description-item, body#page-course-view-remuiformat .activity .activity-grid .activity-dates, body#page-course-view-remuiformat .activity .activity-grid .activity-description {
+body#page-course-view-remuiformat .activity .description .course-description-item, body#page-course-view-remuiformat .activity .description .activity-dates, body#page-course-view-remuiformat .activity .activity-grid .course-description-item, body#page-course-view-remuiformat .activity .activity-grid .activity-dates {
   padding: 8px;
   flex-direction: column;
   margin-top: 0px !important;
@@ -1730,21 +1791,30 @@ body#page-course-view-remuiformat .activity .description .course-description-ite
   font-weight: 400px;
 }
 
-body#page-course-view-remuiformat .activity .description .course-description-item .description-inner, body#page-course-view-remuiformat .activity .description .activity-dates .description-inner, body#page-course-view-remuiformat .activity .description .activity-description .description-inner, body#page-course-view-remuiformat .activity .activity-grid .course-description-item .description-inner, body#page-course-view-remuiformat .activity .activity-grid .activity-dates .description-inner, body#page-course-view-remuiformat .activity .activity-grid .activity-description .description-inner {
+body#page-course-view-remuiformat .activity .description .course-description-item .description-inner, body#page-course-view-remuiformat .activity .description .activity-dates .description-inner, body#page-course-view-remuiformat .activity .activity-grid .course-description-item .description-inner, body#page-course-view-remuiformat .activity .activity-grid .activity-dates .description-inner {
   padding: 0px;
   border: unset;
 }
 
-body#page-course-view-remuiformat .activity .description .course-description-item .description-inner ul li, body#page-course-view-remuiformat .activity .description .activity-dates .description-inner ul li, body#page-course-view-remuiformat .activity .description .activity-description .description-inner ul li, body#page-course-view-remuiformat .activity .activity-grid .course-description-item .description-inner ul li, body#page-course-view-remuiformat .activity .activity-grid .activity-dates .description-inner ul li, body#page-course-view-remuiformat .activity .activity-grid .activity-description .description-inner ul li {
+body#page-course-view-remuiformat .activity .description .course-description-item .description-inner ul li, body#page-course-view-remuiformat .activity .description .activity-dates .description-inner ul li, body#page-course-view-remuiformat .activity .activity-grid .course-description-item .description-inner ul li, body#page-course-view-remuiformat .activity .activity-grid .activity-dates .description-inner ul li {
   margin-bottom: unset;
 }
 
-body#page-course-view-remuiformat .activity .description .course-description-item p, body#page-course-view-remuiformat .activity .description .activity-dates p, body#page-course-view-remuiformat .activity .description .activity-description p, body#page-course-view-remuiformat .activity .activity-grid .course-description-item p, body#page-course-view-remuiformat .activity .activity-grid .activity-dates p, body#page-course-view-remuiformat .activity .activity-grid .activity-description p {
-  margin: 0;
+body#page-course-view-remuiformat .activity .description .activity-altcontent,
+body#page-course-view-remuiformat .activity .description .activity-description, body#page-course-view-remuiformat .activity .activity-grid .activity-altcontent,
+body#page-course-view-remuiformat .activity .activity-grid .activity-description {
+  padding: 8px 0 0 0;
+  background-color: unset;
+  border: 0;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 14px;
 }
 
-body#page-course-view-remuiformat .activity .description .activity-description, body#page-course-view-remuiformat .activity .activity-grid .activity-description {
-  border: 0;
+body#page-course-view-remuiformat .activity .description .activity-altcontent p,
+body#page-course-view-remuiformat .activity .description .activity-description p, body#page-course-view-remuiformat .activity .activity-grid .activity-altcontent p,
+body#page-course-view-remuiformat .activity .activity-grid .activity-description p {
+  margin: 0;
 }
 
 body#page-course-view-remuiformat .course-content .sections {

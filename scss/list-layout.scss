@@ -163,11 +163,13 @@
             border-radius: $border-radius-8;
             background-color: $small-ui-bg;
             @include frmt-font-styling(12px,normal,400);
-                .description-inner{
+                .description-inner,
+                .expanded-content {
                     ul {
                         padding-left: 1rem;
                         li{
                             margin-top: 4px;
+                            margin-bottom: unset !important;
                         }
                     }
                 }
@@ -182,7 +184,13 @@
     .summary,.course-section-summary-wrapper{
         @include frmt-font-styling(16px,24px,400);
         color: $paragraph-color;
-        gap: $gap-24;
+        gap: $gap-16;
+
+        .no-overflow {
+            p {
+                margin: 0;
+            }
+        }
     }
     .sections {
         list-style: none;
@@ -425,8 +433,28 @@
                     }
                 }
                 .activity-info.mt-1 {
+                    margin-left: 74px;
+                    padding-left: 0;
                     @media (max-width:$tb-screenp-bp) {
                         margin-top: $margin-24 !important;
+                        margin-left: 0;
+                    }
+
+                    .activity-information {
+                        .automatic-completion-conditions {
+                            flex-direction: row !important;
+                            flex-wrap: wrap !important;
+                            gap: 8px;
+                        }
+                    }
+                }
+                .activity-basis {
+                    &:has([data-region="completion-info"]) {
+                        margin-bottom: 16px;
+                    }
+
+                    & > div.flex-column {
+                        flex-direction: column !important;
                     }
                 }
                 .description{
@@ -451,13 +479,14 @@
 
                 @media (min-width:$tb-screenp-bp) {
                     .activity-item:not(:has(.activity-grid)) > *:not(.activity-basis):not(.editing_move),
-                    .activity-item .activity-grid > *:not(.activity-instance):not(.activity-actions) {
+                    .activity-item .activity-grid > *:not(.activity-instance):not(.activityiconcontainer ):not(.activity-actions) {
                         margin-left: 74px;
                     }
                 }
                 @media (max-width:$tb-screenp-bp) {
-                    .activity-item .activity-grid .activity-instance {
-                        margin-bottom: $margin-8;
+                    .activity-item .activity-grid > .activity-instance,
+                    .activity-item .activity-grid > .activityiconcontainer  {
+                        margin-bottom: $margin-8 !important;
                     }
                 }
 
@@ -558,4 +587,33 @@
     .availability-summary-wrapper:not(:has(:first-child)) {
         display: none;
     }
+
+
+    // Only for moodle 4.3
+    .activity-item {
+        .activity-grid {
+            grid-template-rows: 1fr repeat(6,min-content);
+            grid-template-areas:
+                "icon name groupmode completion actions"
+                "icon visibility groupmode completion actions"
+                "icon visibility groupmode completion actions"
+                "dates dates dates dates dates"
+                "altcontent altcontent altcontent altcontent altcontent"
+                "afterlink afterlink afterlink afterlink afterlink"
+                "availability availability availability availability availability";
+        
+            .activity-dates {
+                margin-right: 0 !important;
+            }
+
+            .activity-instance:not(:has(.activityiconcontainer )) {
+                margin-left: $margin-24;
+
+                & ~ .activity-badges {
+                    margin-left: $margin-24 !important;
+                }
+            }
+        }
+    }
 }
+
