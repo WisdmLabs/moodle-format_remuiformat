@@ -495,7 +495,7 @@ body#page-course-view-remuiformat {
                                         display: flex;
                                         position: relative;
                                         justify-content: start;
-                                        margin-top: $margin-16;
+                                        // margin-top: $margin-16;
                                         padding: 0px;
 
                                         .spinner {
@@ -524,6 +524,12 @@ body#page-course-view-remuiformat {
                                             }
                                         }
                                     }
+                                    .action-availstatus-wrapper:has(:nth-child(2)) {
+                                        .actions {
+                                            margin-top: $margin-16;
+                                        }
+                                    }
+
                                 }
 
                                 &.modtype_label {

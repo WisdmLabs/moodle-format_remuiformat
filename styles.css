@@ -266,7 +266,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .section .single-card {
-  min-height: 152px;
+  min-height: 120px;
   height: 100%;
   width: 100%;
 }
@@ -888,7 +888,11 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
   padding-right: 10px;
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .summary {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .availability-summary-wrapper:not(:has(:first-child)) {
+  display: none;
+}
+
+body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .availability-summary-wrapper:has(:nth-child(2)) .summary {
   margin-top: 16px;
 }
 
@@ -1349,10 +1353,6 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
   font-size: 12px;
   line-height: normal;
   font-weight: 400;
-}
-
-body#page-course-view-remuiformat .remui-format-list .availability-summary-wrapper:not(:has(:first-child)) {
-  display: none;
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid {
@@ -1939,7 +1939,6 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   display: flex;
   position: relative;
   justify-content: start;
-  margin-top: 16px;
   padding: 0px;
 }
 
@@ -1968,6 +1967,10 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information .completion-info .btn,
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .actions .activity-information [data-region="completion-info"] .btn {
   width: 100%;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) .action-availstatus-wrapper:has(:nth-child(2)) .actions {
+  margin-top: 16px;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity.modtype_label {
