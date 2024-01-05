@@ -1354,7 +1354,13 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "dates dates dates dates dates"
+ "altcontent altcontent altcontent altcontent altcontent"
+ "afterlink afterlink afterlink afterlink afterlink"
+ "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates {
@@ -1721,6 +1727,10 @@ body#page-course-view-remuiformat .automatic-completion-conditions .badge span .
   font-weight: 400;
 }
 
+body#page-course-view-remuiformat:not(.editing) .activity .activitytitle .media-body > :first-child {
+  display: none;
+}
+
 body#page-course-view-remuiformat .activity .activitytitle .media-body {
   display: flex;
   flex-direction: column;
@@ -1735,12 +1745,11 @@ body#page-course-view-remuiformat .activity .activitytitle .media-body > :first-
   line-height: 24px;
   font-weight: 400;
   color: #647390;
-  display: none;
   text-transform: capitalize !important;
 }
 
 body#page-course-view-remuiformat .activity .activitytitle .media-body .activityname {
-  display: block;
+  display: block !important;
 }
 
 body#page-course-view-remuiformat .activity .activitytitle .media-body .activityname a {
