@@ -122,7 +122,9 @@
         </div>
         {{/hiddenmessage }}
         {{#availability}} <div class="section_availability badge badge-pill badge-info mb-10">{{{availability}}}</div>{{/availability}}
-        <!-- <div class="section-summary-activities mdl-right mb-2">{{{activityinfostring}}}</div> -->
+        {{#editing}}
+            <div class="section-summary-activities mdl-right mb-2 p-24 pb-0 pt-0">{{{activityinfostring}}}</div>
+        {{/editing}}
         {{#sectionactivities}}
         <div class=" card-footer text-muted border-0 " aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)" {{#collapsed}}style="display: none;"{{/collapsed}}>
             {{{sectionactivities}}}

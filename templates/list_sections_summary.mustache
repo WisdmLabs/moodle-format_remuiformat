@@ -110,7 +110,9 @@
                {{{availability}}}
             </div>
          {{/availability}}
-         {{!<div class="section-summary-activities text-left \{\{#expanded\}\}hide\{\{/expanded\}\}">\{\{\{activityinfostring\}\}\}</div> }}
+          {{#editing}}
+            <div class="section-summary-activities text-left {{#expanded}}hide{{/expanded}} p-24">{{{activityinfostring}}}</div>
+          {{/editing}}
       </div>
    </div>
 </li>

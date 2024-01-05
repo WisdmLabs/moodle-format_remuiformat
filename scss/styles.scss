@@ -239,6 +239,13 @@ body#page-course-view-remuiformat {
                 }
             }
         }
+        .activity {
+            .media-body {
+                .text-font-small.small {
+                    display: block !important;
+                }
+            }
+        }
     }
     .activity.activity-wrapper .activity-item .description .activity-dates .description-inner div {
         line-height: 22px;

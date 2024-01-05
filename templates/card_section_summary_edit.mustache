@@ -118,6 +118,11 @@
                 {{{ summary }}}
             </div>
             {{/summary }}
+            <div class="section-activities-summary">
+                {{#activityinfo}}
+                    <span class="item {{#hidden}}text-muted{{/hidden}}">{{ . }}</span>
+                {{/activityinfo}}
+            </div>
             <ul class="section">
             </ul>
             {{#editsectionurl}}
