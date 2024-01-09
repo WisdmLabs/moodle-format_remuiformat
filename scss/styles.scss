@@ -106,6 +106,21 @@ body#page-course-view-remuiformat {
                         flex-direction: row-reverse;
                         gap: $gap-8;
                     }
+
+                    .avgrating {
+                        order: 2;
+                        margin-left: 4px;
+                    }
+
+                    .rnr-link {
+                        padding-left: 2px;
+                    }
+
+                    .avgrating, .rnr-link {
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: $white;
+                    }
                 }
 
                 .instructor-info {

@@ -1510,9 +1510,19 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   color: #fff;
 }
 
-body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .inner {
-  flex-direction: row-reverse;
-  gap: 8px;
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .avgrating {
+  order: 2;
+  margin-left: 4px;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .rnr-link {
+  padding-left: 2px;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .avgrating, body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .rnr-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
 }
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info {
