@@ -83,10 +83,10 @@
                     {{{availability}}}
                     {{#fullsummary}}
                     {{! <input type="checkbox" class="read-more-state" id="read-more-summary" /> }}
-                    <div class="read-more-target coursesummary" style="-webkit-box-orient: vertical;">{{{fullsummary}}}
+                    <div class="read-more-target coursesummary" >{{{fullsummary}}}
                     </div>
-                    <a id="readmorebtn" class="d-none readbtn">Read More</a>
-                    <a id="readlessbtn" class="d-none readbtn">Read Less</a>
+                    <a id="readmorebtn" class="d-none readbtn">{{#str}} showmore, format_remuiformat{{/str}}</a>
+                    <a id="readlessbtn" class="d-none readbtn">{{#str}} showless, format_remuiformat{{/str}}</a>
                     {{! <label for="read-more-summary" class=" text-primary small read-more-trigger"></label> }}
                     {{/fullsummary}}
                     <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20"
@@ -116,27 +116,32 @@
                     <li class="activity {{{modulename}}} modtype_{{{modulename}}} d-flex flex-column justify-content-between  list-unstyled yui3-dd-drop"
                         id="module-{{id}}" data-draggroups="resource">
 
-                        <div class="activityinstance p-0 m-0 d-flex h-100 flex-column justify-content-between">
+                        <div class="activityinstance p-0 m-0 d-flex h-100 flex-column">
                             <div class="title-activity-container text-break w-100 text-left ">
                                 {{{title}}}
                             </div>
-                            <span class=""><span class="editing_move moodle-core-dragdrop-draghandle"
-                                    title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0"
-                                    data-draggroups="resource" role="button" data-sectionreturn="0"
-                                    style="cursor: move;">{{#pix}} i/move_2d,core {{/pix}}</span></span>
-                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center mt-2">
-                                {{> core_courseformat/local/content/section/badges }}
-                            </div>
+                            {{#modhiddenfromstudents}}
+                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
+                                    {{> core_courseformat/local/content/section/badges }}
+                                </div>
+                            {{/modhiddenfromstudents}}
                             {{#modstealth}}
-                            <div class="mt-2 d-flex align-items-center">
+                            <div class="d-flex align-items-center">
                                 <span class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
                             </div>
                             {{/modstealth}}
+                            {{#summary}}
                             <div class="contentafterlink">
                                 {{{summary}}}
                             </div>
+                            {{/summary}}
+                            <span class=""><span class="editing_move moodle-core-dragdrop-draghandle"
+                                title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0"
+                                data-draggroups="resource" role="button" data-sectionreturn="0"
+                                style="cursor: move;">{{#pix}} i/move_2d,core {{/pix}}</span>
+                            </span>
                         </div>
-                        <div class="p-0">
+                        <div class="p-0 action-availstatus-wrapper">
                             {{#hasopenduedata}}
                             <div class="description text-left">
                                 <div data-region="activity-dates" class="activity-dates small course-description-item">

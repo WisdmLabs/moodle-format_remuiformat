@@ -84,28 +84,15 @@
                     {{{availability}}}
                     {{#fullsummary}}
                     {{! <input type="checkbox" class="read-more-state" id="read-more-summary" /> }}
-                    <div class="read-more-target coursesummary" style="-webkit-box-orient: vertical;">{{{fullsummary}}}
+                    <div class="read-more-target coursesummary" >{{{fullsummary}}}
                     </div>
-                    <a id="readmorebtn" class="d-none readbtn">Read More</a>
-                    <a id="readlessbtn" class="d-none readbtn">Read Less</a>
+                    <a id="readmorebtn" class="d-none readbtn">{{#str}} showmore, format_remuiformat{{/str}}</a>
+                    <a id="readlessbtn" class="d-none readbtn">{{#str}} showless, format_remuiformat{{/str}}</a>
                     {{! <label for="read-more-summary" class=" text-primary small read-more-trigger"></label> }}
                     {{/fullsummary}}
                 </div>
             </div>
             {{/showgeneralsectionintrodata}}
-            {{#courseinformationdata}}
-            <div class="coursedetails">
-                <div class="details d-flex flex-column">
-                    {{!> format_remuiformat/course_progress }}
-                    <h3 class="m-0 activities-title">{{#str}}courseinformation,format_remuiformat{{/str}}</h3>
-                    <ul class="section-activities-summary">
-                        {{#activitylist}}
-                        <li class="item">{{ . }}</li>
-                        {{/activitylist}}
-                    </ul>
-                </div>
-            </div>
-            {{/courseinformationdata}}
         </div>
         {{#activityexists}}
         <div class="activities-wrapper d-flex flex-column">
@@ -119,24 +106,28 @@
                         {{{leftside}}}
                         {{/editing}}
                         {{! <div> }}
-                            <div class="activityinstance p-0 m-0 d-flex h-100 flex-column justify-content-between">
+                            <div class="activityinstance p-0 m-0 d-flex h-100 flex-column">
                                 <div class="title-activity-container text-break w-100 text-left ">
                                     {{{title}}}
                                 </div>
-                                <div class="contentafterlink">
-                                    {{{summary}}}
-                                </div>
-                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center mt-2">
+                                {{#modhiddenfromstudents}}
+                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
                                     {{> core_courseformat/local/content/section/badges }}
                                 </div>
+                                {{/modhiddenfromstudents}}
                                 {{#modstealth}}
-                                <div class=" d-flex align-items-center mt-2">
+                                <div class=" d-flex align-items-center">
                                     <span
                                         class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
                                 </div>
                                 {{/modstealth}}
+                                {{#summary}}
+                                <div class="contentafterlink">
+                                    {{{summary}}}
+                                </div>
+                                {{/summary}}
                             </div>
-                            <div class="p-0">
+                            <div class="p-0 action-availstatus-wrapper">
                                 {{#hasopenduedata}}
                                 <div class="description text-left">
                                     <div data-region="activity-dates" class="activity-dates small course-description-item">
@@ -151,9 +142,12 @@
                                 </div>
                                 {{/hasopenduedata}}
                                 {{{availstatus}}}
+
+                                {{#completion}}
                                 <div class="actions">
                                     {{{completion}}}
                                 </div>
+                                {{/completion}}
                             </div>
                             {{!
                         </div> }}

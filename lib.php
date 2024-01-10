@@ -281,7 +281,10 @@ class format_remuiformat extends core_courseformat\base {
                     'default' => "cover",
                     'type' => PARAM_RAW
                 ),
-
+                'headeroverlayopacity' => array(
+                    'default' => "100",
+                    'type' => PARAM_RAW
+                ),
             );
         }
 
@@ -406,7 +409,12 @@ class format_remuiformat extends core_courseformat\base {
                     'help' => 'edw_format_hd_bgsize',
                     'help_component' => 'format_remuiformat'
                 ),
-
+                'headeroverlayopacity' => array(
+                    'label' => new lang_string('headeroverlayopacity', 'format_remuiformat'),
+                    'element_type' => 'text',
+                    'help' => 'headeroverlayopacity',
+                    'help_component' => 'format_remuiformat'
+                ),
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
         }
@@ -908,6 +916,13 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
         $export->generalsection['courseheaderdesign'] = get_config('theme_remui', 'courseheaderdesign') == 0 ? false : true;
         $export->turneditingonswitch = "";
     }
-
+    $headeroverlayopacity = $coursesettings['headeroverlayopacity'];
+    if(is_numeric($headeroverlayopacity) && ($headeroverlayopacity <= 100)){
+        $headeroverlayopacity = $headeroverlayopacity / 100;
+        $export->generalsection['overlayopacity'] = $headeroverlayopacity;
+    }else{
+        $export->generalsection['overlayopacity'] = 1;
+    }
+    $export->generalsection['coursecompletionstatus'] =  $course->enablecompletion;
     return $export->generalsection;
 }

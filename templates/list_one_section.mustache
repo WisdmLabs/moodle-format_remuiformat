@@ -73,44 +73,67 @@
     {{/headerdata}}
     <ul class="sections one-section-format-details-page-wrapper">
         <li id="section-{{section}}" class="section" aria-labelledby="section-{{section}} .content .summary .title">
-            <div class="course-section-summary-wrapper">
+            <div class="course-section-summary-wrapper d-flex flex-column">
                 <div class="course-section-header d-flex position-relative dropready draggable" data-for="section_title"
                     data-id="7" data-number="1" draggable="true" id="yui_3_17_2_1_1643968975008_225">
-                    <h2 class="section-title m-0 sectionheading d-inline">
-                        <span class="sno {{^hidden}}{{/hidden}} {{#hidden}}text-muted{{/hidden}}">
-                            {{ section }}.
-                        </span>
-                        <span class="title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
-                        <div data-region="sectionbadges" class="sectionbadges d-inline {{^editing}}ml-2{{/editing}}">
-                            {{> core_courseformat/local/content/section/badges }}
-                        </div>
-                    </h2>
-                    <div class="d-flex">
-                        <div class="progress-bar-warpper">
-                            <div class="progress progress-xs bg-grey-300 m-b-1">
-                                <div class="progress-bar bg-green-600"
-                                    style="width:{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;"
-                                    role="progressbar">
+                    <div class="d-flex header-progresbar-wrapper">
+                        <h2 class="section-title m-0 sectionheading d-inline">
+                            <span class="sno {{^hidden}}{{/hidden}} {{#hidden}}text-muted{{/hidden}}">
+                                {{ section }}.
+                            </span>
+                            <span class="title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
+                            <div data-region="sectionbadges" class="sectionbadges d-inline {{^editing}}ml-2{{/editing}}">
+                                {{> core_courseformat/local/content/section/badges }}
+                            </div>
+                        </h2>
+                        {{#progressinfo}}
+                        <div class="d-flex">
+                            <div class="progress-bar-warpper">
+                                <div class="progress progress-xs bg-grey-300 m-b-1">
+                                    <div class="progress-bar bg-green-600"
+                                        style="width:{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;"
+                                        role="progressbar">
+                                    </div>
+                                </div>
+                                <div class="text-right progress-text">
+                                    {{#progressinfo}}
+                                    {{! progress }}
+                                    {{/progressinfo}}
+                                    <span>{{#progressinfo}}{{ percentage
+                                        }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%</span>
                                 </div>
                             </div>
-                            <div class="text-right progress-text">
-                                {{#progressinfo}}
-                                {{! progress }}
-                                {{/progressinfo}}
-                                <span>{{#progressinfo}}{{ percentage
-                                    }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%</span>
-                            </div>
                         </div>
-                        {{#editing}}
-                        {{{ optionmenu }}}
-                        {{/editing}}
+                        {{/progressinfo}}
+                    </div>
+                    <div class="d-flex justify-content-between align-items-start flex-gap-16">
+                        <!-- next/prev sections -->
+                        <div class="d-flex no-wrap flex-gap-8">
+                            <div class=" p-0 wdm-card-section m-0 text-nowrap align-items-center">
+                                {{#leftnav}}
+                                    <div class="card-section-leftnav">
+                                        {{{ leftnav }}}
+                                    </div>
+                                {{/leftnav}}
+                                {{#rightnav}}
+                                    <div class="card-section-rightnav">
+                                        {{{ rightnav }}}
+                                    </div>
+                                {{/rightnav}}
+                            </div>
+                            {{#editing}}
+                            <div class="right side mt-0">
+                                {{{ optionmenu }}}
+                            </div>
+                            {{/editing}}
+                        </div>
                     </div>
                 </div>
                 {{{ summary}}}
             </div>
             <div class="content">
-                <div class="summary">
-                </div>
+                {{! <div class="summary">
+                </div> }}
                 <div class="activities-list">
                     {{{ activities }}}
                 </div>

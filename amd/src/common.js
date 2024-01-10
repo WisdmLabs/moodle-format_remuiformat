@@ -123,28 +123,19 @@ define(['jquery'], function($) {
         });
 
 
-        // ... + Show full summary label show conditionally.
         var summaryheight = $('.read-more-target').height();
-        var browservendor = window.navigator.vendor;
-        var webkitboxorient = "vertical";
-        if (browservendor.indexOf('Apple') != -1) {
-            webkitboxorient = "horizontal";
-        }
 
-        if (summaryheight > 100) {
+        if (summaryheight > 300) {
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
-            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
-            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
+            $('.read-more-target').addClass('summary-collapsed').removeClass('summary-expanded');
         }
         $('#readmorebtn').on('click', function() {
-            $('.read-more-target .no-overflow').removeClass('text-clamp text-clamp-3');
-            $('.read-more-target').removeClass('text-clamp text-clamp-3');
+            $('.read-more-target').addClass('summary-expanded').removeClass('summary-collapsed');
             $('.generalsectioninfo').find('#readmorebtn').addClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').removeClass('d-none');
         });
         $('#readlessbtn').on('click', function () {
-            $('.read-more-target .no-overflow').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
-            $('.read-more-target').addClass('text-clamp text-clamp-3').css("-webkit-box-orient", webkitboxorient);
+            $('.read-more-target').addClass('summary-collapsed').removeClass('summary-expanded');
             $('.generalsectioninfo').find('#readmorebtn').removeClass('d-none');
             $('.generalsectioninfo').find('#readlessbtn').addClass('d-none');
         });

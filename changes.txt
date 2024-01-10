@@ -1,5 +1,13 @@
 CHANGES LOG
 
+Version 4.1.5
+=============
+Tweak - UI improvements:
+        - Optimized the height of section and activity cards.
+        - Removed activity type name for student users
+Tweak - Added activity indentation for list layout
+Fix - Fixed the issue where restriction information was not visible on the section.
+
 Version 4.1.4
 =============
 Feature - Compatibility with Moodle 4.3.
