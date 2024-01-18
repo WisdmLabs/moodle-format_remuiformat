@@ -822,21 +822,23 @@ function format_remuiformat_check_plugin_available($component) {
      * Get Enrolled Teachers Context
      */
 function get_enrolled_teachers_context_formate($courseid = null, $frontlineteacher = false) {
-    global $OUTPUT;
+    global $OUTPUT, $CFG;
     $coursecontext = \context_course::instance($courseid);
     $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', 0, '*', 'firstname');
+    $roles =   array_flip(get_default_enrol_roles($coursecontext));
 
     $context = array();
 
     if ($teachers) {
-        $namescount = 2;
+        $namescount = 4;
         $profilecount = 0;
-
         foreach ($teachers as $key => $teacher) {
             if ($frontlineteacher && $profilecount < $namescount) {
                 $instructor = array();
+                $instructor['id'] = $teacher->id;
                 $instructor['name'] = fullname($teacher, true);
-                $instructor['avatars'][] = $OUTPUT->user_picture($teacher);
+                $instructor['avatars'] = $OUTPUT->user_picture($teacher);
+                $instructor['teacherprofileurl'] = $CFG->wwwroot.'/user/profile.php?id='.$teacher->id;
                 if ($profilecount != 0) {
                     $instructor['hasanother'] = true;
                 }
@@ -847,6 +849,7 @@ function get_enrolled_teachers_context_formate($courseid = null, $frontlineteach
         if ($profilecount > $namescount) {
             $context['teachercount'] = $profilecount - $namescount;
         }
+        $context['participantspageurl'] = $CFG->wwwroot.'/user/index.php?id='.$courseid.'&roleid='.$roles['Teacher'];
         $context['hasteachers'] = true;
     }
     return $context;
