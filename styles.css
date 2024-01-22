@@ -1546,6 +1546,14 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   font-size: 12px;
 }
 
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .view-user-profile-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .titles {
   font-size: 14px;
   line-height: 22px;
