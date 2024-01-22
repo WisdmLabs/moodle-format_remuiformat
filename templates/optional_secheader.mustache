@@ -31,10 +31,12 @@
                                 {{#teachers}}
                                 <div class="instructor-info stat-container position-relative">
                                     {{#instructors}}
+                                    <div>
                                         <a class="view-user-profile-link" href="{{teacherprofileurl}}" class="" title="{{name}}">
                                             {{{avatars}}}
                                             <span class="titles ">{{name}}</span>
                                         </a>
+                                    </div>
                                     {{/instructors}}
                                     {{#teachercount}}
                                         <a class="view-all-instructorslink" href="{{participantspageurl}}" class="">view all</a>
