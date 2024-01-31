@@ -825,7 +825,18 @@ function get_enrolled_teachers_context_formate($courseid = null, $frontlineteach
     global $OUTPUT, $CFG;
     $coursecontext = \context_course::instance($courseid);
     $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', 0, '*', 'firstname');
-    $roles =   array_flip(get_default_enrol_roles($coursecontext));
+    $roles =   new stdClass();
+
+    $allroles = get_all_roles();
+    foreach($allroles as $singlerole){
+        if($singlerole->shortname == 'editingteacher'){
+            $roles = $singlerole;
+            break;
+        }
+    }
+    if(!isset($roles)){
+        $roles->id = "";
+    }
 
     $context = array();
 
@@ -849,7 +860,7 @@ function get_enrolled_teachers_context_formate($courseid = null, $frontlineteach
         if ($profilecount > $namescount) {
             $context['teachercount'] = $profilecount - $namescount;
         }
-        $context['participantspageurl'] = $CFG->wwwroot.'/user/index.php?id='.$courseid.'&roleid='.$roles['Teacher'];
+        $context['participantspageurl'] = $CFG->wwwroot.'/user/index.php?id='.$courseid.'&roleid='.$roles->id;
         $context['hasteachers'] = true;
     }
     return $context;
