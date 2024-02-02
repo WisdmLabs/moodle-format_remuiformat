@@ -69,30 +69,31 @@ body#page-course-view-remuiformat {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            gap: $gap-24;
-            flex-wrap: wrap;
+            gap: $gap-32 $gap-24;
+            // flex-wrap: wrap;
 
             @media (max-width:1200px) {
-                align-items: unset;
-                justify-content: space-between;
+                // align-items: unset;
+                // justify-content: space-between;
             }
 
             @media (max-width:$sm-screen-bp) {
                 // align-items: unset;
                 flex-direction: column;
-                gap: 32px;
+                // gap: 32px;
                 // justify-content: space-between;
             }
 
             .rating-instructor-wrapper {
                 display: flex;
-                gap: $gap-24;
+                gap: $gap-12 $gap-24;
                 flex-wrap: wrap;
+                align-items: center;
 
                 @media (max-width:1200px) {
-                    gap: $gap-24;
-                    flex-direction: column;
-                    justify-content: space-between;
+                    // gap: $gap-24;
+                    // flex-direction: column;
+                    // justify-content: space-between;
                 }
 
                 @media (max-width:$sm-screen-bp) {
@@ -123,15 +124,50 @@ body#page-course-view-remuiformat {
                     }
                 }
 
+                .stat-container {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 8px 16px;
+                }
+
                 .instructor-info {
                     color: $white;
 
                     .stat {
-                        @include frmt-font-styling(14px,22px,400);
+                        @include frmt-font-styling(14px,22px,600);
                         color: #313848;
                         padding: $pad-4;
                         border-radius: $border-radius-4;
                         background-color: #fff;
+                    }
+
+                    .userpicture,
+                    .userinitials {
+                        width: 24px;
+                        height: 24px;
+                        border: unset;
+                    }
+
+                    .userinitials {
+                        font-size: 12px;
+                    }
+
+                    .view-user-profile-link {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    .titles {
+                        @include frmt-font-styling(14px,22px,400);
+                        color: $white;
+                    }
+                    .view-all-instructorslink {
+                        @include frmt-font-styling(14px,22px,600);
+                        color: $white;
                     }
                 }
             }
@@ -139,10 +175,9 @@ body#page-course-view-remuiformat {
             .progress-resume-wrapper {
                 display: flex;
                 align-items: center;
-                gap: 40px;
+                gap: $gap-24 $gap-40;
 
                 @media (max-width:1200px) {
-                    gap: $gap-24;
                     flex-direction: column;
                 }
 
@@ -150,6 +185,7 @@ body#page-course-view-remuiformat {
                     gap: $gap-16;
                     flex-wrap: wrap;
                     align-items: flex-start;
+                    width: 100%;
                 }
 
                 .progressbar-text-wrapper {
@@ -973,6 +1009,16 @@ body#page-course-view-remuiformat {
             }
             ul {
                 padding-left: 1rem !important;
+            }
+        }
+    }
+
+    &.limitedwidth  {
+        header.hasbackground.design-1 {
+            .header-sub-section {
+                .progress-resume-wrapper {
+                    flex-direction: column;
+                }
             }
         }
     }

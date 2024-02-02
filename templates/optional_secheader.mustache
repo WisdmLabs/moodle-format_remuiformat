@@ -29,16 +29,16 @@
                                 </div>
                                 {{/rnrdesign}}
                                 {{#teachers}}
-                                <div class="instructor-info stat-container">
-                                    <span class="titles h-semibold-6">
-                                        {{#instructors}}{{!
-                                        }}{{#hasanother}},&nbsp;{{/hasanother}}{{name}}{{!
-                                        }}{{/instructors}}
-                                    </span>
+                                <div class="instructor-info stat-container position-relative">
+                                    {{#instructors}}
+                                    <div class="position-relative">
+                                        <a class="view-user-profile-link" href="{{teacherprofileurl}}" class="" title="{{name}}"></a>
+                                        {{{avatars}}}
+                                        <span class="titles ">{{name}}</span>
+                                    </div>
+                                    {{/instructors}}
                                     {{#teachercount}}
-                                    <span class="stat">
-                                        <b class="count"> +{{teachercount}}</b>
-                                    </span>
+                                        <a class="view-all-instructorslink" href="{{participantspageurl}}" class="">view all</a>
                                     {{/teachercount}}
                                 </div>
                                 {{/teachers}}

@@ -1468,36 +1468,20 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 1200px) {
-  body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section {
-    align-items: unset;
-    justify-content: space-between;
-  }
+  gap: 32px 24px;
 }
 
 @media (max-width: 568px) {
   body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section {
     flex-direction: column;
-    gap: 32px;
   }
 }
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper {
   display: flex;
-  gap: 24px;
+  gap: 12px 24px;
   flex-wrap: wrap;
-}
-
-@media (max-width: 1200px) {
-  body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper {
-    gap: 24px;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+  align-items: center;
 }
 
 @media (max-width: 568px) {
@@ -1508,6 +1492,11 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper {
   color: #fff;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .inner {
+  flex-direction: row-reverse;
+  gap: 8px;
 }
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .edw-ratings-wrapper .avgrating {
@@ -1525,6 +1514,13 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   color: #fff;
 }
 
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .stat-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info {
   color: #fff;
 }
@@ -1532,22 +1528,54 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .stat {
   font-size: 14px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 600;
   color: #313848;
   padding: 4px;
   border-radius: 4px;
   background-color: #fff;
 }
 
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .userpicture,
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .userinitials {
+  width: 24px;
+  height: 24px;
+  border: unset;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .userinitials {
+  font-size: 12px;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .view-user-profile-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .titles {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #fff;
+}
+
+body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info .view-all-instructorslink {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  color: #fff;
+}
+
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 24px 40px;
 }
 
 @media (max-width: 1200px) {
   body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
-    gap: 24px;
     flex-direction: column;
   }
 }
@@ -1557,6 +1585,7 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
     gap: 16px;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
   }
 }
 
@@ -2362,4 +2391,8 @@ body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-conta
 
 body#page-course-view-remuiformat .availabilityinfo.isrestricted ul {
   padding-left: 1rem !important;
+}
+
+body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
+  flex-direction: column;
 }
