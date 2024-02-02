@@ -1,5 +1,9 @@
 CHANGES LOG
 
+Version 4.1.6
+=============
+Tweak - UI improvement in Course header for teachers information.
+
 Version 4.1.5
 =============
 Tweak - UI improvements:
