@@ -54,7 +54,8 @@ class controlmenu extends controlmenu_base {
         $format = $this->format;
         $section = $this->section;
         $course = $format->get_course();
-        $sectionreturn = $format->get_section_number();
+        $courseformatdatacommontrait =  \format_remuiformat\course_format_data_common_trait::getinstance();
+        $sectionreturn = $courseformatdatacommontrait->edw_get_section_num($format);;
 
         $coursecontext = context_course::instance($course->id);
 

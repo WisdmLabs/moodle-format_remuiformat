@@ -31,7 +31,7 @@ use stdClass;
 use html_writer;
 use context_course;
 use core_completion\progress;
-require_once($CFG->dirroot.'/course/format/renderer.php');
+// require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 

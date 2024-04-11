@@ -44,8 +44,9 @@ class section extends section_base {
         $format = $this->format;
 
         $data = parent::export_for_template($output);
+        $courseformatdatacommontrait =  \format_remuiformat\course_format_data_common_trait::getinstance();
 
-        if (!$this->format->get_section_number()) {
+        if (!$courseformatdatacommontrait->edw_get_section_num($this->format)) {
             $addsectionclass = $format->get_output_classname('content\\addsection');
             $addsection = new $addsectionclass($format);
             $data->numsections = $addsection->export_for_template($output);

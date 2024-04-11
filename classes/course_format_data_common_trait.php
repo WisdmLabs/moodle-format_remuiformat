@@ -249,7 +249,7 @@ class course_format_data_common_trait {
             $data->index = $sectionindex;
             $data->num = $section->section;
             $data->id = $section->id;
-            $data->sectionreturnid = course_get_format($course)->get_section_number();
+            $data->sectionreturnid = $this->edw_get_section_num(course_get_format($course));
             $data->insertafter = false;
 
             // Check if the user has permission to view this section or not.
@@ -939,7 +939,7 @@ class course_format_data_common_trait {
      * @return array                  Output array
      */
     private function get_activities_details($section, $course, $courserenderer, $settings, $displayoptions = array()) {
-        global $PAGE, $USER;
+        global $PAGE, $USER, $CFG;
         $modinfo = get_fast_modinfo($course);
         $output = array();
 
@@ -1147,4 +1147,13 @@ class course_format_data_common_trait {
         }
     }
 
+    public function edw_get_section_num($obj){
+        global $CFG;
+        if($CFG->backup_release > '4.3'){
+            return $obj->get_sectionnum();
+        }else{
+            return $obj->get_section_number();
+        }
+
+    }
 }
