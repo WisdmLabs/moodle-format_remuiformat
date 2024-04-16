@@ -436,6 +436,9 @@
             li:not(:last-child) {
                 margin-bottom: $margin-16;
             }
+            li:has(.divider.bulk-hidden){
+                margin-bottom: 0px;
+            }
             .activity{
                 .activitytitle {
                     gap: $gap-24;
