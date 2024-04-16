@@ -23,7 +23,7 @@
 
 // Plugin Name.
 $string['pluginname'] = 'Edwiser course formats';
-
+$string['plugin_description'] = 'Courses are presented as collapsible lists OR as cards of sections with a responsive design for better navigation.';
 // Settings.
 $string['defaultcoursedisplay'] = 'Course display default';
 $string['defaultcoursedisplay_desc'] = "Either show all the sections on a single page or section zero and the chosen section on page.";

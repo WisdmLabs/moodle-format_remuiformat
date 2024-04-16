@@ -224,6 +224,11 @@
                 border: $border-height solid $light-border;
             }
 
+            &.collapsed{
+                .summary.card-text{
+                    display: none;
+                }
+            }
             .content {
 
                 .panel-title,
