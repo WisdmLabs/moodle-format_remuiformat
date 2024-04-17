@@ -1363,13 +1363,7 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions"
- "icon visibility groupmode completion actions"
- "icon visibility groupmode completion actions"
- "dates dates dates dates dates"
- "altcontent altcontent altcontent altcontent altcontent"
- "afterlink afterlink afterlink afterlink afterlink"
- "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates {
@@ -2404,4 +2398,8 @@ body#page-course-view-remuiformat .availabilityinfo.isrestricted ul {
 
 body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
   flex-direction: column;
+}
+
+.section .dndupload-preview-overlay, .section .dndupload-preview-wrapper {
+  display: none;
 }
