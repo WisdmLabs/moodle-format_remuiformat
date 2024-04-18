@@ -30,6 +30,8 @@ use core_courseformat\output\local\content\section;
 use core_completion\progress;
 use core\activity_dates;
 use core_course\output\activity_completion;
+use core_tag\reportbuilder\local\entities\instance;
+
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 
 /**
@@ -234,7 +236,7 @@ class course_format_data_common_trait {
      * @return array                           Sections data
      */
     public function get_all_section_data($renderer, $editing, $rformat, $settings, $course, $courseformat, $courserenderer) {
-        global $USER;
+        global $USER , $OUTPUT;
         $modinfo = get_fast_modinfo($course);
         $context = context_course::instance($course->id);
         $startfrom = 1;
@@ -311,6 +313,9 @@ class course_format_data_common_trait {
             if (!$section->visible) {
                 $data->ishidden = true;
                 $data->notavailable = true;
+                // $visibilityclass = $courseformat->get_output_classname('content\\section\\visibility');
+                // $visibility = new $visibilityclass($courseformat, $section);
+                // $data->visibility = $visibility->export_for_template($OUTPUT);
                 if (has_capability('moodle/course:viewhiddensections', $context, $USER)) {
                     $data->hiddenfromstudents = true;
                     $data->notavailable = false;

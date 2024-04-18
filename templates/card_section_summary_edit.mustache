@@ -96,11 +96,10 @@
             {{#addnewsection}}
                 <h2 class="sectionname m-0 d-flex flex-column bg-transparent text-clamp text-clamp-3" style="-webkit-box-orient: vertical;">{{{ title }}}
                 </h2>
-                {{#hiddenfromstudents}}
                 <div data-region="sectionbadges" class="sectionbadges d-inline">
-                    {{> core_courseformat/local/content/section/badges }}
+                    {{!> core_courseformat/local/content/section/badges }}
+                    {{>format_remuiformat/edwbadges}}
                 </div>
-                {{/hiddenfromstudents}}
             {{/addnewsection}}
             {{^addnewsection}}
                 <div class="section-header d-inline">

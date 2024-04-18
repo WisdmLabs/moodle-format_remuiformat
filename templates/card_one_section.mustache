@@ -73,7 +73,8 @@
                                 {{{title}}}
                                 <div data-region="sectionbadges "
                                     class="sectionbadges d-inline ">
-                                    {{> core_courseformat/local/content/section/badges }}
+                                    {{!> core_courseformat/local/content/section/badges }}
+                                    {{>format_remuiformat/edwbadges}}
                                 </div>
                             </span>
                         </h2>
@@ -162,9 +163,10 @@
                                 </h4>
                                 {{/title}}
                                 {{#modhiddenfromstudents}}
-                                <div data-region="sectionbadges"
-                                    class="sectionbadges d-flex align-items-center {{^editing}}{{/editing}}">
-                                    {{> core_courseformat/local/content/section/badges }}
+                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}{{/editing}}">
+                                    {{!> core_courseformat/local/content/section/badges }}
+                                    {{>format_remuiformat/edwbadges}}
+
                                 </div>
                                 {{/modhiddenfromstudents}}
                                 {{#modstealth}}

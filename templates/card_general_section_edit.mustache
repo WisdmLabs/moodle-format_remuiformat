@@ -122,7 +122,8 @@
                             </div>
                             {{#modhiddenfromstudents}}
                                 <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
-                                    {{> core_courseformat/local/content/section/badges }}
+                                    {{!> core_courseformat/local/content/section/badges }}
+                                    {{>format_remuiformat/edwbadges}}
                                 </div>
                             {{/modhiddenfromstudents}}
                             {{#modstealth}}

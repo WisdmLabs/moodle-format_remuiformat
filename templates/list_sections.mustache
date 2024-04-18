@@ -89,7 +89,8 @@
                             </a>
                         {{/editing}}
                         <div data-region="sectionbadges" class="sectionbadges d-inline {{^editing}}ml-2{{/editing}}">
-                            {{> core_courseformat/local/content/section/badges }}
+                            {{!> core_courseformat/local/content/section/badges }}
+                            {{>format_remuiformat/edwbadges}}
                         </div>
                     </h3>
                     {{#progressinfo}}
