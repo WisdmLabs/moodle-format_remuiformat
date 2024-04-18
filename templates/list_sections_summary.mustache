@@ -65,7 +65,19 @@
                   {{>format_remuiformat/edwbadges}}
                </div>
             </h3>
-
+            {{#showsectionpageurlbtn}}
+               <a href="{{{sectionpageurl}}}" class="btn btn-icon d-flex align-items-center justify-content-center icon-no-margin" title="{{#str}}gotosection, course, {{title}}{{/str}}">
+                        <span class="dir-rtl-hide">
+                           {{#pix}}t/right, moodle{{/pix}}
+                        </span>
+                        <span class="dir-ltr-hide">
+                           {{#pix}}t/left, moodle, {{#str}}gotosection, course, {{title}}{{/str}}{{/pix}}
+                        </span>
+                        <span class="sr-only">
+                           {{#str}}gotosection, course, {{title}}{{/str}}
+                        </span>
+               </a>
+            {{/showsectionpageurlbtn}}
          </div>
 
          {{#checkrightsidecontent}}

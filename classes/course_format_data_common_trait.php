@@ -236,7 +236,7 @@ class course_format_data_common_trait {
      * @return array                           Sections data
      */
     public function get_all_section_data($renderer, $editing, $rformat, $settings, $course, $courseformat, $courserenderer) {
-        global $USER , $OUTPUT;
+        global $USER , $OUTPUT, $CFG;
         $modinfo = get_fast_modinfo($course);
         $context = context_course::instance($course->id);
         $startfrom = 1;
@@ -372,6 +372,10 @@ class course_format_data_common_trait {
                 $data->activityinfostring = implode($extradetails['activityinfo']);
                 $data->progressinfo = $extradetails['progressinfo'];
                 $data->checkrightsidecontent = true;
+                if($CFG->backup_release > '4.3'){
+                    $data->sectionpageurl = $CFG->wwwroot."/course/section.php?id=".$section->id;
+                    $data->showsectionpageurlbtn = true;
+                }
                 if(!$course->enablecompletion){
                     $data->progressinfo = false;
                 }
