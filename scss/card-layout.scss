@@ -611,6 +611,8 @@
                 }
                 // Toggle row column button styling
                 .toggle-row-column {
+                    padding: 6px 5px;
+                    width: 33px;
                     border: $border-height solid #e4eaec;
                     img.icon {
                         margin: 0;

@@ -440,6 +440,7 @@
                 margin-bottom: 0px;
             }
             .activity{
+                border-top: 0;
                 .activitytitle {
                     gap: $gap-24;
                     @media (max-width:$sm-screen-bp) {
