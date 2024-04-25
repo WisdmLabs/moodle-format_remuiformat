@@ -278,8 +278,16 @@ body#page-course-view-remuiformat {
           }
 
           .dropdown-subpanel {
-            .dropdown-toggle::before {
-              display: inline-block ;
+            .dropdown-toggle{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                &::before {
+                    display: inline-block;
+                    order: 3;
+                    transform: rotate(180deg);
+                    font-size: 10px;
+                }
             }
           }
         }

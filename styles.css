@@ -1699,9 +1699,20 @@ body#page-course-view-remuiformat.editing .action-menu .dropdown-toggle::after {
   display: none;
 }
 
+body#page-course-view-remuiformat.editing .action-menu-trigger .dropdown-subpanel .dropdown-toggle,
+body#page-course-view-remuiformat.editing .action-menu .dropdown-subpanel .dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 body#page-course-view-remuiformat.editing .action-menu-trigger .dropdown-subpanel .dropdown-toggle::before,
 body#page-course-view-remuiformat.editing .action-menu .dropdown-subpanel .dropdown-toggle::before {
   display: inline-block;
+  order: 3;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  font-size: 10px;
 }
 
 body#page-course-view-remuiformat.editing .stretched-link::after {
