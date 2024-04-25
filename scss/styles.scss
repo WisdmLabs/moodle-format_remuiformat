@@ -273,9 +273,15 @@ body#page-course-view-remuiformat {
         }
         .action-menu-trigger,
         .action-menu {
-            .dropdown-toggle::after {
-                display: none;
+          .dropdown-toggle::after {
+            display: none;
+          }
+
+          .dropdown-subpanel {
+            .dropdown-toggle::before {
+              display: inline-block ;
             }
+          }
         }
         .stretched-link::after {
             display: none;

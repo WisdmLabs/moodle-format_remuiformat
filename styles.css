@@ -1699,6 +1699,11 @@ body#page-course-view-remuiformat.editing .action-menu .dropdown-toggle::after {
   display: none;
 }
 
+body#page-course-view-remuiformat.editing .action-menu-trigger .dropdown-subpanel .dropdown-toggle::before,
+body#page-course-view-remuiformat.editing .action-menu .dropdown-subpanel .dropdown-toggle::before {
+  display: inline-block;
+}
+
 body#page-course-view-remuiformat.editing .stretched-link::after {
   display: none;
 }
