@@ -47,7 +47,7 @@
          <div class="left side float-left d-flex m-0 justify-content-between w-100">
             {{{ leftside }}}
             <h3 class="sectionname card-title m-0 d-inline">
-               <a class="panel-title p-0 sectionheading" href="{{{ singlepageurl }}}"
+               <a class="panel-title p-0 sectionheading text-break" href="{{{ singlepageurl }}}"
                   aria-expanded="{{#collapsed}}false{{/collapsed}}{{#expanded}}true{{/expanded}}"
                   aria-controls="sectionwrapper-{{{index}}}">{{{ title }}}
                   {{#progressinfo}}
@@ -61,10 +61,23 @@
                   {{/progressinfo}}
                </a>
                <div data-region="sectionbadges" class="sectionbadges ml-2 d-inline">
-                  {{> core_courseformat/local/content/section/badges }}
+                  {{!> core_courseformat/local/content/section/badges }}
+                  {{>format_remuiformat/edwbadges}}
                </div>
             </h3>
-
+            {{#showsectionpageurlbtn}}
+               <a href="{{{sectionpageurl}}}" class="btn btn-icon d-flex align-items-center justify-content-center icon-no-margin" title="{{#str}}gotosection, course, {{title}}{{/str}}">
+                        <span class="dir-rtl-hide">
+                           {{#pix}}t/right, moodle{{/pix}}
+                        </span>
+                        <span class="dir-ltr-hide">
+                           {{#pix}}t/left, moodle, {{#str}}gotosection, course, {{title}}{{/str}}{{/pix}}
+                        </span>
+                        <span class="sr-only">
+                           {{#str}}gotosection, course, {{title}}{{/str}}
+                        </span>
+               </a>
+            {{/showsectionpageurlbtn}}
          </div>
 
          {{#checkrightsidecontent}}

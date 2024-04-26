@@ -92,11 +92,10 @@
                     {{^hidden}}
                 </a>
                 {{/hidden}}
-                {{#hiddenfromstudents}}
                 <div data-region="sectionbadges" class="sectionbadges d-inline">
-                    {{> core_courseformat/local/content/section/badges }}
+                    {{!> core_courseformat/local/content/section/badges }}
+                    {{>format_remuiformat/edwbadges}}
                 </div>
-                {{/hiddenfromstudents}}
             </div>
             {{/addnewsection}}
             {{#summary }}

@@ -1,5 +1,10 @@
 CHANGES LOG
 
+Version 4.1.7
+=============
+Feature - Compatibility with Moodle 4.4.
+Tweak   - Further UI/UX improvements done
+
 Version 4.1.6
 =============
 Tweak - UI improvement in Course header for teachers information.
@@ -34,7 +39,7 @@ Version 4.1.1
 =============
 Fix   - Input field editable text visibility when background image is available on section cards.
 Tweak - Next/Prev button design changes.
-Tweak - Minor design updates on card width of section and activities. 
+Tweak - Minor design updates on card width of section and activities.
 
 Version 4.1.0
 =============

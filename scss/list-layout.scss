@@ -224,6 +224,11 @@
                 border: $border-height solid $light-border;
             }
 
+            &.collapsed{
+                .summary.card-text{
+                    display: none;
+                }
+            }
             .content {
 
                 .panel-title,
@@ -431,7 +436,11 @@
             li:not(:last-child) {
                 margin-bottom: $margin-16;
             }
+            li:has(.divider.bulk-hidden){
+                margin-bottom: 0px;
+            }
             .activity{
+                border-top: 0;
                 .activitytitle {
                     gap: $gap-24;
                     @media (max-width:$sm-screen-bp) {

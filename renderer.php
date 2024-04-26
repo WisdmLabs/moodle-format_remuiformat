@@ -22,7 +22,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot.'/course/format/renderer.php');
+// require_once($CFG->dirroot.'/course/format/renderer.php');
 require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
 
 use core_courseformat\output\section_renderer;
@@ -80,7 +80,8 @@ class format_remuiformat_renderer extends section_renderer {
      * @return object courserenderer
      */
     public function get_base_renderer() {
-        return $this->courserenderer;
+        global $PAGE;
+        return $PAGE->get_renderer('core_course');
     }
 
     /**

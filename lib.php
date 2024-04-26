@@ -637,7 +637,7 @@ class format_remuiformat extends core_courseformat\base {
      * @return null|array|stdClass any data for the Javascript post-processor (must be json-encodeable)
      */
     public function section_action($section, $action, $sr) {
-        global $PAGE;
+        global $PAGE, $CFG;
 
         if ($action == 'deleteSection') {
             return null;
@@ -652,7 +652,13 @@ class format_remuiformat extends core_courseformat\base {
         // For show/hide actions call the parent method and return the new content for .section_availability element.
         $rv = parent::section_action($section, $action, $sr);
         $renderer = $PAGE->get_renderer('format_topics');
-        $rv['section_availability'] = $renderer->section_availability($this->get_section($section));
+        $format = course_get_format($this->courseid);
+        if($CFG->backup_release > '4.3'){
+            $rv['section_availability'] = new \core_courseformat\output\local\content\section\availability($format, $this->get_section($section));
+        }else{
+            $rv['section_availability'] = $renderer->section_availability($this->get_section($section));
+        }
+
         return $rv;
     }
 
