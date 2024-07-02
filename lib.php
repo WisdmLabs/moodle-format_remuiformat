@@ -827,10 +827,20 @@ function format_remuiformat_check_plugin_available($component) {
     /**
      * Get Enrolled Teachers Context
      */
-function get_enrolled_teachers_context_formate($courseid = null, $frontlineteacher = false) {
-    global $OUTPUT, $CFG;
+function get_enrolled_teachers_context_formate($course, $frontlineteacher = false) {
+    global $OUTPUT, $CFG, $USER;
+
+    $courseid = $course->id;
+
+    $usergroups = groups_get_user_groups($courseid, $USER->id);
+
+    $groupids = 0;
+
+    if($course->groupmode == 1){
+        $groupids = $usergroups[0];
+    }
     $coursecontext = \context_course::instance($courseid);
-    $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', 0, '*', 'firstname');
+    $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', $groupids, '*', 'firstname');
     $roles =   new stdClass();
 
     $allroles = get_all_roles();
@@ -920,7 +930,7 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
         $rnrshortdesign = $rnr->get_short_design_enrolmentpage($course->id);
     }
     $coursesettings = course_get_format($course)->get_settings();
-    $export->generalsection['teachers'] = get_enrolled_teachers_context_formate($course->id, true);
+    $export->generalsection['teachers'] = get_enrolled_teachers_context_formate($course, true);
     $export->generalsection['coursefullname'] = format_text($coursedetails->fullname);
     $export->generalsection['coursecategoryname'] = format_text($categorydetails->name);
     $export->generalsection['rnrdesign'] = $rnrshortdesign;
