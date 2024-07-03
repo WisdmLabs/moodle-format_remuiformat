@@ -307,7 +307,7 @@ class course_format_data_common_trait {
             }
             if ($courseformat->is_section_current($section)) {
                 $data->iscurrent = true;
-                $data->highlightedlabel = get_string('highlight');
+                $data->highlightedlabel = get_string('highlighted');
             }
 
             if (!$section->visible) {
@@ -357,7 +357,7 @@ class course_format_data_common_trait {
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
                     $data->iscurrent = true;
-                    $data->highlightedlabel = get_string('highlight');
+                    $data->highlightedlabel = get_string('highlighted');
                 }
                 $sections[] = $data;
             } else if ($rformat == REMUI_LIST_FORMAT) {
@@ -392,7 +392,7 @@ class course_format_data_common_trait {
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
                     $data->iscurrent = true;
-                    $data->highlightedlabel = get_string('highlight');
+                    $data->highlightedlabel = get_string('highlighted');
                 }
                 $sections[] = $data;
             }
