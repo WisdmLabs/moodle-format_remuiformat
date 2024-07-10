@@ -1088,7 +1088,7 @@ class course_format_data_common_trait {
             $export->generalsection['summary'] = $renderer->abstract_html_contents(
                 $generalsectionsummary, 400
             );
-            $export->generalsection['fullsummary'] = format_text($generalsectionsummary, FORMAT_HTML);
+            $export->generalsection['fullsummary'] = format_text($generalsectionsummary, FORMAT_HTML,array('noclean'=>true));
 
             // Get course image if added.
             $imgurl = $this->display_file(
