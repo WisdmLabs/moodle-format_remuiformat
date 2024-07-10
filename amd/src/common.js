@@ -112,7 +112,9 @@ define(['jquery'], function($) {
                                ${SELECTORS.TOGGLE_SHOWHIDE},
                                ${SELECTORS.BUTTON_HIDE},
                                ${SELECTORS.BUTTON_SHOW}`, function() {
-            location.reload();
+            setTimeout(function() {
+                location.reload();
+            }, 400);
         });
 
         // Handling deleteAction
