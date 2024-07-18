@@ -840,7 +840,7 @@ function get_enrolled_teachers_context_formate($course, $frontlineteacher = fals
         $groupids = $usergroups[0];
     }
     $coursecontext = \context_course::instance($courseid);
-    $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', $groupids, '*', 'firstname');
+    $teachers = get_enrolled_users($coursecontext, 'mod/folder:managefiles', $groupids, '*', 'firstname', $limitfrom = 0, $limitnum = 0, $onlyactive = true);
     $roles =   new stdClass();
 
     $allroles = get_all_roles();
