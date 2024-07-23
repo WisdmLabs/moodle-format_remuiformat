@@ -1,5 +1,23 @@
 CHANGES LOG
 
+Version 4.1.8
+=============
+Feature - Added language translation files for:
+        - Spanish (Spain) (es)
+        - Deutsch (German) (de)
+        - Spanish (Mexico) (es_mx)
+        - Portuguese (Brazil) (pt_br)
+        - France (fr)
+        - Polish (pl)
+        - Arabic (ar)    
+Feature - Teachers of the same group are visible in the course header when the separate group setting is selected
+Tweak - Multi lang filter plugins  support added
+Tweak - Added missing translated string in  lang files.
+Tweak - UI/UX Improvements:
+        - repeatedly "Show" or "Hide" an activity in the course list screen working
+        - Some miner text and UI improvements
+
+
 Version 4.1.7
 =============
 Feature - Compatibility with Moodle 4.4.
