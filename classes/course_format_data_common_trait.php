@@ -307,7 +307,7 @@ class course_format_data_common_trait {
             }
             if ($courseformat->is_section_current($section)) {
                 $data->iscurrent = true;
-                $data->highlightedlabel = get_string('highlight');
+                $data->highlightedlabel = get_string('highlighted');
             }
 
             if (!$section->visible) {
@@ -357,7 +357,7 @@ class course_format_data_common_trait {
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
                     $data->iscurrent = true;
-                    $data->highlightedlabel = get_string('highlight');
+                    $data->highlightedlabel = get_string('highlighted');
                 }
                 $sections[] = $data;
             } else if ($rformat == REMUI_LIST_FORMAT) {
@@ -392,7 +392,7 @@ class course_format_data_common_trait {
                 // Set Marker.
                 if ($course->marker == $sectionindex) {
                     $data->iscurrent = true;
-                    $data->highlightedlabel = get_string('highlight');
+                    $data->highlightedlabel = get_string('highlighted');
                 }
                 $sections[] = $data;
             }
@@ -1027,7 +1027,7 @@ class course_format_data_common_trait {
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
-                $activitydetails->summary = format_text($activitydetails->summary, FORMAT_HTML);
+                $activitydetails->summary = format_text($activitydetails->summary, FORMAT_HTML,array("noclean" => true));
                 $output[] = $activitydetails;
                 $count++;
             }
@@ -1088,7 +1088,7 @@ class course_format_data_common_trait {
             $export->generalsection['summary'] = $renderer->abstract_html_contents(
                 $generalsectionsummary, 400
             );
-            $export->generalsection['fullsummary'] = format_text($generalsectionsummary, FORMAT_HTML);
+            $export->generalsection['fullsummary'] = format_text($generalsectionsummary, FORMAT_HTML,array('noclean'=>true));
 
             // Get course image if added.
             $imgurl = $this->display_file(

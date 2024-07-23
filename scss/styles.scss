@@ -78,7 +78,7 @@ body#page-course-view-remuiformat {
             }
 
             @media (max-width:$sm-screen-bp) {
-                // align-items: unset;
+                align-items: start;
                 flex-direction: column;
                 // gap: 32px;
                 // justify-content: space-between;
