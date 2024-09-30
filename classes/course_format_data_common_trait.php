@@ -47,7 +47,7 @@ class course_format_data_common_trait {
      * Plugin config
      * @var string
      */
-    private $_plugin_config;
+    private $plugin_config;
     /**
      * Activity statistic
      * @var \format_remuiformat\ModStats
