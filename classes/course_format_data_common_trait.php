@@ -1147,7 +1147,7 @@ class course_format_data_common_trait {
             $export->generalsection['courseinformationdata'] = true;
             $generalsectionavailability = $export->generalsection['availability'];
             $generalsectionfullsummary  = $export->generalsection['fullsummary'];
-            if (empty(trim(strip_tags($generalsectionavailability))) && empty(trim(strip_tags($generalsectionfullsummary)))  && $settings['hidegeneralsectionwhenempty']) {
+            if (empty(trim(strip_tags($generalsectionavailability))) && empty(trim(strip_tags($generalsectionfullsummary)))  && $settings['hidegeneralsectionwhenempty'] && !$export->generalsection['activityexists']) {
                 $export->generalsection['showgeneralsectionintrodata'] = false;
             }
             if (empty($export->activitylist)) {
