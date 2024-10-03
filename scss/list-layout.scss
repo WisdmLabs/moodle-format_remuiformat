@@ -436,7 +436,7 @@
             li:not(:last-child) {
                 margin-bottom: $margin-16;
             }
-            li:not(:has(.divider.divider-plus)){
+            li:has(.divider):not(:has(.divider-plus)){
                 margin-bottom: 0px;
             }
             .activity{
