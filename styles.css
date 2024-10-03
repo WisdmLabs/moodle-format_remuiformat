@@ -1195,8 +1195,8 @@ body#page-course-view-remuiformat .remui-format-list .card-footer ul.section li:
   margin-bottom: 16px;
 }
 
-body#page-course-view-remuiformat .remui-format-list .activities-list ul.section li:has(.divider.bulk-hidden),
-body#page-course-view-remuiformat .remui-format-list .card-footer ul.section li:has(.divider.bulk-hidden) {
+body#page-course-view-remuiformat .remui-format-list .activities-list ul.section li:not(:has(.divider.divider-plus)),
+body#page-course-view-remuiformat .remui-format-list .card-footer ul.section li:not(:has(.divider.divider-plus)) {
   margin-bottom: 0px;
 }
 
@@ -1370,13 +1370,7 @@ body#page-course-view-remuiformat .remui-format-list .section_availability.cours
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions"
- "icon visibility groupmode completion actions"
- "icon visibility groupmode completion actions"
- "dates dates dates dates dates"
- "altcontent altcontent altcontent altcontent altcontent"
- "afterlink afterlink afterlink afterlink afterlink"
- "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates {

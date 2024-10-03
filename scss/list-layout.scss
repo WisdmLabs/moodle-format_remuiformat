@@ -131,7 +131,7 @@
                 .availability-summary-wrapper:not(:has(:first-child)) {
                     display: none;
                 }
-                
+
                 .availability-summary-wrapper:has(:nth-child(2)) {
                     .summary {
                         margin-top: $margin-16;
@@ -436,7 +436,7 @@
             li:not(:last-child) {
                 margin-bottom: $margin-16;
             }
-            li:has(.divider.bulk-hidden){
+            li:not(:has(.divider.divider-plus)){
                 margin-bottom: 0px;
             }
             .activity{
@@ -578,7 +578,7 @@
         //     padding:2px  0px $pad-16 0px;
         // }
     }
-    
+
     .section_availability .section_availability,
     .section_availability.course-description-item{
         color: $paragraph-color;
@@ -613,7 +613,7 @@
                 "altcontent altcontent altcontent altcontent altcontent"
                 "afterlink afterlink afterlink afterlink afterlink"
                 "availability availability availability availability availability";
-        
+
             .activity-dates {
                 margin-right: 0 !important;
             }
