@@ -126,7 +126,8 @@ class course_format_data_common_trait {
         if ($course->showcompletionconditions == COMPLETION_SHOW_CONDITIONS) {
             // Show the activity information output component.
             $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
-            if ($CFG->backup_release <= '4.2') {
+            // if ($CFG->backup_release <= '4.2') {
+            if ($CFG->branch <= '402') {
                 $activitydetails->completion = $courserenderer->activity_information(
                     $mod,
                     $cmcompletion,
@@ -372,7 +373,7 @@ class course_format_data_common_trait {
                 $data->activityinfostring = implode($extradetails['activityinfo']);
                 $data->progressinfo = $extradetails['progressinfo'];
                 $data->checkrightsidecontent = true;
-                if($CFG->backup_release > '4.3'){
+                if($CFG->branch > '403'){
                     $data->sectionpageurl = $CFG->wwwroot."/course/section.php?id=".$section->id;
                     $data->showsectionpageurlbtn = true;
                 }
@@ -1158,7 +1159,8 @@ class course_format_data_common_trait {
 
     public function edw_get_section_num($obj){
         global $CFG;
-        if($CFG->backup_release > '4.3'){
+
+        if($CFG->branch > '403'){
             return $obj->get_sectionnum();
         }else{
             return $obj->get_section_number();

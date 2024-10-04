@@ -653,7 +653,8 @@ class format_remuiformat extends core_courseformat\base {
         $rv = parent::section_action($section, $action, $sr);
         $renderer = $PAGE->get_renderer('format_topics');
         $format = course_get_format($this->courseid);
-        if($CFG->backup_release > '4.3'){
+        // if($CFG->backup_release > '4.3'){
+        if($CFG->branch > '403'){
             $rv['section_availability'] = new \core_courseformat\output\local\content\section\availability($format, $this->get_section($section));
         }else{
             $rv['section_availability'] = $renderer->section_availability($this->get_section($section));
