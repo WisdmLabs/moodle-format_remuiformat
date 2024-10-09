@@ -40,7 +40,7 @@ class ModStats {
      * Plugin config
      * @var string
      */
-    private $_plugin_config;
+    private $plugin_config;
 
     /**
      * Private constructor
