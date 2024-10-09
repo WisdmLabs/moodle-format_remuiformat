@@ -1,5 +1,10 @@
 CHANGES LOG
 
+Version 4.1.9
+=============
+Tweak - Miner improvement in 'Hide general section when empty' setting.
+Fix   - Deprecated warnings in PHP 8.2 and 8.3 have been resolved.
+
 Version 4.1.8
 =============
 Feature - Added language translation files for:
