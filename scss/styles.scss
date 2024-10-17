@@ -460,7 +460,7 @@ body#page-course-view-remuiformat {
                         }
                     }
                 }
-                
+
             }
 
             .activity-altcontent,
@@ -560,6 +560,9 @@ body#page-course-view-remuiformat {
                             padding: 0px;
                             margin: 0px;
                             max-width: unset;
+                            .section{
+                                list-style: none;
+                            }
                             .activity {
                                 &:not(.modtype_label) {
                                     padding: $pad-24;
@@ -970,7 +973,7 @@ body#page-course-view-remuiformat {
         justify-content: space-between;
         width: 100%;
         // overflow: auto;
-        
+
         p {
             margin: 0;
         }

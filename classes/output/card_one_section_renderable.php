@@ -239,6 +239,14 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             foreach ($modinfo->sections[$section->section] as $modnumber) {
                 $mod = $modinfo->cms[$modnumber];
 
+                if($mod->modname == 'subsection') {
+                    $delegatesectiondata = $modinfo->get_section_info_by_id($mod->customdata['sectionid']);
+                    $sectiondata = $this->courseformatdatacommontrait->get_delegated_section_generated_data($this->course,$delegatesectiondata);
+                    $sectiondata->isdelegatedsection = true;
+                    $output[] = $sectiondata;
+                    $count++;
+                    continue;
+                }
                 $context = \context_module::instance($mod->id);
                 if (!$mod->is_visible_on_course_page()) {
                     continue;
