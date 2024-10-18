@@ -2664,3 +2664,7 @@ body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .he
 .section .dndupload-preview-overlay, .section .dndupload-preview-wrapper {
   display: none;
 }
+
+.single-section ul.remuiformat {
+  padding-left: 0;
+}
