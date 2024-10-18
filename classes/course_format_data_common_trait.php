@@ -818,7 +818,9 @@ class course_format_data_common_trait {
                 if($mod->modname == 'subsection') {
                     $delegatesectiondata = $modinfo->get_section_info_by_id($mod->customdata['sectionid']);
                     $sectiondata = $this->get_single_section_generated_data($course,$delegatesectiondata);
-                    $sectiondata->isdelegatedsection = true;
+                    if ($sectiondata !== null) {
+                        $sectiondata->isdelegatedsection = true;
+                    }
                     $output[] = $sectiondata;
                     $count++;
                     continue;
