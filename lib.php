@@ -197,36 +197,58 @@ class format_remuiformat extends core_courseformat\base {
      * @return null|moodle_url
      */
     public function get_view_url($section, $options = array()) {
+        global $CFG;
         $course = $this->get_course();
-        $url = new moodle_url('/course/view.php', array('id' => $course->id));
 
-        $sr = null;
-        if (array_key_exists('sr', $options)) {
-            $sr = $options['sr'];
-        }
-        if (is_object($section)) {
-            $sectionno = $section->section;
+        if ($CFG->branch >= 404) {
+
+            if (array_key_exists('sr', $options) && !is_null($options['sr'])) {
+                $sectionno = $options['sr'];
+            } else if (is_object($section)) {
+                $sectionno = $section->section;
+            } else {
+                $sectionno = $section;
+            }
+            if ((!empty($options['navigation']) || array_key_exists('sr', $options)) && $sectionno !== null) {
+                // Display section on separate page.
+                $sectioninfo = $this->get_section($sectionno);
+                return new moodle_url('/course/section.php', ['id' => $sectioninfo->id]);
+            }
+
+            return new moodle_url('/course/view.php', ['id' => $course->id]);
+
         } else {
-            $sectionno = $section;
-        }
-        if ($sectionno !== null) {
-            if ($sr !== null) {
-                if ($sr) {
-                    $usercoursedisplay = COURSE_DISPLAY_MULTIPAGE;
-                    $sectionno = $sr;
+
+            $url = new moodle_url('/course/view.php', array('id' => $course->id));
+
+            $sr = null;
+            if (array_key_exists('sr', $options)) {
+                $sr = $options['sr'];
+            }
+            if (is_object($section)) {
+                $sectionno = $section->section;
+            } else {
+                $sectionno = $section;
+            }
+            if ($sectionno !== null) {
+                if ($sr !== null) {
+                    if ($sr) {
+                        $usercoursedisplay = COURSE_DISPLAY_MULTIPAGE;
+                        $sectionno = $sr;
+                    } else {
+                        $usercoursedisplay = COURSE_DISPLAY_SINGLEPAGE;
+                    }
                 } else {
-                    $usercoursedisplay = COURSE_DISPLAY_SINGLEPAGE;
+                    $usercoursedisplay = $course->coursedisplay;
                 }
-            } else {
-                $usercoursedisplay = $course->coursedisplay;
+                if ($sectionno != 0 && $usercoursedisplay == COURSE_DISPLAY_MULTIPAGE) {
+                    $url->param('section', $sectionno);
+                } else {
+                    $url->set_anchor('section-'.$sectionno);
+                }
             }
-            if ($sectionno != 0 && $usercoursedisplay == COURSE_DISPLAY_MULTIPAGE) {
-                $url->param('section', $sectionno);
-            } else {
-                $url->set_anchor('section-'.$sectionno);
-            }
+            return $url;
         }
-        return $url;
     }
 
     /**
