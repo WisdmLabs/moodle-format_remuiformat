@@ -437,6 +437,19 @@ body#page-course-view-remuiformat {
             background-color: $white;
         }
 
+        &.activity-wrapper {
+            .activity-item:has(.section.delegated-section) {
+                padding: 0;
+                border: 0;
+
+                box-shadow: unset;
+
+                .section-item:hover {
+                    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+                }
+            }
+        }
+
         .description,.activity-grid  {
             .availabilityinfo{
                 // width: fit-content;
@@ -1047,4 +1060,8 @@ body#page-course-view-remuiformat {
     .dndupload-preview-overlay,.dndupload-preview-wrapper{
         display: none;
     }
+}
+
+.single-section ul.remuiformat {
+    padding-left: 0;
 }
