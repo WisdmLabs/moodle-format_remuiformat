@@ -78,9 +78,12 @@
                     data-id="7" data-number="1" draggable="true" id="yui_3_17_2_1_1643968975008_225">
                     <div class="d-flex header-progresbar-wrapper">
                         <h2 class="section-title m-0 sectionheading d-inline">
-                            <span class="sno {{^hidden}}{{/hidden}} {{#hidden}}text-muted{{/hidden}}">
-                                {{ section }}.
-                            </span>
+                            {{! sno is shown on section page but now it's hidden because of subsection makes it confusing }}
+                            {{#comment}}
+                                <span class="sno {{^hidden}}{{/hidden}} {{#hidden}}text-muted{{/hidden}}">
+                                    {{ section }}.
+                                </span>
+                            {{/comment}}
                             <span class="title m-0 {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
                             <div data-region="sectionbadges" class="sectionbadges d-inline {{^editing}}ml-2{{/editing}}">
                                 {{!> core_courseformat/local/content/section/badges }}

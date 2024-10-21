@@ -2675,6 +2675,7 @@ body#page-course-view-remuiformat  .bulkEnable {
 
 .section.delegated-section {
   text-align: start;
+  border-radius: 8px;
 }
 
 .section.delegated-section .wdm-add-new-section {

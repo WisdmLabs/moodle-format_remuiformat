@@ -65,9 +65,13 @@
                 <div class=" general-single-card p-0 d-flex">
                     <div class="d-flex header-progresbar-wrapper">
                         <h2 class="section-title m-0 d-flex">
-                            <span class="sno {{#hidden}}text-muted{{/hidden}}">
-                                {{ section }}&#46;
-                            </span>
+                            {{! sno is shown on section page but now it's hidden because of subsection makes it confusing }}
+                            {{#comment}}
+                                <span class="sno {{#hidden}}text-muted{{/hidden}}">
+                                    {{ section }}&#46;
+                                </span>
+                            {{/comment}}
+
                             <span id="{{uniqid}}"
                                 class="single-section-title d-inline {{#hidden}}text-muted{{/hidden}}">
                                 {{{title}}}
