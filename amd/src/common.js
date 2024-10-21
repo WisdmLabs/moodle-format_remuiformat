@@ -33,7 +33,7 @@ define(['jquery'], function($) {
         TOGGLE_SHOWHIDE: '.section_action_menu .dropdown-item.editing_showhide',
         BUTTON_HIDE: '.cm_action_menu .dropdown-menu .editing_hide',
         BUTTON_SHOW: '.cm_action_menu .dropdown-menu .editing_show',
-        DELETE: '.section_action_menu .dropdown-item[data-action="deleteSection"]'
+        DELETE: '.section_action_menu .dropdown-item.editing_delete'
     };
 
     /**
