@@ -68,7 +68,7 @@
 {{/addsection}}
 
 {{^addsection}}
-<li id="section-{{{index}}}" class="section main clearfix"
+<li id="section-{{{index}}}" class="section main clearfix {{#isdelegatedsection}}delegated-section {{/isdelegatedsection}}"
     aria-labelledby="section-{{{index}}} .content .sectionname"
     data-sectionid="{{id}}"
     data-sectionreturnid="{{sectionreturnid}}"

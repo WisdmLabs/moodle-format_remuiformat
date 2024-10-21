@@ -1065,3 +1065,11 @@ body#page-course-view-remuiformat {
 .single-section ul.remuiformat {
     padding-left: 0;
 }
+
+.section.delegated-section {
+    text-align: start;
+
+    .wdm-add-new-section {
+        display: none;
+    }
+}

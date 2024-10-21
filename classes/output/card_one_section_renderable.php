@@ -110,7 +110,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
      * @return stdClass|array
      */
     public function export_for_template(renderer_base $output) {
-        global $PAGE, $USER;
+        global $PAGE, $USER, $CFG;
         unset($output);
         $export = new \stdClass();
         $modinfo = get_fast_modinfo($this->course);
@@ -159,7 +159,13 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         }
 
         // Title with section navigation links.
-        $sectionnavlinks = $renderer->get_nav_links($this->course, $modinfo->get_section_info_all(), $this->displaysection);
+
+        $allsectinswithoutdelegated = $modinfo->get_section_info_all();
+        if ($CFG->branch >= '405') {
+            $allsectinswithoutdelegated = $modinfo->get_listed_section_info_all();
+        }
+
+        $sectionnavlinks = $renderer->get_nav_links($this->course, $allsectinswithoutdelegated, $this->displaysection);
         $export->leftnav = $sectionnavlinks['previous'];
         $export->rightnav = $sectionnavlinks['next'];
         $export->leftside = $renderer->section_left_content($currentsection, $this->course, false);

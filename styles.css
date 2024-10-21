@@ -2668,3 +2668,11 @@ body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .he
 .single-section ul.remuiformat {
   padding-left: 0;
 }
+
+.section.delegated-section {
+  text-align: start;
+}
+
+.section.delegated-section .wdm-add-new-section {
+  display: none;
+}
