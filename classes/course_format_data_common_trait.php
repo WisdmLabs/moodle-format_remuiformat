@@ -820,6 +820,9 @@ class course_format_data_common_trait {
                     $sectiondata = $this->get_single_section_generated_data($course,$delegatesectiondata);
                     if ($sectiondata !== null) {
                         $sectiondata->isdelegatedsection = true;
+                    }else{
+                        $count++;
+                        continue;
                     }
                     $output[] = $sectiondata;
                     $count++;
