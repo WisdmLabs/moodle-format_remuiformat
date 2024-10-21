@@ -165,7 +165,12 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             $allsectinswithoutdelegated = $modinfo->get_listed_section_info_all();
         }
 
-        $sectionnavlinks = $renderer->get_nav_links($this->course, $allsectinswithoutdelegated, $this->displaysection);
+        if ($currentsection->component === "mod_subsection") {
+            $sectionnavlinks = array('previous' => '', 'next' => '');
+        } else {
+            $sectionnavlinks = $renderer->get_nav_links($this->course, $allsectinswithoutdelegated, $this->displaysection);
+        }
+
         $export->leftnav = $sectionnavlinks['previous'];
         $export->rightnav = $sectionnavlinks['next'];
         $export->leftside = $renderer->section_left_content($currentsection, $this->course, false);

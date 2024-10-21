@@ -2678,6 +2678,10 @@ body#page-course-view-remuiformat  .bulkEnable {
   border-radius: 8px;
 }
 
+#page-content .course-content ul li.section.main.delegated-section {
+  margin-top: 0.25rem;
+}
+
 .section.delegated-section .wdm-add-new-section {
   display: none;
 }
