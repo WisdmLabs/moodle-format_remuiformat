@@ -2661,6 +2661,10 @@ body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .he
   flex-direction: column;
 }
 
+body#page-course-view-remuiformat  .bulkEnable {
+  display: none;
+}
+
 .section .dndupload-preview-overlay, .section .dndupload-preview-wrapper {
   display: none;
 }

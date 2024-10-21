@@ -68,7 +68,7 @@
 {{/addsection}}
 
 {{^addsection}}
-<li id="section-{{{index}}}" class="section main clearfix" aria-labelledby="section-{{{index}}} .content .sectionname  {{#isdelegatedsection}}delegated-section {{/isdelegatedsection}}"
+<li id="section-{{{index}}}" class="section main clearfix {{#isdelegatedsection}}delegated-section {{/isdelegatedsection}}" aria-labelledby="section-{{{index}}} .content .sectionname  {{#isdelegatedsection}}delegated-section {{/isdelegatedsection}}"
     data-sectionid="{{id}}" data-sectionreturnid="{{sectionreturnid}}" data-for="section" data-number="{{num}}">
     <div class="single-card d-flex flex-column justify-content-between {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
         {{#sectionfirstimage}}style="background: linear-gradient({{remuidefaultsectionoverlay}}),url({{sectionfirstimage}});
