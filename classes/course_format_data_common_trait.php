@@ -1180,6 +1180,11 @@ class course_format_data_common_trait {
                     ));
                 }
             }
+            if($section->component == 'mod_subsection'){
+                $data->summary = $renderer->abstract_html_contents(
+                    $renderer->format_summary_text($section), $sectiontitlesummarymaxlength
+                );
+            }
             $data->activityinfostring = implode($extradetails['activityinfo']);
             $data->progressinfo = $extradetails['progressinfo'];
             $data->checkrightsidecontent = true;
