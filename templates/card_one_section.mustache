@@ -216,9 +216,16 @@
                         </div>
                     </li>
                     {{/isdelegatedsection}}
+                    {{^editing}}
                         {{#isdelegatedsection}}
                             {{>format_remuiformat/card_section_summary}}
                         {{/isdelegatedsection}}
+                    {{/editing}}
+                    {{#editing}}
+                        {{#isdelegatedsection}}
+                            {{>format_remuiformat/card_section_summary_edit}}
+                        {{/isdelegatedsection}}
+                    {{/editing}}
                     {{/activities}}
                 </ul>
             </div>
