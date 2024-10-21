@@ -79,7 +79,7 @@ define(['jquery'], function($) {
      */
     function init() {
 
-        $('#page-course-view-remuiformat .section-modchooser-link').addClass("btn btn-primary");
+        $('#page-course-view-remuiformat .section-modchooser-link:not(.dropdown-item)').addClass("btn btn-primary");
 
         adjustGeneralSectionActivities();
         $(window).resize(function() {
