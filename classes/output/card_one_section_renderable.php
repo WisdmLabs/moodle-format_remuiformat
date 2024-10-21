@@ -244,6 +244,9 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $sectiondata = $this->courseformatdatacommontrait->get_single_section_generated_data($this->course,$delegatesectiondata);
                     if ($sectiondata !== null) {
                         $sectiondata->isdelegatedsection = true;
+                    }else{
+                        $count++;
+                        continue;
                     }
                     $output[] = $sectiondata;
                     $count++;
