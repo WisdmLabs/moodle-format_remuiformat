@@ -124,6 +124,13 @@ define(['jquery'], function($) {
             return true;
         });
 
+        // Handling addSubsection
+        $('body').on('click', '[data-action="addModule"]', function(event) {
+            setTimeout(() => {
+                location.reload();
+            }, 200);
+            return true;
+        });
 
         var summaryheight = $('.read-more-target').height();
 

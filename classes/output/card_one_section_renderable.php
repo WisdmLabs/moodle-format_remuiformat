@@ -219,6 +219,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             progress::get_course_progress_percentage($this->course),
             $imgurl
         );
+        $export->subsectionjs = $export->headerdata['subsectionjs'];
+        $export->sectionreturn = $export->headerdata['sectionreturn'];
         $PAGE->requires->js_call_amd('format_remuiformat/format_card', 'init');
         return $export;
     }

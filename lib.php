@@ -608,6 +608,42 @@ class format_remuiformat extends core_courseformat\base {
         return true;
     }
 
+    public function supports_components() {
+        return true;
+    }
+
+    /**
+     * Set the current section number to display.
+     * Some formats has the hability to swith from one section to multiple sections per page.
+     *
+     * @param int|null $sectionnum null for all sections or a sectionid.
+     */
+    // public function set_section_number(int $sectionnum): void {
+    //     global $CFG;
+    //     if ((int)$CFG->branch >= 404) {
+    //         parent::set_sectionnum($sectionnum);
+    //     } else {
+    //         parent::set_section_number($sectionnum);
+    //     }
+    // }
+
+    /**
+     * Set if the current format instance will show multiple sections or an individual one.
+     *
+     * Some formats has the hability to swith from one section to multiple sections per page,
+     * output components will use this method to know if the current display is a single or
+     * multiple sections.
+     *
+     * @return int zero for all sections or the sectin number
+     */
+    // public function get_section_number(): int {
+    //     global $CFG;
+    //     if ((int)$CFG->branch >= 404) {
+    //         return (int)parent::get_sectionnum();
+    //     } else {
+    //         return parent::get_section_number();
+    //     }
+    // }
     /**
      * Returns the list of blocks to be automatically added for the newly created course
      *
@@ -965,5 +1001,10 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
         $export->generalsection['overlayopacity'] = 1;
     }
     $export->generalsection['coursecompletionstatus'] =  $course->enablecompletion;
+    $export->generalsection['subsectionjs'] = false;
+    $export->generalsection['sectionreturn'] = null;
+    if($CFG->branch >='405'){
+        $export->generalsection['subsectionjs'] = true;
+    }
     return $export->generalsection;
 }
