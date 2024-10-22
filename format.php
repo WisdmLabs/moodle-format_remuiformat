@@ -118,5 +118,6 @@ $PAGE->requires->strings_for_js([
     'showless',
     'showmore'
 ], 'format_remuiformat');
+$PAGE->requires->data_for_js('moodleversionbranch', $CFG->branch);
 // Include course format js module.
 $PAGE->requires->js('/course/format/remuiformat/format_' . $type . '.js');

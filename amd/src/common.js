@@ -137,7 +137,11 @@ define(['jquery'], function($) {
                 window.location.href = $(this).attr('href');
             }
             if($(this).attr('data-action') == 'deleteSection' ){
-                location.reload();
+                if(moodleversionbranch >= '405'){
+                    location.reload();
+                }else{
+                    window.location.href = $(this).attr('href');
+                }
             }
             return true;
         });
