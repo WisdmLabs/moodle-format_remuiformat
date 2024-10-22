@@ -608,7 +608,11 @@ class format_remuiformat extends core_courseformat\base {
     }
 
     public function supports_components() {
-        return true;
+        global $CFG;
+        if($CFG->branch >= "405") {
+            return true;
+        }
+        return false;
     }
 
     /**
