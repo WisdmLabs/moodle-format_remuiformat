@@ -1081,6 +1081,10 @@ body#page-course-view-remuiformat {
     &::after {
         content: unset;
     }
+
+    .content .section:not(:has(:first-child)) {
+        display: none !important;
+    }
 }
 
 
