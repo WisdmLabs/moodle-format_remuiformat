@@ -229,12 +229,11 @@ class format_remuiformat extends core_courseformat\base {
 
         if ((!empty($options['navigation']) || array_key_exists('sr', $options)) && $sectionno !== null) {
             global $PAGE;
-                if(strpos($PAGE->url->get_path(),'section.php')){
+            if (strpos($PAGE->url->get_path(), 'course/section.php')) {
                 // Display section on separate page.
                 $sectioninfo = $this->get_section($sectionno);
                 return new moodle_url('/course/section.php', ['id' => $sectioninfo->id]);
             }
-
         }
         return $url;
     }

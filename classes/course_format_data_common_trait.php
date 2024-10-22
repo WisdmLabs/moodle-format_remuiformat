@@ -458,7 +458,9 @@ class course_format_data_common_trait {
         $modinfo = get_fast_modinfo($course);
 
         // Check if activity record exists.
-        if (!$mod = $modinfo->cms[$lastviewed->cm]) {
+        if (isset($modinfo->cms[$lastviewed->cm])) {
+            $mod = $modinfo->cms[$lastviewed->cm];
+        } else {
             return '';
         }
 
