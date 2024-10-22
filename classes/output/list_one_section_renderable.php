@@ -170,7 +170,7 @@ class format_remuiformat_list_one_section implements renderable, templatable {
             $allsectinswithoutdelegated = $modinfo->get_listed_section_info_all();
         }
 
-        if ($section->component === "mod_subsection") {
+        if ($CFG->branch >= '405' && $section->component === "mod_subsection") {
             $sectionnavlinks = array('previous' => '', 'next' => '');
         } else {
             $sectionnavlinks = $renderer->get_nav_links($this->course, $allsectinswithoutdelegated, $this->displaysection);

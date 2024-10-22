@@ -1046,7 +1046,7 @@ class course_format_data_common_trait {
      * @return object The generated data for the section.
      */
     public function get_single_section_generated_data($course, $section){
-        global $USER ,$CFG,$PAGE;
+        global $USER, $CFG, $PAGE;
 
         $renderer = $PAGE->get_renderer('format_remuiformat');
         $courserenderer = $renderer;
@@ -1180,7 +1180,7 @@ class course_format_data_common_trait {
                     ));
                 }
             }
-            if($section->component == 'mod_subsection'){
+            if ($CFG->branch >= '405' && $section->component == 'mod_subsection') {
                 $data->summary = $renderer->abstract_html_contents(
                     $renderer->format_summary_text($section), $sectiontitlesummarymaxlength
                 );
