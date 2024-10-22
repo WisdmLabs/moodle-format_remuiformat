@@ -539,17 +539,17 @@
 &:not(.limitedwidth) {
     .remui-format-card.all-section-format {
         .showhideactivity .general-section-activities  {
-            .activity:nth-child(n+5) {
+            li:nth-child(n+5) {
                 display: none !important;
             }
             @media only screen and (max-width: 1439px) {
 
-                .activity:nth-child(n+5) {
+                li:nth-child(n+5) {
                     display: none !important;
                 }
             }
             @media only screen and (max-width: 1199px) {
-                .activity:nth-child(n+4) {
+                li:nth-child(n+4) {
                     display: none !important;
                 }
             }
@@ -570,9 +570,9 @@
             }
         }
         .showhideactivity .general-section-activities  {
-		.activity:nth-child(n+4) {
-		    display: none !important;
-		}
+		     li:nth-child(n+4) {
+		         display: none !important;
+		     }
         }
     }
     .activity-cards,
@@ -584,17 +584,17 @@
 .remui-format-card.all-section-format {
     .showhideactivity .general-section-activities  {
         @media only screen and (max-width: 1023px) {
-            .activity:nth-child(n+3) {
+            li:nth-child(n+3) {
                 display: none !important;
             }
         }
         @media only screen and (max-width: 767px) {
-            .activity:nth-child(n+3) {
+            li:nth-child(n+3) {
                 display: none !important;
             }
         }
         @media only screen and (max-width: 550px) {
-            .activity:nth-child(n+2) {
+            li:nth-child(n+2) {
                 display: none !important;
             }
         }
