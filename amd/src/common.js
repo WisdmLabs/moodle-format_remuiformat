@@ -31,9 +31,13 @@ define(['jquery'], function($) {
         SHOW: 'show',
         TOGGLE_HIGHLIGHT: '.section_action_menu .dropdown-item.editing_highlight',
         TOGGLE_SHOWHIDE: '.section_action_menu .dropdown-item.editing_showhide',
+        DELETE: '.section_action_menu .dropdown-item.editing_delete',
         BUTTON_HIDE: '.cm_action_menu .dropdown-menu .editing_hide',
         BUTTON_SHOW: '.cm_action_menu .dropdown-menu .editing_show',
-        DELETE: '.section_action_menu .dropdown-item.editing_delete'
+        ACTIVITYBUTTON_HIDE: '.cm_action_menu .dropdown-menu [data-action="cmHide"]',
+        ACTIVITYBUTTON_SHOW: '.cm_action_menu .dropdown-menu [data-action="cmShow"]',
+        ACTIVITYDUPLICATE: '.cm_action_menu .dropdown-item.editing_duplicate',
+        ACTIVITIYDELETE: '.cm_action_menu  .dropdown-item.editing_delete'
     };
 
     /**
@@ -111,16 +115,30 @@ define(['jquery'], function($) {
         $('body').on('click', `${SELECTORS.TOGGLE_HIGHLIGHT},
                                ${SELECTORS.TOGGLE_SHOWHIDE},
                                ${SELECTORS.BUTTON_HIDE},
-                               ${SELECTORS.BUTTON_SHOW}`, function() {
+                               ${SELECTORS.BUTTON_SHOW},
+                               ${SELECTORS.ACTIVITYBUTTON_HIDE},
+                               ${SELECTORS.ACTIVITYBUTTON_SHOW}`, function() {
             setTimeout(function() {
                 location.reload();
             }, 400);
         });
 
+        // Handling activity duplicate.
+        $('body').on('click', `${SELECTORS.ACTIVITYDUPLICATE}`, function() {
+            setTimeout(function() {
+                location.reload();
+            }, 200);
+        });
+
         // Handling deleteAction
-        $('body').on('click', `${SELECTORS.DELETE}`, function(event) {
+        $('body').on('click', `${SELECTORS.ACTIVITIYDELETE},${SELECTORS.DELETE}`, function(event) {
             event.preventDefault();
-            window.location.href = $(this).attr('href');
+            if($(this).attr('data-action') == 'cmDelete' ){
+                window.location.href = $(this).attr('href');
+            }
+            if($(this).attr('data-action') == 'deleteSection' ){
+                location.reload();
+            }
             return true;
         });
 
