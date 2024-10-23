@@ -66,7 +66,8 @@
                </div>
             </h3>
             {{#showsectionpageurlbtn}}
-               <a href="{{{sectionpageurl}}}" class="btn btn-icon d-flex align-items-center justify-content-center icon-no-margin" title="{{#str}}gotosection, course, {{title}}{{/str}}">
+             {{! previously it was sectionpageurl changed to singlepageurl }}
+               <a href="{{{singlepageurl}}}" class="btn btn-icon section_goto d-flex align-items-center justify-content-center icon-no-margin" title="{{#str}}gotosection, course, {{title}}{{/str}}">
                         <span class="dir-rtl-hide">
                            {{#pix}}t/right, moodle{{/pix}}
                         </span>

@@ -65,9 +65,13 @@
                 <div class=" general-single-card p-0 d-flex">
                     <div class="d-flex header-progresbar-wrapper">
                         <h2 class="section-title m-0 d-flex">
-                            <span class="sno {{#hidden}}text-muted{{/hidden}}">
-                                {{ section }}&#46;
-                            </span>
+                            {{! sno is shown on section page but now it's hidden because of subsection makes it confusing }}
+                            {{#comment}}
+                                <span class="sno {{#hidden}}text-muted{{/hidden}}">
+                                    {{ section }}&#46;
+                                </span>
+                            {{/comment}}
+
                             <span id="{{uniqid}}"
                                 class="single-section-title d-inline {{#hidden}}text-muted{{/hidden}}">
                                 {{{title}}}
@@ -129,6 +133,7 @@
                 <ul class="activity-cards section yui3-dd-drop">
                     {{#activities}}
 
+                    {{^isdelegatedsection}}
                     <li class="activity {{#layouttypecol}}col-activity{{/layouttypecol}} {{#layouttyperow}}row-activity fullwidth-grid-item{{/layouttyperow}} modtype_{{{modulename}}}"
                         id="module-{{id}}" data-id="{{ id }}" data-section="{{ section }}"
                         aria-labelledby="module-{{id}}-title">
@@ -214,6 +219,17 @@
 
                         </div>
                     </li>
+                    {{/isdelegatedsection}}
+                    {{^editing}}
+                        {{#isdelegatedsection}}
+                            {{>format_remuiformat/card_section_summary}}
+                        {{/isdelegatedsection}}
+                    {{/editing}}
+                    {{#editing}}
+                        {{#isdelegatedsection}}
+                            {{>format_remuiformat/card_section_summary_edit}}
+                        {{/isdelegatedsection}}
+                    {{/editing}}
                     {{/activities}}
                 </ul>
             </div>

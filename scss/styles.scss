@@ -437,6 +437,19 @@ body#page-course-view-remuiformat {
             background-color: $white;
         }
 
+        &.activity-wrapper {
+            .activity-item:has(.section.delegated-section) {
+                padding: 0;
+                border: 0;
+
+                box-shadow: unset;
+
+                .section-item:hover {
+                    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+                }
+            }
+        }
+
         .description,.activity-grid  {
             .availabilityinfo{
                 // width: fit-content;
@@ -460,7 +473,7 @@ body#page-course-view-remuiformat {
                         }
                     }
                 }
-                
+
             }
 
             .activity-altcontent,
@@ -560,6 +573,9 @@ body#page-course-view-remuiformat {
                             padding: 0px;
                             margin: 0px;
                             max-width: unset;
+                            .section{
+                                list-style: none;
+                            }
                             .activity {
                                 &:not(.modtype_label) {
                                     padding: $pad-24;
@@ -970,7 +986,7 @@ body#page-course-view-remuiformat {
         justify-content: space-between;
         width: 100%;
         // overflow: auto;
-        
+
         p {
             margin: 0;
         }
@@ -1039,9 +1055,44 @@ body#page-course-view-remuiformat {
             }
         }
     }
+
+    .bulkEnable {
+        display: none;
+    }
 }
 .section{
     .dndupload-preview-overlay,.dndupload-preview-wrapper{
         display: none;
     }
+}
+
+.single-section ul.remuiformat {
+    padding-left: 0;
+}
+
+.section.delegated-section {
+    text-align: start;
+    border-radius: 8px;
+
+    .wdm-add-new-section {
+        display: none;
+    }
+
+    &::after {
+        content: unset;
+    }
+
+    .content .section:not(:has(:first-child)) {
+        display: none !important;
+    }
+}
+
+
+body:not(.editing) #page-content .course-content ul li.section.main.delegated-section {
+    margin-top: 0.25rem;
+}
+
+// drag and drop icon removed temprarly from moodle4.5
+.edw-m405 #page .editing_move {
+	display: none !important;
 }

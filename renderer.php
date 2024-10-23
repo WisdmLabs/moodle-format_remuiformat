@@ -147,6 +147,11 @@ class format_remuiformat_renderer extends section_renderer {
 
         $links = array('previous' => '', 'next' => '');
         $back = $sectionno - 1;
+
+        while (!isset($sections[$back]) && $back > 0) {
+            $back--;
+        }
+
         while ($back > 0 and empty($links['previous'])) {
             if ($canviewhidden || $sections[$back]->uservisible) {
                 $params = array('class' => 'btn btn-inverse btn-sm ');
@@ -171,6 +176,9 @@ class format_remuiformat_renderer extends section_renderer {
 
         $forward = $sectionno + 1;
         $numsections = course_get_format($course)->get_last_section_number();
+        while (!isset($sections[$forward]) && $forward <= $numsections) {
+            $forward++;
+        }
         while ($forward <= $numsections and empty($links['next'])) {
             if ($canviewhidden || $sections[$forward]->uservisible) {
                 $params = array('class' => 'btn btn-inverse btn-sm');

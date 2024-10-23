@@ -110,60 +110,65 @@
             <h4 class="activitieshead m-0">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
             <div class="content">
                 <div class="summary"></div>
-                <ul class="img-text section general-section-activities  text-center yui3-dd-drop"
+                <ul class="img-text section general-section-activities  text-center yui3-dd-drop "
                     data-draggroups="resource">
                     {{#activities}}
-                    <li class="activity {{{modulename}}} modtype_{{{modulename}}} d-flex flex-column justify-content-between  list-unstyled yui3-dd-drop"
-                        id="module-{{id}}" data-draggroups="resource">
+                        {{^isdelegatedsection}}
+                            <li class="activity {{{modulename}}} modtype_{{{modulename}}} d-flex flex-column justify-content-between  list-unstyled yui3-dd-drop"
+                                id="module-{{id}}" data-draggroups="resource">
 
-                        <div class="activityinstance p-0 m-0 d-flex h-100 flex-column">
-                            <div class="title-activity-container text-break w-100 text-left ">
-                                {{{title}}}
-                            </div>
-                            {{#modhiddenfromstudents}}
-                                <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
-                                    {{!> core_courseformat/local/content/section/badges }}
-                                    {{>format_remuiformat/edwbadges}}
-                                </div>
-                            {{/modhiddenfromstudents}}
-                            {{#modstealth}}
-                            <div class="d-flex align-items-center">
-                                <span class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
-                            </div>
-                            {{/modstealth}}
-                            {{#summary}}
-                            <div class="contentafterlink">
-                                {{{summary}}}
-                            </div>
-                            {{/summary}}
-                            <span class=""><span class="editing_move moodle-core-dragdrop-draghandle"
-                                title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0"
-                                data-draggroups="resource" role="button" data-sectionreturn="0"
-                                style="cursor: move;">{{#pix}} i/move_2d,core {{/pix}}</span>
-                            </span>
-                        </div>
-                        <div class="p-0 action-availstatus-wrapper">
-                            {{#hasopenduedata}}
-                            <div class="description text-left">
-                                <div data-region="activity-dates" class="activity-dates small course-description-item">
-                                    <div class="description-inner">
-                                        {{#opendue}}
-                                        <div>
-                                            <strong>{{label}}</strong> {{timestamp}}
+                                <div class="activityinstance p-0 m-0 d-flex h-100 flex-column">
+                                    <div class="title-activity-container text-break w-100 text-left ">
+                                        {{{title}}}
+                                    </div>
+                                    {{#modhiddenfromstudents}}
+                                        <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
+                                            {{!> core_courseformat/local/content/section/badges }}
+                                            {{>format_remuiformat/edwbadges}}
                                         </div>
-                                        {{/opendue}}
+                                    {{/modhiddenfromstudents}}
+                                    {{#modstealth}}
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
+                                    </div>
+                                    {{/modstealth}}
+                                    {{#summary}}
+                                    <div class="contentafterlink">
+                                        {{{summary}}}
+                                    </div>
+                                    {{/summary}}
+                                    <span class=""><span class="editing_move moodle-core-dragdrop-draghandle"
+                                        title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0"
+                                        data-draggroups="resource" role="button" data-sectionreturn="0"
+                                        style="cursor: move;">{{#pix}} i/move_2d,core {{/pix}}</span>
+                                    </span>
+                                </div>
+                                <div class="p-0 action-availstatus-wrapper">
+                                    {{#hasopenduedata}}
+                                    <div class="description text-left">
+                                        <div data-region="activity-dates" class="activity-dates small course-description-item">
+                                            <div class="description-inner">
+                                                {{#opendue}}
+                                                <div>
+                                                    <strong>{{label}}</strong> {{timestamp}}
+                                                </div>
+                                                {{/opendue}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/hasopenduedata}}
+                                    {{{availstatus}}}
+                                    <div class="actions">
+                                        {{{completion}}}
+                                        {{{modicons}}}
                                     </div>
                                 </div>
-                            </div>
-                            {{/hasopenduedata}}
-                            {{{availstatus}}}
-                            <div class="actions">
-                                {{{completion}}}
-                                {{{modicons}}}
-                            </div>
-                        </div>
 
-                    </li>
+                            </li>
+                        {{/isdelegatedsection}}
+                        {{#isdelegatedsection}}
+                            {{>format_remuiformat/card_section_summary_edit}}
+                        {{/isdelegatedsection}}
                     {{/activities}}
                 </ul>
             </div>
