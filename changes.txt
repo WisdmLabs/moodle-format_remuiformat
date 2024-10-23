@@ -1,5 +1,9 @@
 CHANGES LOG
 
+Version 4.1.10
+=============
+Feature - Compatibility with Moodle 4.5.
+
 Version 4.1.9
 =============
 Tweak - Miner improvement in 'Hide general section when empty' setting.
