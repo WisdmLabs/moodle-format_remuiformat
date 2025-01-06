@@ -73,6 +73,14 @@ $settings = $courseformat->get_settings();
 $rformat = $settings['remuicourseformat'];
 $type = 'list';
 
+if($PAGE->user_is_editing()){
+    $renderer = $PAGE->get_renderer('format_topics');
+    // This will take us to render_content() in /course/format/tiles/classes/output/renderer.php.
+    $outputclass = $format->get_output_classname('content');
+    $widget = new $outputclass($format);
+    echo $renderer->render($widget);
+    return;
+}
 if ($section) {
     // List Format -> One Section Page : render_list_one_section -> list_one_section.
     if ($course->remuicourseformat) {
