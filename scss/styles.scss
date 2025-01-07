@@ -688,6 +688,35 @@ body#page-course-view-remuiformat {
                                 }
                             }
                         }
+
+                        .general-section-activities.list-view-general-activities {
+                            display: flex;
+                            flex-direction: column;
+
+                            .activity {
+
+                                .activityinstance {
+                                    align-items: unset;
+
+                                    .contentafterlink {
+                                        .no-overflow {
+                                            .no-overflow {
+                                                margin-left: 74px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .activitytitle {
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                    width: 100%;
+                                    gap: $gap-26;
+                                }
+                            }
+
+                        }
                     }
 
                     .showactivity {
