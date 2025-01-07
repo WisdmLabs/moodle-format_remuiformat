@@ -214,6 +214,9 @@ body#page-course-view-remuiformat {
             color: white;
         }
     }
+    &.editing header.hasbackground.design-1{
+        justify-content: flex-end !important;
+    }
     .summary-collapsed{
         max-height: 300px;
         position: relative;
@@ -1085,9 +1088,9 @@ body#page-course-view-remuiformat {
         }
     }
 
-    .bulkEnable {
-        display: none;
-    }
+    // .bulkEnable {
+    //     display: none;
+    // }
 }
 .section{
     .dndupload-preview-overlay,.dndupload-preview-wrapper{

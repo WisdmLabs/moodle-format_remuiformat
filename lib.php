@@ -609,10 +609,10 @@ class format_remuiformat extends core_courseformat\base {
 
     public function supports_components() {
         global $CFG;
-        if($CFG->branch >= "405") {
-            return true;
-        }
-        return false;
+        // if($CFG->branch >= "405") {
+        //     return true;
+        // }
+        return true;
     }
 
     /**
@@ -1010,4 +1010,15 @@ function get_extra_header_context(&$export, $course, $percentage, $imgurl) {
         $export->generalsection['subsectionjs'] = true;
     }
     return $export->generalsection;
+}
+
+function format_remuiformat_user_preferences(): array {
+    return [
+        'showinfomodalineditmode' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ]
+    ];
 }
