@@ -564,6 +564,7 @@ class format_remuiformat_renderer extends section_renderer {
     public function render_list_all_sections_summary(
         \format_remuiformat\output\format_remuiformat_list_all_sections_summary $section) {
         $templatecontext = $section->export_for_template($this);
+        $templatecontext->islistsummarysection = true;
         if (isset($templatecontext->error)) {
             throw new \moodle_exception($templatecontext->error);
         } else {

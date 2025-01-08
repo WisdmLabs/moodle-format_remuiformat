@@ -888,6 +888,10 @@ class course_format_data_common_trait {
                     $activitydetails->hidden = 1;
                 }
 
+                if (!empty($mod->indent)) {
+                    $activitydetails->indented  = true;
+                }
+
                 $availstatus = $this->course_section_cm_availability($mod, $displayoptions);
 
                 // It will add  the open due data in activitydetails context address is passed as argument.
@@ -908,6 +912,7 @@ class course_format_data_common_trait {
                 $count++;
             }
         }
+
         return $output;
     }
 

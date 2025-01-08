@@ -696,6 +696,14 @@ body#page-course-view-remuiformat {
                             display: flex;
                             flex-direction: column;
 
+                            .section.delegated-section.list-summary-section  {
+                                padding: 24px;
+                            }
+
+                            & > .activity.indented {
+                                margin-left: 24px;
+                            }
+
                             .activity {
 
                                 .activityinstance {

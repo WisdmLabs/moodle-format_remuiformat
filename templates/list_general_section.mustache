@@ -102,7 +102,7 @@
             <ul class="general-section-activities list-view-general-activities justify-content-start text-center ">
                 {{#activities}}
                     {{^isdelegatedsection}}
-                        <li class="activity d-flex flex-column justify-content-between  list-unstyled {{{modulename}}} modtype_{{{modulename}}}"
+                        <li class="activity d-flex flex-column justify-content-between {{#indented}}indented{{/indented}}  list-unstyled {{{modulename}}} modtype_{{{modulename}}}"
                             id="module-{{id}}">
                             <div class="generalsecactivitiescontent w-100 p-0 h-100">
                                 {{#editing}}
@@ -163,7 +163,13 @@
                         </li>
                     {{/isdelegatedsection}}
                     {{#isdelegatedsection}}
+                        {{^islistsummarysection}}
                         {{>format_remuiformat/list_delegatedsection}}
+                        {{/islistsummarysection}}
+
+                        {{#islistsummarysection}}
+                        {{> format_remuiformat/list_sections_summary }}
+                        {{/islistsummarysection}}
                     {{/isdelegatedsection}}
                 {{/activities}}
             </ul>
