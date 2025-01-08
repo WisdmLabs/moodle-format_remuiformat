@@ -269,6 +269,12 @@ body#page-course-view-remuiformat {
         }
     }
     &.editing {
+        ul.remuiformat{
+            padding-left: 0px;
+        }
+        .course-section .section-item{
+            background-color: white;
+        }
         .yui3-dd-proxy {
             .section {
                 text-decoration: none;

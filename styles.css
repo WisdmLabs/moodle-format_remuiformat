@@ -1979,13 +1979,7 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions"
- "icon visibility groupmode completion actions"
- "icon visibility groupmode completion actions"
- "dates dates dates dates dates"
- "altcontent altcontent altcontent altcontent altcontent"
- "afterlink afterlink afterlink afterlink afterlink"
- "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
@@ -2311,6 +2305,14 @@ body#page-course-view-remuiformat .card-section-leftnav a {
 body#page-course-view-remuiformat .remui-format-card .hide,
 body#page-course-view-remuiformat .remui-format-list .hide {
   display: none;
+}
+
+body#page-course-view-remuiformat.editing ul.remuiformat {
+  padding-left: 0px;
+}
+
+body#page-course-view-remuiformat.editing .course-section .section-item {
+  background-color: white;
 }
 
 body#page-course-view-remuiformat.editing .yui3-dd-proxy .section {
