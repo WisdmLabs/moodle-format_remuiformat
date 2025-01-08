@@ -188,3 +188,8 @@ $string['headereditingbutton_help'] = "Selecionar posição do botão de ediçã
 $string['headeroverlayopacity'] = "Alterar a opacidade do overlay do cabeçalho";
 $string['headeroverlayopacity_help'] = "O valor padrão já está definido como '100'. Para ajustar a opacidade, por favor, insira um valor entre 0 e 100";
 $string['viewalltext'] = 'Ver tudo';
+
+
+$string['editmodeinfo'] = "Durante a edição, o curso muda para o formato do Moodle para facilitar a edição. Voltará ao formato do curso Edwiser quando você desativar o modo de edição";
+$string['okay'] = 'Ok';
+$string['donotshowagain'] = "Não mostrar novamente";

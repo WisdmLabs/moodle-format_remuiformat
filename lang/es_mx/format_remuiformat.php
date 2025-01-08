@@ -186,3 +186,8 @@ $string['headereditingbutton_help'] = "Seleccionar posición del botón de edici
 $string['headeroverlayopacity'] = "Cambiar la opacidad de la superposición del encabezado";
 $string['headeroverlayopacity_help'] = "El valor predeterminado ya está establecido en '100'. Para ajustar la opacidad, por favor ingrese un valor entre 0 y 100";
 $string['viewalltext'] = 'Ver todo';
+
+
+$string['editmodeinfo'] = "Mientras editas, el curso cambia al formato de Moodle para facilitar la edición. Volverá al formato del curso Edwiser cuando desactives el modo de edición";
+$string['okay'] = 'Está bien';
+$string['donotshowagain'] = "No mostrar nuevamente";
