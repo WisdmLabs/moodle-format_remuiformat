@@ -2748,6 +2748,10 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   margin-left: 24px;
 }
 
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities.list-view-general-activities .activity {
+  min-height: unset;
+}
+
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities.list-view-general-activities .activity .activityinstance {
   align-items: unset;
 }
