@@ -90,11 +90,11 @@ define(['jquery'], function($) {
             adjustGeneralSectionActivities();
         });
 
-        if ($(".general-section-activities li:last").css('display') == 'none') {
-            $(".showactivitywrapper").show();
-        } else {
-            $(".showactivitywrapper").hide();
-        }
+        // if ($(".general-section-activities li:last").css('display') == 'none') {
+        //     $(".showactivitywrapper").show();
+        // } else {
+        //     $(".showactivitywrapper").hide();
+        // }
 
         $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
 
