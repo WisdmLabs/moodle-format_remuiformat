@@ -73,6 +73,23 @@ $settings = $courseformat->get_settings();
 $rformat = $settings['remuicourseformat'];
 $type = 'list';
 
+$applylatestpref = true;
+if ($CFG->branch < '403') {
+    $applylatestpref = false;
+    user_preference_allow_ajax_update('showinfomodalineditmode', PARAM_BOOL);
+}
+
+if ($PAGE->user_is_editing()) {
+    $renderer = $PAGE->get_renderer('format_topics');
+    // This will take us to render_content() in /course/format/tiles/classes/output/renderer.php.
+    $outputclass = $format->get_output_classname('content');
+    $widget = new $outputclass($format);
+    echo $renderer->render($widget);
+    if (!get_user_preferences('showinfomodalineditmode', false)) {
+        echo $OUTPUT->render_from_template('format_remuiformat/edit_mode_info', ["applylatestpref" => $applylatestpref]);
+    }
+    return;
+}
 if ($section) {
     // List Format -> One Section Page : render_list_one_section -> list_one_section.
     if ($course->remuicourseformat) {

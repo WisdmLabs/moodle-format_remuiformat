@@ -60,7 +60,7 @@
   <ul class="sections row generalsection-container">
       {{! Display General Section }}
       {{#generalsection}}
-      {{> format_remuiformat/card_general_section }}
+        {{> format_remuiformat/list_general_section }}
       {{/generalsection}}
   </ul>
 </div>
@@ -138,16 +138,16 @@
               });
             }
           }
-          
+
           var section_state = {};
           jQuery('body#page-course-view-remuiformat ul.remui-format-list a.panel-title').click(function(){
               jQuery(this).find('i').toggleClass('fa-angle-down');
               jQuery(this).find('i').toggleClass('fa-angle-up');
               var section_id = jQuery(this).parent().parent().parent().attr('id');
-              
+
               var namelocal  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
               var ed_sectionstate  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
-              
+
               jQuery(this).parent().parent().find('.summary').show(500);
               if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
                   sectionstate = 'collapsed';

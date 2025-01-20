@@ -185,3 +185,8 @@ $string['headereditingbutton_help'] = "اختيار موقع زر التحرير
 $string['headeroverlayopacity'] = "تغيير شفافية تراكب الرأس";
 $string['headeroverlayopacity_help'] = "القيمة الافتراضية مضبوطة بالفعل على '100'. لتعديل الشفافية، يرجى إدخال قيمة بين 0 و 100";
 $string['viewalltext'] = 'عرض الكل';
+
+
+$string['editmodeinfo'] = "أثناء التحرير، يتحول المقرر الدراسي إلى تنسيق Moodle لتسهيل التحرير. سيعود إلى تنسيق Edwiser Course عند إيقاف وضع التحرير";
+$string['okay'] = 'حسنًا';
+$string['donotshowagain'] = "لا تعرض هذا مرة أخرى";

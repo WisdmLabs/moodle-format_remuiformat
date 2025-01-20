@@ -214,6 +214,9 @@ body#page-course-view-remuiformat {
             color: white;
         }
     }
+    &.editing header.hasbackground.design-1{
+        justify-content: flex-end !important;
+    }
     .summary-collapsed{
         max-height: 300px;
         position: relative;
@@ -266,6 +269,13 @@ body#page-course-view-remuiformat {
         }
     }
     &.editing {
+        ul.remuiformat{
+            padding-left: 0px;
+        }
+        .course-section .section-item{
+            background-color: white;
+            padding: 1rem;
+        }
         .yui3-dd-proxy {
             .section {
                 text-decoration: none;
@@ -688,6 +698,44 @@ body#page-course-view-remuiformat {
                                 }
                             }
                         }
+
+                        .general-section-activities.list-view-general-activities {
+                            display: flex;
+                            flex-direction: column;
+
+                            .section.delegated-section.list-summary-section  {
+                                padding: 24px;
+                            }
+
+                            & > .activity.indented {
+                                margin-left: 24px;
+                            }
+
+                            .activity {
+                                min-height: unset;
+
+                                .activityinstance {
+                                    align-items: unset;
+
+                                    .contentafterlink {
+                                        .no-overflow {
+                                            .no-overflow {
+                                                margin-left: 74px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .activitytitle {
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                    width: 100%;
+                                    gap: $gap-26;
+                                }
+                            }
+
+                        }
                     }
 
                     .showactivity {
@@ -1056,9 +1104,9 @@ body#page-course-view-remuiformat {
         }
     }
 
-    .bulkEnable {
-        display: none;
-    }
+    // .bulkEnable {
+    //     display: none;
+    // }
 }
 .section{
     .dndupload-preview-overlay,.dndupload-preview-wrapper{

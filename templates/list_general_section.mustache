@@ -50,86 +50,136 @@
         ]
     }
 }}
+{{^showgeneralsectionintrodata}}
+{{^activityexists}}
 <style>
-    div {
-        --remuicourseimage: url({{{remuicourseimage}}});
+    #page-course-view-remuiformat .courseindex-section:first-child {
+        display: none !important;
     }
 </style>
-<li id="section-0" class="section clearfix mb-25 mb-4 m-b-2" role="region" aria-label="{{{generalsectiontitle}}}">
-    <div class="general-section">
+{{/activityexists}}
+{{/showgeneralsectionintrodata}}
+
+{{^activityexists}}
+<style>
+    #page-course-view-remuiformat .sections.generalsection-container{
+        margin-bottom: 0px !important;
+    }
+    #page-course-view-remuiformat  .section-details{
+        margin-bottom: 24px;
+    }
+</style>
+{{/activityexists}}
+
+<li id="section-{{{index}}}" class="section border-0 col-12 p-0">
+    <div class="general-section d-flex flex-column">
         {{>format_remuiformat/optional_secheader}}
+        <div class="d-none hidden course-prgress-container" data-courseid="{{courseid}}"></div>
+        {{#showgeneralsection}}
         <div class="section-details">
-            <div class="coursedetails">
-                <div class="details">
-                    {{#coursemainimage}}
-                        <div class="col-12 coursemainimagediv text-right d-md-block mb-4">
-                            <div class="coursemainimage" style="background-image: url('{{coursemainimage}}');"></div>
-                        </div>
-                    {{/coursemainimage}}
-                    {{> format_remuiformat/course_progress }}
-                    {{#resumeactivityurl}}
-                        <div class="col-12 text-center mt-4">
-                            <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
-                        </div>
-                    {{/resumeactivityurl}}
-                </div>
-            </div>
-            <div class="generaldetails content">
-                <div class="left side">
-                    {{{ leftsection }}}
-                </div>
-                <div class="right side">
-                    {{{ optionmenu }}}
-                </div>
-                <h2 class="section-title">{{{ title }}}</h2>
+            {{#showgeneralsectionintrodata}}
+            <div class="generaldetails content d-flex flex-column">
+                <h2 class="section-title pt-0 p-t-0 m-0">{{{title}}}</h2>
                 <div class='generalsectioninfo'>
-                    {{{ availability }}}
+                    {{{availability}}}
                     {{#fullsummary}}
-                        <input type="checkbox" class="read-more-state" id="read-more-summary" />
-                        <div class="read-more-target">{{{ fullsummary }}}</div>
-                        <div class="fadeout-summary"></div>
-                        <label for="read-more-summary" class=" text-primary small read-more-trigger"></label>
+                    {{! <input type="checkbox" class="read-more-state" id="read-more-summary" /> }}
+                    <div class="read-more-target coursesummary" >{{{fullsummary}}}
+                    </div>
+                    <a id="readmorebtn" class="d-none readbtn">{{#str}} showmore, format_remuiformat{{/str}}</a>
+                    <a id="readlessbtn" class="d-none readbtn">{{#str}} showless, format_remuiformat{{/str}}</a>
+                    {{! <label for="read-more-summary" class=" text-primary small read-more-trigger"></label> }}
                     {{/fullsummary}}
                 </div>
-                <a class="text-muted" href="{{ editsetionurl }}"><span><i class="fa fa-cog font-size-20" aria-hidden="true"></i></span></a>
             </div>
+            {{/showgeneralsectionintrodata}}
         </div>
         {{#activityexists}}
-            <h4 class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
-        {{/activityexists}}
-        <div class="content">
-            <div class="summary"></div>
-            <ul class="img-text section general-section-activities justify-content-start text-center yui3-dd-drop" data-draggroups="resource">
+        <div class="activities-wrapper d-flex flex-column">
+            {{#comment}}
+            <h4 class="activitieshead m-0 d-none">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>
+            {{/comment}}
+            <ul class="general-section-activities list-view-general-activities justify-content-start text-center ">
                 {{#activities}}
-                    <li class="activity {{{modulename}}} modtype_{{{modulename}}} justify-content-center list-unstyled yui3-dd-drop" id="module-{{id}}" data-draggroups="resource">
-                        <div>
-                            <div class="activityinstance p-0 d-inline-block">
-                                {{{title}}}
-                                <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
+                    {{^isdelegatedsection}}
+                        <li class="activity d-flex flex-column justify-content-between {{#indented}}indented{{/indented}}  list-unstyled {{{modulename}}} modtype_{{{modulename}}}"
+                            id="module-{{id}}">
+                            <div class="generalsecactivitiescontent w-100 p-0 h-100">
+                                {{#editing}}
+                                {{{leftside}}}
+                                {{/editing}}
+                                {{! <div> }}
+                                    <div class="activityinstance p-0 m-0 d-flex h-100 flex-column">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="title-activity-container text-break w-100 text-left ">
+                                                {{{title}}}
+                                            </div>
+                                            {{#completion}}
+                                            <div class="actions">
+                                                {{{completion}}}
+                                            </div>
+                                            {{/completion}}
+                                        </div>
+                                        <div style="margin-left: 74px;">
+                                            {{#modhiddenfromstudents}}
+                                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center">
+                                                {{!> core_courseformat/local/content/section/badges }}
+                                                {{>format_remuiformat/edwbadges}}
+                                            </div>
+                                            {{/modhiddenfromstudents}}
+                                            {{#modstealth}}
+                                            <div class=" d-flex align-items-center">
+                                                <span
+                                                    class="badge badge-pill badge-warning">{{#str}}hiddenoncoursepage{{/str}}</span>
+                                            </div>
+                                            {{/modstealth}}
+                                        </div>
+                                            {{#summary}}
+                                            <div class="contentafterlink">
+                                                {{{summary}}}
+                                            </div>
+                                            {{/summary}}
+
+                                    </div>
+                                    <div class="p-0 action-availstatus-wrapper" style="margin-left: 74px;">
+                                        {{#hasopenduedata}}
+                                        <div class="description text-left">
+                                            <div data-region="activity-dates" class="activity-dates small course-description-item">
+                                                <div class="description-inner">
+                                                    {{#opendue}}
+                                                    <div>
+                                                        <strong>{{label}}</strong> {{timestamp}}
+                                                    </div>
+                                                    {{/opendue}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{/hasopenduedata}}
+                                        {{{availstatus}}}
+                                    </div>
+                                    {{!
+                                </div> }}
                             </div>
-                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
-                                {{!> core_courseformat/local/content/section/badges }}
-                                {{>format_remuiformat/edwbadges}}
-                            </div>
-                            <div class="actions">
-                                {{{completion}}}
-                                {{{modicons}}}
-                            </div>
-                            <div class="contentafterlink">
-                                {{{summary}}}
-                            </div>
-                            {{{availstatus}}}
-                        </div>
-                    </li>
+                        </li>
+                    {{/isdelegatedsection}}
+                    {{#isdelegatedsection}}
+                        {{^islistsummarysection}}
+                            {{>format_remuiformat/list_delegatedsection}}
+                        {{/islistsummarysection}}
+
+                        {{#islistsummarysection}}
+                            {{> format_remuiformat/list_sections_summary }}
+                        {{/islistsummarysection}}
+                    {{/isdelegatedsection}}
                 {{/activities}}
             </ul>
         </div>
-
+        {{/activityexists}}
         <div class="text-center showactivitywrapper">
             <span class="showactivity text-primary show">
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                {{#str}}showmore, format_remuiformat{{/str}}
             </span>
         </div>
-        {{{addnewactivity}}}
     </div>
+    {{/showgeneralsection}}
 </li>

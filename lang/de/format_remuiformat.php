@@ -186,3 +186,8 @@ $string['headereditingbutton_help'] = 'Position der Bearbeitungsschaltfläche w�
 $string['headeroverlayopacity'] = 'Deckkraft der Header-Überlagerung ändern';
 $string['headeroverlayopacity_help'] = 'Der Standardwert ist bereits auf "100" gesetzt. Um die Deckkraft anzupassen, geben Sie einen Wert zwischen 0 und 100 ein.';
 $string['viewalltext'] = 'Alles ansehen';
+
+
+$string['editmodeinfo'] = "Während der Bearbeitung wechselt der Kurs zum Moodle-Format, um die Bearbeitung zu erleichtern. Es kehrt zum Edwiser-Kursformat zurück, wenn Sie den Bearbeitungsmodus deaktivieren";
+$string['okay'] = 'Okay';
+$string['donotshowagain'] = "Nicht erneut anzeigen";

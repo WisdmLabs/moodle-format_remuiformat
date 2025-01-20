@@ -69,7 +69,7 @@ define(['jquery'], function($) {
      * Adjust the general section activities visibility after first row
      */
     function adjustGeneralSectionActivities() {
-        if ($(SELECTORS.FIRST_SECTION + ' .activity').length <= getActivitiesPerRow()) {
+        if ($(SELECTORS.FIRST_SECTION + '  ul.general-section-activities li').length <= getActivitiesPerRow()) {
             $(SELECTORS.FIRST_SECTION).removeClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
             $(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).hide();
         } else {
@@ -90,11 +90,11 @@ define(['jquery'], function($) {
             adjustGeneralSectionActivities();
         });
 
-        if ($(".general-section-activities li:last").css('display') == 'none') {
-            $(".showactivitywrapper").show();
-        } else {
-            $(".showactivitywrapper").hide();
-        }
+        // if ($(".general-section-activities li:last").css('display') == 'none') {
+        //     $(".showactivitywrapper").show();
+        // } else {
+        //     $(".showactivitywrapper").hide();
+        // }
 
         $(SELECTORS.ACTIVITY_TOGGLE).on('click', function() {
 
@@ -105,7 +105,7 @@ define(['jquery'], function($) {
                 $(this).html(M.util.get_string('showmore', 'format_remuiformat'));
                 $(this).toggleClass(SELECTORS.SHOW); // Add show class
                 $("html, body").animate({
-                    scrollTop: $(SELECTORS.FIRST_SECTION + ' .activity:first-child').offset().top - 66
+                    scrollTop: $(SELECTORS.FIRST_SECTION + ' ul.general-section-activities li:first-child').offset().top - 66
                 }, "slow");
             }
             $(SELECTORS.FIRST_SECTION).toggleClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);

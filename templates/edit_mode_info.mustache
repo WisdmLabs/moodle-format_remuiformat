@@ -1,0 +1,45 @@
+<div class="modal fade" id="remuiformateditmodeinfomodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                {{#str}}editmodeinfo ,format_remuiformat{{/str}}
+            </div>
+            <div class="modal-footer pt-0 border-0">
+                <a type="button" class="btn btn-link border-0 hideeditmodeinfomodal" >{{#str}}donotshowagain ,format_remuiformat{{/str}}</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{#str}}okay ,format_remuiformat{{/str}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{^applylatestpref}}
+    {{#js}}
+    require(['jquery'], function($){
+        $(document).ready(function(){
+            $('#remuiformateditmodeinfomodal').modal('show');
+
+            $(".hideeditmodeinfomodal").click(function(){
+                M.util.set_user_preference('showinfomodalineditmode', true);
+                $('#remuiformateditmodeinfomodal').modal('hide');
+            });
+        });
+    });
+    {{/js}}
+
+{{/applylatestpref}}
+
+
+{{#applylatestpref}}
+    {{#js}}
+    require(['jquery', 'core_user/repository'], function($, UserRepository){
+        $(document).ready(function(){
+            $('#remuiformateditmodeinfomodal').modal('show');
+
+            $(".hideeditmodeinfomodal").click(function(){
+                UserRepository.setUserPreference('showinfomodalineditmode', true);
+                $('#remuiformateditmodeinfomodal').modal('hide');
+            });
+        });
+    });
+    {{/js}}
+{{/applylatestpref}}

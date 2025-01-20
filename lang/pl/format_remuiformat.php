@@ -183,3 +183,8 @@ $string['headereditingbutton_help'] = "Wybierz pozycję przycisku edycji. Ta opc
 $string['headeroverlayopacity'] = "Zmień przejrzystość nakładki nagłówka";
 $string['headeroverlayopacity_help'] = "Domyślna wartość jest już ustawiona na '100'. Aby dostosować przejrzystość, wprowadź wartość od 0 do 100";
 $string['viewalltext'] = 'Zobacz wszystko';
+
+
+$string['editmodeinfo'] = "Podczas edycji kurs przełącza się na format Moodle, aby ułatwić edycję. Powróci do formatu kursu Edwiser po wyłączeniu trybu edycji";
+$string['okay'] = 'W porządku';
+$string['donotshowagain'] = "Nie pokazuj ponownie";
