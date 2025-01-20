@@ -2313,6 +2313,7 @@ body#page-course-view-remuiformat.editing ul.remuiformat {
 
 body#page-course-view-remuiformat.editing .course-section .section-item {
   background-color: white;
+  padding: 1rem;
 }
 
 body#page-course-view-remuiformat.editing .yui3-dd-proxy .section {
