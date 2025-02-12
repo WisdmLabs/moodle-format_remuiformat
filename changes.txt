@@ -1,9 +1,14 @@
 CHANGES LOG
 
+Version 4.1.13
+=============
+Fix - The issue of the "Add Section" button not being visible has been resolved.
+
 Version 4.1.12
 =============
 Feature - In edit mode  moodle format will be visible for easy editing.
 Tweak - Further UI/UX improvements done in list and card layouts.
+
 Version 4.1.11
 =============
 Fix - Resolved the issue where hidden sections were visible as empty cards to students.
