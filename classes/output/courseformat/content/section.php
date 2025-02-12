@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace format_topics\output\courseformat\content;
+namespace format_remuiformat\output\courseformat\content;
 
 use core_courseformat\base as course_format;
 use core_courseformat\output\local\content\section as section_base;
