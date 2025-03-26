@@ -154,17 +154,17 @@ class format_remuiformat_renderer extends section_renderer {
 
         while ($back > 0 and empty($links['previous'])) {
             if ($canviewhidden || $sections[$back]->uservisible) {
-                $params = array('class' => 'btn btn-inverse btn-sm ');
+                $params = array('class' => 'btn btn-primary btn-inverse btn-sm ');
                 $previouslink = html_writer::tag('span', "&#8249;", array('class' => 'larrow mr-1 font-size-16'));
                 if ($CFG->theme == 'remui') {
-                    $params = array('class' => 'btn btn-inverse btn-sm d-flex align-items-center');
+                    $params = array('class' => 'btn btn-primary btn-inverse btn-sm d-flex align-items-center');
                     $previouslink = html_writer::tag('span', "", array('class' => 'larrow mr-1 font-size-16 edw-icon edw-icon-Left-Arrow'));
                 }
                 $prevsectionname = get_section_name($course, $sections[$back]);
                 if (!$sections[$back]->visible) {
-                    $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
+                    $params = array('class' => 'dimmed_text btn btn-primary btn-inverse btn-sm');
                     if ($CFG->theme == 'remui') {
-                        $params = array('class' => 'dimmed_text btn btn-inverse btn-sm d-flex align-items-center');
+                        $params = array('class' => 'dimmed_text btn btn-primary btn-inverse btn-sm d-flex align-items-center');
                     }
                 }
                 $previouslink .=
@@ -181,16 +181,16 @@ class format_remuiformat_renderer extends section_renderer {
         }
         while ($forward <= $numsections and empty($links['next'])) {
             if ($canviewhidden || $sections[$forward]->uservisible) {
-                $params = array('class' => 'btn btn-inverse btn-sm');
+                $params = array('class' => 'btn btn-primary btn-inverse btn-sm');
                 $nextlinkarrowcontent = html_writer::tag('span', "&#8250;", array('class' => 'rarrow ml-1 font-size-16'));
                 if ($CFG->theme == 'remui') {
-                    $params = array('class' => 'btn btn-inverse btn-sm d-flex align-items-center');
+                    $params = array('class' => 'btn btn-primary btn-inverse btn-sm d-flex align-items-center');
                     $nextlinkarrowcontent = html_writer::tag('span', "", array('class' => 'rarrow ml-1 font-size-16 edw-icon edw-icon-Right-Arrow'));
                 }
                 if (!$sections[$forward]->visible) {
-                    $params = array('class' => 'dimmed_text btn btn-inverse btn-sm');
+                    $params = array('class' => 'dimmed_text btn btn-primary btn-inverse btn-sm');
                     if ($CFG->theme == 'remui') {
-                        $params = array('class' => 'dimmed_text btn btn-inverse btn-sm d-flex align-items-center');
+                        $params = array('class' => 'dimmed_text btn btn-primary btn-inverse btn-sm d-flex align-items-center');
                     }
                 }
                 $nextsectionname = get_section_name($course, $sections[$forward]);
