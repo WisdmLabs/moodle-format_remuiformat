@@ -214,8 +214,14 @@ body#page-course-view-remuiformat {
             color: white;
         }
     }
-    &.editing header.hasbackground.design-1{
-        justify-content: flex-end !important;
+    &.editing  {
+        header.hasbackground.design-1 {
+            justify-content: flex-end !important;
+
+            .header-sub-section {
+                justify-content: flex-start;
+            }
+        }
     }
     .summary-collapsed{
         max-height: 300px;

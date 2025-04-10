@@ -1979,7 +1979,13 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "dates dates dates dates dates"
+ "altcontent altcontent altcontent altcontent altcontent"
+ "afterlink afterlink afterlink afterlink afterlink"
+ "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
@@ -2245,6 +2251,10 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-heading 
 
 body#page-course-view-remuiformat.editing header.hasbackground.design-1 {
   justify-content: flex-end !important;
+}
+
+body#page-course-view-remuiformat.editing header.hasbackground.design-1 .header-sub-section {
+  justify-content: flex-start;
 }
 
 body#page-course-view-remuiformat .summary-collapsed {
