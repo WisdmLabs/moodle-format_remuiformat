@@ -50,7 +50,7 @@ class controlmenu extends controlmenu_base {
      * @return array of edit control items
      */
     public function section_control_items() {
-
+        global $CFG;
         $format = $this->format;
         $section = $this->section;
         $course = $format->get_course();
@@ -71,29 +71,56 @@ class controlmenu extends controlmenu_base {
             if ($course->marker == $section->section) {  // Show the "light globe" on/off.
                 $url->param('marker', 0);
                 $highlightoff = get_string('highlightoff');
-                $controls['highlight'] = [
-                    'url' => $url,
-                    'icon' => 'i/marked',
-                    'name' => $highlightoff,
-                    'pixattr' => ['class' => ''],
-                    'attr' => [
-                        'class' => 'editing_highlight',
-                        'data-action' => 'removemarker'
-                    ],
-                ];
+                if(get_moodle_release_version_branch() >= 500) {
+                    $controls['highlight'] = new \action_menu_link_secondary(
+                        $url,
+                        new \pix_icon('i/marked', ''),
+                        $highlightoff,
+                        [
+                            'class' => 'editing_highlight',
+                            'data-action' => 'removemarker'
+                        ]
+                    );
+                    
+                }else{
+                    $controls['highlight'] = [
+                        'url' => $url,
+                        'icon' => 'i/marked',
+                        'name' => $highlightoff,
+                        'pixattr' => ['class' => ''],
+                        'attr' => [
+                            'class' => 'editing_highlight',
+                            'data-action' => 'removemarker'
+                        ],
+                    ];
+                    
+
+                }
             } else {
                 $url->param('marker', $section->section);
                 $highlight = get_string('highlight');
-                $controls['highlight'] = [
-                    'url' => $url,
-                    'icon' => 'i/marker',
-                    'name' => $highlight,
-                    'pixattr' => ['class' => ''],
-                    'attr' => [
-                        'class' => 'editing_highlight',
-                        'data-action' => 'setmarker'
-                    ],
-                ];
+                if(get_moodle_release_version_branch() >= 500) {
+                    $controls['highlight'] = new \action_menu_link_secondary(
+                        $url,
+                        new \pix_icon('i/marker', ''),
+                        $highlight,
+                        [
+                            'class' => 'editing_highlight',
+                            'data-action' => 'setmarker'
+                        ]
+                    );
+                }else{
+                    $controls['highlight'] = [
+                        'url' => $url,
+                        'icon' => 'i/marker',
+                        'name' => $highlight,
+                        'pixattr' => ['class' => ''],
+                        'attr' => [
+                            'class' => 'editing_highlight',
+                            'data-action' => 'setmarker'
+                        ],
+                    ];
+                }
             }
         }
 
@@ -117,4 +144,5 @@ class controlmenu extends controlmenu_base {
             return array_merge($controls, $parentcontrols);
         }
     }
+
 }
