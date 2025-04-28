@@ -3067,6 +3067,10 @@ body#page-course-view-remuiformat.editing .general-section-activities .activity 
   overflow: auto !important;
 }
 
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container {
+  text-align: left;
+}
+
 body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container .btn span.expanded-content {
   padding: 1px;
   display: flex;

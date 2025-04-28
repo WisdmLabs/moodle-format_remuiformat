@@ -1063,6 +1063,9 @@ body#page-course-view-remuiformat {
 
     .availabilityinfo {
         &.isrestricted {
+            .showmore-container{
+                text-align: left;
+            }
             .showmore-container .btn{
                 span.expanded-content{
                     padding: 1px;
