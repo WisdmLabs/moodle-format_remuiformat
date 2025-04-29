@@ -1088,7 +1088,7 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
   }
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .sectionname .panel-title .float-right {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .sectionname .panel-title .erf-float-right {
   padding-right: 10px;
 }
 
@@ -1100,7 +1100,7 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
   margin-top: 16px;
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-format .sections .section .sectionname .panel-title .float-right {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-format .sections .section .sectionname .panel-title .erf-float-right {
   padding-right: 0;
 }
 
@@ -1398,8 +1398,8 @@ body#page-course-view-remuiformat .list-view-general-activities .sections .secti
   white-space: nowrap;
 }
 
-body#page-course-view-remuiformat .remui-format-list .sections .section .section_action_menu.ml-auto,
-body#page-course-view-remuiformat .list-view-general-activities .sections .section .section_action_menu.ml-auto {
+body#page-course-view-remuiformat .remui-format-list .sections .section .section_action_menu.erf-ml-auto,
+body#page-course-view-remuiformat .list-view-general-activities .sections .section .section_action_menu.erf-ml-auto {
   margin: unset !important;
 }
 
@@ -1633,8 +1633,8 @@ body#page-course-view-remuiformat .list-view-general-activities .section.delegat
   white-space: nowrap;
 }
 
-body#page-course-view-remuiformat .remui-format-list .section.delegated-section .section_action_menu.ml-auto,
-body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section .section_action_menu.ml-auto {
+body#page-course-view-remuiformat .remui-format-list .section.delegated-section .section_action_menu.erf-ml-auto,
+body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section .section_action_menu.erf-ml-auto {
   margin: unset !important;
 }
 
@@ -1707,6 +1707,13 @@ body#page-course-view-remuiformat .list-view-general-activities.all-section-form
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section .activity .activitytitle,
 body#page-course-view-remuiformat .list-view-general-activities.all-section-format ul.sections li.section .content ul.section .activity .activitytitle {
   gap: 24px;
+}
+
+body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section .activity .title-activity-container,
+body#page-course-view-remuiformat .list-view-general-activities.all-section-format ul.sections li.section .content ul.section .activity .title-activity-container {
+  display: flex;
+  flex-direction: row;
+  gap: 41px;
 }
 
 body#page-course-view-remuiformat .remui-format-list .activities-list,
@@ -3142,4 +3149,32 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 
 .edw-m405 #page .editing_move {
   display: none !important;
+}
+
+.erf-ml-2 {
+  margin-left: 0.5rem !important;
+}
+
+.erf-ml-1 {
+  margin-left: 0.25rem !important;
+}
+
+.erf-ml-auto {
+  margin-left: auto !important;
+}
+
+.erf-float-left {
+  float: left !important;
+}
+
+.erf-float-right {
+  float: right !important;
+}
+
+.erf-text-right {
+  text-align: right !important;
+}
+
+.erf-text-left {
+  text-align: left !important;
 }

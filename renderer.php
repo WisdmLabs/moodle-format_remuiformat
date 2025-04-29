@@ -182,10 +182,10 @@ class format_remuiformat_renderer extends section_renderer {
         while ($forward <= $numsections and empty($links['next'])) {
             if ($canviewhidden || $sections[$forward]->uservisible) {
                 $params = array('class' => 'btn btn-primary btn-inverse btn-sm');
-                $nextlinkarrowcontent = html_writer::tag('span', "&#8250;", array('class' => 'rarrow ml-1 font-size-16'));
+                $nextlinkarrowcontent = html_writer::tag('span', "&#8250;", array('class' => 'rarrow erf-ml-1 font-size-16'));
                 if ($CFG->theme == 'remui') {
                     $params = array('class' => 'btn btn-primary btn-inverse btn-sm d-flex align-items-center');
-                    $nextlinkarrowcontent = html_writer::tag('span', "", array('class' => 'rarrow ml-1 font-size-16 edw-icon edw-icon-Right-Arrow'));
+                    $nextlinkarrowcontent = html_writer::tag('span', "", array('class' => 'rarrow erf-ml-1 font-size-16 edw-icon edw-icon-Right-Arrow'));
                 }
                 if (!$sections[$forward]->visible) {
                     $params = array('class' => 'dimmed_text btn btn-primary btn-inverse btn-sm');
@@ -288,7 +288,7 @@ class format_remuiformat_renderer extends section_renderer {
             $o .= html_writer::tag(
                 'p', get_string('progress', 'format_remuiformat'), array('class' => 'progress-title m-0 text-muted')
             );
-            $o .= html_writer::tag('p', $a->complete.' / '.$a->total, array('class' => 'activity-count m-0 text-right'));
+            $o .= html_writer::tag('p', $a->complete.' / '.$a->total, array('class' => 'activity-count m-0 erf-text-right'));
             $o .= html_writer::end_tag('div');
             $o .= html_writer::start_tag('div', array('class' => 'pchart', 'data-percent' => $percentage));
             $o .= html_writer::tag(

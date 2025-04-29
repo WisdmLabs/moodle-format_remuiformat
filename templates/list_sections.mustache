@@ -61,7 +61,7 @@
 <li id="section-{{{index}}}" class="card section main {{#collapsed}}collapsed{{/collapsed}} clearfix " role="region" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
     <div class="content card-block  remui-list-content-border" aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
         <div class="course-section-summary-wrapper">
-            <div class="left side float-left d-flex m-0 justify-content-between w-100">
+            <div class="left side erf-float-left d-flex m-0 justify-content-between w-100">
                 {{{ leftside }}}
             </div>
             <div class="course-section-header d-flex align-items-start" data-for="section_title">
@@ -81,14 +81,14 @@
                         {{^editing}}
                             {{#progressinfo}}
                                 {{#completed}}
-                                <div class="float-right">
+                                <div class="erf-float-right">
                                     <i class="fa fas fa-check-square text-success"></i>
                                 </div>
                                 {{/completed}}
                             {{/progressinfo}}
                             </a>
                         {{/editing}}
-                        <div data-region="sectionbadges" class="sectionbadges d-inline {{^editing}}ml-2{{/editing}}">
+                        <div data-region="sectionbadges" class="sectionbadges d-inline {{^editing}}erf-ml-2{{/editing}}">
                             {{!> core_courseformat/local/content/section/badges }}
                             {{>format_remuiformat/edwbadges}}
                         </div>
@@ -99,7 +99,7 @@
                            <div class="progress-bar bg-green-600" style="width:{{#progressinfo}}{{ percentage }}{{/progressinfo}}{{^progressinfo}}0{{/progressinfo}}%;" role="progressbar">
                            </div>
                         </div>
-                        <div class="text-right progress-text">
+                        <div class="erf-text-right progress-text">
                            {{#progressinfo}}
                            {{! progress }}
                            {{/progressinfo}}
@@ -110,7 +110,7 @@
                 </div>
                 <div class="side right d-flex ">
 
-                    <button class="toggle-icon fa fa-angle-right ml-auto"></button>
+                    <button class="toggle-icon fa fa-angle-right erf-ml-auto"></button>
                     {{{ addnewsection }}}
                     {{{ optionmenu }}}
                 </div>
