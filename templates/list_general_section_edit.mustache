@@ -57,14 +57,14 @@
             <div class="coursedetails">
                 <div class="details">
                     {{#coursemainimage}}
-                        <div class="col-12 coursemainimagediv text-right d-md-block mb-4">
+                        <div class="col-12 coursemainimagediv erf-text-right d-md-block mb-4">
                             <div class="coursemainimage" style="background-image: url('{{coursemainimage}}');"></div>
                         </div>
                     {{/coursemainimage}}
                     {{> format_remuiformat/course_progress }}
                     {{#resumeactivityurl}}
                         <div class="col-12 text-center mt-4">
-                            <a class="btn btn-primary btn-block bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
+                            <a class="btn btn-primary bold" href="{{{ resumeactivityurl }}}" role="button">{{#str}} resumetoactivity, format_remuiformat{{/str}}</a>
                         </div>
                     {{/resumeactivityurl}}
                 </div>
@@ -102,7 +102,7 @@
                                 {{{title}}}
                                 <span class="pl-10"><span class="editing_move moodle-core-dragdrop-draghandle" title="{{#str}} moveresource, format_remuiformat {{/str}}" tabindex="0" data-draggroups="resource" role="button" data-sectionreturn="0"><i class="icon fa fa-arrows fa-fw  iconsmall" aria-hidden="true" aria-label="" style="cursor: move;"></i></span></span>
                             </div>
-                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+                            <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}erf-ml-2{{/editing}}">
                                 {{!> core_courseformat/local/content/section/badges }}
                                 {{>format_remuiformat/edwbadges}}
                             </div>
@@ -171,7 +171,7 @@
                                     <div class="activityinstance p-0 d-inline-block contentafterlink">
                                         {{{title}}}
                                     </div>
-                                    <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}ml-2{{/editing}}">
+                                    <div data-region="sectionbadges" class="sectionbadges d-flex align-items-center {{^editing}}erf-ml-2{{/editing}}">
                                         {{!> core_courseformat/local/content/section/badges }}
                                         {{>format_remuiformat/edwbadges}}
                                     </div>

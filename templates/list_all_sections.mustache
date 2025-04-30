@@ -149,7 +149,7 @@
               var ed_sectionstate  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
 
               jQuery(this).parent().parent().find('.summary').show(500);
-              if(jQuery(this).find('.float-right').hasClass('fa-angle-down')) {
+              if(jQuery(this).find('.erf-float-right').hasClass('fa-angle-down')) {
                   sectionstate = 'collapsed';
                   localStorage.setItem(namelocal, 'false');
                   jQuery(this).parent().parent().find('.card-footer').removeClass('show');
@@ -172,16 +172,16 @@
 {{#editing}}
     {{#js}}
       require(['jquery'], function(jQuery) {
-          jQuery('.remui-format-list .card-title .float-right').click(function(){
+          jQuery('.remui-format-list .card-title .erf-float-right').click(function(){
               var iconparent = jQuery(this).parent();
               console.log(iconparent);
-              jQuery(iconparent).find('.float-right').toggleClass('fa-angle-down');
-              jQuery(iconparent).find('.float-right').toggleClass('fa-angle-up');
+              jQuery(iconparent).find('.erf-float-right').toggleClass('fa-angle-down');
+              jQuery(iconparent).find('.erf-float-right').toggleClass('fa-angle-up');
               var section_id = jQuery(iconparent).parent().parent().parent().attr('id');
               var namelocal  = section_id + '_' + {{{ courseid }}} + '_' + {{{ user_id }}};
               localStorage.setItem(namelocal, 'true');
               jQuery(iconparent).parent().find('.summary').show(500);
-              if(jQuery(iconparent).find('.float-right').hasClass('fa-angle-down')) {
+              if(jQuery(iconparent).find('.erf-float-right').hasClass('fa-angle-down')) {
                   jQuery(iconparent).parent().find('.card-footer').removeClass("show");
                   jQuery(iconparent).parent().find('.card-footer').addClass("collapse");
                   jQuery(iconparent).parent().find('.summary').show(500);

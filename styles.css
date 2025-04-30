@@ -180,6 +180,7 @@ body#page-course-view-remuiformat .remui-format-card.all-section-format .section
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections:not(.generalsection-container.sections) .section:not(#section-0) {
   border: unset;
   border-radius: 8px;
+  padding: 0px;
 }
 
 body#page-course-view-remuiformat .remui-format-card.all-section-format .sections:not(.generalsection-container.sections) .section:not(#section-0):hover {
@@ -530,6 +531,8 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity .single-card .single-card-child-wrapper,
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .activity .single-card .single-card-child-wrapper {
+  height: 100%;
+  justify-content: space-between;
   gap: 12px;
 }
 
@@ -1085,7 +1088,7 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
   }
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .sectionname .panel-title .float-right {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .sectionname .panel-title .erf-float-right {
   padding-right: 10px;
 }
 
@@ -1097,7 +1100,7 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
   margin-top: 16px;
 }
 
-body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-format .sections .section .sectionname .panel-title .float-right {
+body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-format .sections .section .sectionname .panel-title .erf-float-right {
   padding-right: 0;
 }
 
@@ -1395,8 +1398,8 @@ body#page-course-view-remuiformat .list-view-general-activities .sections .secti
   white-space: nowrap;
 }
 
-body#page-course-view-remuiformat .remui-format-list .sections .section .section_action_menu.ml-auto,
-body#page-course-view-remuiformat .list-view-general-activities .sections .section .section_action_menu.ml-auto {
+body#page-course-view-remuiformat .remui-format-list .sections .section .section_action_menu.erf-ml-auto,
+body#page-course-view-remuiformat .list-view-general-activities .sections .section .section_action_menu.erf-ml-auto {
   margin: unset !important;
 }
 
@@ -1630,8 +1633,8 @@ body#page-course-view-remuiformat .list-view-general-activities .section.delegat
   white-space: nowrap;
 }
 
-body#page-course-view-remuiformat .remui-format-list .section.delegated-section .section_action_menu.ml-auto,
-body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section .section_action_menu.ml-auto {
+body#page-course-view-remuiformat .remui-format-list .section.delegated-section .section_action_menu.erf-ml-auto,
+body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section .section_action_menu.erf-ml-auto {
   margin: unset !important;
 }
 
@@ -1704,6 +1707,13 @@ body#page-course-view-remuiformat .list-view-general-activities.all-section-form
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section .activity .activitytitle,
 body#page-course-view-remuiformat .list-view-general-activities.all-section-format ul.sections li.section .content ul.section .activity .activitytitle {
   gap: 24px;
+}
+
+body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section .activity .title-activity-container,
+body#page-course-view-remuiformat .list-view-general-activities.all-section-format ul.sections li.section .content ul.section .activity .title-activity-container {
+  display: flex;
+  flex-direction: row;
+  gap: 41px;
 }
 
 body#page-course-view-remuiformat .remui-format-list .activities-list,
@@ -1979,13 +1989,7 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions"
- "icon visibility groupmode completion actions"
- "icon visibility groupmode completion actions"
- "dates dates dates dates dates"
- "altcontent altcontent altcontent altcontent altcontent"
- "afterlink afterlink afterlink afterlink afterlink"
- "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
@@ -3070,6 +3074,10 @@ body#page-course-view-remuiformat.editing .general-section-activities .activity 
   overflow: auto !important;
 }
 
+body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container {
+  text-align: left;
+}
+
 body#page-course-view-remuiformat .availabilityinfo.isrestricted .showmore-container .btn span.expanded-content {
   padding: 1px;
   display: flex;
@@ -3141,4 +3149,32 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 
 .edw-m405 #page .editing_move {
   display: none !important;
+}
+
+.erf-ml-2 {
+  margin-left: 0.5rem !important;
+}
+
+.erf-ml-1 {
+  margin-left: 0.25rem !important;
+}
+
+.erf-ml-auto {
+  margin-left: auto !important;
+}
+
+.erf-float-left {
+  float: left !important;
+}
+
+.erf-float-right {
+  float: right !important;
+}
+
+.erf-text-right {
+  text-align: right !important;
+}
+
+.erf-text-left {
+  text-align: left !important;
 }

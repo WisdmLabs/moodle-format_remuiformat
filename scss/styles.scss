@@ -1063,6 +1063,9 @@ body#page-course-view-remuiformat {
 
     .availabilityinfo {
         &.isrestricted {
+            .showmore-container{
+                text-align: left;
+            }
             .showmore-container .btn{
                 span.expanded-content{
                     padding: 1px;
@@ -1149,4 +1152,29 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 // drag and drop icon removed temprarly from moodle4.5
 .edw-m405 #page .editing_move {
 	display: none !important;
+}
+
+
+.erf-ml-2{
+    margin-left: 0.5rem !important;
+}
+
+.erf-ml-1{
+    margin-left: 0.25rem !important;
+}
+
+.erf-ml-auto{
+    margin-left: auto !important;
+}
+.erf-float-left{
+    float: left !important;
+}
+.erf-float-right{
+    float: right !important;
+}
+.erf-text-right{
+    text-align: right !important;
+}
+.erf-text-left{
+    text-align: left !important;
 }

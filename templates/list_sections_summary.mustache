@@ -44,7 +44,7 @@
    <div class="content card-block  remui-list-content-border"
       aria-labelledby="section-{{index}} .sectionname a:not(.quickeditlink)">
       <div class="course-section-header d-flex flex-column" data-for="section_title">
-         <div class="left side float-left d-flex m-0 justify-content-between w-100">
+         <div class="left side erf-float-left d-flex m-0 justify-content-between w-100">
             {{{ leftside }}}
             <h3 class="sectionname card-title m-0 d-inline">
                <a class="panel-title p-0 sectionheading text-break" href="{{{ singlepageurl }}}"
@@ -53,14 +53,14 @@
                   {{#progressinfo}}
                   {{#completed}}
                   <!-- Default checked -->
-                  <div class="float-right">
+                  <div class="erf-float-right">
                      <i class="fa fas fa-check-square text-success"></i>
                      <!-- {{{ progress }}} -->
                   </div>
                   {{/completed}}
                   {{/progressinfo}}
                </a>
-               <div data-region="sectionbadges" class="sectionbadges ml-2 d-inline">
+               <div data-region="sectionbadges" class="sectionbadges erf-ml-2 d-inline">
                   {{!> core_courseformat/local/content/section/badges }}
                   {{>format_remuiformat/edwbadges}}
                </div>
@@ -82,7 +82,7 @@
          </div>
 
          {{#checkrightsidecontent}}
-         <div class="right side float-right d-flex align-items-center">
+         <div class="right side erf-float-right d-flex align-items-center">
             {{#progressinfo}}
             <div class="progress-bar-warpper">
                <div class="progress progress-xs bg-grey-300 m-b-1">
@@ -91,7 +91,7 @@
                      role="progressbar">
                   </div>
                </div>
-               <div class="text-right progress-text">
+               <div class="erf-text-right progress-text">
                   {{#progressinfo}}
                   {{! progress }}
                   {{/progressinfo}}
@@ -125,7 +125,7 @@
             </div>
          {{/availability}}
           {{#editing}}
-            <div class="section-summary-activities text-left {{#expanded}}hide{{/expanded}} p-24">{{{activityinfostring}}}</div>
+            <div class="section-summary-activities erf-text-left {{#expanded}}hide{{/expanded}} p-24">{{{activityinfostring}}}</div>
           {{/editing}}
       </div>
    </div>

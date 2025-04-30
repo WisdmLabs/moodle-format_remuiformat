@@ -199,6 +199,7 @@
                 // max-width: 314px;
                 border: unset;
                 border-radius: $border-radius-8;
+                padding: 0px;
                 &:hover{
                     box-shadow: $card-box-shadow;
                 }
@@ -362,6 +363,8 @@
                 .single-card {
                     min-height: $single-card-min-height;
                     .single-card-child-wrapper{
+                        height: 100%;
+                        justify-content: space-between;
                         gap: $gap-12;
                     }
                 }

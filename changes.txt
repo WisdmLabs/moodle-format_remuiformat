@@ -1,8 +1,13 @@
 CHANGES LOG
 
+Version 4.1.15
+=============
+Feature - Compatibility with Moodle 5.0.
+
 Version 4.1.14
 =============
 Tweak– Additional UI/UX enhancements.
+
 Version 4.1.13
 =============
 Fix - The issue of the "Add Section" button not being visible has been resolved.
