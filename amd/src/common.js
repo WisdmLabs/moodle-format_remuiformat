@@ -86,9 +86,10 @@ define(['jquery'], function($) {
         $('#page-course-view-remuiformat .section-modchooser-link:not(.dropdown-item)').addClass("btn btn-primary");
 
         adjustGeneralSectionActivities();
-        $(window).resize(function() {
-            adjustGeneralSectionActivities();
-        });
+        // It should not be change during resize of screen it causing issue on mobile view so I am commenting it
+        // $(window).resize(function() {
+        //     adjustGeneralSectionActivities();
+        // });
 
         // if ($(".general-section-activities li:last").css('display') == 'none') {
         //     $(".showactivitywrapper").show();
