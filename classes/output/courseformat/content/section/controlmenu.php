@@ -71,7 +71,7 @@ class controlmenu extends controlmenu_base {
             if ($course->marker == $section->section) {  // Show the "light globe" on/off.
                 $url->param('marker', 0);
                 $highlightoff = get_string('highlightoff');
-                if(get_moodle_release_version_branch() >= 500) {
+                if($CFG->branch >= 500) {
                     $controls['highlight'] = new \action_menu_link_secondary(
                         $url,
                         new \pix_icon('i/marked', ''),
@@ -99,7 +99,7 @@ class controlmenu extends controlmenu_base {
             } else {
                 $url->param('marker', $section->section);
                 $highlight = get_string('highlight');
-                if(get_moodle_release_version_branch() >= 500) {
+                if($CFG->branch >= 500) {
                     $controls['highlight'] = new \action_menu_link_secondary(
                         $url,
                         new \pix_icon('i/marker', ''),
