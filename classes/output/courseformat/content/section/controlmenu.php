@@ -26,6 +26,9 @@ namespace format_remuiformat\output\courseformat\content\section;
 
 use context_course;
 use core_courseformat\output\local\content\section\controlmenu as controlmenu_base;
+use core\output\action_menu\link as action_menu_link;
+use core\output\action_menu\link_secondary as action_menu_link_secondary;
+use core\output\pix_icon;
 
 /**
  * Base class to render a course section menu.
@@ -45,8 +48,6 @@ class controlmenu extends controlmenu_base {
     /**
      * Generate the edit control items of a section.
      *
-     * This method must remain public until the final deprecation of section_edit_control_items.
-     *
      * @return array of edit control items
      */
     public function section_control_items() {
@@ -54,8 +55,8 @@ class controlmenu extends controlmenu_base {
         $format = $this->format;
         $section = $this->section;
         $course = $format->get_course();
-        $courseformatdatacommontrait =  \format_remuiformat\course_format_data_common_trait::getinstance();
-        $sectionreturn = $courseformatdatacommontrait->edw_get_section_num($format);;
+        $courseformatdatacommontrait = \format_remuiformat\course_format_data_common_trait::getinstance();
+        $sectionreturn = $courseformatdatacommontrait->edw_get_section_num($format);
 
         $coursecontext = context_course::instance($course->id);
 
@@ -78,11 +79,10 @@ class controlmenu extends controlmenu_base {
                         $highlightoff,
                         [
                             'class' => 'editing_highlight',
-                            'data-action' => 'removemarker'
+                            'data-action' => 'sectionUnhighlight'
                         ]
                     );
-                    
-                }else{
+                } else {
                     $controls['highlight'] = [
                         'url' => $url,
                         'icon' => 'i/marked',
@@ -90,11 +90,9 @@ class controlmenu extends controlmenu_base {
                         'pixattr' => ['class' => ''],
                         'attr' => [
                             'class' => 'editing_highlight',
-                            'data-action' => 'removemarker'
+                            'data-action' => 'sectionUnhighlight'
                         ],
                     ];
-                    
-
                 }
             } else {
                 $url->param('marker', $section->section);
@@ -106,10 +104,10 @@ class controlmenu extends controlmenu_base {
                         $highlight,
                         [
                             'class' => 'editing_highlight',
-                            'data-action' => 'setmarker'
+                            'data-action' => 'sectionHighlight'
                         ]
                     );
-                }else{
+                } else {
                     $controls['highlight'] = [
                         'url' => $url,
                         'icon' => 'i/marker',
@@ -117,7 +115,7 @@ class controlmenu extends controlmenu_base {
                         'pixattr' => ['class' => ''],
                         'attr' => [
                             'class' => 'editing_highlight',
-                            'data-action' => 'setmarker'
+                            'data-action' => 'sectionHighlight'
                         ],
                     ];
                 }
@@ -144,5 +142,4 @@ class controlmenu extends controlmenu_base {
             return array_merge($controls, $parentcontrols);
         }
     }
-
 }

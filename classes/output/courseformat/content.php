@@ -25,6 +25,7 @@
 namespace format_remuiformat\output\courseformat;
 
 use core_courseformat\output\local\content as content_base;
+use renderer_base;
 
 /**
  * Base class to render a course content.
@@ -42,4 +43,15 @@ class content extends content_base {
      */
     protected $hasaddsection = true;
 
+    /**
+     * Export this data so it can be used as the context for a mustache template.
+     *
+     * @param renderer_base $output typically, the renderer that's calling this function
+     * @return stdClass data context for a mustache template
+     */
+    public function export_for_template(renderer_base $output) {
+        global $PAGE;
+        $PAGE->requires->js_call_amd('format_remuiformat/section', 'init');
+        return parent::export_for_template($output);
+    }
 }
