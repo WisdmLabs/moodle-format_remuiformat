@@ -1,5 +1,10 @@
 CHANGES LOG
 
+Version 4.1.16
+=============
+Fix – Resolved warning occurring on  highlighting the section.
+Tweak – Further UI/UX improvements implemented.
+
 Version 4.1.15
 =============
 Feature - Compatibility with Moodle 5.0.
