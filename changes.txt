@@ -1,5 +1,9 @@
 CHANGES LOG
 
+Version 4.1.17
+=============
+Tweak – Further UI/UX improvements implemented.
+
 Version 4.1.16
 =============
 Fix – Resolved warning occurring on  highlighting the section.
