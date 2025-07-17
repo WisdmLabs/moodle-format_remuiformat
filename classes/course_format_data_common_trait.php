@@ -793,13 +793,11 @@ class course_format_data_common_trait {
     // It will add the open due data in  activity context.
     public function get_opendue_status(&$activitydetails, $availstatus, $mod) {
         global $USER;
-        if (empty($availstatus)) {
-            $activitydetails->opendue = activity_dates::get_dates_for_module($mod, $USER->id);
-            if ($activitydetails->opendue) {
-                $activitydetails->hasopenduedata = true;
-                foreach ($activitydetails->opendue as $key => $data) {
-                    $activitydetails->opendue[$key]['timestamp'] = userdate($data['timestamp']);
-                }
+        $activitydetails->opendue = activity_dates::get_dates_for_module($mod, $USER->id);
+        if ($activitydetails->opendue) {
+            $activitydetails->hasopenduedata = true;
+            foreach ($activitydetails->opendue as $key => $data) {
+                $activitydetails->opendue[$key]['timestamp'] = userdate($data['timestamp']);
             }
         }
     }
