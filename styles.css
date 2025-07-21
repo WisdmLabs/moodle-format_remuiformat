@@ -2365,6 +2365,10 @@ body#page-course-view-remuiformat.editing .stretched-link::after {
   display: none;
 }
 
+body#page-course-view-remuiformat.editing .dropdown-menu .stretched-link::after {
+  display: unset;
+}
+
 body#page-course-view-remuiformat.editing .general-section-activities .activity.modtype_folder .contentwithoutlink {
   padding-left: 2.142rem;
   padding-top: 0.714rem;

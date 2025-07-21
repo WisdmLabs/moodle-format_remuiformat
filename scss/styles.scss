@@ -310,6 +310,11 @@ body#page-course-view-remuiformat {
         .stretched-link::after {
             display: none;
         }
+        .dropdown-menu {
+            .stretched-link::after {
+                display: unset;
+            }
+        }
         .general-section-activities {
             .activity {
                 &.modtype_folder {
