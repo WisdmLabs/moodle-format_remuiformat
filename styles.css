@@ -482,6 +482,8 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   display: flex;
   transition: all 0.5s ease;
   padding: 0px;
+  margin-top: 0;
+  border-top: none;
 }
 
 body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .activity:hover,
