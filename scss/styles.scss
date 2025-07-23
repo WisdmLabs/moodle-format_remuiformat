@@ -1147,12 +1147,6 @@ body#page-course-view-remuiformat {
     .content .section:not(:has(:first-child)) {
         display: none !important;
     }
-
-    .section-item {
-        .content:has(.section-summary-activities) {
-            display: none !important;                        
-        }        
-    }
 }
 
 
