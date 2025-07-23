@@ -135,6 +135,14 @@ body#page-course-view-remuiformat .sections .single-card-container {
   }
 }
 
+body#page-course-view-remuiformat .remui-format-card .remui-completion-container .completion-dropdown .completion-dialog {
+  font-size: 14px !important;
+}
+
+body#page-course-view-remuiformat .remui-format-card .remui-completion-container .completion-dropdown .completion-dialog [role='listitem'] span {
+  font-size: 14px !important;
+}
+
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted {
   margin: 0px;
   padding: 8px;

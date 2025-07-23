@@ -161,6 +161,16 @@
 }
 
 .remui-format-card {
+    .remui-completion-container {
+        .completion-dropdown{
+            .completion-dialog {
+                font-size: 14px !important;
+                [role='listitem'] span {
+                    font-size: 14px !important;
+                }
+            }
+        }
+    }
     // margin-top: 20px;
     .availabilityinfo {
         &.isrestricted {
