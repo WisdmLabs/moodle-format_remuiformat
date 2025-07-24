@@ -549,6 +549,18 @@
             text-decoration: none;
         }
     }
+    .generalsecactivitiescontent {
+        .action-availstatus-wrapper {
+            .actions {
+                .remui-completion-container {
+                    width: 100%;
+                    .btn-secondary {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Show More Less Handle

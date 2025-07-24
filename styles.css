@@ -931,6 +931,14 @@ body#page-course-view-remuiformat .remui-format-card .single-card a:hover {
   text-decoration: none;
 }
 
+body#page-course-view-remuiformat .remui-format-card .generalsecactivitiescontent .action-availstatus-wrapper .actions .remui-completion-container {
+  width: 100%;
+}
+
+body#page-course-view-remuiformat .remui-format-card .generalsecactivitiescontent .action-availstatus-wrapper .actions .remui-completion-container .btn-secondary {
+  width: 100%;
+}
+
 body#page-course-view-remuiformat:not(.limitedwidth) .remui-format-card.all-section-format .showhideactivity .general-section-activities li:nth-child(n+5) {
   display: none !important;
 }
