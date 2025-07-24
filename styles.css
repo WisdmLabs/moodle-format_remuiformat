@@ -145,6 +145,7 @@ body#page-course-view-remuiformat .remui-format-card .remui-completion-container
 
 body#page-course-view-remuiformat .remui-format-card .availabilityinfo.isrestricted {
   margin: 0px;
+  margin-top: 16px;
   padding: 8px;
   border-radius: 8px;
   background-color: #EBF0F9;
@@ -1125,9 +1126,11 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list.one-section-f
 body#page-course-view-remuiformat .remui-format-list .availabilityinfo.isrestricted,
 body#page-course-view-remuiformat .list-view-general-activities .availabilityinfo.isrestricted {
   margin: 0px;
+  margin-top: 16px;
   padding: 8px;
   border-radius: 8px;
   background-color: #EBF0F9;
+  text-align: left;
   font-size: 12px;
   line-height: normal;
   font-weight: 400;
@@ -1727,13 +1730,6 @@ body#page-course-view-remuiformat .list-view-general-activities.all-section-form
   gap: 24px;
 }
 
-body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .content ul.section .activity .title-activity-container,
-body#page-course-view-remuiformat .list-view-general-activities.all-section-format ul.sections li.section .content ul.section .activity .title-activity-container {
-  display: flex;
-  flex-direction: row;
-  gap: 41px;
-}
-
 body#page-course-view-remuiformat .remui-format-list .activities-list,
 body#page-course-view-remuiformat .remui-format-list .card-footer,
 body#page-course-view-remuiformat .list-view-general-activities .activities-list,
@@ -2007,13 +2003,7 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions"
- "icon visibility groupmode completion actions"
- "icon visibility groupmode completion actions"
- "dates dates dates dates dates"
- "altcontent altcontent altcontent altcontent altcontent"
- "afterlink afterlink afterlink afterlink afterlink"
- "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
