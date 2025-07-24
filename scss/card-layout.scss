@@ -552,7 +552,7 @@
     .generalsecactivitiescontent {
         .action-availstatus-wrapper {
             .actions {
-                .remui-completion-container {
+                .remui-completion-container:has(.btn-secondary):not(:has(.completion-dropdown)) {
                     width: 100%;
                     .btn-secondary {
                         width: 100%;
