@@ -205,6 +205,9 @@
                                 </div>
                             </div>
                             {{/hasopenduedata}}
+                            {{#availstatus}}
+                                <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
+                            {{/availstatus}}
                             {{#completion}}
                             <div
                                 class="completion-container {{#manualcompletion}}manual-completion{{/manualcompletion}} align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
@@ -213,9 +216,6 @@
                                 </div>
                             </div>
                             {{/completion}}
-                            {{#availstatus}}
-                                <div class="{{^summary}}nosummary{{/summary}}">{{{ availstatus }}}</div>
-                            {{/availstatus}}
 
                         </div>
                     </li>
