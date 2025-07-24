@@ -69,6 +69,8 @@
 {{/uservisible}}
 {{#js}}
 document.querySelectorAll('.remui-completion-container .completion-dropdown .dropdown-toggle').forEach(function(el) {
-    el.classList.add('btn-outline-secondary');
+    if (!el.classList.contains('btn-success')) {
+        el.classList.add('btn-outline-secondary');
+    }
 });
 {{/js}}
