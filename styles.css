@@ -3192,3 +3192,11 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 .erf-text-left {
   text-align: left !important;
 }
+
+.erf-gap-26 {
+  gap: 26px !important;
+}
+
+.erf-gap-24 {
+  gap: 24px !important;
+}
