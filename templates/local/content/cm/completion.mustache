@@ -67,3 +67,8 @@
     {{/showmanualcompletion}}
 </div>
 {{/uservisible}}
+{{#js}}
+document.querySelectorAll('.remui-completion-container .completion-dropdown .dropdown-toggle').forEach(function(el) {
+    el.classList.add('btn-outline-secondary');
+});
+{{/js}}
