@@ -1,5 +1,11 @@
 CHANGES LOG
 
+Version 4.1.18
+===========
+Tweak - Minor UI/UX improvement.
+Fix - Availability condition not displaying when restriction is added in Card Layout.
+Fix - Completion condition not visible in card layout view.	
+
 Version 4.1.17
 =============
 Tweak – Further UI/UX improvements implemented.
