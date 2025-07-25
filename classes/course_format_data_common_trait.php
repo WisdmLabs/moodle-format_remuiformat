@@ -124,22 +124,17 @@ class course_format_data_common_trait {
             return $activitydetails;
         }
         if ($course->showcompletionconditions == COMPLETION_SHOW_CONDITIONS) {
-            // Show the activity information output component.
-            $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
-            // if ($CFG->backup_release <= '4.2') {
-            if ($CFG->branch <= '402') {
-                $activitydetails->completion = $courserenderer->activity_information(
-                    $mod,
-                    $cmcompletion,
-                    []
-                );
-            } else {
-                $completion = new activity_completion($mod, $cmcompletion);
-                $completiondata = $completion->export_for_template($OUTPUT);
-                $activitydetails->completion = $OUTPUT->render_from_template("core_courseformat/local/content/cm/activity_info", $completiondata);
+            // Use RemUI format completion class for proper dropdown functionality
+            $format = course_get_format($course);
+            $completionclass = $format->get_output_classname('content\\cm\\completion');
+            $completion = new $completionclass($format, $mod->get_section_info(), $mod);
+            $completiondata = $completion->export_for_template($OUTPUT);
+
+            if ($completiondata) {
+                $activitydetails->completion = $OUTPUT->render_from_template("format_remuiformat/local/content/cm/completion", $completiondata);
             }
-            $activitydetails->completion = str_replace("btn-outline-secondary", "btn-secondary", $activitydetails->completion);
             // Check if completion is enabled. Set manual completion only if it not automatic.
+            $cmcompletion = \core_completion\cm_completion_details::get_instance($mod, $USER->id);
             if ($cmcompletion->has_completion() && $cmcompletion->is_automatic() != true) {
                 $activitydetails->manualcompletion = true;
             }
@@ -793,13 +788,11 @@ class course_format_data_common_trait {
     // It will add the open due data in  activity context.
     public function get_opendue_status(&$activitydetails, $availstatus, $mod) {
         global $USER;
-        if (empty($availstatus)) {
-            $activitydetails->opendue = activity_dates::get_dates_for_module($mod, $USER->id);
-            if ($activitydetails->opendue) {
-                $activitydetails->hasopenduedata = true;
-                foreach ($activitydetails->opendue as $key => $data) {
-                    $activitydetails->opendue[$key]['timestamp'] = userdate($data['timestamp']);
-                }
+        $activitydetails->opendue = activity_dates::get_dates_for_module($mod, $USER->id);
+        if ($activitydetails->opendue) {
+            $activitydetails->hasopenduedata = true;
+            foreach ($activitydetails->opendue as $key => $data) {
+                $activitydetails->opendue[$key]['timestamp'] = userdate($data['timestamp']);
             }
         }
     }

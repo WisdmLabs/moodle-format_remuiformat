@@ -69,7 +69,7 @@ define(['jquery'], function($) {
      * Adjust the general section activities visibility after first row
      */
     function adjustGeneralSectionActivities() {
-        if ($(SELECTORS.FIRST_SECTION + '  ul.general-section-activities li').length <= getActivitiesPerRow()) {
+        if ($(SELECTORS.FIRST_SECTION + '  ul.general-section-activities > li').length <= getActivitiesPerRow()) {
             $(SELECTORS.FIRST_SECTION).removeClass(SELECTORS.ACTIVITY_TOGGLE_CLASS);
             $(SELECTORS.ACTIVITY_TOGGLE_WRAPPER).hide();
         } else {

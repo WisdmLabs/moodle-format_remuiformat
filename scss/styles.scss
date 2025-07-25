@@ -310,6 +310,11 @@ body#page-course-view-remuiformat {
         .stretched-link::after {
             display: none;
         }
+        .dropdown-menu {
+            .stretched-link::after {
+                display: unset;
+            }
+        }
         .general-section-activities {
             .activity {
                 &.modtype_folder {
@@ -1150,9 +1155,9 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 }
 
 // drag and drop icon removed temprarly from moodle4.5
-.edw-m405 #page .editing_move {
-	display: none !important;
-}
+// .edw-m405 #page .editing_move {
+// 	display: none !important;
+// }
 
 
 .erf-ml-2{
@@ -1177,4 +1182,10 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 }
 .erf-text-left{
     text-align: left !important;
+}
+.erf-gap-26{
+    gap:26px !important;
+}
+.erf-gap-24{
+    gap:24px !important;
 }
