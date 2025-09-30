@@ -191,3 +191,6 @@ $string['viewalltext'] = 'Alles ansehen';
 $string['editmodeinfo'] = "Während der Bearbeitung wechselt der Kurs zum Moodle-Format, um die Bearbeitung zu erleichtern. Es kehrt zum Edwiser-Kursformat zurück, wenn Sie den Bearbeitungsmodus deaktivieren";
 $string['okay'] = 'Okay';
 $string['donotshowagain'] = "Nicht erneut anzeigen";
+
+$string['hiddensections'] = 'Verborgene Abschnitte';
+$string['hiddensections_help'] = "Verborgene Abschnitte können den Studierenden auf der Kursseite als 'nicht verfügbar' angezeigt oder vollständig verborgen werden.";

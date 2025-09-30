@@ -244,6 +244,7 @@ class format_remuiformat extends core_courseformat\base {
      * @return array of options
      */
     public function course_format_options($foreditform = false) {
+        global $CFG;
         static $courseformatoptions = false;
 
         if ($courseformatoptions === false) {
@@ -304,7 +305,7 @@ class format_remuiformat extends core_courseformat\base {
                 'hiddensections' => array(
                     'label' => new lang_string('hiddensections'),
                     'help' => 'hiddensections',
-                    'help_component' => 'moodle',
+                    'help_component' => ($CFG->branch >= '501' ? 'format_remuiformat' : 'moodle'),
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(

@@ -191,3 +191,6 @@ $string['viewalltext'] = 'Ver todo';
 $string['editmodeinfo'] = "Mientras editas, el curso cambia al formato de Moodle para facilitar la edición. Volverá al formato del curso Edwiser cuando desactives el modo de edición";
 $string['okay'] = 'Está bien';
 $string['donotshowagain'] = "No mostrar nuevamente";
+
+$string['hiddensections'] = 'Secciones ocultas';
+$string['hiddensections_help'] = "Las secciones ocultas pueden mostrarse a los estudiantes como 'no disponible' en la página del curso, o mantenerse completamente ocultas.";

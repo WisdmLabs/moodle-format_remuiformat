@@ -190,3 +190,6 @@ $string['viewalltext'] = 'عرض الكل';
 $string['editmodeinfo'] = "أثناء التحرير، يتحول المقرر الدراسي إلى تنسيق Moodle لتسهيل التحرير. سيعود إلى تنسيق Edwiser Course عند إيقاف وضع التحرير";
 $string['okay'] = 'حسنًا';
 $string['donotshowagain'] = "لا تعرض هذا مرة أخرى";
+
+$string['hiddensections'] = 'الأقسام المخفية';
+$string['hiddensections_help'] = "يمكن عرض الأقسام المخفية للطلاب على أنها 'غير متاحة' في صفحة المقرر، أو إبقاؤها مخفية تمامًا.";
