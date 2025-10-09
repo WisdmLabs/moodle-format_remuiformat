@@ -910,6 +910,7 @@ class course_format_data_common_trait {
     }
 
     public function add_generalsection_data(&$export, $renderer, $editing, $course, $courseformat, $courserenderer) {
+        global $CFG;
         $modinfo = get_fast_modinfo($course);
         $coursecontext = context_course::instance($course->id);
         $sections = $modinfo->get_section_info_all();
@@ -1011,11 +1012,22 @@ class course_format_data_common_trait {
                 $export->resumeactivityurl = $this->get_activity_to_resume($course);
             }
             // Add new activity.
-            $export->generalsection['addnewactivity'] = $courserenderer->course_section_add_cm_control(
-                $course,
-                0,
-                0
-            );
+            if($CFG->branch >= '501') {
+                $format = course_get_format($course);
+                $sectioninfo = $format->get_section(0);
+
+                $export->generalsection['addnewactivity'] = $courserenderer->section_add_cm_controls(
+                    $format,
+                    $sectioninfo,
+                    null 
+                );
+            } else {
+                $export->generalsection['addnewactivity'] = $courserenderer->course_section_add_cm_control(
+                    $course,
+                    0,
+                    0
+                );
+            }
             $export->generalsection['showgeneralsection'] = true;
             $export->generalsection['showgeneralsectionintrodata'] = true;
             $export->generalsection['courseinformationdata'] = true;
@@ -1204,9 +1216,20 @@ class course_format_data_common_trait {
             $data->sectionactivities = $this->course_section_cm_list(
                 $course, $section
             );
-            $data->sectionactivities .= $courserenderer->course_section_add_cm_control(
-                $course, $section->section, 0
-            );
+            
+            if($CFG->branch >= '501') {
+                $format = course_get_format($course); 
+                $sectioninfo = $format->get_section($section->section);
+                $data->sectionactivities .= $courserenderer->section_add_cm_controls(
+                    $format, 
+                    $sectioninfo, 
+                    null
+                );
+            } else {
+                $data->sectionactivities .= $courserenderer->course_section_add_cm_control(
+                    $course, $section->section, 0
+                );
+            }
 
             // Set Marker.
             if ($course->marker == $sectionindex) {
