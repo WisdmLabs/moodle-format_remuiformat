@@ -48,8 +48,8 @@ $string['on'] = 'Activé';
 
 $string['defaultshowsectiontitlesummary'] = 'Afficher le résumé du titre de la section lors du survol';
 $string['defaultshowsectiontitlesummary_desc'] = 'Afficher le résumé du titre de la section lors du survol sur la boîte de la grille.';
-$string['sectiontitlesummarymaxlength'] = 'Définir la longueur maximale du résumé de la section/activités.';
-$string['sectiontitlesummarymaxlength_help'] = 'Définir la longueur maximale du résumé du titre de la section/activités affiché sur la carte.';
+$string['sectiontitlesummarymaxlength'] = 'Définir la longueur maximale de la description de la section ou des activités.';
+$string['sectiontitlesummarymaxlength_help'] = 'Définissez le nombre maximal de caractères à afficher pour les descriptions de section et d’activité sur la carte.';
 $string['defaultsectionsummarymaxlength'] = 'Définir la longueur maximale du résumé de la section/activités.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Définir la longueur maximale du résumé de la section/activités affiché sur la carte.';
 $string['hidegeneralsectionwhenempty'] = 'Masquer la section générale lorsqu\'elle est vide';

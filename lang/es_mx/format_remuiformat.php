@@ -49,8 +49,8 @@ $string['on'] = 'Encendido';
 
 $string['defaultshowsectiontitlesummary'] = 'Mostrar el resumen del título de la sección al pasar el cursor';
 $string['defaultshowsectiontitlesummary_desc'] = 'Mostrar el resumen del título de la sección al pasar el cursor sobre la caja de la cuadrícula.';
-$string['sectiontitlesummarymaxlength'] = 'Establecer la longitud máxima del resumen de la sección/actividades.';
-$string['sectiontitlesummarymaxlength_help'] = 'Establecer la longitud máxima del resumen del título de la sección/actividades que se muestra en la tarjeta.';
+$string['sectiontitlesummarymaxlength'] = 'Configurar la longitud máxima de la descripción de la sección o actividades.';
+$string['sectiontitlesummarymaxlength_help'] = 'Configura el número máximo de caracteres que se mostrarán en las descripciones de secciones y actividades en la tarjeta.';
 $string['defaultsectionsummarymaxlength'] = 'Establecer la longitud máxima del resumen de la sección/actividades.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Establecer la longitud máxima del resumen de la sección/actividades que se muestra en la tarjeta.';
 $string['hidegeneralsectionwhenempty'] = 'Ocultar sección general cuando esté vacía';

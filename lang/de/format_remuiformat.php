@@ -48,8 +48,8 @@ $string['on'] = 'An';
 
 $string['defaultshowsectiontitlesummary'] = 'Zusammenfassung des Abschnittstitels beim Hover anzeigen';
 $string['defaultshowsectiontitlesummary_desc'] = 'Zusammenfassung des Abschnittstitels beim Überfahren des Rasters anzeigen.';
-$string['sectiontitlesummarymaxlength'] = 'Maximale Länge der Zusammenfassung des Abschnitts/Aktivitäten festlegen.';
-$string['sectiontitlesummarymaxlength_help'] = 'Maximale Länge der Zusammenfassung des Abschnitts/Aktivitäten, die auf der Karte angezeigt wird, festlegen.';
+$string['sectiontitlesummarymaxlength'] = 'Legen Sie die maximale Länge der Abschnitts-/Aktivitätsbeschreibung fest.';
+$string['sectiontitlesummarymaxlength_help'] = 'Legen Sie die maximale Anzahl von Zeichen fest, die für Abschnitts- und Aktivitätsbeschreibungen auf der Karte angezeigt werden sollen.';
 $string['defaultsectionsummarymaxlength'] = 'Maximale Länge der Zusammenfassung des Abschnitts/Aktivitäten festlegen.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Maximale Länge der Zusammenfassung des Abschnitts/Aktivitäten, die auf der Karte angezeigt wird, festlegen.';
 $string['hidegeneralsectionwhenempty'] = 'Allgemeinen Abschnitt ausblenden, wenn leer';
