@@ -192,9 +192,12 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         $export->activities = $this->courseformatdatacommontrait->course_section_cm_list(
             $this->course, $section);
         if ($CFG->branch >= 501) {
+            $format = course_get_format($this->course);
+            $sectioninfo = $format->get_section($this->displaysection);
+
             $export->activities .= $this->courserenderer->section_add_cm_controls(
-                $this->course,
-                $this->displaysection
+                $format,
+                $sectioninfo
             );
         } else {
             $export->activities .= $this->courserenderer->course_section_add_cm_control(
