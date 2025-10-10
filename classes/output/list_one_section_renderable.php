@@ -191,9 +191,19 @@ class format_remuiformat_list_one_section implements renderable, templatable {
         $export->remuicourseformatlist = true;
         $export->activities = $this->courseformatdatacommontrait->course_section_cm_list(
             $this->course, $section);
-        $export->activities .= $this->courserenderer->course_section_add_cm_control(
-            $this->course, $this->displaysection, $this->displaysection
-        );
+        if ($CFG->branch >= 501) {
+            $export->activities .= $this->courserenderer->section_add_cm_controls(
+                $this->course,
+                $this->displaysection
+            );
+        } else {
+            $export->activities .= $this->courserenderer->course_section_add_cm_control(
+                $this->course,
+                $this->displaysection,
+                $this->displaysection
+            );
+        }
+
         $export->courseid = $this->course->id;
         $export->sections = [];
         foreach ($sections as $index => $sectioninfo) {
