@@ -140,7 +140,7 @@ class format_remuiformat_list_one_section implements renderable, templatable {
 
         if ($format->is_section_current($section)) {
             $export->iscurrent = true;
-            $export->highlightedlabel = get_string('highlight');
+            $export->highlightedlabel = get_string('highlighted');
         }
 
         if (!$section->visible) {

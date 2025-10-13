@@ -147,7 +147,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         $currentsection = $modinfo->get_section_info($this->displaysection);
         if ($format->is_section_current($currentsection)) {
             $export->iscurrent = true;
-            $export->highlightedlabel = get_string('highlight');
+            $export->highlightedlabel = get_string('highlighted');
         }
 
         if (!$currentsection->visible) {
