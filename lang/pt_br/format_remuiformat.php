@@ -49,8 +49,8 @@ $string['on'] = 'Ligado';
 $string['defaultshowsectiontitlesummary'] = 'Mostrar resumo do título da seção ao passar o mouse';
 $string['defaultshowsectiontitlesummary_desc'] = 'Mostrar o resumo do título da seção ao passar o mouse sobre o box de grade.';
 
-$string['sectiontitlesummarymaxlength'] = 'Definir comprimento máximo do resumo da seção/atividades.';
-$string['sectiontitlesummarymaxlength_help'] = 'Defina o comprimento máximo do resumo do título da seção/atividades exibido no card.';
+$string['sectiontitlesummarymaxlength'] = 'Definir o comprimento máximo da descrição da seção ou atividades.';
+$string['sectiontitlesummarymaxlength_help'] = 'Defina o número máximo de caracteres a serem exibidos para as descrições de seções e atividades no cartão.';
 
 $string['defaultsectionsummarymaxlength'] = 'Definir comprimento máximo do resumo da seção/atividades.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Defina o comprimento máximo do resumo da seção/atividades exibido no card.';
@@ -193,3 +193,6 @@ $string['viewalltext'] = 'Ver tudo';
 $string['editmodeinfo'] = "Durante a edição, o curso muda para o formato do Moodle para facilitar a edição. Voltará ao formato do curso Edwiser quando você desativar o modo de edição";
 $string['okay'] = 'Ok';
 $string['donotshowagain'] = "Não mostrar novamente";
+
+$string['hiddensections'] = 'Seções ocultas';
+$string['hiddensections_help'] = "As seções ocultas podem ser exibidas para os alunos como 'não disponível' na página do curso ou mantidas totalmente ocultas.";

@@ -147,7 +147,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         $currentsection = $modinfo->get_section_info($this->displaysection);
         if ($format->is_section_current($currentsection)) {
             $export->iscurrent = true;
-            $export->highlightedlabel = get_string('highlight');
+            $export->highlightedlabel = get_string('highlighted');
         }
 
         if (!$currentsection->visible) {
@@ -198,11 +198,22 @@ class format_remuiformat_card_one_section implements renderable, templatable {
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
         $export->courseid = $this->course->id;
-        $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
-            $this->course,
-            $this->displaysection,
-            $this->displaysection
-        );
+        if ($CFG->branch >= 501) {
+            $format = course_get_format($this->course);
+            $sectioninfo = $format->get_section($this->displaysection);
+
+            $export->addnewactivity = $this->courserenderer->section_add_cm_controls(
+                $format,
+                $sectioninfo
+            );
+        } else {
+            $export->addnewactivity = $this->courserenderer->course_section_add_cm_control(
+                $this->course,
+                $this->displaysection,
+                $this->displaysection
+            );
+        }
+
         $export->remuicourseformatcard = true;
         $export->sections = [];
         foreach ($sections as $index => $sectioninfo) {

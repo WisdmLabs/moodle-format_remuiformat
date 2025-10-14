@@ -48,8 +48,8 @@ $string['on'] = 'تشغيل';
 
 $string['defaultshowsectiontitlesummary'] = 'عرض ملخص عنوان القسم عند التحريك';
 $string['defaultshowsectiontitlesummary_desc'] = 'عرض ملخص عنوان القسم عند تحريك المؤشر فوق صندوق الشبكة.';
-$string['sectiontitlesummarymaxlength'] = 'تحديد الحد الأقصى لطول ملخص القسم/الأنشطة.';
-$string['sectiontitlesummarymaxlength_help'] = 'تحديد الحد الأقصى لطول ملخص عنوان القسم/الأنشطة المعروض على البطاقة.';
+$string['sectiontitlesummarymaxlength'] = 'تعيين الحد الأقصى لطول وصف القسم أو الأنشطة.';
+$string['sectiontitlesummarymaxlength_help'] = 'حدد الحد الأقصى لعدد الأحرف التي سيتم عرضها لوصف القسم والنشاط على البطاقة.';
 $string['defaultsectionsummarymaxlength'] = 'تحديد الحد الأقصى لطول ملخص القسم/الأنشطة.';
 $string['defaultsectionsummarymaxlength_desc'] = 'تحديد الحد الأقصى لطول ملخص القسم/الأنشطة المعروض على البطاقة.';
 $string['hidegeneralsectionwhenempty'] = 'إخفاء القسم العام عند فراغه';
@@ -190,3 +190,6 @@ $string['viewalltext'] = 'عرض الكل';
 $string['editmodeinfo'] = "أثناء التحرير، يتحول المقرر الدراسي إلى تنسيق Moodle لتسهيل التحرير. سيعود إلى تنسيق Edwiser Course عند إيقاف وضع التحرير";
 $string['okay'] = 'حسنًا';
 $string['donotshowagain'] = "لا تعرض هذا مرة أخرى";
+
+$string['hiddensections'] = 'الأقسام المخفية';
+$string['hiddensections_help'] = "يمكن عرض الأقسام المخفية للطلاب على أنها 'غير متاحة' في صفحة المقرر، أو إبقاؤها مخفية تمامًا.";

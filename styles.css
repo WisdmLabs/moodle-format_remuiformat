@@ -1689,6 +1689,11 @@ body#page-course-view-remuiformat .list-view-general-activities .section.delegat
   border: 0 !important;
 }
 
+body#page-course-view-remuiformat .remui-format-list .section.delegated-section .section-summary-activities,
+body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section .section-summary-activities {
+  display: none !important;
+}
+
 body#page-course-view-remuiformat .remui-format-list.all-section-format ul.sections li.section .toggle-icon,
 body#page-course-view-remuiformat .list-view-general-activities.all-section-format ul.sections li.section .toggle-icon {
   cursor: pointer;
@@ -2003,7 +2008,13 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "dates dates dates dates dates"
+ "altcontent altcontent altcontent altcontent altcontent"
+ "afterlink afterlink afterlink afterlink afterlink"
+ "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
@@ -2212,7 +2223,6 @@ body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-sect
   font-size: 14px;
   line-height: 22px;
   font-weight: 600;
-  color: #fff;
 }
 
 body#page-course-view-remuiformat header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {

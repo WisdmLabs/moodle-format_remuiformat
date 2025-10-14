@@ -1,5 +1,10 @@
 CHANGES LOG
 
+Version 4.1.19
+===========
+Feature - Added compatibility with Moodle 5.1.
+Fix - Resolved minor UI issues.
+
 Version 4.1.18
 ===========
 Tweak - Minor UI/UX improvement.

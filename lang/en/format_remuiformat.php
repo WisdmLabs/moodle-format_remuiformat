@@ -48,8 +48,8 @@ $string['on'] = 'On';
 
 $string['defaultshowsectiontitlesummary'] = 'Show the section title summary on hover option';
 $string['defaultshowsectiontitlesummary_desc'] = 'Show the section title summary when hovering over the grid box.';
-$string['sectiontitlesummarymaxlength'] = 'Set the section/activities summary maximum length.';
-$string['sectiontitlesummarymaxlength_help'] = 'Set the the section/activities title summary maxium length displayed on the card.';
+$string['sectiontitlesummarymaxlength'] = 'Set the section/activities description maximum length.';
+$string['sectiontitlesummarymaxlength_help'] = 'Set the maximum number of characters to display for section and activity descriptions on the card.';
 $string['defaultsectionsummarymaxlength'] = 'Set the section/activities summary maximum length.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities summary maxium length displayed on the card.';
 $string['hidegeneralsectionwhenempty'] = 'Hide general section when empty';
@@ -190,3 +190,6 @@ $string['viewalltext'] = 'View all';
 $string['editmodeinfo'] = "While editing, the course switches to Moodle's format for easier editing. It will return to the Edwiser Course format when you turn off Edit Mode";
 $string['okay'] = 'Okay';
 $string['donotshowagain'] = "Don't show again";
+
+$string['hiddensections'] = 'Hidden sections';
+$string['hiddensections_help'] = 'Hidden sections can be displayed to students as \'not available\' on the course page, or kept completely hidden.';

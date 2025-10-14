@@ -48,8 +48,8 @@ $string['on'] = 'Wł.';
 
 $string['defaultshowsectiontitlesummary'] = 'Pokaż opcję podsumowania tytułu sekcji po najechaniu';
 $string['defaultshowsectiontitlesummary_desc'] = 'Pokaż podsumowanie tytułu sekcji po najechaniu na pole siatki.';
-$string['sectiontitlesummarymaxlength'] = 'Ustaw maksymalną długość podsumowania tytułu sekcji/aktywności.';
-$string['sectiontitlesummarymaxlength_help'] = 'Ustaw maksymalną długość podsumowania tytułu sekcji/aktywności wyświetlanego na karcie.';
+$string['sectiontitlesummarymaxlength'] = 'Ustaw maksymalną długość opisu sekcji lub aktywności.';
+$string['sectiontitlesummarymaxlength_help'] = 'Ustaw maksymalną liczbę znaków wyświetlanych dla opisów sekcji i aktywności na karcie.';
 $string['defaultsectionsummarymaxlength'] = 'Ustaw maksymalną długość podsumowania sekcji/aktywności.';
 $string['defaultsectionsummarymaxlength_desc'] = 'Ustaw maksymalną długość podsumowania sekcji/aktywności wyświetlanego na karcie.';
 $string['hidegeneralsectionwhenempty'] = 'Ukryj sekcję ogólną, gdy jest pusta';
@@ -188,3 +188,6 @@ $string['viewalltext'] = 'Zobacz wszystko';
 $string['editmodeinfo'] = "Podczas edycji kurs przełącza się na format Moodle, aby ułatwić edycję. Powróci do formatu kursu Edwiser po wyłączeniu trybu edycji";
 $string['okay'] = 'W porządku';
 $string['donotshowagain'] = "Nie pokazuj ponownie";
+
+$string['hiddensections'] = 'Ukryte sekcje';
+$string['hiddensections_help'] = "Ukryte sekcje mogą być wyświetlane studentom jako 'niedostępne' na stronie kursu lub całkowicie ukryte.";
