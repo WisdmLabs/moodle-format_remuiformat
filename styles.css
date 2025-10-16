@@ -2008,13 +2008,7 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions"
- "icon visibility groupmode completion actions"
- "icon visibility groupmode completion actions"
- "dates dates dates dates dates"
- "altcontent altcontent altcontent altcontent altcontent"
- "afterlink afterlink afterlink afterlink afterlink"
- "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
@@ -3209,4 +3203,96 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 
 .erf-gap-24 {
   gap: 24px !important;
+}
+
+#video-format-banner-box {
+  margin-top: 14px;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  max-width: 891.96px;
+  height: auto;
+  border-radius: 6px;
+  padding: 32px;
+  background: linear-gradient(90deg, #109FAA 0%, #385BB5 67.21%, #324165 101.06%);
+}
+
+#video-format-banner-box img.notice-logo {
+  flex: none;
+  width: 239.96px;
+  height: 100%;
+}
+
+#video-format-banner-box .notice-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#video-format-banner-box .notice-content .sub-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #FFFFFF;
+}
+
+#video-format-banner-box .notice-content .sub-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #FFFFFF;
+}
+
+#video-format-banner-box .notice-content .sub-content .features-list {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+#video-format-banner-box .notice-content .sub-content .features-list p {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0px !important;
+  align-items: center;
+}
+
+#video-format-banner-box .notice-content .buttons {
+  display: flex;
+  gap: 16px;
+}
+
+#video-format-banner-box .notice-content .buttons .explore-btn,
+#video-format-banner-box .notice-content .buttons .view-demo-btn {
+  padding: 8.5px 16px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 100%;
+  cursor: pointer;
+}
+
+#video-format-banner-box .notice-content .buttons .explore-btn {
+  border: 1px solid #F75D25;
+  background-color: #FFFFFF;
+  color: #F75D25;
+}
+
+#video-format-banner-box .notice-content .buttons .explore-btn:hover {
+  background-color: #F75D25;
+  color: #FFFFFF;
+}
+
+#video-format-banner-box .notice-content .buttons .view-demo-btn {
+  background-color: #F75D25;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+}
+
+#video-format-banner-box .notice-content .buttons .view-demo-btn:hover {
+  background-color: #FFFFFF;
+  color: #F75D25;
 }
