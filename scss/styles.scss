@@ -764,7 +764,7 @@ body#page-course-view-remuiformat {
             }
 
             .badge {
-                min-width: 160px;
+                min-width: max-content;
                 padding: $pad-4 $pad-8;
                 margin: unset;
                 white-space: normal;

@@ -2823,7 +2823,7 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 }
 
 body#page-course-view-remuiformat .course-content .sections .badge {
-  min-width: 160px;
+  min-width: max-content;
   padding: 4px 8px;
   margin: unset;
   white-space: normal;
