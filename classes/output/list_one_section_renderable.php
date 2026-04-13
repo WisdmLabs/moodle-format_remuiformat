@@ -234,6 +234,8 @@ class format_remuiformat_list_one_section implements renderable, templatable {
             progress::get_course_progress_percentage($this->course),
             $imgurl
         );
+        $export->hiddenmessage = $this->courseformatdatacommontrait->course_section_availability($this->course, $modinfo->get_section_info($this->displaysection));
+
         $PAGE->requires->js_call_amd('format_remuiformat/format_list', 'init');
         return $export;
     }
