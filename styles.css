@@ -2765,7 +2765,8 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   margin: 0px;
 }
 
-body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink {
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink,
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentwithoutlink {
   padding: 0px;
   display: flex;
   flex-direction: column;
