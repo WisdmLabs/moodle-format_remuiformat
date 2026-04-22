@@ -153,7 +153,7 @@ class format_remuiformat_renderer extends section_renderer {
         }
 
         while ($back > 0 and empty($links['previous'])) {
-            if ($canviewhidden || $sections[$back]->uservisible) {
+            if (isset($sections[$back]) && ($canviewhidden || $sections[$back]->uservisible)) {
                 $params = array('class' => 'btn btn-primary btn-inverse btn-sm ');
                 $previouslink = html_writer::tag('span', "&#8249;", array('class' => 'larrow mr-1 font-size-16'));
                 if ($CFG->theme == 'remui') {
@@ -180,7 +180,7 @@ class format_remuiformat_renderer extends section_renderer {
             $forward++;
         }
         while ($forward <= $numsections and empty($links['next'])) {
-            if ($canviewhidden || $sections[$forward]->uservisible) {
+            if (isset($sections[$forward]) && ($canviewhidden || $sections[$forward]->uservisible)) {
                 $params = array('class' => 'btn btn-primary btn-inverse btn-sm');
                 $nextlinkarrowcontent = html_writer::tag('span', "&#8250;", array('class' => 'rarrow erf-ml-1 font-size-16'));
                 if ($CFG->theme == 'remui') {
