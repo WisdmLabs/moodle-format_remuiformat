@@ -1,5 +1,10 @@
 CHANGES LOG
 
+Version 4.1.21
+===========
+Feature - Added compatibility with Moodle 5.2.
+Tweak - Minor UI/UX improvements.
+
 Version 4.1.20
 ===========
 Tweak - Added a banner highlighting the new video course format offering.
