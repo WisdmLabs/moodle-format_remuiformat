@@ -695,7 +695,8 @@ body#page-course-view-remuiformat {
                                     }
                                 }
 
-                                .contentafterlink {
+                                .contentafterlink,
+                                .contentwithoutlink {
                                     // margin: $margin-8 0px 0px 0px !important;
                                     padding: 0px;
                                     display: flex;
@@ -764,6 +765,7 @@ body#page-course-view-remuiformat {
             }
 
             .badge {
+                min-width: max-content;
                 padding: $pad-4 $pad-8;
                 margin: unset;
                 white-space: normal;

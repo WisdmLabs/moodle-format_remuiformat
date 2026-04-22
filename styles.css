@@ -1213,6 +1213,11 @@ body#page-course-view-remuiformat .list-view-general-activities .sections .secti
   display: none;
 }
 
+body#page-course-view-remuiformat .remui-format-list .sections .section.collapsed .section_availability,
+body#page-course-view-remuiformat .list-view-general-activities .sections .section.collapsed .section_availability {
+  display: none;
+}
+
 body#page-course-view-remuiformat .remui-format-list .sections .section .content .panel-title,
 body#page-course-view-remuiformat .remui-format-list .sections .section .content h3 a,
 body#page-course-view-remuiformat .list-view-general-activities .sections .section .content .panel-title,
@@ -1445,6 +1450,11 @@ body#page-course-view-remuiformat .list-view-general-activities .section.delegat
 
 body#page-course-view-remuiformat .remui-format-list .section.delegated-section.collapsed .summary.card-text,
 body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section.collapsed .summary.card-text {
+  display: none;
+}
+
+body#page-course-view-remuiformat .remui-format-list .section.delegated-section.collapsed .section_availability,
+body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section.collapsed .section_availability {
   display: none;
 }
 
@@ -2759,7 +2769,8 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   margin: 0px;
 }
 
-body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink {
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentafterlink,
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .contentwithoutlink {
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -2817,6 +2828,8 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 }
 
 body#page-course-view-remuiformat .course-content .sections .badge {
+  min-width: -webkit-max-content;
+  min-width: max-content;
   padding: 4px 8px;
   margin: unset;
   white-space: normal;

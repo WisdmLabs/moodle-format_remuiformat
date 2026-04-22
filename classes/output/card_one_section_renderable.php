@@ -197,6 +197,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
+        $export->hiddenmessage = $this->courseformatdatacommontrait->course_section_availability($this->course, $modinfo->get_section_info($this->displaysection));
         $export->courseid = $this->course->id;
         if ($CFG->branch >= 501) {
             $format = course_get_format($this->course);
