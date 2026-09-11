@@ -31,10 +31,11 @@ use stdClass;
 use html_writer;
 use context_course;
 use core_completion\progress;
+
 // require_once($CFG->dirroot.'/course/format/renderer.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/mod_stats.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/classes/course_format_data_common_trait.php');
-require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
+require_once($CFG->dirroot . '/course/format/remuiformat/classes/mod_stats.php');
+require_once($CFG->dirroot . '/course/format/remuiformat/classes/course_format_data_common_trait.php');
+require_once($CFG->dirroot . '/course/format/remuiformat/lib.php');
 
 /**
  * This file contains the definition for the renderable classes for the activity page.
@@ -46,51 +47,59 @@ require_once($CFG->dirroot.'/course/format/remuiformat/lib.php');
 class format_remuiformat_card_one_section implements renderable, templatable {
     /**
      * Course object
+     *
      * @var object
      */
     private $course;
 
     /**
      * Course format object
+     *
      * @var format_remuiformat
      */
     private $courseformat;
 
     /**
      * Course renderer
+     *
      * @var course_renderer
      */
     private $courserenderer;
 
     /**
      * Course format data common trait class object
+     *
      * @var course_format_data_common_trait
      */
     private $courseformatdatacommontrait;
 
     /**
      * Activity statistic
+     *
      * @var \format_remuiformat\ModStats
      */
     private $modstats;
 
     /**
      * Settings array
+     *
      * @var array
      */
     private $settings;
 
     /**
      * Current selected section
+     *
      * @var int
      */
     private $displaysection;
 
     /**
      * Constructor
-     * @param object          $course         Course object
-     * @param int             $displaysection Current section
-     * @param course_renderer $renderer       Course renderer object
+     *
+     * @param object $course Course object
+     * @param int $displaysection Current section
+     * @param course_renderer $renderer Course renderer object
      */
     public function __construct($course, $displaysection, $renderer) {
         $this->displaysection = $displaysection;
@@ -197,7 +206,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
         // Get the details of the activities.
         $export->activities = $this->get_activities_details($currentsection);
-        $export->hiddenmessage = $this->courseformatdatacommontrait->course_section_availability($this->course, $modinfo->get_section_info($this->displaysection));
+        $export->hiddenmessage = $this->courseformatdatacommontrait->course_section_availability($this->course,
+            $modinfo->get_section_info($this->displaysection));
         $export->courseid = $this->course->id;
         if ($CFG->branch >= 501) {
             $format = course_get_format($this->course);
@@ -226,11 +236,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             $section->name = $this->courseformat->get_section_name($section->index);
             $export->sections[] = $section;
         }
-         // Get course image if added.
-         $coursecontext = context_course::instance($this->course->id);
+        // Get course image if added.
+        $coursecontext = context_course::instance($this->course->id);
         $imgurl = $this->courseformatdatacommontrait->display_file(
-        $coursecontext,
-        $this->settings['remuicourseimage_filemanager']
+            $coursecontext,
+            $this->settings['remuicourseimage_filemanager']
         );
         if (empty($imgurl)) {
             $imgurl = $this->courseformatdatacommontrait->get_dummy_image_for_id($this->course->id);
@@ -250,8 +260,9 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
     /**
      * Get activities details from section
-     * @param  object $section        Section object
-     * @param  array  $displayoptions Display options
+     *
+     * @param object $section Section object
+     * @param array $displayoptions Display options
      * @return array                  Output array
      */
     private function get_activities_details($section, $displayoptions = array()) {
@@ -264,12 +275,13 @@ class format_remuiformat_card_one_section implements renderable, templatable {
             foreach ($modinfo->sections[$section->section] as $modnumber) {
                 $mod = $modinfo->cms[$modnumber];
 
-                if($mod->modname == 'subsection') {
+                if ($mod->modname == 'subsection') {
                     $delegatesectiondata = $modinfo->get_section_info_by_id($mod->customdata['sectionid']);
-                    $sectiondata = $this->courseformatdatacommontrait->get_single_section_generated_data($this->course,$delegatesectiondata);
+                    $sectiondata =
+                        $this->courseformatdatacommontrait->get_single_section_generated_data($this->course, $delegatesectiondata);
                     if ($sectiondata !== null) {
                         $sectiondata->isdelegatedsection = true;
-                    }else{
+                    } else {
                         $count++;
                         continue;
                     }
@@ -315,7 +327,23 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $activitydetails->move = course_get_cm_move($mod, $section->section);
                 }
                 $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
+
+                // SKILLSET
+
+                // VideoTime in label/preview mode should render inline like a label rather than as a...
+                // Clickable drill-down card. customdata labelmode: 0 = normal, 1 = label, 2 = preview.
+                $videotimelabel = $mod->modname === 'videotime'
+                    && !empty($mod->customdata['labelmode']);
+                $hpppppembedactivity = $mod->modname === 'hpppppembed';
+
+                $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
+
+                if (($videotimelabel || $hpppppembedactivity) && !$PAGE->user_is_editing()) {
+
+                    // END SKILLSET
+                    $activitydetails->title .= $mod->afterlink;
+                }
                 $activitydetails->modulename = $mod->modname;
                 $activitydetails->modulefullname = $mod->modfullname;
                 $activitydetails->modstealth = $mod->is_stealth();
@@ -324,16 +352,23 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $this->courseformatdatacommontrait->course_section_cm_text($mod, $displayoptions),
                     $this->settings
                 );
-                $activitydetails->summary = format_text( $activitydetails->summary, FORMAT_HTML,array('noclean'=>true));
+                $activitydetails->summary = format_text($activitydetails->summary, FORMAT_HTML, array('noclean' => true));
                 // In case of label activity send full text of cm to open in modal.
-                if (array_search($mod->modname, array('label', 'folder')) !== false) {
-                    $activitydetails->viewurl = $mod->modname.'_'.$mod->id;
+
+                // SKILLSET
+                if (array_search($mod->modname, array('label', 'folder')) !== false || $videotimelabel ||
+                    $hpppppembedactivity) {
+                    if (!$videotimelabel || !$hpppppembedactivity) {
+                        $activitydetails->viewurl = $mod->modname . '_' . $mod->id;
+                    }
+                    // END SKILLSET
                     $activitydetails->label = 1;
                     $activitydetails->fullcontent = $this->courseformatdatacommontrait->course_section_cm_text(
                         $mod,
                         $displayoptions
                     );
-                    $activitydetails->fullcontent = format_text($activitydetails->fullcontent, FORMAT_HTML,array('noclean'=>true));
+                    $activitydetails->fullcontent =
+                        format_text($activitydetails->fullcontent, FORMAT_HTML, array('noclean' => true));
                 }
 
                 $activitydetails->completed = $completiondata->completionstate;
@@ -351,7 +386,8 @@ class format_remuiformat_card_one_section implements renderable, templatable {
 
                 if ($PAGE->user_is_editing()) {
                     $activitydetails->editing = 1;
-                    $modicons .= $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section, $displayoptions);
+                    $modicons .= $this->courseformatdatacommontrait->course_section_cm_controlmenu($mod, $section,
+                        $displayoptions);
                     $modicons .= $mod->afterediticons;
                     $activitydetails->modicons = $modicons;
                 }
@@ -363,33 +399,37 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     array('courseid' => $this->course->id, 'sectionid' => $section->section, 'activityid' => $modnumber),
                     '*'
                 );
-
-                if ( !empty($record) ) {
-                    if ($record->layouttype == 'row') {
-                        $activitydetails->layouttyperow = 'row';
+                // SKILLSET
+                if ($videotimelabel) {
+                    // Force full-width so the embedded player isn't squished into a card.
+                    $activitydetails->layouttyperow = 'row';
+                } else // END SKILLSET
+                    if (!empty($record)) {
+                        if ($record->layouttype == 'row') {
+                            $activitydetails->layouttyperow = 'row';
+                        } else {
+                            $activitydetails->layouttypecol = 'col';
+                        }
                     } else {
                         $activitydetails->layouttypecol = 'col';
                     }
-                } else {
-                    $activitydetails->layouttypecol = 'col';
-                }
 
                 // Get all sections from course.
                 $sections = $DB->get_records(
                     'course_sections',
                     array(
                         'course' => $this->course->id),
-                        'section',
-                        'id,section,name,sequence'
-                    );
+                    'section',
+                    'id,section,name,sequence'
+                );
 
                 // Create a section dropdown with section name, section ID and activity ID.
                 $sectionlist = '';
                 foreach ($sections as $value) {
                     // Skip current section.
-                    if ($section->section != $value->section ) {
+                    if ($section->section != $value->section) {
                         if (empty($value->name)) {
-                            $value->name = 'Section '.$value->section;
+                            $value->name = 'Section ' . $value->section;
                         }
                         $sectionlist .= html_writer::span(
                             $value->name,
