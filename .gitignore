@@ -1,2 +1,15 @@
 vendor/*
 node_modules/*
+/.idea/db-forest-config.xml
+/.idea/deployment.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_09_2026_16_23_[Changes]/shelved.patch
+/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_09_2026_16_23_[Changes]1/shelved.patch
+/.idea/skillset-fork-course-format_remuiformat.iml
+/.idea/sshConfigs.xml
+/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_09_2026_16_23__Changes_.xml
+/.idea/vcs.xml
+/.idea/webServers.xml
+/.idea/workspace.xml
