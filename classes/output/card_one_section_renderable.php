@@ -309,7 +309,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $displayoptions
                 );
                 $activitydetails->viewurl = $mod->url;
-                $activitydetails->move = course_get_cm_move($mod, $section->section);
+                if ($CFG->branch >= 503) {
+                    $activitydetails->move = course_get_cm_move($mod, ['sr' => $section->section]);
+                } else {
+                    $activitydetails->move = course_get_cm_move($mod, $section->section);
+                }
                 $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
                 $activitydetails->title .= $mod->afterlink;
                 $activitydetails->modulename = $mod->modname;
