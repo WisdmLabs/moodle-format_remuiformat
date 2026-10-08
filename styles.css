@@ -940,6 +940,10 @@ body#page-course-view-remuiformat .remui-format-card .generalsecactivitiesconten
   width: 100%;
 }
 
+body#page-course-view-remuiformat .remui-format-card .general-section-activities .activity {
+  margin-top: 0px;
+}
+
 body#page-course-view-remuiformat:not(.limitedwidth) .remui-format-card.all-section-format .showhideactivity .general-section-activities li:nth-child(n+5) {
   display: none !important;
 }
