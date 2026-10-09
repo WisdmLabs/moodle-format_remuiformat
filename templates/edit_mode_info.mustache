@@ -12,34 +12,57 @@
     </div>
 </div>
 
-{{^applylatestpref}}
+{{#uselegacyajax}}
     {{#js}}
-    require(['jquery'], function($){
+    require(['jquery', 'core/ajax'], function($, Ajax){
         $(document).ready(function(){
             $('#remuiformateditmodeinfomodal').modal('show');
 
             $(".hideeditmodeinfomodal").click(function(){
-                M.util.set_user_preference('showinfomodalineditmode', true);
+                Ajax.call([{
+                    methodname: 'core_user_set_user_preferences',
+                    args: {
+                        preferences: [{
+                            name: 'showinfomodalineditmode',
+                            value: '1'
+                        }]
+                    }
+                }]);
                 $('#remuiformateditmodeinfomodal').modal('hide');
             });
         });
     });
     {{/js}}
+{{/uselegacyajax}}
 
-{{/applylatestpref}}
+{{^uselegacyajax}}
+    {{^applylatestpref}}
+        {{#js}}
+        require(['jquery'], function($){
+            $(document).ready(function(){
+                $('#remuiformateditmodeinfomodal').modal('show');
 
-
-{{#applylatestpref}}
-    {{#js}}
-    require(['jquery', 'core_user/repository'], function($, UserRepository){
-        $(document).ready(function(){
-            $('#remuiformateditmodeinfomodal').modal('show');
-
-            $(".hideeditmodeinfomodal").click(function(){
-                UserRepository.setUserPreference('showinfomodalineditmode', true);
-                $('#remuiformateditmodeinfomodal').modal('hide');
+                $(".hideeditmodeinfomodal").click(function(){
+                    M.util.set_user_preference('showinfomodalineditmode', true);
+                    $('#remuiformateditmodeinfomodal').modal('hide');
+                });
             });
         });
-    });
-    {{/js}}
-{{/applylatestpref}}
+        {{/js}}
+    {{/applylatestpref}}
+
+    {{#applylatestpref}}
+        {{#js}}
+        require(['jquery', 'core_user/repository'], function($, UserRepository){
+            $(document).ready(function(){
+                $('#remuiformateditmodeinfomodal').modal('show');
+
+                $(".hideeditmodeinfomodal").click(function(){
+                    UserRepository.setUserPreference('showinfomodalineditmode', true);
+                    $('#remuiformateditmodeinfomodal').modal('hide');
+                });
+            });
+        });
+        {{/js}}
+    {{/applylatestpref}}
+{{/uselegacyajax}}
