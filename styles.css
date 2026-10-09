@@ -3163,6 +3163,14 @@ body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .he
   flex-direction: column;
 }
 
+body#page-course-view-remuiformat .activity-item {
+  background-color: transparent;
+}
+
+body#page-course-view-remuiformat .course-section .section-item .course-content-item-content .section-content-inner {
+  background-color: transparent;
+}
+
 .section .dndupload-preview-overlay, .section .dndupload-preview-wrapper {
   display: none;
 }

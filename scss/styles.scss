@@ -1123,6 +1123,19 @@ body#page-course-view-remuiformat {
     // .bulkEnable {
     //     display: none;
     // }
+    //moodle boost 5.3 bg overrride
+    .activity-item {
+        background-color: transparent;
+    }
+    .course-section {
+        .section-item {
+            .course-content-item-content {
+                .section-content-inner {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 }
 .section{
     .dndupload-preview-overlay,.dndupload-preview-wrapper{
