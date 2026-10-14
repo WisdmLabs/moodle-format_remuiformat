@@ -1123,6 +1123,19 @@ body#page-course-view-remuiformat {
     // .bulkEnable {
     //     display: none;
     // }
+    //moodle boost 5.3 bg overrride
+    .activity-item {
+        background-color: transparent;
+    }
+    .course-section {
+        .section-item {
+            .course-content-item-content {
+                .section-content-inner {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 }
 .section{
     .dndupload-preview-overlay,.dndupload-preview-wrapper{
@@ -1196,7 +1209,6 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 #video-format-banner-box {
     margin-top: 14px;
     display: flex;
-    gap: 28px;
     flex-wrap: wrap;
 
     max-width:891.96px;

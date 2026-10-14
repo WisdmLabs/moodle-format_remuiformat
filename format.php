@@ -74,9 +74,15 @@ $rformat = $settings['remuicourseformat'];
 $type = 'list';
 
 $applylatestpref = true;
+$uselegacyajax = false;
 if ($CFG->branch < '403') {
     $applylatestpref = false;
     user_preference_allow_ajax_update('showinfomodalineditmode', PARAM_BOOL);
+} else if ($CFG->branch >= 503) {
+    // Moodle 5.3+: user_preference_allow_ajax_update() was removed.
+    // The new REST API user preference endpoint may not work reliably in all environments.
+    // Fall back to the core/ajax external function system which is still fully functional.
+    $uselegacyajax = true;
 }
 
 if ($PAGE->user_is_editing()) {
@@ -86,7 +92,10 @@ if ($PAGE->user_is_editing()) {
     $widget = new $outputclass($format);
     echo $renderer->render($widget);
     if (!get_user_preferences('showinfomodalineditmode', false)) {
-        echo $OUTPUT->render_from_template('format_remuiformat/edit_mode_info', ["applylatestpref" => $applylatestpref]);
+        echo $OUTPUT->render_from_template('format_remuiformat/edit_mode_info', [
+            "applylatestpref" => $applylatestpref,
+            "uselegacyajax" => $uselegacyajax,
+        ]);
     }
     return;
 }

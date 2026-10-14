@@ -1,5 +1,9 @@
 CHANGES LOG
 
+Version v4.1.22:
+============================
+Feature - Added compatibility with Moodle 5.3.
+
 Version 4.1.21
 ===========
 Feature - Added compatibility with Moodle 5.2.
