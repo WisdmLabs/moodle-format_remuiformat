@@ -73,6 +73,21 @@ trait show_activity_in_row {
         self::validate_context($context);
         require_capability('moodle/course:manageactivities', $context);
 
+        // Validate that the section exists in the course.
+        $section = $DB->get_record('course_sections',
+            ['course' => $params['courseid'], 'section' => $params['sectionid']],
+            '*',
+            MUST_EXIST
+        );
+
+        // Validate that the activity exists and belongs to the course.
+        $cm = get_coursemodule_from_id(null, $params['activityid'], $params['courseid'], false, MUST_EXIST);
+
+        // Validate that the activity is in the specified section.
+        if ((int) $cm->section !== (int) $section->id) {
+            throw new \moodle_exception('invalidcoursemodule', 'error');
+        }
+
         $table = 'format_remuiformat';
         $record = $DB->get_record($table,
             ['courseid' => $params['courseid'], 'sectionid' => $params['sectionid'], 'activityid' => $params['activityid']],
