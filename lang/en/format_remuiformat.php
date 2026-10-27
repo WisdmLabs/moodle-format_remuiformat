@@ -126,7 +126,13 @@ $string['cardbackgroundcolor'] = 'Set the section background color in card forma
 $string['defaultcardbackgroundcolordesc'] = 'Card background color Description';
 
 // GDPR.
-$string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store any personal data.';
+$string['privacy:metadata'] = 'The Edwiser Course Formats plugin stores data about user activity visits within courses.';
+$string['privacy:metadata:remuiformat_course_visits'] = 'Records of the last course module visited by a user in a course.';
+$string['privacy:metadata:remuiformat_course_visits:course'] = 'The ID of the course being visited.';
+$string['privacy:metadata:remuiformat_course_visits:userid'] = 'The ID of the user who visited the activity.';
+$string['privacy:metadata:remuiformat_course_visits:cm'] = 'The ID of the course module that was visited.';
+$string['privacy:metadata:remuiformat_course_visits:timevisited'] = 'The time at which the activity was visited.';
+$string['privacy:visit'] = 'Activity visit';
 
 // Validation.
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
