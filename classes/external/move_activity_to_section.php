@@ -46,8 +46,8 @@ trait move_activity_to_section {
             array (
                 'courseid' => new external_value(PARAM_INT, 'Course Id'),
                 'newsectionid' => new external_value(PARAM_INT, 'Section Id'),
-                'oldsectionid' => new external_value(PARAM_RAW, 'Old Section Id'),
-                'activityidtomove' => new external_value(PARAM_RAW, 'New Section Id'),
+                'oldsectionid' => new external_value(PARAM_INT, 'Old Section Id'),
+                'activityidtomove' => new external_value(PARAM_INT, 'Activity Id to Move'),
             )
         );
     }
@@ -63,28 +63,42 @@ trait move_activity_to_section {
     public static function move_activity_to_section($courseid, $newsectionid, $oldsectionid, $activityidtomove) {
         global $DB, $CFG;
 
+        $params = self::validate_parameters(
+            self::move_activity_to_section_parameters(),
+            [
+                'courseid' => $courseid,
+                'newsectionid' => $newsectionid,
+                'oldsectionid' => $oldsectionid,
+                'activityidtomove' => $activityidtomove,
+            ]
+        );
+
+        $context = \context_course::instance($params['courseid']);
+        self::validate_context($context);
+        require_capability('moodle/course:manageactivities', $context);
+
         // Get course object.
-        $course = get_course($courseid);
+        $course = get_course($params['courseid']);
 
         // Get activity object.
-        $cm = get_coursemodule_from_id(null, $activityidtomove, $courseid, false, MUST_EXIST);
+        $cm = get_coursemodule_from_id(null, $params['activityidtomove'], $params['courseid'], false, MUST_EXIST);
         require_login($course, false, $cm);
 
         // Get new section object.
-        $section = $DB->get_record('course_sections', array('course' => $courseid, 'section' => $newsectionid));
+        $section = $DB->get_record('course_sections', ['course' => $params['courseid'], 'section' => $params['newsectionid']], '*', MUST_EXIST);
 
-        $output = array();
+        $output = [];
         // Move the activity to new section. Function moveto_module() define in /course/lib.php.
-        if ( moveto_module($cm, $section, '') ) {
+        if (moveto_module($cm, $section, '')) {
             // Generate new URL to redirect to same section with success message.
-            $urltogo = $CFG->wwwroot.'/course/view.php?id=' . $courseid . '&section=' . $oldsectionid;
+            $urltogo = $CFG->wwwroot.'/course/view.php?id=' . $params['courseid'] . '&section=' . $params['oldsectionid'];
             $output['urltogo'] = $urltogo;
             $output['success'] = 1;
             $output['message'] = 'Activity moved successfully';
             return $output;
         } else {
             // Generate new URL to redirect to same section with fail message.
-            $urltogo = $CFG->wwwroot.'/course/view.php?id=' . $courseid . '&section=' . $oldsectionid;
+            $urltogo = $CFG->wwwroot.'/course/view.php?id=' . $params['courseid'] . '&section=' . $params['oldsectionid'];
             $output['urltogo'] = $urltogo;
             $output['success'] = 0;
             $output['message'] = 'Activity does not moved successfully.';

@@ -45,7 +45,7 @@ trait show_activity_in_row {
             array (
                 'courseid' => new external_value(PARAM_INT, 'Course Id'),
                 'sectionid' => new external_value(PARAM_INT, 'Section Id'),
-                'activityid' => new external_value(PARAM_RAW, 'Activity Id'),
+                'activityid' => new external_value(PARAM_INT, 'Activity Id'),
             )
         );
     }
@@ -59,27 +59,41 @@ trait show_activity_in_row {
      */
     public static function show_activity_in_row($courseid, $sectionid, $activityid) {
         global $DB, $OUTPUT;
+
+        $params = self::validate_parameters(
+            self::show_activity_in_row_parameters(),
+            [
+                'courseid' => $courseid,
+                'sectionid' => $sectionid,
+                'activityid' => $activityid,
+            ]
+        );
+
+        $context = \context_course::instance($params['courseid']);
+        self::validate_context($context);
+        require_capability('moodle/course:manageactivities', $context);
+
         $table = 'format_remuiformat';
         $record = $DB->get_record($table,
-            array('courseid' => $courseid, 'sectionid' => $sectionid, 'activityid' => $activityid),
+            ['courseid' => $params['courseid'], 'sectionid' => $params['sectionid'], 'activityid' => $params['activityid']],
             '*'
         );
-        $output = array();
-        if ( !empty($record) ) {
+        $output = [];
+        if (!empty($record)) {
             if ($record->layouttype == 'row') {
-                $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
-                'activityid' => $activityid, 'layouttype' => 'col']);
+                $DB->update_record($table, ['id' => $record->id, 'courseid' => $params['courseid'], 'sectionid' => $params['sectionid'],
+                'activityid' => $params['activityid'], 'layouttype' => 'col']);
                 $output['type'] = 'col';
             } else {
-                $DB->update_record($table, ['id' => $record->id, 'courseid' => $courseid, 'sectionid' => $sectionid,
-                'activityid' => $activityid, 'layouttype' => 'row']);
+                $DB->update_record($table, ['id' => $record->id, 'courseid' => $params['courseid'], 'sectionid' => $params['sectionid'],
+                'activityid' => $params['activityid'], 'layouttype' => 'row']);
                 $output['type'] = 'row';
             }
             $output['success'] = true;
             $output['message'] = 'Record Updated';
         } else {
-            $DB->insert_record($table, ['courseid' => $courseid, 'sectionid' => $sectionid,
-            'activityid' => $activityid, 'layouttype' => 'row']);
+            $DB->insert_record($table, ['courseid' => $params['courseid'], 'sectionid' => $params['sectionid'],
+            'activityid' => $params['activityid'], 'layouttype' => 'row']);
             $output['type'] = 'row';
             $output['success'] = true;
             $output['message'] = 'Record Inserted';
