@@ -57,8 +57,16 @@ trait course_progress_data {
      * @return array           response
      */
     public static function course_progress_data($courseid) {
+        $params = self::validate_parameters(
+            self::course_progress_data_parameters(),
+            ['courseid' => $courseid]
+        );
+
+        $course = get_course($params['courseid']);
+        $context = \context_course::instance($course->id);
+        self::validate_context($context);
+
         $output = [];
-        $course = get_course($courseid);
         $percentage = progress::get_course_progress_percentage($course);
         if (!is_null($percentage)) {
             $percentage = floor($percentage);
