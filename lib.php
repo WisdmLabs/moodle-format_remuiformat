@@ -845,12 +845,24 @@ function format_remuiformat_pluginfile($course, $cm, $context, $filearea, $args,
     if ($context->contextlevel != CONTEXT_COURSE) {
         return false;
     }
-    require_login();
+    require_login($course);
     if ($filearea != 'remuicourseimage_filearea') {
         return false;
     }
 
     $itemid = (int)array_shift($args);
+
+    // Verify the itemid belongs to this course configuration.
+    $expecteditemid = $DB->get_field('course_format_options', 'value', [
+        'courseid' => $course->id,
+        'format' => 'remuiformat',
+        'sectionid' => 0,
+        'name' => 'remuicourseimage_filemanager'
+    ]);
+    if ($expecteditemid === false || $itemid !== (int)$expecteditemid) {
+        return false;
+    }
+
     $fs = get_file_storage();
     $filename = array_pop($args);
 
