@@ -278,7 +278,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     continue;
                 }
                 $context = \context_module::instance($mod->id);
-                if (!$mod->is_visible_on_course_page()) {
+                if (!$mod->is_visible_on_course_page() || !$mod->is_of_type_that_can_display()) {
                     continue;
                 }
 

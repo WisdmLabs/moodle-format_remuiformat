@@ -233,7 +233,7 @@ class format_remuiformat_renderer extends section_renderer {
         foreach ($modinfo->sections[$section->section] as $cmid) {
             $thismod = $modinfo->cms[$cmid];
 
-            if ($thismod->modname == 'label') {
+            if ($thismod->modname == 'label' || !$thismod->is_of_type_that_can_display()) {
                 // Labels are special (not interesting for students)!
                 continue;
             }

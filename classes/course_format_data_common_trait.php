@@ -161,7 +161,7 @@ class course_format_data_common_trait {
             foreach ($modinfo->sections[$section->section] as $modnumber) {
                 $mod = $modinfo->cms[$modnumber];
                 $context = \context_module::instance($mod->id);
-                if (!$mod->is_visible_on_course_page()) {
+                if (!$mod->is_visible_on_course_page() || !$mod->is_of_type_that_can_display()) {
                     continue;
                 }
 
@@ -289,7 +289,7 @@ class course_format_data_common_trait {
         $completioninfo = new \completion_info($course);
         foreach ($modinfo->sections[$section->section] as $cmid) {
             $thismod = $modinfo->cms[$cmid];
-            if ($thismod->modname == 'label') {
+            if ($thismod->modname == 'label' || !$thismod->is_of_type_that_can_display()) {
                 // Labels are special (not interesting for students)!
                 continue;
             }
@@ -827,7 +827,7 @@ class course_format_data_common_trait {
                     continue;
                 }
                 $context = \context_module::instance($mod->id);
-                if (!$mod->is_visible_on_course_page()) {
+                if (!$mod->is_visible_on_course_page() || !$mod->is_of_type_that_can_display()) {
                     continue;
                 }
                 $completiondata = $completioninfo->get_data($mod, true);
@@ -984,7 +984,7 @@ class course_format_data_common_trait {
                 if (isset($modinfo->sections[$i])) {
                     foreach ($modinfo->sections[$i] as $cmid) {
                         $thismod = $modinfo->cms[$cmid];
-                        if (!$thismod->is_visible_on_course_page()) {
+                        if (!$thismod->is_visible_on_course_page() || !$thismod->is_of_type_that_can_display()) {
                             continue;
                         }
                         if (isset($sectionmods[$thismod->modname])) {

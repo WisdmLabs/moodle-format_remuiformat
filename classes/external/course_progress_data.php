@@ -84,7 +84,7 @@ trait course_progress_data {
             if (isset($modinfo->sections[$i])) {
                 foreach ($modinfo->sections[$i] as $cmid) {
                     $thismod = $modinfo->cms[$cmid];
-                    if (!$thismod->is_visible_on_course_page()) {
+                    if (!$thismod->is_visible_on_course_page() || !$thismod->is_of_type_that_can_display()) {
                         continue;
                     }
                     if (isset($sectionmods[$thismod->modname])) {
