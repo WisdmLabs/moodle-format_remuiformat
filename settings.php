@@ -71,4 +71,19 @@ if ($ADMIN->fulltree) {
     $description = get_string('enableusagetrackingdesc', 'format_remuiformat');
     $default = true;
     $settings->add(new admin_setting_configcheckbox($name, $title, $description, $default, true, false));
+
+
+    // Linear navigation setting — only relevant on Moodle 5.3+ where core supports it.
+    if ((int)$CFG->branch >= 503) {
+        $settings->add(new admin_setting_configselect(
+            'format_remuiformat/enablelinearnav',
+            new lang_string('linearnavigationsettings', 'format_remuiformat'),
+            new lang_string('linearnavigationsettings_help', 'format_remuiformat'),
+            1,
+            [
+                1 => get_string('yes'),
+                0 => get_string('no'),
+            ]
+        ));
+    }
 }

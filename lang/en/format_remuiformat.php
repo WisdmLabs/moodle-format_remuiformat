@@ -55,6 +55,9 @@ $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities
 $string['hidegeneralsectionwhenempty'] = 'Hide general section when empty';
 $string['hidegeneralsectionwhenempty_help'] = 'When general section does not have any activity and summary then you can hide it.';
 
+$string['linearnavigationsettings'] = 'Enable linear navigation';
+$string['linearnavigationsettings_help'] = 'Display \'Previous\' and \'Next\' buttons on activity pages to help learners move sequentially through the course.';
+
 // Section.
 $string['sectionname'] = 'Section';
 $string['sectionnamecaps'] = 'SECTION';

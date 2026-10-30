@@ -807,6 +807,15 @@ class format_remuiformat extends core_courseformat\base {
         return $errors;
     }
 
+    /**
+     * Determines whether the course format supports linear navigation.
+     *
+     * @return bool True if linear navigation is supported, false otherwise.
+     */
+    public static function uses_linear_navigation(): bool {
+        return true;
+    }
+
 }
 
 /**
