@@ -17,6 +17,11 @@
             // overflow: hidden;
             border-radius: $border-radius-8;
             border: $border-height solid $light-border;
+
+            .activities-list ul.section {
+                border-bottom-left-radius: $border-radius-8 !important;
+                border-bottom-right-radius: $border-radius-8 !important;
+            }
         }
 
         &.collapsed{
@@ -222,7 +227,7 @@
 
                         // gap: 4px;
                         @media (max-width:1200px) {
-                            flex-direction: column;
+                            // flex-direction: column;
                             align-items: start;
                         }
 
@@ -399,6 +404,10 @@
         @include frmt-font-styling(16px,24px,400);
         color: $paragraph-color;
         gap: $gap-16;
+
+        img {
+            border-radius: 8px;
+        }
 
         .no-overflow {
             p {

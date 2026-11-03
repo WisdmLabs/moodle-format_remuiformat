@@ -333,6 +333,14 @@
 
             @media (max-width:425px) {
                 grid-template-columns: repeat(auto-fill, minmax($card-min-width-1, 1fr));
+
+                .col-activity .single-card {
+                    padding: 16px;
+
+                    .activity-name-area .activitytitle {
+                        gap: 16px !important;
+                    }
+                }
             }
 
             .activity {

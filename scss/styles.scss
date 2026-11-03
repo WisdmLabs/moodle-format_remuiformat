@@ -545,6 +545,10 @@ body#page-course-view-remuiformat {
                                 .coursesummary {
                                     color: $paragraph-color;
                                     @include frmt-font-styling(16px, 24px, 400);
+
+                                    img {
+                                        border-radius: 8px
+                                    }
                                 }
 
                                 .readbtn {
@@ -678,6 +682,15 @@ body#page-course-view-remuiformat {
                                         .icon{
                                             margin: unset;
                                         }
+                                    }
+                                }
+
+                                [data-region="completion-info"] {
+                                    width: 100%;
+                                    float: left;
+            
+                                    .btn {
+                                        width: 100%;
                                     }
                                 }
 
@@ -1135,6 +1148,18 @@ body#page-course-view-remuiformat {
                 }
             }
         }
+    }
+
+    &.limitedwidth {
+        header.hasbackground.design-1 .header-sub-section {
+            align-items: start;
+
+            .progress-resume-wrapper:has(.btn-primary.bold) {
+                align-items: end;
+            }
+        }
+            
+            
     }
 }
 .section{
