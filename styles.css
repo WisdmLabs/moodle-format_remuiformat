@@ -1102,7 +1102,7 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
 
 @media (max-width: 900px) {
   body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .side.left {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 }
@@ -2545,6 +2545,20 @@ body#page-course-view-remuiformat .activity > .activityinstance {
 @media (max-width: 600px) {
   body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) {
     padding: 16px !important;
+  }
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) .activity-instance.activity-name-area {
+    width: 90%;
+  }
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) .activity-instance.activity-name-area .activitytitle {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+  }
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) .activity-instance.activity-name-area .activitytitle .activityiconcontainer {
+    width: -webkit-fit-content !important;
+    width: fit-content !important;
+    height: -webkit-fit-content !important;
+    height: fit-content !important;
   }
 }
 

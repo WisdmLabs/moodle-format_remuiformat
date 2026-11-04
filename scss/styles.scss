@@ -454,6 +454,18 @@ body#page-course-view-remuiformat {
         @media (max-width: 600px) {
             .activity-item:not(.activityinline) {
                 padding: 16px !important;
+                .activity-instance.activity-name-area {
+                    width: 90%;
+                    .activitytitle {
+                        display: flex;
+                        gap: 10px;
+                        flex-direction: row;
+                        .activityiconcontainer {
+                            width: fit-content !important;
+                            height: fit-content !important;
+                        }
+                    }
+                }
             }
         }
         .activity-item:not(.activityinline) {
