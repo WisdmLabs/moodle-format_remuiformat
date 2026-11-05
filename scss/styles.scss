@@ -1152,6 +1152,17 @@ body#page-course-view-remuiformat {
             .header-sub-section {
                 .progress-resume-wrapper {
                     flex-direction: column;
+                    margin-top: 5px;
+                }
+                .rating-instructor-wrapper {
+                    .instructor-info.stat-container {
+                        div.postion-relative {
+                            display: inline-flex !important;
+                            a {
+                                display: inline-flex !important;
+                            }
+                        }
+                    }
                 }
             }
         }
