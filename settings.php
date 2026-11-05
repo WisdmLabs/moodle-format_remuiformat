@@ -69,7 +69,7 @@ if ($ADMIN->fulltree) {
     $name = 'format_remuiformat/enableusagetracking';
     $title = get_string('enableusagetracking', 'format_remuiformat');
     $description = get_string('enableusagetrackingdesc', 'format_remuiformat');
-    $default = true;
+    $default = false;
     $settings->add(new admin_setting_configcheckbox($name, $title, $description, $default, true, false));
 
 
