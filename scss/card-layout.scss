@@ -163,6 +163,9 @@
 .remui-format-card {
     .remui-completion-container {
         .completion-dropdown{
+            button {
+                justify-content: center;
+            }
             .completion-dialog {
                 font-size: 14px !important;
                 [role='listitem'] span {
