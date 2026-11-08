@@ -64,6 +64,16 @@ class provider implements
             'privacy:metadata:remuiformat_course_visits'
         );
 
+        $collection->add_external_location_link(
+            'edwiser_usage',
+            [
+                'siteurl' => 'privacy:metadata:usage:siteurl',
+                'total_users' => 'privacy:metadata:usage:total_users',
+                'total_courses' => 'privacy:metadata:usage:total_courses',
+            ],
+            'privacy:metadata:usage'
+        );
+
         return $collection;
     }
 

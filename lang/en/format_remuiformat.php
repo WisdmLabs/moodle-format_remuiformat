@@ -136,6 +136,10 @@ $string['privacy:metadata:remuiformat_course_visits:userid'] = 'The ID of the us
 $string['privacy:metadata:remuiformat_course_visits:cm'] = 'The ID of the course module that was visited.';
 $string['privacy:metadata:remuiformat_course_visits:timevisited'] = 'The time at which the activity was visited.';
 $string['privacy:visit'] = 'Activity visit';
+$string['privacy:metadata:usage'] = 'Anonymous usage data sent to Edwiser to improve product compatibility.';
+$string['privacy:metadata:usage:siteurl'] = 'The site URL.';
+$string['privacy:metadata:usage:total_users'] = 'The total number of users on the site.';
+$string['privacy:metadata:usage:total_courses'] = 'The total number of courses using this format.';
 
 // Validation.
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';
