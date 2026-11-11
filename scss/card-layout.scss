@@ -164,7 +164,7 @@
     .remui-completion-container {
         .completion-dropdown{
             button {
-                justify-content: center;
+                width: fit-content !important;
             }
             .completion-dialog {
                 font-size: 14px !important;

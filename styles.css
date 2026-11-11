@@ -136,7 +136,8 @@ body#page-course-view-remuiformat .sections .single-card-container {
 }
 
 body#page-course-view-remuiformat .remui-format-card .remui-completion-container .completion-dropdown button {
-  justify-content: center;
+  width: -webkit-fit-content !important;
+  width: fit-content !important;
 }
 
 body#page-course-view-remuiformat .remui-format-card .remui-completion-container .completion-dropdown .completion-dialog {
