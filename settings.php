@@ -65,14 +65,6 @@ if ($ADMIN->fulltree) {
         )
     ));
 
-    // Usage tracking GDPR setting.
-    $name = 'format_remuiformat/enableusagetracking';
-    $title = get_string('enableusagetracking', 'format_remuiformat');
-    $description = get_string('enableusagetrackingdesc', 'format_remuiformat');
-    $default = false;
-    $settings->add(new admin_setting_configcheckbox($name, $title, $description, $default, true, false));
-
-
     // Linear navigation setting — only relevant on Moodle 5.3+ where core supports it.
     if ((int)$CFG->branch >= 503) {
         $settings->add(new admin_setting_configselect(
@@ -86,4 +78,12 @@ if ($ADMIN->fulltree) {
             ]
         ));
     }
+
+    // Usage tracking GDPR setting.
+    $name = 'format_remuiformat/enableusagetracking';
+    $title = get_string('enableusagetracking', 'format_remuiformat');
+    $description = get_string('enableusagetrackingdesc', 'format_remuiformat');
+    $default = false;
+    $settings->add(new admin_setting_configcheckbox($name, $title, $description, $default, true, false));
+
 }
