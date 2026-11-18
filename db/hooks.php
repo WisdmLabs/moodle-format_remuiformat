@@ -24,13 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-global $CFG;
-
-if ($CFG->branch >= '404') {
-    $callbacks = [
-        [
-            'hook' => \core\hook\output\before_standard_head_html_generation::class,
-            'callback' => [\format_remuiformat\hooks::class, 'before_standard_head_html_generation'],
-        ],
-    ];
-}
+$callbacks = [
+    [
+        'hook' => \core\hook\output\before_standard_head_html_generation::class,
+        'callback' => [\format_remuiformat\hooks::class, 'before_standard_head_html_generation'],
+    ],
+];
