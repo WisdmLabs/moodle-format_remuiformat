@@ -21,7 +21,7 @@
         </INDEXES>
         </TABLE>
 
-        <TABLE NAME="remuiformat_course_visits" COMMENT="Record activity visit of course">
+        <TABLE NAME="format_remuiformat_course_visits" COMMENT="Record activity visit of course">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Id of the course"/>

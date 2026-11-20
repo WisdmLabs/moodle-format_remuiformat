@@ -435,15 +435,15 @@ class course_format_data_common_trait {
     public function get_activity_to_resume($course) {
         global $USER, $DB;
 
-        // Fetch last viewed from remuiformat_course_visits table.
-        $lastviewed = $DB->get_record('remuiformat_course_visits',
+        // Fetch last viewed from format_remuiformat_course_visits table.
+        $lastviewed = $DB->get_record('format_remuiformat_course_visits',
             array(
                 'course' => $course->id,
                 'userid' => $USER->id
             )
         );
 
-        // Fetch last viewed from log if not record in remuiformat_course_visits.
+        // Fetch last viewed from log if not record in format_remuiformat_course_visits.
         // If no record found in log then return empty string.
         if (empty($lastviewed)) {
             $lastviewed = $this->get_activity_to_resume_from_log($course);
