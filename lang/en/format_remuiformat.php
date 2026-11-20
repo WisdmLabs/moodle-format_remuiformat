@@ -130,11 +130,11 @@ $string['defaultcardbackgroundcolordesc'] = 'Card background color Description';
 
 // GDPR.
 $string['privacy:metadata'] = 'The Edwiser Course Formats plugin stores data about user activity visits within courses.';
-$string['privacy:metadata:remuiformat_course_visits'] = 'Records of the last course module visited by a user in a course.';
-$string['privacy:metadata:remuiformat_course_visits:course'] = 'The ID of the course being visited.';
-$string['privacy:metadata:remuiformat_course_visits:userid'] = 'The ID of the user who visited the activity.';
-$string['privacy:metadata:remuiformat_course_visits:cm'] = 'The ID of the course module that was visited.';
-$string['privacy:metadata:remuiformat_course_visits:timevisited'] = 'The time at which the activity was visited.';
+$string['privacy:metadata:format_remuiformat_course_visits'] = 'Records of the last course module visited by a user in a course.';
+$string['privacy:metadata:format_remuiformat_course_visits:course'] = 'The ID of the course being visited.';
+$string['privacy:metadata:format_remuiformat_course_visits:userid'] = 'The ID of the user who visited the activity.';
+$string['privacy:metadata:format_remuiformat_course_visits:cm'] = 'The ID of the course module that was visited.';
+$string['privacy:metadata:format_remuiformat_course_visits:timevisited'] = 'The time at which the activity was visited.';
 $string['privacy:visit'] = 'Activity visit';
 $string['privacy:metadata:usage'] = 'Anonymous usage data sent to Edwiser to improve product compatibility.';
 $string['privacy:metadata:usage:siteurl'] = 'The site URL.';

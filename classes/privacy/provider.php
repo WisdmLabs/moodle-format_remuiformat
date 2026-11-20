@@ -54,14 +54,14 @@ class provider implements
      */
     public static function get_metadata(collection $collection): collection {
         $collection->add_database_table(
-            'remuiformat_course_visits',
+            'format_remuiformat_course_visits',
             [
-                'course' => 'privacy:metadata:remuiformat_course_visits:course',
-                'userid' => 'privacy:metadata:remuiformat_course_visits:userid',
-                'cm' => 'privacy:metadata:remuiformat_course_visits:cm',
-                'timevisited' => 'privacy:metadata:remuiformat_course_visits:timevisited',
+                'course' => 'privacy:metadata:format_remuiformat_course_visits:course',
+                'userid' => 'privacy:metadata:format_remuiformat_course_visits:userid',
+                'cm' => 'privacy:metadata:format_remuiformat_course_visits:cm',
+                'timevisited' => 'privacy:metadata:format_remuiformat_course_visits:timevisited',
             ],
-            'privacy:metadata:remuiformat_course_visits'
+            'privacy:metadata:format_remuiformat_course_visits'
         );
 
         $collection->add_external_location_link(
@@ -88,7 +88,7 @@ class provider implements
 
         $sql = "SELECT ctx.id
                   FROM {context} ctx
-                  JOIN {remuiformat_course_visits} visits ON visits.course = ctx.instanceid
+                  JOIN {format_remuiformat_course_visits} visits ON visits.course = ctx.instanceid
                  WHERE ctx.contextlevel = :contextlevel
                    AND visits.userid = :userid";
 
@@ -115,7 +115,7 @@ class provider implements
         }
 
         $sql = "SELECT userid
-                  FROM {remuiformat_course_visits}
+                  FROM {format_remuiformat_course_visits}
                  WHERE course = :courseid";
 
         $params = ['courseid' => $context->instanceid];
@@ -143,7 +143,7 @@ class provider implements
                        visits.cm,
                        visits.timevisited
                   FROM {context} ctx
-                  JOIN {remuiformat_course_visits} visits ON visits.course = ctx.instanceid
+                  JOIN {format_remuiformat_course_visits} visits ON visits.course = ctx.instanceid
                  WHERE ctx.id {$contextsql}
                    AND visits.userid = :userid
               ORDER BY ctx.id, visits.timevisited";
@@ -180,7 +180,7 @@ class provider implements
             return;
         }
 
-        $DB->delete_records('remuiformat_course_visits', ['course' => $context->instanceid]);
+        $DB->delete_records('format_remuiformat_course_visits', ['course' => $context->instanceid]);
     }
 
     /**
@@ -202,7 +202,7 @@ class provider implements
                 continue;
             }
 
-            $DB->delete_records('remuiformat_course_visits', [
+            $DB->delete_records('format_remuiformat_course_visits', [
                 'course' => $context->instanceid,
                 'userid' => $userid,
             ]);
@@ -233,6 +233,6 @@ class provider implements
         $select = "course = :courseid AND userid {$usersql}";
         $params = ['courseid' => $context->instanceid] + $userparams;
 
-        $DB->delete_records_select('remuiformat_course_visits', $select, $params);
+        $DB->delete_records_select('format_remuiformat_course_visits', $select, $params);
     }
 }
