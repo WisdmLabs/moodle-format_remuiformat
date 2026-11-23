@@ -57,8 +57,16 @@ trait course_progress_data {
      * @return array           response
      */
     public static function course_progress_data($courseid) {
+        $params = self::validate_parameters(
+            self::course_progress_data_parameters(),
+            ['courseid' => $courseid]
+        );
+
+        $course = get_course($params['courseid']);
+        $context = \context_course::instance($course->id);
+        self::validate_context($context);
+
         $output = [];
-        $course = get_course($courseid);
         $percentage = progress::get_course_progress_percentage($course);
         if (!is_null($percentage)) {
             $percentage = floor($percentage);
@@ -76,7 +84,7 @@ trait course_progress_data {
             if (isset($modinfo->sections[$i])) {
                 foreach ($modinfo->sections[$i] as $cmid) {
                     $thismod = $modinfo->cms[$cmid];
-                    if (!$thismod->is_visible_on_course_page()) {
+                    if (!$thismod->is_visible_on_course_page() || (method_exists($thismod, 'is_of_type_that_can_display') && !$thismod->is_of_type_that_can_display())) {
                         continue;
                     }
                     if (isset($sectionmods[$thismod->modname])) {

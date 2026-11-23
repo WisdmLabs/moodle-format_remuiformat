@@ -135,6 +135,11 @@ body#page-course-view-remuiformat .sections .single-card-container {
   }
 }
 
+body#page-course-view-remuiformat .remui-format-card .remui-completion-container .completion-dropdown button {
+  width: -webkit-fit-content !important;
+  width: fit-content !important;
+}
+
 body#page-course-view-remuiformat .remui-format-card .remui-completion-container .completion-dropdown .completion-dialog {
   font-size: 14px !important;
 }
@@ -482,6 +487,14 @@ body#page-course-view-remuiformat .remui-format-card.single-section-format .acti
   body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards,
   body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .col-activity .single-card,
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .col-activity .single-card {
+    padding: 16px;
+  }
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards .col-activity .single-card .activity-name-area .activitytitle,
+  body#page-course-view-remuiformat .remui-format-card.single-section-format .activity-cards.section .col-activity .single-card .activity-name-area .activitytitle {
+    gap: 16px !important;
   }
 }
 
@@ -940,6 +953,10 @@ body#page-course-view-remuiformat .remui-format-card .generalsecactivitiesconten
   width: 100%;
 }
 
+body#page-course-view-remuiformat .remui-format-card .general-section-activities .activity {
+  margin-top: 0px;
+}
+
 body#page-course-view-remuiformat:not(.limitedwidth) .remui-format-card.all-section-format .showhideactivity .general-section-activities li:nth-child(n+5) {
   display: none !important;
 }
@@ -1019,7 +1036,6 @@ body#page-course-view-remuiformat.editing .remui-format-list .sections .section 
 
 @media (max-width: 1200px) {
   body#page-course-view-remuiformat.editing .remui-format-list .sections .section .side.left {
-    flex-direction: column;
     align-items: start;
   }
 }
@@ -1091,7 +1107,7 @@ body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .se
 
 @media (max-width: 900px) {
   body#page-course-view-remuiformat:not(.editing) .remui-format-list .sections .section .side.left {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 }
@@ -1175,6 +1191,12 @@ body#page-course-view-remuiformat .list-view-general-activities .course-section-
   gap: 16px;
 }
 
+body#page-course-view-remuiformat .remui-format-list .summary img, body#page-course-view-remuiformat .remui-format-list .course-section-summary-wrapper img,
+body#page-course-view-remuiformat .list-view-general-activities .summary img,
+body#page-course-view-remuiformat .list-view-general-activities .course-section-summary-wrapper img {
+  border-radius: 8px;
+}
+
 body#page-course-view-remuiformat .remui-format-list .summary .no-overflow p, body#page-course-view-remuiformat .remui-format-list .course-section-summary-wrapper .no-overflow p,
 body#page-course-view-remuiformat .list-view-general-activities .summary .no-overflow p,
 body#page-course-view-remuiformat .list-view-general-activities .course-section-summary-wrapper .no-overflow p {
@@ -1206,6 +1228,12 @@ body#page-course-view-remuiformat .list-view-general-activities .sections .secti
   background: #fff;
   border-radius: 8px;
   border: 1px solid #EBF0F9;
+}
+
+body#page-course-view-remuiformat .remui-format-list .sections .section:not(#section-0) .activities-list ul.section,
+body#page-course-view-remuiformat .list-view-general-activities .sections .section:not(#section-0) .activities-list ul.section {
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list .sections .section.collapsed .summary.card-text,
@@ -1446,6 +1474,12 @@ body#page-course-view-remuiformat .list-view-general-activities .section.delegat
   background: #fff;
   border-radius: 8px;
   border: 1px solid #EBF0F9;
+}
+
+body#page-course-view-remuiformat .remui-format-list .section.delegated-section:not(#section-0) .activities-list ul.section,
+body#page-course-view-remuiformat .list-view-general-activities .section.delegated-section:not(#section-0) .activities-list ul.section {
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
 }
 
 body#page-course-view-remuiformat .remui-format-list .section.delegated-section.collapsed .summary.card-text,
@@ -2018,7 +2052,13 @@ body#page-course-view-remuiformat .remui-format-list .activity-item .activity-gr
 body#page-course-view-remuiformat .list-view-general-activities .activity-item .activity-grid {
   grid-template-rows: 1fr repeat(6, -webkit-min-content);
   grid-template-rows: 1fr repeat(6, min-content);
-  grid-template-areas: "icon name groupmode completion actions" "icon visibility groupmode completion actions" "icon visibility groupmode completion actions" "dates dates dates dates dates" "altcontent altcontent altcontent altcontent altcontent" "afterlink afterlink afterlink afterlink afterlink" "availability availability availability availability availability";
+  grid-template-areas: "icon name groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "icon visibility groupmode completion actions"
+ "dates dates dates dates dates"
+ "altcontent altcontent altcontent altcontent altcontent"
+ "afterlink afterlink afterlink afterlink afterlink"
+ "availability availability availability availability availability";
 }
 
 body#page-course-view-remuiformat .remui-format-list .activity-item .activity-grid .activity-dates,
@@ -2513,6 +2553,26 @@ body#page-course-view-remuiformat .activity > .activityinstance {
   gap: 12px;
 }
 
+@media (max-width: 600px) {
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) {
+    padding: 16px !important;
+  }
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) .activity-instance.activity-name-area {
+    width: 90%;
+  }
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) .activity-instance.activity-name-area .activitytitle {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+  }
+  body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) .activity-instance.activity-name-area .activitytitle .activityiconcontainer {
+    width: -webkit-fit-content !important;
+    width: fit-content !important;
+    height: -webkit-fit-content !important;
+    height: fit-content !important;
+  }
+}
+
 body#page-course-view-remuiformat .activity .activity-item:not(.activityinline) {
   border: 1px solid #EBF0F9;
   border-radius: 8px;
@@ -2611,6 +2671,10 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
   font-weight: 400;
 }
 
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .generaldetails .generalsectioninfo .coursesummary img {
+  border-radius: 8px;
+}
+
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .section-details .generaldetails .generalsectioninfo .readbtn {
   font-size: 14px;
   line-height: 17px;
@@ -2670,6 +2734,12 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .section {
   list-style: none;
+}
+
+@media (max-width: 600px) {
+  body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) {
+    padding: 16px !important;
+  }
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity:not(.modtype_label) {
@@ -2755,6 +2825,15 @@ body#page-course-view-remuiformat .course-content .sections #section-0 .general-
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .availabilityinfo .description-inner .icon {
   margin: unset;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity [data-region="completion-info"] {
+  width: 100%;
+  float: left;
+}
+
+body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity [data-region="completion-info"] .btn {
+  width: 100%;
 }
 
 body#page-course-view-remuiformat .course-content .sections #section-0 .general-section .activities-wrapper .general-section-activities .activity .editing_move {
@@ -3151,6 +3230,31 @@ body#page-course-view-remuiformat .availabilityinfo.isrestricted ul {
 
 body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper {
   flex-direction: column;
+  margin-top: 5px;
+}
+
+body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info.stat-container div.postion-relative {
+  display: inline-flex !important;
+}
+
+body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section .rating-instructor-wrapper .instructor-info.stat-container div.postion-relative a {
+  display: inline-flex !important;
+}
+
+body#page-course-view-remuiformat .activity-item {
+  background-color: transparent;
+}
+
+body#page-course-view-remuiformat .course-section .section-item .course-content-item-content .section-content-inner {
+  background-color: transparent;
+}
+
+body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section {
+  align-items: start;
+}
+
+body#page-course-view-remuiformat.limitedwidth header.hasbackground.design-1 .header-sub-section .progress-resume-wrapper:has(.btn-primary.bold) {
+  align-items: end;
 }
 
 .section .dndupload-preview-overlay, .section .dndupload-preview-wrapper {
@@ -3221,7 +3325,6 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 #video-format-banner-box {
   margin-top: 14px;
   display: flex;
-  gap: 28px;
   flex-wrap: wrap;
   max-width: 891.96px;
   height: auto;

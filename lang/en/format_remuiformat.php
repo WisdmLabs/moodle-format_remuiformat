@@ -55,6 +55,9 @@ $string['defaultsectionsummarymaxlength_desc'] = 'Set the the section/activities
 $string['hidegeneralsectionwhenempty'] = 'Hide general section when empty';
 $string['hidegeneralsectionwhenempty_help'] = 'When general section does not have any activity and summary then you can hide it.';
 
+$string['linearnavigationsettings'] = 'Enable linear navigation';
+$string['linearnavigationsettings_help'] = 'Display \'Previous\' and \'Next\' buttons on activity pages to help learners move sequentially through the course.';
+
 // Section.
 $string['sectionname'] = 'Section';
 $string['sectionnamecaps'] = 'SECTION';
@@ -126,7 +129,17 @@ $string['cardbackgroundcolor'] = 'Set the section background color in card forma
 $string['defaultcardbackgroundcolordesc'] = 'Card background color Description';
 
 // GDPR.
-$string['privacy:metadata'] = 'The Edwiser Course Formats plugin does not store any personal data.';
+$string['privacy:metadata'] = 'The Edwiser Course Formats plugin stores data about user activity visits within courses.';
+$string['privacy:metadata:format_remuiformat_course_visits'] = 'Records of the last course module visited by a user in a course.';
+$string['privacy:metadata:format_remuiformat_course_visits:course'] = 'The ID of the course being visited.';
+$string['privacy:metadata:format_remuiformat_course_visits:userid'] = 'The ID of the user who visited the activity.';
+$string['privacy:metadata:format_remuiformat_course_visits:cm'] = 'The ID of the course module that was visited.';
+$string['privacy:metadata:format_remuiformat_course_visits:timevisited'] = 'The time at which the activity was visited.';
+$string['privacy:visit'] = 'Activity visit';
+$string['privacy:metadata:usage'] = 'Anonymous usage data sent to Edwiser to improve product compatibility.';
+$string['privacy:metadata:usage:siteurl'] = 'The site URL.';
+$string['privacy:metadata:usage:total_users'] = 'The total number of users on the site.';
+$string['privacy:metadata:usage:total_courses'] = 'The total number of courses using this format.';
 
 // Validation.
 $string['coursedisplay_error'] = 'Please choose correct combination of layout.';

@@ -290,7 +290,7 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     continue;
                 }
                 $context = \context_module::instance($mod->id);
-                if (!$mod->is_visible_on_course_page()) {
+                if (!$mod->is_visible_on_course_page() || (method_exists($mod, 'is_of_type_that_can_display') && !$mod->is_of_type_that_can_display())) {
                     continue;
                 }
 
@@ -321,7 +321,11 @@ class format_remuiformat_card_one_section implements renderable, templatable {
                     $displayoptions
                 );
                 $activitydetails->viewurl = $mod->url;
-                $activitydetails->move = course_get_cm_move($mod, $section->section);
+                if ($CFG->branch >= 503) {
+                    $activitydetails->move = course_get_cm_move($mod, ['sr' => $section->section]);
+                } else {
+                    $activitydetails->move = course_get_cm_move($mod, $section->section);
+                }
                 $activitydetails->title = $this->courseformatdatacommontrait->course_section_cm_name($mod, $displayoptions);
 
                 // SKILLSET

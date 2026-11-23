@@ -73,23 +73,23 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
     }
 
     if ($oldversion < 2021070800) {
-        // Define table remuiformat_course_module_visits to be created.
-        $table = new xmldb_table('remuiformat_course_visits');
+        // Define table format_remuiformat_course_visits to be created.
+        $table = new xmldb_table('format_remuiformat_course_visits');
 
-        // Adding fields to table remuiformat_course_module_visits.
+        // Adding fields to table format_remuiformat_course_visits.
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
         $table->add_field('course', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('cm', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('timevisited', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
 
-        // Adding keys to table remuiformat_course_module_visits.
+        // Adding keys to table format_remuiformat_course_visits.
         $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
 
-        // Adding indexes to table remuiformat_course_module_visits.
+        // Adding indexes to table format_remuiformat_course_visits.
         $table->add_index('remuiformatvisits', XMLDB_INDEX_UNIQUE, ['course', 'userid']);
 
-        // Conditionally launch create table for remuiformat_course_module_visits.
+        // Conditionally launch create table for format_remuiformat_course_visits.
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
         }
@@ -100,7 +100,7 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
 
     if ($oldversion < 2023021600) {
         // Course visits table.
-        $table = new xmldb_table('remuiformat_course_visits');
+        $table = new xmldb_table('format_remuiformat_course_visits');
 
         // Old user field.
         $field = new xmldb_field('user', XMLDB_TYPE_INTEGER, 10);
@@ -114,6 +114,19 @@ function xmldb_format_remuiformat_upgrade($oldversion) {
 
         // Remuiformat savepoint reached.
         upgrade_plugin_savepoint(true, 2023021600, 'format', 'remuiformat');
+    }
+
+    if ($oldversion < 2026101500) {
+        // Rename old table to new prefixed name if it exists.
+        $oldtable = new xmldb_table('remuiformat_course_visits');
+        $newtable = new xmldb_table('format_remuiformat_course_visits');
+
+        if ($dbman->table_exists($oldtable) && !$dbman->table_exists($newtable)) {
+            $dbman->rename_table($oldtable, 'format_remuiformat_course_visits');
+        }
+
+        // Remuiformat savepoint reached.
+        upgrade_plugin_savepoint(true, 2026101500, 'format', 'remuiformat');
     }
 
     return true;

@@ -50,10 +50,11 @@ class course_module {
         }
 
         // Update cm id if course and user record is present.
-        if ($visit = $DB->get_record('remuiformat_course_visits', array('course' => $courseid, 'userid' => $userid))) {
+        $visit = $DB->get_record('format_remuiformat_course_visits', ['course' => $courseid, 'userid' => $userid]);
+        if ($visit) {
             $visit->cm = $cmid;
             $visit->timevisited = time();
-            $DB->update_record('remuiformat_course_visits', $visit);
+            $DB->update_record('format_remuiformat_course_visits', $visit);
             return;
         }
 
@@ -63,6 +64,16 @@ class course_module {
         $visit->userid = $userid;
         $visit->cm = $cmid;
         $visit->timevisited = time();
-        $DB->insert_record('remuiformat_course_visits', $visit);
+        try {
+            $DB->insert_record('format_remuiformat_course_visits', $visit);
+        } catch (\dml_write_exception $e) {
+            // Another request may have inserted the record concurrently.
+            $visit = $DB->get_record('format_remuiformat_course_visits', ['course' => $courseid, 'userid' => $userid]);
+            if ($visit) {
+                $visit->cm = $cmid;
+                $visit->timevisited = time();
+                $DB->update_record('format_remuiformat_course_visits', $visit);
+            }
+        }
     }
 }

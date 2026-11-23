@@ -451,6 +451,23 @@ body#page-course-view-remuiformat {
             gap: $gap-12;
         }
 
+        @media (max-width: 600px) {
+            .activity-item:not(.activityinline) {
+                padding: 16px !important;
+                .activity-instance.activity-name-area {
+                    width: 90%;
+                    .activitytitle {
+                        display: flex;
+                        gap: 10px;
+                        flex-direction: row;
+                        .activityiconcontainer {
+                            width: fit-content !important;
+                            height: fit-content !important;
+                        }
+                    }
+                }
+            }
+        }
         .activity-item:not(.activityinline) {
             border: $border-height solid $light-border;
             border-radius: $border-radius-8;
@@ -545,6 +562,10 @@ body#page-course-view-remuiformat {
                                 .coursesummary {
                                     color: $paragraph-color;
                                     @include frmt-font-styling(16px, 24px, 400);
+
+                                    img {
+                                        border-radius: 8px
+                                    }
                                 }
 
                                 .readbtn {
@@ -596,6 +617,13 @@ body#page-course-view-remuiformat {
                             max-width: unset;
                             .section{
                                 list-style: none;
+                            }
+                            @media (max-width: 600px) {
+                                .activity {
+                                    &:not(.modtype_label) {
+                                        padding: 16px !important;
+                                    }
+                                }
                             }
                             .activity {
                                 &:not(.modtype_label) {
@@ -678,6 +706,15 @@ body#page-course-view-remuiformat {
                                         .icon{
                                             margin: unset;
                                         }
+                                    }
+                                }
+
+                                [data-region="completion-info"] {
+                                    width: 100%;
+                                    float: left;
+            
+                                    .btn {
+                                        width: 100%;
                                     }
                                 }
 
@@ -1115,6 +1152,17 @@ body#page-course-view-remuiformat {
             .header-sub-section {
                 .progress-resume-wrapper {
                     flex-direction: column;
+                    margin-top: 5px;
+                }
+                .rating-instructor-wrapper {
+                    .instructor-info.stat-container {
+                        div.postion-relative {
+                            display: inline-flex !important;
+                            a {
+                                display: inline-flex !important;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1123,6 +1171,31 @@ body#page-course-view-remuiformat {
     // .bulkEnable {
     //     display: none;
     // }
+    //moodle boost 5.3 bg overrride
+    .activity-item {
+        background-color: transparent;
+    }
+    .course-section {
+        .section-item {
+            .course-content-item-content {
+                .section-content-inner {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    &.limitedwidth {
+        header.hasbackground.design-1 .header-sub-section {
+            align-items: start;
+
+            .progress-resume-wrapper:has(.btn-primary.bold) {
+                align-items: end;
+            }
+        }
+            
+            
+    }
 }
 .section{
     .dndupload-preview-overlay,.dndupload-preview-wrapper{
@@ -1196,7 +1269,6 @@ body:not(.editing) #page-content .course-content ul li.section.main.delegated-se
 #video-format-banner-box {
     margin-top: 14px;
     display: flex;
-    gap: 28px;
     flex-wrap: wrap;
 
     max-width:891.96px;

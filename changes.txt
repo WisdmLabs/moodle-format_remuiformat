@@ -1,5 +1,15 @@
 CHANGES LOG
 
+Version v4.1.23:
+============================
+Feature - Added linear navigation settings for Moodle 5.3.
+Fix - Fixed few security concerns.
+Tweak - Minor UI/UX improvements.
+
+Version v4.1.22:
+============================
+Feature - Added compatibility with Moodle 5.3.
+
 Version 4.1.21
 ===========
 Feature - Added compatibility with Moodle 5.2.

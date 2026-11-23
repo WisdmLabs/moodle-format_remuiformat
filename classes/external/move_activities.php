@@ -59,21 +59,60 @@ trait move_activities {
      */
     public static function move_activities($courseid, $sectionid, $sequence) {
         global $DB;
+
+        $params = self::validate_parameters(
+            self::move_activities_parameters(),
+            [
+                'courseid' => $courseid,
+                'sectionid' => $sectionid,
+                'sequence' => $sequence,
+            ]
+        );
+
+        $context = \context_course::instance($params['courseid']);
+        self::validate_context($context);
+        require_capability('moodle/course:manageactivities', $context);
+
         $table = 'course_sections';
-        $output = array();
-        $record = $DB->get_record($table, array('course' => $courseid, 'section' => $sectionid));
-        if ($sequence != "") {
-            $record->sequence = $sequence;
+        $record = $DB->get_record($table, ['course' => $params['courseid'], 'section' => $params['sectionid']], '*', MUST_EXIST);
+
+        if ($params['sequence'] !== '') {
+            $sequenceids = explode(',', $params['sequence']);
+            $sequenceids = array_map('intval', $sequenceids);
+            $sequenceids = array_filter($sequenceids);
+            $sequenceids = array_unique($sequenceids);
+
+            if (!empty($sequenceids)) {
+                list($insql, $inparams) = $DB->get_in_or_equal($sequenceids);
+                $modules = $DB->get_records_select('course_modules', "id $insql", $inparams, '', 'id, course, section');
+
+                foreach ($sequenceids as $cmid) {
+                    if (!isset($modules[$cmid])) {
+                        throw new \moodle_exception('invalidcoursemodule', 'error');
+                    }
+                    if ((int) $modules[$cmid]->course !== (int) $params['courseid']) {
+                        throw new \moodle_exception('invalidcoursemodule', 'error');
+                    }
+                }
+
+                $record->sequence = implode(',', $sequenceids);
+            } else {
+                $record->sequence = '';
+            }
+        } else {
+            $record->sequence = '';
         }
+
+        $output = [];
         if ($DB->update_record($table, $record, false)) {
             $output['success'] = true;
-            $output['message'] = "Updated Successfully";
+            $output['message'] = 'Updated Successfully';
         } else {
             $output['success'] = false;
-            $output['message'] = "Error in updation";
+            $output['message'] = 'Error in updation';
         }
         // Need to call after database update.
-        rebuild_course_cache($courseid, true);
+        rebuild_course_cache($params['courseid'], true);
 
         return $output;
     }
